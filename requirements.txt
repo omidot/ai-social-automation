@@ -1,0 +1,10 @@
+# Runtime target: Python 3.12 (CI) / 3.13+ supported. Pins verified on 3.14.
+httpx==0.28.1
+feedparser==6.0.14
+trafilatura==2.2.0
+PyYAML==6.0.3
+Pillow==12.3.0
+playwright==1.62.0
+google-genai==2.22.0
+python-dateutil==2.9.0.post0
+pytest==9.1.1

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<rss version="2.0"><channel><title>Demo</title>
+  <item><title>OpenAI ra model mới</title><link>https://openai.com/blog/new-model</link>
+    <description>Tóm tắt về model mới.</description>
+    <pubDate>Wed, 03 Sep 2026 00:00:00 GMT</pubDate></item>
+  <item><title>Bài cũ không liên quan</title><link>https://openai.com/blog/old</link>
+    <description>abc</description>
+    <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate></item>
+</channel></rss>

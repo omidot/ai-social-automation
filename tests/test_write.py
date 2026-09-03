@@ -1,0 +1,53 @@
+import json
+from datetime import datetime, timezone
+import pytest
+from pipeline.models import Candidate
+from pipeline import write
+from tests.conftest import FIXTURES
+
+VOICE = {"xung_ho": {"nguoi_noi": "mình", "nguoi_nghe": "bạn"}, "giong": "thân thiện",
+         "cam_ky": ["không giật tít sai"], "ten_kenh": "A Hít Official",
+         "mo_bai_mau": ["Có tin này hay nè:"], "cta_mau": ["Bạn nghĩ sao?"]}
+
+
+def _cand():
+    return Candidate(url="https://openai.com/blog/new", title="OpenAI new model",
+                     source="rss:OpenAI Blog",
+                     published_at=datetime(2026, 9, 3, tzinfo=timezone.utc),
+                     summary="new model", full_text="OpenAI released a faster model...")
+
+
+def test_build_prompt_includes_voice_and_article():
+    sysp, usr = write.build_prompt(_cand(), VOICE)
+    assert "A Hít Official" in sysp
+    assert "OpenAI released a faster model" in usr
+    assert "JSON" in sysp
+
+
+def test_write_post_parses_and_validates():
+    payload = (FIXTURES / "sample_llm_response.json").read_text(encoding="utf-8")
+    post = write.write_post(_cand(), VOICE, generate=lambda s, u, **k: payload)
+    assert post.angle == "tin-tuc"
+    assert post.hashtags[0] == "#AI"
+    assert post.caption_fb.strip().endswith("Nguồn: OpenAI Blog — https://openai.com/blog/new")
+
+
+def test_write_post_appends_source_if_missing():
+    data = json.loads((FIXTURES / "sample_llm_response.json").read_text())
+    data["caption_fb"] = "Nội dung không có nguồn."
+    post = write.write_post(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+    assert post.caption_fb.endswith("Nguồn: OpenAI Blog — https://openai.com/blog/new")
+
+
+def test_write_post_bad_angle_raises():
+    data = json.loads((FIXTURES / "sample_llm_response.json").read_text())
+    data["angle"] = "clickbait-xyz"
+    with pytest.raises(write.WriteError):
+        write.write_post(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_post_missing_key_raises():
+    data = json.loads((FIXTURES / "sample_llm_response.json").read_text())
+    del data["caption_ig"]
+    with pytest.raises(write.WriteError):
+        write.write_post(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))

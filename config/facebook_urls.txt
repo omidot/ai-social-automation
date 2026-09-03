@@ -1,0 +1,1 @@
+# Mỗi dòng một URL bài Facebook công khai. Dòng bắt đầu bằng # bị bỏ qua.

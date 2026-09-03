@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-social-automation"
+version = "0.1.0"
+description = "Phase 1: daily AI-news to Facebook/Instagram automation pipeline"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]
