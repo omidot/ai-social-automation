@@ -38,6 +38,26 @@ def _notify(msg: str) -> None:
         log.warning("telegram notify failed: %s", e)
 
 
+_FAKE_LLM_JSON = json.dumps({
+    "angle": "tin-tuc",
+    "caption_fb": ("AI tuần này lại có biến. Đây là bản dựng thử ngoại tuyến của "
+                   "pipeline, dùng để kiểm tra luồng chạy chứ chưa phải nội dung thật. "
+                   "Bạn nghĩ sao? Comment cho mình biết nhé."),
+    "caption_ig": "Bản dựng thử ngoại tuyến của pipeline. #AI",
+    "hashtags": ["#AI", "#trituenhantao", "#congnghe", "#tin247", "#OpenAI",
+                 "#chuyendoiso", "#automation", "#ahitofficial"],
+    "thumbnail_prompt": "futuristic glowing neural network core, blue and violet, cinematic, no text",
+    "thumbnail_title": "BẢN DỰNG THỬ PIPELINE",
+    "youtube_title": "Bản dựng thử pipeline AI social automation",
+    "youtube_desc": "Video mô tả sẽ được sinh tự động khi có khoá LLM. Nguồn trong mô tả.",
+    "tiktok_caption": "Thử pipeline AI 👀 #AI #automation",
+}, ensure_ascii=False)
+
+
+def _fake_generate(system: str, user: str, **kwargs) -> str:
+    return _FAKE_LLM_JSON
+
+
 def _load_local_candidates(root: Path) -> list:
     f = Path(root) / "tests/fixtures/local_candidates.json"
     if not f.exists():
@@ -118,11 +138,15 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="AI social automation — build stage")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--local", action="store_true")
+    ap.add_argument("--fake-llm", action="store_true",
+                    help="use a canned response instead of calling any LLM (offline smoke test)")
     ap.add_argument("--root", default=".")
     args = ap.parse_args(argv)
     now = datetime.now(timezone.utc)
+    generate = _fake_generate if args.fake_llm else None
     try:
-        result = build(Path(args.root), now, dry_run=args.dry_run, local=args.local)
+        result = build(Path(args.root), now, dry_run=args.dry_run, local=args.local,
+                       generate=generate)
     except (collect.CollectError, write.WriteError, publish.PublishError) as e:
         log.error("pipeline failed: %s", e)
         if not args.dry_run:

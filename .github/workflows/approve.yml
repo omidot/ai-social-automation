@@ -18,7 +18,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - name: Install deps
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
       - name: Process approvals
         env:
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
