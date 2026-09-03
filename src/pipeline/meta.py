@@ -1,0 +1,81 @@
+from __future__ import annotations
+import json, os
+from pathlib import Path
+
+import httpx
+
+BASE = "https://graph.facebook.com/v21.0"
+
+
+class Meta:
+    def __init__(self, page_id: str, page_token: str, ig_id: str | None = None):
+        self.page_id = page_id
+        self.token = page_token
+        self.ig_id = ig_id
+        self._client = httpx.Client(timeout=120.0)
+
+    @classmethod
+    def from_env(cls) -> "Meta":
+        return cls(os.environ["META_PAGE_ID"], os.environ["META_PAGE_TOKEN"],
+                   os.environ.get("IG_BUSINESS_ID"))
+
+    def _get(self, path: str, params: dict) -> dict:
+        params = {**params, "access_token": self.token}
+        r = self._client.get(f"{BASE}/{path}", params=params)
+        r.raise_for_status()
+        return r.json()
+
+    def _post(self, url: str, data=None, files=None) -> dict:
+        r = self._client.post(url, data=data, files=files)
+        r.raise_for_status()
+        return r.json()
+
+    # ---------- Facebook ----------
+    def fb_upload_photo(self, image_path: str) -> str:
+        with open(image_path, "rb") as fh:
+            res = self._post(f"{BASE}/{self.page_id}/photos",
+                             data={"published": "false", "access_token": self.token},
+                             files={"source": (Path(image_path).name, fh, "image/jpeg")})
+        return str(res["id"])
+
+    def fb_create_post(self, message: str, media_fbids: list[str]) -> dict:
+        data = {"message": message, "access_token": self.token}
+        for i, fbid in enumerate(media_fbids):
+            data[f"attached_media[{i}]"] = json.dumps({"media_fbid": str(fbid)},
+                                                      separators=(",", ":"))
+        res = self._post(f"{BASE}/{self.page_id}/feed", data=data)
+        pid = str(res["id"])
+        return {"id": pid, "url": f"https://facebook.com/{pid}"}
+
+    # ---------- Instagram ----------
+    def ig_upload_temp(self, image_path: str) -> str:
+        with open(image_path, "rb") as fh:
+            res = self._post("https://tmpfiles.org/api/v1/upload",
+                             files={"file": (Path(image_path).name, fh, "image/jpeg")})
+        url = res["data"]["url"]           # https://tmpfiles.org/12345/pic.jpg
+        return url.replace("tmpfiles.org/", "tmpfiles.org/dl/", 1)
+
+    def ig_create_item(self, image_url: str) -> str:
+        res = self._post(f"{BASE}/{self.ig_id}/media",
+                         data={"image_url": image_url, "is_carousel_item": "true",
+                               "access_token": self.token})
+        return str(res["id"])
+
+    def ig_create_carousel(self, child_ids: list[str], caption: str) -> str:
+        res = self._post(f"{BASE}/{self.ig_id}/media",
+                         data={"media_type": "CAROUSEL", "children": ",".join(child_ids),
+                               "caption": caption, "access_token": self.token})
+        return str(res["id"])
+
+    def ig_publish(self, creation_id: str) -> dict:
+        return self._post(f"{BASE}/{self.ig_id}/media_publish",
+                          data={"creation_id": creation_id, "access_token": self.token})
+
+    # ---------- tokens ----------
+    def exchange_long_lived_token(self, app_id: str, app_secret: str, short_token: str) -> dict:
+        return self._get("oauth/access_token",
+                         {"grant_type": "fb_exchange_token", "client_id": app_id,
+                          "client_secret": app_secret, "fb_exchange_token": short_token})
+
+    def debug_token(self, token: str) -> dict:
+        return self._get("debug_token", {"input_token": token})
