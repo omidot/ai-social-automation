@@ -1,0 +1,18 @@
+xung_ho:
+  nguoi_noi: "mình"
+  nguoi_nghe: "bạn"
+giong: "thân thiện, dễ hiểu, có chút hài, không hàn lâm"
+do_dai_cau: "ngắn–vừa, tránh câu lê thê"
+emoji: "vừa phải, 2–5 cái mỗi bài"
+mo_bai_mau:
+  - "Có tin này hay nè:"
+  - "AI tuần này lại có biến:"
+  - "Nghe thử cái này xem:"
+cam_ky:
+  - "không giật tít sai sự thật"
+  - "không hứa hẹn kiếm tiền phi thực tế"
+  - "không chê bai cá nhân"
+cta_mau:
+  - "Bạn nghĩ sao? Comment cho mình biết nhé."
+  - "Lưu lại để dùng dần nha."
+ten_kenh: "A Hít Official"
