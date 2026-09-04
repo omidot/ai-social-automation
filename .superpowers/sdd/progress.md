@@ -19,7 +19,15 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 
 ALL CODE TASKS (2-11) COMPLETE. Task 1 (spike) deferred — needs user's assets/voice/sample.wav.
 Final whole-branch review (opus) done → "No, with fixes": 2 Critical, 7 Important.
-Fix wave dispatched (one subagent). Then re-verify + finishing-a-development-branch.
+Fix wave: subagent applied all edits to working tree then hit session limit before commit.
+Controller took over: added --fake-llm to build_video CLI (C1 completion), regenerated
+voice.mp3 placeholder, verified — 105 suite green, real CLI builds a manifest, render-smoke
+produced out/smoke.mp4 (31 frames, FIRST real execution of that path). Committed d558ca2.
+All C1/C2/I1-I7 + minors resolved. NEXT: finishing-a-development-branch.
+
+Remaining deferred: Task 1 (TTS spike) — needs user's assets/voice/sample.wav + 2GB model dl.
+Deferred-to-final polish (non-blocking): struct.pack splat in _fake_wav; align.py validation
+branch coverage; _run_script argv size (Task 1 concern).
 
 ## Final review findings (fix wave)
 - C1 build_video.py main(): `cfg.setdefault("enabled", True)` never overrides settings' False → CLI + CI smoke are vacuous no-ops. FIX: `cfg["enabled"] = True` + test driving main().
