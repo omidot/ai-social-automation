@@ -12,7 +12,7 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 5: complete (commits cf00a86..59a623e, review Approved)
 - Task 6: complete (commits d813abc..28cc8bb, review Approved)
 - Task 7: complete (commits 1e15b92..d5cc5f6, review Approved; deviation: +encoding="utf-8",errors="replace" on subprocess calls — Windows cp1252/Vietnamese fix, confirmed sound)
-- Task 8: pending  (pipeline.video.tts)
+- Task 8: complete (commits 784cdef..8abaf76, review Approved; deviation: os.close() the mkstemp fd — Windows PermissionError fix, sound)
 - Task 9: pending  (pipeline.video.build_video)
 - Task 10: pending (wire into run.py + config + README)
 - Task 11: pending (CI video-smoke workflow)
@@ -25,3 +25,4 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 5: unused `re` import in tests/video/test_variants.py (from plan text). No explicit test that normalize() does not mutate its input (deepcopy on line 1 makes it self-evident).
 - Task 6: unused `subprocess` import in tests/video/test_codegen.py (from plan text). Golden fixtures bootstrapped from impl — triangulated by node_check + downstream align.mjs (Task 7).
 - Task 7: dead `_SIL` regex in align.py:11 (from plan text); unused `tmp_path` in test_align.py:48; align.py validation branches (missing timeline / bad JSON / empty cards) not directly covered — only returncode!=0 path is. `needs_node` has no conftest auto-skip → hard-fails on machines without node/ffmpeg (fine for CI which has both; add skip hook in Task 11 or final).
+- Task 8: FIX-AT-FINAL — `_hfspace` in tts.py sleeps 60s even after the last retry attempt (guard with `if attempt < 2:`); move `import time` out of loop; drop unused `_wav_seconds` test helper; `test_synthesize_all_fail_raises` should assert the TTSError message names the backends; dead `not Path(out_wav).exists()` guard in `_run_script` (latent); `_to_mp3` returns input-wav duration not trimmed-mp3 duration (add comment).
