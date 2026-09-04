@@ -102,13 +102,20 @@ def _to_mp3(wav_path: Path, out_mp3: Path, video_dir: Path) -> float:
 
 
 def _fake_wav(target_text: str, out_wav: Path) -> None:
+    import math
     import struct
     words = max(1, len(target_text.split()))
     secs = max(2.0, words * 0.38)
-    n = int(44100 * secs)
+    sr = 44100
+    n = int(sr * secs)
+    # Low-amplitude tone (~-20 dBFS) rather than pure zeros: the silenceremove
+    # filter in _to_mp3 strips a fully-silent signal down to an unreadable mp3.
+    # Duration (from wav frame count) is unchanged by the sample values.
+    amp = 3277
+    samples = (int(amp * math.sin(2 * math.pi * 220 * i / sr)) for i in range(n))
     with wave.open(str(out_wav), "wb") as w:
-        w.setnchannels(1); w.setsampwidth(2); w.setframerate(44100)
-        w.writeframes(struct.pack("<%dh" % n, *([0] * n)))
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
+        w.writeframes(struct.pack("<%dh" % n, *samples))
 
 
 def synthesize(target_text: str, out_mp3: Path, cfg: dict, video_dir: Path,
