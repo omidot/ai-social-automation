@@ -8,3 +8,5 @@ playwright==1.62.0
 google-genai==2.22.0
 python-dateutil==2.9.0.post0
 pytest==9.1.1
+faster-whisper==1.0.3
+gradio-client==1.4.0
