@@ -11,7 +11,7 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 4: complete (commits b5692a4..5028903, review Approved + fix pass for 2 Important coverage gaps; re-verified by controller — 78 suite green)
 - Task 5: complete (commits cf00a86..59a623e, review Approved)
 - Task 6: complete (commits d813abc..28cc8bb, review Approved)
-- Task 7: pending  (pipeline.video.align)
+- Task 7: complete (commits 1e15b92..d5cc5f6, review Approved; deviation: +encoding="utf-8",errors="replace" on subprocess calls — Windows cp1252/Vietnamese fix, confirmed sound)
 - Task 8: pending  (pipeline.video.tts)
 - Task 9: pending  (pipeline.video.build_video)
 - Task 10: pending (wire into run.py + config + README)
@@ -24,3 +24,4 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 4: `_validate(data, cfg)` — `cfg` param unused (plan-mandated shape); "unreachable" guard is dead-but-defensible type hint; raw_script.json = 108 displayed words (below 110-140 target, inside 95-155 test band). All for final-review triage.
 - Task 5: unused `re` import in tests/video/test_variants.py (from plan text). No explicit test that normalize() does not mutate its input (deepcopy on line 1 makes it self-evident).
 - Task 6: unused `subprocess` import in tests/video/test_codegen.py (from plan text). Golden fixtures bootstrapped from impl — triangulated by node_check + downstream align.mjs (Task 7).
+- Task 7: dead `_SIL` regex in align.py:11 (from plan text); unused `tmp_path` in test_align.py:48; align.py validation branches (missing timeline / bad JSON / empty cards) not directly covered — only returncode!=0 path is. `needs_node` has no conftest auto-skip → hard-fails on machines without node/ffmpeg (fine for CI which has both; add skip hook in Task 11 or final).
