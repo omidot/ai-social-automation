@@ -47,6 +47,7 @@ def test_generate_retries_on_short_script():
     s = script.generate(_cand(), _post(), VOICE, CFG, llm=fake_llm)
     assert len(calls) == 2
     assert "từ" in calls[1].lower()   # corrective feedback mentions word count
+    assert "[SỬA]" in calls[1]        # corrective marker present
     assert 95 <= s.word_count <= 155
 
 def test_generate_raises_after_second_bad():
@@ -58,8 +59,34 @@ def test_generate_raises_on_bad_schema():
     with pytest.raises(VideoScriptError):
         script.generate(_cand(), _post(), VOICE, CFG, llm=lambda sy, u, **k: '{"cards": []}')
 
+def test_generate_wraps_llm_error():
+    from pipeline.llm import LLMError
+    def boom(sy, u, **k):
+        raise LLMError("upstream down")
+    with pytest.raises(VideoScriptError):
+        script.generate(_cand(), _post(), VOICE, CFG, llm=boom)
+
+def test_generate_rejects_first_section_not_zero():
+    data = json.loads((FX / "raw_script.json").read_text(encoding="utf-8"))
+    data["sections"][0]["card_start"] = 1
+    with pytest.raises(VideoScriptError):
+        script.generate(_cand(), _post(), VOICE, CFG, llm=lambda sy, u, **k: json.dumps(data))
+
+def test_generate_rejects_non_increasing_sections():
+    data = json.loads((FX / "raw_script.json").read_text(encoding="utf-8"))
+    data["sections"] = [{"label": "A", "card_start": 0}, {"label": "B", "card_start": 0}]
+    with pytest.raises(VideoScriptError):
+        script.generate(_cand(), _post(), VOICE, CFG, llm=lambda sy, u, **k: json.dumps(data))
+
+def test_generate_rejects_section_start_beyond_cards():
+    data = json.loads((FX / "raw_script.json").read_text(encoding="utf-8"))
+    data["sections"][-1]["card_start"] = 999
+    with pytest.raises(VideoScriptError):
+        script.generate(_cand(), _post(), VOICE, CFG, llm=lambda sy, u, **k: json.dumps(data))
+
 def test_write_script_json(tmp_path):
     raw = (FX / "raw_script.json").read_text(encoding="utf-8")
     s = script.generate(_cand(), _post(), VOICE, CFG, llm=lambda sy, u, **k: raw)
     p = script.write_script_json(s, tmp_path)
     assert p.exists() and json.loads(p.read_text(encoding="utf-8"))["cards"]
+    assert p.name == "script.json"
