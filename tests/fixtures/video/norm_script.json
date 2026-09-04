@@ -1,0 +1,9 @@
+{
+  "sections": [{"label": "MỞ", "card_start": 0}, {"label": "CHỐT", "card_start": 2}],
+  "cards": [
+    {"lines": ["Hôm nay", "~thì", "AI có bước nhảy lớn."], "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "up", "num": null},
+    {"lines": ["Nhanh gấp", "hai lần."], "variant": "strike", "anchor": "top", "motion_in": "slideL", "motion_out": "up", "num": null},
+    {"lines": ["Gọi API tăng", "gấp 10 lần."], "variant": "numeral", "anchor": "mid", "motion_in": "wipe", "motion_out": "shrink", "num": 10},
+    {"lines": ["Bạn bắt đầu chưa?"], "variant": "invert", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut", "num": null}
+  ]
+}
