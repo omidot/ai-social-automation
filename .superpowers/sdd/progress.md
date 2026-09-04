@@ -18,7 +18,20 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 11: complete (commits 9f26ea9..6eb94f4, review Approved — no issues)
 
 ALL CODE TASKS (2-11) COMPLETE. Task 1 (spike) deferred — needs user's assets/voice/sample.wav.
-Next: final whole-branch review, then finishing-a-development-branch.
+Final whole-branch review (opus) done → "No, with fixes": 2 Critical, 7 Important.
+Fix wave dispatched (one subagent). Then re-verify + finishing-a-development-branch.
+
+## Final review findings (fix wave)
+- C1 build_video.py main(): `cfg.setdefault("enabled", True)` never overrides settings' False → CLI + CI smoke are vacuous no-ops. FIX: `cfg["enabled"] = True` + test driving main().
+- C2 video/src/KineticShort.tsx:112 plays `voice-adsbot.mp3` not generated `voice.mp3` → every render has wrong desynced audio. FIX: staticFile('voice.mp3') + commit placeholder.
+- I1 run.py:127 video `_notify` fires during --dry-run (above the dry_run guard). FIX: `if not dry_run:`.
+- I2 run.py:118/122 malformed `video: true` scalar → AttributeError before try/except. FIX: `vcfg = settings.get("video") or {}` + isinstance guard.
+- I3 regenerated video/ files tracked & churned; voice.mp3 untracked+unignored. FIX: gitignore video/ref/silence.txt + assets/voice/sample.txt; keep cards.mjs/variants.mjs/timeline.json/voice.mp3 tracked as Studio seed + README "git checkout -- video/ after local runs".
+- I4 faster-whisper+gradio-client in requirements.txt install on ALL workflows incl approve.yml (every 10min) — cost regression + breaks py3.14 local. FIX: requirements-video.txt, installed only in video-smoke.yml.
+- I5 tts._to_mp3 check=True → CalledProcessError escapes main()'s `except VideoError`. FIX: wrap→TTSError; move _to_mp3 out of backend loop in non-fake path.
+- I6 encoding="utf-8",errors="replace" only on align.py; missing on tts._run_script, tts._to_mp3, codegen.node_check, build_video render-smoke. FIX: add to all 4.
+- I7 tts._hfspace sleeps 60s after final attempt. FIX: `if attempt < 2:` + hoist import time.
+- Minors: ruff F401/F841 (unused json/field/re/subprocess/_SIL/_wav_seconds/tmp_path); strengthen test_synthesize_falls_through_backends to assert on mp3; struct.pack splat + _run_script argv size = final polish / Task 1 concern.
 
 ## Minor findings roll-up (for final review)
 - Task 2: unused `json` import in tests/video/test_remotion_project.py:1 (from plan text; harmless)
