@@ -1,3 +1,4 @@
-# Optional — only for the Phase 2A video stage (TTS). Installed by video-smoke.yml.
-faster-whisper==1.0.3
-gradio-client==1.4.0
+# Optional — only for the Phase 2A video stage (TTS). Installed by video-smoke.yml
+# and the local .venv, NOT by the Phase 1 workflows.
+faster-whisper==1.1.1
+gradio-client==2.6.1

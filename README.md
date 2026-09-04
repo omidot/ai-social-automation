@@ -64,6 +64,18 @@ Bài Facebook lẻ: dán URL vào `config/facebook_urls.txt`, mỗi dòng một 
 - `approve.yml`: mỗi 10 phút, xử lý nút Telegram.
 - `refresh-token.yml`: mùng 1 hàng tháng.
 
+## Môi trường dev (máy này)
+
+Ổ C: đầy → dùng venv trên ổ D:. Interpreter: `D:\python.exe` (Python 3.12.3).
+
+```
+D:\Automation Social\.venv\Scripts\python.exe -m pytest -q
+```
+
+Cache đã trỏ về D: qua biến môi trường user (`PIP_CACHE_DIR`, `HF_HOME`,
+`TORCH_HOME`, `UV_CACHE_DIR` → `D:\cache\*`). Cài lại deps:
+`.venv\Scripts\python.exe -m pip install -r requirements.txt -r requirements-video.txt -e .`
+
 ## Phase 2A — video (kịch bản + giọng + timeline)
 
 Bật `config/settings.yaml` → `video.enabled: true`. Chuẩn bị:
