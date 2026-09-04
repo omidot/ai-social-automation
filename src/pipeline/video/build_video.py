@@ -21,6 +21,9 @@ from . import align as _align
 
 log = logging.getLogger("video.build")
 
+_CFG_DEFAULTS = {"enabled": False, "target_seconds": 40, "words_min": 110,
+                 "words_max": 140, "tts_provider": "auto"}
+
 
 def _slug(text: str) -> str:
     t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
@@ -43,6 +46,7 @@ def _load_story(path: Path) -> tuple[Candidate, PostContent]:
 
 def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: dict,
           fake: bool = False, render_smoke: bool = False, llm=None) -> dict:
+    cfg = {**_CFG_DEFAULTS, **(cfg or {})}
     if not cfg.get("enabled"):
         return {"skipped": "video.enabled=false"}
 

@@ -64,6 +64,24 @@ Bài Facebook lẻ: dán URL vào `config/facebook_urls.txt`, mỗi dòng một 
 - `approve.yml`: mỗi 10 phút, xử lý nút Telegram.
 - `refresh-token.yml`: mùng 1 hàng tháng.
 
+## Phase 2A — video (kịch bản + giọng + timeline)
+
+Bật `config/settings.yaml` → `video.enabled: true`. Chuẩn bị:
+- `assets/voice/sample.wav` — 3–10 phút giọng kể (WAV mono 44.1kHz)
+- `assets/voice/sample.txt` — lời thoại của mẫu (không có thì pipeline tự transcribe)
+- `video/public/bg-*.mp4` — pool nền (2B dùng)
+
+Thử offline (không gọi TTS thật):
+
+    python -m pipeline.video.build_video --fake --story tests/fixtures/video/story.json
+
+Kiểm tra giọng clone thật:
+
+    python -m pipeline.video.build_video --tts-check
+
+TTS engine do spike chọn (xem docs/superpowers/notes/2026-09-03-tts-spike.md).
+F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm fallback.
+
 ## Kiến trúc
 
 `src/pipeline/`: `collect → score → write → media → review → publish`, cộng
