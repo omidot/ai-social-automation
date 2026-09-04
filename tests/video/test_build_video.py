@@ -51,6 +51,42 @@ def test_build_fake_writes_all_artefacts(tmp_path, monkeypatch):
     assert man["tts_backend"] == "fake"
 
 
+def test_main_fake_writes_manifest(tmp_path, monkeypatch, capsys):
+    # Staged isolated repo. settings.yaml sets video.enabled: false ON PURPOSE —
+    # an explicit CLI invocation must override it and actually build (not skip).
+    repo = tmp_path
+    (repo / "video").mkdir()
+    for sub in ("tools", "src", "ref", "public", "node_modules"):
+        (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
+    import shutil
+    shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
+                    repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
+    (repo / "config").mkdir()
+    (repo / "config/voice.yaml").write_text("giong: x\n", encoding="utf-8")
+    (repo / "config/settings.yaml").write_text(
+        "video:\n  enabled: false\n  target_seconds: 40\n  words_min: 110\n"
+        "  words_max: 140\n  tts_provider: auto\n", encoding="utf-8")
+
+    voice = {"xung_ho": {"nguoi_noi": "mình", "nguoi_nghe": "bạn"}, "giong": "thân thiện",
+             "cam_ky": [], "ten_kenh": "A Hít Official"}
+    monkeypatch.setattr(build_video, "_load_voice", lambda root: voice)
+
+    # --fake-llm uses the module's canned script; no LLM credentials, no monkeypatch.
+    rc = build_video.main(["--root", str(repo), "--story", str(FX / "story.json"),
+                           "--fake", "--fake-llm"])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "SUMMARY: built " in out and "built None" not in out
+
+    manifests = list((repo / "output").rglob("video/manifest.json"))
+    assert len(manifests) == 1
+    man = json.loads(manifests[0].read_text(encoding="utf-8"))
+    assert "skipped" not in man
+    assert man["tts_backend"] == "fake"
+    assert man["cards"] == 14
+
+
 def test_build_disabled_returns_skip(tmp_path, monkeypatch):
     monkeypatch.setattr(build_video, "_load_voice", lambda root: {})
     cand, post = _story()

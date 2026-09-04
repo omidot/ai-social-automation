@@ -115,16 +115,18 @@ def build(root: Path, now: datetime, dry_run: bool, local: bool, generate=None) 
 
     pending = review.build_pending(post, images, pid, low_media, now)
 
-    if settings.get("video", {}).get("enabled"):
+    _vcfg = settings.get("video")
+    if isinstance(_vcfg, dict) and _vcfg.get("enabled"):
         try:
             from .video import build_video as _bv
             vman = _bv.build(root, best, post, now,
-                             {**settings["video"]}, fake=dry_run, llm=generate)
+                             {**_vcfg}, fake=dry_run, llm=generate)
             if not vman.get("skipped"):
                 pending["video"] = vman
         except Exception as e:  # noqa: BLE001 - never let video break the image post
             log.error("video stage failed: %s", e)
-            _notify(f"Video hôm nay lỗi, chỉ đăng ảnh: {e}")
+            if not dry_run:
+                _notify(f"Video hôm nay lỗi, chỉ đăng ảnh: {e}")
 
     if dry_run:
         log.info("dry-run: wrote %s (no telegram, no publish)", out_dir)

@@ -8,7 +8,6 @@ from pathlib import Path
 from . import AlignError
 
 _DUR = re.compile(r"Duration:\s*(\d+):(\d+):(\d+\.\d+)")
-_SIL = re.compile(r"silence_(start|end|duration):\s*(-?\d+\.?\d*)")
 
 
 def _ffmpeg_bin(video_dir: Path) -> str:

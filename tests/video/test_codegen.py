@@ -1,4 +1,4 @@
-import json, subprocess
+import json
 from pathlib import Path
 import pytest
 from pipeline.video.models import Script

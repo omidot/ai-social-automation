@@ -1,4 +1,3 @@
-import wave
 from pathlib import Path
 import pytest
 from pipeline.video import tts, TTSError
@@ -6,10 +5,6 @@ from pipeline.video import tts, TTSError
 CFG = {"tts_provider": "auto"}
 ROOT = Path(__file__).resolve().parents[2]
 VIDEO = ROOT / "video"
-
-def _wav_seconds(p: Path) -> float:
-    with wave.open(str(p), "rb") as w:
-        return w.getnframes() / w.getframerate()
 
 def test_order_auto():
     assert tts._order("auto") == ["gptsovits", "f5tts", "hfspace"]
@@ -25,10 +20,12 @@ def test_synthesize_falls_through_backends(tmp_path, monkeypatch):
     calls = []
     def ok_wav(ref_wav, ref_text, target, out_wav):
         calls.append("f5")
-        import wave, struct
+        import math, wave, struct
+        sr = 44100
+        samples = [int(3277 * math.sin(2 * math.pi * 220 * i / sr)) for i in range(sr)]
         with wave.open(str(out_wav), "wb") as w:
-            w.setnchannels(1); w.setsampwidth(2); w.setframerate(44100)
-            w.writeframes(struct.pack("<" + "h" * 44100, *([0] * 44100)))
+            w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
+            w.writeframes(struct.pack("<%dh" % sr, *samples))
     monkeypatch.setitem(tts._BACKENDS, "gptsovits",
                         lambda *a: (_ for _ in ()).throw(RuntimeError("no torch")))
     monkeypatch.setitem(tts._BACKENDS, "f5tts", ok_wav)
@@ -40,6 +37,7 @@ def test_synthesize_falls_through_backends(tmp_path, monkeypatch):
     assert calls == ["f5"]
     assert (tmp_path / "out.mp3").exists()
     assert dur > 0.5
+    assert (tmp_path / "out.mp3").stat().st_size > 1000
 
 def test_synthesize_all_fail_raises(tmp_path, monkeypatch):
     for k in ("gptsovits", "f5tts", "hfspace"):

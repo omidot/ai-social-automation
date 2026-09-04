@@ -73,7 +73,9 @@ Bật `config/settings.yaml` → `video.enabled: true`. Chuẩn bị:
 
 Thử offline (không gọi TTS thật):
 
-    python -m pipeline.video.build_video --fake --story tests/fixtures/video/story.json
+    python -m pipeline.video.build_video --fake --fake-llm --story tests/fixtures/video/story.json
+
+Sau khi chạy build_video ở máy local, hoàn nguyên file sinh ra: `git checkout -- video/tools video/src/timeline.json video/public/voice.mp3`.
 
 Kiểm tra giọng clone thật:
 

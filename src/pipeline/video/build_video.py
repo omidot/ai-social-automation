@@ -24,6 +24,50 @@ log = logging.getLogger("video.build")
 _CFG_DEFAULTS = {"enabled": False, "target_seconds": 40, "words_min": 110,
                  "words_max": 140, "tts_provider": "auto"}
 
+# Canned script for --fake-llm: lets the CLI / CI smoke run the full chain with
+# no LLM credentials. ~117 displayed Vietnamese words, 14 cards, 3 sections.
+_FAKE_SCRIPT_JSON = json.dumps({
+    "sections": [
+        {"label": "AI ĐANG TĂNG TỐC", "card_start": 0},
+        {"label": "CHUYỆN GÌ XẢY RA", "card_start": 5},
+        {"label": "SỰ THẬT", "card_start": 10},
+    ],
+    "cards": [
+        {"lines": ["Hôm nay", "~thì", "AI lại vừa có một bước nhảy lớn."],
+         "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "up"},
+        {"lines": ["Một mô hình mới", "vừa được công bố."],
+         "variant": "stack", "anchor": "top", "motion_in": "fall", "motion_out": "down"},
+        {"lines": ["Nó nhanh gấp đôi", "~cái", "bản trước đó."],
+         "variant": "right", "anchor": "low", "motion_in": "slideR", "motion_out": "dissolve"},
+        {"lines": ["Chi phí thì", "giảm gần một nửa."],
+         "variant": "mark", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+        {"lines": ["Người bình thường", "cũng dùng được ngay."],
+         "variant": "stack", "anchor": "mid", "motion_in": "slideL", "motion_out": "shrink"},
+        {"lines": ["Các công ty lớn", "đã tích hợp nó rồi."],
+         "variant": "stair", "anchor": "mid", "motion_in": "slam", "motion_out": "shrink"},
+        {"lines": ["Còn bạn", "~thì", "vẫn đang làm thủ công."],
+         "variant": "mark", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut"},
+        {"lines": ["Khoảng cách", "đang giãn ra mỗi ngày."],
+         "variant": "stack", "anchor": "top", "motion_in": "rise", "motion_out": "down"},
+        {"lines": ["Ai bắt nhịp sớm", "sẽ đi trước rất xa."],
+         "variant": "right", "anchor": "mid", "motion_in": "slideR", "motion_out": "shrink"},
+        {"lines": ["Ai chậm chân", "sẽ bị bỏ lại phía sau."],
+         "variant": "stack", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+        {"lines": ["Công cụ", "đã nằm sẵn trong tay bạn."],
+         "variant": "hero", "anchor": "mid", "motion_in": "pop", "motion_out": "dissolve"},
+        {"lines": ["Miễn phí", "và ai cũng chạm tới được."],
+         "variant": "stack", "anchor": "top", "motion_in": "rise", "motion_out": "down"},
+        {"lines": ["Sự thật là", "nó đang ở đây rồi."],
+         "variant": "invert", "anchor": "mid", "motion_in": "pop", "motion_out": "wipeOut"},
+        {"lines": ["Chỉ là", "bạn đã bắt đầu chưa?"],
+         "variant": "invert", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut"},
+    ],
+}, ensure_ascii=False)
+
+
+def _fake_llm(system: str, user: str, **kwargs) -> str:
+    return _FAKE_SCRIPT_JSON
+
 
 def _slug(text: str) -> str:
     t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
@@ -91,7 +135,8 @@ def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: di
     if render_smoke:
         r = subprocess.run(
             ["npx", "remotion", "render", "CodexShort", "out/smoke.mp4", "--frames=0-30"],
-            cwd=str(video_dir), capture_output=True, text=True)
+            cwd=str(video_dir), capture_output=True, text=True,
+            encoding="utf-8", errors="replace")
         manifest["render_smoke_ok"] = r.returncode == 0
         if r.returncode != 0:
             log.error("render smoke failed: %s", r.stderr[-500:])
@@ -107,6 +152,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--root", default=".")
     ap.add_argument("--story", required=False)
     ap.add_argument("--fake", action="store_true")
+    ap.add_argument("--fake-llm", action="store_true",
+                    help="use a canned script instead of calling any LLM (offline smoke)")
     ap.add_argument("--render-smoke", action="store_true")
     ap.add_argument("--tts-check", action="store_true")
     args = ap.parse_args(argv)
@@ -123,10 +170,11 @@ def main(argv: list[str] | None = None) -> int:
     if not args.story:
         ap.error("--story is required unless --tts-check")
     cand, post = _load_story(Path(args.story))
-    cfg.setdefault("enabled", True)
+    cfg["enabled"] = True  # an explicit CLI invocation IS the request to build
     try:
         man = build(root, cand, post, datetime.now(timezone.utc), cfg,
-                    fake=args.fake, render_smoke=args.render_smoke)
+                    fake=args.fake, render_smoke=args.render_smoke,
+                    llm=_fake_llm if args.fake_llm else None)
     except VideoError as e:
         print(f"SUMMARY: video build failed: {e}")
         return 1

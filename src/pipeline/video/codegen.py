@@ -50,6 +50,7 @@ def write(s: Script, video_dir: Path) -> tuple[Path, Path]:
 def node_check(video_dir: Path) -> None:
     for name in ("cards.mjs", "variants.mjs"):
         r = subprocess.run(["node", "--check", f"tools/{name}"],
-                           cwd=str(video_dir), capture_output=True, text=True)
+                           cwd=str(video_dir), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
         if r.returncode != 0:
             raise CodegenError(f"node --check {name} failed: {r.stderr.strip()}")

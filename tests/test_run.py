@@ -87,7 +87,8 @@ def test_build_attaches_video_manifest_when_enabled(project, monkeypatch):
     assert pending["video"]["id"] == "vid1"
 
 
-def test_build_survives_video_error(project, monkeypatch):
+def test_build_survives_video_error(project, monkeypatch, caplog):
+    import logging
     (project / "config/settings.yaml").write_text(
         "approval_mode: telegram\nmin_score: 45\nposts_per_day: 1\n"
         "rsshub_base: http://rss\npending_ttl_hours: 12\nvideo:\n  enabled: true\n",
@@ -101,7 +102,9 @@ def test_build_survives_video_error(project, monkeypatch):
                         lambda *a, **k: (_ for _ in ()).throw(VideoScriptError("boom")))
     notes = []
     monkeypatch.setattr(run, "_notify", lambda m: notes.append(m))
-    pending = run.build(project, NOW, dry_run=True, local=False,
-                        generate=lambda s, u, **k: LLM_JSON)
+    with caplog.at_level(logging.ERROR, logger="run"):
+        pending = run.build(project, NOW, dry_run=True, local=False,
+                            generate=lambda s, u, **k: LLM_JSON)
     assert "video" not in pending
-    assert notes and "video" in notes[0].lower()
+    assert not notes  # dry-run stays silent on Telegram
+    assert any("video stage failed" in r.getMessage().lower() for r in caplog.records)

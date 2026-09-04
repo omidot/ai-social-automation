@@ -1,4 +1,4 @@
-import json, subprocess
+import subprocess
 from pathlib import Path
 import pytest
 

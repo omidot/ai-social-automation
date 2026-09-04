@@ -109,7 +109,7 @@ export const KineticShort: React.FC = () => {
       {/* Cutout B-roll nổi TRÊN cả card "invert" (tấm phủ trắng toàn khung),
           nếu không ảnh sẽ bị tấm phủ che mất ở 2 card cuối. */}
       <Cutouts />
-      <Audio src={staticFile('voice-adsbot.mp3')} />
+      <Audio src={staticFile('voice.mp3')} />
       <Sfx />
     </AbsoluteFill>
   );

@@ -1,4 +1,3 @@
-import re
 from pipeline.video.models import Card, SectionMark, Script
 from pipeline.video import variants
 

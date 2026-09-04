@@ -45,7 +45,7 @@ def test_run_aligner_builds_timeline(stage):
     assert starts == sorted(starts)
     assert 4.0 <= tl["duration"] <= 7.0
 
-def test_run_aligner_raises_without_cards(stage, tmp_path):
+def test_run_aligner_raises_without_cards(stage):
     (stage / "tools/cards.mjs").unlink()
     with pytest.raises(AlignError):
         align.run_aligner(stage, 5.0)

@@ -1,6 +1,6 @@
 from __future__ import annotations
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 VALID_VARIANTS = frozenset({"stack", "right", "hero", "invert", "mark", "stair", "numeral", "strike"})
 VALID_ANCHORS = frozenset({"top", "mid", "low"})

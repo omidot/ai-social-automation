@@ -1,6 +1,7 @@
 from __future__ import annotations
 import os
 import subprocess
+import time
 import wave
 from pathlib import Path
 
@@ -48,7 +49,8 @@ def _run_script(script: Path, ref_wav, ref_text, target, out_wav) -> None:
     if not script.exists():
         raise RuntimeError(f"{script.name} not present (spike Task 1 authored it?)")
     r = subprocess.run(["bash", str(script), str(ref_wav), ref_text, target, str(out_wav)],
-                       capture_output=True, text=True, timeout=1800)
+                       capture_output=True, text=True, timeout=1800,
+                       encoding="utf-8", errors="replace")
     if r.returncode != 0 or not Path(out_wav).exists():
         raise RuntimeError(f"{script.name} failed: {r.stderr.strip()[:400]}")
 
@@ -77,8 +79,8 @@ def _hfspace(ref_wav, ref_text, target, out_wav):
             return
         except Exception as e:  # noqa: BLE001
             last = e
-            import time
-            time.sleep(60)
+            if attempt < 2:
+                time.sleep(60)
     raise RuntimeError(f"HF Space failed after retries: {last}")
 
 
@@ -89,13 +91,18 @@ def _to_mp3(wav_path: Path, out_mp3: Path, video_dir: Path) -> float:
     ff = _ffmpeg_bin(video_dir)
     out_mp3 = Path(out_mp3)
     out_mp3.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        [ff, "-y", "-i", str(wav_path),
-         "-af", "silenceremove=start_periods=1:start_silence=0.3:start_threshold=-40dB:"
-                "stop_periods=1:stop_silence=0.5:stop_threshold=-40dB",
-         "-ar", "44100", "-ac", "1", "-q:a", "2", str(out_mp3)],
-        check=True, capture_output=True, text=True,
-    )
+    try:
+        subprocess.run(
+            [ff, "-y", "-i", str(wav_path),
+             "-af", "silenceremove=start_periods=1:start_silence=0.3:start_threshold=-40dB:"
+                    "stop_periods=1:stop_silence=0.5:stop_threshold=-40dB",
+             "-ar", "44100", "-ac", "1", "-q:a", "2", str(out_mp3)],
+            check=True, capture_output=True, text=True,
+            encoding="utf-8", errors="replace",
+        )
+    except subprocess.CalledProcessError as e:
+        raise TTSError(
+            f"ffmpeg mp3 encode failed: {e.stderr[-300:] if e.stderr else e}") from e
     # duration
     with wave.open(str(wav_path), "rb") as w:
         return w.getnframes() / float(w.getframerate())
@@ -137,9 +144,13 @@ def synthesize(target_text: str, out_mp3: Path, cfg: dict, video_dir: Path,
         for name in _order(cfg.get("tts_provider", "auto")):
             try:
                 _BACKENDS[name](ref_wav, ref_text, target_text, tmp_wav)
-                return _to_mp3(tmp_wav, out_mp3, video_dir)
+                break
             except Exception as e:  # noqa: BLE001
                 errors.append(f"{name}: {e}")
-        raise TTSError("all TTS backends failed -> " + " | ".join(errors))
+        else:
+            raise TTSError("all TTS backends failed -> " + " | ".join(errors))
+        # A backend wrote tmp_wav; convert once here so an ffmpeg failure is
+        # reported as a TTSError about encoding, not misattributed to a backend.
+        return _to_mp3(tmp_wav, out_mp3, video_dir)
     finally:
         tmp_wav.unlink(missing_ok=True)
