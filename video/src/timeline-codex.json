@@ -1,0 +1,1452 @@
+{
+ "fps": 30,
+ "duration": 136.803265,
+ "durationInFrames": 4123,
+ "cards": [
+  {
+   "index": 0,
+   "lines": [
+    {
+     "text": "OpenAI vừa cho một con AI",
+     "start": 0.223855,
+     "end": 1.416613837405223,
+     "hidden": false
+    },
+    {
+     "text": "quyền click chuột",
+     "start": 1.416613837405223,
+     "end": 2.294462047177759,
+     "hidden": false
+    },
+    {
+     "text": "trên máy bạn.",
+     "start": 2.294462047177759,
+     "end": 3.0051010741364785,
+     "hidden": true
+    }
+   ],
+   "start": 0.223855,
+   "end": 3.0051010741364785,
+   "out": 3.0051010741364785,
+   "section": "AI VỪA ĐƯỢC CẦM CHUỘT",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 1,
+   "lines": [
+    {
+     "text": "Không phải viết code hộ.",
+     "start": 3.0051010741364785,
+     "end": 4.749417035698148,
+     "hidden": false
+    },
+    {
+     "text": "Là cầm chuột. Mở app.",
+     "start": 4.749417035698148,
+     "end": 5.982382024401265,
+     "hidden": false
+    },
+    {
+     "text": "Gõ phím.",
+     "start": 5.982382024401265,
+     "end": 6.506611793944872,
+     "hidden": true
+    }
+   ],
+   "start": 3.0051010741364785,
+   "end": 6.506611793944872,
+   "out": 6.506611793944872,
+   "section": "AI VỪA ĐƯỢC CẦM CHUỘT",
+   "variant": "mark",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 2,
+   "lines": [
+    {
+     "text": "Và cái tệ nhất",
+     "start": 6.506611793944872,
+     "end": 7.229990302756439,
+     "hidden": false
+    },
+    {
+     "text": "hoặc hay nhất",
+     "start": 7.229990302756439,
+     "end": 7.906510284681429,
+     "hidden": false
+    },
+    {
+     "text": "nằm ở giây cuối cùng",
+     "start": 7.906510284681429,
+     "end": 8.97547042928152,
+     "hidden": false
+    },
+    {
+     "text": "của video này.",
+     "start": 8.97547042928152,
+     "end": 9.783780018075012,
+     "hidden": true
+    }
+   ],
+   "start": 6.506611793944872,
+   "end": 9.783780018075012,
+   "out": 9.783780018075012,
+   "section": "AI VỪA ĐƯỢC CẦM CHUỘT",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 3,
+   "lines": [
+    {
+     "text": "Sáu thứ Codex vừa làm được",
+     "start": 9.783780018075012,
+     "end": 11.941693950177935,
+     "hidden": false
+    },
+    {
+     "text": "trong hai phút",
+     "start": 11.941693950177935,
+     "end": 12.684126690391459,
+     "hidden": false
+    },
+    {
+     "text": "khi bạn xem video này,",
+     "start": 12.684126690391459,
+     "end": 13.86848368073208,
+     "hidden": true
+    }
+   ],
+   "start": 9.783780018075012,
+   "end": 13.86848368073208,
+   "out": 13.86848368073208,
+   "section": "6 THỨ · 2 PHÚT",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "dissolve"
+  },
+  {
+   "index": 4,
+   "lines": [
+    {
+     "text": "nếu bạn sống bằng nghề",
+     "start": 13.86848368073208,
+     "end": 14.982132791052363,
+     "hidden": false
+    },
+    {
+     "text": "ngồi trước màn hình",
+     "start": 14.982132791052363,
+     "end": 15.972043111337062,
+     "hidden": false
+    },
+    {
+     "text": "xem hết.",
+     "start": 15.972043111337062,
+     "end": 16.47583675648195,
+     "hidden": false
+    },
+    {
+     "text": "Vì bốn trong sáu",
+     "start": 16.47583675648195,
+     "end": 17.6351836461126,
+     "hidden": true
+    },
+    {
+     "text": "thứ này đang làm",
+     "start": 17.6351836461126,
+     "end": 18.450646112600534,
+     "hidden": true
+    }
+   ],
+   "start": 13.86848368073208,
+   "end": 18.450646112600534,
+   "out": 18.450646112600534,
+   "section": "6 THỨ · 2 PHÚT",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "shrink"
+  },
+  {
+   "index": 5,
+   "lines": [
+    {
+     "text": "đúng phần việc",
+     "start": 18.450646112600534,
+     "end": 19.20338069705094,
+     "hidden": false
+    },
+    {
+     "text": "bạn được trả tiền.",
+     "start": 19.20338069705094,
+     "end": 20.215987935656837,
+     "hidden": false
+    }
+   ],
+   "start": 18.450646112600534,
+   "end": 20.215987935656837,
+   "out": 20.215987935656837,
+   "section": "6 THỨ · 2 PHÚT",
+   "variant": "right",
+   "anchor": "low",
+   "motion": "slideR",
+   "exit": "up"
+  },
+  {
+   "index": 6,
+   "lines": [
+    {
+     "text": "Thứ nhất,",
+     "start": 20.215987935656837,
+     "end": 20.7895,
+     "hidden": false
+    },
+    {
+     "text": "Codex điều khiển máy Mac",
+     "start": 21.1189,
+     "end": 22.380169876819707,
+     "hidden": false
+    },
+    {
+     "text": "của bạn như người thật:",
+     "start": 22.380169876819707,
+     "end": 23.65044882418813,
+     "hidden": true
+    }
+   ],
+   "start": 20.215987935656837,
+   "end": 23.65044882418813,
+   "out": 23.65044882418813,
+   "section": "1 · ĐIỀU KHIỂN MÁY",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "dissolve",
+   "num": 1
+  },
+  {
+   "index": 7,
+   "lines": [
+    {
+     "text": "tự mở app, tự di con trỏ,",
+     "start": 23.65044882418813,
+     "end": 26.011339543726233,
+     "hidden": false
+    },
+    {
+     "text": "tự click, tự gõ phím.",
+     "start": 26.011339543726233,
+     "end": 27.323024714828897,
+     "hidden": false
+    },
+    {
+     "text": "Không phải mô phỏng",
+     "start": 27.323024714828897,
+     "end": 28.655947794117647,
+     "hidden": true
+    },
+    {
+     "text": "trong một cái hộp,",
+     "start": 28.655947794117647,
+     "end": 29.65774264705882,
+     "hidden": true
+    }
+   ],
+   "start": 23.65044882418813,
+   "end": 29.65774264705882,
+   "out": 29.65774264705882,
+   "section": "1 · ĐIỀU KHIỂN MÁY",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down"
+  },
+  {
+   "index": 8,
+   "lines": [
+    {
+     "text": "là đúng cái máy",
+     "start": 29.65774264705882,
+     "end": 30.739492910447762,
+     "hidden": false
+    },
+    {
+     "text": "bạn đang ngồi.",
+     "start": 30.739492910447762,
+     "end": 31.527792164179104,
+     "hidden": false
+    },
+    {
+     "text": "Và nó chạy",
+     "start": 31.527792164179104,
+     "end": 32.31473952033368,
+     "hidden": true
+    }
+   ],
+   "start": 29.65774264705882,
+   "end": 32.31473952033368,
+   "out": 32.31473952033368,
+   "section": "1 · ĐIỀU KHIỂN MÁY",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "spread",
+   "exit": "shrink"
+  },
+  {
+   "index": 9,
+   "lines": [
+    {
+     "text": "nhiều agent song song,",
+     "start": 32.31473952033368,
+     "end": 33.467381438998956,
+     "hidden": false
+    },
+    {
+     "text": "không chiếm màn hình,",
+     "start": 33.467381438998956,
+     "end": 34.5628,
+     "hidden": false
+    },
+    {
+     "text": "nghĩa là bạn vẫn",
+     "start": 34.8728,
+     "end": 35.69275418552036,
+     "hidden": true
+    }
+   ],
+   "start": 32.31473952033368,
+   "end": 35.69275418552036,
+   "out": 35.69275418552036,
+   "section": "1 · ĐIỀU KHIỂN MÁY",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve"
+  },
+  {
+   "index": 10,
+   "lines": [
+    {
+     "text": "làm việc bình thường",
+     "start": 35.69275418552036,
+     "end": 36.73447533936651,
+     "hidden": false
+    },
+    {
+     "text": "trong khi ba con AI khác",
+     "start": 36.73447533936651,
+     "end": 37.94543970588235,
+     "hidden": false
+    },
+    {
+     "text": "làm ba việc khác",
+     "start": 37.94543970588235,
+     "end": 38.76539389140271,
+     "hidden": false
+    },
+    {
+     "text": "trong nền.",
+     "start": 38.76539389140271,
+     "end": 39.386925,
+     "hidden": true
+    }
+   ],
+   "start": 35.69275418552036,
+   "end": 39.386925,
+   "out": 39.386925,
+   "section": "1 · ĐIỀU KHIỂN MÁY",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "up"
+  },
+  {
+   "index": 11,
+   "lines": [
+    {
+     "text": "Bạn đi ngủ,",
+     "start": 39.386925,
+     "end": 40.0318,
+     "hidden": false
+    },
+    {
+     "text": "nó không ngủ.",
+     "start": 40.3681,
+     "end": 41.31307455012853,
+     "hidden": false
+    },
+    {
+     "text": "Cái thứ hai là",
+     "start": 41.31307455012853,
+     "end": 42.44661148148148,
+     "hidden": true
+    }
+   ],
+   "start": 39.386925,
+   "end": 42.44661148148148,
+   "out": 42.44661148148148,
+   "section": "1 · ĐIỀU KHIỂN MÁY",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 12,
+   "lines": [
+    {
+     "text": "gõ một câu,",
+     "start": 42.44661148148148,
+     "end": 43.08890296296296,
+     "hidden": false
+    },
+    {
+     "text": "nó dựng nguyên một web app,",
+     "start": 43.08890296296296,
+     "end": 44.524613333333335,
+     "hidden": false
+    }
+   ],
+   "start": 42.44661148148148,
+   "end": 44.524613333333335,
+   "out": 44.524613333333335,
+   "section": "2 · 1 CÂU → 1 WEB APP",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 2
+  },
+  {
+   "index": 13,
+   "lines": [
+    {
+     "text": "không phải gợi ý đoạn code",
+     "start": 44.524613333333335,
+     "end": 46.2637734439834,
+     "hidden": false
+    },
+    {
+     "text": "cho bạn copy về sửa.",
+     "start": 46.2637734439834,
+     "end": 47.35219834024896,
+     "hidden": false
+    },
+    {
+     "text": "Giao diện chạy được,",
+     "start": 47.35219834024896,
+     "end": 48.479073029045644,
+     "hidden": true
+    },
+    {
+     "text": "bấm được,",
+     "start": 48.479073029045644,
+     "end": 49.046946887966804,
+     "hidden": true
+    }
+   ],
+   "start": 44.524613333333335,
+   "end": 49.046946887966804,
+   "out": 49.046946887966804,
+   "section": "2 · 1 CÂU → 1 WEB APP",
+   "variant": "strike",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 14,
+   "lines": [
+    {
+     "text": "hiện thẳng trên màn hình.",
+     "start": 49.046946887966804,
+     "end": 50.4222663900415,
+     "hidden": false
+    },
+    {
+     "text": "Thứ từng tốn",
+     "start": 50.4222663900415,
+     "end": 51.32520786802031,
+     "hidden": true
+    }
+   ],
+   "start": 49.046946887966804,
+   "end": 51.32520786802031,
+   "out": 51.32520786802031,
+   "section": "2 · 1 CÂU → 1 WEB APP",
+   "variant": "stack",
+   "anchor": "low",
+   "motion": "rise",
+   "exit": "shrink"
+  },
+  {
+   "index": 15,
+   "lines": [
+    {
+     "text": "một tuần và một freelancer,",
+     "start": 51.32520786802031,
+     "end": 52.75322182741117,
+     "hidden": false
+    },
+    {
+     "text": "giờ tốn",
+     "start": 52.75322182741117,
+     "end": 53.1026,
+     "hidden": true
+    }
+   ],
+   "start": 51.32520786802031,
+   "end": 53.1026,
+   "out": 53.3811,
+   "section": "2 · 1 CÂU → 1 WEB APP",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "dissolve"
+  },
+  {
+   "index": 16,
+   "lines": [
+    {
+     "text": "một prompt.",
+     "start": 53.3811,
+     "end": 54.2239,
+     "hidden": false
+    },
+    {
+     "text": "Cái thứ ba là",
+     "start": 54.647,
+     "end": 55.302728993125754,
+     "hidden": true
+    }
+   ],
+   "start": 53.3811,
+   "end": 55.302728993125754,
+   "out": 55.302728993125754,
+   "section": "2 · 1 CÂU → 1 WEB APP",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "up"
+  },
+  {
+   "index": 17,
+   "lines": [
+    {
+     "text": "Codex vẽ được ảnh,",
+     "start": 55.302728993125754,
+     "end": 56.30953412858876,
+     "hidden": false
+    },
+    {
+     "text": "chạy model mới nhất",
+     "start": 56.30953412858876,
+     "end": 57.28442325111201,
+     "hidden": false
+    },
+    {
+     "text": "GPT Image 1.5,",
+     "start": 57.28442325111201,
+     "end": 58.047506105944194,
+     "hidden": false
+    },
+    {
+     "text": "mockup sản phẩm,",
+     "start": 58.047506105944194,
+     "end": 58.97016902547513,
+     "hidden": true
+    },
+    {
+     "text": "concept ảnh minh họa.",
+     "start": 58.97016902547513,
+     "end": 60.13655422563688,
+     "hidden": true
+    }
+   ],
+   "start": 55.302728993125754,
+   "end": 60.13655422563688,
+   "out": 60.13655422563688,
+   "section": "3 · GPT IMAGE 1.5",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "shrink",
+   "num": 3
+  },
+  {
+   "index": 18,
+   "lines": [
+    {
+     "text": "Không rời app,",
+     "start": 60.13655422563688,
+     "end": 60.937356004852404,
+     "hidden": false
+    },
+    {
+     "text": "không mở Figma,",
+     "start": 60.937356004852404,
+     "end": 61.8223,
+     "hidden": false
+    },
+    {
+     "text": "không thuê ai.",
+     "start": 62.1256,
+     "end": 62.981295890410955,
+     "hidden": false
+    }
+   ],
+   "start": 60.13655422563688,
+   "end": 62.981295890410955,
+   "out": 62.981295890410955,
+   "section": "3 · GPT IMAGE 1.5",
+   "variant": "strike",
+   "anchor": "low",
+   "motion": "slam",
+   "exit": "up"
+  },
+  {
+   "index": 19,
+   "lines": [
+    {
+     "text": "Designer nghe tới đây",
+     "start": 62.981295890410955,
+     "end": 64.12021506849315,
+     "hidden": false
+    },
+    {
+     "text": "thì ngồi thẳng lưng.",
+     "start": 64.12021506849315,
+     "end": 65.26817328767123,
+     "hidden": false
+    },
+    {
+     "text": "Thứ tư,",
+     "start": 65.26817328767123,
+     "end": 65.7442294520548,
+     "hidden": true
+    }
+   ],
+   "start": 62.981295890410955,
+   "end": 65.7442294520548,
+   "out": 65.7442294520548,
+   "section": "3 · GPT IMAGE 1.5",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve"
+  },
+  {
+   "index": 20,
+   "lines": [
+    {
+     "text": "nó bắt đầu nhớ,",
+     "start": 65.7442294520548,
+     "end": 66.98889589041096,
+     "hidden": false
+    },
+    {
+     "text": "nhớ tech stack của bạn,",
+     "start": 66.98889589041096,
+     "end": 68.2200383561644,
+     "hidden": false
+    },
+    {
+     "text": "nhớ cách bạn sửa lỗi,",
+     "start": 68.2200383561644,
+     "end": 69.87793451327433,
+     "hidden": true
+    }
+   ],
+   "start": 65.7442294520548,
+   "end": 69.87793451327433,
+   "out": 69.87793451327433,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 4
+  },
+  {
+   "index": 21,
+   "lines": [
+    {
+     "text": "nhớ thói quen làm việc.",
+     "start": 69.87793451327433,
+     "end": 71.53715176470588,
+     "hidden": false
+    },
+    {
+     "text": "Bạn không phải dạy lại",
+     "start": 71.53715176470588,
+     "end": 72.86585634517766,
+     "hidden": true
+    }
+   ],
+   "start": 69.87793451327433,
+   "end": 72.86585634517766,
+   "out": 72.86585634517766,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down"
+  },
+  {
+   "index": 22,
+   "lines": [
+    {
+     "text": "từ đầu mỗi sáng nữa.",
+     "start": 72.86585634517766,
+     "end": 73.82938121827411,
+     "hidden": false
+    },
+    {
+     "text": "Nhưng dừng lại",
+     "start": 73.82938121827411,
+     "end": 74.86359290780142,
+     "hidden": true
+    }
+   ],
+   "start": 72.86585634517766,
+   "end": 74.86359290780142,
+   "out": 74.86359290780142,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "shrink"
+  },
+  {
+   "index": 23,
+   "lines": [
+    {
+     "text": "đúng một giây.",
+     "start": 74.86359290780142,
+     "end": 75.6606,
+     "hidden": false
+    },
+    {
+     "text": "Nhớ ở đây",
+     "start": 76.0661,
+     "end": 76.61338739105172,
+     "hidden": true
+    }
+   ],
+   "start": 74.86359290780142,
+   "end": 76.61338739105172,
+   "out": 76.61338739105172,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve"
+  },
+  {
+   "index": 24,
+   "lines": [
+    {
+     "text": "nghĩa là gì?",
+     "start": 76.61338739105172,
+     "end": 77.39078425334108,
+     "hidden": false
+    },
+    {
+     "text": "Nghĩa là có",
+     "start": 77.39078425334108,
+     "end": 78.02824968041837,
+     "hidden": true
+    }
+   ],
+   "start": 76.61338739105172,
+   "end": 78.02824968041837,
+   "out": 78.02824968041837,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "spread",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 25,
+   "lines": [
+    {
+     "text": "một bản sao",
+     "start": 78.02824968041837,
+     "end": 78.61596170830913,
+     "hidden": false
+    },
+    {
+     "text": "cách bạn làm việc,",
+     "start": 78.61596170830913,
+     "end": 79.6701118535735,
+     "hidden": false
+    },
+    {
+     "text": "nằm ở đâu đó",
+     "start": 79.6701118535735,
+     "end": 80.37287861708309,
+     "hidden": true
+    }
+   ],
+   "start": 78.02824968041837,
+   "end": 80.37287861708309,
+   "out": 80.37287861708309,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 26,
+   "lines": [
+    {
+     "text": "không nằm trong máy bạn.",
+     "start": 80.37287861708309,
+     "end": 82.00184655737705,
+     "hidden": false
+    },
+    {
+     "text": "Tiện",
+     "start": 82.00184655737705,
+     "end": 82.23412721311475,
+     "hidden": true
+    }
+   ],
+   "start": 80.37287861708309,
+   "end": 82.23412721311475,
+   "out": 82.23412721311475,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "stair",
+   "anchor": "low",
+   "motion": "slideL",
+   "exit": "down"
+  },
+  {
+   "index": 27,
+   "lines": [
+    {
+     "text": "nhưng không miễn phí.",
+     "start": 82.23412721311475,
+     "end": 83.34575606557377,
+     "hidden": false
+    },
+    {
+     "text": "OK, và thứ năm,",
+     "start": 83.34575606557377,
+     "end": 84.2195737704918,
+     "hidden": true
+    }
+   ],
+   "start": 82.23412721311475,
+   "end": 84.2195737704918,
+   "out": 84.2195737704918,
+   "section": "4 · NÓ NHỚ BẠN",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "shrink"
+  },
+  {
+   "index": 28,
+   "lines": [
+    {
+     "text": "và đây là",
+     "start": 84.2195737704918,
+     "end": 84.67030885245902,
+     "hidden": false
+    },
+    {
+     "text": "thứ điên nhất:",
+     "start": 84.67030885245902,
+     "end": 85.94367992125984,
+     "hidden": false
+    },
+    {
+     "text": "Codex nhận task",
+     "start": 85.94367992125984,
+     "end": 86.76221417322834,
+     "hidden": true
+    }
+   ],
+   "start": 84.2195737704918,
+   "end": 86.76221417322834,
+   "out": 86.76221417322834,
+   "section": "5 · LÀM VIỆC NHIỀU TUẦN",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "up",
+   "num": 5
+  },
+  {
+   "index": 29,
+   "lines": [
+    {
+     "text": "kéo dài nhiều tuần,",
+     "start": 86.76221417322834,
+     "end": 87.8416,
+     "hidden": false
+    },
+    {
+     "text": "tự lên lịch,",
+     "start": 88.0904,
+     "end": 88.6308,
+     "hidden": false
+    },
+    {
+     "text": "tự thức dậy giữa đêm,",
+     "start": 88.9785,
+     "end": 90.19265089473684,
+     "hidden": true
+    }
+   ],
+   "start": 86.76221417322834,
+   "end": 90.19265089473684,
+   "out": 90.19265089473684,
+   "section": "5 · LÀM VIỆC NHIỀU TUẦN",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "spread",
+   "exit": "dissolve"
+  },
+  {
+   "index": 30,
+   "lines": [
+    {
+     "text": "tự làm tiếp, tự báo cáo lại.",
+     "start": 90.19265089473684,
+     "end": 91.83440763157894,
+     "hidden": false
+    },
+    {
+     "text": "Cái-cái cuối cùng",
+     "start": 91.83440763157894,
+     "end": 92.75204352631579,
+     "hidden": true
+    },
+    {
+     "text": "là thứ sáu,",
+     "start": 92.75204352631579,
+     "end": 93.44183105263158,
+     "hidden": true
+    }
+   ],
+   "start": 90.19265089473684,
+   "end": 93.44183105263158,
+   "out": 93.44183105263158,
+   "section": "5 · LÀM VIỆC NHIỀU TUẦN",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 31,
+   "lines": [
+    {
+     "text": "nó cắm vào",
+     "start": 93.44183105263158,
+     "end": 93.99116410526315,
+     "hidden": false
+    },
+    {
+     "text": "một trăm mười một plugin:",
+     "start": 93.99116410526315,
+     "end": 95.7544,
+     "hidden": false
+    },
+    {
+     "text": "Slack,",
+     "start": 96.0451,
+     "end": 96.47934909529555,
+     "hidden": true
+    }
+   ],
+   "start": 93.44183105263158,
+   "end": 96.47934909529555,
+   "out": 96.47934909529555,
+   "section": "6 · 111 PLUGIN",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 6
+  },
+  {
+   "index": 32,
+   "lines": [
+    {
+     "text": "Gmail,",
+     "start": 96.47934909529555,
+     "end": 96.91359819059107,
+     "hidden": false
+    },
+    {
+     "text": "Notion.",
+     "start": 96.91359819059107,
+     "end": 97.408642159228,
+     "hidden": false
+    },
+    {
+     "text": "Nó quét hết",
+     "start": 97.408642159228,
+     "end": 97.97895597104946,
+     "hidden": true
+    },
+    {
+     "text": "hộp thư của bạn",
+     "start": 97.97895597104946,
+     "end": 98.70849445114597,
+     "hidden": true
+    }
+   ],
+   "start": 96.47934909529555,
+   "end": 98.70849445114597,
+   "out": 98.70849445114597,
+   "section": "6 · 111 PLUGIN",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down"
+  },
+  {
+   "index": 33,
+   "lines": [
+    {
+     "text": "để tự quyết định",
+     "start": 98.70849445114597,
+     "end": 99.54514770808203,
+     "hidden": false
+    },
+    {
+     "text": "hôm nay việc gì",
+     "start": 99.54514770808203,
+     "end": 100.29784613992763,
+     "hidden": false
+    },
+    {
+     "text": "quan trọng nhất.",
+     "start": 100.29784613992763,
+     "end": 101.69049151343707,
+     "hidden": false
+    },
+    {
+     "text": "Đọc lại",
+     "start": 101.69049151343707,
+     "end": 102.07873903818954,
+     "hidden": true
+    }
+   ],
+   "start": 98.70849445114597,
+   "end": 102.07873903818954,
+   "out": 102.07873903818954,
+   "section": "6 · 111 PLUGIN",
+   "variant": "right",
+   "anchor": "low",
+   "motion": "slideR",
+   "exit": "dissolve"
+  },
+  {
+   "index": 34,
+   "lines": [
+    {
+     "text": "câu vừa rồi,",
+     "start": 102.07873903818954,
+     "end": 102.799770155587,
+     "hidden": false
+    },
+    {
+     "text": "một con AI",
+     "start": 102.799770155587,
+     "end": 103.34208415841584,
+     "hidden": true
+    }
+   ],
+   "start": 102.07873903818954,
+   "end": 103.34208415841584,
+   "out": 103.34208415841584,
+   "section": "ĐỌC LẠI CÂU NÀY",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "shrink"
+  },
+  {
+   "index": 35,
+   "lines": [
+    {
+     "text": "có quyền cầm chuột,",
+     "start": 103.34208415841584,
+     "end": 104.476013437058,
+     "hidden": false
+    },
+    {
+     "text": "có trí nhớ",
+     "start": 104.476013437058,
+     "end": 105.01832743988685,
+     "hidden": false
+    },
+    {
+     "text": "và có Gmail của bạn.",
+     "start": 105.01832743988685,
+     "end": 106.5497,
+     "hidden": false
+    }
+   ],
+   "start": 103.34208415841584,
+   "end": 106.5497,
+   "out": 106.5497,
+   "section": "ĐỌC LẠI CÂU NÀY",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "up"
+  },
+  {
+   "index": 36,
+   "lines": [
+    {
+     "text": "Nghe như tương lai",
+     "start": 106.5497,
+     "end": 107.36704210526315,
+     "hidden": false
+    },
+    {
+     "text": "đúng không?",
+     "start": 107.36704210526315,
+     "end": 108.45141362290227,
+     "hidden": false
+    }
+   ],
+   "start": 106.5497,
+   "end": 108.45141362290227,
+   "out": 108.45141362290227,
+   "section": "ĐỌC LẠI CÂU NÀY",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve"
+  },
+  {
+   "index": 37,
+   "lines": [
+    {
+     "text": "Anthropic đã mở",
+     "start": 108.45141362290227,
+     "end": 109.29416386969397,
+     "hidden": false
+    },
+    {
+     "text": "Computer Use",
+     "start": 109.29416386969397,
+     "end": 109.96778084896347,
+     "hidden": false
+    },
+    {
+     "text": "từ tháng Mười",
+     "start": 109.96778084896347,
+     "end": 110.66472655478775,
+     "hidden": true
+    }
+   ],
+   "start": 108.45141362290227,
+   "end": 110.66472655478775,
+   "out": 110.66472655478775,
+   "section": "SỰ THẬT",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "spread",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 38,
+   "lines": [
+    {
+     "text": "năm 2024.",
+     "start": 110.66472655478775,
+     "end": 111.22461599210266,
+     "hidden": false
+    },
+    {
+     "text": "Tất cả những gì",
+     "start": 111.22461599210266,
+     "end": 112.00612833168805,
+     "hidden": true
+    },
+    {
+     "text": "bạn vừa xem,",
+     "start": 112.00612833168805,
+     "end": 112.68849358341559,
+     "hidden": true
+    }
+   ],
+   "start": 110.66472655478775,
+   "end": 112.68849358341559,
+   "out": 112.68849358341559,
+   "section": "SỰ THẬT",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 39,
+   "lines": [
+    {
+     "text": "OpenAI đang đuổi theo,",
+     "start": 112.68849358341559,
+     "end": 113.922,
+     "hidden": false
+    },
+    {
+     "text": "không phải dẫn đầu.",
+     "start": 114.885,
+     "end": 115.99507957559682,
+     "hidden": false
+    },
+    {
+     "text": "Và khi hai công ty",
+     "start": 115.99507957559682,
+     "end": 116.95098143236073,
+     "hidden": true
+    }
+   ],
+   "start": 112.68849358341559,
+   "end": 116.95098143236073,
+   "out": 116.95098143236073,
+   "section": "SỰ THẬT",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "up"
+  },
+  {
+   "index": 40,
+   "lines": [
+    {
+     "text": "mạnh nhất hành tinh",
+     "start": 116.95098143236073,
+     "end": 118.2850065093572,
+     "hidden": false
+    },
+    {
+     "text": "đua nhau nhét AI",
+     "start": 118.2850065093572,
+     "end": 119.11017249796582,
+     "hidden": false
+    },
+    {
+     "text": "vào máy tính của bạn,",
+     "start": 119.11017249796582,
+     "end": 120.22899186330349,
+     "hidden": true
+    }
+   ],
+   "start": 116.95098143236073,
+   "end": 120.22899186330349,
+   "out": 120.22899186330349,
+   "section": "SỰ THẬT",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "shrink"
+  },
+  {
+   "index": 41,
+   "lines": [
+    {
+     "text": "người thắng",
+     "start": 120.22899186330349,
+     "end": 120.8456639544345,
+     "hidden": false
+    },
+    {
+     "text": "không phải OpenAI,",
+     "start": 120.8456639544345,
+     "end": 122.25375,
+     "hidden": false
+    },
+    {
+     "text": "cũng không phải Anthropic,",
+     "start": 122.25375,
+     "end": 124.01492287917738,
+     "hidden": false
+    }
+   ],
+   "start": 120.22899186330349,
+   "end": 124.01492287917738,
+   "out": 124.01492287917738,
+   "section": "SỰ THẬT",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "down"
+  },
+  {
+   "index": 42,
+   "lines": [
+    {
+     "text": "là người",
+     "start": 124.01492287917738,
+     "end": 124.46,
+     "hidden": false
+    },
+    {
+     "text": "học dùng nó trước.",
+     "start": 124.732,
+     "end": 125.89064146341464,
+     "hidden": false
+    },
+    {
+     "text": "Nên câu hỏi không phải",
+     "start": 125.89064146341464,
+     "end": 127.35350961538461,
+     "hidden": true
+    }
+   ],
+   "start": 124.01492287917738,
+   "end": 127.35350961538461,
+   "out": 127.35350961538461,
+   "section": "SỰ THẬT",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 43,
+   "lines": [
+    {
+     "text": "Codex mạnh cỡ nào,",
+     "start": 127.35350961538461,
+     "end": 128.33778846153845,
+     "hidden": false
+    },
+    {
+     "text": "mà là bạn",
+     "start": 128.33778846153845,
+     "end": 128.80014423076923,
+     "hidden": true
+    },
+    {
+     "text": "đang cầm đội nào,",
+     "start": 128.80014423076923,
+     "end": 129.70216346153845,
+     "hidden": true
+    }
+   ],
+   "start": 127.35350961538461,
+   "end": 129.70216346153845,
+   "out": 129.70216346153845,
+   "section": "BẠN CHỌN ĐỘI NÀO?",
+   "variant": "stack",
+   "anchor": "low",
+   "motion": "spread",
+   "exit": "dissolve"
+  },
+  {
+   "index": 44,
+   "lines": [
+    {
+     "text": "Codex",
+     "start": 129.70216346153845,
+     "end": 130,
+     "hidden": false
+    },
+    {
+     "text": "hay",
+     "start": 130.252,
+     "end": 130.45189473684212,
+     "hidden": false
+    },
+    {
+     "text": "Claude Code?",
+     "start": 130.45189473684212,
+     "end": 131.260992481203,
+     "hidden": false
+    },
+    {
+     "text": "Gõ tên xuống dưới,",
+     "start": 131.260992481203,
+     "end": 132.362,
+     "hidden": true
+    }
+   ],
+   "start": 129.70216346153845,
+   "end": 132.362,
+   "out": 132.887,
+   "section": "BẠN CHỌN ĐỘI NÀO?",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 45,
+   "lines": [
+    {
+     "text": "tôi đọc hết",
+     "start": 132.887,
+     "end": 133.43681818181818,
+     "hidden": false
+    },
+    {
+     "text": "và sẽ trả lời",
+     "start": 133.43681818181818,
+     "end": 134.0942727272727,
+     "hidden": true
+    },
+    {
+     "text": "hết tất cả.",
+     "start": 134.0942727272727,
+     "end": 134.73718181818182,
+     "hidden": true
+    }
+   ],
+   "start": 132.887,
+   "end": 134.73718181818182,
+   "out": 134.73718181818182,
+   "section": "BẠN CHỌN ĐỘI NÀO?",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "shrink"
+  },
+  {
+   "index": 46,
+   "lines": [
+    {
+     "text": "Nhớ nhấn follow",
+     "start": 134.73718181818182,
+     "end": 135.53136363636364,
+     "hidden": false
+    },
+    {
+     "text": "để ủng hộ Hít nhé.",
+     "start": 135.53136363636364,
+     "end": 136.503,
+     "hidden": false
+    }
+   ],
+   "start": 134.73718181818182,
+   "end": 136.503,
+   "out": 136.803265,
+   "section": "BẠN CHỌN ĐỘI NÀO?",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "up"
+  }
+ ]
+}

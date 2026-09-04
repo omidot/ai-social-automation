@@ -7,3 +7,8 @@ output/
 *.egg-info/
 build/
 dist/
+video/node_modules/
+video/out/
+video/.remotion/
+data/voice_cache/
+assets/voice/*.wav

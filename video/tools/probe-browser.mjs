@@ -1,0 +1,11 @@
+import { openBrowser, ensureBrowser } from '@remotion/renderer';
+await ensureBrowser();
+const b = await openBrowser('chrome');
+const p = await b.newPage({ logLevel: 'error', indent: false, pageIndex: 0 });
+const c = p._client();
+await p.setViewport({ width: 1200, height: 800, deviceScaleFactor: 1 });
+await p.goto({ url: 'https://example.com', timeout: 30000 });
+const r = await c.send('Page.captureScreenshot', { format: 'png' });
+console.log('type:', typeof r, '| keys:', r && Object.keys(r).join(','));
+console.log('raw preview:', JSON.stringify(r).slice(0, 160));
+await b.close({ silent: true });

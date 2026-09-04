@@ -1,0 +1,854 @@
+{
+ "fps": 30,
+ "duration": 98.037551,
+ "durationInFrames": 2960,
+ "cards": [
+  {
+   "index": 0,
+   "lines": [
+    {
+     "text": "Bạn đang trả tiền cho Gemini",
+     "start": 0.232018,
+     "end": 1.5952630224966917,
+     "hidden": false
+    },
+    {
+     "text": "mỗi tháng",
+     "start": 1.5952630224966917,
+     "end": 2.0694352042346713,
+     "hidden": false
+    },
+    {
+     "text": "và gần như chắc chắn",
+     "start": 2.0694352042346713,
+     "end": 3.040359195412439,
+     "hidden": true
+    }
+   ],
+   "start": 0.232018,
+   "end": 3.040359195412439,
+   "out": 3.040359195412439,
+   "section": "BẠN ĐANG TRẢ TIỀN CHO NÓ",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 1,
+   "lines": [
+    {
+     "text": "chưa dùng tới bốn thứ này.",
+     "start": 3.040359195412439,
+     "end": 4.3528000555800626,
+     "hidden": false
+    },
+    {
+     "text": "Ok, và đây là bốn mẹo.",
+     "start": 4.3528000555800626,
+     "end": 5.563632591089546,
+     "hidden": true
+    }
+   ],
+   "start": 3.040359195412439,
+   "end": 5.563632591089546,
+   "out": 5.563632591089546,
+   "section": "BẠN ĐANG TRẢ TIỀN CHO NÓ",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "dissolve"
+  },
+  {
+   "index": 2,
+   "lines": [
+    {
+     "text": "Nhớ xem đến cuối video",
+     "start": 5.563632591089546,
+     "end": 6.63052,
+     "hidden": false
+    },
+    {
+     "text": "và nó sẽ chạy trong lúc bạn ngủ.",
+     "start": 6.91361,
+     "end": 8.672413035714285,
+     "hidden": false
+    }
+   ],
+   "start": 5.563632591089546,
+   "end": 8.672413035714285,
+   "out": 8.672413035714285,
+   "section": "BẠN ĐANG TRẢ TIỀN CHO NÓ",
+   "variant": "stack",
+   "anchor": "low",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 3,
+   "lines": [
+    {
+     "text": "Mẹo thứ nhất là",
+     "start": 8.672413035714285,
+     "end": 9.47047375,
+     "hidden": false
+    },
+    {
+     "text": "dạy AI cãi lại.",
+     "start": 9.47047375,
+     "end": 10.584848823529411,
+     "hidden": false
+    },
+    {
+     "text": "Trong phần Settings",
+     "start": 10.584848823529411,
+     "end": 11.6673,
+     "hidden": true
+    }
+   ],
+   "start": 8.672413035714285,
+   "end": 11.6673,
+   "out": 12.0053,
+   "section": "1 · DẠY NÓ CÃI LẠI",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 1
+  },
+  {
+   "index": 4,
+   "lines": [
+    {
+     "text": "chọn phần Personal Intelligence.",
+     "start": 12.0053,
+     "end": 14.078494669509595,
+     "hidden": false
+    },
+    {
+     "text": "Phần Instructions",
+     "start": 14.078494669509595,
+     "end": 15.073026012793177,
+     "hidden": true
+    },
+    {
+     "text": "gõ đúng một câu:",
+     "start": 15.073026012793177,
+     "end": 15.9758,
+     "hidden": true
+    }
+   ],
+   "start": 12.0053,
+   "end": 15.9758,
+   "out": 16.2483,
+   "section": "1 · DẠY NÓ CÃI LẠI",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 5,
+   "lines": [
+    {
+     "text": "Đừng gật đầu với tôi,",
+     "start": 16.2483,
+     "end": 17.642935389244077,
+     "hidden": false
+    },
+    {
+     "text": "ý nào yếu thì nói thẳng là yếu.",
+     "start": 17.642935389244077,
+     "end": 19.31981034223392,
+     "hidden": false
+    }
+   ],
+   "start": 16.2483,
+   "end": 19.31981034223392,
+   "out": 19.31981034223392,
+   "section": "1 · DẠY NÓ CÃI LẠI",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 6,
+   "lines": [
+    {
+     "text": "Mặc định AI có xu hướng đồng ý với bạn.",
+     "start": 19.31981034223392,
+     "end": 21.41812997367431,
+     "hidden": false
+    },
+    {
+     "text": "Một công cụ chỉ biết đồng ý",
+     "start": 21.41812997367431,
+     "end": 22.83679586310643,
+     "hidden": true
+    }
+   ],
+   "start": 19.31981034223392,
+   "end": 22.83679586310643,
+   "out": 22.83679586310643,
+   "section": "1 · DẠY NÓ CÃI LẠI",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "up"
+  },
+  {
+   "index": 7,
+   "lines": [
+    {
+     "text": "thì không giúp bạn nghĩ tốt hơn.",
+     "start": 22.83679586310643,
+     "end": 24.528510417450168,
+     "hidden": false
+    }
+   ],
+   "start": 22.83679586310643,
+   "end": 24.528510417450168,
+   "out": 24.528510417450168,
+   "section": "1 · DẠY NÓ CÃI LẠI",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve"
+  },
+  {
+   "index": 8,
+   "lines": [
+    {
+     "text": "Mười lăm giây để gõ. Dùng được mãi.",
+     "start": 24.528510417450168,
+     "end": 26.7059,
+     "hidden": false
+    }
+   ],
+   "start": 24.528510417450168,
+   "end": 26.7059,
+   "out": 26.9874,
+   "section": "1 · DẠY NÓ CÃI LẠI",
+   "variant": "right",
+   "anchor": "low",
+   "motion": "slideR",
+   "exit": "down"
+  },
+  {
+   "index": 9,
+   "lines": [
+    {
+     "text": "Mẹo thứ hai là",
+     "start": 26.9874,
+     "end": 27.72917536071032,
+     "hidden": false
+    },
+    {
+     "text": "hỏi năm tab cùng lúc.",
+     "start": 27.72917536071032,
+     "end": 28.911670810210875,
+     "hidden": false
+    },
+    {
+     "text": "Trong Chrome có nút Ask Gemini.",
+     "start": 28.911670810210875,
+     "end": 30.94602504118616,
+     "hidden": true
+    }
+   ],
+   "start": 26.9874,
+   "end": 30.94602504118616,
+   "out": 30.94602504118616,
+   "section": "2 · HỎI 5 TAB CÙNG LÚC",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 2
+  },
+  {
+   "index": 10,
+   "lines": [
+    {
+     "text": "Đang mở năm tab",
+     "start": 30.94602504118616,
+     "end": 31.677023393739702,
+     "hidden": false
+    },
+    {
+     "text": "so sánh khách sạn hay sản phẩm.",
+     "start": 31.677023393739702,
+     "end": 33.53151234428086,
+     "hidden": false
+    }
+   ],
+   "start": 30.94602504118616,
+   "end": 33.53151234428086,
+   "out": 33.53151234428086,
+   "section": "2 · HỎI 5 TAB CÙNG LÚC",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 11,
+   "lines": [
+    {
+     "text": "Gõ dấu a còng,",
+     "start": 33.53151234428086,
+     "end": 34.34716126840317,
+     "hidden": false
+    },
+    {
+     "text": "chọn cả năm tab, hỏi một lần.",
+     "start": 34.34716126840317,
+     "end": 36.345532100396305,
+     "hidden": false
+    }
+   ],
+   "start": 33.53151234428086,
+   "end": 36.345532100396305,
+   "out": 36.345532100396305,
+   "section": "2 · HỎI 5 TAB CÙNG LÚC",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 12,
+   "lines": [
+    {
+     "text": "Nó đọc hết rồi nói cái nào hợp.",
+     "start": 36.345532100396305,
+     "end": 38.218081818181815,
+     "hidden": false
+    }
+   ],
+   "start": 36.345532100396305,
+   "end": 38.218081818181815,
+   "out": 38.218081818181815,
+   "section": "2 · HỎI 5 TAB CÙNG LÚC",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 13,
+   "lines": [
+    {
+     "text": "Một ngày bạn nhảy tab",
+     "start": 38.218081818181815,
+     "end": 39.44770305584826,
+     "hidden": false
+    },
+    {
+     "text": "ba bốn chục lần,",
+     "start": 39.44770305584826,
+     "end": 40.38208292939937,
+     "hidden": false
+    },
+    {
+     "text": "cộng lại không nhỏ đâu.",
+     "start": 40.38208292939937,
+     "end": 41.677960590094834,
+     "hidden": true
+    },
+    {
+     "text": "Ok, tới mẹo thứ ba là",
+     "start": 41.677960590094834,
+     "end": 43.24644543568465,
+     "hidden": true
+    }
+   ],
+   "start": 38.218081818181815,
+   "end": 43.24644543568465,
+   "out": 43.24644543568465,
+   "section": "2 · HỎI 5 TAB CÙNG LÚC",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "dissolve"
+  },
+  {
+   "index": 14,
+   "lines": [
+    {
+     "text": "báo cáo thành podcast.",
+     "start": 43.24644543568465,
+     "end": 44.410529149377595,
+     "hidden": false
+    }
+   ],
+   "start": 43.24644543568465,
+   "end": 44.410529149377595,
+   "out": 44.410529149377595,
+   "section": "3 · BÁO CÁO → PODCAST",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 3
+  },
+  {
+   "index": 15,
+   "lines": [
+    {
+     "text": "Bảo Gemini nghiên cứu một chủ đề",
+     "start": 44.410529149377595,
+     "end": 46.529052876376994,
+     "hidden": false
+    },
+    {
+     "text": "nhưng đừng chạy ngay.",
+     "start": 46.529052876376994,
+     "end": 47.769791187270506,
+     "hidden": true
+    }
+   ],
+   "start": 44.410529149377595,
+   "end": 47.769791187270506,
+   "out": 47.769791187270506,
+   "section": "3 · BÁO CÁO → PODCAST",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 16,
+   "lines": [
+    {
+     "text": "Bắt nó hỏi ngược lại bạn",
+     "start": 47.769791187270506,
+     "end": 49.332364864864864,
+     "hidden": false
+    },
+    {
+     "text": "trước tới khi đủ hiểu.",
+     "start": 49.332364864864864,
+     "end": 50.578986486486485,
+     "hidden": false
+    }
+   ],
+   "start": 47.769791187270506,
+   "end": 50.578986486486485,
+   "out": 50.578986486486485,
+   "section": "3 · BÁO CÁO → PODCAST",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 17,
+   "lines": [
+    {
+     "text": "Xong báo cáo đưa vào notebook",
+     "start": 50.578986486486485,
+     "end": 52.50838857559553,
+     "hidden": false
+    },
+    {
+     "text": "chọn Audio Overview.",
+     "start": 52.50838857559553,
+     "end": 53.68224030140982,
+     "hidden": true
+    }
+   ],
+   "start": 50.578986486486485,
+   "end": 53.68224030140982,
+   "out": 53.68224030140982,
+   "section": "3 · BÁO CÁO → PODCAST",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "up"
+  },
+  {
+   "index": 18,
+   "lines": [
+    {
+     "text": "Nó trả về một tập podcast",
+     "start": 53.68224030140982,
+     "end": 54.95537301895965,
+     "hidden": false
+    },
+    {
+     "text": "dựng từ chính nghiên cứu của bạn.",
+     "start": 54.95537301895965,
+     "end": 56.70447049100632,
+     "hidden": false
+    }
+   ],
+   "start": 53.68224030140982,
+   "end": 56.70447049100632,
+   "out": 56.70447049100632,
+   "section": "3 · BÁO CÁO → PODCAST",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 19,
+   "lines": [
+    {
+     "text": "Nghe lúc chạy bộ, lúc lái xe",
+     "start": 56.70447049100632,
+     "end": 58.548615625,
+     "hidden": false
+    },
+    {
+     "text": "không tốn thêm đồng nào.",
+     "start": 58.548615625,
+     "end": 60.157568894601546,
+     "hidden": true
+    },
+    {
+     "text": "Và cuối cùng mẹo thứ tư",
+     "start": 60.157568894601546,
+     "end": 61.64560654545454,
+     "hidden": true
+    }
+   ],
+   "start": 56.70447049100632,
+   "end": 61.64560654545454,
+   "out": 61.64560654545454,
+   "section": "3 · BÁO CÁO → PODCAST",
+   "variant": "right",
+   "anchor": "low",
+   "motion": "slideR",
+   "exit": "dissolve"
+  },
+  {
+   "index": 20,
+   "lines": [
+    {
+     "text": "nó làm việc khi bạn đang ngủ.",
+     "start": 61.64560654545454,
+     "end": 63.20203018181818,
+     "hidden": false
+    }
+   ],
+   "start": 61.64560654545454,
+   "end": 63.20203018181818,
+   "out": 63.20203018181818,
+   "section": "4 · NÓ LÀM KHI BẠN NGỦ",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "up",
+   "num": 4
+  },
+  {
+   "index": 21,
+   "lines": [
+    {
+     "text": "Nối lịch và email vào Gemini",
+     "start": 63.20203018181818,
+     "end": 65.08092938331319,
+     "hidden": false
+    },
+    {
+     "text": "rồi bật Spark",
+     "start": 65.08092938331319,
+     "end": 65.77135961305926,
+     "hidden": true
+    }
+   ],
+   "start": 63.20203018181818,
+   "end": 65.77135961305926,
+   "out": 65.77135961305926,
+   "section": "4 · NÓ LÀM KHI BẠN NGỦ",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 22,
+   "lines": [
+    {
+     "text": "đêm nó đọc hết thư đến.",
+     "start": 65.77135961305926,
+     "end": 67.31757033492823,
+     "hidden": false
+    },
+    {
+     "text": "Sáng bạn dậy đã có sẵn",
+     "start": 67.31757033492823,
+     "end": 68.71986409978308,
+     "hidden": true
+    }
+   ],
+   "start": 65.77135961305926,
+   "end": 68.71986409978308,
+   "out": 68.71986409978308,
+   "section": "4 · NÓ LÀM KHI BẠN NGỦ",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 23,
+   "lines": [
+    {
+     "text": "một bản tóm tắt trong Google Docs.",
+     "start": 68.71986409978308,
+     "end": 70.56814392624729,
+     "hidden": false
+    }
+   ],
+   "start": 68.71986409978308,
+   "end": 70.56814392624729,
+   "out": 70.56814392624729,
+   "section": "4 · NÓ LÀM KHI BẠN NGỦ",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 24,
+   "lines": [
+    {
+     "text": "Nó dọn được cả",
+     "start": 70.56814392624729,
+     "end": 71.3141,
+     "hidden": false
+    },
+    {
+     "text": "thư mục lộn xộn trên máy.",
+     "start": 71.556,
+     "end": 72.80669919571045,
+     "hidden": false
+    }
+   ],
+   "start": 70.56814392624729,
+   "end": 72.80669919571045,
+   "out": 72.80669919571045,
+   "section": "4 · NÓ LÀM KHI BẠN NGỦ",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink"
+  },
+  {
+   "index": 25,
+   "lines": [
+    {
+     "text": "Nhưng cất giấy tờ ngân hàng",
+     "start": 72.80669919571045,
+     "end": 74.59794766697163,
+     "hidden": false
+    },
+    {
+     "text": "với hồ sơ cá nhân ra chỗ khác trước đã.",
+     "start": 74.59794766697163,
+     "end": 76.569021957914,
+     "hidden": false
+    }
+   ],
+   "start": 72.80669919571045,
+   "end": 76.569021957914,
+   "out": 76.569021957914,
+   "section": "4 · NÓ LÀM KHI BẠN NGỦ",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 26,
+   "lines": [
+    {
+     "text": "Nghe hay đúng không?",
+     "start": 76.569021957914,
+     "end": 78.26702352941176,
+     "hidden": false
+    },
+    {
+     "text": "Nhưng ít ai nói ra điều này.",
+     "start": 78.26702352941176,
+     "end": 80.258,
+     "hidden": true
+    }
+   ],
+   "start": 76.569021957914,
+   "end": 80.258,
+   "out": 80.6212,
+   "section": "SỰ THẬT",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "dissolve"
+  },
+  {
+   "index": 27,
+   "lines": [
+    {
+     "text": "Gemini ổn ở mọi mặt",
+     "start": 80.6212,
+     "end": 81.68210897297297,
+     "hidden": false
+    },
+    {
+     "text": "và không xuất sắc ở mặt nào.",
+     "start": 81.68210897297297,
+     "end": 83.2584027027027,
+     "hidden": false
+    }
+   ],
+   "start": 80.6212,
+   "end": 83.2584027027027,
+   "out": 83.2584027027027,
+   "section": "SỰ THẬT",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 28,
+   "lines": [
+    {
+     "text": "Đi rộng không đồng nghĩa",
+     "start": 83.2584027027027,
+     "end": 84.80583606010016,
+     "hidden": false
+    },
+    {
+     "text": "với đi sâu.",
+     "start": 84.80583606010016,
+     "end": 85.4215,
+     "hidden": false
+    },
+    {
+     "text": "OK, như vậy là bốn mẹo vừa rồi",
+     "start": 85.9436,
+     "end": 87.31347212918661,
+     "hidden": true
+    }
+   ],
+   "start": 83.2584027027027,
+   "end": 87.31347212918661,
+   "out": 87.31347212918661,
+   "section": "SỰ THẬT",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 29,
+   "lines": [
+    {
+     "text": "là phần dễ nhất.",
+     "start": 87.31347212918661,
+     "end": 88.1333,
+     "hidden": false
+    }
+   ],
+   "start": 87.31347212918661,
+   "end": 88.1333,
+   "out": 88.5094,
+   "section": "CÒN 6 MẸO NỮA",
+   "variant": "stack",
+   "anchor": "low",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 30,
+   "lines": [
+    {
+     "text": "Sáu mẹo còn lại",
+     "start": 88.5094,
+     "end": 89.31270820399114,
+     "hidden": false
+    },
+    {
+     "text": "Gems, Skills, Canvas,",
+     "start": 89.31270820399114,
+     "end": 90.81412949002217,
+     "hidden": false
+    },
+    {
+     "text": "cách chọn model",
+     "start": 90.81412949002217,
+     "end": 91.6843800443459,
+     "hidden": true
+    },
+    {
+     "text": "cho khỏi cháy hạn mức",
+     "start": 91.6843800443459,
+     "end": 92.8224,
+     "hidden": true
+    }
+   ],
+   "start": 88.5094,
+   "end": 92.8224,
+   "out": 93.2242,
+   "section": "CÒN 6 MẸO NỮA",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 31,
+   "lines": [
+    {
+     "text": "nằm trong bản đầy đủ trên kênh.",
+     "start": 93.2242,
+     "end": 94.7899,
+     "hidden": false
+    }
+   ],
+   "start": 93.2242,
+   "end": 94.7899,
+   "out": 95.0734,
+   "section": "CÒN 6 MẸO NỮA",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "slideL",
+   "exit": "up"
+  },
+  {
+   "index": 32,
+   "lines": [
+    {
+     "text": "Bấm xem rồi quay lại",
+     "start": 95.0734,
+     "end": 96.10121706501548,
+     "hidden": false
+    },
+    {
+     "text": "nói tôi biết",
+     "start": 96.10121706501548,
+     "end": 96.74360273065015,
+     "hidden": false
+    },
+    {
+     "text": "bạn dựng cái nào trước.",
+     "start": 96.74360273065015,
+     "end": 98.037551,
+     "hidden": false
+    }
+   ],
+   "start": 95.0734,
+   "end": 98.037551,
+   "out": 98.037551,
+   "section": "CÒN 6 MẸO NỮA",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  }
+ ]
+}
