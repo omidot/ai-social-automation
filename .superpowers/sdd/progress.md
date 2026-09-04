@@ -15,7 +15,10 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 8: complete (commits 784cdef..8abaf76, review Approved; deviation: os.close() the mkstemp fd — Windows PermissionError fix, sound)
 - Task 9: complete (commits 24d0f19..3ed62fc, review Approved; cross-task fix: tts._fake_wav emits quiet tone not pure silence so _to_mp3 silenceremove doesn't strip it — fake-path only, real-TTS untouched, Task 8 tests unaffected)
 - Task 10: complete (commits 6929d28..d92c620, review Approved)
-- Task 11: pending (CI video-smoke workflow)
+- Task 11: complete (commits 9f26ea9..6eb94f4, review Approved — no issues)
+
+ALL CODE TASKS (2-11) COMPLETE. Task 1 (spike) deferred — needs user's assets/voice/sample.wav.
+Next: final whole-branch review, then finishing-a-development-branch.
 
 ## Minor findings roll-up (for final review)
 - Task 2: unused `json` import in tests/video/test_remotion_project.py:1 (from plan text; harmless)
