@@ -1,0 +1,24 @@
+{
+  "sections": [
+    {"label": "AI VIẾT HỘ BẠN", "card_start": 0},
+    {"label": "CHUYỆN GÌ ĐANG XẢY RA", "card_start": 4},
+    {"label": "CON SỐ", "card_start": 9},
+    {"label": "SỰ THẬT", "card_start": 12}
+  ],
+  "cards": [
+    {"lines": ["Hôm nay", "~thì", "AI lại vừa có một bước nhảy lớn."], "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "up"},
+    {"lines": ["Một mô hình mới", "vừa được công bố"], "variant": "stack", "anchor": "top", "motion_in": "fall", "motion_out": "down"},
+    {"lines": ["nhanh gấp đôi", "~cái", "bản trước đó."], "variant": "right", "anchor": "low", "motion_in": "slideR", "motion_out": "dissolve"},
+    {"lines": ["Chi phí thì", "giảm gần một nửa."], "variant": "mark", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+    {"lines": ["Nghĩa là", "người bình thường"], "variant": "stack", "anchor": "mid", "motion_in": "slideL", "motion_out": "shrink"},
+    {"lines": ["cũng chạy được", "những tác vụ", "trước đây rất tốn kém."], "variant": "stair", "anchor": "mid", "motion_in": "slam", "motion_out": "shrink"},
+    {"lines": ["Các công ty lớn", "đã bắt đầu tích hợp nó."], "variant": "right", "anchor": "top", "motion_in": "slideR", "motion_out": "shrink"},
+    {"lines": ["Còn bạn", "~thì", "vẫn đang làm thủ công."], "variant": "mark", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut"},
+    {"lines": ["Khoảng cách", "đang giãn ra từng ngày."], "variant": "stack", "anchor": "top", "motion_in": "rise", "motion_out": "down"},
+    {"lines": ["Chỉ trong 6 tháng", "số lượt gọi API"], "variant": "stack", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+    {"lines": ["đã tăng", "gấp 10 lần."], "variant": "numeral", "anchor": "mid", "motion_in": "slam", "motion_out": "shrink", "num": 10},
+    {"lines": ["Ai bắt nhịp sớm", "sẽ đi trước rất xa."], "variant": "right", "anchor": "mid", "motion_in": "slideR", "motion_out": "shrink"},
+    {"lines": ["Sự thật là", "công cụ đã có sẵn."], "variant": "invert", "anchor": "mid", "motion_in": "pop", "motion_out": "wipeOut"},
+    {"lines": ["Chỉ là", "bạn đã bắt đầu chưa."], "variant": "invert", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut"}
+  ]
+}

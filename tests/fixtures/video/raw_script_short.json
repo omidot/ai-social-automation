@@ -1,0 +1,18 @@
+{
+  "sections": [
+    {"label": "AI VIẾT HỘ BẠN", "card_start": 0},
+    {"label": "CHUYỆN GÌ ĐANG XẢY RA", "card_start": 2},
+    {"label": "CON SỐ", "card_start": 4},
+    {"label": "SỰ THẬT", "card_start": 6}
+  ],
+  "cards": [
+    {"lines": ["Hôm nay", "~thì", "AI mới."], "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "up"},
+    {"lines": ["Model mới."], "variant": "stack", "anchor": "top", "motion_in": "fall", "motion_out": "down"},
+    {"lines": ["Nhanh hơn."], "variant": "right", "anchor": "low", "motion_in": "slideR", "motion_out": "dissolve"},
+    {"lines": ["Rẻ hơn."], "variant": "mark", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+    {"lines": ["Ai cũng dùng."], "variant": "stack", "anchor": "mid", "motion_in": "slideL", "motion_out": "shrink"},
+    {"lines": ["Bạn thì chưa."], "variant": "stair", "anchor": "mid", "motion_in": "slam", "motion_out": "shrink"},
+    {"lines": ["Số tăng mạnh."], "variant": "numeral", "anchor": "mid", "motion_in": "wipe", "motion_out": "up", "num": 10},
+    {"lines": ["Bắt đầu đi."], "variant": "invert", "anchor": "mid", "motion_in": "pop", "motion_out": "wipeOut"}
+  ]
+}
