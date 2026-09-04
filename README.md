@@ -79,7 +79,7 @@ Kiểm tra giọng clone thật:
 
     python -m pipeline.video.build_video --tts-check
 
-TTS engine do spike chọn (xem docs/superpowers/notes/2026-09-03-tts-spike.md).
+TTS engine do spike chọn (xem docs/superpowers/specs/2026-09-03-phase2a-script-voice-timeline-design.md (mục 4 — spike TTS)).
 F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm fallback.
 
 ## Kiến trúc
