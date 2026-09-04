@@ -1,0 +1,31 @@
+name: video-smoke
+on:
+  push:
+    paths:
+      - 'video/**'
+      - 'src/pipeline/video/**'
+      - '.github/workflows/video-smoke.yml'
+  workflow_dispatch:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Python deps
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+          pip install -r requirements-video.txt
+      - name: Node deps
+        run: cd video && npm ci
+      - name: Ensure Chromium for Remotion
+        run: cd video && npx remotion browser ensure
+      - name: Unit tests (incl. needs_node)
+        run: python -m pytest tests/video -q
+      - name: End-to-end fake build + render smoke
+        run: python -m pipeline.video.build_video --fake --fake-llm --story tests/fixtures/video/story.json --render-smoke --root .

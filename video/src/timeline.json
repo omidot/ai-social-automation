@@ -1,0 +1,503 @@
+{
+ "fps": 30,
+ "duration": 40.08,
+ "durationInFrames": 1221,
+ "cards": [
+  {
+   "index": 0,
+   "lines": [
+    {
+     "text": "Với",
+     "start": 0.218917,
+     "end": 0.412862364516129,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 0.412862364516129,
+     "end": 0.6068077290322581,
+     "hidden": true
+    },
+    {
+     "text": "sự phát triển không ngừng của AI ngày nay,",
+     "start": 0.6068077290322581,
+     "end": 2.9279951075268817,
+     "hidden": false
+    }
+   ],
+   "start": 0.218917,
+   "end": 2.9279951075268817,
+   "out": 2.9279951075268817,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up"
+  },
+  {
+   "index": 1,
+   "lines": [
+    {
+     "text": "sẽ là một",
+     "start": 2.9279951075268817,
+     "end": 3.6659907824143065,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 3.6659907824143065,
+     "end": 3.857868032786885,
+     "hidden": true
+    },
+    {
+     "text": "việc rất là khó khăn",
+     "start": 3.857868032786885,
+     "end": 4.905578733233979,
+     "hidden": false
+    }
+   ],
+   "start": 2.9279951075268817,
+   "end": 4.905578733233979,
+   "out": 4.905578733233979,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "down"
+  },
+  {
+   "index": 2,
+   "lines": [
+    {
+     "text": "cho một người bình thường muốn làm kinh doanh.",
+     "start": 4.905578733233979,
+     "end": 7.40912,
+     "hidden": false
+    }
+   ],
+   "start": 4.905578733233979,
+   "end": 7.40912,
+   "out": 7.88333,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "right",
+   "anchor": "low",
+   "motion": "slideR",
+   "exit": "dissolve"
+  },
+  {
+   "index": 3,
+   "lines": [
+    {
+     "text": "Bây giờ muốn suy nghĩ,",
+     "start": 7.88333,
+     "end": 9.152,
+     "hidden": false
+    },
+    {
+     "text": "AI nó cũng có thể",
+     "start": 9.51421,
+     "end": 10.402270663716815,
+     "hidden": false
+    },
+    {
+     "text": "suy nghĩ cho các bạn.",
+     "start": 10.402270663716815,
+     "end": 11.5415,
+     "hidden": false
+    }
+   ],
+   "start": 7.88333,
+   "end": 11.5415,
+   "out": 11.8484,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "up"
+  },
+  {
+   "index": 4,
+   "lines": [
+    {
+     "text": "Làm sao để thực hiện",
+     "start": 11.8484,
+     "end": 12.797770854271356,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 12.797770854271356,
+     "end": 12.971638190954774,
+     "hidden": true
+    },
+    {
+     "text": "ý tưởng kinh doanh,",
+     "start": 12.971638190954774,
+     "end": 14.0452,
+     "hidden": false
+    }
+   ],
+   "start": 11.8484,
+   "end": 14.0452,
+   "out": 14.2819,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "shrink"
+  },
+  {
+   "index": 5,
+   "lines": [
+    {
+     "text": "AI nó cũng có thể",
+     "start": 14.2819,
+     "end": 15.42959741935484,
+     "hidden": false
+    },
+    {
+     "text": "thực hiện cho các bạn.",
+     "start": 15.42959741935484,
+     "end": 17.098687593283582,
+     "hidden": false
+    }
+   ],
+   "start": 14.2819,
+   "end": 17.098687593283582,
+   "out": 17.098687593283582,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 6,
+   "lines": [
+    {
+     "text": "Và sau khi thực hiện",
+     "start": 17.098687593283582,
+     "end": 18.131698414179105,
+     "hidden": false
+    },
+    {
+     "text": "ý tưởng kinh doanh đó,",
+     "start": 18.131698414179105,
+     "end": 19.44998838619403,
+     "hidden": false
+    }
+   ],
+   "start": 17.098687593283582,
+   "end": 19.44998838619403,
+   "out": 19.44998838619403,
+   "section": "AI THAY BẠN NGHĨ",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "shrink"
+  },
+  {
+   "index": 7,
+   "lines": [
+    {
+     "text": "bạn có thể vào",
+     "start": 19.44998838619403,
+     "end": 20.16769067164179,
+     "hidden": false
+    },
+    {
+     "text": "Claude Code",
+     "start": 20.16769067164179,
+     "end": 20.79830774253731,
+     "hidden": false
+    },
+    {
+     "text": "schedule những",
+     "start": 20.79830774253731,
+     "end": 21.618109934701494,
+     "hidden": true
+    },
+    {
+     "text": "cái",
+     "start": 21.618109934701494,
+     "end": 21.807295055970148,
+     "hidden": true
+    }
+   ],
+   "start": 19.44998838619403,
+   "end": 21.807295055970148,
+   "out": 21.807295055970148,
+   "section": "CLAUDE CODE SCHEDULE ADS",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "dissolve"
+  },
+  {
+   "index": 8,
+   "lines": [
+    {
+     "text": "đó để mà chạy ads.",
+     "start": 21.807295055970148,
+     "end": 22.8343,
+     "hidden": false
+    }
+   ],
+   "start": 21.807295055970148,
+   "end": 22.8343,
+   "out": 23.089,
+   "section": "CLAUDE CODE SCHEDULE ADS",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "up"
+  },
+  {
+   "index": 9,
+   "lines": [
+    {
+     "text": "Và trong khi",
+     "start": 23.089,
+     "end": 23.768729613733903,
+     "hidden": false
+    },
+    {
+     "text": "bạn đang ngủ,",
+     "start": 23.768729613733903,
+     "end": 24.56382618025751,
+     "hidden": false
+    },
+    {
+     "text": "có",
+     "start": 24.56382618025751,
+     "end": 24.719727467811158,
+     "hidden": true
+    }
+   ],
+   "start": 23.089,
+   "end": 24.719727467811158,
+   "out": 24.719727467811158,
+   "section": "TRONG KHI BẠN NGỦ",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 10,
+   "lines": [
+    {
+     "text": "hàng ngàn,",
+     "start": 24.719727467811158,
+     "end": 25.3838669527897,
+     "hidden": false
+    },
+    {
+     "text": "hàng ngàn,",
+     "start": 25.3838669527897,
+     "end": 26.04800643776824,
+     "hidden": false
+    },
+    {
+     "text": "hàng chục ngàn",
+     "start": 26.04800643776824,
+     "end": 26.833748927038627,
+     "hidden": false
+    },
+    {
+     "text": "robot ở bên China",
+     "start": 26.833748927038627,
+     "end": 27.840871244635192,
+     "hidden": false
+    }
+   ],
+   "start": 24.719727467811158,
+   "end": 27.840871244635192,
+   "out": 27.840871244635192,
+   "section": "TRONG KHI BẠN NGỦ",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "shrink"
+  },
+  {
+   "index": 11,
+   "lines": [
+    {
+     "text": "tung ra hàng triệu",
+     "start": 27.840871244635192,
+     "end": 28.84799356223176,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 28.84799356223176,
+     "end": 29.044429184549355,
+     "hidden": true
+    },
+    {
+     "text": "video quảng cáo",
+     "start": 29.044429184549355,
+     "end": 29.895650214592273,
+     "hidden": false
+    },
+    {
+     "text": "sản phẩm đó.",
+     "start": 29.895650214592273,
+     "end": 30.931415664845172,
+     "hidden": false
+    }
+   ],
+   "start": 27.840871244635192,
+   "end": 30.931415664845172,
+   "out": 30.931415664845172,
+   "section": "TRONG KHI BẠN NGỦ",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "down"
+  },
+  {
+   "index": 12,
+   "lines": [
+    {
+     "text": "Bạn không thể nào",
+     "start": 30.931415664845172,
+     "end": 31.838531511839708,
+     "hidden": false
+    },
+    {
+     "text": "bạn đăng từng",
+     "start": 31.838531511839708,
+     "end": 32.55126539162113,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 32.55126539162113,
+     "end": 32.74564735883424,
+     "hidden": true
+    },
+    {
+     "text": "video mà bạn cạnh tranh nổi",
+     "start": 32.74564735883424,
+     "end": 34.1957985428051,
+     "hidden": false
+    }
+   ],
+   "start": 30.931415664845172,
+   "end": 34.1957985428051,
+   "out": 34.1957985428051,
+   "section": "TRONG KHI BẠN NGỦ",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink"
+  },
+  {
+   "index": 13,
+   "lines": [
+    {
+     "text": "với những",
+     "start": 34.1957985428051,
+     "end": 34.71415045537341,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 34.71415045537341,
+     "end": 34.90853242258652,
+     "hidden": true
+    },
+    {
+     "text": "con robot đó.",
+     "start": 34.90853242258652,
+     "end": 35.72,
+     "hidden": false
+    }
+   ],
+   "start": 34.1957985428051,
+   "end": 35.72,
+   "out": 35.9513,
+   "section": "TRONG KHI BẠN NGỦ",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "up"
+  },
+  {
+   "index": 14,
+   "lines": [
+    {
+     "text": "Những",
+     "start": 35.9513,
+     "end": 36.29873765796125,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 36.29873765796125,
+     "end": 36.507200252737995,
+     "hidden": true
+    },
+    {
+     "text": "con robot đó",
+     "start": 36.507200252737995,
+     "end": 37.22854700926706,
+     "hidden": false
+    },
+    {
+     "text": "nó được tạo ra",
+     "start": 37.22854700926706,
+     "end": 38.04585273799495,
+     "hidden": false
+    },
+    {
+     "text": "bởi",
+     "start": 38.04585273799495,
+     "end": 38.2543153327717,
+     "hidden": true
+    }
+   ],
+   "start": 35.9513,
+   "end": 38.2543153327717,
+   "out": 38.2543153327717,
+   "section": "SỰ THẬT",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut"
+  },
+  {
+   "index": 15,
+   "lines": [
+    {
+     "text": "những",
+     "start": 38.2543153327717,
+     "end": 38.60175299073294,
+     "hidden": false
+    },
+    {
+     "text": "cái",
+     "start": 38.60175299073294,
+     "end": 38.81021558550969,
+     "hidden": true
+    },
+    {
+     "text": "công ty lớn hơn bạn",
+     "start": 38.81021558550969,
+     "end": 39.879,
+     "hidden": false
+    }
+   ],
+   "start": 38.2543153327717,
+   "end": 39.879,
+   "out": 40.08,
+   "section": "SỰ THẬT",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+  "candidate": {
+    "url": "https://openai.com/blog/demo-model",
+    "title": "OpenAI ra mô hình AI mới nhanh gấp đôi",
+    "source": "rss:OpenAI Blog",
+    "published_at": "2026-09-03T00:00:00+00:00",
+    "raw_score_hint": 900.0,
+    "summary": "OpenAI công bố mô hình mới nhanh gấp đôi, rẻ hơn.",
+    "full_text": "OpenAI vừa công bố mô hình mới, nhanh gấp đôi thế hệ trước và rẻ hơn khoảng một nửa.",
+    "top_image": null
+  },
+  "post": {
+    "angle": "phan-tich",
+    "caption_fb": "AI lại có biến. OpenAI ra model mới nhanh gấp đôi.\n\nNguồn: OpenAI Blog — https://openai.com/blog/demo-model",
+    "caption_ig": "OpenAI ra model mới. #AI",
+    "hashtags": ["#AI", "#OpenAI"],
+    "thumbnail_prompt": "neural core",
+    "thumbnail_title": "OPENAI RA MODEL MỚI",
+    "youtube_title": "OpenAI ra model mới",
+    "youtube_desc": "Tóm tắt.",
+    "tiktok_caption": "OpenAI ra model mới 👀",
+    "source_url": "https://openai.com/blog/demo-model",
+    "source_name": "OpenAI Blog"
+  }
+}

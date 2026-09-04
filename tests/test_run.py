@@ -70,3 +70,41 @@ def test_build_no_story_returns_none(project, monkeypatch):
 def test_make_id_slugifies():
     c = _fake_candidate()
     assert run.make_id(c, NOW) == "2026-09-03-openai-ra-mo-hinh-ai-moi-cuc-manh"[:53]
+
+
+def test_build_attaches_video_manifest_when_enabled(project, monkeypatch):
+    (project / "config/settings.yaml").write_text(
+        "approval_mode: telegram\nmin_score: 45\nposts_per_day: 1\n"
+        "rsshub_base: http://rss\npending_ttl_hours: 12\n"
+        "video:\n  enabled: true\n  tts_provider: auto\n", encoding="utf-8")
+    monkeypatch.setattr(run.collect, "collect", lambda *a, **k: [_fake_candidate()])
+    monkeypatch.setattr(run.media, "build_media",
+                        lambda c, p, o, ch: ([_touch(Path(o) / "img/01_thumbnail.jpg")], True))
+    import pipeline.video.build_video as bv
+    monkeypatch.setattr(bv, "build", lambda *a, **k: {"id": "vid1", "cards": 14, "seconds": 40})
+    pending = run.build(project, NOW, dry_run=True, local=False,
+                        generate=lambda s, u, **k: LLM_JSON)
+    assert pending["video"]["id"] == "vid1"
+
+
+def test_build_survives_video_error(project, monkeypatch, caplog):
+    import logging
+    (project / "config/settings.yaml").write_text(
+        "approval_mode: telegram\nmin_score: 45\nposts_per_day: 1\n"
+        "rsshub_base: http://rss\npending_ttl_hours: 12\nvideo:\n  enabled: true\n",
+        encoding="utf-8")
+    monkeypatch.setattr(run.collect, "collect", lambda *a, **k: [_fake_candidate()])
+    monkeypatch.setattr(run.media, "build_media",
+                        lambda c, p, o, ch: ([_touch(Path(o) / "img/01_thumbnail.jpg")], True))
+    import pipeline.video.build_video as bv
+    from pipeline.video import VideoScriptError
+    monkeypatch.setattr(bv, "build",
+                        lambda *a, **k: (_ for _ in ()).throw(VideoScriptError("boom")))
+    notes = []
+    monkeypatch.setattr(run, "_notify", lambda m: notes.append(m))
+    with caplog.at_level(logging.ERROR, logger="run"):
+        pending = run.build(project, NOW, dry_run=True, local=False,
+                            generate=lambda s, u, **k: LLM_JSON)
+    assert "video" not in pending
+    assert not notes  # dry-run stays silent on Telegram
+    assert any("video stage failed" in r.getMessage().lower() for r in caplog.records)

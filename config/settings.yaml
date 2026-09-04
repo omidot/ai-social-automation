@@ -4,3 +4,10 @@ min_score: 45
 run_hour_utc: 1              # 08:00 ICT
 rsshub_base: "https://rsshub.app"
 pending_ttl_hours: 12
+
+video:
+  enabled: false
+  target_seconds: 40
+  words_min: 110
+  words_max: 140
+  tts_provider: auto
