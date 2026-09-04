@@ -5,8 +5,8 @@ Branch: feature/phase2a-video
 Base: 7c4b291 (Add Phase 2A implementation plan)
 
 ## Tasks
-- Task 1: pending  (spike — GPT-SoVITS/F5-TTS eval + decision)
-- Task 2: pending  (vendor Remotion project into video/)
+- Task 1: DEFERRED (spike — needs user's assets/voice/sample.wav + 2GB model download; do last)
+- Task 2: complete (commits c799d0a..5334520, review clean)
 - Task 3: pending  (pipeline.video.models)
 - Task 4: pending  (pipeline.video.script)
 - Task 5: pending  (pipeline.video.variants)
@@ -18,4 +18,5 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 11: pending (CI video-smoke workflow)
 
 ## Minor findings roll-up (for final review)
-(none yet)
+- Task 2: unused `json` import in tests/video/test_remotion_project.py:1 (from plan text; harmless)
+- Task 2: ffmpeg-static postinstall skipped by env allow-scripts policy — video/node_modules/ffmpeg-static/ffmpeg.exe may be absent; resolve before Task 7 (align.py depends on it)
