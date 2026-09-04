@@ -8,7 +8,7 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 1: DEFERRED (spike — needs user's assets/voice/sample.wav + 2GB model download; do last)
 - Task 2: complete (commits c799d0a..5334520, review clean)
 - Task 3: complete (commits 230c9cd..a4f4ed5, review clean — Approved)
-- Task 4: pending  (pipeline.video.script)
+- Task 4: complete (commits b5692a4..5028903, review Approved + fix pass for 2 Important coverage gaps; re-verified by controller — 78 suite green)
 - Task 5: pending  (pipeline.video.variants)
 - Task 6: pending  (pipeline.video.codegen)
 - Task 7: pending  (pipeline.video.align)
@@ -21,3 +21,4 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 - Task 2: unused `json` import in tests/video/test_remotion_project.py:1 (from plan text; harmless)
 - Task 2: ffmpeg-static postinstall warning was benign — video/node_modules/ffmpeg-static/ffmpeg.exe (82MB) IS present. Task 7 unblocked.
 - Task 3: unused `field` import in src/pipeline/video/models.py (from plan text; harmless) — clean up at final review
+- Task 4: `_validate(data, cfg)` — `cfg` param unused (plan-mandated shape); "unreachable" guard is dead-but-defensible type hint; raw_script.json = 108 displayed words (below 110-140 target, inside 95-155 test band). All for final-review triage.
