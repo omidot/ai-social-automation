@@ -7,7 +7,7 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 ## Tasks
 - Task 1: DEFERRED (spike — needs user's assets/voice/sample.wav + 2GB model download; do last)
 - Task 2: complete (commits c799d0a..5334520, review clean)
-- Task 3: pending  (pipeline.video.models)
+- Task 3: complete (commits 230c9cd..a4f4ed5, review clean — Approved)
 - Task 4: pending  (pipeline.video.script)
 - Task 5: pending  (pipeline.video.variants)
 - Task 6: pending  (pipeline.video.codegen)
@@ -19,4 +19,5 @@ Base: 7c4b291 (Add Phase 2A implementation plan)
 
 ## Minor findings roll-up (for final review)
 - Task 2: unused `json` import in tests/video/test_remotion_project.py:1 (from plan text; harmless)
-- Task 2: ffmpeg-static postinstall skipped by env allow-scripts policy — video/node_modules/ffmpeg-static/ffmpeg.exe may be absent; resolve before Task 7 (align.py depends on it)
+- Task 2: ffmpeg-static postinstall warning was benign — video/node_modules/ffmpeg-static/ffmpeg.exe (82MB) IS present. Task 7 unblocked.
+- Task 3: unused `field` import in src/pipeline/video/models.py (from plan text; harmless) — clean up at final review
