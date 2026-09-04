@@ -11,6 +11,7 @@ video/node_modules/
 video/out/
 video/.remotion/
 data/voice_cache/
-assets/voice/*.wav
+assets/voice/*
+!assets/voice/.gitkeep
 video/ref/silence.txt
 assets/voice/sample.txt
