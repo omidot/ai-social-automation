@@ -104,4 +104,4 @@ F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm f
 State (`data/seen.json`, `data/pending/`, `data/posted/`) được commit ngược repo.
 
 Spec và plan đầy đủ: `docs/superpowers/`. 
- 
+  
