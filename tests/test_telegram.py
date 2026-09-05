@@ -44,3 +44,21 @@ def test_get_updates_returns_result_list(monkeypatch):
     monkeypatch.setattr(tg, "_post", lambda m, data=None, files=None:
                         {"ok": True, "result": [{"update_id": 5}]})
     assert tg.get_updates(offset=0) == [{"update_id": 5}]
+
+
+def test_download_file_writes_bytes(tmp_path, monkeypatch):
+    tg = Telegram(token="T", chat_id="C")
+    monkeypatch.setattr(tg, "_post", lambda m, data=None, files=None:
+                        {"ok": True, "result": {"file_path": "voice/abc.oga"}})
+
+    class Resp:
+        content = b"audio-bytes"
+        def raise_for_status(self): pass
+
+    calls = []
+    monkeypatch.setattr(tg._client, "get", lambda url: (calls.append(url), Resp())[1])
+    dest = tmp_path / "sub" / "out.oga"
+    result = tg.download_file("FILE123", str(dest))
+    assert result == str(dest)
+    assert dest.read_bytes() == b"audio-bytes"
+    assert calls[0] == "https://api.telegram.org/file/botT/voice/abc.oga"

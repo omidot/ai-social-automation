@@ -58,6 +58,16 @@ class Telegram:
         resp = self._post("getUpdates", data={"offset": offset, "timeout": timeout})
         return resp.get("result", [])
 
+    def download_file(self, file_id: str, dest: str) -> str:
+        info = self._post("getFile", data={"file_id": file_id})
+        file_path = info["result"]["file_path"]
+        url = f"https://api.telegram.org/file/bot{self.token}/{file_path}"
+        r = self._client.get(url)
+        r.raise_for_status()
+        Path(dest).parent.mkdir(parents=True, exist_ok=True)
+        Path(dest).write_bytes(r.content)
+        return dest
+
     def answer_callback(self, callback_id: str, text: str = "") -> dict:
         return self._post("answerCallbackQuery",
                           data={"callback_query_id": callback_id, "text": text})
