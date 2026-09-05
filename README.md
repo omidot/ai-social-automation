@@ -103,5 +103,5 @@ F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm f
 `run.py` chạy giai đoạn dựng bài; `approve_poll.py` xử lý nút Telegram.
 State (`data/seen.json`, `data/pending/`, `data/posted/`) được commit ngược repo.
 
-Spec và plan đầy đủ: `docs/superpowers/`. 
+Spec và plan đầy đủ: `docs/superpowers/`.  
   
