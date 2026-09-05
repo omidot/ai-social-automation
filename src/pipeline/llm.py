@@ -50,7 +50,7 @@ def _gemini(system: str, user: str, timeout: int) -> str:
     from google.genai import types
     client = genai.Client(api_key=api_key)
     resp = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model=os.environ.get("GEMINI_MODEL", "gemini-3.6-flash"),
         contents=f"{system}\n\n{user}",
         config=types.GenerateContentConfig(response_mime_type="application/json"),
     )
