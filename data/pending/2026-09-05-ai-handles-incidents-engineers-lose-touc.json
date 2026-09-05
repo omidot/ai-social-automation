@@ -1,0 +1,38 @@
+{
+  "id": "2026-09-05-ai-handles-incidents-engineers-lose-touc",
+  "created_at": "2026-09-05T14:16:43.786196+00:00",
+  "angle": "phan-tich",
+  "caption_fb": "Bạn có bao giờ nghĩ AI xử lý sự cố hệ thống giỏi đến mức... kỹ sư lại quên mất cách hệ thống của mình vận hành không?\n\nĐây là cảnh báo của Sylvain Kalache - cựu SRE của LinkedIn, hiện làm ở Rootly. Các công cụ \"AI SRE\" giờ có thể tự phát hiện cảnh báo, đặt giả thuyết, truy vấn telemetry, đối chiếu với các bản deploy gần đây, và thậm chí tự sửa lỗi luôn. Nghe quá đã, đỡ phải thức đêm vì capacity issue lúc nửa đêm đúng không?\n\nNhưng vấn đề là: chính những sự cố \"quen thuộc\" đó lại là cách kỹ sư rèn trực giác về hệ thống của mình. Khi AI lo hết phần dễ, phần khó - những sự cố lạ, chưa từng gặp - sẽ dồn hết cho con người, trong khi con người lại ngày càng ít kinh nghiệm xử lý hơn.\n\nTác giả lấy ví dụ từ ngành hàng không: máy bay tự động hóa gần như toàn bộ việc lái, nhưng phi công vẫn phải luyện tập định kỳ 6 tháng/lần cho các tình huống hiếm như hỏng động cơ khi cất cánh, theo quy định của FAA. Vì khi sự cố thật sự xảy ra, không có chỗ cho sai sót.\n\nTừ đó, tác giả đề xuất ngành phần mềm cũng cần công cụ giả lập sự cố (incident simulator) để kỹ sư luyện tập thực chiến, thay vì chỉ ngồi xem AI làm rồi tưởng mình đã học được gì đó.\n\nMình thấy đây là góc nhìn khá ngược dòng so với làn sóng \"AI làm hết, con người rảnh tay\" - đáng để anh em làm DevOps/SRE suy nghĩ nghiêm túc.\n\nBạn nghĩ sao, để AI lo sự cố hộ mình là phúc hay họa về lâu dài? Comment bên dưới cho A Hít biết góc nhìn của bạn nhé!\n\nNguồn: hn — https://www.sylvainkalache.com/blog/ai-handles-incidents-engineers-lose-touch-with-their-systems",
+  "caption_ig": "AI giờ tự xử lý sự cố server, tự tìm nguyên nhân, tự sửa lỗi luôn 😮‍💨\n\nNghe sướng thiệt, nhưng có một cái giá: kỹ sư ngày càng ít \"động tay\" nên khi gặp sự cố lạ, không biết bắt đầu từ đâu.\n\nGiống phi công vẫn phải luyện giả lập mỗi 6 tháng dù máy bay tự lái gần hết - ngành phần mềm cũng cần \"phòng tập\" sự cố kiểu vậy.\n\nBạn thấy AI đang giúp hay đang làm chúng ta lười đi? Để lại ý kiến nha!",
+  "hashtags": [
+    "#AI",
+    "#AIvietnam",
+    "#congnghe",
+    "#SRE",
+    "#DevOps",
+    "#tudonghoa",
+    "#kysuphanmem",
+    "#AItool",
+    "#hocaisuphan",
+    "#suco",
+    "#ahitofficial",
+    "#tinAI"
+  ],
+  "images": [
+    "output/2026-09-05/2026-09-05-ai-handles-incidents-engineers-lose-touc/img/01_thumbnail.jpg",
+    "output/2026-09-05/2026-09-05-ai-handles-incidents-engineers-lose-touc/img/03_screenshot.jpg",
+    "output/2026-09-05/2026-09-05-ai-handles-incidents-engineers-lose-touc/img/04_ai.jpg"
+  ],
+  "youtube": {
+    "title": "AI tự xử lý sự cố server: tiện thật, nhưng kỹ sư đang mất dần khả năng tự cứu mình?",
+    "desc": "AI SRE giờ có thể tự phát hiện cảnh báo, tự tìm nguyên nhân sự cố và tự sửa lỗi hệ thống mà không cần con người can thiệp. Nghe thì quá tiện, nhưng một cựu SRE của LinkedIn lại cảnh báo: chính vì AI lo hết những sự cố quen thuộc, kỹ sư con người sẽ mất dần trực giác xử lý sự cố - và khi gặp tình huống lạ, hậu quả có thể nghiêm trọng hơn nhiều. Video này A Hít tổng hợp lại góc nhìn thú vị này, có liên hệ tới cách ngành hàng không huấn luyện phi công cho các tình huống hiếm gặp. Cùng xem AI đang giúp hay đang khiến chúng ta lười đi nhé!\n\nNguồn: sylvainkalache.com\n\nĐừng quên like, share và subscribe kênh A Hít Official để cập nhật tin tức AI mỗi ngày nha!"
+  },
+  "tiktok": {
+    "caption": "AI tự xử lý sự cố server luôn, khỏi cần thức đêm 😴 nhưng cái giá là kỹ sư ngày càng quên cách hệ thống hoạt động 😬 #AI #congnghe #ahitofficial"
+  },
+  "source": {
+    "url": "https://www.sylvainkalache.com/blog/ai-handles-incidents-engineers-lose-touch-with-their-systems",
+    "name": "hn"
+  },
+  "low_media": false
+}
