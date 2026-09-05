@@ -37,3 +37,4 @@ jobs:
         run: python -m pipeline.run
       - name: Commit state
         run: bash scripts/commit_state.sh
+# force workflow discovery
