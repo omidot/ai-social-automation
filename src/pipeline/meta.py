@@ -1,5 +1,5 @@
 from __future__ import annotations
-import json, os
+import json, os, time
 from pathlib import Path
 
 import httpx
@@ -38,14 +38,26 @@ class Meta:
                              files={"source": (Path(image_path).name, fh, "image/jpeg")})
         return str(res["id"])
 
-    def fb_create_post(self, message: str, media_fbids: list[str]) -> dict:
+    def fb_create_post(self, message, media_fbids, scheduled_publish_time=None,
+                       now_unix=None):
         data = {"message": message, "access_token": self.token}
         for i, fbid in enumerate(media_fbids):
             data[f"attached_media[{i}]"] = json.dumps({"media_fbid": str(fbid)},
                                                       separators=(",", ":"))
+        scheduled = False
+        if scheduled_publish_time is not None:
+            lead = scheduled_publish_time - int(now_unix if now_unix is not None else time.time())
+            if lead >= 600:
+                data["published"] = "false"
+                data["scheduled_publish_time"] = scheduled_publish_time
+                scheduled = True
+            else:
+                import logging
+                logging.getLogger("meta").warning(
+                    "scheduled_publish_time only %ss ahead; publishing now", lead)
         res = self._post(f"{BASE}/{self.page_id}/feed", data=data)
         pid = str(res["id"])
-        return {"id": pid, "url": f"https://facebook.com/{pid}"}
+        return {"id": pid, "url": f"https://facebook.com/{pid}", "scheduled": scheduled}
 
     # ---------- Instagram ----------
     def ig_upload_temp(self, image_path: str) -> str:

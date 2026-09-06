@@ -72,3 +72,27 @@ def test_ig_carousel_flow(monkeypatch):
     pub = m.ig_publish(caro)
     assert (a, b, caro) == ("c1", "c2", "caro")
     assert pub["id"] == "pub"
+
+
+def test_fb_create_post_scheduled(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    sent = {}
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (sent.update(data=data), {"id": "PID_9"})[1])
+    r = m.fb_create_post("hello", ["1", "2"],
+                         scheduled_publish_time=2000, now_unix=1000)
+    assert r["scheduled"] is True
+    assert sent["data"]["published"] == "false"
+    assert sent["data"]["scheduled_publish_time"] == 2000
+
+
+def test_fb_create_post_schedule_too_soon_publishes_now(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK")
+    sent = {}
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (sent.update(data=data), {"id": "PID_9"})[1])
+    r = m.fb_create_post("hi", ["1"], scheduled_publish_time=1100, now_unix=1000)
+    assert r["scheduled"] is False
+    assert "published" not in sent["data"] or sent["data"]["published"] == "true"
