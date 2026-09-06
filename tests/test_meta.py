@@ -14,15 +14,21 @@ class FakeHTTP:
 
 
 class _R:
-    def __init__(self, payload):
+    def __init__(self, payload, status_code=200):
         self._p = payload
-        self.status_code = 200
+        self.status_code = status_code
+        self.is_success = 200 <= status_code < 300
 
     def raise_for_status(self):
         pass
 
     def json(self):
         return self._p
+
+    @property
+    def text(self):
+        import json as _j
+        return _j.dumps(self._p)
 
 
 def _meta(http):

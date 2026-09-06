@@ -9,6 +9,23 @@ BASE = "https://graph.facebook.com/v21.0"
 log = logging.getLogger("meta")
 
 
+class MetaError(RuntimeError):
+    """Graph API error that carries the response body (error.message / code / subcode)."""
+
+
+def _raise_for_graph(r: httpx.Response) -> None:
+    if r.is_success:
+        return
+    detail = r.text[:600]
+    try:
+        e = r.json().get("error", {})
+        detail = (f"({e.get('code')}/{e.get('error_subcode')}) {e.get('message')} "
+                  f"| type={e.get('type')} fbtrace_id={e.get('fbtrace_id')}")
+    except Exception:  # noqa: BLE001
+        pass
+    raise MetaError(f"Graph {r.request.method} {r.request.url.path} -> {r.status_code}: {detail}")
+
+
 class Meta:
     def __init__(self, page_id: str, page_token: str, ig_id: str | None = None):
         self.page_id = page_id
@@ -24,12 +41,12 @@ class Meta:
     def _get(self, path: str, params: dict) -> dict:
         params = {**params, "access_token": self.token}
         r = self._client.get(f"{BASE}/{path}", params=params)
-        r.raise_for_status()
+        _raise_for_graph(r)
         return r.json()
 
     def _post(self, url: str, data=None, files=None) -> dict:
         r = self._client.post(url, data=data, files=files)
-        r.raise_for_status()
+        _raise_for_graph(r)
         return r.json()
 
     # ---------- Facebook ----------
