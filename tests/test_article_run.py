@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 import pytest
@@ -152,6 +153,34 @@ def test_main_notifies_on_draft_failure(monkeypatch):
     rc = article_run.main(["--slot", "morning", "--root", "."])
     assert rc == 1
     assert sent and "Pipeline lỗi" in sent[-1]
+
+
+def test_main_logs_traceback_on_failure(monkeypatch, caplog):
+    def boom(*a, **k):
+        raise RuntimeError("boom")
+
+    monkeypatch.setattr(article_run, "draft", boom)
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "x")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID", "y")
+
+    sent = []
+
+    class FakeTelegram:
+        def __init__(self, *a, **k):
+            pass
+
+        def send_message(self, text, *a, **k):
+            sent.append(text)
+
+    monkeypatch.setattr(article_run, "Telegram", FakeTelegram)
+    with caplog.at_level(logging.ERROR):
+        rc = article_run.main(["--slot", "morning", "--root", "."])
+    assert rc == 1
+    # the traceback (not just a Telegram ping) lands in the Actions log
+    assert "boom" in caplog.text
+    assert "draft(morning) failed" in caplog.text
+    # and the operator ping names the exception type
+    assert sent and "RuntimeError" in sent[-1]
 
 
 def test_draft_skips_committed_slot(wired, monkeypatch):

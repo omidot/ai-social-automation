@@ -110,8 +110,51 @@ def test_write_share_rejects_bad_slide_roles():
     # swap two roles so the order is no longer hook/what/why/how/close
     data["slides"][1]["role"], data["slides"][2]["role"] = (
         data["slides"][2]["role"], data["slides"][1]["role"])
+    calls = []
+
+    def gen(s, u, **k):
+        calls.append(u)
+        return json.dumps(data)
+
     with pytest.raises(write.WriteError):
-        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+        write.write_share(_cand(), VOICE, generate=gen)
+    # wrong shape is retried once before giving up
+    assert len(calls) == 2
+
+
+class _ShapeStub:
+    """generate() stub that returns a scripted payload per call."""
+
+    def __init__(self, *payloads):
+        self._payloads = list(payloads)
+        self.calls = []
+
+    def __call__(self, system, user, **kw):
+        self.calls.append(user)
+        p = self._payloads[min(len(self.calls) - 1, len(self._payloads) - 1)]
+        return p
+
+
+def _bad_shape_payload() -> str:
+    data = json.loads(_share_payload())
+    data["slides"] = data["slides"][:4]  # 4 slides, not 5
+    return json.dumps(data)
+
+
+def test_write_share_retries_once_on_bad_shape():
+    stub = _ShapeStub(_bad_shape_payload(), _share_payload())
+    art = write.write_share(_cand(), VOICE, generate=stub)
+    assert art.format == "share"
+    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
+    assert len(stub.calls) == 2
+    assert "[SỬA]" in stub.calls[1]
+
+
+def test_write_share_raises_after_two_bad_attempts():
+    stub = _ShapeStub(_bad_shape_payload())  # always the wrong shape
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=stub)
+    assert len(stub.calls) == 2
 
 
 def test_write_share_missing_key_raises():

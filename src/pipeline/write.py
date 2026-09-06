@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import logging
 import re
 
 from .llm import generate as _default_generate, parse_json_response, LLMError
 from .models import Candidate, PostContent
+
+log = logging.getLogger("write")
 
 
 class WriteError(Exception):
@@ -171,15 +174,12 @@ def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
     return system, user
 
 
-def write_share(cand: Candidate, voice: dict, generate=_default_generate):
-    """Turn one candidate into a single-topic knowledge-share article
-    (``format="share"``) with a 5-slide hook/what/why/how/close arc."""
-    try:
-        data = parse_json_response(
-            generate(*build_share_prompt(cand, voice), provider="auto"))
-    except LLMError as e:
-        raise WriteError(f"LLM failed: {e}") from e
+def _validate_share(data: dict) -> list[dict]:
+    """Validate one raw ``share`` payload and return the normalised slide list.
 
+    Raises ``WriteError`` with a precise message on any shape problem (missing
+    keys, hashtags not a list, wrong slide count, wrong role at index i).
+    """
     missing = [k for k in _SHARE_KEYS if k not in data or data[k] in (None, "", [])]
     if missing:
         raise WriteError(f"share response missing keys: {missing}")
@@ -204,19 +204,52 @@ def write_share(cand: Candidate, voice: dict, generate=_default_generate):
             "headline": _strip_urls(str(s.get("headline", "")).strip()),
             "body": _strip_urls(str(s.get("body", "")).strip()),
         })
+    return slides
 
-    name = _source_name(cand)
-    line = f"Nguồn: {name}"
-    cap = _strip_urls(data["caption_fb"])
-    if line not in cap:
-        cap = f"{cap}\n\n{line}"
-    cap_ig = _strip_urls(data["caption_ig"])
 
-    from .models import ArticleContent
-    return ArticleContent(
-        format="share", caption_fb=cap, caption_ig=cap_ig,
-        hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
-        cover_title=str(data["cover_title"]).strip(),
-        slides=slides,
-        sources=[{"name": name, "url": cand.url}],
-        risk=bool(data.get("risk", False)))
+def write_share(cand: Candidate, voice: dict, generate=_default_generate):
+    """Turn one candidate into a single-topic knowledge-share article
+    (``format="share"``) with a 5-slide hook/what/why/how/close arc.
+
+    The LLM often returns a wrong-shaped payload (not exactly 5 slides, roles
+    out of order). Mirror ``video/script.py``: validate, and on failure retry
+    once with a correction nudge. A dead backend (``LLMError`` from the
+    ``generate`` call itself) is *not* retried; a JSON-parse or validation
+    failure — a model-output problem — is.
+    """
+    system, user = build_share_prompt(cand, voice)
+
+    for attempt in (1, 2):
+        log.info("write_share attempt %d", attempt)
+        try:
+            raw = generate(system, user, provider="auto")
+        except LLMError as e:  # backend down — retrying won't help
+            raise WriteError(f"LLM failed: {e}") from e
+        try:
+            data = parse_json_response(raw)
+            slides = _validate_share(data)
+        except (LLMError, WriteError) as e:  # bad model output — retryable
+            if attempt == 2:
+                raise e if isinstance(e, WriteError) else WriteError(f"LLM failed: {e}")
+            log.warning("write_share attempt %d rejected: %s", attempt, e)
+            user = (user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. "
+                    f"Trả lại ĐÚNG JSON với 'slides' là mảng ĐÚNG 5 object theo thứ tự "
+                    f"role: hook, what, why, how, close. Giữ nguyên nội dung, chỉ sửa cấu trúc.")
+            continue
+
+        name = _source_name(cand)
+        line = f"Nguồn: {name}"
+        cap = _strip_urls(data["caption_fb"])
+        if line not in cap:
+            cap = f"{cap}\n\n{line}"
+        cap_ig = _strip_urls(data["caption_ig"])
+
+        from .models import ArticleContent
+        return ArticleContent(
+            format="share", caption_fb=cap, caption_ig=cap_ig,
+            hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
+            cover_title=str(data["cover_title"]).strip(),
+            slides=slides,
+            sources=[{"name": name, "url": cand.url}],
+            risk=bool(data.get("risk", False)))
+    raise WriteError("unreachable")  # for type-checkers

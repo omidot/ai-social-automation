@@ -136,7 +136,7 @@ def _notify_failure(slot: str, e: BaseException) -> None:
     Mirrors ``main``'s ``no_tg`` handling: with no bot token there is nowhere
     to send, so just log and return instead of raising a fresh KeyError.
     """
-    msg = f"❌ Pipeline lỗi ({slot}): {e}"
+    msg = f"❌ Pipeline lỗi ({slot}): {type(e).__name__}: {e}"
     if not os.environ.get("TELEGRAM_BOT_TOKEN"):
         log.error(msg)
         return
@@ -176,6 +176,7 @@ def main(argv: list[str] | None = None) -> int:
         out = draft(args.slot, Path(args.root), datetime.now(timezone.utc),
                     generate=gen, tg=tg)
     except Exception as e:  # noqa: BLE001 - surface every failure to the operator
+        log.exception("draft(%s) failed", args.slot)
         _notify_failure(args.slot, e)
         return 1
     print("SUMMARY:", out.get("status"), out.get("slot", args.slot))
