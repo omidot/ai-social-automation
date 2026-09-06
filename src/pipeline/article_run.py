@@ -127,18 +127,25 @@ def main(argv: list[str] | None = None) -> int:
     gen = None
     if args.fake_llm:
         from .llm import _fake_generate as gen  # reuse the existing canned generator
-    # Offline smoke: with no bot token there is nowhere to send a preview, so
-    # swap in a no-op Telegram stand-in and only exercise the pipeline wiring.
-    dry = not os.environ.get("TELEGRAM_BOT_TOKEN")
-    if dry:
+    # With no bot token there is nowhere to send a preview, so swap in a no-op
+    # Telegram stand-in; the real network/LLM path still runs.
+    no_tg = not os.environ.get("TELEGRAM_BOT_TOKEN")
+    tg = _NoopTelegram() if no_tg else None
+    if args.fake_llm:
+        # --fake-llm smoke only: the canned generator predates the article-track
+        # writer schema, so write_roundup/write_deep can legitimately raise
+        # WriteError. Swallow it here so the smoke proves the wiring without a
+        # traceback. A real-LLM run never reaches this branch, so a genuine
+        # write.WriteError from the live LLM stays loud.
         try:
             draft(args.slot, Path(args.root), datetime.now(timezone.utc),
-                  generate=gen, tg=_NoopTelegram())
-        except (collect.CollectError, write.WriteError) as e:
+                  generate=gen, tg=tg)
+        except write.WriteError as e:
             log.warning("offline smoke: pipeline raised %s: %s", type(e).__name__, e)
         print("SUMMARY: dry")
         return 0
-    out = draft(args.slot, Path(args.root), datetime.now(timezone.utc), generate=gen)
+    out = draft(args.slot, Path(args.root), datetime.now(timezone.utc),
+                generate=gen, tg=tg)
     print("SUMMARY:", out.get("status"), out.get("slot", args.slot))
     return 0
 
