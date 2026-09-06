@@ -2,7 +2,7 @@
   "date": "2026-09-06",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "posted",
       "format": "share",
       "title": "5 công cụ AI biến ảnh chụp điện thoại thành ảnh sản phẩm chuyên nghiệp để bán hàng online",
       "topic_key": "5-cong-cu-ai-bien-anh-chup-ien-thoai-thanh-anh-san",
@@ -37,7 +37,18 @@
       "risk": false,
       "slot_ict": "11:30",
       "sources": [],
-      "angle": "Bài này giúp người bán hàng online tự tạo ảnh sản phẩm đẹp như studio mà không cần thuê thợ chụp hay học Photoshop."
+      "angle": "Bài này giúp người bán hàng online tự tạo ảnh sản phẩm đẹp như studio mà không cần thuê thợ chụp hay học Photoshop.",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122095426635476035",
+          "url": "https://facebook.com/1381130541740424_122095426635476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": true,
+          "media_id": "17929755939406155"
+        }
+      }
     }
   }
 }
