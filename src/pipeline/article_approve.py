@@ -50,7 +50,7 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
     if len(parts) != 4 or parts[0] != "art":
         return None
     _, date, slot_name, action = parts
-    slot = ds.get(date, slot_name)
+    slot = ds.get_safe(date, slot_name)
     if slot is None:
         _ack(tg, cbq["id"], "Không tìm thấy bài này (state chưa đồng bộ), thử lại sau.")
         return None
@@ -128,20 +128,31 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
 
 def expire_stale(ds, tg, now: datetime) -> list[str]:
     out: list[str] = []
+    stuck: list[str] = []
     for f in ds.all_files():
         date = f.stem
         doc = ds.load_safe(date)
         if doc is None:
             continue
         for slot_name, slot in doc["posts"].items():
-            if slot.get("status") != "draft":
-                continue
+            status = slot.get("status")
             due = slot_unix(date, slot.get("slot_ict", "11:30"))
-            if now.timestamp() - due > 24 * 3600:
-                ds.set_status(date, slot_name, "expired")
-                out.append(f"{date}:{slot_name}")
+            if status == "draft":
+                if now.timestamp() - due > 24 * 3600:
+                    ds.set_status(date, slot_name, "expired")
+                    out.append(f"{date}:{slot_name}")
+            elif status == "publishing":
+                # poller was hard-killed between set_status("publishing") and
+                # the except handler: the slot is stuck - not actionable, not
+                # scheduled, silently dead. Mark it "posted" (cannot re-publish)
+                # and alert so the Page can be checked by hand.
+                if now.timestamp() - due > 2 * 3600:
+                    ds.set_status(date, slot_name, "posted")
+                    stuck.append(f"{date}:{slot_name}")
     if out:
         tg.send_message("⌛ Quá 24h chưa duyệt, đã bỏ: " + ", ".join(out))
+    for s in stuck:
+        tg.send_message(f"⚠️ {s} kẹt ở 'publishing' — đã đánh dấu posted, kiểm tra Page.")
     return out
 
 
@@ -156,12 +167,15 @@ def poll(root: Path, now: datetime | None = None) -> dict:
     updates = tg.get_updates(offset=offset)
     handled, max_uid = [], offset - 1
     for up in updates:
-        max_uid = max(max_uid, up["update_id"])
-        cbq = up.get("callback_query")
-        if cbq:
-            r = handle_callback(cbq, ds, tg, meta, root, now)
-            if r:
-                handled.append(r)
+        try:
+            max_uid = max(max_uid, up.get("update_id", max_uid))
+            cbq = up.get("callback_query")
+            if cbq:
+                r = handle_callback(cbq, ds, tg, meta, root, now)
+                if r:
+                    handled.append(r)
+        except Exception as e:  # noqa: BLE001 - a poison update must not stall the poller
+            log.exception("update %s failed: %s", up.get("update_id"), e)
     if updates:
         st.offset_save(max_uid + 1)
     return {"handled": handled, "expired": expire_stale(ds, tg, now)}

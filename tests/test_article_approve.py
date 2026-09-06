@@ -175,6 +175,75 @@ def test_expire_stale_skips_corrupt_file(tmp_path):
     assert ds.get("2026-09-06", "morning")["status"] == "expired"
 
 
+def test_handle_callback_corrupt_daily_file_reports_desync(tmp_path):
+    daily = tmp_path / "data" / "daily"
+    daily.mkdir(parents=True, exist_ok=True)
+    (daily / "2026-09-06.json").write_text("{ not json", encoding="utf-8")
+    ds = DailyState(tmp_path / "data")
+    tg, meta = FakeTG(), FakeMeta()
+    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
+    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
+    assert res is None                                          # no exception propagated
+    assert tg.acks == ["Không tìm thấy bài này (state chưa đồng bộ), thử lại sau."]
+    assert meta.scheduled is None and meta.ig is None           # Meta never touched
+
+
+def test_poll_skips_poison_update_and_advances_offset(tmp_path, monkeypatch):
+    from pipeline.state import State
+
+    _seed(tmp_path)
+    updates = [
+        {"update_id": 10, "callback_query": _cbq("now")},       # poisoned below
+        {"update_id": 11, "callback_query": _cbq("drop")},      # good
+    ]
+
+    class FakeTelegram:
+        def __init__(self, *a, **k): self.msgs = []
+        def get_updates(self, offset, timeout=0): return updates
+        def send_message(self, text, buttons=None): self.msgs.append(text)
+        def answer_callback(self, cid, text=""): pass
+
+    monkeypatch.setattr(article_approve, "Telegram", FakeTelegram)
+    monkeypatch.setattr(article_approve, "_meta", lambda: FakeMeta())
+
+    real = article_approve.handle_callback
+    calls = {"n": 0}
+
+    def flaky(cbq, *a, **k):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise RuntimeError("poison update")
+        return real(cbq, *a, **k)
+
+    monkeypatch.setattr(article_approve, "handle_callback", flaky)
+
+    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
+    res = article_approve.poll(tmp_path, now=now)               # must not raise
+
+    assert State(tmp_path / "data").offset_load() == 12          # max(update_id) + 1
+    assert res["handled"] == ["discarded:2026-09-06:morning"]    # good update handled
+    assert DailyState(tmp_path / "data").get("2026-09-06", "morning")["status"] == "discarded"
+
+
+def test_expire_stale_sweeps_stuck_publishing(tmp_path):
+    ds = _seed(tmp_path, status="publishing")
+    tg = FakeTG()
+    # 3h past the 11:30 ICT (== 04:30 UTC) slot -> swept
+    out = article_approve.expire_stale(
+        ds, tg, datetime(2026, 9, 6, 7, 30, tzinfo=timezone.utc))
+    assert out == []                                            # not a "draft expired"
+    assert ds.get("2026-09-06", "morning")["status"] == "posted"
+    assert any("kẹt ở 'publishing'" in m for m in tg.msgs)
+
+    # a publishing slot only 30 min past its slot is NOT swept
+    ds2 = _seed(tmp_path, status="publishing")                  # rewrites file back
+    tg2 = FakeTG()
+    article_approve.expire_stale(
+        ds2, tg2, datetime(2026, 9, 6, 5, 0, tzinfo=timezone.utc))
+    assert ds2.get("2026-09-06", "morning")["status"] == "publishing"
+    assert tg2.msgs == []
+
+
 def test_slot_unix_is_ict():
     # 2026-09-06 11:30 ICT == 2026-09-06 04:30 UTC
     assert article_approve.slot_unix("2026-09-06", "11:30") == int(

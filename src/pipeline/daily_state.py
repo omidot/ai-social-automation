@@ -36,6 +36,13 @@ class DailyState:
     def get(self, date: str, slot: str) -> dict | None:
         return self.load(date)["posts"].get(slot)
 
+    def get_safe(self, date: str, slot: str) -> dict | None:
+        """Like get(), but returns None instead of raising when the on-disk
+        file is corrupt/unreadable (load_safe logs the error). Callback
+        handling uses this so a poisoned daily file cannot crash the poller."""
+        d = self.load_safe(date)
+        return None if d is None else d["posts"].get(slot)
+
     def put(self, date: str, slot: str, **fields) -> dict:
         doc = self.load(date)
         cur = doc["posts"].setdefault(slot, {})
