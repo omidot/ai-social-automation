@@ -25,6 +25,9 @@ images:
     handle: "A Hít Official"
     kicker_deep: "AI HÔM NAY"
     kicker_roundup: "ĐIỂM TIN AI"
+    watermark: "#E9E7E2"
+    highlight: "#DBE7FF"
+    tile_icon: "#1F2937"
 
 video:
   enabled: false
