@@ -70,7 +70,8 @@ def test_write_deep_builds_article():
     art = write_deep(_cand(), VOICE, generate=lambda s, u, **k: payload)
     assert art.format == "deep"
     assert art.cover_title == "OPENAI RA MẮT MÔ HÌNH MỚI"
-    assert 3 <= len(art.image_briefs) <= 4
+    assert 2 <= len(art.slides) <= 3
+    assert all(set(s) == {"headline", "sub"} for s in art.slides)
     # structured sources keep the URL for internal use
     assert art.sources == [{"name": "OpenAI Blog", "url": "https://openai.com/blog/new"}]
     # ...but the human-visible caption ends with a plain name, no URL
@@ -89,12 +90,14 @@ def test_write_strips_urls_from_caption():
     assert "http" not in art.caption_ig
 
 
-def test_prompts_have_knowledge_sharer_cue():
+def test_prompts_have_iman_voice_cue():
     ds, _ = write.build_deep_prompt(_cand(), VOICE)
-    assert "KHÔNG phải bản tin" in ds
-    assert "vì sao" in ds
+    assert "dứt khoát" in ds
+    assert "bài học" in ds
+    assert "KHÔNG chèn URL" in ds
     rs, _ = write.build_roundup_prompt([_cand(), _cand()], VOICE)
-    assert "KHÔNG phải bản tin" in rs
+    assert "dứt khoát" in rs
+    assert "bài học" in rs
     assert "KHÔNG chèn URL" in rs
 
 
@@ -108,7 +111,8 @@ def test_write_roundup_one_brief_per_item():
                        published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
     art = write_roundup(cands, VOICE, generate=lambda s, u, **k: payload)
     assert art.format == "roundup"
-    assert len(art.image_briefs) == 3
+    assert len(art.slides) == 3
+    assert art.slides[0]["headline"] and art.slides[0]["sub"]
     assert len(art.sources) == 3
     assert art.sources[1] == {"name": "B", "url": "https://b/1"}
     assert "http" not in art.caption_fb
@@ -130,10 +134,10 @@ def test_write_roundup_strips_urls():
     assert "KHÔNG chèn URL" in write.build_roundup_prompt(cands, VOICE)[0]
 
 
-def test_write_roundup_rejects_brief_count_mismatch():
+def test_write_roundup_rejects_slide_count_mismatch():
     from pipeline.write import write_roundup, WriteError
     data = json.loads((FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8"))
-    data["image_briefs"] = ["only", "two"]
+    data["slides"] = [{"headline": "only", "sub": "one"}, {"headline": "two", "sub": "x"}]
     cands = [_cand(),
              Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
                        published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),

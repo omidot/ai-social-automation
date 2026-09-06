@@ -71,9 +71,9 @@ class ArticleContent:
     caption_ig: str
     hashtags: list[str]
     cover_title: str
-    cover_brief: str
-    image_briefs: list[str]
+    slides: list[dict]          # [{"headline": str, "sub": str}, ...] -> one designed card each
     sources: list[dict]
+    cover_brief: str = ""       # legacy Gemini brief; unused by the templated image path
     risk: bool = False
 
     def to_dict(self) -> dict:

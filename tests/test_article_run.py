@@ -28,8 +28,9 @@ def wired(tmp_path, monkeypatch):
                      summary="big", full_text="big news", raw_score_hint=900, source_count=3)
     monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
     art = ArticleContent(format="deep", caption_fb="body\n\nCTA", caption_ig="ig",
-                         hashtags=["#AI"], cover_title="GPT-6", cover_brief="core",
-                         image_briefs=["a", "b"], sources=[{"name": "OpenAI", "url": "https://o/x"}])
+                         hashtags=["#AI"], cover_title="GPT-6",
+                         slides=[{"headline": "a", "sub": "x"}, {"headline": "b", "sub": "y"}],
+                         sources=[{"name": "OpenAI", "url": "https://o/x"}])
     monkeypatch.setattr(article_run.write, "write_deep", lambda *a, **k: art)
     monkeypatch.setattr(article_run.write, "write_roundup", lambda *a, **k: art)
     monkeypatch.setattr(article_run.images, "build_images",
@@ -51,6 +52,40 @@ def test_draft_writes_state_and_preview(wired):
     assert [b[1] for b in buttons] == ["art:2026-09-06:morning:now",
                                        "art:2026-09-06:morning:sched",
                                        "art:2026-09-06:morning:drop"]
+
+
+def _preview_art(caption_fb):
+    return ArticleContent(format="deep", caption_fb=caption_fb, caption_ig="ig",
+                          hashtags=["#AI", "#ml"], cover_title="T",
+                          slides=[{"headline": "a", "sub": "x"}],
+                          sources=[{"name": "OpenAI", "url": "https://o/x"}])
+
+
+def test_send_preview_sends_full_caption_in_one_message():
+    tg = FakeTG()
+    body = "Câu đầu tiên. " * 40  # ~560 chars, well under the split threshold
+    article_run.send_preview(_preview_art(body), ["a.jpg"], "morning",
+                             "2026-09-06", tg, "11:30", 88.0)
+    assert len(tg.msgs) == 1
+    text, buttons = tg.msgs[0]
+    assert body in text                       # nothing truncated
+    assert "…" not in text
+    assert [b[1] for b in buttons] == ["art:2026-09-06:morning:now",
+                                       "art:2026-09-06:morning:sched",
+                                       "art:2026-09-06:morning:drop"]
+
+
+def test_send_preview_splits_when_over_telegram_limit():
+    tg = FakeTG()
+    body = "x" * 4200  # forces the two-message split
+    article_run.send_preview(_preview_art(body), ["a.jpg"], "morning",
+                             "2026-09-06", tg, "11:30", 88.0)
+    assert len(tg.msgs) == 2
+    assert body in tg.msgs[0][0] and tg.msgs[0][1] is None      # body first, no buttons
+    assert "#AI #ml" in tg.msgs[1][0]                           # hashtags carry the buttons
+    assert [b[1] for b in tg.msgs[1][1]] == ["art:2026-09-06:morning:now",
+                                             "art:2026-09-06:morning:sched",
+                                             "art:2026-09-06:morning:drop"]
 
 
 def test_draft_evening_excludes_morning_title(wired, monkeypatch):
@@ -76,8 +111,8 @@ def test_draft_roundup_routing(wired, monkeypatch):
     monkeypatch.setattr(article_run.score, "pick_n", lambda *a, **k: [(50.0, cand), (48.0, cand2)])
     called = {}
     roundup_art = ArticleContent(format="roundup", caption_fb="body\n\nCTA", caption_ig="ig",
-                                 hashtags=["#AI"], cover_title="Round-up", cover_brief="core",
-                                 image_briefs=["a", "b"],
+                                 hashtags=["#AI"], cover_title="Round-up",
+                                 slides=[{"headline": "a", "sub": "x"}, {"headline": "b", "sub": "y"}],
                                  sources=[{"name": "OpenAI", "url": "https://o/x"}])
 
     def fake_roundup(cands, *a, **k):

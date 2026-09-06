@@ -14,8 +14,6 @@ articles:
   roundup_min: 3
   roundup_max: 5
 images:
-  provider: gemini
-  style_prompt: "minimalist flat editorial illustration, off-white background, soft blue and white colour palette, floating glassmorphic rounded-square icon tiles with gentle drop shadows, generous negative space, clean modern, no text, no words"
   size: "1080x1350"
   raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"
   brand:

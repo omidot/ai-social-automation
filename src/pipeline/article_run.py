@@ -45,13 +45,21 @@ def send_preview(article: ArticleContent, image_paths: list[str], slot: str,
     meta = f"[{article.format}] {src} · điểm {score_val:.0f}"
     if article.risk:
         meta += " ⚠️ nhạy cảm"
-    cap = article.caption_fb
-    body = cap if len(cap) <= 900 else cap[:900] + " …"
-    text = f"{meta}\n\n{body}\n\n{' '.join(article.hashtags)}"
-    tg.send_message(text, buttons=[
+    body = article.caption_fb  # full caption, no truncation
+    hashtags = " ".join(article.hashtags)
+    buttons = [
         ("✅ Đăng ngay", f"art:{date}:{slot}:now"),
         (f"🕓 Lên lịch {slot_ict}", f"art:{date}:{slot}:sched"),
-        ("🗑 Bỏ", f"art:{date}:{slot}:drop")])
+        ("🗑 Bỏ", f"art:{date}:{slot}:drop")]
+    text = f"{meta}\n\n{body}\n\n{hashtags}"
+    # Telegram caps a message at 4096 chars. Keep headroom: if the combined
+    # meta+body+hashtags would exceed ~3900, split so the buttons still attach
+    # to the final message (hashtags carry them).
+    if len(text) > 3900:
+        tg.send_message(f"{meta}\n\n{body}")
+        tg.send_message(hashtags, buttons=buttons)
+    else:
+        tg.send_message(text, buttons=buttons)
 
 
 def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> dict:
@@ -93,9 +101,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
 
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
-                                style_prompt=settings["images"]["style_prompt"],
                                 size=_parse_size(settings["images"]["size"]),
-                                provider=settings["images"].get("provider", "gemini"),
                                 brand=settings["images"].get("brand", {}))
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
