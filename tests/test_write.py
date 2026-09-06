@@ -62,3 +62,14 @@ def test_decide_format():
     assert decide_format([(90.0, None), (78.0, None)], margin=12) == "deep"
     # Empty-list case: documents the defensive <= 1 behavior
     assert decide_format([], margin=12) == "deep"
+
+
+def test_write_deep_builds_article():
+    from pipeline.write import write_deep
+    payload = (FIXTURES / "sample_deep_response.json").read_text(encoding="utf-8")
+    art = write_deep(_cand(), VOICE, generate=lambda s, u, **k: payload)
+    assert art.format == "deep"
+    assert art.cover_title == "OPENAI RA MẮT MÔ HÌNH MỚI"
+    assert 3 <= len(art.image_briefs) <= 4
+    assert art.sources == [{"name": "OpenAI Blog", "url": "https://openai.com/blog/new"}]
+    assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog — https://openai.com/blog/new")
