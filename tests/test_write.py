@@ -88,3 +88,16 @@ def test_write_roundup_one_brief_per_item():
     assert len(art.image_briefs) == 3
     assert len(art.sources) == 3
     assert art.sources[1] == {"name": "B", "url": "https://b/1"}
+
+
+def test_write_roundup_rejects_brief_count_mismatch():
+    from pipeline.write import write_roundup, WriteError
+    data = json.loads((FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8"))
+    data["image_briefs"] = ["only", "two"]
+    cands = [_cand(),
+             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
+             Candidate(url="https://c/2", title="Google model", source="rss:C",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
+    with pytest.raises(WriteError):
+        write_roundup(cands, VOICE, generate=lambda s, u, **k: json.dumps(data))
