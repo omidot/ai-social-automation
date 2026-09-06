@@ -1,6 +1,5 @@
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-import pytest
 from pipeline import article_approve
 from pipeline.daily_state import DailyState
 
@@ -64,6 +63,29 @@ def test_late_callback_on_posted_is_ignored(tmp_path):
     res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
     assert res is None
     assert tg.acks == ["Bài này đã xử lý."]
+    assert meta.scheduled is None and meta.ig is None
+
+
+def test_second_callback_on_scheduled_is_ignored(tmp_path):
+    ds = _seed(tmp_path, status="scheduled")
+    tg, meta = FakeTG(), FakeMeta()
+    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
+    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
+    assert res is None
+    assert meta.scheduled is None and meta.ig is None
+    assert tg.acks == ["Bài này đã xử lý."]
+    assert ds.get("2026-09-06", "morning")["status"] == "scheduled"
+
+
+def test_drop_marks_discarded_no_publish(tmp_path):
+    ds = _seed(tmp_path)
+    tg, meta = FakeTG(), FakeMeta()
+    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
+    res = article_approve.handle_callback(_cbq("drop"), ds, tg, meta, tmp_path, now)
+    assert res == "discarded:2026-09-06:morning"
+    assert ds.get("2026-09-06", "morning")["status"] == "discarded"
+    assert meta.scheduled is None
+    assert meta.ig is None
 
 
 def test_expire_stale_marks_old_drafts(tmp_path):

@@ -3,7 +3,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from .daily_state import DailyState, TERMINAL
+from .daily_state import DailyState
 from .state import State
 from .telegram import Telegram
 
@@ -37,44 +37,52 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
         return None
     _, date, slot_name, action = parts
     slot = ds.get(date, slot_name)
-    if slot is None or slot.get("status") in TERMINAL:
+    if slot is None or slot.get("status") != "draft":
         tg.answer_callback(cbq["id"], "Bài này đã xử lý.")
         return None
 
-    if action == "now":
-        fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
-        fb = meta.fb_create_post(_fb_message(slot), fbids)
-        try:
-            ig = meta.ig_publish_images(slot["image_urls"], _ig_caption(slot))
-        except Exception as e:  # noqa: BLE001
-            ig = {"ok": False, "error": str(e)}
-        ds.put(date, slot_name, result={"fb": fb, "ig": ig})
-        ds.set_status(date, slot_name, "posted")
-        tg.answer_callback(cbq["id"], "Đang đăng…")
-        tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
-        tg.send_message(f"✅ Đã đăng {date}:{slot_name}: {fb['url']}{tail}")
-        return f"posted:{date}:{slot_name}"
+    try:
+        if action == "now":
+            fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
+            fb = meta.fb_create_post(_fb_message(slot), fbids)
+            try:
+                ig = meta.ig_publish_images(slot["image_urls"], _ig_caption(slot))
+            except Exception as e:  # noqa: BLE001
+                ig = {"ok": False, "error": str(e)}
+            ds.put(date, slot_name, result={"fb": fb, "ig": ig})
+            ds.set_status(date, slot_name, "posted")
+            tg.answer_callback(cbq["id"], "Đang đăng…")
+            tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
+            tg.send_message(f"✅ Đã đăng {date}:{slot_name}: {fb['url']}{tail}")
+            return f"posted:{date}:{slot_name}"
 
-    if action == "sched":
-        when = slot_unix(date, slot["slot_ict"])
-        fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
-        fb = meta.fb_create_post(_fb_message(slot), fbids,
-                                 scheduled_publish_time=when,
-                                 now_unix=int(now.timestamp()))
-        ds.put(date, slot_name, fb_post_id=fb["id"],
-               ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
-               result={"fb": fb, "ig": None})
-        ds.set_status(date, slot_name, "scheduled")
-        tg.answer_callback(cbq["id"], "Đã lên lịch.")
-        tg.send_message(f"🕓 Đã lên lịch {date}:{slot_name}, đăng lúc {slot['slot_ict']}.")
-        return f"scheduled:{date}:{slot_name}"
+        if action == "sched":
+            when = slot_unix(date, slot["slot_ict"])
+            fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
+            fb = meta.fb_create_post(_fb_message(slot), fbids,
+                                     scheduled_publish_time=when,
+                                     now_unix=int(now.timestamp()))
+            ds.put(date, slot_name, fb_post_id=fb["id"],
+                   ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
+                   result={"fb": fb, "ig": None})
+            ds.set_status(date, slot_name, "scheduled")
+            tg.answer_callback(cbq["id"], "Đã lên lịch.")
+            tg.send_message(f"🕓 Đã lên lịch {date}:{slot_name}, đăng lúc {slot['slot_ict']}.")
+            return f"scheduled:{date}:{slot_name}"
 
-    if action == "drop":
-        ds.set_status(date, slot_name, "discarded")
-        tg.answer_callback(cbq["id"], "Đã bỏ.")
-        tg.send_message(f"🗑 Đã bỏ {date}:{slot_name}.")
-        return f"discarded:{date}:{slot_name}"
-    return None
+        if action == "drop":
+            ds.set_status(date, slot_name, "discarded")
+            tg.answer_callback(cbq["id"], "Đã bỏ.")
+            tg.send_message(f"🗑 Đã bỏ {date}:{slot_name}.")
+            return f"discarded:{date}:{slot_name}"
+
+        tg.answer_callback(cbq["id"], "Không rõ thao tác.")
+        return None
+    except Exception as e:  # noqa: BLE001
+        tg.answer_callback(cbq["id"], "Lỗi xử lý, xem log.")
+        tg.send_message(f"❌ Lỗi xử lý {date}:{slot_name}: {e}")
+        log.exception("article_approve callback failed for %s:%s", date, slot_name)
+        return f"error:{date}:{slot_name}"
 
 
 def expire_stale(ds, tg, now: datetime) -> list[str]:
