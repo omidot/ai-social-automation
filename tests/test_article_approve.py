@@ -163,6 +163,18 @@ def test_expire_stale_marks_old_drafts(tmp_path):
     assert ds.get("2026-09-06", "morning")["status"] == "expired"
 
 
+def test_expire_stale_skips_corrupt_file(tmp_path):
+    daily = tmp_path / "data" / "daily"
+    daily.mkdir(parents=True, exist_ok=True)
+    (daily / "2026-09-04.json").write_text("{ not json", encoding="utf-8")
+    ds = _seed(tmp_path)                                       # valid 2026-09-06 draft
+    now = datetime(2026, 9, 7, 12, 0, tzinfo=timezone.utc)
+    tg = FakeTG()
+    out = article_approve.expire_stale(ds, tg, now)
+    assert out == ["2026-09-06:morning"]                        # corrupt file did not abort
+    assert ds.get("2026-09-06", "morning")["status"] == "expired"
+
+
 def test_slot_unix_is_ict():
     # 2026-09-06 11:30 ICT == 2026-09-06 04:30 UTC
     assert article_approve.slot_unix("2026-09-06", "11:30") == int(

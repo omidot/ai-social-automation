@@ -60,3 +60,42 @@ def test_failure_is_reported_and_retryable(tmp_path):
     assert out["failed"] == ["2026-09-06:morning"]
     assert ds.get("2026-09-06", "morning")["result"]["ig"] in (None, {"ok": False})
     assert any("IG lỗi" in m for m in tg.msgs)
+
+
+def test_corrupt_file_is_skipped_others_processed(tmp_path):
+    daily = tmp_path / "data" / "daily"
+    daily.mkdir(parents=True, exist_ok=True)
+    (daily / "2026-09-05.json").write_text("{ not json", encoding="utf-8")
+    ds = _seed(tmp_path, ig_due="2026-09-06T04:30:00+00:00")
+    tg, meta = FakeTG(), FakeMeta()
+    now = datetime(2026, 9, 6, 4, 46, tzinfo=timezone.utc)
+    out = article_publish_ig.run(tmp_path, now, tg=tg, meta=meta)
+    assert out["published"] == ["2026-09-06:morning"]
+    assert ds.get("2026-09-06", "morning")["result"]["ig"]["media_id"] == "IG_9"
+
+
+def test_ig_failure_increments_attempts(tmp_path):
+    ds = _seed(tmp_path, ig_due="2026-09-06T04:30:00+00:00")
+    tg, meta = FakeTG(), FakeMeta(ok=False)
+    now = datetime(2026, 9, 6, 4, 46, tzinfo=timezone.utc)
+    article_publish_ig.run(tmp_path, now, tg=tg, meta=meta)
+    slot = ds.get("2026-09-06", "morning")
+    assert slot["ig_attempts"] == 1
+    assert slot["result"]["ig"] is None
+    assert any("lần 1/3" in m for m in tg.msgs)
+
+
+def test_ig_gives_up_after_3_attempts(tmp_path):
+    ds = _seed(tmp_path, ig_due="2026-09-06T04:30:00+00:00")
+    ds.put("2026-09-06", "morning", ig_attempts=2)
+    tg, meta = FakeTG(), FakeMeta(ok=False)
+    now = datetime(2026, 9, 6, 4, 46, tzinfo=timezone.utc)
+    article_publish_ig.run(tmp_path, now, tg=tg, meta=meta)
+    slot = ds.get("2026-09-06", "morning")
+    assert slot["ig_attempts"] == 3
+    assert slot["result"]["ig"] == {"ok": False, "error": "ig down", "attempts": 3}
+    assert any("bỏ cuộc" in m for m in tg.msgs)
+    # slot no longer qualifies -> a later tick must not re-call the publisher
+    meta2 = FakeMeta(ok=False)
+    article_publish_ig.run(tmp_path, now, tg=FakeTG(), meta=meta2)
+    assert meta2.calls == []

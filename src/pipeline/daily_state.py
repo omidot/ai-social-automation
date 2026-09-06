@@ -1,8 +1,11 @@
 from __future__ import annotations
 import json
+import logging
 from pathlib import Path
 
 from .state import _atomic_write, _read_json
+
+log = logging.getLogger("daily_state")
 
 TERMINAL = frozenset({"posted", "discarded", "expired"})
 
@@ -16,6 +19,16 @@ class DailyState:
 
     def load(self, date: str) -> dict:
         return _read_json(self.path(date), {"date": date, "posts": {}})
+
+    def load_safe(self, date: str) -> dict | None:
+        """Like load(), but returns None (with a logged error) instead of
+        raising when the on-disk file is corrupt or unreadable. Pollers that
+        sweep every daily file use this so one bad file cannot stall the loop."""
+        try:
+            return self.load(date)
+        except (json.JSONDecodeError, OSError) as e:
+            log.error("daily-state %s unreadable: %s", date, e)
+            return None
 
     def _save(self, date: str, doc: dict) -> None:
         _atomic_write(self.path(date), json.dumps(doc, ensure_ascii=False, indent=2))

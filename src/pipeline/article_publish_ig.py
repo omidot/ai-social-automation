@@ -19,7 +19,10 @@ def due_slots(ds: DailyState, now: datetime) -> list[tuple[str, str, dict]]:
     out: list[tuple[str, str, dict]] = []
     for f in ds.all_files():
         date = f.stem
-        for slot_name, slot in ds.load(date)["posts"].items():
+        doc = ds.load_safe(date)
+        if doc is None:
+            continue
+        for slot_name, slot in doc["posts"].items():
             if slot.get("status") != "scheduled":
                 continue
             if not slot.get("ig_due"):
@@ -52,7 +55,19 @@ def run(root: Path, now: datetime | None = None, *, tg=None, meta=None) -> dict:
             published.append(f"{date}:{slot_name}")
         except Exception as e:  # noqa: BLE001
             log.error("ig publish %s:%s failed: %s", date, slot_name, e)
-            tg.send_message(f"❌ IG lỗi {date}:{slot_name}: {e}")
+            attempts = int(slot.get("ig_attempts", 0)) + 1
+            if attempts >= 3:
+                # give up: writing result.ig as a dict makes due_slots' filter
+                # drop this slot for good, so it stops re-qualifying every tick
+                # (and stops spamming Telegram). Status stays "scheduled".
+                result["ig"] = {"ok": False, "error": str(e), "attempts": attempts}
+                ds.put(date, slot_name, result=result, ig_attempts=attempts)
+                tg.send_message(
+                    f"❌ IG {date}:{slot_name} bỏ cuộc sau {attempts} lần: {e}")
+            else:
+                ds.put(date, slot_name, ig_attempts=attempts)
+                tg.send_message(
+                    f"❌ IG lỗi {date}:{slot_name} (lần {attempts}/3): {e}")
             failed.append(f"{date}:{slot_name}")
     return {"published": published, "failed": failed}
 

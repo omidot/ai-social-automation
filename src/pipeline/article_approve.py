@@ -129,7 +129,10 @@ def expire_stale(ds, tg, now: datetime) -> list[str]:
     out: list[str] = []
     for f in ds.all_files():
         date = f.stem
-        for slot_name, slot in ds.load(date)["posts"].items():
+        doc = ds.load_safe(date)
+        if doc is None:
+            continue
+        for slot_name, slot in doc["posts"].items():
             if slot.get("status") != "draft":
                 continue
             due = slot_unix(date, slot.get("slot_ict", "11:30"))
