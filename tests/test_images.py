@@ -20,13 +20,45 @@ def test_build_images_gemini_path(tmp_path):
     def fake_gen(prompt, size):
         calls.append(prompt)
         return _png_bytes()
-    out = images.build_images(_art(), tmp_path, style_prompt="cinematic",
+    art = _art()
+    out = images.build_images(art, tmp_path, style_prompt="cinematic",
                               size=(1080, 1350), gen=fake_gen)
-    assert len(out) == 3                      # cover + 2 briefs
+    assert len(out) == 3                      # templated cover + 2 briefs
+    # cover is now fully Pillow-rendered: gen() runs once per brief, not for the cover
+    assert len(calls) == len(art.image_briefs)
+    assert all("cinematic" in p for p in calls)
     assert Path(out[0]).name == "01_cover.jpg"
     assert all(Path(p).exists() for p in out)
-    assert Image.open(out[0]).size == (1080, 1350)
-    assert "cinematic" in calls[0]
+    cover = Image.open(out[0]).convert("RGB")
+    assert cover.size == (1080, 1350)
+    # background is mostly light near the corners
+    W, H = cover.size
+    for xy in [(8, 8), (W - 8, 8), (8, H - 8), (W - 8, H - 8)]:
+        px = cover.getpixel(xy)
+        assert all(c > 220 for c in px), (xy, px)
+
+
+def test_render_cover_has_brand_elements():
+    art = ArticleContent(format="roundup", caption_fb="x", caption_ig="y",
+                         hashtags=["#AI"], cover_title="Ba tin AI đáng chú ý hôm nay",
+                         cover_brief="b", image_briefs=["a"],
+                         sources=[{"name": "hn", "url": "http://h"}])
+    img = images._render_cover(art, (1080, 1350), images.BRAND_DEFAULTS)
+    assert img.size == (1080, 1350)
+    px = img.load()
+    W, H = img.size
+    near_black = brand_blue = False
+    for y in range(0, H, 3):
+        for x in range(0, W, 3):
+            r, g, bl = px[x, y]
+            if r < 60 and g < 60 and bl < 60:
+                near_black = True
+            if bl > 150 and r < 120 and g < 130:
+                brand_blue = True
+        if near_black and brand_blue:
+            break
+    assert near_black, "expected near-black headline pixels"
+    assert brand_blue, "expected brand-blue pill pixels"
 
 def test_build_images_falls_back_on_error(tmp_path, monkeypatch):
     def boom(prompt, size):

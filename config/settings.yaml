@@ -15,9 +15,18 @@ articles:
   roundup_max: 5
 images:
   provider: gemini
-  style_prompt: "digital art, glowing neural and tech motifs, blue and violet, cinematic, no text"
+  style_prompt: "minimalist flat editorial illustration, off-white background, soft blue and white colour palette, floating glassmorphic rounded-square icon tiles with gentle drop shadows, generous negative space, clean modern, no text, no words"
   size: "1080x1350"
   raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"
+  brand:
+    bg: "#F4F3F0"
+    dot: "#E3E1DC"
+    accent: "#1D4ED8"
+    ink: "#111111"
+    muted: "#6B6B6B"
+    handle: "A Hít Official"
+    kicker_deep: "AI HÔM NAY"
+    kicker_roundup: "ĐIỂM TIN AI"
 
 video:
   enabled: false
