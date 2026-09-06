@@ -103,3 +103,19 @@ def test_from_google_news_parses(monkeypatch):
     assert cands[0].source.startswith("rss:Google News")
     assert "OpenAI" in cands[0].title
     assert cands[0].source_count == 1
+
+
+def test_collapse_similar_merges_and_counts():
+    from pipeline.collect import _collapse_similar
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    a = Candidate(url="https://a.com/x", title="OpenAI launches GPT-6 today",
+                  source="rss:A", published_at=now)
+    b = Candidate(url="https://b.com/y", title="OpenAI launches GPT-6 today, sources say",
+                  source="rss:B", published_at=now)
+    c = Candidate(url="https://c.com/z", title="Nvidia announces new GPU",
+                  source="rss:C", published_at=now)
+    out = _collapse_similar([a, b, c])
+    assert len(out) == 2
+    merged = [x for x in out if "OpenAI" in x.title][0]
+    assert merged.source_count == 2

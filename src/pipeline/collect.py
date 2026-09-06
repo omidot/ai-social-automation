@@ -1,6 +1,7 @@
 from __future__ import annotations
 import logging, time
 from datetime import datetime, timedelta, timezone
+from difflib import SequenceMatcher
 from pathlib import Path
 
 import feedparser
@@ -46,6 +47,30 @@ def _parse_date(entry) -> datetime | None:
         if v:
             return datetime(*v[:6], tzinfo=timezone.utc)
     return None
+
+
+def _collapse_similar(cands: list[Candidate]) -> list[Candidate]:
+    groups: list[list[Candidate]] = []
+    for c in cands:
+        placed = False
+        for g in groups:
+            if SequenceMatcher(None, c.title.lower(), g[0].title.lower()).ratio() >= 0.72:
+                g.append(c)
+                placed = True
+                break
+        if not placed:
+            groups.append([c])
+    out: list[Candidate] = []
+    for g in groups:
+        rep = min(g, key=lambda x: x.published_at)
+        rep.source_count = len(g)
+        for m in g:
+            if not rep.full_text and m.full_text:
+                rep.full_text = m.full_text
+            if not rep.top_image and m.top_image:
+                rep.top_image = m.top_image
+        out.append(rep)
+    return out
 
 
 def from_rss(feeds: list[dict], now: datetime) -> list[Candidate]:
@@ -196,7 +221,8 @@ def collect(sources: dict, settings: dict, seen: State, now: datetime,
         if not c.url or seen.seen_has(c.url_hash):
             continue
         dedup.setdefault(c.url_hash, c)
-    result = sorted(dedup.values(), key=lambda c: c.published_at, reverse=True)
+    collapsed = _collapse_similar(list(dedup.values()))
+    result = sorted(collapsed, key=lambda c: c.published_at, reverse=True)
 
     if not result and raised:
         raise CollectError("all collect sources failed and produced nothing")
