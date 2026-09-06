@@ -124,6 +124,8 @@ def test_inflight_status_set_before_meta_call(tmp_path):
 
 
 def test_exception_after_publish_marks_posted_not_draft(tmp_path):
+    """fb_create_post SUCCEEDS, then a later step (state write) raises: the FB
+    post exists, so the slot must end up 'posted' + a 'check the Page' alert."""
     ds = _seed(tmp_path)
     tg, meta = FakeTG(), FakeMeta()
 
@@ -140,10 +142,36 @@ def test_exception_after_publish_marks_posted_not_draft(tmp_path):
     wrapped = PutRaisesOnce(ds)
     now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
     res = article_approve.handle_callback(_cbq("now"), wrapped, tg, meta, tmp_path, now)
-    assert res == "error:2026-09-06:morning"
+    assert res == "posted:2026-09-06:morning"
     status = wrapped.get("2026-09-06", "morning")["status"]
     assert status == "posted"                       # never left draft / publishing
     assert any("kiểm tra Page" in m for m in tg.msgs)
+
+
+def test_prepublish_failure_leaves_slot_retryable(tmp_path):
+    """A failure BEFORE the FB post exists (expired token -> fb_upload_photo
+    400) must leave the slot 'draft' so it can be retried, not burn the slot."""
+    ds = _seed(tmp_path)
+    tg = FakeTG()
+
+    class ExpiredTokenMeta(FakeMeta):
+        def fb_upload_photo(self, p):
+            raise RuntimeError("(190) Session has expired")
+
+    meta = ExpiredTokenMeta()
+    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
+    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
+    assert res == "retry:2026-09-06:morning"
+    assert ds.get("2026-09-06", "morning")["status"] == "draft"   # NOT posted
+    assert any("Chưa đăng được" in m and "chưa có gì lên Page" in m for m in tg.msgs)
+    assert meta.ig is None                                        # IG never attempted
+
+    # the slot is actionable again: a fresh "now" callback is not rejected
+    tg2, meta2 = FakeTG(), FakeMeta()
+    res2 = article_approve.handle_callback(_cbq("now"), ds, tg2, meta2, tmp_path, now)
+    assert res2 == "posted:2026-09-06:morning"
+    assert "Bài này đã xử lý." not in tg2.acks
+    assert ds.get("2026-09-06", "morning")["status"] == "posted"
 
 
 def test_drop_marks_discarded_no_publish(tmp_path):

@@ -62,6 +62,11 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
         _ack(tg, cbq["id"], "Bài này đã xử lý.")
         return None
 
+    # Whether the Facebook post has actually been created. Stays None until
+    # meta.fb_create_post() returns; the outer except uses it to decide if a
+    # failure is recoverable (fb is None -> nothing published -> retryable) or
+    # a post already exists (fb set -> a later step failed -> mark posted).
+    fb = None
     try:
         if action == "now":
             # in-flight marker BEFORE the first Meta call: if fb_create_post
@@ -69,7 +74,7 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
             # find this slot back at "draft" (which would re-arm it).
             ds.set_status(date, slot_name, "publishing")
             fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
-            fb = meta.fb_create_post(_fb_message(slot), fbids)
+            fb = meta.fb_create_post(_fb_message(slot), fbids)  # point of no return
             try:
                 ig = meta.ig_publish_images(slot["image_urls"], _ig_caption(slot))
             except Exception as e:  # noqa: BLE001
@@ -89,7 +94,7 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
             fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
             fb = meta.fb_create_post(_fb_message(slot), fbids,
                                      scheduled_publish_time=when,
-                                     now_unix=int(now.timestamp()))
+                                     now_unix=int(now.timestamp()))  # point of no return
             if fb.get("scheduled"):
                 ds.put(date, slot_name, fb_post_id=fb["id"],
                        ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
@@ -123,13 +128,26 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
         _ack(tg, cbq["id"], "Lỗi xử lý, xem log.")
         log.exception("article_approve callback failed for %s:%s", date, slot_name)
         if action in ("now", "sched"):
-            # something blew up mid-publish: never leave it at "publishing"
-            # (it would re-arm) - mark "posted" so it can never re-publish.
-            tg.send_message(
-                f"⚠️ {date}:{slot_name} có thể đã đăng một phần — kiểm tra Page. Lỗi: {e}")
+            if fb is None:
+                # the failure happened BEFORE the FB post existed (expired
+                # token, upload 400, ...) - nothing was published, so make the
+                # slot retryable instead of burning the day's slot.
+                ds.set_status(date, slot_name, "draft")
+                tg.send_message(
+                    f"❌ Chưa đăng được {date}:{slot_name} (chưa có gì lên Page): {e}\n"
+                    f"Sửa xong bấm ✅ Đăng ngay lại.")
+                return f"retry:{date}:{slot_name}"
+            # the FB post exists but a later step (IG, state write) failed:
+            # never leave it at "publishing" (it would re-arm) - mark "posted"
+            # so it can never re-publish, and alert to check the Page by hand.
+            ds.put(date, slot_name,
+                   result={"fb": fb, "ig": {"ok": False, "error": str(e)}})
             ds.set_status(date, slot_name, "posted")
-        else:
-            tg.send_message(f"❌ Lỗi xử lý {date}:{slot_name}: {e}")
+            tg.send_message(
+                f"⚠️ {date}:{slot_name} đã đăng lên FB nhưng lỗi ở bước sau — "
+                f"kiểm tra Page. Lỗi: {e}")
+            return f"posted:{date}:{slot_name}"
+        tg.send_message(f"❌ Lỗi xử lý {date}:{slot_name}: {e}")
         return f"error:{date}:{slot_name}"
 
 
