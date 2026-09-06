@@ -1,10 +1,12 @@
 from __future__ import annotations
-import json, os, time
+import json, os, time, logging
 from pathlib import Path
 
 import httpx
 
 BASE = "https://graph.facebook.com/v21.0"
+
+log = logging.getLogger("meta")
 
 
 class Meta:
@@ -38,8 +40,9 @@ class Meta:
                              files={"source": (Path(image_path).name, fh, "image/jpeg")})
         return str(res["id"])
 
-    def fb_create_post(self, message, media_fbids, scheduled_publish_time=None,
-                       now_unix=None):
+    def fb_create_post(self, message: str, media_fbids: list[str],
+                       scheduled_publish_time: int | None = None,
+                       now_unix: int | None = None) -> dict:
         data = {"message": message, "access_token": self.token}
         for i, fbid in enumerate(media_fbids):
             data[f"attached_media[{i}]"] = json.dumps({"media_fbid": str(fbid)},
@@ -52,9 +55,7 @@ class Meta:
                 data["scheduled_publish_time"] = scheduled_publish_time
                 scheduled = True
             else:
-                import logging
-                logging.getLogger("meta").warning(
-                    "scheduled_publish_time only %ss ahead; publishing now", lead)
+                log.warning("scheduled_publish_time only %ss ahead; publishing now", lead)
         res = self._post(f"{BASE}/{self.page_id}/feed", data=data)
         pid = str(res["id"])
         return {"id": pid, "url": f"https://facebook.com/{pid}", "scheduled": scheduled}
