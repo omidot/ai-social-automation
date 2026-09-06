@@ -58,3 +58,7 @@ def test_decide_format():
     assert decide_format([(90.0, None)], margin=12) == "deep"
     assert decide_format([(90.0, None), (70.0, None)], margin=12) == "deep"
     assert decide_format([(90.0, None), (85.0, None)], margin=12) == "roundup"
+    # Exact-boundary case: difference == margin must be "deep" (testing >= not >)
+    assert decide_format([(90.0, None), (78.0, None)], margin=12) == "deep"
+    # Empty-list case: documents the defensive <= 1 behavior
+    assert decide_format([], margin=12) == "deep"
