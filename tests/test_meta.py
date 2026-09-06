@@ -111,3 +111,24 @@ def test_fb_create_post_exact_600s_boundary_schedules(monkeypatch):
                          scheduled_publish_time=1600, now_unix=1000)
     assert r["scheduled"] is True
     assert sent["data"]["published"] == "false"
+
+
+def test_ig_publish_images_single(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    calls = []
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (calls.append((url, data)), {"id": "cid"})[1])
+    r = m.ig_publish_images(["https://raw/x.jpg"], "cap")
+    assert r == {"ok": True, "media_id": "cid"}
+    assert any("media_publish" in u for u, _ in calls)
+
+
+def test_ig_publish_images_carousel(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    seq = iter(["a", "b", "carousel", "published"])
+    monkeypatch.setattr(m, "_post",
+                        lambda url, data=None, files=None: {"id": next(seq)})
+    r = m.ig_publish_images(["u1", "u2"], "cap")
+    assert r["media_id"] == "published"

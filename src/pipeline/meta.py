@@ -84,6 +84,18 @@ class Meta:
         return self._post(f"{BASE}/{self.ig_id}/media_publish",
                           data={"creation_id": creation_id, "access_token": self.token})
 
+    def ig_publish_images(self, image_urls, caption):
+        if len(image_urls) == 1:
+            res = self._post(f"{BASE}/{self.ig_id}/media",
+                             data={"image_url": image_urls[0], "caption": caption,
+                                   "access_token": self.token})
+            pub = self.ig_publish(str(res["id"]))
+            return {"ok": True, "media_id": str(pub["id"])}
+        child_ids = [self.ig_create_item(u) for u in image_urls[:10]]
+        caro = self.ig_create_carousel(child_ids, caption)
+        pub = self.ig_publish(caro)
+        return {"ok": True, "media_id": str(pub["id"])}
+
     # ---------- tokens ----------
     def exchange_long_lived_token(self, app_id: str, app_secret: str, short_token: str) -> dict:
         return self._get("oauth/access_token",
