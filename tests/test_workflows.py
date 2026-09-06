@@ -5,26 +5,74 @@ WF = Path(__file__).resolve().parents[1] / ".github/workflows"
 
 
 def test_all_workflows_valid_yaml():
-    for name in ("build.yml", "approve.yml", "refresh-token.yml"):
+    for name in ("article-morning.yml", "article-evening.yml", "article-approve.yml",
+                 "article-publish-ig.yml", "refresh-token.yml", "article-test.yml"):
         data = yaml.safe_load((WF / name).read_text(encoding="utf-8"))
-        assert True in data or "on" in data  # 'on' key may parse as bool True
+        assert True in data or "on" in data
         assert data["jobs"]
 
 
-def test_build_workflow_runs_pipeline_and_commits():
-    text = (WF / "build.yml").read_text(encoding="utf-8")
-    assert "python -m pipeline.run" in text
-    assert "cron: '0 1 * * *'" in text
-    assert "contents: write" in text
-    assert "playwright install" in text
+def test_old_workflows_removed():
+    assert not (WF / "build.yml").exists()
+    assert not (WF / "approve.yml").exists()
 
 
-def test_approve_workflow_cron_and_module():
-    text = (WF / "approve.yml").read_text(encoding="utf-8")
-    assert "python -m pipeline.approve_poll" in text
-    assert "*/10 * * * *" in text
+def test_morning_and_evening_crons_and_module():
+    m = (WF / "article-morning.yml").read_text(encoding="utf-8")
+    e = (WF / "article-evening.yml").read_text(encoding="utf-8")
+    assert "cron: '0 0 * * *'" in m and "--slot morning" in m
+    assert "cron: '0 10 * * *'" in e and "--slot evening" in e
+    assert "playwright install" in m and "playwright install" in e
+    assert "contents: write" in m
+
+
+def test_approve_and_ig_crons_and_modules():
+    a = (WF / "article-approve.yml").read_text(encoding="utf-8")
+    g = (WF / "article-publish-ig.yml").read_text(encoding="utf-8")
+    assert "python -m pipeline.article_approve" in a
+    assert "*/10 * * * *" in a
+    assert "playwright install" not in a
+    assert "python -m pipeline.article_publish_ig" in g
+    assert "0,15,30,45 4,5,12,13 * * *" in g
+    assert "playwright install" not in g
 
 
 def test_refresh_workflow_monthly():
-    text = (WF / "refresh-token.yml").read_text(encoding="utf-8")
-    assert "cron: '0 2 1 * *'" in text
+    assert "cron: '0 2 1 * *'" in (WF / "refresh-token.yml").read_text(encoding="utf-8")
+
+
+def test_common_workflow_boilerplate():
+    """Assert common boilerplate elements present in all article workflows."""
+    for name in ("article-morning.yml", "article-evening.yml", "article-approve.yml",
+                 "article-publish-ig.yml"):
+        text = (WF / name).read_text(encoding="utf-8")
+        assert "bash scripts/commit_state.sh" in text, f"{name} missing commit_state.sh"
+        assert "workflow_dispatch:" in text, f"{name} missing workflow_dispatch"
+        assert "concurrency:" in text, f"{name} missing concurrency"
+        assert "group: pipeline-state" in text, f"{name} not on shared state concurrency group"
+        assert "fetch-depth: 0" in text, f"{name} missing fetch-depth: 0"
+        assert "contents: write" in text, f"{name} missing contents: write"
+        assert "python-version: '3.12'" in text, f"{name} missing python-version: '3.12'"
+
+
+def test_workflow_secret_blocks():
+    """Assert required secrets are declared in each workflow."""
+    morning_text = (WF / "article-morning.yml").read_text(encoding="utf-8")
+    evening_text = (WF / "article-evening.yml").read_text(encoding="utf-8")
+    approve_text = (WF / "article-approve.yml").read_text(encoding="utf-8")
+    ig_text = (WF / "article-publish-ig.yml").read_text(encoding="utf-8")
+
+    # Morning and evening need: GEMINI_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID.
+    # Gemini is the writer until a Claude-CLI story lands, so the unused
+    # CLAUDE_CODE_OAUTH_TOKEN must NOT be wired in (it would shadow the Gemini
+    # fallback with a FileNotFoundError since the claude CLI is never installed).
+    for secret in ("GEMINI_API_KEY", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
+        assert secret in morning_text, f"article-morning.yml missing {secret}"
+        assert secret in evening_text, f"article-evening.yml missing {secret}"
+    assert "CLAUDE_CODE_OAUTH_TOKEN" not in morning_text, "article-morning.yml must not wire CLAUDE_CODE_OAUTH_TOKEN"
+    assert "CLAUDE_CODE_OAUTH_TOKEN" not in evening_text, "article-evening.yml must not wire CLAUDE_CODE_OAUTH_TOKEN"
+
+    # Approve and IG need: META_PAGE_ID, META_PAGE_TOKEN, IG_BUSINESS_ID, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+    for secret in ("META_PAGE_ID", "META_PAGE_TOKEN", "IG_BUSINESS_ID", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
+        assert secret in approve_text, f"article-approve.yml missing {secret}"
+        assert secret in ig_text, f"article-publish-ig.yml missing {secret}"

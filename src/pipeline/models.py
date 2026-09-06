@@ -21,6 +21,7 @@ class Candidate:
     summary: str = ""
     full_text: str = ""
     top_image: str | None = None
+    source_count: int = 1
 
     @property
     def url_hash(self) -> str:
@@ -59,5 +60,26 @@ class PostContent:
 
     @classmethod
     def from_dict(cls, d: dict) -> "PostContent":
+        allowed = {f for f in cls.__dataclass_fields__}
+        return cls(**{k: v for k, v in d.items() if k in allowed})
+
+
+@dataclass
+class ArticleContent:
+    format: str
+    caption_fb: str
+    caption_ig: str
+    hashtags: list[str]
+    cover_title: str
+    cover_brief: str
+    image_briefs: list[str]
+    sources: list[dict]
+    risk: bool = False
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "ArticleContent":
         allowed = {f for f in cls.__dataclass_fields__}
         return cls(**{k: v for k, v in d.items() if k in allowed})

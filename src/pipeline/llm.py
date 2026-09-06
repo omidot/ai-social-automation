@@ -72,3 +72,23 @@ def generate(system: str, user: str, provider: str = "auto", timeout: int = 90) 
         except Exception as e:  # noqa: BLE001 - deliberate: try next backend
             errors.append(f"{name}: {e}")
     raise LLMError("all LLM backends failed -> " + " | ".join(errors))
+
+
+_FAKE_LLM_JSON = json.dumps({
+    "angle": "tin-tuc",
+    "caption_fb": ("AI tuần này lại có biến. Đây là bản dựng thử ngoại tuyến của "
+                   "pipeline, dùng để kiểm tra luồng chạy chứ chưa phải nội dung thật. "
+                   "Bạn nghĩ sao? Comment cho mình biết nhé."),
+    "caption_ig": "Bản dựng thử ngoại tuyến của pipeline. #AI",
+    "hashtags": ["#AI", "#trituenhantao", "#congnghe", "#tin247", "#OpenAI",
+                 "#chuyendoiso", "#automation", "#ahitofficial"],
+    "thumbnail_prompt": "futuristic glowing neural network core, blue and violet, cinematic, no text",
+    "thumbnail_title": "BẢN DỰNG THỬ PIPELINE",
+    "youtube_title": "Bản dựng thử pipeline AI social automation",
+    "youtube_desc": "Video mô tả sẽ được sinh tự động khi có khoá LLM. Nguồn trong mô tả.",
+    "tiktok_caption": "Thử pipeline AI 👀 #AI #automation",
+}, ensure_ascii=False)
+
+
+def _fake_generate(system: str, user: str, **kwargs) -> str:
+    return _FAKE_LLM_JSON

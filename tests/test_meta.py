@@ -1,3 +1,4 @@
+import logging
 import pytest
 from pipeline.meta import Meta
 
@@ -72,3 +73,62 @@ def test_ig_carousel_flow(monkeypatch):
     pub = m.ig_publish(caro)
     assert (a, b, caro) == ("c1", "c2", "caro")
     assert pub["id"] == "pub"
+
+
+def test_fb_create_post_scheduled(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    sent = {}
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (sent.update(data=data), {"id": "PID_9"})[1])
+    r = m.fb_create_post("hello", ["1", "2"],
+                         scheduled_publish_time=2000, now_unix=1000)
+    assert r["scheduled"] is True
+    assert sent["data"]["published"] == "false"
+    assert sent["data"]["scheduled_publish_time"] == 2000
+
+
+def test_fb_create_post_schedule_too_soon_publishes_now(monkeypatch, caplog):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK")
+    sent = {}
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (sent.update(data=data), {"id": "PID_9"})[1])
+    with caplog.at_level(logging.WARNING):
+        r = m.fb_create_post("hi", ["1"], scheduled_publish_time=1100, now_unix=1000)
+    assert r["scheduled"] is False
+    assert "published" not in sent["data"] or sent["data"]["published"] == "true"
+    assert any("publishing now" in r.message for r in caplog.records)
+
+
+def test_fb_create_post_exact_600s_boundary_schedules(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK")
+    sent = {}
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (sent.update(data=data), {"id": "PID_9"})[1])
+    r = m.fb_create_post("hello", ["1", "2"],
+                         scheduled_publish_time=1600, now_unix=1000)
+    assert r["scheduled"] is True
+    assert sent["data"]["published"] == "false"
+
+
+def test_ig_publish_images_single(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    calls = []
+    monkeypatch.setattr(m, "_post", lambda url, data=None, files=None:
+                        (calls.append((url, data)), {"id": "cid"})[1])
+    r = m.ig_publish_images(["https://raw/x.jpg"], "cap")
+    assert r == {"ok": True, "media_id": "cid"}
+    assert any("media_publish" in u for u, _ in calls)
+
+
+def test_ig_publish_images_carousel(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    seq = iter(["a", "b", "carousel", "published"])
+    monkeypatch.setattr(m, "_post",
+                        lambda url, data=None, files=None: {"id": next(seq)})
+    r = m.ig_publish_images(["u1", "u2"], "cap")
+    assert r["media_id"] == "published"

@@ -51,3 +51,53 @@ def test_write_post_missing_key_raises():
     del data["caption_ig"]
     with pytest.raises(write.WriteError):
         write.write_post(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_decide_format():
+    from pipeline.write import decide_format
+    assert decide_format([(90.0, None)], margin=12) == "deep"
+    assert decide_format([(90.0, None), (70.0, None)], margin=12) == "deep"
+    assert decide_format([(90.0, None), (85.0, None)], margin=12) == "roundup"
+    # Exact-boundary case: difference == margin must be "deep" (testing >= not >)
+    assert decide_format([(90.0, None), (78.0, None)], margin=12) == "deep"
+    # Empty-list case: documents the defensive <= 1 behavior
+    assert decide_format([], margin=12) == "deep"
+
+
+def test_write_deep_builds_article():
+    from pipeline.write import write_deep
+    payload = (FIXTURES / "sample_deep_response.json").read_text(encoding="utf-8")
+    art = write_deep(_cand(), VOICE, generate=lambda s, u, **k: payload)
+    assert art.format == "deep"
+    assert art.cover_title == "OPENAI RA MẮT MÔ HÌNH MỚI"
+    assert 3 <= len(art.image_briefs) <= 4
+    assert art.sources == [{"name": "OpenAI Blog", "url": "https://openai.com/blog/new"}]
+    assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog — https://openai.com/blog/new")
+
+
+def test_write_roundup_one_brief_per_item():
+    from pipeline.write import write_roundup
+    payload = (FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8")
+    cands = [_cand(),
+             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
+             Candidate(url="https://c/2", title="Google model", source="rss:C",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
+    art = write_roundup(cands, VOICE, generate=lambda s, u, **k: payload)
+    assert art.format == "roundup"
+    assert len(art.image_briefs) == 3
+    assert len(art.sources) == 3
+    assert art.sources[1] == {"name": "B", "url": "https://b/1"}
+
+
+def test_write_roundup_rejects_brief_count_mismatch():
+    from pipeline.write import write_roundup, WriteError
+    data = json.loads((FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8"))
+    data["image_briefs"] = ["only", "two"]
+    cands = [_cand(),
+             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
+             Candidate(url="https://c/2", title="Google model", source="rss:C",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
+    with pytest.raises(WriteError):
+        write_roundup(cands, VOICE, generate=lambda s, u, **k: json.dumps(data))

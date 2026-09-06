@@ -1,17 +1,17 @@
-name: approve
+name: article-morning
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '0 0 * * *'   # 07:00 ICT
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: approve
+  group: pipeline-state
   cancel-in-progress: false
 jobs:
-  approve:
+  draft:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -21,13 +21,12 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install -e .
-      - name: Process approvals
+          python -m playwright install --with-deps chromium
+      - name: Draft morning article
         env:
-          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
-          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
-          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python -m pipeline.approve_poll
+        run: python -m pipeline.article_run --slot morning
       - name: Commit state
         run: bash scripts/commit_state.sh

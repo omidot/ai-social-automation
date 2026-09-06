@@ -22,3 +22,12 @@ def test_requirements_pinned():
     root = Path(__file__).resolve().parents[1]
     lines = [l for l in (root / "requirements.txt").read_text().splitlines() if l and not l.startswith("#")]
     assert all("==" in l for l in lines), "every dependency must be pinned"
+
+def test_article_content_roundtrip():
+    from pipeline.models import ArticleContent
+    a = ArticleContent(format="deep", caption_fb="x", caption_ig="y", hashtags=["#AI"],
+                       cover_title="TIÊU ĐỀ", cover_brief="neural core",
+                       image_briefs=["a", "b"], sources=[{"name": "hn", "url": "http://h"}])
+    b = ArticleContent.from_dict({**a.to_dict(), "junk": 1})
+    assert b == a
+    assert b.risk is False

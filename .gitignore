@@ -15,4 +15,3 @@ assets/voice/*
 !assets/voice/.gitkeep
 video/ref/silence.txt
 assets/voice/sample.txt
-data/telegram_offset.json

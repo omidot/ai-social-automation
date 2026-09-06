@@ -36,10 +36,14 @@ def _keyword_fit(c: Candidate, keywords: list[str]) -> float:
     return min(1.0, hits / 3.0) * 10.0
 
 
+def _source_spread(c: Candidate) -> float:
+    return min(max(c.source_count - 1, 0), 4) * 5.0
+
+
 def score_candidate(c: Candidate, now: datetime, cohort: list[Candidate],
                     keywords: list[str]) -> float:
     return round(_recency(c, now) + _popularity(c) + _cross_source(c, cohort)
-                 + _keyword_fit(c, keywords), 2)
+                 + _keyword_fit(c, keywords) + _source_spread(c), 2)
 
 
 def pick(cands: list[Candidate], min_score: float, now: datetime,
@@ -52,3 +56,20 @@ def pick(cands: list[Candidate], min_score: float, now: datetime,
     if best_score < min_score:
         return None, best_score
     return best, best_score
+
+
+def pick_n(cands, n, min_score, now, keywords, exclude_titles=()):
+    scored = [(score_candidate(c, now, cands, keywords), c) for c in cands]
+    scored.sort(key=lambda t: t[0], reverse=True)
+    picked: list[tuple[float, Candidate]] = []
+    for sc, c in scored:
+        if sc < min_score:
+            break
+        blockers = list(exclude_titles) + [pc.title for _, pc in picked]
+        if any(SequenceMatcher(None, c.title.lower(), b.lower()).ratio() >= 0.5
+               for b in blockers):
+            continue
+        picked.append((sc, c))
+        if len(picked) == n:
+            break
+    return picked
