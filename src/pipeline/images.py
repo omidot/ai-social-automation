@@ -69,9 +69,12 @@ def _legacy_fallback(article: ArticleContent, out_dir: Path,
 
 
 def build_images(article: ArticleContent, out_dir, *, style_prompt: str,
-                 size: tuple[int, int], gen=None) -> list[str]:
+                 size: tuple[int, int], gen=None,
+                 provider: str = "gemini") -> list[str]:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    if provider == "legacy":
+        return _legacy_fallback(article, out_dir, size)
     gen = gen or _gemini_image
     try:
         cover_bytes = gen(f"{article.cover_brief}, {style_prompt}", size)

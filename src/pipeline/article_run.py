@@ -12,6 +12,7 @@ from .state import State
 from .telegram import Telegram
 from .llm import generate as _default_generate
 
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_run")
 _OTHER = {"morning": "evening", "evening": "morning"}
 
@@ -93,7 +94,8 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
                                 style_prompt=settings["images"]["style_prompt"],
-                                size=_parse_size(settings["images"]["size"]))
+                                size=_parse_size(settings["images"]["size"]),
+                                provider=settings["images"].get("provider", "gemini"))
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 

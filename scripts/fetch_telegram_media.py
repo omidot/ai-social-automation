@@ -1,9 +1,9 @@
 """One-off: pull audio/video files the user sent to the project's Telegram bot
 and save them locally. Requires TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID in env.
 
-Shares the same update offset as pipeline.approve_poll so it won't cause the
-production poller to reprocess anything (plain messages are already ignored
-by approve_poll.handle_update, which only reacts to callback_query updates).
+Shares the same Telegram update offset as the article-approve poller so it
+won't cause it to reprocess anything (plain messages are already ignored by
+the poller, which only reacts to callback_query updates).
 
 Usage:
     python scripts/fetch_telegram_media.py

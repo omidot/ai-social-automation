@@ -60,9 +60,18 @@ Bài Facebook lẻ: dán URL vào `config/facebook_urls.txt`, mỗi dòng một 
 
 ## Lịch chạy
 
-- `build.yml`: 08:00 ICT hằng ngày (`cron '0 1 * * *'`).
-- `approve.yml`: mỗi 10 phút, xử lý nút Telegram.
+- `article-morning`: 07:00 ICT (`cron '0 0 * * *'`) → dựng bản nháp bài #1 →
+  gửi preview Telegram.
+- `article-evening`: 17:00 ICT (`cron '0 10 * * *'`) → dựng bản nháp bài #2.
+- `article-approve`: mỗi 10 phút (`cron '*/10 * * * *'`) → xử lý nút Telegram
+  Đăng ngay / Lên lịch / Bỏ.
+- `article-publish-ig`: poll trong khung giờ đăng
+  (`cron '0,15,30,45 4,5,12,13 * * *'`) → đăng carousel Instagram khi tới đúng
+  giờ slot đã lên lịch.
 - `refresh-token.yml`: mùng 1 hàng tháng.
+
+Facebook: bài #1 đăng 11:30, bài #2 đăng 19:45 ICT bằng `scheduled_publish_time`
+native của Meta (Meta tự đăng đúng giờ). Instagram do `article-publish-ig` đăng.
 
 ## Môi trường dev (máy này)
 
@@ -98,10 +107,19 @@ F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm f
 
 ## Kiến trúc
 
-`src/pipeline/`: `collect → score → write → media → review → publish`, cộng
-`llm` (Claude CLI → Gemini fallback), `telegram`, `meta`, `state`, `models`.
-`run.py` chạy giai đoạn dựng bài; `approve_poll.py` xử lý nút Telegram.
-State (`data/seen.json`, `data/pending/`, `data/posted/`) được commit ngược repo.
+`src/pipeline/`: `collect → score → write → images`, cộng `llm`
+(Claude CLI → Gemini fallback), `telegram`, `meta`, `daily_state`, `state`,
+`models`. Ba entrypoint:
+- `article_run --slot <morning|evening>` — dựng bản nháp cho slot, gửi preview.
+- `article_approve` — xử lý callback nút Telegram (Đăng ngay / Lên lịch / Bỏ).
+- `article_publish_ig` — đăng carousel Instagram khi tới giờ slot đã lên lịch.
+
+State: `data/daily/<YYYY-MM-DD>.json`, một file mỗi ngày, hai slot
+`morning`/`evening`, status một chiều `draft → scheduled | posted | discarded |
+expired`. `data/seen.json` chống trùng tin. Tất cả commit ngược repo.
+
+Escape hatch quota Gemini: `config/settings.yaml` → `images.provider: legacy`
+để bỏ qua Gemini, dựng ảnh bằng đường `media` cũ.
 
 Spec và plan đầy đủ: `docs/superpowers/`.  
   

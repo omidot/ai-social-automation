@@ -7,6 +7,7 @@ from .daily_state import DailyState
 from .state import State
 from .telegram import Telegram
 
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_approve")
 _ICT = timezone(timedelta(hours=7))
 

@@ -46,6 +46,15 @@ def test_build_images_falls_back_on_undecodable_bytes(tmp_path, monkeypatch):
                               size=(1080, 1350), gen=bad_gen)
     assert out == [str(tmp_path / "legacy.jpg")]
 
+def test_provider_legacy_skips_gemini(tmp_path, monkeypatch):
+    def boom_gen(prompt, size):
+        raise AssertionError("gen must not be called when provider='legacy'")
+    monkeypatch.setattr(images, "_legacy_fallback",
+                        lambda art, od, size: [str(tmp_path / "l.jpg")])
+    out = images.build_images(_art(), tmp_path, style_prompt="x",
+                              size=(1080, 1350), gen=boom_gen, provider="legacy")
+    assert out == [str(tmp_path / "l.jpg")]
+
 def test_legacy_fallback_normalizes_to_size(tmp_path, monkeypatch):
     size = (1080, 1350)
 
