@@ -67,13 +67,14 @@ def build_images(article: ArticleContent, out_dir, *, style_prompt: str,
     gen = gen or _gemini_image
     try:
         cover_bytes = gen(f"{article.cover_brief}, {style_prompt}", size)
-        cover = _overlay_title(cover_bytes, article.cover_title, size)
-        paths = [str(media._save_jpeg(cover, out_dir / "01_cover.jpg"))]
-        for i, brief in enumerate(article.image_briefs, start=2):
-            b = gen(f"{brief}, {style_prompt}", size)
-            im = Image.open(io.BytesIO(b)).convert("RGB").resize(size)
-            paths.append(str(media._save_jpeg(im, out_dir / f"{i:02d}.jpg")))
-        return paths
+        brief_bytes = [gen(f"{brief}, {style_prompt}", size)
+                       for brief in article.image_briefs]
     except Exception as e:  # noqa: BLE001 - any Gemini failure -> legacy path
         log.warning("gemini image path failed (%s); using legacy media", e)
         return _legacy_fallback(article, out_dir)
+    cover = _overlay_title(cover_bytes, article.cover_title, size)
+    paths = [str(media._save_jpeg(cover, out_dir / "01_cover.jpg"))]
+    for i, b in enumerate(brief_bytes, start=2):
+        im = Image.open(io.BytesIO(b)).convert("RGB").resize(size)
+        paths.append(str(media._save_jpeg(im, out_dir / f"{i:02d}.jpg")))
+    return paths
