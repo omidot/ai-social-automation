@@ -2,7 +2,18 @@
 set -euo pipefail
 git config user.name "ai-social-bot"
 git config user.email "bot@users.noreply.github.com"
-git add data/ output/ assets/ || true
+
+# Stage each state path independently. A single `git add a b c` fails the WHOLE
+# command (staging nothing) if any pathspec matches no files — which is exactly
+# what happened when `output/` stopped existing. Add only paths that exist.
+for p in data assets; do
+  [ -e "$p" ] && git add "$p" || true
+done
+
+echo "--- staged ---"
+git diff --cached --name-only || true
+echo "--------------"
+
 if git diff --cached --quiet; then
   echo "no state changes"
   exit 0
