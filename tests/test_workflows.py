@@ -23,6 +23,7 @@ def test_morning_and_evening_crons_and_module():
     assert "cron: '0 0 * * *'" in m and "--slot morning" in m
     assert "cron: '0 10 * * *'" in e and "--slot evening" in e
     assert "playwright install" in m and "playwright install" in e
+    assert "@anthropic-ai/claude-code" in m and "@anthropic-ai/claude-code" in e
     assert "contents: write" in m
 
 
@@ -62,15 +63,12 @@ def test_workflow_secret_blocks():
     approve_text = (WF / "article-approve.yml").read_text(encoding="utf-8")
     ig_text = (WF / "article-publish-ig.yml").read_text(encoding="utf-8")
 
-    # Morning and evening need: GEMINI_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID.
-    # Gemini is the writer until a Claude-CLI story lands, so the unused
-    # CLAUDE_CODE_OAUTH_TOKEN must NOT be wired in (it would shadow the Gemini
-    # fallback with a FileNotFoundError since the claude CLI is never installed).
-    for secret in ("GEMINI_API_KEY", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
+    # Morning and evening need: CLAUDE_CODE_OAUTH_TOKEN, GEMINI_API_KEY,
+    # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID. Claude CLI is the primary writer
+    # (installed via npm in the deps step); Gemini is the fallback.
+    for secret in ("CLAUDE_CODE_OAUTH_TOKEN", "GEMINI_API_KEY", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
         assert secret in morning_text, f"article-morning.yml missing {secret}"
         assert secret in evening_text, f"article-evening.yml missing {secret}"
-    assert "CLAUDE_CODE_OAUTH_TOKEN" not in morning_text, "article-morning.yml must not wire CLAUDE_CODE_OAUTH_TOKEN"
-    assert "CLAUDE_CODE_OAUTH_TOKEN" not in evening_text, "article-evening.yml must not wire CLAUDE_CODE_OAUTH_TOKEN"
 
     # Approve and IG need: META_PAGE_ID, META_PAGE_TOKEN, IG_BUSINESS_ID, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
     for secret in ("META_PAGE_ID", "META_PAGE_TOKEN", "IG_BUSINESS_ID", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
