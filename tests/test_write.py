@@ -73,3 +73,18 @@ def test_write_deep_builds_article():
     assert 3 <= len(art.image_briefs) <= 4
     assert art.sources == [{"name": "OpenAI Blog", "url": "https://openai.com/blog/new"}]
     assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog — https://openai.com/blog/new")
+
+
+def test_write_roundup_one_brief_per_item():
+    from pipeline.write import write_roundup
+    payload = (FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8")
+    cands = [_cand(),
+             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
+             Candidate(url="https://c/2", title="Google model", source="rss:C",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
+    art = write_roundup(cands, VOICE, generate=lambda s, u, **k: payload)
+    assert art.format == "roundup"
+    assert len(art.image_briefs) == 3
+    assert len(art.sources) == 3
+    assert art.sources[1] == {"name": "B", "url": "https://b/1"}

@@ -131,3 +131,44 @@ def write_deep(cand, voice, generate=_default_generate):
         cover_title=data["cover_title"].strip().upper(),
         cover_brief=data["cover_brief"].strip(), image_briefs=briefs,
         sources=[{"name": name, "url": cand.url}], risk=bool(data.get("risk", False)))
+
+
+def build_roundup_prompt(cands, voice):
+    items = "\n\n".join(
+        f"[{i+1}] {c.title}\nNGUỒN: {_source_name(c)} — {c.url}\n"
+        f"{(c.full_text or c.summary or '')[:1500]}"
+        for i, c in enumerate(cands))
+    system = (
+        f"Bạn là biên tập viên tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
+        f"Giọng: {voice.get('giong','')}. Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
+        f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". {_ARTICLE_GUARDRAILS} "
+        f"Viết bài GOM {len(cands)} tin, đánh số 1..{len(cands)}, mỗi tin 2-4 câu + link nguồn. "
+        "CHỈ trả về JSON với khoá: caption_fb (đánh số, kết bằng câu hỏi tương tác), "
+        "caption_ig (<=40 từ), hashtags (8-15 chuỗi #), cover_title (4-10 từ tiếng Việt), "
+        "cover_brief (tiếng Anh, tả ảnh, không chữ), "
+        f"image_briefs (ĐÚNG {len(cands)} chuỗi tiếng Anh, thứ tự khớp tin 1..{len(cands)}, "
+        "tả ảnh, không chữ), risk (bool)."
+    )
+    return system, f"CÁC TIN:\n\n{items}\n"
+
+
+def write_roundup(cands, voice, generate=_default_generate):
+    try:
+        data = parse_json_response(generate(*build_roundup_prompt(cands, voice), provider="auto"))
+    except LLMError as e:
+        raise WriteError(f"LLM failed: {e}") from e
+    missing = [k for k in _DEEP_KEYS if k not in data or data[k] in (None, "", [])]
+    if missing:
+        raise WriteError(f"roundup response missing keys: {missing}")
+    briefs = [b.strip() for b in data["image_briefs"] if b.strip()]
+    if len(briefs) != len(cands):
+        raise WriteError(f"roundup image_briefs {len(briefs)} != items {len(cands)}")
+    from .models import ArticleContent
+    return ArticleContent(
+        format="roundup", caption_fb=data["caption_fb"].rstrip(),
+        caption_ig=data["caption_ig"].strip(),
+        hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
+        cover_title=data["cover_title"].strip().upper(),
+        cover_brief=data["cover_brief"].strip(), image_briefs=briefs,
+        sources=[{"name": _source_name(c), "url": c.url} for c in cands],
+        risk=bool(data.get("risk", False)))
