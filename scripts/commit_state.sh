@@ -2,7 +2,7 @@
 set -euo pipefail
 git config user.name "ai-social-bot"
 git config user.email "bot@users.noreply.github.com"
-git add data/ output/ || true
+git add data/ output/ assets/ || true
 if git diff --cached --quiet; then
   echo "no state changes"
   exit 0
