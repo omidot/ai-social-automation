@@ -10,6 +10,12 @@ from .telegram import Telegram
 log = logging.getLogger("article_approve")
 _ICT = timezone(timedelta(hours=7))
 
+# The ONLY status a callback may act on. A slot in "scheduled" or "publishing"
+# is deliberately non-actionable here so a second/late callback can never
+# re-publish it. Do NOT add those statuses to daily_state.TERMINAL - that would
+# break article_publish_ig's scheduled -> posted promotion.
+ACTIONABLE = frozenset({"draft"})
+
 
 def slot_unix(date: str, slot_ict: str) -> int:
     y, m, d = (int(x) for x in date.split("-"))
@@ -20,6 +26,13 @@ def slot_unix(date: str, slot_ict: str) -> int:
 def _meta():
     from .meta import Meta
     return Meta.from_env()
+
+
+def _ack(tg, cbq_id: str, text: str = "") -> None:
+    try:
+        tg.answer_callback(cbq_id, text)
+    except Exception as e:  # noqa: BLE001 - an expired callback id must never abort the poll
+        log.warning("answer_callback failed: %s", e)
 
 
 def _fb_message(slot: dict) -> str:
@@ -37,12 +50,19 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
         return None
     _, date, slot_name, action = parts
     slot = ds.get(date, slot_name)
-    if slot is None or slot.get("status") != "draft":
-        tg.answer_callback(cbq["id"], "Bài này đã xử lý.")
+    if slot is None:
+        _ack(tg, cbq["id"], "Không tìm thấy bài này (state chưa đồng bộ), thử lại sau.")
+        return None
+    if slot.get("status") not in ACTIONABLE:
+        _ack(tg, cbq["id"], "Bài này đã xử lý.")
         return None
 
     try:
         if action == "now":
+            # in-flight marker BEFORE the first Meta call: if fb_create_post
+            # times out after FB created the post, the outer except must not
+            # find this slot back at "draft" (which would re-arm it).
+            ds.set_status(date, slot_name, "publishing")
             fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
             fb = meta.fb_create_post(_fb_message(slot), fbids)
             try:
@@ -51,37 +71,57 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
                 ig = {"ok": False, "error": str(e)}
             ds.put(date, slot_name, result={"fb": fb, "ig": ig})
             ds.set_status(date, slot_name, "posted")
-            tg.answer_callback(cbq["id"], "Đang đăng…")
+            _ack(tg, cbq["id"], "Đang đăng…")
             tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
             tg.send_message(f"✅ Đã đăng {date}:{slot_name}: {fb['url']}{tail}")
             return f"posted:{date}:{slot_name}"
 
         if action == "sched":
+            ds.set_status(date, slot_name, "publishing")
             when = slot_unix(date, slot["slot_ict"])
             fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
             fb = meta.fb_create_post(_fb_message(slot), fbids,
                                      scheduled_publish_time=when,
                                      now_unix=int(now.timestamp()))
-            ds.put(date, slot_name, fb_post_id=fb["id"],
-                   ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
-                   result={"fb": fb, "ig": None})
-            ds.set_status(date, slot_name, "scheduled")
-            tg.answer_callback(cbq["id"], "Đã lên lịch.")
-            tg.send_message(f"🕓 Đã lên lịch {date}:{slot_name}, đăng lúc {slot['slot_ict']}.")
-            return f"scheduled:{date}:{slot_name}"
+            if fb.get("scheduled"):
+                ds.put(date, slot_name, fb_post_id=fb["id"],
+                       ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
+                       result={"fb": fb, "ig": None})
+                ds.set_status(date, slot_name, "scheduled")
+                _ack(tg, cbq["id"], "Đã lên lịch.")
+                tg.send_message(f"🕓 Đã lên lịch {date}:{slot_name}, đăng lúc {slot['slot_ict']}.")
+                return f"scheduled:{date}:{slot_name}"
+            # too close to the slot -> FB already published; publish IG now too
+            try:
+                ig = meta.ig_publish_images(slot["image_urls"], _ig_caption(slot))
+            except Exception as e:  # noqa: BLE001
+                ig = {"ok": False, "error": str(e)}
+            ds.put(date, slot_name, result={"fb": fb, "ig": ig})
+            ds.set_status(date, slot_name, "posted")
+            _ack(tg, cbq["id"], "Đăng ngay (quá sát giờ).")
+            tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
+            tg.send_message(f"✅ Đã đăng {date}:{slot_name} (quá sát giờ lên lịch): {fb['url']}{tail}")
+            return f"posted:{date}:{slot_name}"
 
         if action == "drop":
             ds.set_status(date, slot_name, "discarded")
-            tg.answer_callback(cbq["id"], "Đã bỏ.")
+            _ack(tg, cbq["id"], "Đã bỏ.")
             tg.send_message(f"🗑 Đã bỏ {date}:{slot_name}.")
             return f"discarded:{date}:{slot_name}"
 
-        tg.answer_callback(cbq["id"], "Không rõ thao tác.")
+        _ack(tg, cbq["id"], "Không rõ thao tác.")
         return None
-    except Exception as e:  # noqa: BLE001
-        tg.answer_callback(cbq["id"], "Lỗi xử lý, xem log.")
-        tg.send_message(f"❌ Lỗi xử lý {date}:{slot_name}: {e}")
+    except Exception as e:  # noqa: BLE001 - a poison update must never abort the poll
+        _ack(tg, cbq["id"], "Lỗi xử lý, xem log.")
         log.exception("article_approve callback failed for %s:%s", date, slot_name)
+        if action in ("now", "sched"):
+            # something blew up mid-publish: never leave it at "publishing"
+            # (it would re-arm) - mark "posted" so it can never re-publish.
+            tg.send_message(
+                f"⚠️ {date}:{slot_name} có thể đã đăng một phần — kiểm tra Page. Lỗi: {e}")
+            ds.set_status(date, slot_name, "posted")
+        else:
+            tg.send_message(f"❌ Lỗi xử lý {date}:{slot_name}: {e}")
         return f"error:{date}:{slot_name}"
 
 
