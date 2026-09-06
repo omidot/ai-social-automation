@@ -118,6 +118,22 @@ class _NoopTelegram:
         pass
 
 
+def _notify_failure(slot: str, e: BaseException) -> None:
+    """Surface a live pipeline failure to the operator via Telegram.
+
+    Mirrors ``main``'s ``no_tg`` handling: with no bot token there is nowhere
+    to send, so just log and return instead of raising a fresh KeyError.
+    """
+    msg = f"❌ Pipeline lỗi ({slot}): {e}"
+    if not os.environ.get("TELEGRAM_BOT_TOKEN"):
+        log.error(msg)
+        return
+    try:
+        Telegram().send_message(msg)
+    except Exception:  # noqa: BLE001 - never mask the original failure
+        log.exception("failed to send failure notification")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slot", choices=("morning", "evening"), required=True)
@@ -144,8 +160,12 @@ def main(argv: list[str] | None = None) -> int:
             log.warning("offline smoke: pipeline raised %s: %s", type(e).__name__, e)
         print("SUMMARY: dry")
         return 0
-    out = draft(args.slot, Path(args.root), datetime.now(timezone.utc),
-                generate=gen, tg=tg)
+    try:
+        out = draft(args.slot, Path(args.root), datetime.now(timezone.utc),
+                    generate=gen, tg=tg)
+    except Exception as e:  # noqa: BLE001 - surface every failure to the operator
+        _notify_failure(args.slot, e)
+        return 1
     print("SUMMARY:", out.get("status"), out.get("slot", args.slot))
     return 0
 

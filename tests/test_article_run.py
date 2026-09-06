@@ -97,6 +97,29 @@ def test_draft_roundup_routing(wired, monkeypatch):
     assert "roundup" in called and len(called["roundup"]) == 2
 
 
+def test_main_notifies_on_draft_failure(monkeypatch):
+    def boom(*a, **k):
+        raise RuntimeError("boom")
+
+    monkeypatch.setattr(article_run, "draft", boom)
+    monkeypatch.setenv("TELEGRAM_BOT_TOKEN", "x")
+    monkeypatch.setenv("TELEGRAM_CHAT_ID", "y")
+
+    sent = []
+
+    class FakeTelegram:
+        def __init__(self, *a, **k):
+            pass
+
+        def send_message(self, text, *a, **k):
+            sent.append(text)
+
+    monkeypatch.setattr(article_run, "Telegram", FakeTelegram)
+    rc = article_run.main(["--slot", "morning", "--root", "."])
+    assert rc == 1
+    assert sent and "Pipeline lỗi" in sent[-1]
+
+
 def test_draft_reports_collect_failure(wired, monkeypatch):
     root, _ = wired
 

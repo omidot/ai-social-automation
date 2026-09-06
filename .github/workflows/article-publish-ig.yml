@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: article-publish-ig
+  group: pipeline-state
   cancel-in-progress: false
 jobs:
   publish:
