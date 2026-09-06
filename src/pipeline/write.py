@@ -268,3 +268,88 @@ def write_share(cand: Candidate, voice: dict, generate=_default_generate):
             sources=[{"name": name, "url": cand.url}],
             risk=bool(data.get("risk", False)))
     raise WriteError("unreachable")  # for type-checkers
+
+
+def build_topic_prompt(topic: str, angle: str, voice: dict) -> tuple[str, str]:
+    """System + user prompt for the knowledge-sourced writer.
+
+    No article to work from — the model writes ``topic`` from its own knowledge,
+    same single-person sharing voice and 5-slide arc as ``write_share``.
+    """
+    system = (
+        f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
+        f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
+        f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
+        f"Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. {_ARTICLE_GUARDRAILS} "
+        f"Viết về ĐÚNG chủ đề: \"{topic}\". Góc: {angle}. "
+        "GIỌNG: người chia sẻ hiểu biết, dứt khoát, có chính kiến, xưng \"mình\" "
+        "gọi \"bạn\", câu ngắn. KHÔNG phải bản tin. Trong caption_fb KHÔNG đánh số "
+        "kiểu \"1. 2. 3.\" — viết thành đoạn văn mạch lạc; nếu chủ đề là \"top N\" "
+        "thì vẫn kể liền mạch, mỗi công cụ/bước một đoạn ngắn, KHÔNG dùng đầu mục "
+        "đánh số. "
+        "NỘI DUNG phải CỤ THỂ và DÙNG ĐƯỢC: nêu tên công cụ thật, bước làm thật, "
+        "con số thật mà bạn chắc chắn. Nếu không chắc một chi tiết thì nói chung "
+        "chung thay vì bịa. "
+        "Cấu trúc suy nghĩ: hook → cụ thể là gì → người đọc được gì → cách bắt đầu "
+        "→ chốt. "
+        "caption_fb: 180-320 từ, xuống dòng giữa các ý, KHÔNG chèn URL. "
+        "caption_ig: <=50 từ, cùng tinh thần, KHÔNG chèn URL. "
+        "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
+        "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
+        "cover_title (<=9 từ), "
+        "slides (ĐÚNG 5 object, role lần lượt là hook, what, why, how, close theo "
+        "đúng thứ tự đó; mỗi object {\"role\": <role>, \"headline\": <=8 từ, "
+        "\"body\": <=22 từ — chính là chữ hiển thị trên slide bước đó}), "
+        "risk (bool). Toàn bộ tiếng Việt. "
+        "Nếu bạn không đủ hiểu biết chắc chắn để viết chủ đề này, trả về ĐÚNG JSON "
+        "{\"skip\": true, \"reason\": \"...\"} và không gì khác."
+    )
+    user = f"CHỦ ĐỀ: {topic}\nGÓC: {angle}\n"
+    return system, user
+
+
+def write_topic_post(topic: str, angle: str, voice: dict, generate=_default_generate):
+    """Write a single-topic knowledge-share article (``format="share"``) from the
+    model's own knowledge instead of a source article.
+
+    Same 2-attempt retry-with-``[SỬA]``-nudge loop, same ``{"skip": true}``
+    handling and the same 5-slide validation as ``write_share``. ``sources`` is
+    empty and no ``Nguồn:`` line is appended.
+    """
+    system, user = build_topic_prompt(topic, angle, voice)
+
+    for attempt in (1, 2):
+        log.info("write_topic_post attempt %d", attempt)
+        try:
+            raw = generate(system, user, provider="auto")
+        except LLMError as e:  # backend down — retrying won't help
+            raise WriteError(f"LLM failed: {e}") from e
+        try:
+            data = parse_json_response(raw)
+            if isinstance(data, dict) and data.get("skip"):
+                raise _Decline(
+                    f"chủ đề không viết được: {str(data.get('reason', ''))[:200]}")
+            slides = _validate_share(data)
+        except _Decline:  # a legitimate, machine-readable refusal — do NOT retry
+            raise
+        except (LLMError, WriteError) as e:  # bad model output — retryable
+            if attempt == 2:
+                raise e if isinstance(e, WriteError) else WriteError(f"LLM failed: {e}")
+            log.warning("write_topic_post attempt %d rejected: %s", attempt, e)
+            user = (user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. "
+                    f"Trả lại ĐÚNG JSON với 'slides' là mảng ĐÚNG 5 object theo thứ tự "
+                    f"role: hook, what, why, how, close. Giữ nguyên nội dung, chỉ sửa cấu trúc.")
+            continue
+
+        cap = _strip_urls(data["caption_fb"])
+        cap_ig = _strip_urls(data["caption_ig"])
+
+        from .models import ArticleContent
+        return ArticleContent(
+            format="share", caption_fb=cap, caption_ig=cap_ig,
+            hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
+            cover_title=str(data["cover_title"]).strip(),
+            slides=slides,
+            sources=[],
+            risk=bool(data.get("risk", False)))
+    raise WriteError("unreachable")  # for type-checkers

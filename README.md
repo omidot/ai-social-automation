@@ -1,8 +1,9 @@
 # AI Social Automation — Phase 1
 
-Tự động mỗi ngày: gom tin AI viral → chọn tin nóng nhất → viết bài tiếng Việt →
-tạo 3–4 ảnh → gửi preview Telegram để duyệt → đăng Facebook Page + Instagram.
-Chạy miễn phí trên GitHub Actions.
+Tự động mỗi ngày: chọn một chủ đề AI/năng suất từ ngân hàng chủ đề
+(`config/topics.yaml`) tránh trùng lịch sử → viết bài tiếng Việt từ kiến thức
+model → tạo 5 ảnh slide → gửi preview Telegram để duyệt → đăng Facebook Page +
+Instagram. Chạy miễn phí trên GitHub Actions.
 
 ## Chạy thử offline (không đăng, không gọi API bài đăng)
 
@@ -55,14 +56,23 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
 
 ## Nguồn nội dung
 
-Sửa `config/sources.yaml` (RSS, subreddit, `facebook_pages`).
-Bài Facebook lẻ: dán URL vào `config/facebook_urls.txt`, mỗi dòng một URL.
+Bài morning/evening **không cào tin** nữa. Mỗi lần chạy, pipeline nạp ngân hàng
+chủ đề `config/topics.yaml` (formats × themes + seeds) và danh sách tiêu đề đã
+đăng gần đây (`data/daily/*.json`, cửa sổ `recent_window_days`), rồi gọi LLM một
+lần để chọn **một chủ đề cụ thể, không trùng lịch sử**. Bài được viết từ kiến
+thức sẵn có của model (`write.write_topic_post`), không có `Nguồn:`. Chỉnh chủ đề
+bằng cách sửa `config/topics.yaml`.
+
+`config/sources.yaml` (RSS, subreddit) và `collect`/`score` vẫn còn trong repo và
+vẫn được test, nhưng không nằm trên đường dựng bản nháp nữa.
 
 ## Lịch chạy
 
-- `article-morning`: 07:00 ICT (`cron '0 0 * * *'`) → dựng bản nháp bài #1 →
+- `article-morning`: 07:00 ICT (`cron '0 0 * * *'`) → chọn chủ đề từ
+  `config/topics.yaml` + lịch sử gần đây → viết bài #1 từ kiến thức model →
   gửi preview Telegram.
-- `article-evening`: 17:00 ICT (`cron '0 10 * * *'`) → dựng bản nháp bài #2.
+- `article-evening`: 17:00 ICT (`cron '0 10 * * *'`) → như trên cho bài #2
+  (tránh trùng chủ đề bài sáng).
 - `article-approve`: mỗi 10 phút (`cron '*/10 * * * *'`) → xử lý nút Telegram
   Đăng ngay / Lên lịch / Bỏ.
 - `article-publish-ig`: poll trong khung giờ đăng
@@ -107,7 +117,8 @@ F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm f
 
 ## Kiến trúc
 
-`src/pipeline/`: `collect → score → write → images`, cộng `llm`
+`src/pipeline/`: `topics → write → images` (đường dựng bản nháp hiện tại;
+`collect → score` vẫn còn nhưng đã tách khỏi đường này), cộng `llm`
 (Claude CLI → Gemini fallback), `telegram`, `meta`, `daily_state`, `state`,
 `models`. Ba entrypoint:
 - `article_run --slot <morning|evening>` — dựng bản nháp cho slot, gửi preview.

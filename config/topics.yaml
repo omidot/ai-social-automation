@@ -1,0 +1,45 @@
+# Dạng bài — khung bài viết
+formats:
+  - "Top {n} công cụ AI để {viec}"
+  - "Cách dùng AI để {viec} (từng bước)"
+  - "{n} sai lầm khi dùng AI trong {linh_vuc}"
+  - "AI giờ làm được {viec} — thứ trước đây phải thuê người"
+  - "{n} prompt giúp bạn {viec} nhanh hơn"
+  - "Người làm {nghe} nên dùng AI thế nào"
+  - "So sánh nhanh: các công cụ AI cho {viec}"
+  - "Thứ AI vẫn chưa làm được trong {linh_vuc} (và vì sao quan trọng)"
+  - "Quy trình {n} bước dùng AI để {viec}"
+  - "Dùng AI {viec} mà không cần biết kỹ thuật"
+
+# Lĩnh vực / công việc để ghép vào dạng bài
+themes:
+  - "dựng video ngắn"
+  - "viết content mạng xã hội"
+  - "thiết kế ảnh, thumbnail"
+  - "lồng tiếng, tạo giọng đọc"
+  - "tự động hoá công việc lặp lại"
+  - "bán hàng online, chăm khách"
+  - "nghiên cứu, tóm tắt tài liệu"
+  - "học ngoại ngữ"
+  - "lập trình / no-code"
+  - "quản lý thời gian, năng suất cá nhân"
+  - "làm khoá học, sản phẩm số"
+  - "phân tích số liệu, báo cáo"
+  - "SEO và nội dung website"
+  - "dựng landing page, website bán hàng"
+  - "sáng tạo ý tưởng nội dung"
+
+# Chủ đề cụ thể gợi sẵn (LLM có thể chọn hoặc tự nghĩ chủ đề mới)
+seeds:
+  - "5 công cụ AI dựng video ngắn từ một đoạn ghi âm"
+  - "Cách dùng AI viết 30 bài đăng mạng xã hội trong một buổi"
+  - "4 sai lầm khiến nội dung AI viết ra đọc như máy"
+  - "Quy trình 5 bước dùng AI làm khoá học online một mình"
+  - "3 prompt giúp bạn tóm tắt tài liệu dài trong 2 phút"
+  - "AI giờ lồng tiếng được giọng của chính bạn — dùng thế nào"
+  - "Người bán hàng online nên dùng AI vào 4 việc này"
+  - "Cách dùng AI dựng landing page bán hàng không cần biết code"
+  - "Thứ AI vẫn chưa làm được khi viết content (và vì sao bạn vẫn cần)"
+  - "6 công cụ AI miễn phí đáng dùng cho người mới"
+
+recent_window_days: 45

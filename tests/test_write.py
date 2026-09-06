@@ -182,3 +182,39 @@ def test_write_share_appends_source_when_absent():
     data["caption_fb"] = "Một đoạn chia sẻ không có dòng nguồn. Bạn thấy sao?"
     art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
     assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog")
+
+
+# --- knowledge-sourced topic writer ------------------------------------
+
+def _topic_payload() -> str:
+    return (FIXTURES / "sample_topic_response.json").read_text(encoding="utf-8")
+
+
+def test_write_topic_post_builds_5_slide_arc():
+    art = write.write_topic_post(
+        "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
+        VOICE, generate=lambda s, u, **k: _topic_payload())
+    assert art.format == "share"
+    assert len(art.slides) == 5
+    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
+    assert all(set(s) == {"role", "headline", "body"} for s in art.slides)
+    # knowledge-sourced: no source, no "Nguồn:" line, no links anywhere
+    assert art.sources == []
+    assert "Nguồn:" not in art.caption_fb
+    assert "http" not in art.caption_fb
+    assert "http" not in art.caption_ig
+
+
+def _topic_bad_shape() -> str:
+    data = json.loads(_topic_payload())
+    data["slides"] = data["slides"][:4]  # 4 slides, not 5
+    return json.dumps(data)
+
+
+def test_write_topic_post_retries_once_on_bad_shape():
+    stub = _ShapeStub(_topic_bad_shape(), _topic_payload())
+    art = write.write_topic_post("chủ đề", "góc", VOICE, generate=stub)
+    assert art.format == "share"
+    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
+    assert len(stub.calls) == 2
+    assert "[SỬA]" in stub.calls[1]

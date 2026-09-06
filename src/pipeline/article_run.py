@@ -5,10 +5,9 @@ from pathlib import Path
 
 import yaml
 
-from . import collect, score, write, images
+from . import write, images, topics
 from .daily_state import DailyState
 from .models import ArticleContent
-from .state import State
 from .telegram import Telegram
 from .llm import generate as _default_generate
 
@@ -39,10 +38,9 @@ def raw_base_url(settings: dict, rel_path: str) -> str:
 
 
 def send_preview(article: ArticleContent, image_paths: list[str], slot: str,
-                 date: str, tg, slot_ict: str, score_val: float) -> None:
+                 date: str, tg, slot_ict: str, topic: str) -> None:
     tg.send_media_group(image_paths)
-    src = ", ".join(s["name"] for s in article.sources)
-    meta = f"{src} · điểm {score_val:.0f}"
+    meta = f"💡 {topic}"
     if article.risk:
         meta += " ⚠️ nhạy cảm"
     body = article.caption_fb  # full caption, no truncation
@@ -66,11 +64,10 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     root = Path(root)
     generate = generate or _default_generate
     tg = tg or Telegram()
-    sources, voice, settings = _configs(root)
+    _, voice, settings = _configs(root)
     acfg = settings["articles"]
     date = now.astimezone(timezone.utc).strftime("%Y-%m-%d")
     ds = DailyState(root / "data")
-    st = State(root / "data")
 
     # Never clobber a slot the operator has already acted on. A same-day re-run
     # of article-morning/evening must leave a scheduled/posted/publishing slot
@@ -83,49 +80,26 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
             "bỏ qua lần chạy này.")
         return {"slot": slot, "status": "skipped"}
 
-    other = ds.get(date, _OTHER[slot]) or {}
-    exclude = [other["title"]] if other.get("title") else []
+    # Pick a topic from the curated bank + recent history — no scraping.
+    topics_cfg = topics.load_topics(root)
+    recent = topics.recent_titles(root, topics_cfg.get("recent_window_days", 45))
+    other = ds.get_safe(date, _OTHER[slot]) or {}
+    if other.get("title"):
+        recent = [other["title"]] + recent
 
     try:
-        cands = collect.collect(sources, settings, st, now)
-    except collect.CollectError as e:
-        tg.send_message(f"⚠️ Gom tin lỗi hết nguồn cho slot {slot}: {e}")
+        spec = topics.propose_topic(topics_cfg, recent, voice, generate)
+    except Exception as e:  # noqa: BLE001 - any proposal failure is non-fatal
+        tg.send_message(f"⚠️ Không đề xuất được chủ đề {slot}: {e}")
         return {"slot": slot, "status": "error"}
 
-    picked = score.pick_n(cands, 4, acfg["min_score"], now,
-                          sources.get("keywords", []), exclude_titles=exclude)
-    if not picked:
-        tg.send_message("Không có tin AI đủ nóng cho slot " + slot + " hôm nay.")
-        return {"slot": slot, "status": "none"}
-
-    # Candidates that actually carry a body to write about go first; ties keep
-    # score order (stable sort).
-    picked = sorted(picked, key=lambda t: not score.has_body(t[1]))
-
-    # Single-topic knowledge-share is the only format now (news round-up retired).
-    # One write_share failure must not kill the run: try the next candidate.
-    top_score = top = article = None
-    last_err = None
-    attempted: list[str] = []
-    for sc, cand in picked:
-        attempted.append(cand.url_hash)
-        try:
-            article = write.write_share(cand, voice, generate=generate)
-        except write.WriteError as e:
-            last_err = e
-            log.warning("candidate rejected (%s): %s", cand.title[:60], e)
-            continue
-        top_score, top = sc, cand
-        break
-
-    if top is None:
-        # Every attempted story is unwritable — mark them all seen so tomorrow's
-        # run doesn't re-pick the same dead ends. Clean, non-crashing outcome.
-        st.seen_add_many(attempted)
+    try:
+        article = write.write_topic_post(
+            spec["topic"], spec.get("angle", ""), voice, generate=generate)
+    except write.WriteError as e:
         tg.send_message(
-            f"⚠️ Không viết được bài {slot} hôm nay — {len(picked)} tin đều bị "
-            f"từ chối. Lỗi cuối: {last_err}")
-        return {"slot": slot, "status": "none"}
+            f"⚠️ Không viết được bài {slot} (chủ đề: {spec['topic']}): {e}")
+        return {"slot": slot, "status": "error"}
 
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
@@ -134,14 +108,13 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 
-    st.seen_add_many(attempted)
     slot_ict = acfg["slots"][slot]
-    ds.put(date, slot, status="draft", format="share", title=top.title,
-           topic_key=_slug(top.title), text_fb=article.caption_fb,
+    ds.put(date, slot, status="draft", format="share", title=spec["topic"],
+           topic_key=_slug(spec["topic"]), text_fb=article.caption_fb,
            text_ig=article.caption_ig, hashtags=article.hashtags,
            images=rel_paths, image_urls=image_urls, risk=article.risk,
-           slot_ict=slot_ict, sources=article.sources, score=round(top_score, 1))
-    send_preview(article, paths, slot, date, tg, slot_ict, top_score)
+           slot_ict=slot_ict, sources=[], angle=spec.get("angle", ""))
+    send_preview(article, paths, slot, date, tg, slot_ict, spec["topic"])
     return ds.get(date, slot)
 
 

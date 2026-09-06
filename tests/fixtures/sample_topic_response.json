@@ -1,0 +1,14 @@
+{
+  "caption_fb": "AI giờ giúp bạn viết xong một tuần nội dung mạng xã hội chỉ trong một buổi, mà vẫn ra giọng của bạn.\n\nMình làm thế này. Mở ChatGPT hoặc Claude, dán vào ba bài cũ mình tự viết để nó bắt được giọng. Rồi đưa mười chủ đề, yêu cầu mỗi chủ đề một bài ngắn theo cấu trúc hook, ý chính, chốt. Có bản nháp, mình đọc lại, cắt chỗ sáo rỗng, thêm ví dụ thật của mình.\n\nThứ này đổi việc ở chỗ: phần nặng nhất không còn là ngồi nghĩ chữ, mà là chọn chủ đề đáng nói và biên tập lại cho có chất người. Bạn ra được nhiều bài hơn mà không kiệt sức.\n\nCách bắt đầu thì nhẹ. Gom năm bài bạn thấy đúng giọng mình nhất, để làm mẫu. Viết ra hai mươi chủ đề khán giả bạn thật sự quan tâm. Cho AI chạy từng cụm năm chủ đề, đừng đòi hoàn hảo ngay.\n\nĐiều mình rút ra: AI không thay bạn nghĩ, nó xoá khoảng trắng trang giấy. Bạn sẽ để nó lo phần nào trước?",
+  "caption_ig": "AI viết xong một tuần content trong một buổi mà vẫn ra giọng bạn. Phần khó chỉ còn là chọn chủ đề và biên tập. Bạn thử chưa?",
+  "hashtags": ["#AI", "#trituenhantao", "#lamnoidung", "#content", "#congcuAI", "#tudonghoa", "#sangtaonoidung", "#mmo", "#ahitofficial", "#AIvietnam"],
+  "cover_title": "Viết một tuần content trong một buổi",
+  "slides": [
+    {"role": "hook", "headline": "Một buổi, một tuần content", "body": "AI giúp bạn viết xong tuần nội dung mạng xã hội mà vẫn ra giọng của bạn."},
+    {"role": "what", "headline": "Nó làm được gì", "body": "Học giọng từ bài cũ, rồi viết bản nháp từng chủ đề theo cấu trúc hook, ý chính, chốt."},
+    {"role": "why", "headline": "Bạn được gì", "body": "Hết cảnh ngồi bí chữ; phần còn lại chỉ là chọn chủ đề và biên tập cho có chất người."},
+    {"role": "how", "headline": "Bắt đầu thế nào", "body": "Gom năm bài đúng giọng làm mẫu, viết hai mươi chủ đề, cho AI chạy từng cụm năm."},
+    {"role": "close", "headline": "Điều đọng lại", "body": "AI không thay bạn nghĩ, nó chỉ xoá khoảng trắng trang giấy."}
+  ],
+  "risk": false
+}
