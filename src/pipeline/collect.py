@@ -3,6 +3,7 @@ import logging, time
 from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
+from urllib.parse import urlparse
 
 import feedparser
 import httpx
@@ -35,6 +36,18 @@ def _extract(url: str) -> tuple[str, str | None]:
     meta = trafilatura.extract_metadata(downloaded)
     image = getattr(meta, "image", None) if meta else None
     return text, image
+
+
+def _is_google_news_url(url: str) -> bool:
+    """Google-News article links (news.google.com/rss/articles/...) are
+    redirect interstitials: trafilatura always fails on them ("discarding
+    data: None"). Skip fulltext extraction for these — their value is the
+    viral/cross-source signal, not a body we could ever fetch here."""
+    try:
+        host = (urlparse(url).hostname or "").lower()
+    except ValueError:
+        return False
+    return host == "news.google.com" or host.endswith(".news.google.com")
 
 
 def _fresh(dt: datetime, now: datetime) -> bool:
@@ -219,7 +232,7 @@ def from_manual(path: Path) -> list[Candidate]:
 
 
 def collect(sources: dict, settings: dict, seen: State, now: datetime,
-            fulltext_top: int = 5) -> list[Candidate]:
+            fulltext_top: int = 8) -> list[Candidate]:
     raised = False
     merged: list[Candidate] = []
     jobs = [
@@ -254,6 +267,9 @@ def collect(sources: dict, settings: dict, seen: State, now: datetime,
 
     for c in result[:fulltext_top]:
         if c.full_text:
+            continue
+        if _is_google_news_url(c.url):
+            log.info("skip fulltext for Google-News interstitial: %s", c.url)
             continue
         try:
             c.full_text, img = _extract(c.url)

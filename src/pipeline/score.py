@@ -1,9 +1,58 @@
 from __future__ import annotations
-import math
+import logging, math, re
 from datetime import datetime
 from difflib import SequenceMatcher
 
 from .models import Candidate
+
+log = logging.getLogger("score")
+
+# Short/ambiguous keyword tokens that must only be honoured when they hit the
+# TITLE — never a bare summary match (they collide with ordinary words and
+# accented names like "Hải"/"Mai" otherwise). Compared case-insensitively
+# against the keyword string itself.
+_STRICT = {"ai", "llm", "gpt"}
+
+
+def _kw_hit(keyword: str, text: str) -> bool:
+    """Word-boundary, case-insensitive, accent-preserving keyword match.
+
+    ``(?<!\\w)…(?!\\w)`` keeps the bare token ``AI`` from matching inside
+    ``Hải``/``OpenAI`` while still matching ``AI`` / ``A.I`` boundaries.
+    """
+    if not keyword or not text:
+        return False
+    return re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", text, re.IGNORECASE) is not None
+
+
+def is_ai_relevant(c: Candidate, keywords: list[str]) -> bool:
+    """True iff at least one keyword matches the candidate's TITLE (word
+    boundary, case-insensitive). Non-strict keywords (e.g. multi-word
+    "trí tuệ nhân tạo") may also match the first ~300 chars of the summary;
+    strict tokens (AI/LLM/GPT) are title-only.
+
+    An empty keyword list means "cannot judge" -> relevant (don't filter).
+    """
+    if not keywords:
+        return True
+    title = c.title or ""
+    summary_head = (c.summary or "")[:300]
+    for k in keywords:
+        if not k:
+            continue
+        if _kw_hit(k, title):
+            return True
+        if k.lower() in _STRICT:
+            continue
+        if _kw_hit(k, summary_head):
+            return True
+    return False
+
+
+def has_body(c: Candidate, min_chars: int = 400) -> bool:
+    """True iff the candidate carries enough prose to actually write about."""
+    return (len((c.full_text or "").strip()) >= min_chars
+            or len((c.summary or "").strip()) >= min_chars)
 
 
 def _recency(c: Candidate, now: datetime) -> float:
@@ -31,8 +80,8 @@ def _cross_source(c: Candidate, cohort: list[Candidate]) -> float:
 def _keyword_fit(c: Candidate, keywords: list[str]) -> float:
     if not keywords:
         return 0.0
-    text = f"{c.title} {c.summary}".lower()
-    hits = sum(1 for k in keywords if k.lower() in text)
+    text = f"{c.title} {c.summary}"
+    hits = sum(1 for k in keywords if _kw_hit(k, text))
     return min(1.0, hits / 3.0) * 10.0
 
 
@@ -63,6 +112,9 @@ def pick_n(cands, n, min_score, now, keywords, exclude_titles=()):
     scored.sort(key=lambda t: t[0], reverse=True)
     picked: list[tuple[float, Candidate]] = []
     for sc, c in scored:
+        if not is_ai_relevant(c, keywords):
+            log.info("skip non-AI: %s", c.title)
+            continue
         if sc < min_score:
             break
         blockers = list(exclude_titles) + [pc.title for _, pc in picked]

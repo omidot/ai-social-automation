@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 from pipeline import collect
 from pipeline import collect as _collect_mod
+from pipeline.models import Candidate
 from pipeline.state import State
 from tests.conftest import FIXTURES
 
@@ -137,6 +138,30 @@ def test_collapse_similar_prefers_real_publisher_over_google_news():
     out = _collapse_similar([a, b])
     assert len(out) == 1
     assert out[0].source == "rss:VnExpress"
+
+
+def test_collect_skips_google_news_fulltext(tmp_path, monkeypatch):
+    now = datetime(2026, 9, 5, 12, 0, tzinfo=timezone.utc)
+    calls: list[str] = []
+    monkeypatch.setattr(collect, "_extract",
+                        lambda url: (calls.append(url) or ("body text here", None)))
+    monkeypatch.setattr(collect, "_collapse_similar", lambda cs: cs)
+    monkeypatch.setattr(collect.time, "sleep", lambda *a, **k: None)
+    gn = Candidate(url="https://news.google.com/rss/articles/CBMi123abc?oc=5",
+                   title="AI story via Google News", source="rss:Google News (AI)",
+                   published_at=now - timedelta(hours=1), summary="s")
+    normal = Candidate(url="https://example.com/ai-story", title="AI story direct",
+                       source="rss:Example", published_at=now - timedelta(hours=2),
+                       summary="s")
+    monkeypatch.setattr(collect, "from_rss", lambda *a, **k: [gn, normal])
+    for name in ("from_google_news", "from_hn", "from_reddit", "from_facebook",
+                 "from_manual"):
+        monkeypatch.setattr(collect, name, lambda *a, **k: [])
+    st = State(tmp_path)
+    sources = {"rss": [], "google_news": {}, "subreddits": [], "facebook_pages": []}
+    result = collect.collect(sources, {}, st, now)
+    assert calls == ["https://example.com/ai-story"]  # google-news URL never extracted
+    assert len(result) == 2                            # but it still survives as a candidate
 
 
 def test_collapse_similar_merges_and_counts():

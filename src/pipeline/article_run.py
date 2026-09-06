@@ -92,15 +92,40 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
         tg.send_message(f"⚠️ Gom tin lỗi hết nguồn cho slot {slot}: {e}")
         return {"slot": slot, "status": "error"}
 
-    picked = score.pick_n(cands, 1, acfg["min_score"], now,
+    picked = score.pick_n(cands, 4, acfg["min_score"], now,
                           sources.get("keywords", []), exclude_titles=exclude)
     if not picked:
         tg.send_message("Không có tin AI đủ nóng cho slot " + slot + " hôm nay.")
         return {"slot": slot, "status": "none"}
 
+    # Candidates that actually carry a body to write about go first; ties keep
+    # score order (stable sort).
+    picked = sorted(picked, key=lambda t: not score.has_body(t[1]))
+
     # Single-topic knowledge-share is the only format now (news round-up retired).
-    top_score, top = picked[0]
-    article = write.write_share(top, voice, generate=generate)
+    # One write_share failure must not kill the run: try the next candidate.
+    top_score = top = article = None
+    last_err = None
+    attempted: list[str] = []
+    for sc, cand in picked:
+        attempted.append(cand.url_hash)
+        try:
+            article = write.write_share(cand, voice, generate=generate)
+        except write.WriteError as e:
+            last_err = e
+            log.warning("candidate rejected (%s): %s", cand.title[:60], e)
+            continue
+        top_score, top = sc, cand
+        break
+
+    if top is None:
+        # Every attempted story is unwritable — mark them all seen so tomorrow's
+        # run doesn't re-pick the same dead ends. Clean, non-crashing outcome.
+        st.seen_add_many(attempted)
+        tg.send_message(
+            f"⚠️ Không viết được bài {slot} hôm nay — {len(picked)} tin đều bị "
+            f"từ chối. Lỗi cuối: {last_err}")
+        return {"slot": slot, "status": "none"}
 
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
@@ -109,7 +134,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 
-    st.seen_add_many([top.url_hash])
+    st.seen_add_many(attempted)
     slot_ict = acfg["slots"][slot]
     ds.put(date, slot, status="draft", format="share", title=top.title,
            topic_key=_slug(top.title), text_fb=article.caption_fb,

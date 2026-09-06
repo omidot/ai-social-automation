@@ -164,6 +164,19 @@ def test_write_share_missing_key_raises():
         write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
 
 
+def test_write_share_honours_skip_signal():
+    calls = []
+
+    def gen(s, u, **k):
+        calls.append(u)
+        return json.dumps({"skip": True, "reason": "không liên quan AI"})
+
+    with pytest.raises(write.WriteError) as ei:
+        write.write_share(_cand(), VOICE, generate=gen)
+    assert "không phù hợp" in str(ei.value)
+    assert len(calls) == 1  # a legitimate decline is NOT nudge-retried
+
+
 def test_write_share_appends_source_when_absent():
     data = json.loads(_share_payload())
     data["caption_fb"] = "Một đoạn chia sẻ không có dòng nguồn. Bạn thấy sao?"

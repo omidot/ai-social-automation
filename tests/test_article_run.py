@@ -17,7 +17,7 @@ class FakeTG:
 @pytest.fixture
 def wired(tmp_path, monkeypatch):
     (tmp_path / "config").mkdir()
-    (tmp_path / "config" / "sources.yaml").write_text("google_news: {queries: [], langs: []}\nkeywords: [AI]\n", encoding="utf-8")
+    (tmp_path / "config" / "sources.yaml").write_text("google_news: {queries: [], langs: []}\nkeywords: [AI, GPT, OpenAI]\n", encoding="utf-8")
     (tmp_path / "config" / "voice.yaml").write_text(
         "xung_ho: {nguoi_noi: mình, nguoi_nghe: bạn}\ngiong: vui\ncam_ky: []\nten_kenh: A Hít\n", encoding="utf-8")
     (tmp_path / "config" / "settings.yaml").write_text(
@@ -130,6 +130,61 @@ def test_draft_uses_single_topic_share_writer(wired, monkeypatch):
     # meta line no longer carries a [format] prefix
     meta = tg.msgs[-1][0]
     assert "[share]" not in meta and "điểm 50" in meta
+
+
+def _cand2():
+    return Candidate(url="https://o/y", title="Anthropic ships Claude 5",
+                     source="rss:Anthropic",
+                     published_at=datetime(2026, 9, 6, 6, tzinfo=timezone.utc),
+                     summary="also big", full_text="also big news",
+                     raw_score_hint=880, source_count=2)
+
+
+def _good_art(name="Anthropic", url="https://o/y"):
+    roles = ["hook", "what", "why", "how", "close"]
+    return ArticleContent(format="share", caption_fb="body\n\nCTA", caption_ig="ig",
+                          hashtags=["#AI"], cover_title="C",
+                          slides=[{"role": r, "headline": f"h{r}", "body": f"b{r}"}
+                                  for r in roles],
+                          sources=[{"name": name, "url": url}])
+
+
+def test_draft_falls_through_to_next_candidate(wired, monkeypatch):
+    root, cand = wired
+    cand2 = _cand2()
+    monkeypatch.setattr(article_run.score, "pick_n",
+                        lambda *a, **k: [(50.0, cand), (48.0, cand2)])
+
+    def flaky_share(c, *a, **k):
+        if c is cand:
+            raise article_run.write.WriteError("nguồn không phù hợp: không liên quan AI")
+        return _good_art()
+
+    monkeypatch.setattr(article_run.write, "write_share", flaky_share)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)
+    assert out["status"] == "draft"
+    ds = DailyState(root / "data")
+    # the SECOND candidate is the one that got written up
+    assert ds.get("2026-09-06", "morning")["title"] == "Anthropic ships Claude 5"
+
+
+def test_draft_reports_when_all_candidates_rejected(wired, monkeypatch):
+    root, cand = wired
+    cand2 = _cand2()
+    monkeypatch.setattr(article_run.score, "pick_n",
+                        lambda *a, **k: [(50.0, cand), (48.0, cand2)])
+
+    def always_reject(c, *a, **k):
+        raise article_run.write.WriteError("nguồn không phù hợp: x")
+
+    monkeypatch.setattr(article_run.write, "write_share", always_reject)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)  # must NOT raise
+    assert out == {"slot": "morning", "status": "none"}
+    assert tg.msgs and "đều bị từ chối" in tg.msgs[-1][0]
 
 
 def test_main_notifies_on_draft_failure(monkeypatch):

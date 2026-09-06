@@ -13,6 +13,14 @@ class WriteError(Exception):
     pass
 
 
+class _Decline(WriteError):
+    """The model was explicitly told it *may* refuse a source that isn't about
+    AI / lacks facts, by returning ``{"skip": true, "reason": "..."}``. That is
+    a legitimate machine-readable signal, not a formatting slip — so it must
+    NOT consume a nudge-retry. Subclasses ``WriteError`` so callers that catch
+    ``WriteError`` (article_run's fall-through loop) still handle it."""
+
+
 _URL_RE = re.compile(r"https?://\S+")
 
 
@@ -162,7 +170,9 @@ def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
         "slides (ĐÚNG 5 object, role lần lượt là hook, what, why, how, close theo "
         "đúng thứ tự đó; mỗi object {\"role\": <role>, \"headline\": <=8 từ, "
         "\"body\": <=22 từ — chính là chữ hiển thị trên slide bước đó}), "
-        "risk (bool). Toàn bộ tiếng Việt."
+        "risk (bool). Toàn bộ tiếng Việt. "
+        "Nếu bài nguồn KHÔNG nói về AI hoặc không đủ dữ kiện để viết, trả về "
+        "ĐÚNG JSON {\"skip\": true, \"reason\": \"...\"} và không gì khác."
     )
     article = (cand.full_text or cand.summary or cand.title)[:6000]
     user = (
@@ -227,7 +237,12 @@ def write_share(cand: Candidate, voice: dict, generate=_default_generate):
             raise WriteError(f"LLM failed: {e}") from e
         try:
             data = parse_json_response(raw)
+            if isinstance(data, dict) and data.get("skip"):
+                raise _Decline(
+                    f"nguồn không phù hợp: {str(data.get('reason', ''))[:200]}")
             slides = _validate_share(data)
+        except _Decline:  # a legitimate, machine-readable refusal — do NOT retry
+            raise
         except (LLMError, WriteError) as e:  # bad model output — retryable
             if attempt == 2:
                 raise e if isinstance(e, WriteError) else WriteError(f"LLM failed: {e}")
