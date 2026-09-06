@@ -1,5 +1,5 @@
 from __future__ import annotations
-import argparse, logging, re, unicodedata
+import argparse, logging, os, re, unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -108,6 +108,16 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     return ds.get(date, slot)
 
 
+class _NoopTelegram:
+    """Stand-in used for offline smoke runs when no bot token is configured."""
+
+    def send_message(self, *a, **k) -> None:
+        pass
+
+    def send_media_group(self, *a, **k) -> None:
+        pass
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slot", choices=("morning", "evening"), required=True)
@@ -116,7 +126,18 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     gen = None
     if args.fake_llm:
-        from .run import _fake_generate as gen  # reuse the existing canned generator
+        from .llm import _fake_generate as gen  # reuse the existing canned generator
+    # Offline smoke: with no bot token there is nowhere to send a preview, so
+    # swap in a no-op Telegram stand-in and only exercise the pipeline wiring.
+    dry = not os.environ.get("TELEGRAM_BOT_TOKEN")
+    if dry:
+        try:
+            draft(args.slot, Path(args.root), datetime.now(timezone.utc),
+                  generate=gen, tg=_NoopTelegram())
+        except (collect.CollectError, write.WriteError) as e:
+            log.warning("offline smoke: pipeline raised %s: %s", type(e).__name__, e)
+        print("SUMMARY: dry")
+        return 0
     out = draft(args.slot, Path(args.root), datetime.now(timezone.utc), generate=gen)
     print("SUMMARY:", out.get("status"), out.get("slot", args.slot))
     return 0

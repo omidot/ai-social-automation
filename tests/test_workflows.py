@@ -6,7 +6,7 @@ WF = Path(__file__).resolve().parents[1] / ".github/workflows"
 
 def test_all_workflows_valid_yaml():
     for name in ("article-morning.yml", "article-evening.yml", "article-approve.yml",
-                 "article-publish-ig.yml", "refresh-token.yml"):
+                 "article-publish-ig.yml", "refresh-token.yml", "article-test.yml"):
         data = yaml.safe_load((WF / name).read_text(encoding="utf-8"))
         assert True in data or "on" in data
         assert data["jobs"]

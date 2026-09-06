@@ -10,18 +10,18 @@ Chạy miễn phí trên GitHub Actions.
 python -m pip install -r requirements.txt
 python -m pip install -e .
 python -m playwright install chromium
-python -m pipeline.run --dry-run --local --fake-llm   # không cần key nào
+python -m pipeline.article_run --slot morning --root . --fake-llm   # không cần key nào
 ```
 
 Bỏ `--fake-llm` khi đã đặt `CLAUDE_CODE_OAUTH_TOKEN` hoặc `GEMINI_API_KEY`
 để xem nội dung thật do LLM viết.
 
-Kết quả nằm ở `output/<ngày>/<id>/`: `caption_fb.txt`, `caption_ig.txt`,
-`youtube.txt`, `tiktok.txt`, `meta.json`, và `img/`.
+Kết quả nằm ở `data/daily/<ngày>.json` (bản nháp cho slot) và ảnh ở
+`assets/posts/<ngày>/<slot>/`.
 
-> `--local` đọc `tests/fixtures/local_candidates.json` thay cho việc gọi mạng
-> thu thập tin. `--dry-run` không gửi Telegram và không đăng. `--fake-llm`
-> dùng nội dung mẫu có sẵn thay cho gọi LLM (kiểm tra luồng khi chưa có key).
+> `--fake-llm` dùng nội dung mẫu có sẵn thay cho gọi LLM (kiểm tra luồng khi
+> chưa có key). Khi chưa đặt `TELEGRAM_BOT_TOKEN`, lệnh chạy ở chế độ smoke
+> ngoại tuyến: không gửi Telegram, in `SUMMARY: dry`.
 
 ## Secrets cần đặt (GitHub → Settings → Secrets and variables → Actions)
 
