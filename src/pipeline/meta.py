@@ -84,7 +84,7 @@ class Meta:
         return self._post(f"{BASE}/{self.ig_id}/media_publish",
                           data={"creation_id": creation_id, "access_token": self.token})
 
-    def ig_publish_images(self, image_urls, caption):
+    def ig_publish_images(self, image_urls: list[str], caption: str) -> dict:
         if len(image_urls) == 1:
             res = self._post(f"{BASE}/{self.ig_id}/media",
                              data={"image_url": image_urls[0], "caption": caption,
