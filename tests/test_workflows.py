@@ -31,7 +31,7 @@ def test_approve_and_ig_crons_and_modules():
     a = (WF / "article-approve.yml").read_text(encoding="utf-8")
     g = (WF / "article-publish-ig.yml").read_text(encoding="utf-8")
     assert "python -m pipeline.article_approve" in a
-    assert "*/10 * * * *" in a
+    assert "*/5 * * * *" in a
     assert "playwright install" not in a
     assert "python -m pipeline.article_publish_ig" in g
     assert "0,15,30,45 4,5,12,13 * * *" in g

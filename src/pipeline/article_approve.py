@@ -51,8 +51,12 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
         return None
     _, date, slot_name, action = parts
     slot = ds.get_safe(date, slot_name)
+    log.info("callback %s -> slot status=%s", cbq.get("data"), (slot or {}).get("status"))
     if slot is None:
         _ack(tg, cbq["id"], "Không tìm thấy bài này (state chưa đồng bộ), thử lại sau.")
+        tg.send_message(
+            f"⚠️ Không tìm thấy bài {date}:{slot_name} (state chưa đồng bộ giữa "
+            "các lần chạy). Thử chạy lại article-approve sau 1–2 phút.")
         return None
     if slot.get("status") not in ACTIONABLE:
         _ack(tg, cbq["id"], "Bài này đã xử lý.")
@@ -72,6 +76,8 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
                 ig = {"ok": False, "error": str(e)}
             ds.put(date, slot_name, result={"fb": fb, "ig": ig})
             ds.set_status(date, slot_name, "posted")
+            log.info("published %s: fb=%s ig=%s", f"{date}:{slot_name}",
+                     fb.get("id"), ig.get("media_id"))
             _ack(tg, cbq["id"], "Đang đăng…")
             tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
             tg.send_message(f"✅ Đã đăng {date}:{slot_name}: {fb['url']}{tail}")
@@ -89,6 +95,7 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
                        ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
                        result={"fb": fb, "ig": None})
                 ds.set_status(date, slot_name, "scheduled")
+                log.info("scheduled %s for %s", f"{date}:{slot_name}", slot["slot_ict"])
                 _ack(tg, cbq["id"], "Đã lên lịch.")
                 tg.send_message(f"🕓 Đã lên lịch {date}:{slot_name}, đăng lúc {slot['slot_ict']}.")
                 return f"scheduled:{date}:{slot_name}"
@@ -165,6 +172,7 @@ def poll(root: Path, now: datetime | None = None) -> dict:
     meta = _meta()
     offset = st.offset_load()
     updates = tg.get_updates(offset=offset)
+    log.info("poll: offset=%s, got %d updates", offset, len(updates))
     handled, max_uid = [], offset - 1
     for up in updates:
         try:
@@ -178,7 +186,9 @@ def poll(root: Path, now: datetime | None = None) -> dict:
             log.exception("update %s failed: %s", up.get("update_id"), e)
     if updates:
         st.offset_save(max_uid + 1)
-    return {"handled": handled, "expired": expire_stale(ds, tg, now)}
+    expired = expire_stale(ds, tg, now)
+    log.info("poll: handled=%s expired=%s new_offset=%s", handled, expired, max_uid + 1)
+    return {"handled": handled, "expired": expired}
 
 
 def main() -> None:

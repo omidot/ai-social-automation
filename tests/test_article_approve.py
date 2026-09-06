@@ -100,6 +100,9 @@ def test_missing_slot_reports_desync(tmp_path):
     res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
     assert res is None
     assert tg.acks == ["Không tìm thấy bài này (state chưa đồng bộ), thử lại sau."]
+    # the ack toast is easy to miss: a real chat message must fire too
+    assert any("không tìm thấy" in m.lower() and "state chưa đồng bộ" in m
+               for m in tg.msgs)
     assert meta.scheduled is None and meta.ig is None
 
 

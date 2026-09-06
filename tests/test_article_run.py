@@ -155,6 +155,27 @@ def test_main_notifies_on_draft_failure(monkeypatch):
     assert sent and "Pipeline lỗi" in sent[-1]
 
 
+def test_draft_skips_committed_slot(wired, monkeypatch):
+    root, _ = wired
+    ds = DailyState(root / "data")
+    ds.put("2026-09-06", "morning", status="scheduled", title="already committed")
+
+    def boom(*a, **k):
+        raise AssertionError("must not run when the slot is already committed")
+
+    monkeypatch.setattr(article_run.collect, "collect", boom)
+    monkeypatch.setattr(article_run.write, "write_deep", boom)
+    monkeypatch.setattr(article_run.write, "write_roundup", boom)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)
+    assert out == {"slot": "morning", "status": "skipped"}
+    assert tg.msgs and "bỏ qua" in tg.msgs[-1][0]
+    assert "scheduled" in tg.msgs[-1][0]
+    # the committed slot is left exactly as it was
+    assert ds.get("2026-09-06", "morning")["status"] == "scheduled"
+
+
 def test_draft_reports_collect_failure(wired, monkeypatch):
     root, _ = wired
 

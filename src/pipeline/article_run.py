@@ -72,6 +72,17 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     ds = DailyState(root / "data")
     st = State(root / "data")
 
+    # Never clobber a slot the operator has already acted on. A same-day re-run
+    # of article-morning/evening must leave a scheduled/posted/publishing slot
+    # untouched (it used to silently overwrite it back to "draft"). Re-drafting
+    # over an un-acted preview (draft/discarded/expired/error/none/absent) is fine.
+    existing = ds.get_safe(date, slot)
+    if existing and existing.get("status") in {"scheduled", "posted", "publishing"}:
+        tg.send_message(
+            f"⏭️ Bài {slot} hôm nay đã ở trạng thái '{existing['status']}', "
+            "bỏ qua lần chạy này.")
+        return {"slot": slot, "status": "skipped"}
+
     other = ds.get(date, _OTHER[slot]) or {}
     exclude = [other["title"]] if other.get("title") else []
 
