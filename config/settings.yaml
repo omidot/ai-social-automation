@@ -10,9 +10,6 @@ articles:
     morning: "11:30"
     evening: "19:45"
   min_score: 45
-  format_deep_margin: 12
-  roundup_min: 3
-  roundup_max: 5
 images:
   size: "1080x1350"
   raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"
@@ -23,11 +20,16 @@ images:
     ink: "#111111"
     muted: "#6B6B6B"
     handle: "A Hít Official"
-    kicker_deep: "AI HÔM NAY"
-    kicker_roundup: "ĐIỂM TIN AI"
     watermark: "#E9E7E2"
     highlight: "#DBE7FF"
     tile_icon: "#1F2937"
+    progress_on: "#1D4ED8"
+    progress_off: "#D9D7D2"
+    role_labels:
+      what: "AI LÀM ĐƯỢC GÌ"
+      why: "BẠN ĐƯỢC GÌ"
+      how: "CÁCH BẮT ĐẦU"
+      close: "CHỐT LẠI"
 
 video:
   enabled: false

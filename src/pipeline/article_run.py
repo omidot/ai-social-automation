@@ -42,7 +42,7 @@ def send_preview(article: ArticleContent, image_paths: list[str], slot: str,
                  date: str, tg, slot_ict: str, score_val: float) -> None:
     tg.send_media_group(image_paths)
     src = ", ".join(s["name"] for s in article.sources)
-    meta = f"[{article.format}] {src} · điểm {score_val:.0f}"
+    meta = f"{src} · điểm {score_val:.0f}"
     if article.risk:
         meta += " ⚠️ nhạy cảm"
     body = article.caption_fb  # full caption, no truncation
@@ -92,23 +92,15 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
         tg.send_message(f"⚠️ Gom tin lỗi hết nguồn cho slot {slot}: {e}")
         return {"slot": slot, "status": "error"}
 
-    picked = score.pick_n(cands, acfg["roundup_max"], acfg["min_score"], now,
+    picked = score.pick_n(cands, 1, acfg["min_score"], now,
                           sources.get("keywords", []), exclude_titles=exclude)
     if not picked:
         tg.send_message("Không có tin AI đủ nóng cho slot " + slot + " hôm nay.")
         return {"slot": slot, "status": "none"}
 
-    fmt = write.decide_format(picked, acfg["format_deep_margin"])
+    # Single-topic knowledge-share is the only format now (news round-up retired).
     top_score, top = picked[0]
-    if fmt == "deep":
-        article = write.write_deep(top, voice, generate=generate)
-        chosen = [top]
-    else:
-        # picked[:n] can never exceed len(picked), so no lower clamp is needed here;
-        # acfg["roundup_min"] is currently unused tuning config, kept for future.
-        n = min(len(picked), acfg["roundup_max"])
-        chosen = [c for _, c in picked[:n]]
-        article = write.write_roundup(chosen, voice, generate=generate)
+    article = write.write_share(top, voice, generate=generate)
 
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
@@ -117,9 +109,9 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 
-    st.seen_add_many([c.url_hash for c in chosen])
+    st.seen_add_many([top.url_hash])
     slot_ict = acfg["slots"][slot]
-    ds.put(date, slot, status="draft", format=fmt, title=top.title,
+    ds.put(date, slot, status="draft", format="share", title=top.title,
            topic_key=_slug(top.title), text_fb=article.caption_fb,
            text_ig=article.caption_ig, hashtags=article.hashtags,
            images=rel_paths, image_urls=image_urls, risk=article.risk,
@@ -169,7 +161,7 @@ def main(argv: list[str] | None = None) -> int:
     tg = _NoopTelegram() if no_tg else None
     if args.fake_llm:
         # --fake-llm smoke only: the canned generator predates the article-track
-        # writer schema, so write_roundup/write_deep can legitimately raise
+        # writer schema, so write_share can legitimately raise
         # WriteError. Swallow it here so the smoke proves the wiring without a
         # traceback. A real-LLM run never reaches this branch, so a genuine
         # write.WriteError from the live LLM stays loud.

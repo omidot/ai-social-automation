@@ -100,19 +100,16 @@ def write_post(cand: Candidate, voice: dict, generate=_default_generate) -> Post
     )
 
 
-def decide_format(scored, margin):
-    if len(scored) <= 1:
-        return "deep"
-    return "deep" if (scored[0][0] - scored[1][0]) >= margin else "roundup"
-
-
 _ARTICLE_GUARDRAILS = (
     "Không xuyên tạc lịch sử, không bịa số liệu, không nội dung vi phạm pháp luật, "
     "phỉ báng, hay chính trị nhạy cảm. Nếu bài chạm vùng nhạy cảm, đặt \"risk\": true."
 )
-_DEEP_KEYS = ("caption_fb", "caption_ig", "hashtags", "cover_title", "slides")
 
-# Iman-Gadzhi-style voice, described in Vietnamese. Shared by both article prompts.
+# roles every `slides` payload must carry, in this exact order
+SLIDE_ROLES = ("hook", "what", "why", "how", "close")
+_SHARE_KEYS = ("caption_fb", "caption_ig", "hashtags", "cover_title", "slides")
+
+# Iman-Gadzhi-style voice, described in Vietnamese.
 _IMAN_VOICE = (
     "GIỌNG VĂN (bắt buộc): Câu ngắn, dứt khoát. Nhịp mạnh. Ít từ thừa, cắt sạch chữ đệm. "
     "Có chính kiến rõ: dám nói \"đa số mọi người hiểu sai chỗ này\", "
@@ -128,108 +125,98 @@ _IMAN_VOICE = (
 )
 
 
-def build_deep_prompt(cand, voice):
+def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
+    """System + user prompt for the single-topic knowledge-share writer.
+
+    The piece is ONE person sharing ONE thing AI can now do — not a reporter,
+    not a numbered news round-up.
+    """
     system = (
         f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
         f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. {_ARTICLE_GUARDRAILS} "
         f"{_IMAN_VOICE} "
-        "Viết bài CHUYÊN SÂU rút ra từ MỘT tin. KHÔNG phải bản tin. "
-        "Mỗi đoạn = một bài học/nguyên tắc, nói rõ nó thay đổi cái gì với người đọc. "
-        "CHỈ trả về JSON với khoá: "
-        "caption_fb (200-350 từ, xuống dòng, kết bằng câu chốt sắc + câu hỏi tranh luận), "
-        "caption_ig (<=60 từ), hashtags (8-15 chuỗi #), "
-        "cover_title (4-10 từ tiếng Việt, mạnh, không PR), "
-        "slides (MẢNG 2-3 thẻ, mỗi thẻ là object {\"headline\": <=8 từ tiếng Việt, "
-        "\"sub\": <=16 từ, là bài học/ý chốt của thẻ đó}), risk (bool)."
+        "NHIỆM VỤ: viết về ĐÚNG MỘT thứ mà AI giờ làm được, như một người đang "
+        "chia sẻ điều mình thật sự hiểu — KHÔNG phải phóng viên, KHÔNG phải một "
+        "bản tin, KHÔNG viết \"tuần này có các tin...\", KHÔNG đánh số danh sách tin. "
+        "Sắp mạch suy nghĩ theo 5 bước: "
+        "1) HOOK — một câu tuyên bố mạnh kiểu \"AI giờ làm được X\" hoặc một sự "
+        "thật khiến người đọc dừng lại. "
+        "2) CỤ THỂ LÀ GÌ — AI làm được điều đó như thế nào, ví dụ thật, dễ hình dung. "
+        "3) NGƯỜI ĐỌC ĐƯỢC GÌ — nó giúp BẠN việc gì: tiết kiệm thời gian/tiền, "
+        "làm được thứ trước đây không làm được, thay đổi cách làm việc. "
+        "4) CÁCH BẮT ĐẦU — bạn tự dùng thế nào, công cụ nào, bước đầu tiên. "
+        "5) CHỐT — một câu đọng lại + một câu hỏi mời bình luận. "
+        "caption_fb: 180-320 từ, VIẾT THÀNH ĐOẠN VĂN MẠCH LẠC (xuống dòng giữa các "
+        "ý), TUYỆT ĐỐI KHÔNG đánh số \"1. 2. 3.\", không phải danh sách tin. Giọng "
+        "dứt khoát, chia sẻ, \"mình\"/\"bạn\", có chính kiến, không PR sáo rỗng, "
+        "không hàn lâm. KHÔNG chèn URL. Kết bằng một câu hỏi. "
+        "caption_ig: <=50 từ, cùng tinh thần. "
+        "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
+        "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
+        "cover_title (<=9 từ, chính là câu hook rút gọn), "
+        "slides (ĐÚNG 5 object, role lần lượt là hook, what, why, how, close theo "
+        "đúng thứ tự đó; mỗi object {\"role\": <role>, \"headline\": <=8 từ, "
+        "\"body\": <=22 từ — chính là chữ hiển thị trên slide bước đó}), "
+        "risk (bool). Toàn bộ tiếng Việt."
     )
     article = (cand.full_text or cand.summary or cand.title)[:6000]
-    user = f"TIÊU ĐỀ: {cand.title}\nNGUỒN: {cand.source}\nURL: {cand.url}\n\n{article}\n"
+    user = (
+        f"TIÊU ĐỀ: {cand.title}\n"
+        f"NGUỒN: {cand.source}\n"
+        f"URL: {cand.url}\n\n"
+        f"NỘI DUNG BÀI GỐC:\n{article}\n"
+    )
     return system, user
 
 
-def _clean_slides(raw) -> list[dict]:
-    """Coerce the LLM's `slides` payload into [{"headline": str, "sub": str}, ...],
-    dropping any entry without a headline."""
-    out: list[dict] = []
-    for s in raw or []:
-        if not isinstance(s, dict):
-            continue
-        headline = str(s.get("headline", "")).strip()
-        sub = str(s.get("sub", "")).strip()
-        if headline:
-            out.append({"headline": headline, "sub": sub})
-    return out
-
-
-def write_deep(cand, voice, generate=_default_generate):
+def write_share(cand: Candidate, voice: dict, generate=_default_generate):
+    """Turn one candidate into a single-topic knowledge-share article
+    (``format="share"``) with a 5-slide hook/what/why/how/close arc."""
     try:
-        data = parse_json_response(generate(*build_deep_prompt(cand, voice), provider="auto"))
+        data = parse_json_response(
+            generate(*build_share_prompt(cand, voice), provider="auto"))
     except LLMError as e:
         raise WriteError(f"LLM failed: {e}") from e
-    missing = [k for k in _DEEP_KEYS if k not in data or data[k] in (None, "", [])]
+
+    missing = [k for k in _SHARE_KEYS if k not in data or data[k] in (None, "", [])]
     if missing:
-        raise WriteError(f"deep response missing keys: {missing}")
+        raise WriteError(f"share response missing keys: {missing}")
+    if not isinstance(data["hashtags"], list):
+        raise WriteError("hashtags must be a list")
+
+    raw_slides = data["slides"]
+    if not isinstance(raw_slides, list) or len(raw_slides) != 5:
+        got = len(raw_slides) if isinstance(raw_slides, list) else type(raw_slides).__name__
+        raise WriteError(f"share needs exactly 5 slides, got {got}")
+    slides: list[dict] = []
+    for i, s in enumerate(raw_slides):
+        if not isinstance(s, dict):
+            raise WriteError(f"slide {i} is not an object")
+        role = str(s.get("role", "")).strip().lower()
+        if role != SLIDE_ROLES[i]:
+            raise WriteError(
+                f"slide {i} role {role!r} != expected {SLIDE_ROLES[i]!r} "
+                f"(order must be {list(SLIDE_ROLES)})")
+        slides.append({
+            "role": role,
+            "headline": _strip_urls(str(s.get("headline", "")).strip()),
+            "body": _strip_urls(str(s.get("body", "")).strip()),
+        })
+
     name = _source_name(cand)
     line = f"Nguồn: {name}"
     cap = _strip_urls(data["caption_fb"])
     if line not in cap:
         cap = f"{cap}\n\n{line}"
     cap_ig = _strip_urls(data["caption_ig"])
-    slides = _clean_slides(data["slides"])[:3]
-    if len(slides) < 2:
-        raise WriteError(f"deep slides too few: {len(slides)}")
+
     from .models import ArticleContent
     return ArticleContent(
-        format="deep", caption_fb=cap, caption_ig=cap_ig,
+        format="share", caption_fb=cap, caption_ig=cap_ig,
         hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
-        cover_title=data["cover_title"].strip().upper(),
-        cover_brief=str(data.get("cover_brief", "")).strip(), slides=slides,
-        sources=[{"name": name, "url": cand.url}], risk=bool(data.get("risk", False)))
-
-
-def build_roundup_prompt(cands, voice):
-    items = "\n\n".join(
-        f"[{i+1}] {c.title}\nNGUỒN: {_source_name(c)} (tham khảo, ĐỪNG chép link: {c.url})\n"
-        f"{(c.full_text or c.summary or '')[:1500]}"
-        for i, c in enumerate(cands))
-    system = (
-        f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
-        f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
-        f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". {_ARTICLE_GUARDRAILS} "
-        f"{_IMAN_VOICE} "
-        f"Viết bài GOM {len(cands)} tin, đánh số 1..{len(cands)}. "
-        "KHÔNG phải danh sách tin rời rạc — mỗi mục rút ra MỘT bài học hoặc ý "
-        "\"cái thực sự quan trọng là...\", 2-4 câu, chỉ nhắc tên nguồn dạng chữ. "
-        "Có thể có 1 câu dẫn mạnh ở đầu nối các mục lại. "
-        "CHỈ trả về JSON với khoá: caption_fb (đánh số, kết bằng câu chốt sắc + "
-        "câu hỏi tranh luận), caption_ig (<=40 từ), hashtags (8-15 chuỗi #), "
-        "cover_title (4-10 từ tiếng Việt, mạnh), "
-        f"slides (MẢNG ĐÚNG {len(cands)} thẻ, thứ tự khớp tin 1..{len(cands)}, mỗi thẻ "
-        "là object {\"headline\": tiêu đề ngắn đanh <=8 từ, "
-        "\"sub\": câu \"so what\" một dòng <=16 từ}), risk (bool)."
-    )
-    return system, f"CÁC TIN:\n\n{items}\n"
-
-
-def write_roundup(cands, voice, generate=_default_generate):
-    try:
-        data = parse_json_response(generate(*build_roundup_prompt(cands, voice), provider="auto"))
-    except LLMError as e:
-        raise WriteError(f"LLM failed: {e}") from e
-    missing = [k for k in _DEEP_KEYS if k not in data or data[k] in (None, "", [])]
-    if missing:
-        raise WriteError(f"roundup response missing keys: {missing}")
-    slides = _clean_slides(data["slides"])
-    if len(slides) != len(cands):
-        raise WriteError(f"roundup slides {len(slides)} != items {len(cands)}")
-    from .models import ArticleContent
-    return ArticleContent(
-        format="roundup", caption_fb=_strip_urls(data["caption_fb"]),
-        caption_ig=_strip_urls(data["caption_ig"]),
-        hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
-        cover_title=data["cover_title"].strip().upper(),
-        cover_brief=str(data.get("cover_brief", "")).strip(), slides=slides,
-        sources=[{"name": _source_name(c), "url": c.url} for c in cands],
+        cover_title=str(data["cover_title"]).strip(),
+        slides=slides,
+        sources=[{"name": name, "url": cand.url}],
         risk=bool(data.get("risk", False)))

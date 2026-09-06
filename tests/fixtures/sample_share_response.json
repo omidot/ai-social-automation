@@ -1,0 +1,14 @@
+{
+  "caption_fb": "AI giờ dựng xong một video giải thích hoàn chỉnh chỉ từ một đoạn ghi âm giọng nói của bạn.\n\nMình thử tuần này: đọc kịch bản dài hai phút vào điện thoại, đẩy file lên công cụ, mười lăm phút sau có bản video với phụ đề khớp từng câu, ảnh minh hoạ cắt ghép và nhạc nền. Không cần cảnh quay, không cần biết dựng phim. Máy tự tách câu, tự tìm hình, tự canh nhịp.\n\nCái này đổi việc cho bạn ở chỗ: thứ trước đây tốn nửa ngày và một người biết Premiere thì giờ là một buổi cà phê. Nếu bạn làm nội dung một mình, đây là phần nặng nhất được gỡ khỏi vai. Bạn ra được nhiều bài hơn mà không thuê thêm ai.\n\nCách bắt đầu thì nhẹ. Viết một kịch bản ngắn, thu giọng bằng app ghi âm sẵn có, chọn một công cụ dựng tự động rồi cho nó chạy thử một video. Đừng cầu toàn bản đầu, cứ xuất ra rồi sửa lại nhịp và vài tấm hình.\n\nĐiều mình rút ra: nút thắt của người làm nội dung một mình không còn là ý tưởng, mà là tốc độ biến ý tưởng thành thứ xem được. Bạn sẽ dùng nó cho loại nội dung nào trước?\n\nNguồn: The Verge",
+  "caption_ig": "AI dựng nguyên video giải thích chỉ từ một đoạn ghi âm giọng bạn. Phần nặng nhất của người làm nội dung một mình vừa được gỡ. Bạn thử cho video nào trước?",
+  "hashtags": ["#AI", "#trituenhantao", "#lamnoidung", "#video", "#congcuAI", "#tudonghoa", "#sangtaonoidung", "#mmo", "#ahitofficial", "#AIvietnam"],
+  "cover_title": "AI dựng video từ giọng nói của bạn",
+  "slides": [
+    {"role": "hook", "headline": "AI dựng video từ giọng bạn", "body": "Chỉ cần một đoạn ghi âm, không cần cảnh quay hay biết dựng phim."},
+    {"role": "what", "headline": "Nó làm được gì", "body": "Tách câu, tìm ảnh minh hoạ, canh nhịp, gắn phụ đề khớp từng câu và thêm nhạc nền."},
+    {"role": "why", "headline": "Bạn được gì", "body": "Việc nửa ngày của một người biết dựng phim rút còn một buổi cà phê."},
+    {"role": "how", "headline": "Bắt đầu thế nào", "body": "Viết kịch bản ngắn, thu giọng bằng app sẵn có, cho công cụ chạy thử một video."},
+    {"role": "close", "headline": "Điều đọng lại", "body": "Nút thắt không còn là ý tưởng mà là tốc độ biến ý tưởng thành thứ xem được."}
+  ],
+  "risk": false
+}

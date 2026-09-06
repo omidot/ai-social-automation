@@ -53,95 +53,76 @@ def test_write_post_missing_key_raises():
         write.write_post(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
 
 
-def test_decide_format():
-    from pipeline.write import decide_format
-    assert decide_format([(90.0, None)], margin=12) == "deep"
-    assert decide_format([(90.0, None), (70.0, None)], margin=12) == "deep"
-    assert decide_format([(90.0, None), (85.0, None)], margin=12) == "roundup"
-    # Exact-boundary case: difference == margin must be "deep" (testing >= not >)
-    assert decide_format([(90.0, None), (78.0, None)], margin=12) == "deep"
-    # Empty-list case: documents the defensive <= 1 behavior
-    assert decide_format([], margin=12) == "deep"
+
+# --- single-topic knowledge-share writer ---------------------------------
+
+def _share_payload() -> str:
+    return (FIXTURES / "sample_share_response.json").read_text(encoding="utf-8")
 
 
-def test_write_deep_builds_article():
-    from pipeline.write import write_deep
-    payload = (FIXTURES / "sample_deep_response.json").read_text(encoding="utf-8")
-    art = write_deep(_cand(), VOICE, generate=lambda s, u, **k: payload)
-    assert art.format == "deep"
-    assert art.cover_title == "OPENAI RA MẮT MÔ HÌNH MỚI"
-    assert 2 <= len(art.slides) <= 3
-    assert all(set(s) == {"headline", "sub"} for s in art.slides)
-    # structured sources keep the URL for internal use
-    assert art.sources == [{"name": "OpenAI Blog", "url": "https://openai.com/blog/new"}]
-    # ...but the human-visible caption ends with a plain name, no URL
+def test_build_share_prompt_has_sharing_cue():
+    sysp, usr = write.build_share_prompt(_cand(), VOICE)
+    assert "A Hít Official" in sysp
+    assert "OpenAI released a faster model" in usr
+    assert "JSON" in sysp
+    # a person sharing, explicitly NOT a numbered news bulletin
+    assert "chia sẻ" in sysp
+    assert "KHÔNG" in sysp
+    assert "đánh số" in sysp and "bản tin" in sysp
+
+
+def test_write_share_builds_5_slide_arc():
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
+    assert art.format == "share"
+    assert len(art.slides) == 5
+    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
+    assert all(set(s) == {"role", "headline", "body"} for s in art.slides)
+    # caption is a coherent paragraph, no link, no "1. " numbered-list pattern
+    assert "http" not in art.caption_fb
+    assert "http" not in art.caption_ig
+    import re
+    assert not re.search(r"(?m)^\s*\d+\.\s", art.caption_fb)
+    # ends with a plain source name, no URL
     assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog")
-    assert "http" not in art.caption_fb
 
 
-def test_write_strips_urls_from_caption():
-    from pipeline.write import write_deep
-    data = json.loads((FIXTURES / "sample_deep_response.json").read_text(encoding="utf-8"))
-    data["caption_fb"] = ("Xem thêm tại https://example.com/x nhé "
-                          "(nguồn: http://foo.bar/baz). Bạn nghĩ sao?")
-    data["caption_ig"] = "Chi tiết: https://example.com/x"
-    art = write_deep(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
-    assert "http" not in art.caption_fb
-    assert "http" not in art.caption_ig
-
-
-def test_prompts_have_iman_voice_cue():
-    ds, _ = write.build_deep_prompt(_cand(), VOICE)
-    assert "dứt khoát" in ds
-    assert "bài học" in ds
-    assert "KHÔNG chèn URL" in ds
-    rs, _ = write.build_roundup_prompt([_cand(), _cand()], VOICE)
-    assert "dứt khoát" in rs
-    assert "bài học" in rs
-    assert "KHÔNG chèn URL" in rs
-
-
-def test_write_roundup_one_brief_per_item():
-    from pipeline.write import write_roundup
-    payload = (FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8")
-    cands = [_cand(),
-             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
-                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
-             Candidate(url="https://c/2", title="Google model", source="rss:C",
-                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
-    art = write_roundup(cands, VOICE, generate=lambda s, u, **k: payload)
-    assert art.format == "roundup"
-    assert len(art.slides) == 3
-    assert art.slides[0]["headline"] and art.slides[0]["sub"]
-    assert len(art.sources) == 3
-    assert art.sources[1] == {"name": "B", "url": "https://b/1"}
+def test_write_share_strips_urls_everywhere():
+    data = json.loads(_share_payload())
+    data["caption_fb"] = "Xem tại https://example.com/x nhé. Bạn nghĩ sao?"
+    data["caption_ig"] = "Chi tiết https://example.com/x"
+    data["slides"][0]["headline"] = "Tiêu đề https://a.com/y"
+    data["slides"][2]["body"] = "Thân bài http://b.com/z ok"
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
     assert "http" not in art.caption_fb
     assert "http" not in art.caption_ig
+    assert all("http" not in s["headline"] and "http" not in s["body"] for s in art.slides)
 
 
-def test_write_roundup_strips_urls():
-    from pipeline.write import write_roundup
-    data = json.loads((FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8"))
-    data["caption_fb"] = ("Vài tin đáng nghĩ:\n\n1. Tin A (https://a.com/x)\n"
-                          "2. Tin B http://b.com/y\n\nBạn thích tin nào?")
-    cands = [_cand(),
-             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
-                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
-             Candidate(url="https://c/2", title="Google model", source="rss:C",
-                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
-    art = write_roundup(cands, VOICE, generate=lambda s, u, **k: json.dumps(data))
-    assert "http" not in art.caption_fb
-    assert "KHÔNG chèn URL" in write.build_roundup_prompt(cands, VOICE)[0]
+def test_write_share_rejects_wrong_slide_count():
+    data = json.loads(_share_payload())
+    data["slides"] = data["slides"][:4]
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
 
 
-def test_write_roundup_rejects_slide_count_mismatch():
-    from pipeline.write import write_roundup, WriteError
-    data = json.loads((FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8"))
-    data["slides"] = [{"headline": "only", "sub": "one"}, {"headline": "two", "sub": "x"}]
-    cands = [_cand(),
-             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
-                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
-             Candidate(url="https://c/2", title="Google model", source="rss:C",
-                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
-    with pytest.raises(WriteError):
-        write_roundup(cands, VOICE, generate=lambda s, u, **k: json.dumps(data))
+def test_write_share_rejects_bad_slide_roles():
+    data = json.loads(_share_payload())
+    # swap two roles so the order is no longer hook/what/why/how/close
+    data["slides"][1]["role"], data["slides"][2]["role"] = (
+        data["slides"][2]["role"], data["slides"][1]["role"])
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_missing_key_raises():
+    data = json.loads(_share_payload())
+    del data["cover_title"]
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_appends_source_when_absent():
+    data = json.loads(_share_payload())
+    data["caption_fb"] = "Một đoạn chia sẻ không có dòng nguồn. Bạn thấy sao?"
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+    assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog")

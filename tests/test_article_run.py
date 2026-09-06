@@ -21,20 +21,20 @@ def wired(tmp_path, monkeypatch):
         "xung_ho: {nguoi_noi: mình, nguoi_nghe: bạn}\ngiong: vui\ncam_ky: []\nten_kenh: A Hít\n", encoding="utf-8")
     (tmp_path / "config" / "settings.yaml").write_text(
         "articles:\n  slots: {morning: '11:30', evening: '19:45'}\n  min_score: 10\n"
-        "  format_deep_margin: 12\n  roundup_min: 3\n  roundup_max: 5\n"
-        "images:\n  style_prompt: x\n  size: '1080x1350'\n  raw_base: https://raw/base\n", encoding="utf-8")
+        "images:\n  size: '1080x1350'\n  raw_base: https://raw/base\n", encoding="utf-8")
     cand = Candidate(url="https://o/x", title="OpenAI ships GPT-6", source="rss:OpenAI",
                      published_at=datetime(2026, 9, 6, 6, tzinfo=timezone.utc),
                      summary="big", full_text="big news", raw_score_hint=900, source_count=3)
     monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
-    art = ArticleContent(format="deep", caption_fb="body\n\nCTA", caption_ig="ig",
+    roles = ["hook", "what", "why", "how", "close"]
+    art = ArticleContent(format="share", caption_fb="body\n\nCTA", caption_ig="ig",
                          hashtags=["#AI"], cover_title="GPT-6",
-                         slides=[{"headline": "a", "sub": "x"}, {"headline": "b", "sub": "y"}],
+                         slides=[{"role": r, "headline": f"h{r}", "body": f"b{r}"}
+                                 for r in roles],
                          sources=[{"name": "OpenAI", "url": "https://o/x"}])
-    monkeypatch.setattr(article_run.write, "write_deep", lambda *a, **k: art)
-    monkeypatch.setattr(article_run.write, "write_roundup", lambda *a, **k: art)
+    monkeypatch.setattr(article_run.write, "write_share", lambda *a, **k: art)
     monkeypatch.setattr(article_run.images, "build_images",
-                        lambda *a, **k: [str(tmp_path / "01_cover.jpg"), str(tmp_path / "02.jpg")])
+                        lambda *a, **k: [str(tmp_path / f"{i:02d}.jpg") for i in range(1, 6)])
     return tmp_path, cand
 
 
@@ -44,7 +44,7 @@ def test_draft_writes_state_and_preview(wired):
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     slot = article_run.draft("morning", root, now, tg=tg)
     assert slot["status"] == "draft"
-    assert slot["format"] == "deep"
+    assert slot["format"] == "share"
     ds = DailyState(root / "data")
     assert ds.get("2026-09-06", "morning")["title"] == "OpenAI ships GPT-6"
     assert tg.media and tg.msgs
@@ -55,9 +55,9 @@ def test_draft_writes_state_and_preview(wired):
 
 
 def _preview_art(caption_fb):
-    return ArticleContent(format="deep", caption_fb=caption_fb, caption_ig="ig",
+    return ArticleContent(format="share", caption_fb=caption_fb, caption_ig="ig",
                           hashtags=["#AI", "#ml"], cover_title="T",
-                          slides=[{"headline": "a", "sub": "x"}],
+                          slides=[{"role": "hook", "headline": "a", "body": "x"}],
                           sources=[{"name": "OpenAI", "url": "https://o/x"}])
 
 
@@ -102,34 +102,33 @@ def test_draft_evening_excludes_morning_title(wired, monkeypatch):
     assert "OpenAI ships GPT-6 today" in seen["ex"]
 
 
-def test_draft_roundup_routing(wired, monkeypatch):
+def test_draft_uses_single_topic_share_writer(wired, monkeypatch):
     root, cand = wired
     cand2 = Candidate(url="https://o/y", title="Anthropic ships Claude 5", source="rss:Anthropic",
                       published_at=datetime(2026, 9, 6, 6, tzinfo=timezone.utc),
                       summary="also big", full_text="also big news", raw_score_hint=880, source_count=2)
-    # two scores within format_deep_margin (12) of each other -> roundup branch
+    # even with several hot candidates, only the top one is written up
     monkeypatch.setattr(article_run.score, "pick_n", lambda *a, **k: [(50.0, cand), (48.0, cand2)])
-    called = {}
-    roundup_art = ArticleContent(format="roundup", caption_fb="body\n\nCTA", caption_ig="ig",
-                                 hashtags=["#AI"], cover_title="Round-up",
-                                 slides=[{"headline": "a", "sub": "x"}, {"headline": "b", "sub": "y"}],
-                                 sources=[{"name": "OpenAI", "url": "https://o/x"}])
+    seen = {}
 
-    def fake_roundup(cands, *a, **k):
-        called["roundup"] = list(cands)
-        return roundup_art
+    def fake_share(top, *a, **k):
+        seen["top"] = top
+        return ArticleContent(format="share", caption_fb="body\n\nCTA", caption_ig="ig",
+                              hashtags=["#AI"], cover_title="One topic",
+                              slides=[{"role": r, "headline": f"h{r}", "body": f"b{r}"}
+                                      for r in ["hook", "what", "why", "how", "close"]],
+                              sources=[{"name": "OpenAI", "url": "https://o/x"}])
 
-    def fake_deep(*a, **k):
-        raise AssertionError("write_deep must not be called on the roundup path")
-
-    monkeypatch.setattr(article_run.write, "write_roundup", fake_roundup)
-    monkeypatch.setattr(article_run.write, "write_deep", fake_deep)
+    monkeypatch.setattr(article_run.write, "write_share", fake_share)
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     slot = article_run.draft("morning", root, now, tg=tg)
     assert slot["status"] == "draft"
-    assert slot["format"] == "roundup"
-    assert "roundup" in called and len(called["roundup"]) == 2
+    assert slot["format"] == "share"
+    assert seen["top"] is cand
+    # meta line no longer carries a [format] prefix
+    meta = tg.msgs[-1][0]
+    assert "[share]" not in meta and "điểm 50" in meta
 
 
 def test_main_notifies_on_draft_failure(monkeypatch):
@@ -164,8 +163,7 @@ def test_draft_skips_committed_slot(wired, monkeypatch):
         raise AssertionError("must not run when the slot is already committed")
 
     monkeypatch.setattr(article_run.collect, "collect", boom)
-    monkeypatch.setattr(article_run.write, "write_deep", boom)
-    monkeypatch.setattr(article_run.write, "write_roundup", boom)
+    monkeypatch.setattr(article_run.write, "write_share", boom)
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     out = article_run.draft("morning", root, now, tg=tg)

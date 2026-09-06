@@ -66,14 +66,16 @@ class PostContent:
 
 @dataclass
 class ArticleContent:
-    format: str
+    format: str                 # always "share" now (single-topic knowledge piece)
     caption_fb: str
     caption_ig: str
     hashtags: list[str]
     cover_title: str
-    slides: list[dict]          # [{"headline": str, "sub": str}, ...] -> one designed card each
+    # EXACTLY 5 dicts, each {"role": str, "headline": str, "body": str}; role is
+    # one of ["hook", "what", "why", "how", "close"] IN THAT ORDER -> one
+    # storyboard slide each.
+    slides: list[dict]
     sources: list[dict]
-    cover_brief: str = ""       # legacy Gemini brief; unused by the templated image path
     risk: bool = False
 
     def to_dict(self) -> dict:

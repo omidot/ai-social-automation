@@ -25,10 +25,13 @@ def test_requirements_pinned():
 
 def test_article_content_roundtrip():
     from pipeline.models import ArticleContent
-    a = ArticleContent(format="deep", caption_fb="x", caption_ig="y", hashtags=["#AI"],
+    roles = ["hook", "what", "why", "how", "close"]
+    a = ArticleContent(format="share", caption_fb="x", caption_ig="y", hashtags=["#AI"],
                        cover_title="TIÊU ĐỀ",
-                       slides=[{"headline": "a", "sub": "x"}, {"headline": "b", "sub": "y"}],
+                       slides=[{"role": r, "headline": f"h{r}", "body": f"b{r}"}
+                               for r in roles],
                        sources=[{"name": "hn", "url": "http://h"}])
     b = ArticleContent.from_dict({**a.to_dict(), "junk": 1})
     assert b == a
     assert b.risk is False
+    assert [s["role"] for s in b.slides] == roles
