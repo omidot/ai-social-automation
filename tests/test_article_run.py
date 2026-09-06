@@ -67,6 +67,36 @@ def test_draft_evening_excludes_morning_title(wired, monkeypatch):
     assert "OpenAI ships GPT-6 today" in seen["ex"]
 
 
+def test_draft_roundup_routing(wired, monkeypatch):
+    root, cand = wired
+    cand2 = Candidate(url="https://o/y", title="Anthropic ships Claude 5", source="rss:Anthropic",
+                      published_at=datetime(2026, 9, 6, 6, tzinfo=timezone.utc),
+                      summary="also big", full_text="also big news", raw_score_hint=880, source_count=2)
+    # two scores within format_deep_margin (12) of each other -> roundup branch
+    monkeypatch.setattr(article_run.score, "pick_n", lambda *a, **k: [(50.0, cand), (48.0, cand2)])
+    called = {}
+    roundup_art = ArticleContent(format="roundup", caption_fb="body\n\nCTA", caption_ig="ig",
+                                 hashtags=["#AI"], cover_title="Round-up", cover_brief="core",
+                                 image_briefs=["a", "b"],
+                                 sources=[{"name": "OpenAI", "url": "https://o/x"}])
+
+    def fake_roundup(cands, *a, **k):
+        called["roundup"] = list(cands)
+        return roundup_art
+
+    def fake_deep(*a, **k):
+        raise AssertionError("write_deep must not be called on the roundup path")
+
+    monkeypatch.setattr(article_run.write, "write_roundup", fake_roundup)
+    monkeypatch.setattr(article_run.write, "write_deep", fake_deep)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    slot = article_run.draft("morning", root, now, tg=tg)
+    assert slot["status"] == "draft"
+    assert slot["format"] == "roundup"
+    assert "roundup" in called and len(called["roundup"]) == 2
+
+
 def test_draft_reports_collect_failure(wired, monkeypatch):
     root, _ = wired
 

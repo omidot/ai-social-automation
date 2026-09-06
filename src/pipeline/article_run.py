@@ -82,9 +82,13 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     top_score, top = picked[0]
     if fmt == "deep":
         article = write.write_deep(top, voice, generate=generate)
+        chosen = [top]
     else:
-        n = min(max(len(picked), acfg["roundup_min"]), acfg["roundup_max"])
-        article = write.write_roundup([c for _, c in picked[:n]], voice, generate=generate)
+        # picked[:n] can never exceed len(picked), so no lower clamp is needed here;
+        # acfg["roundup_min"] is currently unused tuning config, kept for future.
+        n = min(len(picked), acfg["roundup_max"])
+        chosen = [c for _, c in picked[:n]]
+        article = write.write_roundup(chosen, voice, generate=generate)
 
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
@@ -93,7 +97,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 
-    st.seen_add_many([top.url_hash])
+    st.seen_add_many([c.url_hash for c in chosen])
     slot_ict = acfg["slots"][slot]
     ds.put(date, slot, status="draft", format=fmt, title=top.title,
            topic_key=_slug(top.title), text_fb=article.caption_fb,
