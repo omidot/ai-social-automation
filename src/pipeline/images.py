@@ -44,7 +44,8 @@ def _overlay_title(img_bytes: bytes, title: str, size: tuple[int, int]) -> Image
     return bg
 
 
-def _legacy_fallback(article: ArticleContent, out_dir: Path) -> list[str]:
+def _legacy_fallback(article: ArticleContent, out_dir: Path,
+                     size: tuple[int, int]) -> list[str]:
     stub = PostContent(
         angle="tin-tuc", caption_fb=article.caption_fb, caption_ig=article.caption_ig,
         hashtags=article.hashtags, thumbnail_prompt=article.cover_brief,
@@ -57,7 +58,14 @@ def _legacy_fallback(article: ArticleContent, out_dir: Path) -> list[str]:
                      source=article.sources[0]["name"],
                      published_at=datetime.now(timezone.utc))
     paths, _ = media.build_media(cand, stub, Path(out_dir), "")
-    return paths
+    # media.build_media returns mixed sizes/aspect ratios (1200x630, 1280x720, ...);
+    # Instagram rejects a carousel whose images are not all the same size, so
+    # normalize every image to the spec size before returning.
+    normed: list[str] = []
+    for p in paths:
+        im = Image.open(p).convert("RGB")
+        normed.append(str(media._save_jpeg(im, Path(p), size)))
+    return normed
 
 
 def build_images(article: ArticleContent, out_dir, *, style_prompt: str,
@@ -69,12 +77,12 @@ def build_images(article: ArticleContent, out_dir, *, style_prompt: str,
         cover_bytes = gen(f"{article.cover_brief}, {style_prompt}", size)
         brief_bytes = [gen(f"{brief}, {style_prompt}", size)
                        for brief in article.image_briefs]
-    except Exception as e:  # noqa: BLE001 - any Gemini failure -> legacy path
+        cover = _overlay_title(cover_bytes, article.cover_title, size)
+        paths = [str(media._save_jpeg(cover, out_dir / "01_cover.jpg"))]
+        for i, b in enumerate(brief_bytes, start=2):
+            im = Image.open(io.BytesIO(b)).convert("RGB").resize(size)
+            paths.append(str(media._save_jpeg(im, out_dir / f"{i:02d}.jpg")))
+        return paths
+    except Exception as e:  # noqa: BLE001 - any Gemini-path failure (gen, decode, overlay, save) -> legacy
         log.warning("gemini image path failed (%s); using legacy media", e)
-        return _legacy_fallback(article, out_dir)
-    cover = _overlay_title(cover_bytes, article.cover_title, size)
-    paths = [str(media._save_jpeg(cover, out_dir / "01_cover.jpg"))]
-    for i, b in enumerate(brief_bytes, start=2):
-        im = Image.open(io.BytesIO(b)).convert("RGB").resize(size)
-        paths.append(str(media._save_jpeg(im, out_dir / f"{i:02d}.jpg")))
-    return paths
+        return _legacy_fallback(article, out_dir, size)
