@@ -51,3 +51,10 @@ def test_write_post_missing_key_raises():
     del data["caption_ig"]
     with pytest.raises(write.WriteError):
         write.write_post(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_decide_format():
+    from pipeline.write import decide_format
+    assert decide_format([(90.0, None)], margin=12) == "deep"
+    assert decide_format([(90.0, None), (70.0, None)], margin=12) == "deep"
+    assert decide_format([(90.0, None), (85.0, None)], margin=12) == "roundup"

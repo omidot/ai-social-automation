@@ -75,3 +75,9 @@ def write_post(cand: Candidate, voice: dict, generate=_default_generate) -> Post
         tiktok_caption=data["tiktok_caption"].strip(),
         source_url=cand.url, source_name=src_name,
     )
+
+
+def decide_format(scored, margin):
+    if len(scored) <= 1:
+        return "deep"
+    return "deep" if (scored[0][0] - scored[1][0]) >= margin else "roundup"
