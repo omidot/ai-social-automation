@@ -2,6 +2,7 @@ import math
 from datetime import datetime, timedelta, timezone
 from pipeline.models import Candidate
 from pipeline import score
+from pipeline.score import pick_n
 
 NOW = datetime(2026, 9, 3, 12, 0, tzinfo=timezone.utc)
 KW = ["AI", "mô hình", "OpenAI"]
@@ -52,3 +53,32 @@ def test_pick_returns_top():
              mk("OpenAI ra mô hình AI cực mạnh", 1, 900, url="https://a/2")]
     best, sc = score.pick(cands, min_score=45, now=NOW, keywords=KW)
     assert best.url == "https://a/2" and sc >= 45
+
+
+def _c(title, hint=0.0, sc=1):
+    return Candidate(url=f"https://x/{title[:8]}", title=title, source="rss:X",
+                     published_at=datetime(2026, 9, 5, 6, tzinfo=timezone.utc),
+                     raw_score_hint=hint, summary=title, source_count=sc)
+
+
+def test_pick_n_returns_distinct_topics():
+    now = datetime(2026, 9, 5, 8, tzinfo=timezone.utc)
+    cands = [_c("OpenAI ships GPT-6", hint=800, sc=3),
+             _c("OpenAI ships GPT-6 model", hint=200, sc=1),
+             _c("Nvidia reveals Rubin GPU", hint=500, sc=2),
+             _c("Google DeepMind protein news", hint=120)]
+    picked = pick_n(cands, 2, min_score=20, now=now, keywords=["AI", "GPT", "GPU"])
+    assert len(picked) == 2
+    titles = [c.title for _, c in picked]
+    assert "OpenAI ships GPT-6" in titles[0]
+    assert "Nvidia" in titles[1]  # 2nd pick skips the near-duplicate OpenAI item
+
+
+def test_pick_n_respects_exclude_titles():
+    now = datetime(2026, 9, 5, 8, tzinfo=timezone.utc)
+    cands = [_c("OpenAI ships GPT-6", hint=800, sc=3),
+             _c("Nvidia reveals Rubin GPU", hint=500, sc=2)]
+    picked = pick_n(cands, 1, min_score=20, now=now, keywords=["AI"],
+                    exclude_titles=["OpenAI ships GPT-6 today"])
+    assert len(picked) == 1
+    assert "Nvidia" in picked[0][1].title
