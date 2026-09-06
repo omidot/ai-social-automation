@@ -71,8 +71,31 @@ def test_write_deep_builds_article():
     assert art.format == "deep"
     assert art.cover_title == "OPENAI RA MẮT MÔ HÌNH MỚI"
     assert 3 <= len(art.image_briefs) <= 4
+    # structured sources keep the URL for internal use
     assert art.sources == [{"name": "OpenAI Blog", "url": "https://openai.com/blog/new"}]
-    assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog — https://openai.com/blog/new")
+    # ...but the human-visible caption ends with a plain name, no URL
+    assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog")
+    assert "http" not in art.caption_fb
+
+
+def test_write_strips_urls_from_caption():
+    from pipeline.write import write_deep
+    data = json.loads((FIXTURES / "sample_deep_response.json").read_text(encoding="utf-8"))
+    data["caption_fb"] = ("Xem thêm tại https://example.com/x nhé "
+                          "(nguồn: http://foo.bar/baz). Bạn nghĩ sao?")
+    data["caption_ig"] = "Chi tiết: https://example.com/x"
+    art = write_deep(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+    assert "http" not in art.caption_fb
+    assert "http" not in art.caption_ig
+
+
+def test_prompts_have_knowledge_sharer_cue():
+    ds, _ = write.build_deep_prompt(_cand(), VOICE)
+    assert "KHÔNG phải bản tin" in ds
+    assert "vì sao" in ds
+    rs, _ = write.build_roundup_prompt([_cand(), _cand()], VOICE)
+    assert "KHÔNG phải bản tin" in rs
+    assert "KHÔNG chèn URL" in rs
 
 
 def test_write_roundup_one_brief_per_item():
@@ -88,6 +111,23 @@ def test_write_roundup_one_brief_per_item():
     assert len(art.image_briefs) == 3
     assert len(art.sources) == 3
     assert art.sources[1] == {"name": "B", "url": "https://b/1"}
+    assert "http" not in art.caption_fb
+    assert "http" not in art.caption_ig
+
+
+def test_write_roundup_strips_urls():
+    from pipeline.write import write_roundup
+    data = json.loads((FIXTURES / "sample_roundup_response.json").read_text(encoding="utf-8"))
+    data["caption_fb"] = ("Vài tin đáng nghĩ:\n\n1. Tin A (https://a.com/x)\n"
+                          "2. Tin B http://b.com/y\n\nBạn thích tin nào?")
+    cands = [_cand(),
+             Candidate(url="https://b/1", title="Nvidia GPU", source="rss:B",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="x"),
+             Candidate(url="https://c/2", title="Google model", source="rss:C",
+                       published_at=datetime(2026, 9, 3, tzinfo=timezone.utc), summary="y")]
+    art = write_roundup(cands, VOICE, generate=lambda s, u, **k: json.dumps(data))
+    assert "http" not in art.caption_fb
+    assert "KHÔNG chèn URL" in write.build_roundup_prompt(cands, VOICE)[0]
 
 
 def test_write_roundup_rejects_brief_count_mismatch():

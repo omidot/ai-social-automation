@@ -64,6 +64,12 @@ def _collapse_similar(cands: list[Candidate]) -> list[Candidate]:
     for g in groups:
         rep = min(g, key=lambda x: x.published_at)
         rep.source_count = len(g)
+        if rep.source.startswith("rss:Google News ("):
+            better = next(
+                (m.source for m in g if not m.source.startswith("rss:Google News (")),
+                None)
+            if better:
+                rep.source = better
         for m in g:
             if not rep.full_text and m.full_text:
                 rep.full_text = m.full_text
@@ -111,11 +117,30 @@ def from_google_news(queries: list[str], langs: list[str], now: datetime) -> lis
                 if not dt or not _fresh(dt, now):
                     continue
                 title = e.get("title", "").strip()
+                publisher = _gnews_publisher(e)
+                if publisher:
+                    source = f"rss:{publisher}"
+                    suffix = f" - {publisher}"
+                    if title.endswith(suffix):
+                        title = title[: -len(suffix)].rstrip()
+                else:
+                    source = f"rss:Google News ({q})"
                 out.append(Candidate(
                     url=e.get("link", ""), title=title,
-                    source=f"rss:Google News ({q})", published_at=dt,
+                    source=source, published_at=dt,
                     summary=(e.get("summary", "") or "")[:500]))
     return out
+
+
+def _gnews_publisher(entry) -> str:
+    """Google News RSS carries the real publisher in <source>; feedparser maps
+    it to entry.source (title = publisher name, href = publisher site)."""
+    src = entry.get("source")
+    if not src:
+        return ""
+    if isinstance(src, dict):
+        return (src.get("title") or "").strip()
+    return (getattr(src, "title", "") or "").strip()
 
 
 def from_hn(min_points: int, now: datetime) -> list[Candidate]:

@@ -1,11 +1,34 @@
 from __future__ import annotations
 
+import re
+
 from .llm import generate as _default_generate, parse_json_response, LLMError
 from .models import Candidate, PostContent
 
 
 class WriteError(Exception):
     pass
+
+
+_URL_RE = re.compile(r"https?://\S+")
+
+
+def _strip_urls(text: str) -> str:
+    """Remove any http(s) URL tokens from human-visible caption text and tidy
+    the artefacts a removed link leaves behind (dangling ' — ', empty
+    'Nguồn:' lines, empty brackets, doubled spaces/blank lines)."""
+    if not text:
+        return text
+    out = _URL_RE.sub("", text)
+    out = re.sub(r"\(\s*\)", "", out)                      # empty () left by a link
+    out = re.sub(r"\[\s*\]", "", out)                      # empty []
+    out = re.sub(r"[ \t]*[—–-]\s*(?=\n|$)", "", out)       # dangling ' — ' at line end
+    out = re.sub(r"(?m)^[ \t]*Nguồn:[ \t]*$", "", out)     # empty 'Nguồn:' line
+    out = re.sub(r"Nguồn:(?:[ \t]*,)+", "Nguồn:", out)     # 'Nguồn: , ' artefact
+    out = re.sub(r"[ \t]{2,}", " ", out)
+    out = re.sub(r" +\n", "\n", out)
+    out = re.sub(r"\n{3,}", "\n\n", out)
+    return out.strip()
 
 
 ALLOWED_ANGLES = {"tin-tuc", "ung-dung-mmo", "phan-tich", "giat-gan"}
@@ -97,6 +120,17 @@ def build_deep_prompt(cand, voice):
         f"Giọng: {voice.get('giong','')}. Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. {_ARTICLE_GUARDRAILS} "
+        "Viết như một người đang kể cho bạn nghe một điều thú vị mình mới biết, "
+        "KHÔNG phải bản tin. Mở đầu bằng một câu khiến người đọc tò mò hoặc một góc "
+        "nhìn, KHÔNG mở bằng 'Công ty X vừa công bố...'. "
+        "Mỗi ý: nói RÕ nó có nghĩa gì với người đọc / ngành / tương lai — 'vì sao "
+        "điều này đáng chú ý', 'nó thay đổi cái gì', bài học hoặc liên hệ thực tế. "
+        "Tránh liệt kê thông số khô khan. "
+        "Giọng: gần gũi, có chính kiến nhẹ, đôi chỗ hài. Xưng 'mình', gọi 'bạn'. "
+        "Câu ngắn–vừa. "
+        "Kết bằng một câu hỏi mở mời người đọc bình luận (theo cta_mau nếu hợp). "
+        "TUYỆT ĐỐI KHÔNG chèn URL/đường link vào bài. Chỉ được nhắc tên nguồn dạng "
+        "chữ (vd: 'theo VnExpress'). Không dùng dấu ngoặc chứa http. "
         "Viết bài CHUYÊN SÂU về MỘT tin. CHỈ trả về JSON với khoá: "
         "caption_fb (200-350 từ, xuống dòng, kết bằng CTA), caption_ig (<=60 từ), "
         "hashtags (8-15 chuỗi #), cover_title (4-10 từ tiếng Việt), "
@@ -117,16 +151,17 @@ def write_deep(cand, voice, generate=_default_generate):
     if missing:
         raise WriteError(f"deep response missing keys: {missing}")
     name = _source_name(cand)
-    line = f"Nguồn: {name} — {cand.url}"
-    cap = data["caption_fb"].rstrip()
+    line = f"Nguồn: {name}"
+    cap = _strip_urls(data["caption_fb"])
     if line not in cap:
         cap = f"{cap}\n\n{line}"
+    cap_ig = _strip_urls(data["caption_ig"])
     briefs = [b.strip() for b in data["image_briefs"] if b.strip()][:4]
     if len(briefs) < 3:
         briefs = (briefs + [data["cover_brief"]] * 3)[:3]
     from .models import ArticleContent
     return ArticleContent(
-        format="deep", caption_fb=cap, caption_ig=data["caption_ig"].strip(),
+        format="deep", caption_fb=cap, caption_ig=cap_ig,
         hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
         cover_title=data["cover_title"].strip().upper(),
         cover_brief=data["cover_brief"].strip(), image_briefs=briefs,
@@ -135,14 +170,25 @@ def write_deep(cand, voice, generate=_default_generate):
 
 def build_roundup_prompt(cands, voice):
     items = "\n\n".join(
-        f"[{i+1}] {c.title}\nNGUỒN: {_source_name(c)} — {c.url}\n"
+        f"[{i+1}] {c.title}\nNGUỒN: {_source_name(c)} (tham khảo, ĐỪNG chép link: {c.url})\n"
         f"{(c.full_text or c.summary or '')[:1500]}"
         for i, c in enumerate(cands))
     system = (
         f"Bạn là biên tập viên tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
         f"Giọng: {voice.get('giong','')}. Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". {_ARTICLE_GUARDRAILS} "
-        f"Viết bài GOM {len(cands)} tin, đánh số 1..{len(cands)}, mỗi tin 2-4 câu + link nguồn. "
+        "Viết như một người đang kể cho bạn nghe những điều thú vị mình mới biết, "
+        "KHÔNG phải bản tin. Mở đầu bằng một câu khiến người đọc tò mò hoặc một góc "
+        "nhìn, KHÔNG mở bằng 'Công ty X vừa công bố...'. "
+        "Không phải danh sách tin rời rạc — mỗi mục là một điều đáng suy nghĩ, có 1–2 "
+        "câu 'so what' (vì sao điều này đáng chú ý, nó thay đổi cái gì). Có thể có 1 "
+        "câu dẫn chung ở đầu nối các mục lại. "
+        "Giọng: gần gũi, có chính kiến nhẹ, đôi chỗ hài. Xưng 'mình', gọi 'bạn'. "
+        "Câu ngắn–vừa. Kết bằng một câu hỏi mở mời người đọc bình luận. "
+        "TUYỆT ĐỐI KHÔNG chèn URL/đường link vào bài. Chỉ được nhắc tên nguồn dạng "
+        "chữ (vd: 'theo VnExpress'). Không dùng dấu ngoặc chứa http. "
+        f"Viết bài GOM {len(cands)} tin, đánh số 1..{len(cands)}, mỗi tin 2-4 câu, "
+        "chỉ nhắc tên nguồn dạng chữ. "
         "CHỈ trả về JSON với khoá: caption_fb (đánh số, kết bằng câu hỏi tương tác), "
         "caption_ig (<=40 từ), hashtags (8-15 chuỗi #), cover_title (4-10 từ tiếng Việt), "
         "cover_brief (tiếng Anh, tả ảnh, không chữ), "
@@ -165,8 +211,8 @@ def write_roundup(cands, voice, generate=_default_generate):
         raise WriteError(f"roundup image_briefs {len(briefs)} != items {len(cands)}")
     from .models import ArticleContent
     return ArticleContent(
-        format="roundup", caption_fb=data["caption_fb"].rstrip(),
-        caption_ig=data["caption_ig"].strip(),
+        format="roundup", caption_fb=_strip_urls(data["caption_fb"]),
+        caption_ig=_strip_urls(data["caption_ig"]),
         hashtags=[h if h.startswith("#") else f"#{h}" for h in data["hashtags"]],
         cover_title=data["cover_title"].strip().upper(),
         cover_brief=data["cover_brief"].strip(), image_briefs=briefs,

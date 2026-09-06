@@ -1,5 +1,5 @@
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import pytest
 from pipeline import collect
@@ -92,6 +92,14 @@ _GNEWS_RSS = """<?xml version="1.0"?><rss version="2.0"><channel>
 <description>OpenAI công bố...</description></item>
 </channel></rss>"""
 
+_GNEWS_RSS_WITH_SOURCE = """<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>OpenAI ra mắt X - VnExpress</title>
+<link>https://news.google.com/rss/articles/xyz?oc=5</link>
+<pubDate>Fri, 05 Sep 2026 06:00:00 GMT</pubDate>
+<source url="https://vnexpress.net">VnExpress</source>
+<description>OpenAI công bố...</description></item>
+</channel></rss>"""
+
 def test_from_google_news_parses(monkeypatch):
     class R:
         text = _GNEWS_RSS
@@ -100,9 +108,35 @@ def test_from_google_news_parses(monkeypatch):
     now = datetime(2026, 9, 5, 8, 0, tzinfo=timezone.utc)
     cands = _collect_mod.from_google_news(["AI"], ["vi"], now)
     assert len(cands) == 1
-    assert cands[0].source.startswith("rss:Google News")
+    # no <source> element -> falls back to the query-tagged placeholder
+    assert cands[0].source == "rss:Google News (AI)"
     assert "OpenAI" in cands[0].title
     assert cands[0].source_count == 1
+
+
+def test_from_google_news_uses_real_publisher(monkeypatch):
+    class R:
+        text = _GNEWS_RSS_WITH_SOURCE
+        def raise_for_status(self): pass
+    monkeypatch.setattr(_collect_mod, "_get", lambda url, params=None: R())
+    now = datetime(2026, 9, 5, 8, 0, tzinfo=timezone.utc)
+    cands = _collect_mod.from_google_news(["AI"], ["vi"], now)
+    assert len(cands) == 1
+    assert cands[0].source == "rss:VnExpress"
+    assert cands[0].title == "OpenAI ra mắt X"
+
+
+def test_collapse_similar_prefers_real_publisher_over_google_news():
+    from pipeline.collect import _collapse_similar
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    a = Candidate(url="https://a/x", title="OpenAI launches GPT-6 today",
+                  source="rss:Google News (AI)", published_at=now)
+    b = Candidate(url="https://b/y", title="OpenAI launches GPT-6 today, sources say",
+                  source="rss:VnExpress", published_at=now + timedelta(hours=1))
+    out = _collapse_similar([a, b])
+    assert len(out) == 1
+    assert out[0].source == "rss:VnExpress"
 
 
 def test_collapse_similar_merges_and_counts():

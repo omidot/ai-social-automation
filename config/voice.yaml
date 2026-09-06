@@ -8,6 +8,8 @@ mo_bai_mau:
   - "Có tin này hay nè:"
   - "AI tuần này lại có biến:"
   - "Nghe thử cái này xem:"
+  - "Có một thứ về AI tuần này mình thấy đáng để nói:"
+  - "Mình vừa biết một chuyện khá thú vị về AI, kể bạn nghe:"
 cam_ky:
   - "không giật tít sai sự thật"
   - "không hứa hẹn kiếm tiền phi thực tế"
@@ -15,4 +17,5 @@ cam_ky:
 cta_mau:
   - "Bạn nghĩ sao? Comment cho mình biết nhé."
   - "Lưu lại để dùng dần nha."
+  - "Bạn thấy điều này đáng lo hay đáng mừng? Kể mình nghe với."
 ten_kenh: "A Hít Official"
