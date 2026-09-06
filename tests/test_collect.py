@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import pytest
 from pipeline import collect
+from pipeline import collect as _collect_mod
 from pipeline.state import State
 from tests.conftest import FIXTURES
 
@@ -82,3 +83,23 @@ def test_collect_dedupes_and_drops_seen(tmp_path, monkeypatch):
     st.seen_add_many([c.url_hash for c in first])
     second = collect.collect(sources, {"rsshub_base": "http://rss"}, st, NOW)
     assert second == []
+
+
+_GNEWS_RSS = """<?xml version="1.0"?><rss version="2.0"><channel>
+<item><title>OpenAI ra mắt mô hình mới - VnExpress</title>
+<link>https://news.google.com/rss/articles/abc?oc=5</link>
+<pubDate>Fri, 05 Sep 2026 06:00:00 GMT</pubDate>
+<description>OpenAI công bố...</description></item>
+</channel></rss>"""
+
+def test_from_google_news_parses(monkeypatch):
+    class R:
+        text = _GNEWS_RSS
+        def raise_for_status(self): pass
+    monkeypatch.setattr(_collect_mod, "_get", lambda url, params=None: R())
+    now = datetime(2026, 9, 5, 8, 0, tzinfo=timezone.utc)
+    cands = _collect_mod.from_google_news(["AI"], ["vi"], now)
+    assert len(cands) == 1
+    assert cands[0].source.startswith("rss:Google News")
+    assert "OpenAI" in cands[0].title
+    assert cands[0].source_count == 1

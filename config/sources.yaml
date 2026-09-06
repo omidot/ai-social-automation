@@ -21,3 +21,6 @@ hn_min_points: 50
 facebook_pages: []          # list of {name, id}; empty = rely on facebook_urls.txt
 keywords: ["AI","LLM","GPT","mô hình","model","OpenAI","Anthropic","Gemini",
           "Claude","agent","trí tuệ nhân tạo","chatbot","nvidia","training"]
+google_news:
+  queries: ["artificial intelligence", "AI model", "trí tuệ nhân tạo", "AI Việt Nam"]
+  langs: ["en", "vi"]

@@ -21,6 +21,7 @@ class Candidate:
     summary: str = ""
     full_text: str = ""
     top_image: str | None = None
+    source_count: int = 1
 
     @property
     def url_hash(self) -> str:

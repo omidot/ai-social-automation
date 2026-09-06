@@ -68,6 +68,31 @@ def from_rss(feeds: list[dict], now: datetime) -> list[Candidate]:
     return out
 
 
+def from_google_news(queries: list[str], langs: list[str], now: datetime) -> list[Candidate]:
+    out: list[Candidate] = []
+    for lang in langs:
+        for q in queries:
+            hl = "vi" if lang == "vi" else "en-US"
+            url = "https://news.google.com/rss/search"
+            try:
+                raw = _get(url, params={"q": q, "hl": hl,
+                                        "gl": "VN" if lang == "vi" else "US"}).text
+            except Exception as e:  # noqa: BLE001
+                log.warning("google news %r/%s failed: %s", q, lang, e)
+                continue
+            parsed = feedparser.parse(raw)
+            for e in parsed.entries:
+                dt = _parse_date(e)
+                if not dt or not _fresh(dt, now):
+                    continue
+                title = e.get("title", "").strip()
+                out.append(Candidate(
+                    url=e.get("link", ""), title=title,
+                    source=f"rss:Google News ({q})", published_at=dt,
+                    summary=(e.get("summary", "") or "")[:500]))
+    return out
+
+
 def from_hn(min_points: int, now: datetime) -> list[Candidate]:
     data = _get("http://hn.algolia.com/api/v1/search_by_date",
                 params={"tags": "story", "query": "AI",
@@ -149,6 +174,9 @@ def collect(sources: dict, settings: dict, seen: State, now: datetime,
     merged: list[Candidate] = []
     jobs = [
         lambda: from_rss(sources.get("rss", []), now),
+        lambda: from_google_news(
+            sources.get("google_news", {}).get("queries", []),
+            sources.get("google_news", {}).get("langs", []), now),
         lambda: from_hn(sources.get("hn_min_points", 50), now),
         lambda: from_reddit(sources.get("subreddits", []),
                             sources.get("reddit_min_ups", 100), now),

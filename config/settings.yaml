@@ -5,6 +5,20 @@ run_hour_utc: 1              # 08:00 ICT
 rsshub_base: "https://rsshub.app"
 pending_ttl_hours: 12
 
+articles:
+  slots:
+    morning: "11:30"
+    evening: "19:45"
+  min_score: 45
+  format_deep_margin: 12
+  roundup_min: 3
+  roundup_max: 5
+images:
+  provider: gemini
+  style_prompt: "digital art, glowing neural and tech motifs, blue and violet, cinematic, no text"
+  size: "1080x1350"
+  raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"
+
 video:
   enabled: false
   target_seconds: 40
