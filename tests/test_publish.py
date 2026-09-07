@@ -83,6 +83,21 @@ def test_schedule_slot_ig_failure_still_posts(tmp_path):
     assert any("IG lỗi" in t for t, _ in tg.msgs)
 
 
+def test_schedule_slot_never_raises_after_fb_post_exists(tmp_path):
+    ds = _seed(tmp_path)
+
+    class TGBoom(FakeTG):
+        def send_message(self, text, buttons=None):
+            raise RuntimeError("Telegram 503")
+
+    meta = FakeMeta()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)      # scheduled branch
+    res = publish.schedule_slot(ds, meta, tmp_path, "2026-09-06", "morning", now, TGBoom())
+    assert res in ("scheduled:2026-09-06:morning", "posted:2026-09-06:morning")
+    # slot did NOT stay "publishing" -> the retry sweep can't re-publish it
+    assert ds.get("2026-09-06", "morning")["status"] in ("scheduled", "posted")
+
+
 def test_schedule_slot_raises_when_upload_fails(tmp_path):
     ds = _seed(tmp_path)
     tg = FakeTG()
