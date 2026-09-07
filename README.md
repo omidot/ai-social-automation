@@ -2,8 +2,8 @@
 
 Tự động mỗi ngày: chọn một chủ đề AI/năng suất từ ngân hàng chủ đề
 (`config/topics.yaml`) tránh trùng lịch sử → viết bài tiếng Việt từ kiến thức
-model → tạo 5 ảnh slide → gửi preview Telegram để duyệt → đăng Facebook Page +
-Instagram. Chạy miễn phí trên GitHub Actions.
+model → tạo 5 ảnh slide → lập lịch đăng Facebook + Instagram. Chạy miễn phí
+trên GitHub Actions.
 
 ## Chạy thử offline (không đăng, không gọi API bài đăng)
 
@@ -48,11 +48,15 @@ GET https://graph.facebook.com/v21.0/oauth/access_token
 Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nhắn Telegram
 để bạn dán lại vào secret `META_PAGE_TOKEN` (thao tác tay ~10 giây).
 
-## Bật/tắt tự động đăng
+## Luồng bài viết
 
-`config/settings.yaml` → `approval_mode`:
-- `telegram` (mặc định): gửi preview, chờ bạn bấm ✅ trong 12h.
-- `auto`: đăng thẳng, không hỏi.
+- `article-morning` (07:00 ICT) và `article-evening` (17:00 ICT) dựng bản nháp
+  rồi tự động lập lịch: Facebook đăng lúc 11:30 / 19:45 ICT (native
+  `scheduled_publish_time`), Instagram chuẩn bị sẵn.
+- Telegram gửi thông báo `🗓 Đã lên lịch` với nút `🗑 Gỡ bài` (xóa cả bài
+  Facebook + media Instagram nếu bấm trong vòng 15 phút trước giờ slot).
+- Khi lập lịch thất bại: bài ở trạng thái `draft`, `article-approve` thử lại
+  mỗi 5 phút cho tới giờ slot, rồi đánh dấu `expired` với cảnh báo.
 
 ## Nguồn nội dung
 
@@ -70,11 +74,11 @@ vẫn được test, nhưng không nằm trên đường dựng bản nháp nữ
 
 - `article-morning`: 07:00 ICT (`cron '0 0 * * *'`) → chọn chủ đề từ
   `config/topics.yaml` + lịch sử gần đây → viết bài #1 từ kiến thức model →
-  gửi preview Telegram.
+  auto-lập lịch đăng 11:30 ICT.
 - `article-evening`: 17:00 ICT (`cron '0 10 * * *'`) → như trên cho bài #2
-  (tránh trùng chủ đề bài sáng).
-- `article-approve`: mỗi 10 phút (`cron '*/10 * * * *'`) → xử lý nút Telegram
-  Đăng ngay / Lên lịch / Bỏ.
+  (tránh trùng chủ đề bài sáng) → auto-lập lịch đăng 19:45 ICT.
+- `article-approve`: mỗi 5 phút (`cron '*/5 * * * *'`) → thử lại bài ở trạng
+  thái `draft`, đánh dấu slot `expired` nếu quá giờ.
 - `article-publish-ig`: poll trong khung giờ đăng
   (`cron '0,15,30,45 4,5,12,13 * * *'`) → đăng carousel Instagram khi tới đúng
   giờ slot đã lên lịch.
@@ -122,7 +126,7 @@ F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm f
 (Claude CLI → Gemini fallback), `telegram`, `meta`, `daily_state`, `state`,
 `models`. Ba entrypoint:
 - `article_run --slot <morning|evening>` — dựng bản nháp cho slot, gửi preview.
-- `article_approve` — xử lý callback nút Telegram (Đăng ngay / Lên lịch / Bỏ).
+- `article_approve` — thử lại bài ở trạng thái `draft`, xử lý nút `Gỡ bài`.
 - `article_publish_ig` — đăng carousel Instagram khi tới giờ slot đã lên lịch.
 
 State: `data/daily/<YYYY-MM-DD>.json`, một file mỗi ngày, hai slot
