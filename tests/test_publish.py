@@ -93,7 +93,9 @@ def test_schedule_slot_never_raises_after_fb_post_exists(tmp_path):
     meta = FakeMeta()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)      # scheduled branch
     res = publish.schedule_slot(ds, meta, tmp_path, "2026-09-06", "morning", now, TGBoom())
-    assert res in ("scheduled:2026-09-06:morning", "posted:2026-09-06:morning")
+    # the guard now derives its tag from the observed status, so a scheduled
+    # slot reports "scheduled:" and never the contradictory "posted:".
+    assert res == "scheduled:2026-09-06:morning"
     slot = ds.get("2026-09-06", "morning")
     # the scheduled branch already advanced the slot; the post-publish
     # bookkeeping guard must NOT downgrade "scheduled" -> "posted" (that would
@@ -112,12 +114,15 @@ def test_schedule_slot_bookkeeping_forces_posted_when_still_publishing(tmp_path)
         return real_set_status(date, slot, status)
 
     ds.set_status = flaky_set_status
+    tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)      # scheduled branch
-    res = publish.schedule_slot(ds, FakeMeta(), tmp_path, "2026-09-06", "morning", now, FakeTG())
+    res = publish.schedule_slot(ds, FakeMeta(), tmp_path, "2026-09-06", "morning", now, tg)
     assert res == "posted:2026-09-06:morning"
     # set_status("scheduled") never landed -> slot was still "publishing" when
     # the guard ran -> it is forced to "posted" (FB post exists, nothing else recorded).
     assert ds.get("2026-09-06", "morning")["status"] == "posted"
+    # the operator is alerted that FB is out but the post-steps failed.
+    assert any("kiểm tra Page" in t for t, _ in tg.msgs)
 
 
 def test_schedule_slot_raises_when_upload_fails(tmp_path):

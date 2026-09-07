@@ -71,6 +71,11 @@ def schedule_slot(ds, meta, root, date: str, slot_name: str,
         log.exception(
             "schedule_slot post-publish bookkeeping failed for %s:%s", date, slot_name)
         try:
+            tg.send_message(
+                f"⚠️ {date}:{slot_name} đã lên FB nhưng lỗi ở bước sau — kiểm tra Page/IG.")
+        except Exception:  # noqa: BLE001 - the alert itself must not raise
+            pass
+        try:
             # Only force "posted" for a slot still stuck at "publishing" (the
             # genuine "FB post exists, nothing recorded" case). If the scheduled
             # branch already advanced it to "scheduled"/"posted", leave it —
@@ -82,4 +87,5 @@ def schedule_slot(ds, meta, root, date: str, slot_name: str,
             log.exception(
                 "schedule_slot could not mark %s:%s posted after bookkeeping failure",
                 date, slot_name)
-        return f"posted:{date}:{slot_name}"
+        st = (ds.get(date, slot_name) or {}).get("status")
+        return f"{st or 'posted'}:{date}:{slot_name}"

@@ -155,7 +155,10 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     # fail and fall to retry_unscheduled (which sends no risk notice), so this
     # must fire regardless of which path ends up posting. Single send.
     if article.risk:
-        tg.send_message(f"⚠️ {date}:{slot} — bài này gắn cờ nhạy cảm, kiểm tra nhanh.")
+        try:
+            tg.send_message(f"⚠️ {date}:{slot} — bài này gắn cờ nhạy cảm, kiểm tra nhanh.")
+        except Exception as e:  # noqa: BLE001 - a notice failure must not stop publishing
+            log.warning("risk notice send failed: %s", e)
     try:
         publish.schedule_slot(ds, meta or _meta(), root, date, slot, now, tg)
     except Exception as e:  # noqa: BLE001 - transient publish failure -> retryable

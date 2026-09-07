@@ -198,6 +198,42 @@ def test_draft_risk_flagged_even_when_schedule_raises(wired, monkeypatch):
     assert DailyState(root / "data").get("2026-09-06", "morning")["status"] == "draft"
 
 
+def test_draft_risk_notice_failure_does_not_block_scheduling(wired, monkeypatch):
+    root, _ = wired
+    risky = ArticleContent(format="share", caption_fb="body", caption_ig="ig",
+                           hashtags=["#AI"], cover_title="X",
+                           slides=[{"role": r, "headline": "h", "body": "b"}
+                                   for r in ("hook", "item", "close")],
+                           sources=[], risk=True)
+    monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: risky)
+
+    calls = []
+
+    def stub_schedule(ds, meta, root, date, slot, now, tg):
+        calls.append((date, slot))
+        ds.set_status(date, slot, "scheduled")
+        return f"scheduled:{date}:{slot}"
+
+    monkeypatch.setattr(article_run.publish, "schedule_slot", stub_schedule)
+
+    class FirstSendBoom(FakeTG):
+        # raise only on the risk-notice send (the first send_message call)
+        def send_message(self, text, buttons=None):
+            if not self.msgs:
+                self.msgs.append((text, buttons))
+                raise RuntimeError("Telegram 429")
+            return super().send_message(text, buttons)
+
+    tg = FirstSendBoom()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg, meta=object())
+    # the risk-notice failure was swallowed: scheduling still ran and the slot
+    # ends "scheduled" (not stranded at "publishing").
+    assert calls == [("2026-09-06", "morning")]
+    assert out["status"] == "scheduled"
+    assert DailyState(root / "data").get("2026-09-06", "morning")["status"] == "scheduled"
+
+
 def test_fake_llm_smoke_passes_noop_meta_not_real(monkeypatch, tmp_path):
     """The --fake-llm offline smoke must never construct a real Meta: main()
     hands draft() a _NoopMeta, so draft()'s `meta or _meta()` never calls _meta."""
