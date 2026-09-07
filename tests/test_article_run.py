@@ -7,8 +7,9 @@ from pipeline.daily_state import DailyState
 
 
 class FakeTG:
-    def __init__(self): self.media = []; self.msgs = []
-    def send_media_group(self, paths, caption=""): self.media.append(list(paths))
+    def __init__(self): self.media = []; self.msgs = []; self.captions = []
+    def send_media_group(self, paths, caption=""):
+        self.media.append(list(paths)); self.captions.append(caption)
     def send_message(self, text, buttons=None): self.msgs.append((text, buttons))
 
 
@@ -45,62 +46,31 @@ def wired(tmp_path, monkeypatch):
     monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: _art())
     monkeypatch.setattr(article_run.images, "build_images",
                         lambda *a, **k: [str(tmp_path / f"{i:02d}.jpg") for i in range(1, 6)])
+    # keep the flow tests off the live Graph API: stub both the lazy Meta
+    # builder and schedule_slot so draft()'s `meta or _meta()` never calls
+    # Meta.from_env() (which would KeyError without META_* env vars).
+    monkeypatch.setattr(article_run, "_meta", lambda: object())
+    monkeypatch.setattr(article_run.publish, "schedule_slot",
+                        lambda ds, meta, root, date, slot, now, tg:
+                            (ds.set_status(date, slot, "scheduled"),
+                             f"scheduled:{date}:{slot}")[1])
     return tmp_path, None
 
 
-def test_draft_writes_state_and_preview(wired):
+def test_draft_writes_state_and_schedules(wired):
     root, _ = wired
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
-    slot = article_run.draft("morning", root, now, tg=tg)
-    assert slot["status"] == "draft"
+    slot = article_run.draft("morning", root, now, tg=tg, meta=object())
+    assert slot["status"] == "scheduled"
     assert slot["format"] == "share"
     ds = DailyState(root / "data")
     saved = ds.get("2026-09-06", "morning")
     assert saved["title"] == "5 công cụ AI dựng video"
     assert saved["sources"] == []
     assert saved["angle"] == "giúp bạn ra video nhanh hơn"
-    assert tg.media and tg.msgs
-    _, buttons = tg.msgs[-1]
-    assert [b[1] for b in buttons] == ["art:2026-09-06:morning:now",
-                                       "art:2026-09-06:morning:sched",
-                                       "art:2026-09-06:morning:drop"]
-    assert "5 công cụ AI dựng video" in tg.msgs[-1][0]
-
-
-def _preview_art(caption_fb):
-    return ArticleContent(format="share", caption_fb=caption_fb, caption_ig="ig",
-                          hashtags=["#AI", "#ml"], cover_title="T",
-                          slides=[{"role": "hook", "headline": "a", "body": "x"}],
-                          sources=[])
-
-
-def test_send_preview_sends_full_caption_in_one_message():
-    tg = FakeTG()
-    body = "Câu đầu tiên. " * 40  # ~560 chars, well under the split threshold
-    article_run.send_preview(_preview_art(body), ["a.jpg"], "morning",
-                             "2026-09-06", tg, "11:30", "Chủ đề mẫu")
-    assert len(tg.msgs) == 1
-    text, buttons = tg.msgs[0]
-    assert body in text                       # nothing truncated
-    assert "…" not in text
-    assert "💡 Chủ đề mẫu" in text
-    assert [b[1] for b in buttons] == ["art:2026-09-06:morning:now",
-                                       "art:2026-09-06:morning:sched",
-                                       "art:2026-09-06:morning:drop"]
-
-
-def test_send_preview_splits_when_over_telegram_limit():
-    tg = FakeTG()
-    body = "x" * 4200  # forces the two-message split
-    article_run.send_preview(_preview_art(body), ["a.jpg"], "morning",
-                             "2026-09-06", tg, "11:30", "Chủ đề mẫu")
-    assert len(tg.msgs) == 2
-    assert body in tg.msgs[0][0] and tg.msgs[0][1] is None      # body first, no buttons
-    assert "#AI #ml" in tg.msgs[1][0]                           # hashtags carry the buttons
-    assert [b[1] for b in tg.msgs[1][1]] == ["art:2026-09-06:morning:now",
-                                             "art:2026-09-06:morning:sched",
-                                             "art:2026-09-06:morning:drop"]
+    # media still previewed to Telegram before scheduling
+    assert tg.media
 
 
 def test_draft_excludes_recent_and_other_slot(wired, monkeypatch):
@@ -117,7 +87,7 @@ def test_draft_excludes_recent_and_other_slot(wired, monkeypatch):
     tg = FakeTG()
     now = datetime(2026, 9, 6, 10, 5, tzinfo=timezone.utc)
     out = article_run.draft("evening", root, now, tg=tg)
-    assert out["status"] == "draft"
+    assert out["status"] == "scheduled"
     assert "Chủ đề buổi sáng" in seen["recent"]
 
 
@@ -145,12 +115,12 @@ def test_draft_prefers_news_candidate(wired, monkeypatch):
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     out = article_run.draft("morning", root, now, tg=tg)
-    assert out["status"] == "draft"
+    assert out["status"] == "scheduled"
     saved = DailyState(root / "data").get("2026-09-06", "morning")
     assert saved["title"] == cand.title
     assert saved["sources"] and saved["sources"][0]["url"] == cand.url
     assert seen["cand"].url == cand.url
-    assert "📰" in tg.msgs[-1][0]
+    assert any("📰" in c for c in tg.captions)   # news marker
 
 
 def test_draft_falls_back_to_topic_bank(wired, monkeypatch):
@@ -164,11 +134,11 @@ def test_draft_falls_back_to_topic_bank(wired, monkeypatch):
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     out = article_run.draft("morning", root, now, tg=tg)
-    assert out["status"] == "draft"
+    assert out["status"] == "scheduled"
     saved = DailyState(root / "data").get("2026-09-06", "morning")
     assert saved["title"] == "5 công cụ AI dựng video"
     assert saved["sources"] == []
-    assert "💡" in tg.msgs[-1][0]
+    assert any("💡" in c for c in tg.captions)   # topic-bank marker
 
 
 def test_draft_falls_back_when_collect_fails(wired, monkeypatch):
@@ -184,9 +154,27 @@ def test_draft_falls_back_when_collect_fails(wired, monkeypatch):
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     out = article_run.draft("morning", root, now, tg=tg)  # must NOT raise
-    assert out["status"] == "draft"
+    assert out["status"] == "scheduled"
     assert DailyState(root / "data").get("2026-09-06", "morning")["title"] == \
         "5 công cụ AI dựng video"
+
+
+def test_draft_schedule_failure_marks_draft_and_notifies(wired, monkeypatch):
+    root, _ = wired
+
+    def boom(*a, **k):
+        raise RuntimeError("(190) token expired")
+
+    monkeypatch.setattr(article_run.publish, "schedule_slot", boom)
+    notes = []
+    monkeypatch.setattr(article_run, "_notify_failure",
+                        lambda slot, e: notes.append((slot, str(e))))
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg, meta=object())
+    assert out == {"slot": "morning", "status": "error"}
+    assert DailyState(root / "data").get("2026-09-06", "morning")["status"] == "draft"
+    assert notes and "token expired" in notes[0][1]
 
 
 def test_draft_skips_committed_slot(wired, monkeypatch):

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import yaml
 
-from . import write, images, topics, collect, score
+from . import write, images, topics, collect, score, publish
 from .daily_state import DailyState
 from .models import ArticleContent
 from .state import State
@@ -34,35 +34,16 @@ def _parse_size(s: str) -> tuple[int, int]:
     return int(w), int(h)
 
 
+def _meta():
+    from .meta import Meta
+    return Meta.from_env()
+
+
 def raw_base_url(settings: dict, rel_path: str) -> str:
     return f"{settings['images']['raw_base']}/{rel_path}".replace("\\", "/")
 
 
-def send_preview(article: ArticleContent, image_paths: list[str], slot: str,
-                 date: str, tg, slot_ict: str, topic: str,
-                 is_news: bool = False) -> None:
-    tg.send_media_group(image_paths)
-    meta = f"📰 {topic}" if is_news else f"💡 {topic}"
-    if article.risk:
-        meta += " ⚠️ nhạy cảm"
-    body = article.caption_fb  # full caption, no truncation
-    hashtags = " ".join(article.hashtags)
-    buttons = [
-        ("✅ Đăng ngay", f"art:{date}:{slot}:now"),
-        (f"🕓 Lên lịch {slot_ict}", f"art:{date}:{slot}:sched"),
-        ("🗑 Bỏ", f"art:{date}:{slot}:drop")]
-    text = f"{meta}\n\n{body}\n\n{hashtags}"
-    # Telegram caps a message at 4096 chars. Keep headroom: if the combined
-    # meta+body+hashtags would exceed ~3900, split so the buttons still attach
-    # to the final message (hashtags carry them).
-    if len(text) > 3900:
-        tg.send_message(f"{meta}\n\n{body}")
-        tg.send_message(hashtags, buttons=buttons)
-    else:
-        tg.send_message(text, buttons=buttons)
-
-
-def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> dict:
+def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=None) -> dict:
     root = Path(root)
     generate = generate or _default_generate
     tg = tg or Telegram()
@@ -156,14 +137,28 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
                                 root=root)
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
-
     slot_ict = acfg["slots"][slot]
-    ds.put(date, slot, status="draft", format="share", title=title,
+
+    # preview the carousel to Telegram (informational only — no buttons)
+    marker = "📰" if is_news else "💡"
+    try:
+        tg.send_media_group(paths, caption=f"{marker} {title}")
+    except Exception as e:  # noqa: BLE001 - a preview failure must not stop publishing
+        log.warning("preview send failed: %s", e)
+
+    ds.put(date, slot, status="publishing", format="share", title=title,
            topic_key=_slug(title), text_fb=article.caption_fb,
            text_ig=article.caption_ig, hashtags=article.hashtags,
            images=rel_paths, image_urls=image_urls, risk=article.risk,
            slot_ict=slot_ict, sources=state_sources, angle=angle)
-    send_preview(article, paths, slot, date, tg, slot_ict, title, is_news=is_news)
+    try:
+        publish.schedule_slot(ds, meta or _meta(), root, date, slot, now, tg)
+    except Exception as e:  # noqa: BLE001 - transient publish failure -> retryable
+        ds.set_status(date, slot, "draft")
+        _notify_failure(slot, e)
+        return {"slot": slot, "status": "error"}
+    if article.risk:
+        tg.send_message(f"⚠️ {date}:{slot} — bài này gắn cờ nhạy cảm, kiểm tra nhanh.")
     return ds.get(date, slot)
 
 
