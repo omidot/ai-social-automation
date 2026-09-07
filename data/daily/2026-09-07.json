@@ -56,6 +56,47 @@
           "error": "Graph POST /v21.0/17841428078688871/media_publish -> 400: (9007/2207027) Media ID is not available | type=OAuthException fbtrace_id=AGfgOv4QjavS5-nUshwPEyW"
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Quy trình 5 bước dùng AI làm khoá học online một mình",
+      "topic_key": "quy-trinh-5-buoc-dung-ai-lam-khoa-hoc-online-mot-m",
+      "text_fb": "Bạn muốn tạo một khóa học online để đóng gói tri thức nhưng lại ngại việc phải thuê camera, người dựng phim hay biên tập kịch bản? Tin vui là hiện tại bạn hoàn toàn có thể tự làm trọn gói một mình nhờ sự hỗ trợ của các công cụ AI. Mình sẽ chia sẻ quy trình thực tế giúp bạn hoàn thiện một khóa học số chất lượng chỉ trong thời gian ngắn.\n\nĐầu tiên, việc lên kịch bản và khung giáo trình không còn tốn hàng tuần liền. Bạn chỉ cần sử dụng ChatGPT để phân tích nhu cầu người học và tạo khung đề cương chi tiết cho từng bài giảng.\n\nSau khi có kịch bản, việc làm slide thuyết trình trở nên vô cùng đơn giản với Canva. Bạn chọn mẫu thiết kế phù hợp và để công cụ hỗ trợ trình bày trực quan, đồng bộ màu sắc thương hiệu.\n\nNếu bạn không tự tin vào giọng nói của mình, ElevenLabs sẽ giải quyết triệt để. Công cụ này giúp chuyển kịch bản chữ thành giọng đọc truyền cảm, trong trẻo như thu tại studio.\n\nTiếp theo, bạn đưa toàn bộ slide và file âm thanh vào CapCut để ghép video. Tính năng tự tạo phụ đề của CapCut sẽ giúp bạn tiết kiệm vài tiếng đồng hồ gõ lời thoại.\n\nCuối cùng, bạn gom tất cả bài giảng, tài liệu PDF vào không gian Notion để tạo thành một cổng học tập khoa học và gửi cho học viên. Như vậy là bạn đã hoàn thành khóa học số một mình mà không tốn chi phí thuê ekip. Hãy bắt đầu ngay hôm nay nhé!",
+      "text_ig": "Tự tạo khóa học online một mình không khó nếu bạn biết kết hợp các công cụ AI. Từ viết kịch bản, tạo slide, lồng tiếng đến dựng video đều có công cụ hỗ trợ. Hãy lưu lại quy trình này để bắt đầu sản xuất sản phẩm số đầu tiên của bạn ngay!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#KhoaHocOnline",
+        "#SanPhamSo",
+        "#ChatGPT",
+        "#Canva",
+        "#CapCut",
+        "#Notion",
+        "#ElevenLabs"
+      ],
+      "images": [
+        "assets/posts/2026-09-07/evening/01.jpg",
+        "assets/posts/2026-09-07/evening/02.jpg",
+        "assets/posts/2026-09-07/evening/03.jpg",
+        "assets/posts/2026-09-07/evening/04.jpg",
+        "assets/posts/2026-09-07/evening/05.jpg",
+        "assets/posts/2026-09-07/evening/06.jpg",
+        "assets/posts/2026-09-07/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "Giúp người đọc tự lên kịch bản, dựng bài giảng và xuất bản khoá học số mà không cần thuê đội ngũ hỗ trợ."
     }
   }
 }
