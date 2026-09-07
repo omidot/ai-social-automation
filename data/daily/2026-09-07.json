@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-07",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Cách dùng AI dựng landing page bán hàng không cần biết code",
+      "topic_key": "cach-dung-ai-dung-landing-page-ban-hang-khong-can-",
+      "text_fb": "Nhiều người vẫn nghĩ muốn có landing page bán hàng đẹp thì phải thuê lập trình viên, tốn vài triệu, chờ cả tuần. Mình từng nghĩ vậy, cho đến khi thử làm bằng AI và chỉ mất một buổi chiều.\n\nGiờ có cả loạt công cụ AI dựng trang chỉ bằng mô tả bằng lời. Framer có tính năng AI tạo layout từ một câu mô tả sản phẩm, bạn chỉnh sửa kéo thả sau đó. Durable thì nhanh hơn nữa, nhập tên doanh nghiệp và ngành hàng là nó tự viết nội dung, chọn ảnh, dựng cả trang trong vài phút, việc của bạn là sửa lại cho đúng chất giọng thương hiệu. 10Web dùng AI dựng trên nền WordPress nên phù hợp nếu sau này bạn muốn mở rộng thêm blog hay cửa hàng online.\n\nCái hay không phải là trang đẹp sẵn, mà là bạn tự chủ toàn bộ. Muốn đổi tiêu đề, đổi ảnh, đổi nút kêu gọi hành động, bạn tự làm được ngay, không cần nhắn tin chờ dev rảnh. Với người mới bán hàng, đây là cách kiểm tra ý tưởng nhanh mà không đổ tiền vào một trang web cầu kỳ ngay từ đầu.\n\nBắt đầu đơn giản thôi. Viết trước một đoạn mô tả rõ: bán gì, cho ai, điểm khác biệt là gì. Đưa mô tả đó vào công cụ AI builder để ra bản nháp đầu tiên. Sau đó dùng ChatGPT hoặc Claude viết lại tiêu đề và mô tả sản phẩm cho tự nhiên, đúng giọng thương hiệu. Cuối cùng chỉnh bố cục, thêm nút mua hàng hoặc form liên hệ, rồi xuất bản.\n\nLanding page không cần hoàn hảo ngay từ đầu, cần nhất là có để bắt đầu bán và test thị trường. Bạn đã thử công cụ nào trong số này chưa?",
+      "text_ig": "Không cần thuê dev vẫn có landing page bán hàng đẹp. Dùng Framer AI hoặc Durable, mô tả sản phẩm bằng lời, AI dựng bản nháp trong vài phút. Bạn chỉnh lại nội dung, thêm nút mua hàng, xong trong một buổi chiều. Bắt đầu bán, đừng chờ hoàn hảo.",
+      "hashtags": [
+        "#AI",
+        "#LandingPage",
+        "#KhôngCầnCode",
+        "#NoCode",
+        "#AHitOfficial",
+        "#BánHàngOnline",
+        "#CôngCụAI",
+        "#Framer",
+        "#Durable",
+        "#KinhDoanhOnline",
+        "#TựLàmWebsite",
+        "#MarketingOnline"
+      ],
+      "images": [
+        "assets/posts/2026-09-07/morning/01.jpg",
+        "assets/posts/2026-09-07/morning/02.jpg",
+        "assets/posts/2026-09-07/morning/03.jpg",
+        "assets/posts/2026-09-07/morning/04.jpg",
+        "assets/posts/2026-09-07/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "Giúp người đọc tự tạo trang bán hàng chuyên nghiệp trong vài giờ mà không cần thuê lập trình viên."
+    }
+  }
+}
