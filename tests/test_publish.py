@@ -94,8 +94,30 @@ def test_schedule_slot_never_raises_after_fb_post_exists(tmp_path):
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)      # scheduled branch
     res = publish.schedule_slot(ds, meta, tmp_path, "2026-09-06", "morning", now, TGBoom())
     assert res in ("scheduled:2026-09-06:morning", "posted:2026-09-06:morning")
-    # slot did NOT stay "publishing" -> the retry sweep can't re-publish it
-    assert ds.get("2026-09-06", "morning")["status"] in ("scheduled", "posted")
+    slot = ds.get("2026-09-06", "morning")
+    # the scheduled branch already advanced the slot; the post-publish
+    # bookkeeping guard must NOT downgrade "scheduled" -> "posted" (that would
+    # strand IG — the IG poller only polls "scheduled", "posted" is terminal).
+    assert slot["status"] == "scheduled"
+    assert slot["ig_due"]                       # IG poller stays armed
+
+
+def test_schedule_slot_bookkeeping_forces_posted_when_still_publishing(tmp_path):
+    ds = _seed(tmp_path)
+    real_set_status = ds.set_status
+
+    def flaky_set_status(date, slot, status):
+        if status == "scheduled":
+            raise RuntimeError("state write 500")
+        return real_set_status(date, slot, status)
+
+    ds.set_status = flaky_set_status
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)      # scheduled branch
+    res = publish.schedule_slot(ds, FakeMeta(), tmp_path, "2026-09-06", "morning", now, FakeTG())
+    assert res == "posted:2026-09-06:morning"
+    # set_status("scheduled") never landed -> slot was still "publishing" when
+    # the guard ran -> it is forced to "posted" (FB post exists, nothing else recorded).
+    assert ds.get("2026-09-06", "morning")["status"] == "posted"
 
 
 def test_schedule_slot_raises_when_upload_fails(tmp_path):

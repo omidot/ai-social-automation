@@ -104,9 +104,46 @@ def test_undo_fb_delete_error_still_marks_discarded(tmp_path):
     assert any("Lỗi" in m for m in tg.msgs)
 
 
+def test_undo_on_posted_slot(tmp_path):
+    """The normal post-publish undo lands on a slot article_publish_ig already
+    promoted scheduled -> posted. set_status refuses to leave TERMINAL, so the
+    undo must force the discard via put() or state ends up lying."""
+    ds = DailyState(tmp_path / "data")
+    ds.put("2026-09-06", "morning", status="posted", format="share",
+           text_fb="body", text_ig="ig", hashtags=["#AI"],
+           images=["assets/posts/2026-09-06/morning/01.jpg"],
+           image_urls=["https://raw/x/01.jpg"], slot_ict="11:30", sources=[],
+           fb_post_id="P_1", result={"fb": {"id": "P_1"}, "ig": {"media_id": "IG_1"}})
+    tg, meta = FakeTG(), FakeMeta()
+    now = datetime(2026, 9, 6, 4, 40, tzinfo=timezone.utc)     # 10 min after 04:30 UTC slot
+    res = article_approve.handle_callback(_cbq("undo"), ds, tg, meta, tmp_path, now)
+    assert res == "discarded:2026-09-06:morning"
+    assert meta.fb_deleted == ["P_1"] and meta.ig_deleted == ["IG_1"]
+    assert ds.get("2026-09-06", "morning")["status"] == "discarded"
+
+
+def test_undo_commit_failure_acks_and_does_not_raise(tmp_path):
+    ds = _seed_scheduled(tmp_path)
+    tg, meta = FakeTG(), FakeMeta()
+    real_put = ds.put
+
+    def boom_put(date, slot, **fields):
+        if fields.get("status") == "discarded":
+            raise RuntimeError("state write 500")
+        return real_put(date, slot, **fields)
+
+    ds.put = boom_put
+    now = datetime(2026, 9, 6, 4, 35, tzinfo=timezone.utc)
+    res = article_approve.handle_callback(_cbq("undo"), ds, tg, meta, tmp_path, now)
+    assert res == "error:2026-09-06:morning"
+    assert meta.fb_deleted == ["P_1"] and meta.ig_deleted == ["IG_1"]
+    assert tg.acks and "Lỗi khi gỡ" in tg.acks[-1]
+    assert ds.get("2026-09-06", "morning")["status"] != "discarded"
+
+
 def test_expire_stale_marks_old_drafts(tmp_path):
     ds = _seed(tmp_path)
-    now = datetime(2026, 9, 7, 12, 0, tzinfo=timezone.utc)     # >24h after 11:30 ICT slot
+    now = datetime(2026, 9, 7, 12, 0, tzinfo=timezone.utc)     # any time past the 11:30 ICT slot time
     tg = FakeTG()
     out = article_approve.expire_stale(ds, tg, now)
     assert out == ["2026-09-06:morning"]

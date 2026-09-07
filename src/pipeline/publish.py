@@ -71,7 +71,13 @@ def schedule_slot(ds, meta, root, date: str, slot_name: str,
         log.exception(
             "schedule_slot post-publish bookkeeping failed for %s:%s", date, slot_name)
         try:
-            ds.set_status(date, slot_name, "posted")
+            # Only force "posted" for a slot still stuck at "publishing" (the
+            # genuine "FB post exists, nothing recorded" case). If the scheduled
+            # branch already advanced it to "scheduled"/"posted", leave it —
+            # downgrading "scheduled" -> "posted" would strand IG (the IG poller
+            # only polls "scheduled", and "posted" is terminal).
+            if (ds.get(date, slot_name) or {}).get("status") == "publishing":
+                ds.set_status(date, slot_name, "posted")
         except Exception:  # noqa: BLE001 - even a state failure here must not raise
             log.exception(
                 "schedule_slot could not mark %s:%s posted after bookkeeping failure",

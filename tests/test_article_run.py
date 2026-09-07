@@ -177,6 +177,45 @@ def test_draft_schedule_failure_marks_draft_and_notifies(wired, monkeypatch):
     assert notes and "token expired" in notes[0][1]
 
 
+def test_draft_risk_flagged_even_when_schedule_raises(wired, monkeypatch):
+    root, _ = wired
+    risky = ArticleContent(format="share", caption_fb="body", caption_ig="ig",
+                           hashtags=["#AI"], cover_title="X",
+                           slides=[{"role": r, "headline": "h", "body": "b"}
+                                   for r in ("hook", "item", "close")],
+                           sources=[], risk=True)
+    monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: risky)
+    monkeypatch.setattr(article_run.publish, "schedule_slot",
+                        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("(190) token")))
+    monkeypatch.setattr(article_run, "_notify_failure", lambda *a, **k: None)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg, meta=object())
+    assert out == {"slot": "morning", "status": "error"}
+    # the risk flag must reach Telegram even though scheduling blew up and the
+    # slot fell back to "draft" for retry_unscheduled (which sends no risk notice)
+    assert any("nhạy cảm" in t for t, _ in tg.msgs)
+    assert DailyState(root / "data").get("2026-09-06", "morning")["status"] == "draft"
+
+
+def test_fake_llm_smoke_passes_noop_meta_not_real(monkeypatch, tmp_path):
+    """The --fake-llm offline smoke must never construct a real Meta: main()
+    hands draft() a _NoopMeta, so draft()'s `meta or _meta()` never calls _meta."""
+    seen = {}
+
+    def fake_draft(slot, root, now, *, generate=None, tg=None, meta=None):
+        seen["meta"] = meta
+        return {"slot": slot, "status": "dry"}
+
+    monkeypatch.setattr(article_run, "draft", fake_draft)
+    monkeypatch.setattr(article_run, "_meta",
+                        lambda: (_ for _ in ()).throw(AssertionError("real Meta built")))
+    monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
+    rc = article_run.main(["--slot", "morning", "--root", str(tmp_path), "--fake-llm"])
+    assert rc == 0
+    assert isinstance(seen["meta"], article_run._NoopMeta)
+
+
 def test_draft_skips_committed_slot(wired, monkeypatch):
     root, _ = wired
     ds = DailyState(root / "data")

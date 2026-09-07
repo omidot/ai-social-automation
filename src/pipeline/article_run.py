@@ -151,14 +151,17 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
            text_ig=article.caption_ig, hashtags=article.hashtags,
            images=rel_paths, image_urls=image_urls, risk=article.risk,
            slot_ict=slot_ict, sources=state_sources, angle=angle)
+    # Flag a risky article to the operator BEFORE scheduling: the schedule may
+    # fail and fall to retry_unscheduled (which sends no risk notice), so this
+    # must fire regardless of which path ends up posting. Single send.
+    if article.risk:
+        tg.send_message(f"⚠️ {date}:{slot} — bài này gắn cờ nhạy cảm, kiểm tra nhanh.")
     try:
         publish.schedule_slot(ds, meta or _meta(), root, date, slot, now, tg)
     except Exception as e:  # noqa: BLE001 - transient publish failure -> retryable
         ds.set_status(date, slot, "draft")
         _notify_failure(slot, e)
         return {"slot": slot, "status": "error"}
-    if article.risk:
-        tg.send_message(f"⚠️ {date}:{slot} — bài này gắn cờ nhạy cảm, kiểm tra nhanh.")
     return ds.get(date, slot)
 
 
@@ -170,6 +173,26 @@ class _NoopTelegram:
 
     def send_media_group(self, *a, **k) -> None:
         pass
+
+
+class _NoopMeta:
+    """Stand-in for Meta used by the ``--fake-llm`` offline smoke so a run on a
+    machine with ``META_*`` exported never touches the real Graph API."""
+
+    def fb_upload_photo(self, *a, **k) -> str:
+        return "noop"
+
+    def fb_create_post(self, *a, **k) -> dict:
+        return {"id": "noop", "url": "", "scheduled": True}
+
+    def ig_publish_images(self, *a, **k) -> dict:
+        return {"ok": True, "media_id": "noop"}
+
+    def fb_delete_post(self, *a, **k) -> dict:
+        return {"success": True}
+
+    def ig_delete_media(self, *a, **k) -> dict:
+        return {"success": True}
 
 
 def _notify_failure(slot: str, e: BaseException) -> None:
@@ -209,7 +232,7 @@ def main(argv: list[str] | None = None) -> int:
         # write.WriteError from the live LLM stays loud.
         try:
             draft(args.slot, Path(args.root), datetime.now(timezone.utc),
-                  generate=gen, tg=tg)
+                  generate=gen, tg=tg, meta=_NoopMeta())
         except write.WriteError as e:
             log.warning("offline smoke: pipeline raised %s: %s", type(e).__name__, e)
         print("SUMMARY: dry")

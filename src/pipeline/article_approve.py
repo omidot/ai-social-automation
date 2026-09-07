@@ -54,18 +54,28 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
     fb_id = (res.get("fb") or {}).get("id") or slot.get("fb_post_id")
     ig_id = (res.get("ig") or {}).get("media_id")
     errs: list[str] = []
-    if fb_id:
-        try:
-            meta.fb_delete_post(fb_id)
-        except Exception as e:  # noqa: BLE001
-            errs.append(f"FB: {e}")
-    if ig_id:
-        try:
-            meta.ig_delete_media(ig_id)
-        except Exception as e:  # noqa: BLE001
-            errs.append(f"IG: {e}")
-    ds.put(date, slot_name, result={**res, "undone": True})
-    ds.set_status(date, slot_name, "discarded")
+    try:
+        if fb_id:
+            try:
+                meta.fb_delete_post(fb_id)
+            except Exception as e:  # noqa: BLE001
+                errs.append(f"FB: {e}")
+        if ig_id:
+            try:
+                meta.ig_delete_media(ig_id)
+            except Exception as e:  # noqa: BLE001
+                errs.append(f"IG: {e}")
+        # Force the discard past the one-way TERMINAL guard: article_publish_ig
+        # may already have promoted this slot scheduled -> posted, and
+        # set_status refuses to leave a terminal state. put() does cur.update()
+        # and bypasses the guard, so state can't stay "posted" after we've
+        # deleted the content.
+        ds.put(date, slot_name, status="discarded", result={**res, "undone": True})
+    except Exception as e:  # noqa: BLE001 - deletes may have half-succeeded; don't leave state lying
+        log.exception("undo commit failed for %s:%s", date, slot_name)
+        _ack(tg, cbq["id"], "Lỗi khi gỡ, xem log.")
+        tg.send_message(f"⚠️ Lỗi khi gỡ {date}:{slot_name}: {e}")
+        return f"error:{date}:{slot_name}"
     _ack(tg, cbq["id"], "Đã gỡ.")
     msg = f"🗑 Đã gỡ {date}:{slot_name} khỏi FB/IG."
     if errs:
