@@ -11,13 +11,6 @@ from .publish import slot_unix, _fb_message, _ig_caption  # noqa: F401 - re-expo
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_approve")
 
-# The ONLY status a callback may act on. A slot in "scheduled" or "publishing"
-# is deliberately non-actionable here so a second/late callback can never
-# re-publish it. Do NOT add those statuses to daily_state.TERMINAL - that would
-# break article_publish_ig's scheduled -> posted promotion.
-ACTIONABLE = frozenset({"draft"})
-
-
 def _meta():
     from .meta import Meta
     return Meta.from_env()
@@ -30,111 +23,54 @@ def _ack(tg, cbq_id: str, text: str = "") -> None:
         log.warning("answer_callback failed: %s", e)
 
 
+UNDO_GRACE_MIN = 15
+
+
 def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str | None:
-    data = cbq.get("data", "")
-    parts = data.split(":")
+    parts = cbq.get("data", "").split(":")
     if len(parts) != 4 or parts[0] != "art":
         return None
     _, date, slot_name, action = parts
+    if action != "undo":
+        # now/sched/drop retired — the pipeline schedules itself
+        _ack(tg, cbq["id"], "Nút này không còn dùng.")
+        return None
+
     slot = ds.get_safe(date, slot_name)
-    log.info("callback %s -> slot status=%s", cbq.get("data"), (slot or {}).get("status"))
-    if slot is None:
-        _ack(tg, cbq["id"], "Không tìm thấy bài này (state chưa đồng bộ), thử lại sau.")
+    if slot is None or slot.get("status") in ("discarded", "expired"):
+        _ack(tg, cbq["id"], "Không có gì để gỡ.")
+        return None
+
+    when = slot_unix(date, slot.get("slot_ict", "11:30"))
+    if now.timestamp() - when > UNDO_GRACE_MIN * 60:
+        _ack(tg, cbq["id"], "Đăng lâu rồi — gỡ tay trên trang.")
         tg.send_message(
-            f"⚠️ Không tìm thấy bài {date}:{slot_name} (state chưa đồng bộ giữa "
-            "các lần chạy). Thử chạy lại article-approve sau 1–2 phút.")
-        return None
-    if slot.get("status") not in ACTIONABLE:
-        _ack(tg, cbq["id"], "Bài này đã xử lý.")
-        return None
+            f"⚠️ {date}:{slot_name} đã đăng quá {UNDO_GRACE_MIN} phút, "
+            "gỡ thủ công trên Facebook/Instagram.")
+        return f"undo-expired:{date}:{slot_name}"
 
-    # Whether the Facebook post has actually been created. Stays None until
-    # meta.fb_create_post() returns; the outer except uses it to decide if a
-    # failure is recoverable (fb is None -> nothing published -> retryable) or
-    # a post already exists (fb set -> a later step failed -> mark posted).
-    fb = None
-    try:
-        if action == "now":
-            # in-flight marker BEFORE the first Meta call: if fb_create_post
-            # times out after FB created the post, the outer except must not
-            # find this slot back at "draft" (which would re-arm it).
-            ds.set_status(date, slot_name, "publishing")
-            fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
-            fb = meta.fb_create_post(_fb_message(slot), fbids)  # point of no return
-            try:
-                ig = meta.ig_publish_images(slot["image_urls"], _ig_caption(slot))
-            except Exception as e:  # noqa: BLE001
-                ig = {"ok": False, "error": str(e)}
-            ds.put(date, slot_name, result={"fb": fb, "ig": ig})
-            ds.set_status(date, slot_name, "posted")
-            log.info("published %s: fb=%s ig=%s", f"{date}:{slot_name}",
-                     fb.get("id"), ig.get("media_id"))
-            _ack(tg, cbq["id"], "Đang đăng…")
-            tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
-            tg.send_message(f"✅ Đã đăng {date}:{slot_name}: {fb['url']}{tail}")
-            return f"posted:{date}:{slot_name}"
-
-        if action == "sched":
-            ds.set_status(date, slot_name, "publishing")
-            when = slot_unix(date, slot["slot_ict"])
-            fbids = [meta.fb_upload_photo(str(Path(root) / p)) for p in slot["images"]]
-            fb = meta.fb_create_post(_fb_message(slot), fbids,
-                                     scheduled_publish_time=when,
-                                     now_unix=int(now.timestamp()))  # point of no return
-            if fb.get("scheduled"):
-                ds.put(date, slot_name, fb_post_id=fb["id"],
-                       ig_due=datetime.fromtimestamp(when, tz=timezone.utc).isoformat(),
-                       result={"fb": fb, "ig": None})
-                ds.set_status(date, slot_name, "scheduled")
-                log.info("scheduled %s for %s", f"{date}:{slot_name}", slot["slot_ict"])
-                _ack(tg, cbq["id"], "Đã lên lịch.")
-                tg.send_message(f"🕓 Đã lên lịch {date}:{slot_name}, đăng lúc {slot['slot_ict']}.")
-                return f"scheduled:{date}:{slot_name}"
-            # too close to the slot -> FB already published; publish IG now too
-            try:
-                ig = meta.ig_publish_images(slot["image_urls"], _ig_caption(slot))
-            except Exception as e:  # noqa: BLE001
-                ig = {"ok": False, "error": str(e)}
-            ds.put(date, slot_name, result={"fb": fb, "ig": ig})
-            ds.set_status(date, slot_name, "posted")
-            _ack(tg, cbq["id"], "Đăng ngay (quá sát giờ).")
-            tail = "" if ig.get("ok") else " (IG lỗi, thử lại sau)"
-            tg.send_message(f"✅ Đã đăng {date}:{slot_name} (quá sát giờ lên lịch): {fb['url']}{tail}")
-            return f"posted:{date}:{slot_name}"
-
-        if action == "drop":
-            ds.set_status(date, slot_name, "discarded")
-            _ack(tg, cbq["id"], "Đã bỏ.")
-            tg.send_message(f"🗑 Đã bỏ {date}:{slot_name}.")
-            return f"discarded:{date}:{slot_name}"
-
-        _ack(tg, cbq["id"], "Không rõ thao tác.")
-        return None
-    except Exception as e:  # noqa: BLE001 - a poison update must never abort the poll
-        _ack(tg, cbq["id"], "Lỗi xử lý, xem log.")
-        log.exception("article_approve callback failed for %s:%s", date, slot_name)
-        if action in ("now", "sched"):
-            if fb is None:
-                # the failure happened BEFORE the FB post existed (expired
-                # token, upload 400, ...) - nothing was published, so make the
-                # slot retryable instead of burning the day's slot.
-                ds.set_status(date, slot_name, "draft")
-                tg.send_message(
-                    f"❌ Chưa đăng được {date}:{slot_name} (chưa có gì lên Page): {e}\n"
-                    f"Sửa xong bấm ✅ Đăng ngay lại.")
-                return f"retry:{date}:{slot_name}"
-            # the FB post exists but a later step (IG, state write) failed:
-            # never leave it at "publishing" (it would re-arm) - mark "posted"
-            # so it can never re-publish, and alert to check the Page by hand.
-            ds.put(date, slot_name,
-                   result={"fb": fb, "ig": {"ok": False, "error": str(e)}})
-            ds.set_status(date, slot_name, "posted")
-            tg.send_message(
-                f"⚠️ {date}:{slot_name} đã đăng lên FB nhưng lỗi ở bước sau — "
-                f"kiểm tra Page. Lỗi: {e}")
-            return f"posted:{date}:{slot_name}"
-        tg.send_message(f"❌ Lỗi xử lý {date}:{slot_name}: {e}")
-        return f"error:{date}:{slot_name}"
+    res = slot.get("result") or {}
+    fb_id = (res.get("fb") or {}).get("id") or slot.get("fb_post_id")
+    ig_id = (res.get("ig") or {}).get("media_id")
+    errs: list[str] = []
+    if fb_id:
+        try:
+            meta.fb_delete_post(fb_id)
+        except Exception as e:  # noqa: BLE001
+            errs.append(f"FB: {e}")
+    if ig_id:
+        try:
+            meta.ig_delete_media(ig_id)
+        except Exception as e:  # noqa: BLE001
+            errs.append(f"IG: {e}")
+    ds.put(date, slot_name, result={**res, "undone": True})
+    ds.set_status(date, slot_name, "discarded")
+    _ack(tg, cbq["id"], "Đã gỡ.")
+    msg = f"🗑 Đã gỡ {date}:{slot_name} khỏi FB/IG."
+    if errs:
+        msg += " Lỗi: " + "; ".join(errs)
+    tg.send_message(msg)
+    return f"discarded:{date}:{slot_name}"
 
 
 def expire_stale(ds, tg, now: datetime) -> list[str]:

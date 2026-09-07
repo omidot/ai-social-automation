@@ -11,7 +11,11 @@ class FakeTG:
 
 
 class FakeMeta:
-    def __init__(self): self.scheduled = None; self.ig = None
+    def __init__(self):
+        self.scheduled = None; self.ig = None
+        self.fb_deleted = []; self.ig_deleted = []
+    def fb_delete_post(self, pid): self.fb_deleted.append(pid); return {"success": True}
+    def ig_delete_media(self, mid): self.ig_deleted.append(mid); return {"success": True}
     def fb_upload_photo(self, p): return "fb:" + Path(p).name
     def fb_create_post(self, msg, ids, scheduled_publish_time=None, now_unix=None):
         self.scheduled = scheduled_publish_time
@@ -38,151 +42,66 @@ def _cbq(action, date="2026-09-06", slot="morning"):
     return {"id": "cb1", "data": f"art:{date}:{slot}:{action}"}
 
 
-def test_now_publishes_both(tmp_path):
-    ds = _seed(tmp_path)
+def _seed_scheduled(root):
+    ds = DailyState(root / "data")
+    ds.put("2026-09-06", "morning", status="scheduled", format="share",
+           text_fb="body", text_ig="ig", hashtags=["#AI"],
+           images=["assets/posts/2026-09-06/morning/01.jpg"],
+           image_urls=["https://raw/x/01.jpg"], slot_ict="11:30", sources=[],
+           fb_post_id="P_1", result={"fb": {"id": "P_1"}, "ig": {"media_id": "IG_1"}})
+    return ds
+
+
+def test_undo_deletes_fb_and_ig_within_grace(tmp_path):
+    ds = _seed_scheduled(tmp_path)
     tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert res == "posted:2026-09-06:morning"
-    assert meta.scheduled is None and meta.ig is not None
-    assert ds.get("2026-09-06", "morning")["status"] == "posted"
+    now = datetime(2026, 9, 6, 4, 35, tzinfo=timezone.utc)     # 5 min after slot
+    res = article_approve.handle_callback(_cbq("undo"), ds, tg, meta, tmp_path, now)
+    assert res == "discarded:2026-09-06:morning"
+    assert meta.fb_deleted == ["P_1"] and meta.ig_deleted == ["IG_1"]
+    assert ds.get("2026-09-06", "morning")["status"] == "discarded"
 
 
-def test_sched_uses_native_schedule(tmp_path):
-    ds = _seed(tmp_path)
+def test_undo_past_grace_is_refused(tmp_path):
+    ds = _seed_scheduled(tmp_path)
     tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)     # 07:40 ICT
-    article_approve.handle_callback(_cbq("sched"), ds, tg, meta, tmp_path, now)
-    slot = ds.get("2026-09-06", "morning")
-    assert slot["status"] == "scheduled"
-    assert meta.scheduled == article_approve.slot_unix("2026-09-06", "11:30")
-    assert slot["ig_due"]
+    now = datetime(2026, 9, 6, 5, 0, tzinfo=timezone.utc)      # 30 min after slot
+    res = article_approve.handle_callback(_cbq("undo"), ds, tg, meta, tmp_path, now)
+    assert res == "undo-expired:2026-09-06:morning"
+    assert meta.fb_deleted == [] and meta.ig_deleted == []
+    assert ds.get("2026-09-06", "morning")["status"] == "scheduled"
+    assert any("gỡ thủ công" in m for m in tg.msgs)
 
 
-def test_sched_too_close_publishes_now(tmp_path):
-    ds = _seed(tmp_path)
+def test_undo_missing_slot_is_noop(tmp_path):
+    ds = DailyState(tmp_path / "data")
     tg, meta = FakeTG(), FakeMeta()
-    # slot is 2026-09-06 11:30 ICT == 04:30 UTC; now is 5 min before -> lead 300s
-    now = datetime(2026, 9, 6, 4, 25, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("sched"), ds, tg, meta, tmp_path, now)
-    assert res == "posted:2026-09-06:morning"
-    slot = ds.get("2026-09-06", "morning")
-    assert slot["status"] == "posted"
-    assert meta.ig is not None
-    assert any("quá sát giờ" in m for m in tg.msgs)
+    now = datetime(2026, 9, 6, 4, 35, tzinfo=timezone.utc)
+    assert article_approve.handle_callback(_cbq("undo"), ds, tg, meta, tmp_path, now) is None
+    assert meta.fb_deleted == []
 
 
-def test_late_callback_on_posted_is_ignored(tmp_path):
-    ds = _seed(tmp_path, status="posted")
+def test_legacy_now_button_is_inert(tmp_path):
+    ds = _seed_scheduled(tmp_path)
     tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 5, 0, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert res is None
-    assert tg.acks == ["Bài này đã xử lý."]
-    assert meta.scheduled is None and meta.ig is None
-
-
-def test_second_callback_on_scheduled_is_ignored(tmp_path):
-    ds = _seed(tmp_path, status="scheduled")
-    tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert res is None
-    assert meta.scheduled is None and meta.ig is None
-    assert tg.acks == ["Bài này đã xử lý."]
+    now = datetime(2026, 9, 6, 4, 35, tzinfo=timezone.utc)
+    assert article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now) is None
+    assert meta.fb_deleted == [] and meta.scheduled is None
     assert ds.get("2026-09-06", "morning")["status"] == "scheduled"
 
 
-def test_missing_slot_reports_desync(tmp_path):
-    ds = DailyState(tmp_path / "data")            # nothing seeded
-    tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert res is None
-    assert tg.acks == ["Không tìm thấy bài này (state chưa đồng bộ), thử lại sau."]
-    # the ack toast is easy to miss: a real chat message must fire too
-    assert any("không tìm thấy" in m.lower() and "state chưa đồng bộ" in m
-               for m in tg.msgs)
-    assert meta.scheduled is None and meta.ig is None
-
-
-def test_inflight_status_set_before_meta_call(tmp_path):
-    ds = _seed(tmp_path)
+def test_undo_fb_delete_error_still_marks_discarded(tmp_path):
+    ds = _seed_scheduled(tmp_path)
     tg = FakeTG()
 
-    class RecordingMeta(FakeMeta):
-        def __init__(self, ds): super().__init__(); self._ds = ds; self.seen_status = None
-        def fb_upload_photo(self, p):
-            self.seen_status = self._ds.get("2026-09-06", "morning")["status"]
-            return super().fb_upload_photo(p)
+    class DelBoom(FakeMeta):
+        def fb_delete_post(self, pid): raise RuntimeError("Graph 100")
 
-    meta = RecordingMeta(ds)
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert meta.seen_status == "publishing"
-    assert ds.get("2026-09-06", "morning")["status"] == "posted"
-
-
-def test_exception_after_publish_marks_posted_not_draft(tmp_path):
-    """fb_create_post SUCCEEDS, then a later step (state write) raises: the FB
-    post exists, so the slot must end up 'posted' + a 'check the Page' alert."""
-    ds = _seed(tmp_path)
-    tg, meta = FakeTG(), FakeMeta()
-
-    class PutRaisesOnce(DailyState):
-        def __init__(self, inner):
-            super().__init__(inner.dir.parent)
-            self._raised = False
-        def put(self, *a, **kw):
-            if not self._raised and "result" in kw:
-                self._raised = True
-                raise RuntimeError("write to daily state failed")
-            return super().put(*a, **kw)
-
-    wrapped = PutRaisesOnce(ds)
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), wrapped, tg, meta, tmp_path, now)
-    assert res == "posted:2026-09-06:morning"
-    status = wrapped.get("2026-09-06", "morning")["status"]
-    assert status == "posted"                       # never left draft / publishing
-    assert any("kiểm tra Page" in m for m in tg.msgs)
-
-
-def test_prepublish_failure_leaves_slot_retryable(tmp_path):
-    """A failure BEFORE the FB post exists (expired token -> fb_upload_photo
-    400) must leave the slot 'draft' so it can be retried, not burn the slot."""
-    ds = _seed(tmp_path)
-    tg = FakeTG()
-
-    class ExpiredTokenMeta(FakeMeta):
-        def fb_upload_photo(self, p):
-            raise RuntimeError("(190) Session has expired")
-
-    meta = ExpiredTokenMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert res == "retry:2026-09-06:morning"
-    assert ds.get("2026-09-06", "morning")["status"] == "draft"   # NOT posted
-    assert any("Chưa đăng được" in m and "chưa có gì lên Page" in m for m in tg.msgs)
-    assert meta.ig is None                                        # IG never attempted
-
-    # the slot is actionable again: a fresh "now" callback is not rejected
-    tg2, meta2 = FakeTG(), FakeMeta()
-    res2 = article_approve.handle_callback(_cbq("now"), ds, tg2, meta2, tmp_path, now)
-    assert res2 == "posted:2026-09-06:morning"
-    assert "Bài này đã xử lý." not in tg2.acks
-    assert ds.get("2026-09-06", "morning")["status"] == "posted"
-
-
-def test_drop_marks_discarded_no_publish(tmp_path):
-    ds = _seed(tmp_path)
-    tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("drop"), ds, tg, meta, tmp_path, now)
+    now = datetime(2026, 9, 6, 4, 35, tzinfo=timezone.utc)
+    res = article_approve.handle_callback(_cbq("undo"), ds, tg, DelBoom(), tmp_path, now)
     assert res == "discarded:2026-09-06:morning"
     assert ds.get("2026-09-06", "morning")["status"] == "discarded"
-    assert meta.scheduled is None
-    assert meta.ig is None
+    assert any("Lỗi" in m for m in tg.msgs)
 
 
 def test_expire_stale_marks_old_drafts(tmp_path):
@@ -206,26 +125,13 @@ def test_expire_stale_skips_corrupt_file(tmp_path):
     assert ds.get("2026-09-06", "morning")["status"] == "expired"
 
 
-def test_handle_callback_corrupt_daily_file_reports_desync(tmp_path):
-    daily = tmp_path / "data" / "daily"
-    daily.mkdir(parents=True, exist_ok=True)
-    (daily / "2026-09-06.json").write_text("{ not json", encoding="utf-8")
-    ds = DailyState(tmp_path / "data")
-    tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 0, 40, tzinfo=timezone.utc)
-    res = article_approve.handle_callback(_cbq("now"), ds, tg, meta, tmp_path, now)
-    assert res is None                                          # no exception propagated
-    assert tg.acks == ["Không tìm thấy bài này (state chưa đồng bộ), thử lại sau."]
-    assert meta.scheduled is None and meta.ig is None           # Meta never touched
-
-
 def test_poll_skips_poison_update_and_advances_offset(tmp_path, monkeypatch):
     from pipeline.state import State
 
     _seed(tmp_path)
     updates = [
         {"update_id": 10, "callback_query": _cbq("now")},       # poisoned below
-        {"update_id": 11, "callback_query": _cbq("drop")},      # good
+        {"update_id": 11, "callback_query": _cbq("undo")},      # good
     ]
 
     class FakeTelegram:
