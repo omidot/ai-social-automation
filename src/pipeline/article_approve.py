@@ -6,22 +6,16 @@ from pathlib import Path
 from .daily_state import DailyState
 from .state import State
 from .telegram import Telegram
+from .publish import slot_unix, _fb_message, _ig_caption  # noqa: F401 - re-export
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_approve")
-_ICT = timezone(timedelta(hours=7))
 
 # The ONLY status a callback may act on. A slot in "scheduled" or "publishing"
 # is deliberately non-actionable here so a second/late callback can never
 # re-publish it. Do NOT add those statuses to daily_state.TERMINAL - that would
 # break article_publish_ig's scheduled -> posted promotion.
 ACTIONABLE = frozenset({"draft"})
-
-
-def slot_unix(date: str, slot_ict: str) -> int:
-    y, m, d = (int(x) for x in date.split("-"))
-    hh, mm = (int(x) for x in slot_ict.split(":"))
-    return int(datetime(y, m, d, hh, mm, tzinfo=_ICT).timestamp())
 
 
 def _meta():
@@ -34,14 +28,6 @@ def _ack(tg, cbq_id: str, text: str = "") -> None:
         tg.answer_callback(cbq_id, text)
     except Exception as e:  # noqa: BLE001 - an expired callback id must never abort the poll
         log.warning("answer_callback failed: %s", e)
-
-
-def _fb_message(slot: dict) -> str:
-    return slot["text_fb"] + "\n\n" + " ".join(slot["hashtags"])
-
-
-def _ig_caption(slot: dict) -> str:
-    return slot["text_ig"] + "\n\n" + " ".join(slot["hashtags"])
 
 
 def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str | None:

@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .daily_state import DailyState
 from .telegram import Telegram
-from .article_approve import _ig_caption
+from .publish import _ig_caption
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_publish_ig")
