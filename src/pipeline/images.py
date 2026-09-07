@@ -1,7 +1,8 @@
 from __future__ import annotations
-import logging, os
+import io, logging, os
 from pathlib import Path
 
+import httpx
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 from . import media
@@ -11,29 +12,37 @@ log = logging.getLogger("images")
 
 _FONT_DIR = Path("assets/fonts")
 
+# Shared logo cache dir, resolved relative to the repo root passed into
+# ``build_images``. ``scripts/commit_state.sh`` already stages ``assets/`` so a
+# fetched logo is committed once and reused forever.
+LOGO_DIR = Path("assets/logos")
+
 # Hard-coded brand palette / copy; settings `images.brand` overrides any subset.
 BRAND_DEFAULTS: dict = {
-    "bg": "#F4F3F0",        # near-white warm grey background
-    "dot": "#E3E1DC",       # faint dot-grid colour
-    "accent": "#1D4ED8",    # brand blue (pill, underline)
-    "ink": "#111111",       # near-black headline
-    "muted": "#6B6B6B",     # channel handle grey
+    "accent": "#1D4ED8",    # brand blue (numerals, underline, pill, progress)
+    "ink": "#111111",       # near-black headline on the light item slides
     "handle": "A Hít Official",
-    "watermark": "#E9E7E2",  # giant ghost slide numeral behind every slide
-    "highlight": "#DBE7FF",  # light-blue block behind the hook headline
-    "tile_icon": "#1F2937",  # monochrome tech icon (frosted tiles + step accent)
-    "progress_on": "#1D4ED8",   # filled progress segment (<= current slide)
-    "progress_off": "#D9D7D2",  # empty progress segment
-    "role_labels": {            # kicker-pill label per step role
-        "what": "AI LÀM ĐƯỢC GÌ",
-        "why": "BẠN ĐƯỢC GÌ",
-        "how": "CÁCH BẮT ĐẦU",
-        "close": "CHỐT LẠI",
-    },
+    "kicker": "A HÍT OFFICIAL",   # brand pill on the hook slide
+    # --- light "item" slides -------------------------------------------------
+    "item_bg": "#F1F2F4",       # cool light background
+    "item_dot": "#E2E4E8",      # faint dot grid
+    "body_ink": "#3A3F4A",      # item body copy
+    "progress_off": "#D4D7DD",  # empty progress segment (light slides)
+    "swipe_hint": "#8A90A0",    # "Vuốt tiếp ›" bottom-right
+    "watermark": "#E6E8EC",     # ghost numeral bottom-right
+    "muted": "#6B6B6B",         # handle on the close slide
+    "tile_icon": "#1F2937",     # monochrome glyph when no real logo
+    # --- dark "hook" slide -------------------------------------------------
+    "hook_bg": "#0B0B10",           # near-black
+    "hook_dot": "#1A1A22",          # faint dot grid
+    "hook_glow": "#1D4ED8",         # blue radial glow top-left (= accent)
+    "hook_body": "#B9BDC9",         # hook sub-line
+    "hook_progress_off": "#2A2A35", # empty progress segment (dark slide)
+    "cta_border": "#6B7280",        # swipe-CTA outline
+    "cta_text": "#E5E7EB",          # swipe-CTA label
+    # retained so the legacy media fallback keeps its old look
+    "bg": "#F4F3F0", "dot": "#E3E1DC", "highlight": "#DBE7FF",
 }
-
-# the one monochrome accent icon each step slide carries in its upper-right
-_ROLE_ICON = {"what": "chip", "why": "spark", "how": "bolt", "close": "chat"}
 
 
 # --- tiny monochrome tech icons, drawn purely with ImageDraw -----------------
@@ -217,178 +226,321 @@ def _handle_font(size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(media.FONT_PATH), size)
 
 
-# --- shared storyboard skeleton --------------------------------------------
+# --- real tool logos -----------------------------------------------------
+
+def _fetch_logo(domain: str, root: Path) -> Image.Image | None:
+    """Return an RGBA logo image for ``domain`` or ``None`` — never raises.
+
+    Cache: ``<root>/assets/logos/<domain>.png``. On a miss, try Google's
+    favicon service (sz=256), then unavatar.io. Anything smaller than 32px or
+    any failure falls through; a real hit is cached for next time.
+    """
+    try:
+        cache = Path(root) / LOGO_DIR / f"{domain}.png"
+        if cache.exists():
+            try:
+                im = Image.open(cache)
+                im.load()
+                return im.convert("RGBA")
+            except Exception as e:  # noqa: BLE001 - a bad cache file, refetch
+                log.warning("cached logo %s unreadable (%s); refetching", cache, e)
+
+        sources = (
+            f"https://www.google.com/s2/favicons?domain={domain}&sz=256",
+            f"https://unavatar.io/{domain}",
+        )
+        logo: Image.Image | None = None
+        for url in sources:
+            try:
+                r = httpx.get(url, timeout=10.0, follow_redirects=True)
+                r.raise_for_status()
+                cand = Image.open(io.BytesIO(r.content)).convert("RGBA")
+            except Exception as e:  # noqa: BLE001 - try the next source
+                log.warning("logo fetch failed for %s via %s (%s)", domain, url, e)
+                continue
+            if min(cand.size) < 32:
+                log.warning("logo for %s from %s too small (%s)", domain, url, cand.size)
+                continue
+            logo = cand
+            break
+        if logo is None:
+            log.warning("no usable logo for %s", domain)
+            return None
+
+        try:
+            cache.parent.mkdir(parents=True, exist_ok=True)
+            logo.save(cache, format="PNG")
+        except Exception as e:  # noqa: BLE001 - caching is best-effort
+            log.warning("could not cache logo %s (%s)", cache, e)
+        return logo
+    except Exception as e:  # noqa: BLE001 - a logo must never sink a slide
+        log.warning("unexpected logo error for %s (%s)", domain, e)
+        return None
+
+
+# --- shared storyboard bits ---------------------------------------------
 
 def _draw_progress(draw: ImageDraw.ImageDraw, b: dict, i: int, size: tuple[int, int],
-                   total: int = 5) -> None:
-    """5 small rounded segments near the top; segments ``<= i`` filled brand-blue,
-    the rest light grey."""
+                   total: int = 5, off: str | None = None) -> None:
+    """``total`` rounded segments near the top; segments ``<= i`` filled
+    brand-blue, the rest ``off`` (defaults to the light-slide empty colour)."""
     W, _ = size
+    total = max(1, total)
     margin, gap, seg_h, y = 80, 14, 12, 92
+    off = off or b["progress_off"]
     seg_w = (W - 2 * margin - gap * (total - 1)) / total
     for k in range(total):
         x0 = margin + k * (seg_w + gap)
-        fill = b["progress_on"] if k <= i else b["progress_off"]
+        fill = b["accent"] if k <= i else off
         draw.rounded_rectangle((x0, y, x0 + seg_w, y + seg_h),
                                radius=seg_h / 2, fill=fill)
 
 
-def _draw_skeleton(img: Image.Image, draw: ImageDraw.ImageDraw, b: dict,
-                   i: int, size: tuple[int, int]) -> None:
-    """Everything the 5 slides share so they read as one story: warm-grey bg
-    (already painted) + dot grid, a faint giant ghost numeral bottom-right, the
-    progress bar up top, and the channel handle centred at the bottom."""
+def _dot_grid(draw: ImageDraw.ImageDraw, size: tuple[int, int], colour: str,
+              step: int = 40, r: int = 2) -> None:
     W, H = size
-
-    # faint giant ghost numeral (slide number), bleeding off the lower-right
-    try:
-        wm_font = ImageFont.truetype(str(media.FONT_PATH), 900)
-        wm_text = str(i + 1)
-        wl, wt, wr, wb = draw.textbbox((0, 0), wm_text, font=wm_font)
-        tw, th = wr - wl, wb - wt
-        draw.text((int(W - tw * 0.60) - wl, int(H - th * 0.82) - wt), wm_text,
-                  font=wm_font, fill=b["watermark"])
-    except Exception:  # noqa: BLE001 - a missing giant glyph must not sink a slide
-        pass
-
-    # faint 26px dot grid
-    step, r = 26, 1
     for gy in range(step, H, step):
         for gx in range(step, W, step):
-            draw.ellipse((gx - r, gy - r, gx + r, gy + r), fill=b["dot"])
-
-    # progress bar
-    _draw_progress(draw, b, i, size)
-
-    # channel handle, centred near the bottom
-    handle_font = _handle_font(30)
-    hw = draw.textlength(b["handle"], font=handle_font)
-    hasc, hdesc = handle_font.getmetrics()
-    draw.text(((W - hw) / 2, H - 40 - (hasc + hdesc)), b["handle"],
-              font=handle_font, fill=b["muted"])
+            draw.ellipse((gx - r, gy - r, gx + r, gy + r), fill=colour)
 
 
-def _render_hook_slide(article: ArticleContent, size: tuple[int, int],
+def _fit_lines(draw, text: str, start: int, floor: int, max_w: int,
+               max_lines: int, step: int = 6):
+    """Wrap ``text`` at the biggest font (``start`` .. ``floor``) that fits in
+    ``max_lines``. Returns ``(font, lines, size)``."""
+    sz = start
+    hf = ImageFont.truetype(str(media.FONT_PATH), sz)
+    lines = media._wrap(draw, text, hf, max_w)
+    while sz > floor and len(lines) > max_lines:
+        sz -= step
+        hf = ImageFont.truetype(str(media.FONT_PATH), sz)
+        lines = media._wrap(draw, text, hf, max_w)
+    return hf, lines, sz
+
+
+def _slide_total(article: ArticleContent) -> int:
+    n = len(getattr(article, "slides", []) or [])
+    return max(5, min(7, n)) if n else 5
+
+
+def _render_hook_slide(article: ArticleContent, slide: dict, size: tuple[int, int],
                        brand: dict | None = None) -> Image.Image:
-    """Slide 1 (role "hook"): the boldest slide. Shared skeleton + a big
-    highlighted headline (light-blue block behind the last wrapped line, same
-    treatment the old cover used) + the frosted-glass icon fan. Replaces the
-    old standalone cover.
+    """Slide 1 (role "hook"): a dark, high-punch slide — near-black bg with a
+    soft blue radial glow, faint dot grid, a brand kicker pill, one line of the
+    hook blown up in brand blue, a muted sub-line, and a swipe CTA near the
+    bottom.
     """
     b = {**BRAND_DEFAULTS, **(brand or {})}
     W, H = size
-    img = Image.new("RGB", (W, H), b["bg"])
+    slide = slide or {}
+
+    img = Image.new("RGB", (W, H), b["hook_bg"])
+    # blue radial glow, top-left, on its own heavily-blurred layer
+    glow = Image.new("RGB", (W, H), b["hook_bg"])
+    gd = ImageDraw.Draw(glow)
+    gd.ellipse((-W * 0.35, -H * 0.32, W * 0.55, H * 0.42), fill=b["hook_glow"])
+    glow = glow.filter(ImageFilter.GaussianBlur(120))
+    img = Image.blend(img, glow, 0.22)
     draw = ImageDraw.Draw(img)
-    _draw_skeleton(img, draw, b, 0, size)
 
-    margin = 80
-    safe_w = W - 2 * margin
+    _dot_grid(draw, size, b["hook_dot"], step=46, r=2)
+    _draw_progress(draw, b, 0, size, total=_slide_total(article),
+                   off=b["hook_progress_off"])
 
-    title = (getattr(article, "cover_title", "") or "").strip()
-    if not title:
-        slides = getattr(article, "slides", None) or []
-        if slides:
-            title = str(slides[0].get("headline", "")).strip()
+    margin = 70
+    safe_w = W - 140
 
-    head_size = 92
-    hf = ImageFont.truetype(str(media.FONT_PATH), head_size)
-    lines = media._wrap(draw, title, hf, safe_w)
-    while head_size > 44 and len(lines) > 3:
-        head_size -= 4
-        hf = ImageFont.truetype(str(media.FONT_PATH), head_size)
-        lines = media._wrap(draw, title, hf, safe_w)
+    # brand kicker pill, top-left under the progress bar
+    kf = ImageFont.truetype(str(media.FONT_PATH), 26)
+    kick = str(b.get("kicker", b["handle"]))
+    kw = draw.textlength(kick, font=kf)
+    kasc, kdesc = kf.getmetrics()
+    kpad_x, kpad_y = 22, 12
+    draw.rounded_rectangle((margin, 132, margin + kw + 2 * kpad_x,
+                            132 + kasc + kdesc + 2 * kpad_y),
+                           radius=(kasc + kdesc + 2 * kpad_y) // 2, fill=b["accent"])
+    draw.text((margin + kpad_x, 132 + kpad_y), kick, font=kf, fill="#FFFFFF")
 
-    line_h = int(head_size * 1.18)
-    y0_head = 300
-    hasc, hdesc = hf.getmetrics()
+    # the hook headline: auto-fit, <=3 lines; then blow up one line in brand blue
+    head = (str(slide.get("headline", "")).strip()
+            or (getattr(article, "cover_title", "") or "").strip())
+    hf, lines, hsz = _fit_lines(draw, head, 120, 56, safe_w, 3)
 
-    if lines:
-        last = lines[-1]
-        ly = y0_head + (len(lines) - 1) * line_h
-        lw = draw.textlength(last, font=hf)
-        draw.rounded_rectangle((margin - 10, ly - 4, margin + lw + 10,
-                                ly + hasc + hdesc + 4), radius=8, fill=b["highlight"])
+    big_idx = None
+    for idx, ln in enumerate(lines):
+        if len(ln.split()) == 1 and len(ln) >= 6:
+            big_idx = idx
+    if big_idx is None and lines:
+        big_idx = len(lines) - 1
+    big_sz = min(int(hsz * 1.5), 150)
+    big_hf = ImageFont.truetype(str(media.FONT_PATH), big_sz)
+    while big_sz > hsz and big_idx is not None and \
+            draw.textlength(lines[big_idx], font=big_hf) > safe_w:
+        big_sz -= 6
+        big_hf = ImageFont.truetype(str(media.FONT_PATH), big_sz)
 
-    y = y0_head
-    for ln in lines:
-        draw.text((margin, y), ln, font=hf, fill=b["ink"])
-        y += line_h
+    y = int(H * 0.24)
+    for idx, ln in enumerate(lines):
+        if idx == big_idx:
+            draw.text((margin, y), ln, font=big_hf, fill=b["accent"])
+            y += int(big_sz * 1.16)
+        else:
+            draw.text((margin, y), ln, font=hf, fill="#FFFFFF")
+            y += int(hsz * 1.18)
 
-    # minimal brand-blue underline accent
-    draw.rectangle((margin, y + 22, margin + 120, y + 26), fill=b["accent"])
+    # the hook sub-line, muted, <=2 lines
+    sub = str(slide.get("body", "")).strip()
+    if sub:
+        sf = _handle_font(34)
+        y += 16
+        for ln in media._wrap(draw, sub, sf, safe_w)[:2]:
+            draw.text((margin, y), ln, font=sf, fill=b["hook_body"])
+            y += 46
 
-    # signature frosted-glass icon fan in the lower-middle band
-    _draw_icon_fan(img, b, 5)
+    # swipe CTA: outlined rounded rect, centred, near the bottom
+    cta_w, cta_h = 380, 74
+    cx0, cy0 = (W - cta_w) // 2, int(H * 0.85)
+    draw.rounded_rectangle((cx0, cy0, cx0 + cta_w, cy0 + cta_h),
+                           radius=cta_h // 2, outline=b["cta_border"], width=2)
+    cta_font = _handle_font(30)
+    label = "Vuốt để xem tiếp  ›"
+    lw = draw.textlength(label, font=cta_font)
+    lasc, ldesc = cta_font.getmetrics()
+    draw.text((cx0 + (cta_w - lw) / 2, cy0 + (cta_h - (lasc + ldesc)) / 2),
+              label, font=cta_font, fill=b["cta_text"])
     return img
 
 
-def _render_step_slide(i: int, slide: dict, size: tuple[int, int],
-                       brand: dict | None = None) -> Image.Image:
-    """Slides 2-5 (what / why / how / close): shared skeleton + a small
-    brand-blue kicker pill with the Vietnamese role label, the wrapped bold
-    headline, a thin blue underline, then the body in #333, plus one small
-    monochrome accent icon in the upper-right.
+def _logo_tile(img: Image.Image, box: tuple[int, int, int, int], b: dict,
+               logo: Image.Image | None, icon_fn) -> None:
+    """A white rounded tile with a soft shadow at ``box``; inside it either the
+    real ``logo`` (scaled to fit with padding) or a monochrome ``icon_fn``."""
+    x0, y0, x1, y1 = box
+    tw, th = x1 - x0, y1 - y0
+    rad = 20
+
+    shadow = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    sd.rounded_rectangle((x0 + 6, y0 + 10, x1 + 6, y1 + 10), radius=rad,
+                         fill=(17, 17, 17, 70))
+    shadow = shadow.filter(ImageFilter.GaussianBlur(12))
+    img.paste(shadow, (0, 0), shadow)
+
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle(box, radius=rad, fill="#FFFFFF")
+
+    pad = 24
+    inner = (x0 + pad, y0 + pad, x1 - pad, y1 - pad)
+    if logo is not None:
+        target = min(tw, th) - 2 * pad
+        lg = logo.copy()
+        lg.thumbnail((target, target), Image.LANCZOS)
+        ox = int(x0 + (tw - lg.width) / 2)
+        oy = int(y0 + (th - lg.height) / 2)
+        img.paste(lg, (ox, oy), lg if lg.mode == "RGBA" else None)
+    else:
+        icon_fn(d, inner, b["tile_icon"])
+
+
+def _render_item_slide(i: int, total: int, slide: dict, size: tuple[int, int],
+                       brand: dict | None = None, root: Path | None = None) -> Image.Image:
+    """Slides 2..N (role "item", and the final "close"): light background + dot
+    grid, progress bar, a big brand-blue index numeral top-left (or a "CHỐT LẠI"
+    pill on the close slide), a top-right tile holding the tool's real logo (or
+    a fallback glyph), an optional tool-name label, the auto-fit headline with a
+    blue underline, the body, and a swipe hint (handle on the close slide).
     """
     b = {**BRAND_DEFAULTS, **(brand or {})}
     W, H = size
-    img = Image.new("RGB", (W, H), b["bg"])
+    slide = slide or {}
+    root = Path(root) if root is not None else Path(".")
+    role = str(slide.get("role", "")).strip().lower()
+    is_close = role == "close"
+
+    img = Image.new("RGB", (W, H), b["item_bg"])
     draw = ImageDraw.Draw(img)
-    _draw_skeleton(img, draw, b, i, size)
+    _dot_grid(draw, size, b["item_dot"], step=40, r=2)
+    _draw_progress(draw, b, i - 1, size, total=total, off=b["progress_off"])
+
+    # ghost numeral watermark, bottom-right
+    try:
+        wm_font = ImageFont.truetype(str(media.FONT_PATH), 900)
+        wm = "?" if is_close else f"{i - 1}"
+        wl, wt, wr, wb = draw.textbbox((0, 0), wm, font=wm_font)
+        draw.text((int(W - (wr - wl) * 0.60) - wl, int(H - (wb - wt) * 0.82) - wt),
+                  wm, font=wm_font, fill=b["watermark"])
+    except Exception:  # noqa: BLE001
+        pass
 
     margin = 80
     safe_w = W - 2 * margin
-    slide = slide or {}
-    role = str(slide.get("role", "")).strip().lower()
+    top_y = 150
+
+    # index numeral (or CHỐT LẠI pill on close)
+    if is_close:
+        pf = ImageFont.truetype(str(media.FONT_PATH), 40)
+        txt = "CHỐT LẠI"
+        tw = draw.textlength(txt, font=pf)
+        pasc, pdesc = pf.getmetrics()
+        pad_x, pad_y = 28, 14
+        draw.rounded_rectangle((margin, top_y, margin + tw + 2 * pad_x,
+                                top_y + pasc + pdesc + 2 * pad_y),
+                               radius=(pasc + pdesc + 2 * pad_y) // 2, fill=b["accent"])
+        draw.text((margin + pad_x, top_y + pad_y), txt, font=pf, fill="#FFFFFF")
+    else:
+        nf = ImageFont.truetype(str(media.FONT_PATH), 86)
+        draw.text((margin, top_y - 8), f"{i - 1:02d}", font=nf, fill=b["accent"])
+
+    # top-right tile: real logo when the slide names a tool, else a glyph
+    tool = slide.get("tool") if isinstance(slide.get("tool"), dict) else None
+    logo = None
+    if tool and tool.get("domain"):
+        logo = _fetch_logo(str(tool["domain"]).strip().lower(), root)
+    tile = 132
+    icon_name = _ICON_ORDER[(i - 1) % len(_ICON_ORDER)]
+    _logo_tile(img, (W - margin - tile, top_y - 6, W - margin, top_y - 6 + tile),
+               b, logo, _ICONS[icon_name])
+    draw = ImageDraw.Draw(img)  # re-bind after tile paste
+
+    y = top_y + 150
+
+    # optional tool-name label above the headline
+    if tool and tool.get("name"):
+        lf = ImageFont.truetype(str(media.FONT_PATH), 28)
+        draw.text((margin, y), str(tool["name"]).upper(), font=lf, fill=b["accent"])
+        y += 44
+
     headline = str(slide.get("headline", "")).strip()
-    body = str(slide.get("body", "")).strip()
-
-    # brand-blue kicker pill with the role label (white text)
-    labels = b.get("role_labels", {}) or {}
-    label = str(labels.get(role, role.upper() or "BƯỚC"))
-    pill_font = ImageFont.truetype(str(media.FONT_PATH), 26)
-    pad_x, pad_y = 24, 13
-    kw = draw.textlength(label, font=pill_font)
-    asc, desc = pill_font.getmetrics()
-    px0, py0 = margin, 175
-    px1, py1 = px0 + kw + 2 * pad_x, py0 + (asc + desc) + 2 * pad_y
-    draw.rounded_rectangle((px0, py0, px1, py1), radius=(py1 - py0) // 2,
-                           fill=b["accent"])
-    draw.text((px0 + pad_x, py0 + pad_y), label, font=pill_font, fill="#FFFFFF")
-
-    # one small monochrome accent icon, upper-right, aligned with the pill
-    icon_fn = _ICONS.get(_ROLE_ICON.get(role, "chip"))
-    if icon_fn:
-        isz = 96
-        icon_fn(draw, (W - margin - isz, py0 - 6, W - margin, py0 - 6 + isz),
-                b["tile_icon"])
-
-    # headline: fit-and-wrap, auto-shrink to <=4 lines within the safe width
-    head_size = 84
-    hf = ImageFont.truetype(str(media.FONT_PATH), head_size)
-    lines = media._wrap(draw, headline, hf, safe_w)
-    while head_size > 40 and len(lines) > 4:
-        head_size -= 4
-        hf = ImageFont.truetype(str(media.FONT_PATH), head_size)
-        lines = media._wrap(draw, headline, hf, safe_w)
-
-    line_h = int(head_size * 1.18)
-    y = py1 + 80
+    hf, lines, hsz = _fit_lines(draw, headline, 74, 44, safe_w, 3)
     for ln in lines:
         draw.text((margin, y), ln, font=hf, fill=b["ink"])
-        y += line_h
+        y += int(hsz * 1.18)
 
-    # thin brand-blue underline accent
-    uy = y + 20
+    uy = y + 18
     draw.rectangle((margin, uy, margin + 120, uy + 4), fill=b["accent"])
 
-    # body copy in #333
+    body = str(slide.get("body", "")).strip()
     if body:
-        body_font = _handle_font(34)
-        sy = uy + 42
-        for ln in media._wrap(draw, body, body_font, safe_w):
-            draw.text((margin, sy), ln, font=body_font, fill="#333333")
+        bf = _handle_font(34)
+        sy = uy + 40
+        for ln in media._wrap(draw, body, bf, safe_w)[:4]:
+            draw.text((margin, sy), ln, font=bf, fill=b["body_ink"])
             sy += 46
 
+    # swipe hint bottom-right — except the close slide, which shows the handle
+    if is_close:
+        hfont = _handle_font(30)
+        hw = draw.textlength(b["handle"], font=hfont)
+        hasc, hdesc = hfont.getmetrics()
+        draw.text(((W - hw) / 2, H - 46 - (hasc + hdesc)), b["handle"],
+                  font=hfont, fill=b["muted"])
+    else:
+        sf = _handle_font(26)
+        hint = "Vuốt tiếp  ›"
+        hw = draw.textlength(hint, font=sf)
+        hasc, hdesc = sf.getmetrics()
+        draw.text((W - margin - hw, H - 54 - (hasc + hdesc)), hint,
+                  font=sf, fill=b["swipe_hint"])
     return img
 
 
@@ -421,7 +573,9 @@ def _safe_fallback(article: ArticleContent, out_dir: Path,
     """Minimal safe output when the full storyboard render throws: the hook
     slide alone, or - if even that fails - legacy ``media.build_media``."""
     try:
-        im = _render_hook_slide(article, size)
+        slides = getattr(article, "slides", None) or []
+        hook = slides[0] if slides and isinstance(slides[0], dict) else {}
+        im = _render_hook_slide(article, hook, size)
         return [str(media._save_jpeg(im, Path(out_dir) / "01.jpg", size))]
     except Exception as e:  # noqa: BLE001 - hook is the last thing we can salvage
         log.warning("hook-slide fallback failed (%s); using legacy media", e)
@@ -429,31 +583,37 @@ def _safe_fallback(article: ArticleContent, out_dir: Path,
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],
-                 brand: dict | None = None, **ignored) -> list[str]:
-    """Render the 5-slide storyboard carousel: ``01.jpg`` .. ``05.jpg``, one per
-    ``article.slides`` entry, all in one visual system (shared bg + dot grid,
-    progress bar, handle, ghost numeral). Slide 1 is the bold hook slide with the
-    icon fan; slides 2-5 are the what/why/how/close steps.
+                 brand: dict | None = None, root: Path | None = None,
+                 **ignored) -> list[str]:
+    """Render the storyboard carousel: ``01.jpg`` .. ``NN.jpg``, one image per
+    ``article.slides`` entry (5-7 of them), all in one visual system. Slide 1 is
+    the dark hook slide; the rest are the light numbered "item" slides (the last
+    one being the "close"), each showing a named tool's real logo when the slide
+    carries a ``tool``.
 
-    On ANY exception the whole render degrades to a minimal safe fallback
-    (hook slide alone, else ``media.build_media``); it never propagates.
-    ``**ignored`` swallows retired kwargs (``style_prompt``, ``provider``, ``gen``).
+    ``root`` is the repo root — logos cache under ``<root>/assets/logos/``. On
+    ANY exception the whole render degrades to a minimal safe fallback (hook
+    slide alone, else ``media.build_media``); it never propagates. ``**ignored``
+    swallows retired kwargs (``style_prompt``, ``provider``, ``gen``).
     """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     b = {**BRAND_DEFAULTS, **(brand or {})}
+    root = Path(root) if root is not None else Path(".")
 
     try:
-        slides = list(getattr(article, "slides", []) or [])
+        slides = [s for s in (getattr(article, "slides", []) or []) if isinstance(s, dict)]
+        if not slides:
+            raise ValueError("article has no slides")
+        total = len(slides)
         paths: list[str] = []
-        for i in range(5):
-            slide = slides[i] if i < len(slides) else {}
-            role = str(slide.get("role", "")).strip().lower() if isinstance(slide, dict) else ""
-            if i == 0 or role == "hook":
-                im = _render_hook_slide(article, size, b)
+        for idx, slide in enumerate(slides):
+            role = str(slide.get("role", "")).strip().lower()
+            if idx == 0 or role == "hook":
+                im = _render_hook_slide(article, slide, size, b)
             else:
-                im = _render_step_slide(i, slide, size, b)
-            paths.append(str(media._save_jpeg(im, out_dir / f"{i + 1:02d}.jpg", size)))
+                im = _render_item_slide(idx + 1, total, slide, size, b, root)
+            paths.append(str(media._save_jpeg(im, out_dir / f"{idx + 1:02d}.jpg", size)))
         return paths
     except Exception as e:  # noqa: BLE001 - a broken slide must not sink the post
         log.warning("storyboard render failed (%s); using safe fallback", e)

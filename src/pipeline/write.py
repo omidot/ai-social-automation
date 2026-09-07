@@ -116,9 +116,71 @@ _ARTICLE_GUARDRAILS = (
     "phỉ báng, hay chính trị nhạy cảm. Nếu bài chạm vùng nhạy cảm, đặt \"risk\": true."
 )
 
-# roles every `slides` payload must carry, in this exact order
-SLIDE_ROLES = ("hook", "what", "why", "how", "close")
 _SHARE_KEYS = ("caption_fb", "caption_ig", "hashtags", "cover_title", "slides")
+
+# The [SỬA] nudge appended when the model returns a wrong-shaped storyboard.
+_SHAPE_NUDGE = (
+    "Trả lại ĐÚNG JSON với 'slides' là mảng 5-7 object: object đầu role 'hook', "
+    "object cuối role 'close', mọi object ở giữa role 'item'. Giữ nguyên nội dung, "
+    "chỉ sửa cấu trúc."
+)
+
+# The `slides` contract, shared by build_share_prompt + build_topic_prompt so the
+# storyboard rules stay in one place.
+_STORYBOARD_SPEC = (
+    "slides (mảng 5-7 object storyboard — KHÔNG cố định 5): object ĐẦU role "
+    "'hook', object CUỐI role 'close', MỌI object ở giữa role 'item'. Mỗi object: "
+    "{\"role\": <role>, \"headline\": <=8 từ, \"body\": <=24 từ, "
+    "\"tool\": {\"name\": <tên công cụ>, \"domain\": <domain gốc chính thức>} hoặc null}. "
+    "slides[0].headline PHẢI là CÂU HOOK GÂY TÒ MÒ — ngắn, mạnh, khiến người ta "
+    "dừng lại; KHÔNG phải tiêu đề mô tả. Ví dụ tốt: \"5 công cụ AI ít ai biết\", "
+    "\"Bạn đang dùng AI sai cách\", \"Thứ này thay cả ê-kíp dựng phim\". "
+    "slides[0].body là MỘT câu phụ ngắn nói rõ người đọc sắp nhận được gì. "
+    "Các slide 'item' phải bám ĐÚNG mạch của hook: hook nói \"Top 5 công cụ\" thì "
+    "có ĐÚNG 5 slide item, mỗi slide MỘT công cụ; hook nói \"quy trình N bước\" "
+    "thì mỗi item là một bước theo thứ tự. "
+    "Khi một item nói về một công cụ CÓ THẬT, BẮT BUỘC điền \"tool\" với tên đúng "
+    "và domain gốc chính thức (vd openai.com, canva.com, elevenlabs.io, "
+    "capcut.com, notion.so). Chỉ dùng công cụ bạn CHẮC CHẮN có thật và domain "
+    "đúng — KHÔNG bịa domain; không chắc thì để \"tool\": null. "
+    "cover_title = CHÍNH câu hook (<=9 từ)"
+)
+
+
+def _validate_slide_roles(slides) -> None:
+    """Enforce the storyboard shape: a list of 5 to 7 slide dicts whose first
+    slide is role 'hook', last is role 'close', and every middle slide is role
+    'item'. Raises ``WriteError`` with a precise Vietnamese message on any
+    violation."""
+    if not isinstance(slides, list) or not (5 <= len(slides) <= 7):
+        n = len(slides) if isinstance(slides, list) else type(slides).__name__
+        raise WriteError(f"cần 5-7 slide, có {n}")
+    roles = [
+        str(s.get("role", "")).strip().lower() if isinstance(s, dict) else ""
+        for s in slides
+    ]
+    if roles[0] != "hook":
+        raise WriteError("slide đầu phải role 'hook'")
+    if roles[-1] != "close":
+        raise WriteError("slide cuối phải role 'close'")
+    for i in range(1, len(slides) - 1):
+        if roles[i] != "item":
+            raise WriteError(f"slide {i} phải role 'item'")
+
+
+def _normalise_tool(raw) -> dict | None:
+    """Return ``{"name", "domain"}`` when ``raw`` names a real product with a
+    plausible root domain, else ``None``. A bare / malformed ``tool`` is dropped
+    rather than raising — the slide just renders its fallback icon."""
+    if not isinstance(raw, dict):
+        return None
+    name = str(raw.get("name", "")).strip()
+    domain = str(raw.get("domain", "")).strip().lower()
+    domain = re.sub(r"^https?://", "", domain)
+    domain = re.sub(r"^www\.", "", domain).strip("/").split("/")[0]
+    if not name or not domain or "." not in domain or " " in domain:
+        return None
+    return {"name": name, "domain": domain}
 
 # Iman-Gadzhi-style voice, described in Vietnamese.
 _IMAN_VOICE = (
@@ -166,10 +228,8 @@ def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
         "caption_ig: <=50 từ, cùng tinh thần. "
         "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
         "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
-        "cover_title (<=9 từ, chính là câu hook rút gọn), "
-        "slides (ĐÚNG 5 object, role lần lượt là hook, what, why, how, close theo "
-        "đúng thứ tự đó; mỗi object {\"role\": <role>, \"headline\": <=8 từ, "
-        "\"body\": <=22 từ — chính là chữ hiển thị trên slide bước đó}), "
+        "cover_title (<=9 từ, chính là câu hook), "
+        f"{_STORYBOARD_SPEC}, "
         "risk (bool). Toàn bộ tiếng Việt. "
         "Nếu bài nguồn KHÔNG nói về AI hoặc không đủ dữ kiện để viết, trả về "
         "ĐÚNG JSON {\"skip\": true, \"reason\": \"...\"} và không gì khác."
@@ -188,7 +248,8 @@ def _validate_share(data: dict) -> list[dict]:
     """Validate one raw ``share`` payload and return the normalised slide list.
 
     Raises ``WriteError`` with a precise message on any shape problem (missing
-    keys, hashtags not a list, wrong slide count, wrong role at index i).
+    keys, hashtags not a list, slide count outside 5-7, wrong hook/item/close
+    role at index i).
     """
     missing = [k for k in _SHARE_KEYS if k not in data or data[k] in (None, "", [])]
     if missing:
@@ -197,32 +258,26 @@ def _validate_share(data: dict) -> list[dict]:
         raise WriteError("hashtags must be a list")
 
     raw_slides = data["slides"]
-    if not isinstance(raw_slides, list) or len(raw_slides) != 5:
-        got = len(raw_slides) if isinstance(raw_slides, list) else type(raw_slides).__name__
-        raise WriteError(f"share needs exactly 5 slides, got {got}")
+    _validate_slide_roles(raw_slides)
     slides: list[dict] = []
     for i, s in enumerate(raw_slides):
         if not isinstance(s, dict):
             raise WriteError(f"slide {i} is not an object")
-        role = str(s.get("role", "")).strip().lower()
-        if role != SLIDE_ROLES[i]:
-            raise WriteError(
-                f"slide {i} role {role!r} != expected {SLIDE_ROLES[i]!r} "
-                f"(order must be {list(SLIDE_ROLES)})")
         slides.append({
-            "role": role,
+            "role": str(s.get("role", "")).strip().lower(),
             "headline": _strip_urls(str(s.get("headline", "")).strip()),
             "body": _strip_urls(str(s.get("body", "")).strip()),
+            "tool": _normalise_tool(s.get("tool")),
         })
     return slides
 
 
 def write_share(cand: Candidate, voice: dict, generate=_default_generate):
     """Turn one candidate into a single-topic knowledge-share article
-    (``format="share"``) with a 5-slide hook/what/why/how/close arc.
+    (``format="share"``) with a 5-to-7-slide hook / item... / close storyboard.
 
-    The LLM often returns a wrong-shaped payload (not exactly 5 slides, roles
-    out of order). Mirror ``video/script.py``: validate, and on failure retry
+    The LLM often returns a wrong-shaped payload (slide count out of range,
+    hook/close not at the ends). Mirror ``video/script.py``: validate, and on failure retry
     once with a correction nudge. A dead backend (``LLMError`` from the
     ``generate`` call itself) is *not* retried; a JSON-parse or validation
     failure — a model-output problem — is.
@@ -247,9 +302,7 @@ def write_share(cand: Candidate, voice: dict, generate=_default_generate):
             if attempt == 2:
                 raise e if isinstance(e, WriteError) else WriteError(f"LLM failed: {e}")
             log.warning("write_share attempt %d rejected: %s", attempt, e)
-            user = (user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. "
-                    f"Trả lại ĐÚNG JSON với 'slides' là mảng ĐÚNG 5 object theo thứ tự "
-                    f"role: hook, what, why, how, close. Giữ nguyên nội dung, chỉ sửa cấu trúc.")
+            user = user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. " + _SHAPE_NUDGE
             continue
 
         name = _source_name(cand)
@@ -274,7 +327,7 @@ def build_topic_prompt(topic: str, angle: str, voice: dict) -> tuple[str, str]:
     """System + user prompt for the knowledge-sourced writer.
 
     No article to work from — the model writes ``topic`` from its own knowledge,
-    same single-person sharing voice and 5-slide arc as ``write_share``.
+    same single-person sharing voice and 5-7-slide storyboard as ``write_share``.
     """
     system = (
         f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
@@ -297,9 +350,7 @@ def build_topic_prompt(topic: str, angle: str, voice: dict) -> tuple[str, str]:
         "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
         "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
         "cover_title (<=9 từ), "
-        "slides (ĐÚNG 5 object, role lần lượt là hook, what, why, how, close theo "
-        "đúng thứ tự đó; mỗi object {\"role\": <role>, \"headline\": <=8 từ, "
-        "\"body\": <=22 từ — chính là chữ hiển thị trên slide bước đó}), "
+        f"{_STORYBOARD_SPEC}, "
         "risk (bool). Toàn bộ tiếng Việt. "
         "Nếu bạn không đủ hiểu biết chắc chắn để viết chủ đề này, trả về ĐÚNG JSON "
         "{\"skip\": true, \"reason\": \"...\"} và không gì khác."
@@ -313,7 +364,7 @@ def write_topic_post(topic: str, angle: str, voice: dict, generate=_default_gene
     model's own knowledge instead of a source article.
 
     Same 2-attempt retry-with-``[SỬA]``-nudge loop, same ``{"skip": true}``
-    handling and the same 5-slide validation as ``write_share``. ``sources`` is
+    handling and the same 5-7-slide validation as ``write_share``. ``sources`` is
     empty and no ``Nguồn:`` line is appended.
     """
     system, user = build_topic_prompt(topic, angle, voice)
@@ -336,9 +387,7 @@ def write_topic_post(topic: str, angle: str, voice: dict, generate=_default_gene
             if attempt == 2:
                 raise e if isinstance(e, WriteError) else WriteError(f"LLM failed: {e}")
             log.warning("write_topic_post attempt %d rejected: %s", attempt, e)
-            user = (user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. "
-                    f"Trả lại ĐÚNG JSON với 'slides' là mảng ĐÚNG 5 object theo thứ tự "
-                    f"role: hook, what, why, how, close. Giữ nguyên nội dung, chỉ sửa cấu trúc.")
+            user = user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. " + _SHAPE_NUDGE
             continue
 
         cap = _strip_urls(data["caption_fb"])

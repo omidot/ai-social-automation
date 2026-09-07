@@ -4,11 +4,12 @@
   "hashtags": ["#AI", "#trituenhantao", "#lamnoidung", "#video", "#congcuAI", "#tudonghoa", "#sangtaonoidung", "#mmo", "#ahitofficial", "#AIvietnam"],
   "cover_title": "AI dựng video từ giọng nói của bạn",
   "slides": [
-    {"role": "hook", "headline": "AI dựng video từ giọng bạn", "body": "Chỉ cần một đoạn ghi âm, không cần cảnh quay hay biết dựng phim."},
-    {"role": "what", "headline": "Nó làm được gì", "body": "Tách câu, tìm ảnh minh hoạ, canh nhịp, gắn phụ đề khớp từng câu và thêm nhạc nền."},
-    {"role": "why", "headline": "Bạn được gì", "body": "Việc nửa ngày của một người biết dựng phim rút còn một buổi cà phê."},
-    {"role": "how", "headline": "Bắt đầu thế nào", "body": "Viết kịch bản ngắn, thu giọng bằng app sẵn có, cho công cụ chạy thử một video."},
-    {"role": "close", "headline": "Điều đọng lại", "body": "Nút thắt không còn là ý tưởng mà là tốc độ biến ý tưởng thành thứ xem được."}
+    {"role": "hook", "headline": "AI dựng video chỉ từ giọng nói", "body": "Không cần cảnh quay hay biết dựng phim, vẫn ra video có phụ đề và nhạc nền.", "tool": null},
+    {"role": "item", "headline": "Tạo giọng đọc nghe như người thật", "body": "Nhập kịch bản, chọn giọng, có file lồng tiếng tự nhiên chỉ trong vài phút.", "tool": {"name": "ElevenLabs", "domain": "elevenlabs.io"}},
+    {"role": "item", "headline": "Ghép hình và phụ đề tự động", "body": "Máy tách câu, tìm ảnh minh hoạ, canh nhịp và gắn phụ đề khớp từng câu.", "tool": {"name": "CapCut", "domain": "capcut.com"}},
+    {"role": "item", "headline": "Chỉnh video bằng cách sửa chữ", "body": "Xoá một câu trong bản chữ là đoạn video tương ứng cũng biến mất theo.", "tool": {"name": "Descript", "domain": "descript.com"}},
+    {"role": "item", "headline": "Đóng gói theo thương hiệu", "body": "Thêm bìa, khung màu và logo cho cả loạt video chỉ trong ít phút.", "tool": {"name": "Canva", "domain": "canva.com"}},
+    {"role": "close", "headline": "Điều đọng lại", "body": "Nút thắt không còn là ý tưởng mà là tốc độ biến ý tưởng thành thứ xem được.", "tool": null}
   ],
   "risk": false
 }

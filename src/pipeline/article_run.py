@@ -104,7 +104,8 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
                                 size=_parse_size(settings["images"]["size"]),
-                                brand=settings["images"].get("brand", {}))
+                                brand=settings["images"].get("brand", {}),
+                                root=root)
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 

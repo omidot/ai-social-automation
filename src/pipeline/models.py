@@ -71,9 +71,14 @@ class ArticleContent:
     caption_ig: str
     hashtags: list[str]
     cover_title: str
-    # EXACTLY 5 dicts, each {"role": str, "headline": str, "body": str}; role is
-    # one of ["hook", "what", "why", "how", "close"] IN THAT ORDER -> one
-    # storyboard slide each.
+    # A storyboard of 5 to 7 dicts, one rendered slide each. Shape:
+    #   {"role": str, "headline": str, "body": str,
+    #    "tool": {"name": str, "domain": str} | None}
+    # slides[0]["role"] == "hook" (the curiosity hook), slides[-1]["role"] ==
+    # "close", every middle slide "role" == "item". "tool" is set ONLY when the
+    # slide is genuinely about one named product; "domain" is that product's
+    # official root domain (e.g. "openai.com", "canva.com") used to fetch its
+    # real logo. Omitted / None otherwise.
     slides: list[dict]
     sources: list[dict]
     risk: bool = False

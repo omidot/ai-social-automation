@@ -4,26 +4,40 @@ from PIL import Image
 from pipeline import images
 from pipeline.models import ArticleContent
 
-ROLES = ["hook", "what", "why", "how", "close"]
+
+def _slides():
+    return [
+        {"role": "hook", "headline": "5 công cụ AI ít ai biết",
+         "body": "Bộ công cụ giúp bạn làm nhanh hơn hẳn", "tool": None},
+        {"role": "item", "headline": "Việc số một", "body": "Một dòng nội dung hơi dài để bọc",
+         "tool": None},
+        {"role": "item", "headline": "Việc số hai", "body": "Một dòng nội dung khác cũng hơi dài",
+         "tool": None},
+        {"role": "item", "headline": "Việc số ba", "body": "Thêm một dòng nội dung nữa ở đây",
+         "tool": None},
+        {"role": "item", "headline": "Việc số bốn", "body": "Dòng nội dung thứ tư hơi dài chút",
+         "tool": None},
+        {"role": "close", "headline": "Chốt lại", "body": "Một câu đọng lại thật ngắn gọn",
+         "tool": None},
+    ]
 
 
 def _art(slides=None):
     return ArticleContent(
         format="share", caption_fb="x", caption_ig="y", hashtags=["#AI"],
-        cover_title="AI GIỜ LÀM ĐƯỢC VIỆC NÀY",
-        slides=slides if slides is not None else [
-            {"role": r, "headline": f"Tiêu đề {r}", "body": f"Một dòng nội dung {r} hơi dài"}
-            for r in ROLES],
+        cover_title="5 CÔNG CỤ AI ÍT AI BIẾT",
+        slides=_slides() if slides is None else slides,
         sources=[{"name": "hn", "url": "http://h"}])
 
 
-def _is_light(path):
-    im = Image.open(path).convert("RGB")
+def _corners(im):
     W, H = im.size
-    for xy in [(8, 8), (W - 8, 8), (8, H - 8), (W - 8, H - 8)]:
-        if not all(c > 220 for c in im.getpixel(xy)):
-            return False
-    return True
+    return [im.getpixel(xy) for xy in
+            [(8, 8), (W - 8, 8), (8, H - 8), (W - 8, H - 8)]]
+
+
+def _brightness(px):
+    return sum(px[:3]) / 3
 
 
 def _band_has_brand_blue(path, y0, y1):
@@ -38,85 +52,122 @@ def _band_has_brand_blue(path, y0, y1):
     return False
 
 
-def test_build_images_renders_5_storyboard_slides(tmp_path):
+# --- full carousel ------------------------------------------------------
+
+def test_build_images_renders_hook_plus_items(tmp_path):
     out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None)
-    assert len(out) == 5
-    assert [Path(p).name for p in out] == ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"]
+    assert [Path(p).name for p in out] == \
+        ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg"]
     for p in out:
-        assert Path(p).exists()
         assert Image.open(p).size == (1080, 1350)
-        assert _is_light(p), p
+    # slide 1 is the dark hook slide, slide 3 is a light item slide
+    for px in _corners(Image.open(out[0]).convert("RGB")):
+        assert _brightness(px) < 60, f"hook corner too bright: {px}"
+    for px in _corners(Image.open(out[2]).convert("RGB")):
+        assert all(c > 220 for c in px), f"item corner too dark: {px}"
 
 
 def test_every_slide_has_progress_bar(tmp_path):
     out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None)
-    assert len(out) == 5
     for p in out:
-        # the progress bar sits in a thin band near the top (~y=92, seg_h=12)
         assert _band_has_brand_blue(p, 80, 112), f"no filled progress segment on {p}"
 
 
-def test_hook_slide_has_icon_fan():
-    img = images._render_hook_slide(_art(), (1080, 1350), images.BRAND_DEFAULTS)
-    assert img.size == (1080, 1350)
+def test_build_images_ignores_retired_kwargs(tmp_path):
+    out = images.build_images(_art(), tmp_path, size=(1080, 1350),
+                              style_prompt="cinematic", provider="gemini", gen=object())
+    assert len(out) == 6
+
+
+# --- hook slide -------------------------------------------------------
+
+def test_hook_slide_has_swipe_cta():
+    art = _art()
+    img = images._render_hook_slide(art, art.slides[0], (1080, 1350),
+                                    images.BRAND_DEFAULTS)
     px = img.load()
     W, H = img.size
-    y0, y1 = int(H * 0.60), int(H * 0.85)
-    bright = []
-    for x in range(0, W, 4):
-        run = best = 0
-        for y in range(y0, y1, 4):
+    found = False
+    for y in range(int(H * 0.78), int(H * 0.92)):
+        for x in range(0, W, 2):
             r, g, bl = px[x, y]
-            if r > 245 and g > 245 and bl > 245:
-                run += 1
-                best = max(best, run)
-            else:
-                run = 0
-        bright.append(best >= 3)
-    clusters = prev = 0
-    for cur in bright:
-        if cur and not prev:
-            clusters += 1
-        prev = cur
-    assert clusters >= 5, f"expected >=5 frosted tile clusters, got {clusters}"
+            if min(r, g, bl) > 205 and max(r, g, bl) < 250 and max(r, g, bl) - min(r, g, bl) < 25:
+                found = True
+                break
+        if found:
+            break
+    assert found, "expected light-grey swipe-CTA text in the bottom band"
 
 
-def test_hook_slide_has_highlighted_headline():
-    img = images._render_hook_slide(_art(), (1080, 1350), images.BRAND_DEFAULTS)
+# --- item slide + logos --------------------------------------------------
+
+def _item(tool=None):
+    return {"role": "item", "headline": "Một công cụ hay", "body": "Mô tả ngắn về công cụ này",
+            "tool": tool}
+
+
+def test_item_slide_uses_logo_when_available(monkeypatch):
+    red = Image.new("RGBA", (128, 128), (255, 0, 0, 255))
+    monkeypatch.setattr(images, "_fetch_logo", lambda d, r: red)
+    img = images._render_item_slide(2, 6, _item({"name": "Foo", "domain": "foo.com"}),
+                                    (1080, 1350), images.BRAND_DEFAULTS)
     px = img.load()
     W, H = img.size
-    near_black = highlight = False
-    for y in range(0, H, 3):
-        for x in range(0, W, 3):
-            r, g, bl = px[x, y]
-            if r < 45 and g < 55 and bl < 65:
-                near_black = True
-            if abs(r - 219) < 22 and abs(g - 231) < 22 and abs(bl - 255) < 12:  # #DBE7FF
-                highlight = True
-    assert near_black, "expected near-black headline ink"
-    assert highlight, "expected the light-blue highlight block behind the last line"
+    hits = sum(1 for y in range(0, H // 2) for x in range(W // 2, W, 2)
+               if px[x, y][0] > 200 and px[x, y][1] < 80 and px[x, y][2] < 80)
+    assert hits > 50, f"expected red logo pixels top-right, got {hits}"
 
 
-def test_step_slide_has_pill_and_body():
-    slide = {"role": "how", "headline": "Bắt đầu thế nào", "body": "Viết kịch bản ngắn rồi thử"}
-    img = images._render_step_slide(2, slide, (1080, 1350), images.BRAND_DEFAULTS)
-    assert img.size == (1080, 1350)
+def test_item_slide_falls_back_to_icon_without_logo(monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda d, r: None)
+    img = images._render_item_slide(3, 6, _item({"name": "Bar", "domain": "bar.com"}),
+                                    (1080, 1350), images.BRAND_DEFAULTS)
     px = img.load()
     W, H = img.size
-    near_black = brand_blue = grey_body = False
-    for y in range(0, H, 3):
-        for x in range(0, W, 3):
-            r, g, bl = px[x, y]
-            if r < 55 and g < 55 and bl < 55:
-                near_black = True
-            if abs(r - 29) < 45 and abs(g - 78) < 45 and abs(bl - 216) < 55:
-                brand_blue = True
-            if abs(r - 51) < 20 and abs(g - 51) < 20 and abs(bl - 51) < 20:  # #333
-                grey_body = True
-    assert near_black, "expected near-black headline pixels"
-    assert brand_blue, "expected brand-blue kicker pill / underline pixels"
-    assert grey_body, "expected #333 body pixels"
+    dark = sum(1 for y in range(0, H // 2) for x in range(W // 2, W, 2)
+               if all(c < 80 for c in px[x, y]))
+    assert dark > 20, f"expected a dark fallback glyph top-right, got {dark}"
 
+
+def test_close_slide_has_no_swipe_hint():
+    slide = {"role": "close", "headline": "Chốt lại", "body": "Một câu đọng lại ngắn", "tool": None}
+    img = images._render_item_slide(6, 6, slide, (1080, 1350), images.BRAND_DEFAULTS)
+    px = img.load()
+    W, H = img.size
+    handle = any(_brightness(px[x, y]) < 150
+                 for y in range(int(H * 0.90), int(H * 0.97))
+                 for x in range(int(W * 0.30), int(W * 0.70), 2))
+    assert handle, "expected the handle text bottom-centre"
+    swipe = sum(1 for y in range(int(H * 0.88), int(H * 0.95))
+                for x in range(int(W * 0.72), W - 10, 2)
+                if _brightness(px[x, y]) < 170)
+    assert swipe < 20, f"bottom-right swipe zone should be clean, got {swipe}"
+
+
+# --- _fetch_logo -------------------------------------------------------
+
+def test_fetch_logo_uses_cache(tmp_path, monkeypatch):
+    d = tmp_path / "assets" / "logos"
+    d.mkdir(parents=True)
+    Image.new("RGBA", (64, 64), (0, 128, 255, 255)).save(d / "example.com.png")
+
+    def boom(*a, **k):
+        raise AssertionError("network must not be touched on a cache hit")
+
+    monkeypatch.setattr(images.httpx, "get", boom)
+    out = images._fetch_logo("example.com", tmp_path)
+    assert out is not None and out.size == (64, 64)
+
+
+def test_fetch_logo_returns_none_on_failure(tmp_path, monkeypatch):
+    def boom(*a, **k):
+        raise RuntimeError("no net")
+
+    monkeypatch.setattr(images.httpx, "get", boom)
+    assert images._fetch_logo("nope.example", tmp_path) is None
+
+
+# --- misc / fallback -------------------------------------------------
 
 def test_each_icon_fn_draws_something():
     from PIL import ImageDraw
@@ -129,17 +180,11 @@ def test_each_icon_fn_draws_something():
         assert nonwhite >= 40, f"{name} drew only {nonwhite} non-white px"
 
 
-def test_build_images_ignores_retired_kwargs(tmp_path):
-    out = images.build_images(_art(), tmp_path, size=(1080, 1350),
-                              style_prompt="cinematic", provider="gemini", gen=object())
-    assert len(out) == 5
-
-
 def test_build_images_slide_error_degrades_to_hook_only(tmp_path, monkeypatch):
     def boom(*a, **k):
-        raise RuntimeError("step render broke")
+        raise RuntimeError("item render broke")
 
-    monkeypatch.setattr(images, "_render_step_slide", boom)
+    monkeypatch.setattr(images, "_render_item_slide", boom)
     called = []
     monkeypatch.setattr(images, "_legacy_fallback",
                         lambda *a, **k: called.append(1) or ["nope"])
@@ -154,7 +199,7 @@ def test_build_images_falls_back_to_legacy_when_hook_render_fails(tmp_path, monk
         raise RuntimeError("render broke")
 
     monkeypatch.setattr(images, "_render_hook_slide", boom)
-    monkeypatch.setattr(images, "_render_step_slide", boom)
+    monkeypatch.setattr(images, "_render_item_slide", boom)
     monkeypatch.setattr(images, "_legacy_fallback",
                         lambda art, od, size: [str(tmp_path / "legacy.jpg")])
     out = images.build_images(_art(), tmp_path, size=(1080, 1350))

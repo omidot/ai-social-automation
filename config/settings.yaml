@@ -14,22 +14,27 @@ images:
   size: "1080x1350"
   raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"
   brand:
-    bg: "#F4F3F0"
-    dot: "#E3E1DC"
     accent: "#1D4ED8"
     ink: "#111111"
-    muted: "#6B6B6B"
     handle: "A Hít Official"
-    watermark: "#E9E7E2"
-    highlight: "#DBE7FF"
+    kicker: "A HÍT OFFICIAL"
+    # light "item" slides
+    item_bg: "#F1F2F4"
+    item_dot: "#E2E4E8"
+    body_ink: "#3A3F4A"
+    progress_off: "#D4D7DD"
+    swipe_hint: "#8A90A0"
+    watermark: "#E6E8EC"
+    muted: "#6B6B6B"
     tile_icon: "#1F2937"
-    progress_on: "#1D4ED8"
-    progress_off: "#D9D7D2"
-    role_labels:
-      what: "AI LÀM ĐƯỢC GÌ"
-      why: "BẠN ĐƯỢC GÌ"
-      how: "CÁCH BẮT ĐẦU"
-      close: "CHỐT LẠI"
+    # dark "hook" slide
+    hook_bg: "#0B0B10"
+    hook_dot: "#1A1A22"
+    hook_glow: "#1D4ED8"
+    hook_body: "#B9BDC9"
+    hook_progress_off: "#2A2A35"
+    cta_border: "#6B7280"
+    cta_text: "#E5E7EB"
 
 video:
   enabled: false

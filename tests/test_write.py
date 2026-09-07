@@ -71,12 +71,14 @@ def test_build_share_prompt_has_sharing_cue():
     assert "đánh số" in sysp and "bản tin" in sysp
 
 
-def test_write_share_builds_5_slide_arc():
+def test_write_share_builds_storyboard_arc():
     art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
     assert art.format == "share"
-    assert len(art.slides) == 5
-    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
-    assert all(set(s) == {"role", "headline", "body"} for s in art.slides)
+    assert 5 <= len(art.slides) <= 7
+    roles = [s["role"] for s in art.slides]
+    assert roles[0] == "hook" and roles[-1] == "close"
+    assert all(r == "item" for r in roles[1:-1])
+    assert all(set(s) == {"role", "headline", "body", "tool"} for s in art.slides)
     # caption is a coherent paragraph, no link, no "1. " numbered-list pattern
     assert "http" not in art.caption_fb
     assert "http" not in art.caption_ig
@@ -107,9 +109,8 @@ def test_write_share_rejects_wrong_slide_count():
 
 def test_write_share_rejects_bad_slide_roles():
     data = json.loads(_share_payload())
-    # swap two roles so the order is no longer hook/what/why/how/close
-    data["slides"][1]["role"], data["slides"][2]["role"] = (
-        data["slides"][2]["role"], data["slides"][1]["role"])
+    # a middle slide must be role "item"
+    data["slides"][1]["role"] = "what"
     calls = []
 
     def gen(s, u, **k):
@@ -145,7 +146,9 @@ def test_write_share_retries_once_on_bad_shape():
     stub = _ShapeStub(_bad_shape_payload(), _share_payload())
     art = write.write_share(_cand(), VOICE, generate=stub)
     assert art.format == "share"
-    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
+    roles = [s["role"] for s in art.slides]
+    assert roles[0] == "hook" and roles[-1] == "close"
+    assert all(r == "item" for r in roles[1:-1])
     assert len(stub.calls) == 2
     assert "[SỬA]" in stub.calls[1]
 
@@ -190,19 +193,57 @@ def _topic_payload() -> str:
     return (FIXTURES / "sample_topic_response.json").read_text(encoding="utf-8")
 
 
-def test_write_topic_post_builds_5_slide_arc():
+def test_write_topic_post_builds_storyboard_arc():
     art = write.write_topic_post(
         "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
         VOICE, generate=lambda s, u, **k: _topic_payload())
     assert art.format == "share"
-    assert len(art.slides) == 5
-    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
-    assert all(set(s) == {"role", "headline", "body"} for s in art.slides)
+    assert 5 <= len(art.slides) <= 7
+    roles = [s["role"] for s in art.slides]
+    assert roles[0] == "hook" and roles[-1] == "close"
+    assert all(r == "item" for r in roles[1:-1])
+    assert all(set(s) == {"role", "headline", "body", "tool"} for s in art.slides)
     # knowledge-sourced: no source, no "Nguồn:" line, no links anywhere
     assert art.sources == []
     assert "Nguồn:" not in art.caption_fb
     assert "http" not in art.caption_fb
     assert "http" not in art.caption_ig
+
+
+def test_write_topic_post_accepts_tool_field():
+    art = write.write_topic_post(
+        "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
+        VOICE, generate=lambda s, u, **k: _topic_payload())
+    tooled = [s for s in art.slides if s["tool"]]
+    assert tooled, "expected at least one item slide carrying a tool"
+    assert {"name", "domain"} == set(tooled[0]["tool"])
+    assert tooled[0]["tool"]["domain"] == "openai.com"
+    # hook + close carry no tool
+    assert art.slides[0]["tool"] is None and art.slides[-1]["tool"] is None
+
+
+def test_write_topic_post_drops_malformed_tool():
+    data = json.loads(_topic_payload())
+    data["slides"][1]["tool"] = {"name": "Mystery", "domain": "not a domain"}
+    data["slides"][2]["tool"] = "just a string"
+    art = write.write_topic_post("chủ đề", "góc", VOICE,
+                                 generate=lambda s, u, **k: json.dumps(data))
+    assert art.slides[1]["tool"] is None
+    assert art.slides[2]["tool"] is None
+
+
+@pytest.mark.parametrize("mutate", [
+    lambda d: d.__setitem__("slides", d["slides"][:4]),          # < 5
+    lambda d: d.__setitem__("slides", d["slides"] + [d["slides"][1]] * 3),  # > 7
+    lambda d: d["slides"][0].__setitem__("role", "item"),        # first not hook
+    lambda d: d["slides"][-1].__setitem__("role", "item"),       # last not close
+])
+def test_write_rejects_wrong_slide_shape(mutate):
+    data = json.loads(_topic_payload())
+    mutate(data)
+    with pytest.raises(write.WriteError):
+        write.write_topic_post("chủ đề", "góc", VOICE,
+                               generate=lambda s, u, **k: json.dumps(data))
 
 
 def _topic_bad_shape() -> str:
@@ -215,6 +256,8 @@ def test_write_topic_post_retries_once_on_bad_shape():
     stub = _ShapeStub(_topic_bad_shape(), _topic_payload())
     art = write.write_topic_post("chủ đề", "góc", VOICE, generate=stub)
     assert art.format == "share"
-    assert [s["role"] for s in art.slides] == ["hook", "what", "why", "how", "close"]
+    roles = [s["role"] for s in art.slides]
+    assert roles[0] == "hook" and roles[-1] == "close"
+    assert all(r == "item" for r in roles[1:-1])
     assert len(stub.calls) == 2
     assert "[SỬA]" in stub.calls[1]
