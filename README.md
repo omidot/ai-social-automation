@@ -126,7 +126,7 @@ F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm f
 `collect → score` vẫn còn nhưng đã tách khỏi đường này), cộng `llm`
 (Claude CLI → Gemini fallback), `telegram`, `meta`, `daily_state`, `state`,
 `models`. Ba entrypoint:
-- `article_run --slot <morning|evening>` — dựng bản nháp cho slot, gửi preview.
+- `article_run --slot <morning|evening>` — dựng bản nháp cho slot, xem trước carousel qua Telegram rồi tự lập lịch đăng.
 - `article_approve` — thử lại bài ở trạng thái `draft`, xử lý nút `Gỡ bài`.
 - `article_publish_ig` — đăng carousel Instagram khi tới giờ slot đã lên lịch.
 
