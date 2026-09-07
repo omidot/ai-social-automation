@@ -6,6 +6,7 @@ from pathlib import Path
 from .daily_state import DailyState
 from .state import State
 from .telegram import Telegram
+from . import publish
 from .publish import slot_unix, _fb_message, _ig_caption  # noqa: F401 - re-export
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -73,6 +74,33 @@ def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str |
     return f"discarded:{date}:{slot_name}"
 
 
+def retry_unscheduled(ds, meta, root: Path, tg, now: datetime) -> list[str]:
+    """Re-attempt any slot a transient publish failure left at 'draft'. Only
+    slots that already have rendered images + caption and whose slot time is
+    still in the future. On failure the slot goes back to 'draft' for the next
+    tick; expire_stale sweeps it once the slot time passes."""
+    out: list[str] = []
+    for f in ds.all_files():
+        date = f.stem
+        doc = ds.load_safe(date)
+        if doc is None:
+            continue
+        for slot_name, slot in doc["posts"].items():
+            if slot.get("status") != "draft":
+                continue
+            if not (slot.get("images") and slot.get("text_fb")):
+                continue
+            if now.timestamp() >= slot_unix(date, slot.get("slot_ict", "11:30")):
+                continue
+            try:
+                ds.set_status(date, slot_name, "publishing")
+                out.append(publish.schedule_slot(ds, meta, root, date, slot_name, now, tg))
+            except Exception as e:  # noqa: BLE001
+                ds.set_status(date, slot_name, "draft")
+                log.warning("retry schedule %s:%s failed: %s", date, slot_name, e)
+    return out
+
+
 def expire_stale(ds, tg, now: datetime) -> list[str]:
     out: list[str] = []
     stuck: list[str] = []
@@ -85,7 +113,7 @@ def expire_stale(ds, tg, now: datetime) -> list[str]:
             status = slot.get("status")
             due = slot_unix(date, slot.get("slot_ict", "11:30"))
             if status == "draft":
-                if now.timestamp() - due > 24 * 3600:
+                if now.timestamp() >= due:
                     ds.set_status(date, slot_name, "expired")
                     out.append(f"{date}:{slot_name}")
             elif status == "publishing":
@@ -97,7 +125,7 @@ def expire_stale(ds, tg, now: datetime) -> list[str]:
                     ds.set_status(date, slot_name, "posted")
                     stuck.append(f"{date}:{slot_name}")
     if out:
-        tg.send_message("⌛ Quá 24h chưa duyệt, đã bỏ: " + ", ".join(out))
+        tg.send_message("⚠️ không lên lịch được, đã bỏ: " + ", ".join(out))
     for s in stuck:
         tg.send_message(f"⚠️ {s} kẹt ở 'publishing' — đã đánh dấu posted, kiểm tra Page.")
     return out
@@ -126,6 +154,9 @@ def poll(root: Path, now: datetime | None = None) -> dict:
             log.exception("update %s failed: %s", up.get("update_id"), e)
     if updates:
         st.offset_save(max_uid + 1)
+    retried = retry_unscheduled(ds, meta, root, tg, now)
+    if retried:
+        log.info("poll: retried=%s", retried)
     expired = expire_stale(ds, tg, now)
     log.info("poll: handled=%s expired=%s new_offset=%s", handled, expired, max_uid + 1)
     return {"handled": handled, "expired": expired}

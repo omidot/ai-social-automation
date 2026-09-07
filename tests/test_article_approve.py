@@ -185,3 +185,57 @@ def test_slot_unix_is_ict():
     # 2026-09-06 11:30 ICT == 2026-09-06 04:30 UTC
     assert article_approve.slot_unix("2026-09-06", "11:30") == int(
         datetime(2026, 9, 6, 4, 30, tzinfo=timezone.utc).timestamp())
+
+
+def _seed_draft_ready(root, slot_ict="11:30"):
+    ds = DailyState(root / "data")
+    ds.put("2026-09-06", "morning", status="draft", format="share",
+           title="X", text_fb="body", text_ig="ig", hashtags=["#AI"],
+           images=["assets/posts/2026-09-06/morning/01.jpg"],
+           image_urls=["https://raw/x/01.jpg"], slot_ict=slot_ict, sources=[])
+    return ds
+
+
+def test_retry_unscheduled_schedules_ready_draft(tmp_path, monkeypatch):
+    ds = _seed_draft_ready(tmp_path)
+    tg = FakeTG()
+    calls = []
+    monkeypatch.setattr(article_approve.publish, "schedule_slot",
+                        lambda ds, meta, root, date, slot, now, tg:
+                            (calls.append((date, slot)),
+                             ds.set_status(date, slot, "scheduled"),
+                             f"scheduled:{date}:{slot}")[-1])
+    now = datetime(2026, 9, 6, 0, 30, tzinfo=timezone.utc)     # before 11:30 ICT
+    out = article_approve.retry_unscheduled(ds, FakeMeta(), tmp_path, tg, now)
+    assert out == ["scheduled:2026-09-06:morning"]
+    assert calls == [("2026-09-06", "morning")]
+    assert ds.get("2026-09-06", "morning")["status"] == "scheduled"
+
+
+def test_retry_unscheduled_resets_to_draft_on_failure(tmp_path, monkeypatch):
+    ds = _seed_draft_ready(tmp_path)
+    monkeypatch.setattr(article_approve.publish, "schedule_slot",
+                        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("token")))
+    now = datetime(2026, 9, 6, 0, 30, tzinfo=timezone.utc)
+    out = article_approve.retry_unscheduled(ds, FakeMeta(), tmp_path, FakeTG(), now)
+    assert out == []
+    assert ds.get("2026-09-06", "morning")["status"] == "draft"
+
+
+def test_retry_unscheduled_skips_past_slot(tmp_path, monkeypatch):
+    ds = _seed_draft_ready(tmp_path)
+    monkeypatch.setattr(article_approve.publish, "schedule_slot",
+                        lambda *a, **k: (_ for _ in ()).throw(
+                            AssertionError("must not schedule a past slot")))
+    now = datetime(2026, 9, 6, 5, 0, tzinfo=timezone.utc)      # after 11:30 ICT
+    assert article_approve.retry_unscheduled(ds, FakeMeta(), tmp_path, FakeTG(), now) == []
+
+
+def test_expire_stale_expires_draft_the_moment_slot_passes(tmp_path):
+    ds = _seed_draft_ready(tmp_path)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 4, 31, tzinfo=timezone.utc)     # 1 min past 04:30 UTC
+    out = article_approve.expire_stale(ds, tg, now)
+    assert out == ["2026-09-06:morning"]
+    assert ds.get("2026-09-06", "morning")["status"] == "expired"
+    assert any("không lên lịch được" in m for m in tg.msgs)
