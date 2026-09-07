@@ -4,42 +4,47 @@
     "morning": {
       "status": "draft",
       "format": "share",
-      "title": "Cách dùng AI dựng landing page bán hàng không cần biết code",
-      "topic_key": "cach-dung-ai-dung-landing-page-ban-hang-khong-can-",
-      "text_fb": "Nhiều người vẫn nghĩ muốn có landing page bán hàng đẹp thì phải thuê lập trình viên, tốn vài triệu, chờ cả tuần. Mình từng nghĩ vậy, cho đến khi thử làm bằng AI và chỉ mất một buổi chiều.\n\nGiờ có cả loạt công cụ AI dựng trang chỉ bằng mô tả bằng lời. Framer có tính năng AI tạo layout từ một câu mô tả sản phẩm, bạn chỉnh sửa kéo thả sau đó. Durable thì nhanh hơn nữa, nhập tên doanh nghiệp và ngành hàng là nó tự viết nội dung, chọn ảnh, dựng cả trang trong vài phút, việc của bạn là sửa lại cho đúng chất giọng thương hiệu. 10Web dùng AI dựng trên nền WordPress nên phù hợp nếu sau này bạn muốn mở rộng thêm blog hay cửa hàng online.\n\nCái hay không phải là trang đẹp sẵn, mà là bạn tự chủ toàn bộ. Muốn đổi tiêu đề, đổi ảnh, đổi nút kêu gọi hành động, bạn tự làm được ngay, không cần nhắn tin chờ dev rảnh. Với người mới bán hàng, đây là cách kiểm tra ý tưởng nhanh mà không đổ tiền vào một trang web cầu kỳ ngay từ đầu.\n\nBắt đầu đơn giản thôi. Viết trước một đoạn mô tả rõ: bán gì, cho ai, điểm khác biệt là gì. Đưa mô tả đó vào công cụ AI builder để ra bản nháp đầu tiên. Sau đó dùng ChatGPT hoặc Claude viết lại tiêu đề và mô tả sản phẩm cho tự nhiên, đúng giọng thương hiệu. Cuối cùng chỉnh bố cục, thêm nút mua hàng hoặc form liên hệ, rồi xuất bản.\n\nLanding page không cần hoàn hảo ngay từ đầu, cần nhất là có để bắt đầu bán và test thị trường. Bạn đã thử công cụ nào trong số này chưa?",
-      "text_ig": "Không cần thuê dev vẫn có landing page bán hàng đẹp. Dùng Framer AI hoặc Durable, mô tả sản phẩm bằng lời, AI dựng bản nháp trong vài phút. Bạn chỉnh lại nội dung, thêm nút mua hàng, xong trong một buổi chiều. Bắt đầu bán, đừng chờ hoàn hảo.",
+      "title": "5 công cụ AI tự động trả lời tin nhắn khách hàng 24/7",
+      "topic_key": "5-cong-cu-ai-tu-ong-tra-loi-tin-nhan-khach-hang-24",
+      "text_fb": "Bạn có hay giật mình mỗi sáng thấy cả chục tin nhắn khách gửi lúc nửa đêm không? Mình từng thấy nhiều người bán hàng online mất khách chỉ vì trả lời chậm vài tiếng, khách đã mua chỗ khác rồi. Vấn đề không phải bạn lười, mà là bạn không thể trực page 24/7 một mình.\n\nĐây là lúc chatbot AI vào cuộc. Không phải để thay bạn hoàn toàn, mà để đỡ phần việc lặp đi lặp lại: báo giá, hỏi size, hỏi ship, hỏi còn hàng không.\n\nManyChat là cái tên quen thuộc để dựng bot cho Fanpage và Instagram, bạn tạo luồng trả lời theo từ khóa, khách gõ gì bot hiểu nấy và trả lời ngay.\n\nChatfuel cũng đi theo hướng kéo thả kịch bản, dễ cho người mới, và có thể bật thêm AI để xử lý những câu hỏi ngoài kịch bản có sẵn.\n\nTidio mạnh ở trợ lý AI tên Lyro, chuyên trả lời câu hỏi thường gặp trên website hay gian hàng online, học từ chính câu hỏi - câu trả lời bạn nạp vào.\n\nIntercom có Fin AI, đọc từ trang hỗ trợ của bạn để trả lời chính xác hơn, và biết lúc nào nên chuyển cho người thật.\n\nHaptik thì hợp với ai bán qua WhatsApp hoặc khách quốc tế, bot hỏi từng bước rồi gom thành đơn để bạn chỉ việc xác nhận.\n\nBạn không cần ôm cả 5 công cụ cùng lúc. Chọn một cái hợp kênh bán của bạn, nạp sẵn câu hỏi thường gặp, thử một tuần xem khách phản hồi thế nào. Chốt đơn ban đêm không còn là chuyện may rủi nữa.\n\nBạn đang dùng công cụ nào để trả lời khách rồi? Chia sẻ dưới comment cho mình biết với.",
+      "text_ig": "Khách nhắn lúc nửa đêm, bạn ngủ, bot vẫn trả lời. ManyChat, Chatfuel, Tidio, Intercom, Haptik giúp bạn báo giá, hỏi size, chốt đơn tự động dù không trực page. Chọn một công cụ hợp kênh bán, nạp câu hỏi thường gặp, thử ngay tuần này.",
       "hashtags": [
-        "#AI",
-        "#LandingPage",
-        "#KhôngCầnCode",
-        "#NoCode",
-        "#AHitOfficial",
-        "#BánHàngOnline",
-        "#CôngCụAI",
-        "#Framer",
-        "#Durable",
-        "#KinhDoanhOnline",
-        "#TựLàmWebsite",
-        "#MarketingOnline"
+        "#chatbotAI",
+        "#banhangonline",
+        "#AIchobanhang",
+        "#tuDongTraLoi",
+        "#chotDon24h",
+        "#ManyChat",
+        "#Chatfuel",
+        "#Tidio",
+        "#Intercom",
+        "#Haptik",
+        "#congCuAI",
+        "#kinhDoanhOnline",
+        "#AHitOfficial"
       ],
       "images": [
         "assets/posts/2026-09-07/morning/01.jpg",
         "assets/posts/2026-09-07/morning/02.jpg",
         "assets/posts/2026-09-07/morning/03.jpg",
         "assets/posts/2026-09-07/morning/04.jpg",
-        "assets/posts/2026-09-07/morning/05.jpg"
+        "assets/posts/2026-09-07/morning/05.jpg",
+        "assets/posts/2026-09-07/morning/06.jpg",
+        "assets/posts/2026-09-07/morning/07.jpg"
       ],
       "image_urls": [
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/01.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/02.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/03.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/04.jpg",
-        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/05.jpg"
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-07/morning/07.jpg"
       ],
       "risk": false,
       "slot_ict": "11:30",
       "sources": [],
-      "angle": "Giúp người đọc tự tạo trang bán hàng chuyên nghiệp trong vài giờ mà không cần thuê lập trình viên."
+      "angle": "Giúp người bán hàng online dựng chatbot AI trả lời và chốt đơn ngay cả khi không trực page, không bỏ lỡ khách nhắn tin ban đêm."
     }
   }
 }
