@@ -4,12 +4,50 @@
   "hashtags": ["#AI", "#trituenhantao", "#lamnoidung", "#content", "#congcuAI", "#tudonghoa", "#sangtaonoidung", "#mmo", "#ahitofficial", "#AIvietnam"],
   "cover_title": "5 công cụ AI viết content ít ai biết",
   "slides": [
-    {"role": "hook", "headline": "5 công cụ AI viết content ít ai biết", "body": "Bộ công cụ giúp bạn ra nội dung nhanh gấp đôi mà vẫn giữ được giọng riêng.", "tool": null},
-    {"role": "item", "headline": "Viết bản nháp siêu nhanh", "body": "Đưa ba bài cũ để nó học giọng, rồi xin mười chủ đề, mỗi chủ đề một bài ngắn.", "tool": {"name": "ChatGPT", "domain": "openai.com"}},
-    {"role": "item", "headline": "Biên tập và giữ chất người", "body": "Dán dàn ý thô, yêu cầu cắt chữ sáo rỗng và giữ đúng văn phong tự nhiên của bạn.", "tool": {"name": "Claude", "domain": "claude.ai"}},
-    {"role": "item", "headline": "Dựng carousel theo thương hiệu", "body": "Chuyển bài viết thành bộ ảnh, đổi màu và font theo thương hiệu chỉ trong vài phút.", "tool": {"name": "Canva", "domain": "canva.com"}},
-    {"role": "item", "headline": "Gom ý tưởng rời thành dàn bài", "body": "Kéo thả sắp xếp ghi chú lộn xộn thành outline mạch lạc để viết tiếp rất nhanh.", "tool": {"name": "Notion", "domain": "notion.so"}},
-    {"role": "close", "headline": "Điều đọng lại", "body": "AI không thay bạn nghĩ, nó chỉ xoá khoảng trắng trang giấy.", "tool": null}
+    {
+      "role": "hook",
+      "headline": "5 công cụ AI viết content ít ai biết",
+      "body": "Bộ công cụ giúp bạn ra nội dung nhanh gấp đôi mà vẫn giữ được giọng riêng của mình.",
+      "tools": [
+        {"name": "ChatGPT", "domain": "openai.com"},
+        {"name": "Claude", "domain": "claude.ai"},
+        {"name": "Canva", "domain": "canva.com"},
+        {"name": "Notion", "domain": "notion.so"}
+      ]
+    },
+    {
+      "role": "item",
+      "headline": "Viết bản nháp siêu nhanh",
+      "body": "Dán ba bài cũ bạn tự viết để mô hình bắt được giọng, rồi đưa mười chủ đề và yêu cầu mỗi chủ đề một bài ngắn theo cấu trúc hook, ý chính, chốt. Trong khoảng mười phút bạn có mười bản nháp để biên tập, thay vì ngồi nhìn trang giấy trắng. Nhớ yêu cầu nó giữ câu ngắn và bỏ từ sáo rỗng.",
+      "tool": {"name": "ChatGPT", "domain": "openai.com"},
+      "bullets": ["Dán bài cũ để nó học giọng", "Xin mười bản nháp một lượt"]
+    },
+    {
+      "role": "item",
+      "headline": "Biên tập và giữ chất người",
+      "body": "Đưa bản nháp thô và yêu cầu cắt chữ thừa, giữ đúng văn phong tự nhiên, chỉ ra chỗ nào nghe như quảng cáo. Mình thường bảo nó viết lại một đoạn theo ba cách rồi tự chọn, vì đọc bản so sánh nhanh hơn là tự sửa từng câu. Việc thêm ví dụ thật và quan điểm riêng vẫn là phần bạn phải tự làm.",
+      "tool": {"name": "Claude", "domain": "claude.ai"},
+      "bullets": ["Xin ba cách viết lại một đoạn", "Ví dụ thật vẫn do bạn thêm"]
+    },
+    {
+      "role": "item",
+      "headline": "Dựng carousel theo thương hiệu",
+      "body": "Chuyển một bài viết thành bộ ảnh nhiều slide, đổi màu nền và phông chữ theo thương hiệu chỉ trong vài phút bằng công cụ thiết kế có sẵn mẫu. Bạn dán từng ý vào một khung, chọn bố cục một lần rồi nhân bản cho cả loạt. Cách này giữ mọi bài đăng nhìn cùng một hệ, không phải căn chỉnh thủ công từng tấm.",
+      "tool": {"name": "Canva", "domain": "canva.com"},
+      "bullets": ["Chọn bố cục một lần, nhân bản", "Cả loạt bài nhìn cùng một hệ"]
+    },
+    {
+      "role": "item",
+      "headline": "Gom ý tưởng rời thành dàn bài",
+      "body": "Ném hết ghi chú lộn xộn, câu hay nghe được, link tham khảo vào một trang, rồi kéo thả sắp lại thành nhóm chủ đề trong tháng. Khi cần viết, bạn mở đúng nhóm đó ra là đã có sẵn góc nhìn và dẫn chứng. Mình đặt lịch nhắc mỗi tuần rà lại danh sách này một lần cho khỏi cạn ý.",
+      "tool": {"name": "Notion", "domain": "notion.so"},
+      "bullets": ["Một trang chứa mọi ghi chú thô", "Rà lại danh sách mỗi tuần một lần"]
+    },
+    {
+      "role": "close",
+      "headline": "Điều đọng lại",
+      "body": "AI không thay bạn nghĩ, nó chỉ xoá khoảng trắng trang giấy. Việc chọn chủ đề đáng nói và thêm chất người vẫn là của bạn."
+    }
   ],
   "risk": false
 }

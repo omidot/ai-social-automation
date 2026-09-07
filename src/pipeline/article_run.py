@@ -5,9 +5,10 @@ from pathlib import Path
 
 import yaml
 
-from . import write, images, topics
+from . import write, images, topics, collect, score
 from .daily_state import DailyState
 from .models import ArticleContent
+from .state import State
 from .telegram import Telegram
 from .llm import generate as _default_generate
 
@@ -38,9 +39,10 @@ def raw_base_url(settings: dict, rel_path: str) -> str:
 
 
 def send_preview(article: ArticleContent, image_paths: list[str], slot: str,
-                 date: str, tg, slot_ict: str, topic: str) -> None:
+                 date: str, tg, slot_ict: str, topic: str,
+                 is_news: bool = False) -> None:
     tg.send_media_group(image_paths)
-    meta = f"💡 {topic}"
+    meta = f"📰 {topic}" if is_news else f"💡 {topic}"
     if article.risk:
         meta += " ⚠️ nhạy cảm"
     body = article.caption_fb  # full caption, no truncation
@@ -64,7 +66,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     root = Path(root)
     generate = generate or _default_generate
     tg = tg or Telegram()
-    _, voice, settings = _configs(root)
+    sources, voice, settings = _configs(root)
     acfg = settings["articles"]
     date = now.astimezone(timezone.utc).strftime("%Y-%m-%d")
     ds = DailyState(root / "data")
@@ -80,26 +82,72 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
             "bỏ qua lần chạy này.")
         return {"slot": slot, "status": "skipped"}
 
-    # Pick a topic from the curated bank + recent history — no scraping.
     topics_cfg = topics.load_topics(root)
     recent = topics.recent_titles(root, topics_cfg.get("recent_window_days", 45))
     other = ds.get_safe(date, _OTHER[slot]) or {}
     if other.get("title"):
         recent = [other["title"]] + recent
 
+    # --- 1. launch-news first: what big tech just shipped ------------------
+    # Any collect failure (CollectError or otherwise) is non-fatal — we just
+    # fall straight through to the curated topic bank below.
+    keywords = sources.get("keywords", [])
+    picked: list = []
     try:
-        spec = topics.propose_topic(topics_cfg, recent, voice, generate)
-    except Exception as e:  # noqa: BLE001 - any proposal failure is non-fatal
-        tg.send_message(f"⚠️ Không đề xuất được chủ đề {slot}: {e}")
-        return {"slot": slot, "status": "error"}
+        cands = collect.collect(sources, settings, State(root / "data"), now)
+        picked = score.pick_n(cands, 4, acfg["min_score"], now, keywords,
+                              exclude_titles=recent)
+        picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+    except collect.CollectError as e:
+        log.warning("collect failed (%s) — using the topic bank", e)
+    except Exception as e:  # noqa: BLE001 - a broken source must not sink the run
+        log.warning("collect raised %s: %s — using the topic bank", type(e).__name__, e)
 
-    try:
-        article = write.write_topic_post(
-            spec["topic"], spec.get("angle", ""), voice, generate=generate)
-    except write.WriteError as e:
-        tg.send_message(
-            f"⚠️ Không viết được bài {slot} (chủ đề: {spec['topic']}): {e}")
-        return {"slot": slot, "status": "error"}
+    article: ArticleContent | None = None
+    news_title = ""
+    news_sources: list[dict] = []
+    attempted: list[str] = []
+    for sc, cand in picked:
+        attempted.append(cand.url_hash)
+        try:
+            article = write.write_share(cand, voice, generate=generate)
+        except write.WriteError as e:
+            log.warning("write_share rejected %r: %s", cand.title, e)
+            continue
+        news_title = cand.title
+        src = cand.source.split(":", 1)[1] if ":" in cand.source else cand.source
+        news_sources = [{"name": src, "url": cand.url}]
+        break
+
+    if attempted:
+        try:
+            State(root / "data").seen_add_many(attempted)
+        except Exception as e:  # noqa: BLE001 - best effort
+            log.warning("seen_add_many failed: %s", e)
+
+    is_news = article is not None
+
+    # --- 2. fall back to the curated topic bank --------------------------
+    if article is None:
+        try:
+            spec = topics.propose_topic(topics_cfg, recent, voice, generate)
+        except Exception as e:  # noqa: BLE001 - any proposal failure is non-fatal
+            tg.send_message(f"⚠️ Không đề xuất được chủ đề {slot}: {e}")
+            return {"slot": slot, "status": "error"}
+        try:
+            article = write.write_topic_post(
+                spec["topic"], spec.get("angle", ""), voice, generate=generate)
+        except write.WriteError as e:
+            tg.send_message(
+                f"⚠️ Không viết được bài {slot} (chủ đề: {spec['topic']}): {e}")
+            return {"slot": slot, "status": "error"}
+        title = spec["topic"]
+        angle = spec.get("angle", "")
+        state_sources: list[dict] = []
+    else:
+        title = news_title
+        angle = ""
+        state_sources = news_sources
 
     rel_dir = f"assets/posts/{date}/{slot}"
     paths = images.build_images(article, root / rel_dir,
@@ -110,12 +158,12 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None) -> di
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
 
     slot_ict = acfg["slots"][slot]
-    ds.put(date, slot, status="draft", format="share", title=spec["topic"],
-           topic_key=_slug(spec["topic"]), text_fb=article.caption_fb,
+    ds.put(date, slot, status="draft", format="share", title=title,
+           topic_key=_slug(title), text_fb=article.caption_fb,
            text_ig=article.caption_ig, hashtags=article.hashtags,
            images=rel_paths, image_urls=image_urls, risk=article.risk,
-           slot_ict=slot_ict, sources=[], angle=spec.get("angle", ""))
-    send_preview(article, paths, slot, date, tg, slot_ict, spec["topic"])
+           slot_ict=slot_ict, sources=state_sources, angle=angle)
+    send_preview(article, paths, slot, date, tg, slot_ict, title, is_news=is_news)
     return ds.get(date, slot)
 
 

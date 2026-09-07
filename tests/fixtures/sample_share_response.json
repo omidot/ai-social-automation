@@ -1,15 +1,100 @@
 {
-  "caption_fb": "AI giờ dựng xong một video giải thích hoàn chỉnh chỉ từ một đoạn ghi âm giọng nói của bạn.\n\nMình thử tuần này: đọc kịch bản dài hai phút vào điện thoại, đẩy file lên công cụ, mười lăm phút sau có bản video với phụ đề khớp từng câu, ảnh minh hoạ cắt ghép và nhạc nền. Không cần cảnh quay, không cần biết dựng phim. Máy tự tách câu, tự tìm hình, tự canh nhịp.\n\nCái này đổi việc cho bạn ở chỗ: thứ trước đây tốn nửa ngày và một người biết Premiere thì giờ là một buổi cà phê. Nếu bạn làm nội dung một mình, đây là phần nặng nhất được gỡ khỏi vai. Bạn ra được nhiều bài hơn mà không thuê thêm ai.\n\nCách bắt đầu thì nhẹ. Viết một kịch bản ngắn, thu giọng bằng app ghi âm sẵn có, chọn một công cụ dựng tự động rồi cho nó chạy thử một video. Đừng cầu toàn bản đầu, cứ xuất ra rồi sửa lại nhịp và vài tấm hình.\n\nĐiều mình rút ra: nút thắt của người làm nội dung một mình không còn là ý tưởng, mà là tốc độ biến ý tưởng thành thứ xem được. Bạn sẽ dùng nó cho loại nội dung nào trước?\n\nNguồn: The Verge",
-  "caption_ig": "AI dựng nguyên video giải thích chỉ từ một đoạn ghi âm giọng bạn. Phần nặng nhất của người làm nội dung một mình vừa được gỡ. Bạn thử cho video nào trước?",
-  "hashtags": ["#AI", "#trituenhantao", "#lamnoidung", "#video", "#congcuAI", "#tudonghoa", "#sangtaonoidung", "#mmo", "#ahitofficial", "#AIvietnam"],
-  "cover_title": "AI dựng video từ giọng nói của bạn",
+  "caption_fb": "Vừa có một mô hình tạo video mới, và nó xoá nốt cái cớ cuối cùng để bạn chưa bắt đầu làm nội dung bằng hình ảnh động.\n\nMình thử ngay trong tuần. Gõ một câu mô tả bằng tiếng Việt, khoảng mười lăm chữ, nói rõ bối cảnh và chuyển động máy quay. Chưa đầy một phút sau có ba đoạn phim tám giây, độ phân giải 1080p, ánh sáng nhất quán giữa các khung hình, nhân vật không méo mặt khi quay đầu. Mình ghép bốn đoạn lại, thêm giọng đọc dựng sẵn và một câu nhạc nền, ra một video giải thích hoàn chỉnh trong buổi sáng.\n\nĐiểm đáng chú ý không phải là hình đẹp hơn, mà là độ ổn định. Bản trước đây cứ vài giây lại đổi khuôn mặt hoặc đổi màu áo, nên gần như không dùng được cho nội dung nghiêm túc. Lần này mình cắt ghép thật mà không thấy nhân vật nhảy hình.\n\nBạn dùng được vào việc gì: cảnh minh hoạ cho video kiến thức, clip sản phẩm ngắn cho trang bán hàng, hoặc phần mở đầu cho một bài dài mà trước đây phải thuê dựng. Cách thử nhanh nhất là viết đúng một câu lệnh rõ ràng, chạy ba phương án, chọn một bản rồi chỉnh tiếp thay vì mong bản đầu hoàn hảo.\n\nMình nghĩ nút thắt của người làm nội dung một mình vừa dịch từ kỹ năng dựng phim sang kỹ năng viết mô tả. Bạn sẽ thử cho loại nội dung nào trước?\n\nNguồn: The Verge",
+  "caption_ig": "Mô hình video mới dựng đoạn phim tám giây từ một câu tiếng Việt, ổn định đủ để cắt ghép thật. Nút thắt của người làm nội dung một mình vừa đổi từ kỹ năng dựng sang kỹ năng viết mô tả. Bạn thử chưa?",
+  "hashtags": [
+    "#AI",
+    "#trituenhantao",
+    "#videoAI",
+    "#lamnoidung",
+    "#congcuAI",
+    "#tudonghoa",
+    "#sangtaonoidung",
+    "#mmo",
+    "#ahitofficial",
+    "#AIvietnam"
+  ],
+  "cover_title": "AI dựng phim tám giây từ một câu",
   "slides": [
-    {"role": "hook", "headline": "AI dựng video chỉ từ giọng nói", "body": "Không cần cảnh quay hay biết dựng phim, vẫn ra video có phụ đề và nhạc nền.", "tool": null},
-    {"role": "item", "headline": "Tạo giọng đọc nghe như người thật", "body": "Nhập kịch bản, chọn giọng, có file lồng tiếng tự nhiên chỉ trong vài phút.", "tool": {"name": "ElevenLabs", "domain": "elevenlabs.io"}},
-    {"role": "item", "headline": "Ghép hình và phụ đề tự động", "body": "Máy tách câu, tìm ảnh minh hoạ, canh nhịp và gắn phụ đề khớp từng câu.", "tool": {"name": "CapCut", "domain": "capcut.com"}},
-    {"role": "item", "headline": "Chỉnh video bằng cách sửa chữ", "body": "Xoá một câu trong bản chữ là đoạn video tương ứng cũng biến mất theo.", "tool": {"name": "Descript", "domain": "descript.com"}},
-    {"role": "item", "headline": "Đóng gói theo thương hiệu", "body": "Thêm bìa, khung màu và logo cho cả loạt video chỉ trong ít phút.", "tool": {"name": "Canva", "domain": "canva.com"}},
-    {"role": "close", "headline": "Điều đọng lại", "body": "Nút thắt không còn là ý tưởng mà là tốc độ biến ý tưởng thành thứ xem được.", "tool": null}
+    {
+      "role": "hook",
+      "headline": "AI dựng phim tám giây từ một câu",
+      "body": "Một mô hình video mới vừa ra mắt, ổn định đủ để cắt ghép thật chứ không còn là bản demo vui mắt.",
+      "tools": [
+        {
+          "name": "OpenAI Sora",
+          "domain": "openai.com"
+        },
+        {
+          "name": "Google DeepMind",
+          "domain": "deepmind.google"
+        },
+        {
+          "name": "Runway",
+          "domain": "runwayml.com"
+        },
+        {
+          "name": "ElevenLabs",
+          "domain": "elevenlabs.io"
+        }
+      ]
+    },
+    {
+      "role": "item",
+      "headline": "Cái vừa ra mắt là gì",
+      "body": "Đây là một mô hình tạo video theo câu lệnh, nhận mô tả bằng chữ rồi trả về đoạn phim dài tám giây ở độ phân giải 1080p. Nó chạy trên nền web, không cần cài đặt, và cho ra nhiều phương án cùng lúc. Điểm nhà phát triển nhấn mạnh là chuyển động máy quay có chủ đích và ánh sáng giữ nguyên tông suốt cả đoạn.",
+      "tool": {
+        "name": "OpenAI Sora",
+        "domain": "openai.com"
+      },
+      "bullets": [
+        "Nhập câu lệnh, nhận ba phương án",
+        "Đoạn phim tám giây, 1080p"
+      ]
+    },
+    {
+      "role": "item",
+      "headline": "Nó thực sự làm được gì",
+      "body": "Trong thử nghiệm của mình, một câu lệnh mười lăm chữ tả cảnh quán cà phê buổi sáng cho ra ba đoạn khác nhau sau khoảng bốn mươi giây chờ. Nhân vật giữ nguyên khuôn mặt khi quay đầu, ly cà phê không đổi màu giữa chừng, bóng đổ đi đúng hướng nắng. Mình ghép bốn đoạn thành một video mà người xem không nhận ra chỗ nối.",
+      "tool": {
+        "name": "Runway",
+        "domain": "runwayml.com"
+      },
+      "bullets": [
+        "Ba đoạn trong khoảng bốn mươi giây",
+        "Ghép cảnh không thấy nhân vật nhảy hình"
+      ]
+    },
+    {
+      "role": "item",
+      "headline": "Khác gì so với bản cũ",
+      "body": "Các mô hình video trước đây thường đổi khuôn mặt hoặc đổi màu trang phục sau vài giây, nên chỉ hợp làm ảnh nền mờ chứ khó dùng cho nội dung nghiêm túc. Lần này độ ổn định giữa các khung hình đủ cao để cắt cận cảnh và giữ một nhân vật xuyên suốt. Thời gian chờ mỗi lần dựng còn dưới một phút.",
+      "tool": {
+        "name": "Google DeepMind",
+        "domain": "deepmind.google"
+      },
+      "bullets": [
+        "Giữ một nhân vật xuyên suốt",
+        "Chờ dưới một phút mỗi lần dựng"
+      ]
+    },
+    {
+      "role": "item",
+      "headline": "Cách thử ngay hôm nay",
+      "body": "Viết đúng một câu lệnh rõ ràng: nói bối cảnh, hành động, góc máy và tông ánh sáng trong cùng một câu. Chạy ba phương án, chọn bản gần ý nhất rồi mới chỉnh chi tiết, đừng mong đoạn đầu tiên hoàn hảo. Cần lồng tiếng thì đẩy đoạn phim sang một công cụ tạo giọng, thêm phụ đề và nhạc nền là có video hoàn chỉnh.",
+      "tool": {
+        "name": "ElevenLabs",
+        "domain": "elevenlabs.io"
+      },
+      "bullets": [
+        "Một câu lệnh: cảnh, hành động, góc máy",
+        "Chọn bản gần ý rồi mới chỉnh"
+      ]
+    },
+    {
+      "role": "close",
+      "headline": "Điều đọng lại",
+      "body": "Nút thắt của người làm nội dung một mình vừa dịch từ kỹ năng dựng phim sang kỹ năng viết mô tả cho rõ ràng. Ai tả cảnh tốt sẽ ra video nhanh hơn."
+    }
   ],
   "risk": false
 }

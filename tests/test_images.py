@@ -5,20 +5,24 @@ from pipeline import images
 from pipeline.models import ArticleContent
 
 
+_LONG = ("Đây là một đoạn thân bài đủ dài để mô tả cụ thể một tính năng vừa ra "
+         "mắt, có ví dụ và con số, trải ra nhiều dòng trên slide chứ không phải "
+         "một câu cụt ngủn như bản cũ trước đây từng làm.")
+
+
 def _slides():
     return [
         {"role": "hook", "headline": "5 công cụ AI ít ai biết",
-         "body": "Bộ công cụ giúp bạn làm nhanh hơn hẳn", "tool": None},
-        {"role": "item", "headline": "Việc số một", "body": "Một dòng nội dung hơi dài để bọc",
-         "tool": None},
-        {"role": "item", "headline": "Việc số hai", "body": "Một dòng nội dung khác cũng hơi dài",
-         "tool": None},
-        {"role": "item", "headline": "Việc số ba", "body": "Thêm một dòng nội dung nữa ở đây",
-         "tool": None},
-        {"role": "item", "headline": "Việc số bốn", "body": "Dòng nội dung thứ tư hơi dài chút",
-         "tool": None},
-        {"role": "close", "headline": "Chốt lại", "body": "Một câu đọng lại thật ngắn gọn",
-         "tool": None},
+         "body": "Bộ công cụ giúp bạn làm nhanh hơn hẳn", "tools": []},
+        {"role": "item", "headline": "Việc số một", "body": _LONG,
+         "tool": None, "bullets": ["điểm một", "điểm hai"]},
+        {"role": "item", "headline": "Việc số hai", "body": _LONG,
+         "tool": None, "bullets": []},
+        {"role": "item", "headline": "Việc số ba", "body": _LONG,
+         "tool": None, "bullets": ["một dòng ngắn"]},
+        {"role": "item", "headline": "Việc số bốn", "body": _LONG,
+         "tool": None, "bullets": []},
+        {"role": "close", "headline": "Chốt lại", "body": "Một câu đọng lại thật ngắn gọn"},
     ]
 
 
@@ -67,10 +71,23 @@ def test_build_images_renders_hook_plus_items(tmp_path):
         assert all(c > 220 for c in px), f"item corner too dark: {px}"
 
 
-def test_every_slide_has_progress_bar(tmp_path):
+def test_slides_have_no_progress_bar(tmp_path):
+    # v4: the segmented top progress bar is gone — no long horizontal brand-blue
+    # run anywhere in the top 60px band of any slide.
     out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None)
     for p in out:
-        assert _band_has_brand_blue(p, 80, 112), f"no filled progress segment on {p}"
+        im = Image.open(p).convert("RGB")
+        W, _ = im.size
+        px = im.load()
+        for y in range(0, 60):
+            run = 0
+            for x in range(W):
+                r, g, bl = px[x, y]
+                if abs(r - 29) < 55 and abs(g - 78) < 55 and bl > 165:
+                    run += 1
+                    assert run <= 40, f"progress-bar-like blue run at y={y} on {p}"
+                else:
+                    run = 0
 
 
 def test_build_images_ignores_retired_kwargs(tmp_path):
@@ -101,21 +118,46 @@ def test_hook_slide_has_swipe_cta():
 
 # --- item slide + logos --------------------------------------------------
 
-def _item(tool=None):
-    return {"role": "item", "headline": "Một công cụ hay", "body": "Mô tả ngắn về công cụ này",
-            "tool": tool}
+def _item(tool=None, body="Mô tả ngắn về công cụ này", bullets=None):
+    return {"role": "item", "headline": "Một công cụ hay", "body": body,
+            "tool": tool, "bullets": bullets or []}
 
 
-def test_item_slide_uses_logo_when_available(monkeypatch):
+def test_hook_slide_shows_tool_logos(monkeypatch):
+    red = Image.new("RGBA", (120, 120), (255, 0, 0, 255))
+    monkeypatch.setattr(images, "_fetch_logo", lambda d, r: red)
+    slides = _slides()
+    slides[0]["tools"] = [{"name": "A", "domain": "a.com"},
+                          {"name": "B", "domain": "b.com"},
+                          {"name": "C", "domain": "c.com"}]
+    img = images._render_hook_slide(_art(slides), slides[0], (1080, 1350),
+                                    images.BRAND_DEFAULTS)
+    px = img.load()
+    W, H = img.size
+    band = [(x, y) for y in range(int(H * 0.34), int(H * 0.82), 2)
+            for x in range(0, W, 2)
+            if px[x, y][0] > 180 and px[x, y][1] < 90 and px[x, y][2] < 90]
+    assert len(band) > 150, f"expected red logo pixels in the mid band, got {len(band)}"
+    xs = sorted({x for x, _ in band})
+    gaps = sum(1 for a, c in zip(xs, xs[1:]) if c - a > 20)
+    assert gaps >= 2, f"expected 3 separated logo clusters, got {gaps + 1}"
+
+
+def test_item_slide_logo_lockup_left(monkeypatch):
     red = Image.new("RGBA", (128, 128), (255, 0, 0, 255))
     monkeypatch.setattr(images, "_fetch_logo", lambda d, r: red)
     img = images._render_item_slide(2, 6, _item({"name": "Foo", "domain": "foo.com"}),
                                     (1080, 1350), images.BRAND_DEFAULTS)
     px = img.load()
     W, H = img.size
-    hits = sum(1 for y in range(0, H // 2) for x in range(W // 2, W, 2)
-               if px[x, y][0] > 200 and px[x, y][1] < 80 and px[x, y][2] < 80)
-    assert hits > 50, f"expected red logo pixels top-right, got {hits}"
+    red_xs = [x for y in range(90, 340, 2) for x in range(0, W, 2)
+              if px[x, y][0] > 200 and px[x, y][1] < 80 and px[x, y][2] < 80]
+    assert red_xs, "no logo pixels found"
+    assert max(red_xs) < W // 3, "the logo tile must sit in the left third"
+    right = max(red_xs)
+    dark = sum(1 for y in range(120, 320, 2) for x in range(right + 12, right + 420, 2)
+               if all(c < 80 for c in px[x, y]))
+    assert dark > 15, f"expected dark brand-name pixels right of the logo, got {dark}"
 
 
 def test_item_slide_falls_back_to_icon_without_logo(monkeypatch):
@@ -124,9 +166,22 @@ def test_item_slide_falls_back_to_icon_without_logo(monkeypatch):
                                     (1080, 1350), images.BRAND_DEFAULTS)
     px = img.load()
     W, H = img.size
-    dark = sum(1 for y in range(0, H // 2) for x in range(W // 2, W, 2)
-               if all(c < 80 for c in px[x, y]))
-    assert dark > 20, f"expected a dark fallback glyph top-right, got {dark}"
+    dark = sum(1 for y in range(110, 330, 2) for x in range(0, W // 3, 2)
+               if all(c < 95 for c in px[x, y]))
+    assert dark > 20, f"expected a dark fallback glyph in the left third, got {dark}"
+
+
+def test_item_slide_renders_long_body_and_bullets(monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda d, r: None)
+    body = " ".join(["từ"] * 60)
+    slide = _item({"name": "OpenAI", "domain": "openai.com"}, body=body,
+                  bullets=["điểm quan trọng số một", "điểm quan trọng số hai"])
+    img = images._render_item_slide(2, 6, slide, (1080, 1350), images.BRAND_DEFAULTS)
+    px = img.load()
+    W, H = img.size
+    dark = sum(1 for y in range(520, 1150, 3) for x in range(80, W - 80, 3)
+               if all(c < 110 for c in px[x, y]))
+    assert dark > 60, f"expected substantial dark body/bullet text, got {dark}"
 
 
 def test_close_slide_has_no_swipe_hint():

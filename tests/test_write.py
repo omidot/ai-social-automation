@@ -71,14 +71,24 @@ def test_build_share_prompt_has_sharing_cue():
     assert "đánh số" in sysp and "bản tin" in sysp
 
 
+def _assert_v4_slide_shape(slides):
+    assert set(slides[0]) == {"role", "headline", "body", "tools"}
+    assert isinstance(slides[0]["tools"], list)
+    assert set(slides[-1]) == {"role", "headline", "body"}
+    for s in slides[1:-1]:
+        assert set(s) == {"role", "headline", "body", "tool", "bullets"}
+        assert isinstance(s["bullets"], list) and len(s["bullets"]) <= 3
+        assert len(s["body"].split()) >= 25   # substantial, not a stub
+
+
 def test_write_share_builds_storyboard_arc():
     art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
     assert art.format == "share"
-    assert 5 <= len(art.slides) <= 7
+    assert 4 <= len(art.slides) <= 9
     roles = [s["role"] for s in art.slides]
     assert roles[0] == "hook" and roles[-1] == "close"
     assert all(r == "item" for r in roles[1:-1])
-    assert all(set(s) == {"role", "headline", "body", "tool"} for s in art.slides)
+    _assert_v4_slide_shape(art.slides)
     # caption is a coherent paragraph, no link, no "1. " numbered-list pattern
     assert "http" not in art.caption_fb
     assert "http" not in art.caption_ig
@@ -93,7 +103,12 @@ def test_write_share_strips_urls_everywhere():
     data["caption_fb"] = "Xem tại https://example.com/x nhé. Bạn nghĩ sao?"
     data["caption_ig"] = "Chi tiết https://example.com/x"
     data["slides"][0]["headline"] = "Tiêu đề https://a.com/y"
-    data["slides"][2]["body"] = "Thân bài http://b.com/z ok"
+    # keep the item body substantial (40-70 words) but slip a URL into the middle
+    data["slides"][2]["body"] = (
+        "Trong bài gốc có đường dẫn http://b.com/z tới bản demo, nhưng phần đáng "
+        "chú ý là mô hình dựng ra đoạn phim tám giây chỉ từ một câu mô tả, giữ "
+        "được khuôn mặt nhân vật và ánh sáng ổn định suốt cả đoạn nên cắt ghép "
+        "thật được chứ không còn là bản trình diễn cho vui mắt như trước đây.")
     art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
     assert "http" not in art.caption_fb
     assert "http" not in art.caption_ig
@@ -102,9 +117,39 @@ def test_write_share_strips_urls_everywhere():
 
 def test_write_share_rejects_wrong_slide_count():
     data = json.loads(_share_payload())
-    data["slides"] = data["slides"][:4]
+    data["slides"] = data["slides"][:3]          # under the 4-9 floor
     with pytest.raises(write.WriteError):
         write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_rejects_too_many_slides():
+    data = json.loads(_share_payload())
+    mid = data["slides"][1]
+    data["slides"] = [data["slides"][0]] + [mid] * 9 + [data["slides"][-1]]  # 11 slides
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_rejects_short_item_body():
+    data = json.loads(_share_payload())
+    data["slides"][2]["body"] = "Một dòng cụt quá ngắn."
+    with pytest.raises(write.WriteError, match="quá ngắn"):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_rejects_malformed_tool():
+    data = json.loads(_share_payload())
+    data["slides"][1]["tool"] = {"name": "Mystery"}          # domain missing
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_fills_hook_tools():
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
+    tools = art.slides[0]["tools"]
+    assert len(tools) == 4
+    assert all({"name", "domain"} == set(t) for t in tools)
+    assert tools[0]["domain"] == "openai.com"
 
 
 def test_write_share_rejects_bad_slide_roles():
@@ -138,7 +183,7 @@ class _ShapeStub:
 
 def _bad_shape_payload() -> str:
     data = json.loads(_share_payload())
-    data["slides"] = data["slides"][:4]  # 4 slides, not 5
+    data["slides"] = data["slides"][:3]  # 3 slides, under the 4-9 floor
     return json.dumps(data)
 
 
@@ -198,11 +243,11 @@ def test_write_topic_post_builds_storyboard_arc():
         "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
         VOICE, generate=lambda s, u, **k: _topic_payload())
     assert art.format == "share"
-    assert 5 <= len(art.slides) <= 7
+    assert 4 <= len(art.slides) <= 9
     roles = [s["role"] for s in art.slides]
     assert roles[0] == "hook" and roles[-1] == "close"
     assert all(r == "item" for r in roles[1:-1])
-    assert all(set(s) == {"role", "headline", "body", "tool"} for s in art.slides)
+    _assert_v4_slide_shape(art.slides)
     # knowledge-sourced: no source, no "Nguồn:" line, no links anywhere
     assert art.sources == []
     assert "Nguồn:" not in art.caption_fb
@@ -214,27 +259,40 @@ def test_write_topic_post_accepts_tool_field():
     art = write.write_topic_post(
         "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
         VOICE, generate=lambda s, u, **k: _topic_payload())
-    tooled = [s for s in art.slides if s["tool"]]
+    tooled = [s for s in art.slides if s.get("tool")]
     assert tooled, "expected at least one item slide carrying a tool"
     assert {"name", "domain"} == set(tooled[0]["tool"])
     assert tooled[0]["tool"]["domain"] == "openai.com"
-    # hook + close carry no tool
-    assert art.slides[0]["tool"] is None and art.slides[-1]["tool"] is None
+    # hook + close carry no singular tool key
+    assert art.slides[0].get("tool") is None and art.slides[-1].get("tool") is None
 
 
-def test_write_topic_post_drops_malformed_tool():
+def test_write_topic_post_rejects_malformed_tool():
+    # a *present* tool that is broken is a real shape error, not a render detail
     data = json.loads(_topic_payload())
     data["slides"][1]["tool"] = {"name": "Mystery", "domain": "not a domain"}
+    with pytest.raises(write.WriteError):
+        write.write_topic_post("chủ đề", "góc", VOICE,
+                               generate=lambda s, u, **k: json.dumps(data))
+
+    data = json.loads(_topic_payload())
     data["slides"][2]["tool"] = "just a string"
+    with pytest.raises(write.WriteError):
+        write.write_topic_post("chủ đề", "góc", VOICE,
+                               generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_topic_post_blank_tool_object_is_none():
+    data = json.loads(_topic_payload())
+    data["slides"][1]["tool"] = {}          # explicitly "no tool"
     art = write.write_topic_post("chủ đề", "góc", VOICE,
                                  generate=lambda s, u, **k: json.dumps(data))
     assert art.slides[1]["tool"] is None
-    assert art.slides[2]["tool"] is None
 
 
 @pytest.mark.parametrize("mutate", [
-    lambda d: d.__setitem__("slides", d["slides"][:4]),          # < 5
-    lambda d: d.__setitem__("slides", d["slides"] + [d["slides"][1]] * 3),  # > 7
+    lambda d: d.__setitem__("slides", d["slides"][:3]),          # < 4
+    lambda d: d.__setitem__("slides", d["slides"] + [d["slides"][1]] * 5),  # > 9
     lambda d: d["slides"][0].__setitem__("role", "item"),        # first not hook
     lambda d: d["slides"][-1].__setitem__("role", "item"),       # last not close
 ])
@@ -248,7 +306,7 @@ def test_write_rejects_wrong_slide_shape(mutate):
 
 def _topic_bad_shape() -> str:
     data = json.loads(_topic_payload())
-    data["slides"] = data["slides"][:4]  # 4 slides, not 5
+    data["slides"] = data["slides"][:3]  # 3 slides, under the 4-9 floor
     return json.dumps(data)
 
 

@@ -25,7 +25,8 @@ def _art(cover="One topic"):
 def wired(tmp_path, monkeypatch):
     (tmp_path / "config").mkdir()
     (tmp_path / "config" / "sources.yaml").write_text(
-        "google_news: {queries: [], langs: []}\nkeywords: [AI, GPT, OpenAI]\n", encoding="utf-8")
+        "rss: []\ngoogle_news: {queries: [], langs: []}\nkeywords: [AI, GPT, OpenAI]\n",
+        encoding="utf-8")
     (tmp_path / "config" / "voice.yaml").write_text(
         "xung_ho: {nguoi_noi: mình, nguoi_nghe: bạn}\ngiong: vui\ncam_ky: []\nten_kenh: A Hít\n",
         encoding="utf-8")
@@ -36,6 +37,8 @@ def wired(tmp_path, monkeypatch):
         "seeds: ['5 công cụ AI dựng video']\nthemes: ['dựng video ngắn']\n"
         "formats: ['Top {n} công cụ AI để {viec}']\nrecent_window_days: 45\n", encoding="utf-8")
 
+    # by default no news candidates -> every test flows through the topic bank
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [])
     monkeypatch.setattr(article_run.topics, "propose_topic",
                         lambda *a, **k: {"topic": "5 công cụ AI dựng video",
                                          "angle": "giúp bạn ra video nhanh hơn"})
@@ -116,6 +119,74 @@ def test_draft_excludes_recent_and_other_slot(wired, monkeypatch):
     out = article_run.draft("evening", root, now, tg=tg)
     assert out["status"] == "draft"
     assert "Chủ đề buổi sáng" in seen["recent"]
+
+
+def _news_cand(title="OpenAI ships Sora 2 video model", url="https://openai.com/blog/sora-2"):
+    from pipeline.models import Candidate
+    return Candidate(url=url, title=title, source="rss:OpenAI Blog",
+                     published_at=datetime(2026, 9, 6, tzinfo=timezone.utc),
+                     summary="s", full_text="x" * 800)
+
+
+def test_draft_prefers_news_candidate(wired, monkeypatch):
+    root, _ = wired
+    cand = _news_cand()
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
+    seen = {}
+
+    def fake_write_share(c, voice, generate=None):
+        seen["cand"] = c
+        return _art(c.title)
+
+    monkeypatch.setattr(article_run.write, "write_share", fake_write_share)
+    monkeypatch.setattr(article_run.topics, "propose_topic",
+                        lambda *a, **k: (_ for _ in ()).throw(
+                            AssertionError("topic bank must not run")))
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)
+    assert out["status"] == "draft"
+    saved = DailyState(root / "data").get("2026-09-06", "morning")
+    assert saved["title"] == cand.title
+    assert saved["sources"] and saved["sources"][0]["url"] == cand.url
+    assert seen["cand"].url == cand.url
+    assert "📰" in tg.msgs[-1][0]
+
+
+def test_draft_falls_back_to_topic_bank(wired, monkeypatch):
+    root, _ = wired
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [_news_cand()])
+
+    def always_fail(*a, **k):
+        raise article_run.write.WriteError("model returned junk")
+
+    monkeypatch.setattr(article_run.write, "write_share", always_fail)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)
+    assert out["status"] == "draft"
+    saved = DailyState(root / "data").get("2026-09-06", "morning")
+    assert saved["title"] == "5 công cụ AI dựng video"
+    assert saved["sources"] == []
+    assert "💡" in tg.msgs[-1][0]
+
+
+def test_draft_falls_back_when_collect_fails(wired, monkeypatch):
+    root, _ = wired
+
+    def boom(*a, **k):
+        raise article_run.collect.CollectError("all sources down")
+
+    monkeypatch.setattr(article_run.collect, "collect", boom)
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda *a, **k: (_ for _ in ()).throw(
+                            AssertionError("write_share must not run when collect fails")))
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)  # must NOT raise
+    assert out["status"] == "draft"
+    assert DailyState(root / "data").get("2026-09-06", "morning")["title"] == \
+        "5 công cụ AI dựng video"
 
 
 def test_draft_skips_committed_slot(wired, monkeypatch):

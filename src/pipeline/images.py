@@ -279,22 +279,8 @@ def _fetch_logo(domain: str, root: Path) -> Image.Image | None:
 
 
 # --- shared storyboard bits ---------------------------------------------
-
-def _draw_progress(draw: ImageDraw.ImageDraw, b: dict, i: int, size: tuple[int, int],
-                   total: int = 5, off: str | None = None) -> None:
-    """``total`` rounded segments near the top; segments ``<= i`` filled
-    brand-blue, the rest ``off`` (defaults to the light-slide empty colour)."""
-    W, _ = size
-    total = max(1, total)
-    margin, gap, seg_h, y = 80, 14, 12, 92
-    off = off or b["progress_off"]
-    seg_w = (W - 2 * margin - gap * (total - 1)) / total
-    for k in range(total):
-        x0 = margin + k * (seg_w + gap)
-        fill = b["accent"] if k <= i else off
-        draw.rounded_rectangle((x0, y, x0 + seg_w, y + seg_h),
-                               radius=seg_h / 2, fill=fill)
-
+# NOTE: the v3 segmented progress bar was removed in v4 — the owner didn't want
+# it. Nothing draws a top band any more.
 
 def _dot_grid(draw: ImageDraw.ImageDraw, size: tuple[int, int], colour: str,
               step: int = 40, r: int = 2) -> None:
@@ -318,21 +304,48 @@ def _fit_lines(draw, text: str, start: int, floor: int, max_w: int,
     return hf, lines, sz
 
 
-def _slide_total(article: ArticleContent) -> int:
-    n = len(getattr(article, "slides", []) or [])
-    return max(5, min(7, n)) if n else 5
+def _hook_logo_row(img: Image.Image, b: dict, tools: list, root: Path,
+                   y_top: int) -> bool:
+    """Render the hook slide's logo row: one white rounded ~150px tile per tool
+    (logo scaled to ~100px inside, soft shadow), centred — a single row for up
+    to 4 tools, two rows for 5-6. A tool whose logo fails to fetch is skipped
+    (no empty tile). Returns True if at least one logo was drawn."""
+    resolved: list[Image.Image] = []
+    for t in (tools or [])[:6]:
+        dom = str((t or {}).get("domain", "")).strip().lower()
+        lg = _fetch_logo(dom, root) if dom else None
+        if lg is not None:
+            resolved.append(lg)
+    if not resolved:
+        return False
+
+    W, _ = img.size
+    tile, gap = 150, 30
+    n = len(resolved)
+    per_row = n if n <= 4 else (n + 1) // 2
+    rows = [resolved[i:i + per_row] for i in range(0, n, per_row)]
+    y = y_top
+    for row in rows:
+        row_w = len(row) * tile + (len(row) - 1) * gap
+        x = (W - row_w) // 2
+        for lg in row:
+            _logo_tile(img, (x, y, x + tile, y + tile), b, lg, _ICONS["spark"])
+            x += tile + gap
+        y += tile + gap
+    return True
 
 
 def _render_hook_slide(article: ArticleContent, slide: dict, size: tuple[int, int],
-                       brand: dict | None = None) -> Image.Image:
+                       brand: dict | None = None, root: Path | None = None) -> Image.Image:
     """Slide 1 (role "hook"): a dark, high-punch slide — near-black bg with a
     soft blue radial glow, faint dot grid, a brand kicker pill, one line of the
-    hook blown up in brand blue, a muted sub-line, and a swipe CTA near the
-    bottom.
+    hook blown up in brand blue, a muted sub-line, a row of the logos the
+    carousel will cover, and a swipe CTA near the bottom. No progress bar.
     """
     b = {**BRAND_DEFAULTS, **(brand or {})}
     W, H = size
     slide = slide or {}
+    root = Path(root) if root is not None else Path(".")
 
     img = Image.new("RGB", (W, H), b["hook_bg"])
     # blue radial glow, top-left, on its own heavily-blurred layer
@@ -344,27 +357,25 @@ def _render_hook_slide(article: ArticleContent, slide: dict, size: tuple[int, in
     draw = ImageDraw.Draw(img)
 
     _dot_grid(draw, size, b["hook_dot"], step=46, r=2)
-    _draw_progress(draw, b, 0, size, total=_slide_total(article),
-                   off=b["hook_progress_off"])
 
     margin = 70
     safe_w = W - 140
 
-    # brand kicker pill, top-left under the progress bar
+    # brand kicker pill, top-left
     kf = ImageFont.truetype(str(media.FONT_PATH), 26)
     kick = str(b.get("kicker", b["handle"]))
     kw = draw.textlength(kick, font=kf)
     kasc, kdesc = kf.getmetrics()
     kpad_x, kpad_y = 22, 12
-    draw.rounded_rectangle((margin, 132, margin + kw + 2 * kpad_x,
-                            132 + kasc + kdesc + 2 * kpad_y),
+    draw.rounded_rectangle((margin, 104, margin + kw + 2 * kpad_x,
+                            104 + kasc + kdesc + 2 * kpad_y),
                            radius=(kasc + kdesc + 2 * kpad_y) // 2, fill=b["accent"])
-    draw.text((margin + kpad_x, 132 + kpad_y), kick, font=kf, fill="#FFFFFF")
+    draw.text((margin + kpad_x, 104 + kpad_y), kick, font=kf, fill="#FFFFFF")
 
     # the hook headline: auto-fit, <=3 lines; then blow up one line in brand blue
     head = (str(slide.get("headline", "")).strip()
             or (getattr(article, "cover_title", "") or "").strip())
-    hf, lines, hsz = _fit_lines(draw, head, 120, 56, safe_w, 3)
+    hf, lines, hsz = _fit_lines(draw, head, 118, 54, safe_w, 3)
 
     big_idx = None
     for idx, ln in enumerate(lines):
@@ -372,14 +383,14 @@ def _render_hook_slide(article: ArticleContent, slide: dict, size: tuple[int, in
             big_idx = idx
     if big_idx is None and lines:
         big_idx = len(lines) - 1
-    big_sz = min(int(hsz * 1.5), 150)
+    big_sz = min(int(hsz * 1.5), 148)
     big_hf = ImageFont.truetype(str(media.FONT_PATH), big_sz)
     while big_sz > hsz and big_idx is not None and \
             draw.textlength(lines[big_idx], font=big_hf) > safe_w:
         big_sz -= 6
         big_hf = ImageFont.truetype(str(media.FONT_PATH), big_sz)
 
-    y = int(H * 0.24)
+    y = int(H * 0.16)
     for idx, ln in enumerate(lines):
         if idx == big_idx:
             draw.text((margin, y), ln, font=big_hf, fill=b["accent"])
@@ -388,14 +399,24 @@ def _render_hook_slide(article: ArticleContent, slide: dict, size: tuple[int, in
             draw.text((margin, y), ln, font=hf, fill="#FFFFFF")
             y += int(hsz * 1.18)
 
-    # the hook sub-line, muted, <=2 lines
+    # the hook sub-line, muted, <=3 lines
     sub = str(slide.get("body", "")).strip()
     if sub:
         sf = _handle_font(34)
         y += 16
-        for ln in media._wrap(draw, sub, sf, safe_w)[:2]:
+        for ln in media._wrap(draw, sub, sf, safe_w)[:3]:
             draw.text((margin, y), ln, font=sf, fill=b["hook_body"])
             y += 46
+
+    # logo row: the products this carousel will cover, between sub-body and CTA
+    tools = slide.get("tools") or []
+    row_y = max(int(y + 40), int(H * 0.52))
+    drew_logos = False
+    if tools:
+        drew_logos = _hook_logo_row(img, b, tools, root, row_y)
+        if not drew_logos:
+            _draw_icon_fan(img, b, n=min(max(len(tools), 3), 6))
+        draw = ImageDraw.Draw(img)  # re-bind after paste
 
     # swipe CTA: outlined rounded rect, centred, near the bottom
     cta_w, cta_h = 380, 74
@@ -445,10 +466,12 @@ def _logo_tile(img: Image.Image, box: tuple[int, int, int, int], b: dict,
 def _render_item_slide(i: int, total: int, slide: dict, size: tuple[int, int],
                        brand: dict | None = None, root: Path | None = None) -> Image.Image:
     """Slides 2..N (role "item", and the final "close"): light background + dot
-    grid, progress bar, a big brand-blue index numeral top-left (or a "CHỐT LẠI"
-    pill on the close slide), a top-right tile holding the tool's real logo (or
-    a fallback glyph), an optional tool-name label, the auto-fit headline with a
-    blue underline, the body, and a swipe hint (handle on the close slide).
+    grid, NO progress bar. An item slide opens with a horizontal lockup — a BIG
+    white logo tile at the left margin with the brand name right next to it — then
+    the auto-fit headline + blue underline, a substantial body (40-70 words), and
+    up to 3 brand-blue bullet lines. The close slide swaps the lockup for a
+    "CHỐT LẠI" pill and centres the handle at the bottom. A ghost index numeral
+    sits bottom-right; every item but the close shows a "Vuốt tiếp ›" hint.
     """
     b = {**BRAND_DEFAULTS, **(brand or {})}
     W, H = size
@@ -460,7 +483,6 @@ def _render_item_slide(i: int, total: int, slide: dict, size: tuple[int, int],
     img = Image.new("RGB", (W, H), b["item_bg"])
     draw = ImageDraw.Draw(img)
     _dot_grid(draw, size, b["item_dot"], step=40, r=2)
-    _draw_progress(draw, b, i - 1, size, total=total, off=b["progress_off"])
 
     # ghost numeral watermark, bottom-right
     try:
@@ -474,9 +496,9 @@ def _render_item_slide(i: int, total: int, slide: dict, size: tuple[int, int],
 
     margin = 80
     safe_w = W - 2 * margin
-    top_y = 150
+    top_y = 120
+    lock_h = 190
 
-    # index numeral (or CHỐT LẠI pill on close)
     if is_close:
         pf = ImageFont.truetype(str(media.FONT_PATH), 40)
         txt = "CHỐT LẠI"
@@ -487,47 +509,75 @@ def _render_item_slide(i: int, total: int, slide: dict, size: tuple[int, int],
                                 top_y + pasc + pdesc + 2 * pad_y),
                                radius=(pasc + pdesc + 2 * pad_y) // 2, fill=b["accent"])
         draw.text((margin + pad_x, top_y + pad_y), txt, font=pf, fill="#FFFFFF")
+        y = top_y + pasc + pdesc + 2 * pad_y + 56
     else:
-        nf = ImageFont.truetype(str(media.FONT_PATH), 86)
-        draw.text((margin, top_y - 8), f"{i - 1:02d}", font=nf, fill=b["accent"])
+        # --- horizontal lockup: BIG logo tile + brand name to its right ------
+        tool = slide.get("tool") if isinstance(slide.get("tool"), dict) else None
+        logo = None
+        if tool and tool.get("domain"):
+            logo = _fetch_logo(str(tool["domain"]).strip().lower(), root)
+        icon_name = _ICON_ORDER[(i - 1) % len(_ICON_ORDER)]
+        _logo_tile(img, (margin, top_y, margin + lock_h, top_y + lock_h),
+                   b, logo, _ICONS[icon_name])
+        draw = ImageDraw.Draw(img)  # re-bind after tile paste
 
-    # top-right tile: real logo when the slide names a tool, else a glyph
-    tool = slide.get("tool") if isinstance(slide.get("tool"), dict) else None
-    logo = None
-    if tool and tool.get("domain"):
-        logo = _fetch_logo(str(tool["domain"]).strip().lower(), root)
-    tile = 132
-    icon_name = _ICON_ORDER[(i - 1) % len(_ICON_ORDER)]
-    _logo_tile(img, (W - margin - tile, top_y - 6, W - margin, top_y - 6 + tile),
-               b, logo, _ICONS[icon_name])
-    draw = ImageDraw.Draw(img)  # re-bind after tile paste
+        if tool and tool.get("name"):
+            name = str(tool["name"]).strip()
+            name_x = margin + lock_h + 34
+            nsz = 54
+            nf = ImageFont.truetype(str(media.FONT_PATH), nsz)
+            while nsz > 34 and draw.textlength(name, font=nf) > (W - margin - name_x):
+                nsz -= 4
+                nf = ImageFont.truetype(str(media.FONT_PATH), nsz)
+            nasc, ndesc = nf.getmetrics()
+            draw.text((name_x, top_y + (lock_h - (nasc + ndesc)) / 2),
+                      name, font=nf, fill=b["ink"])
+        y = top_y + lock_h + 46
 
-    y = top_y + 150
-
-    # optional tool-name label above the headline
-    if tool and tool.get("name"):
-        lf = ImageFont.truetype(str(media.FONT_PATH), 28)
-        draw.text((margin, y), str(tool["name"]).upper(), font=lf, fill=b["accent"])
-        y += 44
-
+    # headline: auto-fit, <=3 lines, then the 4px brand-blue underline
     headline = str(slide.get("headline", "")).strip()
-    hf, lines, hsz = _fit_lines(draw, headline, 74, 44, safe_w, 3)
+    hf, lines, hsz = _fit_lines(draw, headline, 68, 42, safe_w, 3)
     for ln in lines:
         draw.text((margin, y), ln, font=hf, fill=b["ink"])
         y += int(hsz * 1.18)
 
-    uy = y + 18
+    uy = y + 16
     draw.rectangle((margin, uy, margin + 120, uy + 4), fill=b["accent"])
 
+    # body: substantial (40-70 words) — up to 7 lines at ~34px, shrink to 30 if
+    # it would overflow that.
     body = str(slide.get("body", "")).strip()
+    by = uy + 40
+    max_lines = 6 if is_close else 7
     if body:
-        bf = _handle_font(34)
-        sy = uy + 40
-        for ln in media._wrap(draw, body, bf, safe_w)[:4]:
-            draw.text((margin, sy), ln, font=bf, fill=b["body_ink"])
-            sy += 46
+        bsz = 34
+        bf = _handle_font(bsz)
+        blines = media._wrap(draw, body, bf, safe_w)
+        if len(blines) > max_lines:
+            bsz = 30
+            bf = _handle_font(bsz)
+            blines = media._wrap(draw, body, bf, safe_w)
+        step = int(bsz * 1.34)
+        for ln in blines[:max_lines + 1]:
+            draw.text((margin, by), ln, font=bf, fill=b["body_ink"])
+            by += step
 
-    # swipe hint bottom-right — except the close slide, which shows the handle
+    # bullets: brand-blue dot + text, one line each (item slides only)
+    if not is_close:
+        bullets = [str(x).strip() for x in (slide.get("bullets") or []) if str(x).strip()]
+        if bullets:
+            by += 14
+            gsz = 30
+            gf = _handle_font(gsz)
+            for bl in bullets[:3]:
+                cy = by + gsz // 2
+                draw.ellipse((margin, cy - 7, margin + 14, cy + 7), fill=b["accent"])
+                line = media._wrap(draw, bl, gf, safe_w - 44)[:1]
+                if line:
+                    draw.text((margin + 34, by), line[0], font=gf, fill=b["body_ink"])
+                by += int(gsz * 1.55)
+
+    # bottom-right swipe hint — except the close slide, which centres the handle
     if is_close:
         hfont = _handle_font(30)
         hw = draw.textlength(b["handle"], font=hfont)
@@ -575,7 +625,7 @@ def _safe_fallback(article: ArticleContent, out_dir: Path,
     try:
         slides = getattr(article, "slides", None) or []
         hook = slides[0] if slides and isinstance(slides[0], dict) else {}
-        im = _render_hook_slide(article, hook, size)
+        im = _render_hook_slide(article, hook, size, None, Path("."))
         return [str(media._save_jpeg(im, Path(out_dir) / "01.jpg", size))]
     except Exception as e:  # noqa: BLE001 - hook is the last thing we can salvage
         log.warning("hook-slide fallback failed (%s); using legacy media", e)
@@ -585,11 +635,12 @@ def _safe_fallback(article: ArticleContent, out_dir: Path,
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],
                  brand: dict | None = None, root: Path | None = None,
                  **ignored) -> list[str]:
-    """Render the storyboard carousel: ``01.jpg`` .. ``NN.jpg``, one image per
-    ``article.slides`` entry (5-7 of them), all in one visual system. Slide 1 is
-    the dark hook slide; the rest are the light numbered "item" slides (the last
-    one being the "close"), each showing a named tool's real logo when the slide
-    carries a ``tool``.
+    """Render the storyboard carousel: ``01.jpg`` .. ``0N.jpg``, one image per
+    ``article.slides`` entry (4-9 of them — the count is not fixed), all in one
+    visual system. Slide 1 is the dark hook slide (with a row of the logos the
+    carousel covers); the rest are the light "item" slides (the last one being
+    the "close"), each opening with a big logo-lockup when the slide carries a
+    ``tool``.
 
     ``root`` is the repo root — logos cache under ``<root>/assets/logos/``. On
     ANY exception the whole render degrades to a minimal safe fallback (hook
@@ -610,7 +661,7 @@ def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],
         for idx, slide in enumerate(slides):
             role = str(slide.get("role", "")).strip().lower()
             if idx == 0 or role == "hook":
-                im = _render_hook_slide(article, slide, size, b)
+                im = _render_hook_slide(article, slide, size, b, root)
             else:
                 im = _render_item_slide(idx + 1, total, slide, size, b, root)
             paths.append(str(media._save_jpeg(im, out_dir / f"{idx + 1:02d}.jpg", size)))

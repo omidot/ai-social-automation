@@ -120,41 +120,49 @@ _SHARE_KEYS = ("caption_fb", "caption_ig", "hashtags", "cover_title", "slides")
 
 # The [SỬA] nudge appended when the model returns a wrong-shaped storyboard.
 _SHAPE_NUDGE = (
-    "Trả lại ĐÚNG JSON với 'slides' là mảng 5-7 object: object đầu role 'hook', "
-    "object cuối role 'close', mọi object ở giữa role 'item'. Giữ nguyên nội dung, "
-    "chỉ sửa cấu trúc."
+    "Trả lại ĐÚNG JSON với 'slides' là mảng 4-9 object: object đầu role 'hook', "
+    "object cuối role 'close', mọi object ở giữa role 'item'. Mỗi 'item' cần "
+    "\"body\" 40-70 từ giải thích cụ thể (có ví dụ/con số/bước làm), KHÔNG một dòng "
+    "cụt. Giữ nguyên nội dung, chỉ sửa cấu trúc."
 )
 
 # The `slides` contract, shared by build_share_prompt + build_topic_prompt so the
 # storyboard rules stay in one place.
 _STORYBOARD_SPEC = (
-    "slides (mảng 5-7 object storyboard — KHÔNG cố định 5): object ĐẦU role "
-    "'hook', object CUỐI role 'close', MỌI object ở giữa role 'item'. Mỗi object: "
-    "{\"role\": <role>, \"headline\": <=8 từ, \"body\": <=24 từ, "
-    "\"tool\": {\"name\": <tên công cụ>, \"domain\": <domain gốc chính thức>} hoặc null}. "
-    "slides[0].headline PHẢI là CÂU HOOK GÂY TÒ MÒ — ngắn, mạnh, khiến người ta "
-    "dừng lại; KHÔNG phải tiêu đề mô tả. Ví dụ tốt: \"5 công cụ AI ít ai biết\", "
-    "\"Bạn đang dùng AI sai cách\", \"Thứ này thay cả ê-kíp dựng phim\". "
-    "slides[0].body là MỘT câu phụ ngắn nói rõ người đọc sắp nhận được gì. "
-    "Các slide 'item' phải bám ĐÚNG mạch của hook: hook nói \"Top 5 công cụ\" thì "
-    "có ĐÚNG 5 slide item, mỗi slide MỘT công cụ; hook nói \"quy trình N bước\" "
-    "thì mỗi item là một bước theo thứ tự. "
-    "Khi một item nói về một công cụ CÓ THẬT, BẮT BUỘC điền \"tool\" với tên đúng "
-    "và domain gốc chính thức (vd openai.com, canva.com, elevenlabs.io, "
-    "capcut.com, notion.so). Chỉ dùng công cụ bạn CHẮC CHẮN có thật và domain "
-    "đúng — KHÔNG bịa domain; không chắc thì để \"tool\": null. "
+    "slides (mảng 4-9 object storyboard — SỐ LƯỢNG KHÔNG CỐ ĐỊNH, tự quyết theo "
+    "nội dung): object ĐẦU role 'hook', object CUỐI role 'close', MỌI object ở "
+    "giữa role 'item'. "
+    "HOOK = {\"role\":\"hook\", \"headline\": CÂU HOOK GÂY TÒ MÒ <=9 từ (ngắn, "
+    "mạnh, khiến người ta dừng lại — KHÔNG phải tiêu đề mô tả), \"body\": MỘT câu "
+    "phụ <=28 từ nói rõ người đọc sắp nhận được gì, "
+    "\"tools\": [ {\"name\": <tên sản phẩm>, \"domain\": <domain chính thức>}, ... ] "
+    "— 0 đến 6 sản phẩm mà carousel sẽ nói tới, để slide hook hiện logo; để [] nếu "
+    "bài KHÔNG xoay quanh sản phẩm cụ thể}. "
+    "ITEM = {\"role\":\"item\", \"headline\": <=9 từ, "
+    "\"body\": 40-70 TỪ, CỤ THỂ — có ví dụ / con số / bước làm thật, TUYỆT ĐỐI "
+    "KHÔNG một dòng cụt, "
+    "\"tool\": {\"name\", \"domain\"} khi item nói về MỘT sản phẩm có thật, hoặc "
+    "null, "
+    "\"bullets\": [ tối đa 3 dòng, mỗi dòng <=10 từ ] hoặc []}. "
+    "CLOSE = {\"role\":\"close\", \"headline\": <=9 từ, \"body\": <=40 từ}. "
+    "Các slide 'item' phải bám ĐÚNG mạch của hook. "
+    "Khi nhắc tới một sản phẩm/công cụ CÓ THẬT, BẮT BUỘC điền \"domain\" gốc chính "
+    "thức (vd openai.com, deepmind.google, anthropic.com, canva.com, "
+    "elevenlabs.io, runwayml.com, capcut.com, notion.so) và gom tất cả sản phẩm "
+    "được nhắc vào hook.tools (tối đa 6). Chỉ dùng công cụ bạn CHẮC CHẮN có thật "
+    "và domain đúng — KHÔNG bịa domain; không chắc thì để \"tool\": null. "
     "cover_title = CHÍNH câu hook (<=9 từ)"
 )
 
 
 def _validate_slide_roles(slides) -> None:
-    """Enforce the storyboard shape: a list of 5 to 7 slide dicts whose first
+    """Enforce the storyboard shape: a list of 4 to 9 slide dicts whose first
     slide is role 'hook', last is role 'close', and every middle slide is role
     'item'. Raises ``WriteError`` with a precise Vietnamese message on any
     violation."""
-    if not isinstance(slides, list) or not (5 <= len(slides) <= 7):
+    if not isinstance(slides, list) or not (4 <= len(slides) <= 9):
         n = len(slides) if isinstance(slides, list) else type(slides).__name__
-        raise WriteError(f"cần 5-7 slide, có {n}")
+        raise WriteError(f"cần 4-9 slide, có {n}")
     roles = [
         str(s.get("role", "")).strip().lower() if isinstance(s, dict) else ""
         for s in slides
@@ -168,19 +176,69 @@ def _validate_slide_roles(slides) -> None:
             raise WriteError(f"slide {i} phải role 'item'")
 
 
-def _normalise_tool(raw) -> dict | None:
-    """Return ``{"name", "domain"}`` when ``raw`` names a real product with a
-    plausible root domain, else ``None``. A bare / malformed ``tool`` is dropped
-    rather than raising — the slide just renders its fallback icon."""
+def _clean_domain(raw: str) -> str:
+    d = str(raw).strip().lower()
+    d = re.sub(r"^https?://", "", d)
+    d = re.sub(r"^www\.", "", d).strip("/").split("/")[0]
+    return d
+
+
+def _normalise_tool(raw, idx: int | str | None = None) -> dict | None:
+    """Return ``{"name", "domain"}`` for a genuine product, ``None`` when there
+    is no tool. A ``tool`` that is *present* but malformed (not an object, or
+    missing / bogus ``name`` or ``domain``) raises ``WriteError`` — the model is
+    told the shape, so a broken one is a real error, not a slide-render detail.
+
+    An explicitly empty object (``{}`` / all-blank values) counts as "no tool".
+    """
+    if raw is None:
+        return None
     if not isinstance(raw, dict):
-        return None
+        raise WriteError(f"slide {idx} 'tool' phải là object {{name, domain}} hoặc null")
     name = str(raw.get("name", "")).strip()
-    domain = str(raw.get("domain", "")).strip().lower()
-    domain = re.sub(r"^https?://", "", domain)
-    domain = re.sub(r"^www\.", "", domain).strip("/").split("/")[0]
-    if not name or not domain or "." not in domain or " " in domain:
+    domain = _clean_domain(raw.get("domain", ""))
+    if not name and not domain:
         return None
+    if not name or not domain:
+        raise WriteError(f"slide {idx} 'tool' phải có cả 'name' và 'domain'")
+    if "." not in domain or " " in domain:
+        raise WriteError(f"slide {idx} 'tool' domain không hợp lệ: {domain!r}")
     return {"name": name, "domain": domain}
+
+
+def _normalise_tools(raw, idx: int | str | None = None) -> list[dict]:
+    """The hook's ``tools`` list: 0-6 ``{"name", "domain"}`` products. Missing /
+    empty -> ``[]``. A non-list, more than 6 entries, or a malformed entry raise
+    ``WriteError`` (each entry goes through ``_normalise_tool``)."""
+    if raw in (None, ""):
+        return []
+    if not isinstance(raw, list):
+        raise WriteError(f"slide {idx} 'tools' phải là mảng")
+    if len(raw) > 6:
+        raise WriteError(f"slide {idx} 'tools' tối đa 6, có {len(raw)}")
+    out: list[dict] = []
+    for t in raw:
+        nt = _normalise_tool(t, idx)
+        if nt:
+            out.append(nt)
+    return out
+
+
+def _normalise_bullets(raw) -> list[str]:
+    """0-3 short bullet strings, URLs stripped, blanks dropped, capped at 3.
+    Over-long bullets are kept (the layout wraps) — only shape errors raise."""
+    if raw in (None, ""):
+        return []
+    if not isinstance(raw, list):
+        raise WriteError("'bullets' phải là mảng chuỗi")
+    out: list[str] = []
+    for b in raw:
+        t = _strip_urls(str(b).strip())
+        if t:
+            out.append(t)
+        if len(out) == 3:
+            break
+    return out
 
 # Iman-Gadzhi-style voice, described in Vietnamese.
 _IMAN_VOICE = (
@@ -199,10 +257,11 @@ _IMAN_VOICE = (
 
 
 def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
-    """System + user prompt for the single-topic knowledge-share writer.
+    """System + user prompt for the launch-analysis writer.
 
-    The piece is ONE person sharing ONE thing AI can now do — not a reporter,
-    not a numbered news round-up.
+    The piece is ONE person analysing ONE thing a big tech company / AI lab just
+    shipped — in the channel's sharing voice, NOT a reporter, NOT a numbered news
+    round-up.
     """
     system = (
         f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
@@ -210,21 +269,22 @@ def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. {_ARTICLE_GUARDRAILS} "
         f"{_IMAN_VOICE} "
-        "NHIỆM VỤ: viết về ĐÚNG MỘT thứ mà AI giờ làm được, như một người đang "
-        "chia sẻ điều mình thật sự hiểu — KHÔNG phải phóng viên, KHÔNG phải một "
-        "bản tin, KHÔNG viết \"tuần này có các tin...\", KHÔNG đánh số danh sách tin. "
-        "Sắp mạch suy nghĩ theo 5 bước: "
-        "1) HOOK — một câu tuyên bố mạnh kiểu \"AI giờ làm được X\" hoặc một sự "
-        "thật khiến người đọc dừng lại. "
-        "2) CỤ THỂ LÀ GÌ — AI làm được điều đó như thế nào, ví dụ thật, dễ hình dung. "
-        "3) NGƯỜI ĐỌC ĐƯỢC GÌ — nó giúp BẠN việc gì: tiết kiệm thời gian/tiền, "
-        "làm được thứ trước đây không làm được, thay đổi cách làm việc. "
-        "4) CÁCH BẮT ĐẦU — bạn tự dùng thế nào, công cụ nào, bước đầu tiên. "
-        "5) CHỐT — một câu đọng lại + một câu hỏi mời bình luận. "
-        "caption_fb: 180-320 từ, VIẾT THÀNH ĐOẠN VĂN MẠCH LẠC (xuống dòng giữa các "
-        "ý), TUYỆT ĐỐI KHÔNG đánh số \"1. 2. 3.\", không phải danh sách tin. Giọng "
-        "dứt khoát, chia sẻ, \"mình\"/\"bạn\", có chính kiến, không PR sáo rỗng, "
-        "không hàn lâm. KHÔNG chèn URL. Kết bằng một câu hỏi. "
+        "NHIỆM VỤ: bài nguồn nói về MỘT thứ mà một hãng công nghệ lớn / phòng lab "
+        "AI (Google, Meta, OpenAI, xAI, Anthropic, NVIDIA, ByteDance, Zhipu...) "
+        "VỪA RA MẮT. Viết một bài PHÂN TÍCH thứ vừa ra đó, bằng giọng CHIA SẺ của "
+        "kênh — KHÔNG phải phóng viên, KHÔNG phải một bản tin, KHÔNG đánh số danh "
+        "sách tin. "
+        "Mở bằng câu hook gây tò mò về thứ vừa ra mắt — KHÔNG mở bằng "
+        "\"Công ty X vừa công bố...\". "
+        "Các slide item lần lượt bám mạch: (a) CÁI GÌ VỪA RA → (b) NÓ THỰC SỰ LÀM "
+        "ĐƯỢC GÌ, cụ thể, có ví dụ / con số lấy từ bài nguồn → (c) KHÁC GÌ CÁI "
+        "ĐANG CÓ → (d) BẠN DÙNG ĐƯỢC VÀO VIỆC GÌ → (e) CÁCH THỬ NGAY. "
+        "Mỗi item body 40-70 từ, cụ thể, dùng chi tiết THẬT trong bài nguồn — "
+        "KHÔNG bịa số liệu. "
+        "caption_fb: 200-350 từ, VIẾT THÀNH ĐOẠN VĂN MẠCH LẠC (xuống dòng giữa các "
+        "ý), TUYỆT ĐỐI KHÔNG đánh số \"1. 2. 3.\", không phải danh sách tin, KHÔNG "
+        "chèn URL. Giọng dứt khoát, chia sẻ, \"mình\"/\"bạn\", có chính kiến, không "
+        "PR sáo rỗng, không hàn lâm. Kết bằng một câu hỏi. "
         "caption_ig: <=50 từ, cùng tinh thần. "
         "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
         "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
@@ -244,12 +304,22 @@ def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
     return system, user
 
 
+_ITEM_BODY_MIN_WORDS = 25   # "40-70 từ" target; anything under this is a stub
+
+
 def _validate_share(data: dict) -> list[dict]:
     """Validate one raw ``share`` payload and return the normalised slide list.
 
-    Raises ``WriteError`` with a precise message on any shape problem (missing
-    keys, hashtags not a list, slide count outside 5-7, wrong hook/item/close
-    role at index i).
+    Raises ``WriteError`` with a precise message on any shape problem: missing
+    keys, hashtags not a list, slide count outside 4-9, wrong hook/item/close
+    role at index i, an item ``body`` far too short to be an explanation, or a
+    malformed ``tool`` / ``tools`` entry.
+
+    Normalised per-role shape:
+      hook  -> {"role", "headline", "body", "tools": [ {name, domain}, ... ]}
+      item  -> {"role", "headline", "body", "tool": {name,domain}|None,
+                "bullets": [str]}
+      close -> {"role", "headline", "body"}
     """
     missing = [k for k in _SHARE_KEYS if k not in data or data[k] in (None, "", [])]
     if missing:
@@ -263,12 +333,32 @@ def _validate_share(data: dict) -> list[dict]:
     for i, s in enumerate(raw_slides):
         if not isinstance(s, dict):
             raise WriteError(f"slide {i} is not an object")
-        slides.append({
-            "role": str(s.get("role", "")).strip().lower(),
-            "headline": _strip_urls(str(s.get("headline", "")).strip()),
-            "body": _strip_urls(str(s.get("body", "")).strip()),
-            "tool": _normalise_tool(s.get("tool")),
-        })
+        role = str(s.get("role", "")).strip().lower()
+        headline = _strip_urls(str(s.get("headline", "")).strip())
+        body = _strip_urls(str(s.get("body", "")).strip())
+        if not headline:
+            raise WriteError(f"slide {i} thiếu headline")
+
+        if role == "hook":
+            slides.append({
+                "role": "hook", "headline": headline, "body": body,
+                "tools": _normalise_tools(s.get("tools"), i),
+            })
+        elif role == "close":
+            if len(body.split()) > 45:
+                raise WriteError(
+                    f"slide {i} (close) body quá dài ({len(body.split())} từ) — cần <=40 từ")
+            slides.append({"role": "close", "headline": headline, "body": body})
+        else:  # item
+            n = len(body.split())
+            if n < _ITEM_BODY_MIN_WORDS:
+                raise WriteError(
+                    f"slide {i} body quá ngắn ({n} từ) — cần 40-70 từ, giải thích cụ thể")
+            slides.append({
+                "role": "item", "headline": headline, "body": body,
+                "tool": _normalise_tool(s.get("tool"), i),
+                "bullets": _normalise_bullets(s.get("bullets")),
+            })
     return slides
 
 
@@ -345,7 +435,11 @@ def build_topic_prompt(topic: str, angle: str, voice: dict) -> tuple[str, str]:
         "chung thay vì bịa. "
         "Cấu trúc suy nghĩ: hook → cụ thể là gì → người đọc được gì → cách bắt đầu "
         "→ chốt. "
-        "caption_fb: 180-320 từ, xuống dòng giữa các ý, KHÔNG chèn URL. "
+        "Mỗi slide 'item' phải có body 40-70 từ, cụ thể (ví dụ / con số / bước "
+        "làm), KHÔNG một dòng cụt. Khi item nói về một sản phẩm có thật, điền "
+        "\"tool\": {\"name\", \"domain\"} với domain chính thức, và gom mọi sản "
+        "phẩm được nhắc vào hook.tools (tối đa 6). "
+        "caption_fb: 200-350 từ, xuống dòng giữa các ý, KHÔNG chèn URL. "
         "caption_ig: <=50 từ, cùng tinh thần, KHÔNG chèn URL. "
         "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
         "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "

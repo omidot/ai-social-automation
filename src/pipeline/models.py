@@ -71,14 +71,20 @@ class ArticleContent:
     caption_ig: str
     hashtags: list[str]
     cover_title: str
-    # A storyboard of 5 to 7 dicts, one rendered slide each. Shape:
-    #   {"role": str, "headline": str, "body": str,
-    #    "tool": {"name": str, "domain": str} | None}
-    # slides[0]["role"] == "hook" (the curiosity hook), slides[-1]["role"] ==
-    # "close", every middle slide "role" == "item". "tool" is set ONLY when the
-    # slide is genuinely about one named product; "domain" is that product's
-    # official root domain (e.g. "openai.com", "canva.com") used to fetch its
-    # real logo. Omitted / None otherwise.
+    # A storyboard of 4 to 9 dicts, one rendered slide each (slide count is NOT
+    # fixed — it follows the content). slides[0]["role"] == "hook", the curiosity
+    # hook; slides[-1]["role"] == "close"; every middle slide "role" == "item".
+    # Per-role shape (v4):
+    #   hook  -> {"role": "hook", "headline": str (<=9 từ), "body": str (<=28 từ),
+    #             "tools": [{"name": str, "domain": str}, ...]}   # 0-6 products
+    #             the carousel will cover, so the hook can show their logos.
+    #   item  -> {"role": "item", "headline": str (<=9 từ),
+    #             "body": str (40-70 từ, cụ thể — ví dụ / con số / bước làm),
+    #             "tool": {"name": str, "domain": str} | None,
+    #             "bullets": [str] (0-3, mỗi dòng <=10 từ)}
+    #   close -> {"role": "close", "headline": str, "body": str (<=40 từ)}
+    # "tool"/"tools" carry a product's official root domain (e.g. "openai.com")
+    # used to fetch its real logo; set ONLY for genuinely named products.
     slides: list[dict]
     sources: list[dict]
     risk: bool = False

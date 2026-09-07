@@ -1,26 +1,30 @@
 rss:
-  - name: "OpenAI Blog"
-    url: "https://openai.com/blog/rss.xml"
-  - name: "Google DeepMind"
-    url: "https://deepmind.google/blog/rss.xml"
-  - name: "Anthropic News"
-    url: "https://www.anthropic.com/rss.xml"
-  - name: "TechCrunch AI"
-    url: "https://techcrunch.com/category/artificial-intelligence/feed/"
-  - name: "The Verge AI"
-    url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
-  - name: "VentureBeat AI"
-    url: "https://venturebeat.com/category/ai/feed/"
-  - name: "MIT Technology Review"
-    url: "https://www.technologyreview.com/feed/"
-  - name: "Ars Technica"
-    url: "https://feeds.arstechnica.com/arstechnica/technology-lab"
+  - { name: "OpenAI Blog",        url: "https://openai.com/blog/rss.xml" }
+  - { name: "Google DeepMind",    url: "https://deepmind.google/blog/rss.xml" }
+  - { name: "Google Research",    url: "https://research.google/blog/rss/" }
+  - { name: "Anthropic News",     url: "https://www.anthropic.com/rss.xml" }
+  - { name: "Meta AI",            url: "https://ai.meta.com/blog/rss/" }
+  - { name: "NVIDIA Blog",        url: "https://blogs.nvidia.com/feed/" }
+  - { name: "Hugging Face",       url: "https://huggingface.co/blog/feed.xml" }
+  - { name: "Mistral AI",         url: "https://mistral.ai/news/feed.xml" }
+  - { name: "Stability AI",       url: "https://stability.ai/news?format=rss" }
+  - { name: "TechCrunch AI",      url: "https://techcrunch.com/category/artificial-intelligence/feed/" }
+  - { name: "The Verge AI",       url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml" }
+  - { name: "VentureBeat AI",     url: "https://venturebeat.com/category/ai/feed/" }
+  - { name: "Ars Technica",       url: "https://feeds.arstechnica.com/arstechnica/technology-lab" }
+  - { name: "MIT Tech Review",    url: "https://www.technologyreview.com/feed/" }
+  - { name: "Engadget",           url: "https://www.engadget.com/rss.xml" }
 subreddits: ["artificial", "LocalLLaMA", "OpenAI", "singularity"]
 reddit_min_ups: 100
 hn_min_points: 50
 facebook_pages: []          # list of {name, id}; empty = rely on facebook_urls.txt
 keywords: ["AI","LLM","GPT","mô hình","model","OpenAI","Anthropic","Gemini",
-          "Claude","agent","trí tuệ nhân tạo","chatbot","nvidia","training"]
+          "Claude","agent","trí tuệ nhân tạo","chatbot","nvidia","training",
+          "Grok","xAI","GLM","Zhipu","Seedance","Llama","Sora","Veo",
+          "Copilot","Midjourney","Runway","ra mắt"]
+# google_news is kept for reference only — it is OFF the draft path. Its links
+# are news.google.com redirect interstitials with no fetchable article body, so
+# collect.collect() can surface them but write.write_share() has nothing to read.
 google_news:
   queries: ["artificial intelligence", "AI model", "trí tuệ nhân tạo", "AI Việt Nam"]
   langs: ["en", "vi"]
