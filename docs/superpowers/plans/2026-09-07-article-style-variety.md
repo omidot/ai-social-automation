@@ -41,7 +41,7 @@
   - `LOGO_TREATMENTS = ("tile", "chip", "mono")`
   - `PALETTES: dict[str, dict]` — each has `bg, ink, accent, muted, on_accent` hex strings.
   - `load_styles(root) -> list[Style]` — reads `<root>/config/styles.yaml`, raises `StyleError` if not exactly 24 valid entries or any field out of range or any duplicate `name`.
-  - `pick_style(root, now=None) -> Style` — cyclic pick skipping names in `data/style_cursor.json["recent"]` (newest first, capped 15); updates and writes the cursor. `now` is accepted and ignored (future hook).
+  - `pick_style(root, now=None) -> Style` — **positional cyclic** pick: reads `data/style_cursor.json["last"]`, returns the style at `(index_of_last + 1) % 24` in `load_styles` order, writes the cursor back. This gives a clean 24-long cycle (25th pick == 1st) and therefore no repeat within 23 picks (⊇ the "no repeat within 15" spec requirement). `recent` (last ≤15 names) is still written as a debug breadcrumb but is NOT load-bearing. A `last` that isn't in the current list (YAML reordered/renamed) resets to index 0. `now` is accepted and ignored (future hook).
   - `palette_for(style: Style, brand: dict | None) -> dict` — `PALETTES[style.palette]` merged over by any matching keys in `brand` (so `settings.yaml` can still nudge a color).
   - `font_paths(key: str) -> dict` — `{"regular": Path, "bold": Path, "black": Path, "italic": Path}`, each guaranteed to point at an existing `.ttf` (family file if present under `assets/fonts/`, else `media.FONT_PATH`).
   - `class StyleError(Exception)`.
@@ -155,10 +155,10 @@ Expected: FAIL — `ModuleNotFoundError: No module named 'pipeline.styles'`.
 - [ ] **Step 3: Create `config/styles.yaml`**
 
 ```yaml
-# 24 carousel styles = 6 layouts x 4 palettes. pick_style() rotates through them
-# in order, skipping any used in the last 15 posts. Each row also picks a font,
-# a background texture, an accent shape and a logo treatment so rows that share
-# a layout+palette still read differently.
+# 24 carousel styles = 6 layouts x 4 palettes. pick_style() advances one step
+# through this list per post (a full 24-long cycle), so no style repeats within
+# 23 posts. Each row also picks a font, a background texture, an accent shape
+# and a logo treatment so rows that share a layout+palette still read differently.
 styles:
   - {name: white-centered,    layout: centered,    palette: ink-on-white,   font: grotesk,   texture: dots,          accent_shape: underline, logo: tile}
   - {name: navy-centered,     layout: centered,    palette: white-on-navy,  font: grotesk,   texture: gradient-band, accent_shape: bar,       logo: tile}
@@ -280,19 +280,28 @@ def _cursor_path(root) -> Path:
 
 
 def pick_style(root, now=None) -> Style:
+    """Positional cyclic pick: advance one step through the 24-style list each
+    call. Full 24-cycle (25th == 1st) => no repeat within 23 picks, which
+    covers the "no repeat within 15" requirement. `recent` is a debug
+    breadcrumb only."""
     all_styles = load_styles(root)
+    names = [s.name for s in all_styles]
     cp = _cursor_path(root)
+    last = None
     recent: list[str] = []
     if cp.exists():
         try:
-            recent = list(json.loads(cp.read_text("utf-8")).get("recent", []))
+            doc = json.loads(cp.read_text("utf-8"))
+            last = doc.get("last")
+            recent = list(doc.get("recent", []))
         except Exception as e:  # noqa: BLE001 - a bad cursor just resets rotation
             log.warning("style cursor unreadable (%s); resetting", e)
-    chosen = next((s for s in all_styles if s.name not in recent[:15]), all_styles[0])
-    recent = [chosen.name] + [n for n in recent if n != chosen.name]
+    idx = names.index(last) if last in names else -1
+    chosen = all_styles[(idx + 1) % len(all_styles)]
+    recent = ([chosen.name] + [n for n in recent if n != chosen.name])[:15]
     cp.parent.mkdir(parents=True, exist_ok=True)
-    cp.write_text(json.dumps({"recent": recent[:15]}, ensure_ascii=False, indent=2),
-                  encoding="utf-8")
+    cp.write_text(json.dumps({"last": chosen.name, "recent": recent},
+                             ensure_ascii=False, indent=2), encoding="utf-8")
     return chosen
 
 
