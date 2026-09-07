@@ -65,8 +65,11 @@ def test_workflow_secret_blocks():
 
     # Morning and evening need: CLAUDE_CODE_OAUTH_TOKEN, GEMINI_API_KEY,
     # TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID. Claude CLI is the primary writer
-    # (installed via npm in the deps step); Gemini is the fallback.
-    for secret in ("CLAUDE_CODE_OAUTH_TOKEN", "GEMINI_API_KEY", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
+    # (installed via npm in the deps step); Gemini is the fallback. They also
+    # need the META_* / IG_BUSINESS_ID secrets now that draft() schedules the
+    # post itself via publish.schedule_slot -> Meta.from_env().
+    for secret in ("CLAUDE_CODE_OAUTH_TOKEN", "GEMINI_API_KEY", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID",
+                   "META_PAGE_ID", "META_PAGE_TOKEN", "IG_BUSINESS_ID"):
         assert secret in morning_text, f"article-morning.yml missing {secret}"
         assert secret in evening_text, f"article-evening.yml missing {secret}"
 
