@@ -1,0 +1,29 @@
+# 24 carousel styles = 6 layouts x 4 palettes. pick_style() advances one step
+# through this list per post (a full 24-long cycle), so no style repeats within
+# 23 posts. Each row also picks a font, a background texture, an accent shape
+# and a logo treatment so rows that share a layout+palette still read differently.
+styles:
+  - {name: white-centered,    layout: centered,    palette: ink-on-white,   font: grotesk,   texture: dots,          accent_shape: underline, logo: tile}
+  - {name: navy-centered,     layout: centered,    palette: white-on-navy,  font: grotesk,   texture: gradient-band, accent_shape: bar,       logo: tile}
+  - {name: warm-centered,     layout: centered,    palette: warm-editorial, font: editorial, texture: plain,         accent_shape: bracket,   logo: mono}
+  - {name: mono-centered,     layout: centered,    palette: mono-contrast,  font: mono,      texture: grid,          accent_shape: none,      logo: mono}
+  - {name: white-rail,        layout: left-rail,   palette: ink-on-white,   font: grotesk,   texture: plain,         accent_shape: bar,       logo: tile}
+  - {name: navy-rail,         layout: left-rail,   palette: white-on-navy,  font: grotesk,   texture: dots,          accent_shape: none,      logo: chip}
+  - {name: warm-rail,         layout: left-rail,   palette: warm-editorial, font: rounded,   texture: diagonal,      accent_shape: bar,       logo: mono}
+  - {name: mono-rail,         layout: left-rail,   palette: mono-contrast,  font: mono,      texture: plain,         accent_shape: bar,       logo: mono}
+  - {name: white-bar,         layout: bottom-bar,  palette: ink-on-white,   font: grotesk,   texture: grid,          accent_shape: none,      logo: tile}
+  - {name: navy-bar,          layout: bottom-bar,  palette: white-on-navy,  font: rounded,   texture: plain,         accent_shape: none,      logo: chip}
+  - {name: warm-bar,          layout: bottom-bar,  palette: warm-editorial, font: editorial, texture: plain,         accent_shape: none,      logo: mono}
+  - {name: mono-bar,          layout: bottom-bar,  palette: mono-contrast,  font: mono,      texture: diagonal,      accent_shape: none,      logo: mono}
+  - {name: white-split,       layout: split,       palette: ink-on-white,   font: grotesk,   texture: plain,         accent_shape: underline, logo: tile}
+  - {name: navy-split,        layout: split,       palette: white-on-navy,  font: grotesk,   texture: dots,          accent_shape: bar,       logo: tile}
+  - {name: warm-split,        layout: split,       palette: warm-editorial, font: rounded,   texture: plain,         accent_shape: bracket,   logo: mono}
+  - {name: mono-split,        layout: split,       palette: mono-contrast,  font: mono,      texture: grid,          accent_shape: none,      logo: mono}
+  - {name: white-magazine,    layout: magazine,    palette: ink-on-white,   font: editorial, texture: plain,         accent_shape: bracket,   logo: mono}
+  - {name: navy-magazine,     layout: magazine,    palette: white-on-navy,  font: editorial, texture: plain,         accent_shape: underline, logo: mono}
+  - {name: warm-magazine,     layout: magazine,    palette: warm-editorial, font: editorial, texture: plain,         accent_shape: bracket,   logo: mono}
+  - {name: mono-magazine,     layout: magazine,    palette: mono-contrast,  font: editorial, texture: plain,         accent_shape: underline, logo: mono}
+  - {name: white-ticket,      layout: ticket,      palette: ink-on-white,   font: rounded,   texture: dots,          accent_shape: none,      logo: tile}
+  - {name: navy-ticket,       layout: ticket,      palette: white-on-navy,  font: rounded,   texture: plain,         accent_shape: none,      logo: chip}
+  - {name: warm-ticket,       layout: ticket,      palette: warm-editorial, font: rounded,   texture: diagonal,      accent_shape: none,      logo: mono}
+  - {name: mono-ticket,       layout: ticket,      palette: mono-contrast,  font: mono,      texture: grid,          accent_shape: none,      logo: mono}
