@@ -113,6 +113,18 @@ class Meta:
         pub = self.ig_publish(caro)
         return {"ok": True, "media_id": str(pub["id"])}
 
+    def fb_delete_post(self, post_id: str) -> dict:
+        r = self._client.delete(f"{BASE}/{post_id}",
+                                params={"access_token": self.token})
+        _raise_for_graph(r)
+        return r.json()
+
+    def ig_delete_media(self, media_id: str) -> dict:
+        r = self._client.delete(f"{BASE}/{media_id}",
+                                params={"access_token": self.token})
+        _raise_for_graph(r)
+        return r.json()
+
     # ---------- tokens ----------
     def exchange_long_lived_token(self, app_id: str, app_secret: str, short_token: str) -> dict:
         return self._get("oauth/access_token",

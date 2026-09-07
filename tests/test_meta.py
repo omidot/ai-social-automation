@@ -138,3 +138,67 @@ def test_ig_publish_images_carousel(monkeypatch):
                         lambda url, data=None, files=None: {"id": next(seq)})
     r = m.ig_publish_images(["u1", "u2"], "cap")
     assert r["media_id"] == "published"
+
+
+def test_fb_delete_post_calls_delete(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+    seen = {}
+
+    class _DR:
+        status_code = 200
+        is_success = True
+        def json(self): return {"success": True}
+        @property
+        def text(self): return "{}"
+
+    def fake_delete(url, params=None):
+        seen["url"] = url
+        seen["params"] = params
+        return _DR()
+
+    monkeypatch.setattr(m._client, "delete", fake_delete, raising=False)
+    assert m.fb_delete_post("P_1") == {"success": True}
+    assert seen["url"].endswith("/P_1")
+    assert seen["params"]["access_token"] == "TOK"
+
+
+def test_ig_delete_media_calls_delete(monkeypatch):
+    from pipeline.meta import Meta
+    m = Meta("PID", "TOK", "IGID")
+
+    class _DR:
+        status_code = 200
+        is_success = True
+        def json(self): return {"success": True}
+        @property
+        def text(self): return "{}"
+
+    calls = []
+    monkeypatch.setattr(m._client, "delete",
+                        lambda url, params=None: (calls.append(url), _DR())[1],
+                        raising=False)
+    assert m.ig_delete_media("IG_9") == {"success": True}
+    assert calls[0].endswith("/IG_9")
+
+
+def test_fb_delete_post_raises_on_graph_error(monkeypatch):
+    from pipeline.meta import Meta, MetaError
+    m = Meta("PID", "TOK")
+
+    class _ER:
+        status_code = 400
+        is_success = False
+        def json(self): return {"error": {"code": 100, "message": "no such post"}}
+        @property
+        def text(self): return '{"error":{"code":100}}'
+        class request:  # noqa: N801 - stub for _raise_for_graph's f-string
+            method = "DELETE"
+            class url:  # noqa: N801
+                path = "/v21.0/P_1"
+
+    monkeypatch.setattr(m._client, "delete",
+                        lambda url, params=None: _ER(), raising=False)
+    import pytest
+    with pytest.raises(MetaError):
+        m.fb_delete_post("P_1")
