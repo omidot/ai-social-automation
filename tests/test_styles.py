@@ -55,6 +55,16 @@ def test_load_styles_rejects_bad_field(tmp_path):
         styles.load_styles(tmp_path)
 
 
+def test_load_styles_rejects_duplicate_name(tmp_path):
+    (tmp_path / "config").mkdir()
+    rows = "\n".join(
+        "  - {name: dup, layout: centered, palette: ink-on-white, font: grotesk, "
+        "texture: dots, accent_shape: none, logo: tile}" for _ in range(24))
+    (tmp_path / "config" / "styles.yaml").write_text("styles:\n" + rows + "\n", encoding="utf-8")
+    with pytest.raises(StyleError):
+        styles.load_styles(tmp_path)
+
+
 def test_pick_style_cycles_without_repeat_in_15(tmp_path):
     (tmp_path / "config").mkdir()
     _write_real_config(tmp_path)                     # helper: copy repo styles.yaml
