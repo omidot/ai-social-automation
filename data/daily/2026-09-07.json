@@ -2,7 +2,7 @@
   "date": "2026-09-07",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "posted",
       "format": "share",
       "title": "5 công cụ AI tự động trả lời tin nhắn khách hàng 24/7",
       "topic_key": "5-cong-cu-ai-tu-ong-tra-loi-tin-nhan-khach-hang-24",
@@ -44,7 +44,18 @@
       "risk": false,
       "slot_ict": "11:30",
       "sources": [],
-      "angle": "Giúp người bán hàng online dựng chatbot AI trả lời và chốt đơn ngay cả khi không trực page, không bỏ lỡ khách nhắn tin ban đêm."
+      "angle": "Giúp người bán hàng online dựng chatbot AI trả lời và chốt đơn ngay cả khi không trực page, không bỏ lỡ khách nhắn tin ban đêm.",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122095503633476035",
+          "url": "https://facebook.com/1381130541740424_122095503633476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media_publish -> 400: (9007/2207027) Media ID is not available | type=OAuthException fbtrace_id=AGfgOv4QjavS5-nUshwPEyW"
+        }
+      }
     }
   }
 }
