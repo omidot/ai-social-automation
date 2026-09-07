@@ -54,7 +54,8 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
   rồi tự động lập lịch: Facebook đăng lúc 11:30 / 19:45 ICT (native
   `scheduled_publish_time`), Instagram chuẩn bị sẵn.
 - Telegram gửi thông báo `🗓 Đã lên lịch` với nút `🗑 Gỡ bài` (xóa cả bài
-  Facebook + media Instagram nếu bấm trong vòng 15 phút trước giờ slot).
+  Facebook + media Instagram nếu bấm trước giờ slot, hoặc trong vòng 15 phút
+  sau đó).
 - Khi lập lịch thất bại: bài ở trạng thái `draft`, `article-approve` thử lại
   mỗi 5 phút cho tới giờ slot, rồi đánh dấu `expired` với cảnh báo.
 
