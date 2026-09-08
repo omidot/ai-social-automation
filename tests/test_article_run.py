@@ -44,8 +44,17 @@ def wired(tmp_path, monkeypatch):
                         lambda *a, **k: {"topic": "5 công cụ AI dựng video",
                                          "angle": "giúp bạn ra video nhanh hơn"})
     monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: _art())
-    monkeypatch.setattr(article_run.images, "build_images",
-                        lambda *a, **k: [str(tmp_path / f"{i:02d}.jpg") for i in range(1, 6)])
+    captured = {}
+
+    def fake_build(article, out_dir, *, size, brand=None, root=None, style=None, **k):
+        captured["style"] = style
+        return [str(tmp_path / f"{i:02d}.jpg") for i in range(1, 6)]
+
+    monkeypatch.setattr(article_run.images, "build_images", fake_build)
+    monkeypatch.setattr(article_run.styles, "pick_style",
+                        lambda root, now=None: article_run.styles.Style(
+                            "navy-rail", "left-rail", "white-on-navy", "grotesk",
+                            "dots", "none", "chip"))
     # keep the flow tests off the live Graph API: stub both the lazy Meta
     # builder and schedule_slot so draft()'s `meta or _meta()` never calls
     # Meta.from_env() (which would KeyError without META_* env vars).
@@ -54,7 +63,16 @@ def wired(tmp_path, monkeypatch):
                         lambda ds, meta, root, date, slot, now, tg:
                             (ds.set_status(date, slot, "scheduled"),
                              f"scheduled:{date}:{slot}")[1])
-    return tmp_path, None
+    return tmp_path, captured
+
+
+def test_draft_records_style_name(wired):
+    root, captured = wired
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    article_run.draft("morning", root, now, tg=FakeTG(), meta=object())
+    saved = DailyState(root / "data").get("2026-09-06", "morning")
+    assert saved["style"] == "navy-rail"
+    assert captured["style"].name == "navy-rail"
 
 
 def test_draft_writes_state_and_schedules(wired):

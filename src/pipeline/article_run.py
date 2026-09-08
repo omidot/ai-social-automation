@@ -5,7 +5,7 @@ from pathlib import Path
 
 import yaml
 
-from . import write, images, topics, collect, score, publish
+from . import write, images, topics, collect, score, publish, styles
 from .daily_state import DailyState
 from .models import ArticleContent
 from .state import State
@@ -131,10 +131,16 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
         state_sources = news_sources
 
     rel_dir = f"assets/posts/{date}/{slot}"
+    try:
+        chosen_style = styles.pick_style(root)
+        style_name = chosen_style.name
+    except Exception as e:  # noqa: BLE001 - bad styles.yaml -> build_images self-defaults
+        log.warning("pick_style failed (%s)", e)
+        chosen_style, style_name = None, "default"
     paths = images.build_images(article, root / rel_dir,
                                 size=_parse_size(settings["images"]["size"]),
                                 brand=settings["images"].get("brand", {}),
-                                root=root)
+                                root=root, style=chosen_style)
     rel_paths = [str(Path(p).relative_to(root)).replace("\\", "/") for p in paths]
     image_urls = [raw_base_url(settings, rp) for rp in rel_paths]
     slot_ict = acfg["slots"][slot]
@@ -147,6 +153,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
         log.warning("preview send failed: %s", e)
 
     ds.put(date, slot, status="publishing", format="share", title=title,
+           style=style_name,
            topic_key=_slug(title), text_fb=article.caption_fb,
            text_ig=article.caption_ig, hashtags=article.hashtags,
            images=rel_paths, image_urls=image_urls, risk=article.risk,
