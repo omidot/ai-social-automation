@@ -276,3 +276,43 @@ def test_expire_stale_expires_draft_the_moment_slot_passes(tmp_path):
     assert out == ["2026-09-06:morning"]
     assert ds.get("2026-09-06", "morning")["status"] == "expired"
     assert any("không lên lịch được" in m for m in tg.msgs)
+
+
+def test_poll_routes_video_audio_and_undo(tmp_path, monkeypatch):
+    from pipeline import article_approve
+    from pipeline.state import State
+    seen = {"audio": 0, "undo": 0}
+    monkeypatch.setattr(article_approve.render, "receive_audio",
+                        lambda msg, ds, tg, root, now: seen.__setitem__("audio", seen["audio"] + 1) or "rendered:x:y")
+    monkeypatch.setattr(article_approve.render, "handle_undo",
+                        lambda cbq, ds, tg, root, now: seen.__setitem__("undo", seen["undo"] + 1) or "discarded:x:y")
+    updates = [
+        {"update_id": 20, "message": {"message_id": 1, "voice": {"file_id": "V"}}},
+        {"update_id": 21, "callback_query": {"id": "c", "data": "vid:2026-09-08:morning:undo"}},
+        {"update_id": 22, "callback_query": {"id": "c2", "data": "art:2026-09-08:morning:undo"}},
+    ]
+
+    class FakeTelegram:
+        def __init__(self, *a, **k): pass
+        def get_updates(self, offset, timeout=0): return updates
+        def send_message(self, *a, **k): pass
+        def answer_callback(self, *a, **k): pass
+    monkeypatch.setattr(article_approve, "Telegram", FakeTelegram)
+    monkeypatch.setattr(article_approve, "_meta", lambda: object())
+    monkeypatch.setattr(article_approve, "handle_callback", lambda *a, **k: "art-handled")
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    res = article_approve.poll(tmp_path, now=now)
+    assert seen == {"audio": 1, "undo": 1}
+    assert State(tmp_path / "data").offset_load() == 23
+
+
+def test_expire_stale_fails_stuck_video_render(tmp_path):
+    from pipeline import article_approve
+    ds = DailyState(tmp_path / "data")
+    ds.put("2026-09-08", "morning", status="scheduled", slot_ict="11:30",
+           video={"status": "rendering",
+                  "started_at": datetime(2026, 9, 8, 2, 0, tzinfo=timezone.utc).isoformat()})
+    tg = FakeTG()
+    article_approve.expire_stale(ds, tg, datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc))
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "failed"
+    assert any("kẹt khi render" in m for m in tg.msgs)
