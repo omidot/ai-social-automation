@@ -1,0 +1,6 @@
+The bundled .ttf files (Lora, JetBrains Mono, Nunito, Be Vietnam Pro) are
+licensed under the SIL Open Font License, Version 1.1.
+Full text: https://openfontlicense.org and each family listing at
+https://fonts.google.com (Lora, JetBrains Mono, Nunito, Be Vietnam Pro).
+Static weight instances generated from the upstream variable fonts via
+fontTools instancer.

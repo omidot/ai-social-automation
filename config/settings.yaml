@@ -14,8 +14,6 @@ images:
   size: "1080x1350"
   raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"
   brand:
-    accent: "#1D4ED8"
-    ink: "#111111"
     handle: "A Hít Official"
     kicker: "A HÍT OFFICIAL"
     # light "item" slides
@@ -25,7 +23,6 @@ images:
     progress_off: "#D4D7DD"
     swipe_hint: "#8A90A0"
     watermark: "#E6E8EC"
-    muted: "#6B6B6B"
     tile_icon: "#1F2937"
     # dark "hook" slide
     hook_bg: "#0B0B10"

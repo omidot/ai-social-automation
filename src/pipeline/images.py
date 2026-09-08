@@ -396,6 +396,11 @@ def _mono_logo(logo: Image.Image | None, ink) -> Image.Image | None:
         return None
     try:
         alpha = logo.convert("RGBA").getchannel("A")
+        lo, _hi = alpha.getextrema()
+        if lo >= 250:
+            # a fully-opaque favicon has no silhouette to recolour — tinting it
+            # just yields a solid ink block. Fall back to the glyph instead.
+            return None
         solid = Image.new("RGBA", alpha.size, tuple(_hex(ink)) + (255,))
         solid.putalpha(alpha)
         return solid
@@ -509,34 +514,50 @@ def _hook_logos(img: Image.Image, box: tuple, palette: dict, tools: list,
         return False
 
 
+def _hook_marks(img: Image.Image, box: tuple, ctx: "RenderCtx", sm) -> None:
+    """Hook decoration: the real tool-logo row, or a fallback glyph fan when the
+    hook names no products. Pastes onto ``img`` in place; callers must re-bind
+    their ``ImageDraw`` after calling it."""
+    try:
+        if _hook_logos(img, box, ctx.palette, sm.tools, ctx.style.logo, ctx.root):
+            return
+        _draw_icon_fan(img, ctx.brand, n=3)
+    except Exception as e:  # noqa: BLE001
+        log.warning("hook marks failed: %s", e)
+
+
 # --- handle + swipe hint ---------------------------------------------
 
 def _handle_line(draw: ImageDraw.ImageDraw, size: tuple, palette: dict,
-                 fonts: dict, *, centred: bool, left: int = 80) -> None:
+                 fonts: dict, *, centred: bool, left: int = 80,
+                 bottom: int = 46) -> None:
     """"A Hít Official" ~30px in ``fonts["regular"]``, ``palette["muted"]``,
-    ~46px above the bottom edge; centred or left-aligned at x=``left`` (default
-    margin 80). ``left`` is ignored when ``centred`` is True."""
+    ``bottom`` px above the bottom edge (default 46); centred or left-aligned at
+    x=``left`` (default margin 80). ``left`` is ignored when ``centred`` is True.
+    ``bottom`` is raised by boxed layouts (ticket) so the text seats inside the
+    card rather than straddling its border."""
     try:
         W, H = size
         txt = "A Hít Official"
         f = ImageFont.truetype(str(fonts["regular"]), 30)
         asc, desc = f.getmetrics()
         x = (W - draw.textlength(txt, font=f)) / 2 if centred else left
-        draw.text((x, H - 46 - (asc + desc)), txt, font=f, fill=palette["muted"])
+        draw.text((x, H - bottom - (asc + desc)), txt, font=f, fill=palette["muted"])
     except Exception as e:  # noqa: BLE001
         log.warning("handle line failed (%s); skipping", e)
 
 
 def _swipe_hint(draw: ImageDraw.ImageDraw, size: tuple, palette: dict,
-                fonts: dict) -> None:
+                fonts: dict, *, bottom: int = 54) -> None:
     """"Vuốt tiếp  ›" ~26px in ``fonts["regular"]``, ``palette["muted"]``,
-    bottom-right at margin 80."""
+    bottom-right at margin 80, ``bottom`` px above the bottom edge (default 54).
+    Boxed layouts (ticket) raise ``bottom`` to keep the text inside the card."""
     try:
         W, H = size
         txt = "Vuốt tiếp  ›"
         f = ImageFont.truetype(str(fonts["regular"]), 26)
         asc, desc = f.getmetrics()
-        draw.text((W - 80 - draw.textlength(txt, font=f), H - 54 - (asc + desc)),
+        draw.text((W - 80 - draw.textlength(txt, font=f), H - bottom - (asc + desc)),
                   txt, font=f, fill=palette["muted"])
     except Exception as e:  # noqa: BLE001
         log.warning("swipe hint failed (%s); skipping", e)
@@ -1034,8 +1055,7 @@ def _centered_hook(img, sm, ctx, draw) -> None:
         y = _centre_lines(draw, media._wrap(draw, sub, sf, safe_w)[:3], sf,
                           cx, y, pal["muted"], 46)
 
-    _hook_logos(img, (margin, y + 40, W - margin, y + 40 + 320), pal,
-                sm.tools, ctx.style.logo, ctx.root)
+    _hook_marks(img, (margin, y + 40, W - margin, y + 40 + 320), ctx, sm)
     draw = ImageDraw.Draw(img)  # re-bind after paste
     _swipe_hint(draw, ctx.size, pal, ctx.fonts)
     _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
@@ -1259,8 +1279,7 @@ def _left_rail_hook(img, sm, ctx, draw) -> None:
             y += 46
         y += 20
 
-    _hook_logos(img, (_RAIL_X, y + 20, W - 80, y + 20 + 300), pal,
-                sm.tools, ctx.style.logo, ctx.root)
+    _hook_marks(img, (_RAIL_X, y + 20, W - 80, y + 20 + 300), ctx, sm)
     draw = ImageDraw.Draw(img)  # re-bind after paste
     _swipe_hint(draw, ctx.size, pal, ctx.fonts)
     _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=_RAIL_X)
@@ -1440,8 +1459,7 @@ def _bottom_bar_hook(img, sm, ctx, draw) -> None:
     W, H = ctx.size
     pal = ctx.palette
     _bottom_bar_mark(img, ctx, sm)
-    _hook_logos(img, (80, 150, W - 80, _BAR_TOP - 60), pal, sm.tools,
-                ctx.style.logo, ctx.root)
+    _hook_marks(img, (80, 150, W - 80, _BAR_TOP - 60), ctx, sm)
     draw = _bottom_bar_block(img, ctx)  # re-bind after the paste(s) above
     _bottom_bar_copy(draw, sm, ctx, with_bullets=False)
     shad = _bottom_bar_shadow_pal(ctx)
@@ -1577,8 +1595,7 @@ def _split_hook(img, sm, ctx, draw, mid: int) -> None:
     _split_headline(draw, sm, ctx, 132, 92, 50)
 
     y = _split_body(draw, sm, ctx, mid + 46, muted=True) + 24
-    _hook_logos(img, (_SPLIT_MARGIN, y, W - _SPLIT_MARGIN, H - 150), pal,
-                sm.tools, ctx.style.logo, ctx.root)
+    _hook_marks(img, (_SPLIT_MARGIN, y, W - _SPLIT_MARGIN, H - 150), ctx, sm)
     draw = ImageDraw.Draw(img)  # re-bind after paste
     _swipe_hint(draw, ctx.size, pal, ctx.fonts)
     _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
@@ -1782,7 +1799,7 @@ def _magazine_hook(img, sm, ctx, fonts) -> None:
     y = _mag_headline(draw, sm, ctx, fonts, y) + 34
     y = _mag_body(draw, sm, ctx, fonts, y)
     box = (_MAG_M, y + 40, W - _MAG_M, H - 150)
-    _hook_logos(img, box, ctx.palette, sm.tools, ctx.style.logo, ctx.root)
+    _hook_marks(img, box, ctx, sm)
     draw = ImageDraw.Draw(img)  # re-bind after paste
     _swipe_hint(draw, ctx.size, ctx.palette, fonts)
     _handle_line(draw, ctx.size, ctx.palette, fonts, centred=False, left=_MAG_M)
@@ -1950,11 +1967,11 @@ def _ticket_hook(img, sm, ctx, draw, perf_x: int) -> None:
             draw.text((left_x, y), ln, font=sf, fill=pal["muted"])
             y += 44
 
-    _hook_logos(img, (left_x, y + 40, perf_x - _TICKET_PAD, y + 40 + 300),
-                pal, sm.tools, ctx.style.logo, ctx.root)
+    _hook_marks(img, (left_x, y + 40, perf_x - _TICKET_PAD, y + 40 + 300), ctx, sm)
     draw = ImageDraw.Draw(img)  # re-bind after paste
-    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
-    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x)
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts, bottom=_TICKET_M + 30)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x,
+                 bottom=_TICKET_M + 30)
 
 
 def _ticket_item(img, sm, ctx, draw, perf_x: int) -> None:
@@ -2012,8 +2029,9 @@ def _ticket_item(img, sm, ctx, draw, perf_x: int) -> None:
                           fill=_centered_body_fill(ctx))
             y += int(gsz * 1.55)
 
-    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
-    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x)
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts, bottom=_TICKET_M + 30)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x,
+                 bottom=_TICKET_M + 30)
 
 
 def _layout_ticket(img, sm, ctx) -> None:

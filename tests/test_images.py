@@ -288,6 +288,42 @@ def _story():
                           slides=slides, sources=[])
 
 
+def _rel_lum(hexstr):
+    h = hexstr.lstrip("#")
+    r, g, b = (int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+
+def test_production_config_every_style_is_legible(tmp_path, monkeypatch):
+    """The real config/settings.yaml `images.brand` is passed to build_images in
+    production. Feed it through palette_for for all 24 styles and assert ink is
+    readable on bg (>=4.5:1), then render one item slide per style through the
+    real pipeline without raising."""
+    import yaml
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    repo = Path(__file__).resolve().parents[1]
+    brand = yaml.safe_load(
+        (repo / "config" / "settings.yaml").read_text("utf-8"))["images"].get("brand", {})
+    for st in styles.load_styles(repo):
+        pal = styles.palette_for(st, brand)
+        lo, hi = sorted((_rel_lum(pal["ink"]), _rel_lum(pal["bg"])))
+        ratio = (hi + 0.05) / (lo + 0.05)
+        assert ratio >= 4.5, f"{st.name}: ink {pal['ink']} on bg {pal['bg']} = {ratio:.1f}:1"
+        art = ArticleContent(
+            format="share", caption_fb="x", caption_ig="y", hashtags=["#AI"],
+            cover_title="T", sources=[],
+            slides=[{"role": "item", "headline": "Việc số một",
+                     "body": ("Mô hình nhận một câu mô tả bằng tiếng Việt rồi trả "
+                              "về một đoạn phim tám giây ngay trong trình duyệt."),
+                     "tool": {"name": "Sora", "domain": "openai.com"},
+                     "bullets": ["một", "hai"]}])
+        out = images.build_images(art, tmp_path / st.name, size=(1080, 1350),
+                                  brand=brand, root=repo, style=st)
+        assert len(out) == 1
+        assert Image.open(out[0]).size == (1080, 1350)
+
+
 def test_build_images_with_explicit_style(tmp_path, monkeypatch):
     monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
     st = styles.Style("t", "centered", "ink-on-white", "grotesk", "dots", "underline", "tile")

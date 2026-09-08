@@ -99,3 +99,15 @@ def test_font_paths_always_exist(tmp_path):
         fp = styles.font_paths(key)
         for role in ("regular", "bold", "black", "italic"):
             assert fp[role].exists()
+
+
+def test_bold_faces_are_actually_bold(tmp_path):
+    # the vendored Lora/JetBrains/Nunito families were variable fonts; if the
+    # static-instance step regressed, PIL would render Regular/ExtraLight and the
+    # bold roles would be indistinguishable from regular.
+    from PIL import ImageFont
+    for key in ("editorial", "mono", "rounded"):
+        fp = styles.font_paths(key)
+        for role in ("bold", "black"):
+            sub = ImageFont.truetype(str(fp[role]), 40).getname()[1]
+            assert sub not in ("Regular", "ExtraLight"), f"{key}/{role} -> {sub}"
