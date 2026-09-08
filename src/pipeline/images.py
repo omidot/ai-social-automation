@@ -1322,9 +1322,189 @@ def _layout_left_rail(img, sm, ctx) -> None:
         _left_rail_item(img, sm, ctx, draw)
 
 
+# --- Task 7: the "bottom-bar" archetype --------------------------------
+# Top ~55% = bg + texture + a big FAINT decorative glyph + the logo(s).
+# Bottom ~45% (y >= _BAR_TOP) = a full-bleed accent block holding the headline
+# + body (+ bullets on item) in ``on_accent`` — no accent shape, the bar itself
+# IS the accent block. The close slide drops the bar entirely for a plain
+# centred pill + body, exactly like ``_layout_centered``.
+
+_BAR_TOP = 742          # top edge of the accent bar (~55% of 1350)
+
+
+def _bottom_bar_shadow_pal(ctx) -> dict:
+    """A palette copy whose ``muted`` reads as ``on_accent`` so the shared
+    handle / swipe helpers stay legible where they land on the filled bar.
+    Passing a recoloured palette dict is explicitly allowed by the contract."""
+    return {**ctx.palette, "muted": ctx.palette["on_accent"]}
+
+
+def _bottom_bar_mark(img: Image.Image, ctx, sm) -> None:
+    """A very large, very faint decorative glyph high in the top zone — an
+    ``_ICONS`` glyph picked by ``sm.index``, drawn at ~10% alpha in ``muted``."""
+    try:
+        W, _ = ctx.size
+        s = 460
+        x0 = W - s - 24
+        y0 = int(_BAR_TOP * 0.46 - s / 2)
+        ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        od = ImageDraw.Draw(ov)
+        icon = _ICONS[_ICON_ORDER[(sm.index - 1) % len(_ICON_ORDER)]]
+        icon(od, (x0, y0, x0 + s, y0 + s), tuple(_hex(ctx.palette["muted"])) + (26,))
+        img.paste(Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB"),
+                  (0, 0))
+    except Exception as e:  # noqa: BLE001 - the mark is decorative
+        log.warning("bottom-bar mark failed (%s); skipping", e)
+
+
+def _bottom_bar_block(img: Image.Image, ctx) -> ImageDraw.ImageDraw:
+    """Paint the full-bleed accent bar across the bottom ~45%; return a fresh
+    ``ImageDraw`` bound to ``img`` (callers draw the copy on top of it)."""
+    W, H = ctx.size
+    ImageDraw.Draw(img).rectangle((0, _BAR_TOP, W, H), fill=ctx.palette["accent"])
+    return ImageDraw.Draw(img)
+
+
+def _bottom_bar_copy(draw, sm, ctx, *, with_bullets: bool) -> None:
+    """Headline + body (+ optional bullets) inside the accent bar, all in
+    ``on_accent``. NO ``_accent_shape`` — an accent-coloured mark on the filled
+    accent bar is invisible."""
+    W, H = ctx.size
+    margin = 80
+    safe_w = W - 2 * margin
+    pal = ctx.palette
+    y = _BAR_TOP + 54
+
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     58, 38, safe_w, 3)
+    line_h = int(hsz * 1.16)
+    for ln in lines:
+        draw.text((margin, y), ln, font=hf, fill=pal["on_accent"])
+        y += line_h
+    y += 24
+
+    body = sm.body or ""
+    if body:
+        bsz = 34
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, safe_w)
+        for bsz in (30, 28):
+            if len(blines) <= 7:
+                break
+            bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+            blines = media._wrap(draw, body, bf, safe_w)
+        step = int(bsz * 1.34)
+        for ln in blines[:7]:
+            draw.text((margin, y), ln, font=bf, fill=pal["on_accent"])
+            y += step
+
+    if with_bullets:
+        bullets = sm.bullets[:3]
+        if bullets:
+            y += 12
+            gsz = 28
+            gf = ImageFont.truetype(str(ctx.fonts["regular"]), gsz)
+            dot = _mix(pal["accent"], pal["on_accent"], 0.6)  # a lighter tint
+            for bl in bullets:
+                cy = y + gsz / 2
+                draw.ellipse((margin, cy - 7, margin + 14, cy + 7), fill=dot)
+                seg = media._wrap(draw, bl, gf, safe_w - 44)[:1]
+                if seg:
+                    draw.text((margin + 34, y), seg[0], font=gf, fill=pal["on_accent"])
+                y += int(gsz * 1.5)
+
+
+def _bottom_bar_hook(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    _bottom_bar_mark(img, ctx, sm)
+    _hook_logos(img, (80, 150, W - 80, _BAR_TOP - 60), pal, sm.tools,
+                ctx.style.logo, ctx.root)
+    draw = _bottom_bar_block(img, ctx)  # re-bind after the paste(s) above
+    _bottom_bar_copy(draw, sm, ctx, with_bullets=False)
+    shad = _bottom_bar_shadow_pal(ctx)
+    _swipe_hint(draw, ctx.size, shad, ctx.fonts)
+    _handle_line(draw, ctx.size, shad, ctx.fonts, centred=False)
+
+
+def _bottom_bar_item(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    _bottom_bar_mark(img, ctx, sm)
+    if sm.tool:
+        _logo_lockup(img, (80, 150, 80 + 190, 150 + 190), pal, sm.tool,
+                     ctx.style.logo, ctx.root, sm.index)
+    draw = _bottom_bar_block(img, ctx)  # re-bind after the paste(s) above
+    _bottom_bar_copy(draw, sm, ctx, with_bullets=True)
+    shad = _bottom_bar_shadow_pal(ctx)
+    _swipe_hint(draw, ctx.size, shad, ctx.fonts)
+    _handle_line(draw, ctx.size, shad, ctx.fonts, centred=False)
+
+
+def _bottom_bar_close(img, sm, ctx, draw) -> None:
+    """NO bar. Plain ``bg``: a centred "CHỐT LẠI" pill, centred headline +
+    accent shape, centred body, centred handle. No swipe, no lockup."""
+    W, H = ctx.size
+    margin, cx = 80, W / 2
+    safe_w = W - 2 * margin
+    pal = ctx.palette
+
+    pf = ImageFont.truetype(str(ctx.fonts["bold"]), 40)
+    y = _pill(draw, cx, 170, "CHỐT LẠI", pf, pal["accent"], pal["on_accent"])
+    y += 60
+
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     64, 40, safe_w, 3)
+    line_h = int(hsz * 1.18)
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    hbox = (cx - max(widths) / 2, y, cx + max(widths) / 2, y + line_h * len(lines))
+    on_bar = ctx.style.accent_shape == "bar"
+    if on_bar:
+        _accent_shape(draw, hbox, "bar", pal["accent"])
+    y = _centre_lines(draw, lines, hf, cx, y,
+                      pal["on_accent"] if on_bar else pal["ink"], line_h)
+    if not on_bar:
+        _accent_shape(draw, (cx - 60, hbox[1], cx + 60, y),
+                      ctx.style.accent_shape, pal["accent"])
+
+    body = sm.body or ""
+    y += 40
+    if body:
+        bsz = 34
+        wrap_w = int(safe_w * 0.8)
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, wrap_w)
+        for bsz in (30, 28):
+            if len(blines) <= 7:
+                break
+            bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+            blines = media._wrap(draw, body, bf, wrap_w)
+        _centre_lines(draw, blines, bf, cx, y, _centered_body_fill(ctx),
+                      int(bsz * 1.34))
+
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=True)
+
+
+def _layout_bottom_bar(img, sm, ctx) -> None:
+    """The "bottom-bar" archetype: bg + texture + a big faint glyph + logo(s) in
+    the top ~55%; a full-bleed accent bar across the bottom ~45% carrying the
+    headline + body (+ bullets on item) in ``on_accent``. The close slide drops
+    the bar for a plain centred pill + body. Furniture via the shared helpers,
+    shadow-recoloured where it lands on the bar."""
+    _draw_texture(img, ctx.style.texture, ctx.palette)
+    draw = ImageDraw.Draw(img)
+    if sm.role == "hook":
+        _bottom_bar_hook(img, sm, ctx, draw)
+    elif sm.role == "close":
+        _bottom_bar_close(img, sm, ctx, draw)
+    else:
+        _bottom_bar_item(img, sm, ctx, draw)
+
+
 LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
 LAYOUTS["centered"] = _layout_centered
 LAYOUTS["left-rail"] = _layout_left_rail
+LAYOUTS["bottom-bar"] = _layout_bottom_bar
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],
