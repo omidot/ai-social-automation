@@ -1155,8 +1155,175 @@ def _layout_centered(img, sm, ctx) -> None:
         _centered_item(img, sm, ctx, draw)
 
 
+# --- Task 6: the "left-rail" archetype ----------------------------------
+# A solid accent rail down the left ~11%; a big ghost slide number inside it;
+# every bit of content left-aligned to the right of the rail.
+
+_RAIL_W = 120          # rail width in px (~11% of 1080)
+_RAIL_X = 170          # left edge of all content (clears the rail + a margin)
+
+
+def _left_rail_accent_kind(ctx) -> str:
+    """A filled ``bar`` clashes with the accent rail — use ``underline`` instead
+    for this layout; every other accent shape passes straight through."""
+    return "underline" if ctx.style.accent_shape == "bar" else ctx.style.accent_shape
+
+
+def _rail_ghost_number(img: Image.Image, ctx, text: str) -> None:
+    """The big translucent slide number painted INSIDE the accent rail."""
+    try:
+        W, H = ctx.size
+        f = ImageFont.truetype(str(ctx.fonts["black"]), 200)
+        ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        od = ImageDraw.Draw(ov)
+        l, t, r, b = od.textbbox((0, 0), text, font=f)
+        gx = (_RAIL_W - (r - l)) / 2 - l
+        gy = (H - (b - t)) / 2 - t
+        od.text((gx, gy), text, font=f,
+                fill=tuple(_hex(ctx.palette["on_accent"])) + (76,))  # ~30% alpha
+        img.paste(Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB"),
+                  (0, 0))
+    except Exception as e:  # noqa: BLE001 - the ghost number is decorative
+        log.warning("rail ghost number failed (%s); skipping", e)
+
+
+def _left_rail_base(img: Image.Image, sm, ctx) -> ImageDraw.ImageDraw:
+    """Texture, the solid accent rail and the ghost number; returns a fresh
+    ``ImageDraw`` bound to ``img`` (rebound after the ghost-number paste)."""
+    _draw_texture(img, ctx.style.texture, ctx.palette)
+    W, H = ctx.size
+    ImageDraw.Draw(img).rectangle((0, 0, _RAIL_W, H), fill=ctx.palette["accent"])
+    _rail_ghost_number(img, ctx, str(max(sm.index - 1, 0)))
+    return ImageDraw.Draw(img)
+
+
+def _left_rail_headline(draw, sm, ctx, y: int):
+    """Left-aligned auto-fit headline; draws it and its accent shape. Returns the
+    y below the accent."""
+    pal = ctx.palette
+    right = ctx.size[0] - 80
+    safe_w = right - _RAIL_X
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     64, 40, safe_w, 3)
+    line_h = int(hsz * 1.18)
+    hy0 = y
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    for ln in lines:
+        draw.text((_RAIL_X, y), ln, font=hf, fill=pal["ink"])
+        y += line_h
+    hbox = (_RAIL_X, hy0, _RAIL_X + max(widths), y)
+    _accent_shape(draw, hbox, _left_rail_accent_kind(ctx), pal["accent"])
+    return y + 40
+
+
+def _left_rail_body(draw, sm, ctx, y: int) -> int:
+    """Left-aligned body paragraph, shrink 34->30->28, <=7 lines. Returns y below."""
+    body = sm.body or ""
+    if not body:
+        return y
+    right = ctx.size[0] - 80
+    safe_w = right - _RAIL_X
+    bsz = 34
+    bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+    blines = media._wrap(draw, body, bf, safe_w)
+    for bsz in (30, 28):
+        if len(blines) <= 7:
+            break
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, safe_w)
+    step = int(bsz * 1.34)
+    for ln in blines[:8]:
+        draw.text((_RAIL_X, y), ln, font=bf, fill=_centered_body_fill(ctx))
+        y += step
+    return y
+
+
+def _left_rail_hook(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    y = int(H * 0.14)
+    y = _left_rail_headline(draw, sm, ctx, y)
+
+    sub = sm.body or ""
+    if sub:
+        sf = ImageFont.truetype(str(ctx.fonts["regular"]), 34)
+        for ln in media._wrap(draw, sub, sf, W - 80 - _RAIL_X)[:3]:
+            draw.text((_RAIL_X, y), ln, font=sf, fill=pal["muted"])
+            y += 46
+        y += 20
+
+    _hook_logos(img, (_RAIL_X, y + 20, W - 80, y + 20 + 300), pal,
+                sm.tools, ctx.style.logo, ctx.root)
+    draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+
+
+def _left_rail_item(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    top_y = 120
+    y = top_y
+    if sm.tool:
+        _logo_lockup(img, (_RAIL_X, top_y, _RAIL_X + 190, top_y + 190),
+                     pal, sm.tool, ctx.style.logo, ctx.root, sm.index)
+        draw = ImageDraw.Draw(img)  # re-bind after paste
+        y = top_y + 190 + 46
+
+    y = _left_rail_headline(draw, sm, ctx, y)
+    y = _left_rail_body(draw, sm, ctx, y)
+
+    bullets = sm.bullets[:3]
+    if bullets:
+        y += 14
+        gsz = 30
+        gf = ImageFont.truetype(str(ctx.fonts["regular"]), gsz)
+        safe_w = W - 80 - _RAIL_X
+        for bl in bullets:
+            cy = y + gsz / 2
+            draw.ellipse((_RAIL_X, cy - 7, _RAIL_X + 14, cy + 7), fill=pal["accent"])
+            seg = media._wrap(draw, bl, gf, safe_w - 44)[:1]
+            if seg:
+                draw.text((_RAIL_X + 34, y), seg[0], font=gf,
+                          fill=_centered_body_fill(ctx))
+            y += int(gsz * 1.55)
+
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+
+
+def _left_rail_close(img, sm, ctx, draw) -> None:
+    pal = ctx.palette
+    pf = ImageFont.truetype(str(ctx.fonts["bold"]), 40)
+    # a left-aligned "CHỐT LẠI" pill where the lockup would sit
+    tw = draw.textlength("CHỐT LẠI", font=pf)
+    cx = _RAIL_X + (tw + 52) / 2
+    y = _pill(draw, cx, 130, "CHỐT LẠI", pf, pal["accent"], pal["on_accent"])
+    y += 56
+
+    y = _left_rail_headline(draw, sm, ctx, y)
+    _left_rail_body(draw, sm, ctx, y)
+
+    # furniture contract: close keeps the CENTRED handle, no swipe, no lockup
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=True)
+
+
+def _layout_left_rail(img, sm, ctx) -> None:
+    """The "left-rail" archetype: a solid accent rail down the left edge with a
+    ghost slide number, all content left-aligned to its right. Furniture via the
+    shared helpers."""
+    draw = _left_rail_base(img, sm, ctx)
+    if sm.role == "hook":
+        _left_rail_hook(img, sm, ctx, draw)
+    elif sm.role == "close":
+        _left_rail_close(img, sm, ctx, draw)
+    else:
+        _left_rail_item(img, sm, ctx, draw)
+
+
 LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
 LAYOUTS["centered"] = _layout_centered
+LAYOUTS["left-rail"] = _layout_left_rail
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],

@@ -505,3 +505,51 @@ def test_accent_shape_draws_for_shapes_and_noops_for_none():
     b = im.tobytes()
     images._accent_shape(_D.Draw(im), (80, 400, 700, 480), "none", _pal()["accent"])
     assert im.tobytes() == b
+
+
+# --- Task 6: the "left-rail" archetype -------------------------------------
+
+def test_layout_left_rail_renders_all_roles(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    spies = {k: [] for k in ("lockup", "hook", "swipe", "handle")}
+    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append(a) or 360)
+    monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: spies["hook"].append(a) or True)
+    monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: spies["swipe"].append(a))
+    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(a))
+    st = _st.Style("t", "left-rail", "ink-on-white", "grotesk", "dots", "underline", "tile")
+    ctx = images.RenderCtx((1080, 1350), _st.PALETTES["ink-on-white"],
+                           _st.font_paths("grotesk"), st, tmp_path, {},
+                           article=_story())
+    for sm in images._slide_models(_story()):
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["left-rail"](im, sm, ctx)
+        assert im.size == (1080, 1350)
+    assert len(spies["hook"]) == 1          # hook drew the logo row
+    assert len(spies["lockup"]) == 1        # the one item with a tool
+    assert len(spies["swipe"]) == 2         # hook + item, not close
+    assert len(spies["handle"]) == 3        # all roles
+
+
+def test_layout_left_rail_bar_accent_downgrades_to_underline(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: 360)
+    monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: True)
+    monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: None)
+    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: None)
+    seen = []
+    real_accent = images._accent_shape
+    monkeypatch.setattr(images, "_accent_shape",
+                        lambda d, box, kind, col: seen.append(kind) or real_accent(d, box, kind, col))
+    st = _st.Style("t", "left-rail", "ink-on-white", "grotesk", "dots", "bar", "tile")
+    ctx = images.RenderCtx((1080, 1350), _st.PALETTES["ink-on-white"],
+                           _st.font_paths("grotesk"), st, tmp_path, {},
+                           article=_story())
+    for sm in images._slide_models(_story()):
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["left-rail"](im, sm, ctx)   # must NOT raise
+        assert im.size == (1080, 1350)
+    assert seen                                     # _accent_shape was called
+    assert "bar" not in seen                        # the rail-clashing bar was swapped
+    assert "underline" in seen                      # ...for an underline
