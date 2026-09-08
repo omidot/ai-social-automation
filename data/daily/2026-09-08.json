@@ -51,6 +51,57 @@
           "media_id": "18458756035138521"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "3 công cụ AI tự động tạo báo cáo doanh số hàng tuần",
+      "style": "warm-centered",
+      "topic_key": "3-cong-cu-ai-tu-ong-tao-bao-cao-doanh-so-hang-tuan",
+      "text_fb": "Tối chủ nhật nào bạn cũng phải ngồi còng lưng cộng trừ từng dòng Excel để làm báo cáo doanh số tuần? Việc tổng hợp số liệu thủ công từ Shopee, TikTok Shop hay gian hàng online tốn hàng giờ đồng hồ mà lại rất dễ nhầm lẫn.\n\nMình chia sẻ với bạn 3 công cụ AI giúp tự động hóa toàn bộ khâu này, trả lại cho bạn báo cáo rõ ràng chỉ trong vài phút.\n\nĐầu tiên là Rows, một nền tảng bảng tính thế hệ mới có tích hợp AI. Bạn chỉ cần tải file doanh số hoặc kết nối gian hàng, AI sẽ tự tính tổng doanh thu, tìm ra mặt hàng bán chạy nhất và vẽ biểu đồ tăng trưởng hoàn toàn tự động.\n\nTiếp theo là Julius AI, công cụ cực mạnh cho việc phân tích dữ liệu sâu. Bạn chỉ cần tải file CSV lên và đặt câu hỏi bằng tiếng Việt. AI sẽ tự động phân tích lý do tăng giảm doanh số, chỉ ra xu hướng mua sắm của khách hàng và xuất báo cáo dạng đồ thị trực quan.\n\nCuối cùng là tính năng Data Analysis trên ChatGPT. Bạn tải file Excel bán hàng lên, yêu cầu ChatGPT viết bản tóm tắt tình hình kinh doanh tuần. Trong chớp mắt, bạn đã có một bản báo cáo đầy đủ từ tổng doanh thu, giá trị trung bình đơn cho đến lời khuyên cải thiện cho tuần tới.\n\nHãy ngừng làm công việc thủ công lặp đi lặp lại. Dùng AI để làm báo cáo nhanh hơn, dành thời gian đó để tập trung nhập hàng và tối ưu quảng cáo. Bạn đã thử công cụ nào trong số này chưa? Hãy bấm theo dõi A Hít Official để học thêm nhiều mẹo AI hữu ích mỗi ngày nhé.",
+      "text_ig": "Mỗi tối chủ nhật bạn vẫn ngồi nhập Excel làm báo cáo tuần? Thử ngay Rows, Julius AI hoặc ChatGPT để tự động tổng hợp số liệu bán hàng chỉ trong vài phút. Theo dõi A Hít Official để tối ưu công việc kinh doanh bằng AI nhé!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#CongCuAI",
+        "#BaoCaoDoanhSo",
+        "#BanHangOnline",
+        "#TuDongHoa",
+        "#KinhDoanhOnline",
+        "#ChatGPT",
+        "#RowsAI",
+        "#JuliusAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-08/evening/01.jpg",
+        "assets/posts/2026-09-08/evening/02.jpg",
+        "assets/posts/2026-09-08/evening/03.jpg",
+        "assets/posts/2026-09-08/evening/04.jpg",
+        "assets/posts/2026-09-08/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "Giúp người bán hàng online ngừng tự tổng hợp số liệu thủ công, có ngay báo cáo doanh số rõ ràng mỗi tuần chỉ trong vài phút.",
+      "fb_post_id": "1381130541740424_122096310489476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122096310489476035",
+          "url": "https://facebook.com/1381130541740424_122096310489476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AdBj9XSuLJE0QtfzATjtgKp"
+        }
+      }
     }
   }
 }
