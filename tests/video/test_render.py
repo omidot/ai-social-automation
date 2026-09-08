@@ -148,27 +148,50 @@ def test_receive_audio_no_waiting_slot(tmp_path):
 
 
 def test_receive_audio_matches_by_reply(tmp_path, monkeypatch):
-    ds = _seed(tmp_path, slot="evening", date="2026-09-07")   # older, but replied-to
-    _seed(tmp_path, slot="morning", date="2026-09-08")        # newer, not replied-to
+    # OLDER slot carries script_msg_id 901; NEWER slot carries a different id (902).
+    ds = _seed(tmp_path, slot="evening", date="2026-09-07", script_msg_id=901)
+    _seed(tmp_path, slot="morning", date="2026-09-08", script_msg_id=902)
     (tmp_path / "video" / "tools").mkdir(parents=True)
     for f in ("cards.mjs", "variants.mjs"):
         (tmp_path / "video" / "tools" / f).write_text("//", encoding="utf-8")
+    (tmp_path / "video" / "public").mkdir(parents=True)
     _mock_pipeline(monkeypatch)
     r = render.receive_audio(
         {"message_id": 960, "voice": {"file_id": "V"},
          "reply_to_message": {"message_id": 901}}, ds, FakeTG(), tmp_path,
         datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc))
-    # both seeds use script_msg_id 901; reply picks the one whose slot has it —
-    # tie broken by most-recent date, so this still resolves to 2026-09-08:morning.
-    assert r == "rendered:2026-09-08:morning"
+    # The reply points at 901 = the OLDER slot. Reply-match must beat date-recency,
+    # so the replied-to older slot wins over the newer un-replied one.
+    assert r == "rendered:2026-09-07:evening"
 
 
 def test_handle_undo(tmp_path):
     ds = _seed(tmp_path, extra_status="rendered")
-    class CB:  # noqa
-        pass
     tg = FakeTG()
     out = render.handle_undo({"id": "c1", "data": "vid:2026-09-08:morning:undo"},
                              ds, tg, tmp_path, datetime(2026, 9, 8, 4, 0, tzinfo=timezone.utc))
     assert out == "discarded:2026-09-08:morning"
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "discarded"
+    assert "🗑 Đã huỷ video 2026-09-08:morning." in tg.msgs
+
+
+def test_handle_undo_rejects_malformed(tmp_path):
+    ds = _seed(tmp_path, extra_status="awaiting_audio")
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 4, 0, tzinfo=timezone.utc)
+    for data in ("vid:2026-09-08:morning",              # 3 parts
+                 "art:2026-09-08:morning:undo",         # wrong prefix
+                 "vid:2026-09-08:morning:delete",       # wrong suffix
+                 "vid:2026-09-08:morning:undo:x"):      # 5 parts
+        out = render.handle_undo({"id": "c1", "data": data}, ds, tg, tmp_path, now)
+        assert out is None
+        assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "awaiting_audio"
+
+
+def test_handle_undo_ignores_terminal_status(tmp_path):
+    ds = _seed(tmp_path, extra_status="discarded")
+    tg = FakeTG()
+    out = render.handle_undo({"id": "c1", "data": "vid:2026-09-08:morning:undo"},
+                             ds, tg, tmp_path, datetime(2026, 9, 8, 4, 0, tzinfo=timezone.utc))
+    assert out is None
     assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "discarded"
