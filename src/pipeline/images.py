@@ -934,7 +934,229 @@ def _layout_stub(img, sm, ctx):
     img.paste(_via_fallback(sm, ctx).convert("RGB"), (0, 0))
 
 
+# --- Task 5: the "centered" archetype -------------------------------------
+# Everything centred on the canvas. Shared helpers below feed Tasks 6-10 too.
+
+def _fit_lines_font(draw, text: str, font_path, start: int, floor: int,
+                    max_w: int, max_lines: int, step: int = 6):
+    """``_fit_lines`` but with a caller-supplied face: wrap ``text`` at the
+    biggest size in ``start``..``floor`` that fits ``max_lines``. Returns
+    ``(font, lines, size)``."""
+    sz = start
+    hf = ImageFont.truetype(str(font_path), sz)
+    lines = media._wrap(draw, text, hf, max_w) or [""]
+    while sz > floor and len(lines) > max_lines:
+        sz -= step
+        hf = ImageFont.truetype(str(font_path), sz)
+        lines = media._wrap(draw, text, hf, max_w) or [""]
+    return hf, lines, sz
+
+
+def _centre_lines(draw, lines, font, cx: float, y: int, fill, line_h: int) -> int:
+    """Draw each of ``lines`` horizontally centred on ``cx``; return the y below."""
+    for ln in lines:
+        w = draw.textlength(ln, font=font)
+        draw.text((cx - w / 2, y), ln, font=font, fill=fill)
+        y += line_h
+    return y
+
+
+def _pill(draw, cx: float, y: int, text: str, font, fill, text_fill) -> int:
+    """A rounded pill centred on ``cx`` at top ``y``; return the y below it."""
+    tw = draw.textlength(text, font=font)
+    asc, desc = font.getmetrics()
+    px, py = 26, 13
+    h = asc + desc + 2 * py
+    x0 = cx - (tw + 2 * px) / 2
+    draw.rounded_rectangle((x0, y, x0 + tw + 2 * px, y + h), radius=h // 2, fill=fill)
+    draw.text((x0 + px, y + py), text, font=font, fill=text_fill)
+    return y + h
+
+
+def _centered_body_fill(ctx) -> str:
+    """Item/close body ink: the muted near-black only on the white palette."""
+    return BRAND_DEFAULTS["body_ink"] if ctx.style.palette == "ink-on-white" \
+        else ctx.palette["ink"]
+
+
+def _centered_hook(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    margin, cx = 80, W / 2
+    safe_w = W - 2 * margin
+    pal = ctx.palette
+
+    kf = ImageFont.truetype(str(ctx.fonts["bold"]), 26)
+    _pill(draw, cx, 96, str(BRAND_DEFAULTS["kicker"]), kf,
+          pal["accent"], pal["on_accent"])
+
+    head = sm.headline or ""
+    hf, lines, hsz = _fit_lines_font(draw, head, ctx.fonts["black"], 112, 54,
+                                     safe_w, 3)
+    big_idx = None
+    for idx, ln in enumerate(lines):
+        if len(ln.split()) == 1 and len(ln) >= 6:
+            big_idx = idx
+    if big_idx is None and lines:
+        big_idx = len(lines) - 1
+    big_sz = min(int(hsz * 1.5), 148)
+    big_hf = ImageFont.truetype(str(ctx.fonts["black"]), big_sz)
+    while big_sz > hsz and big_idx is not None and \
+            draw.textlength(lines[big_idx], font=big_hf) > safe_w:
+        big_sz -= 6
+        big_hf = ImageFont.truetype(str(ctx.fonts["black"]), big_sz)
+
+    y = int(H * 0.20)
+    hy0 = y
+    for idx, ln in enumerate(lines):
+        if idx == big_idx:
+            w = draw.textlength(ln, font=big_hf)
+            draw.text((cx - w / 2, y), ln, font=big_hf, fill=pal["accent"])
+            y += int(big_sz * 1.16)
+        else:
+            w = draw.textlength(ln, font=hf)
+            draw.text((cx - w / 2, y), ln, font=hf, fill=pal["ink"])
+            y += int(hsz * 1.18)
+    # the hook's blown-up word is its own accent; only the line marks make
+    # sense over it (a filled "bar" would bury the headline, "none" no-ops).
+    if ctx.style.accent_shape in ("underline", "bracket"):
+        _accent_shape(draw, (cx - 60, hy0, cx + 60, y), ctx.style.accent_shape,
+                      pal["accent"])
+
+    sub = sm.body or ""
+    if sub:
+        sf = ImageFont.truetype(str(ctx.fonts["regular"]), 34)
+        y += 24
+        y = _centre_lines(draw, media._wrap(draw, sub, sf, safe_w)[:3], sf,
+                          cx, y, pal["muted"], 46)
+
+    _hook_logos(img, (margin, y + 40, W - margin, y + 40 + 320), pal,
+                sm.tools, ctx.style.logo, ctx.root)
+    draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+
+
+def _centered_item(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    margin, cx = 80, W / 2
+    safe_w = W - 2 * margin
+    pal = ctx.palette
+
+    top_y = 120
+    y = top_y
+    if sm.tool:
+        lh = 190
+        _logo_lockup(img, (int(cx - lh / 2), top_y, int(cx + lh / 2), top_y + lh),
+                     pal, sm.tool, ctx.style.logo, ctx.root, sm.index)
+        draw = ImageDraw.Draw(img)  # re-bind after paste
+        y = top_y + lh + 46
+
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     64, 40, safe_w, 3)
+    line_h = int(hsz * 1.18)
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    hbox = (cx - max(widths) / 2, y, cx + max(widths) / 2, y + line_h * len(lines))
+    on_bar = ctx.style.accent_shape == "bar"
+    if on_bar:
+        _accent_shape(draw, hbox, "bar", pal["accent"])
+    y = _centre_lines(draw, lines, hf, cx, y,
+                      pal["on_accent"] if on_bar else pal["ink"], line_h)
+    if not on_bar:
+        _accent_shape(draw, (cx - 60, hbox[1], cx + 60, y),
+                      ctx.style.accent_shape, pal["accent"])
+
+    body = sm.body or ""
+    y += 40
+    if body:
+        bsz = 34
+        wrap_w = int(safe_w * 0.8)
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, wrap_w)
+        for bsz in (30, 28):
+            if len(blines) <= 7:
+                break
+            bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+            blines = media._wrap(draw, body, bf, wrap_w)
+        y = _centre_lines(draw, blines, bf, cx, y, _centered_body_fill(ctx),
+                          int(bsz * 1.34))
+
+    bullets = sm.bullets[:3]
+    if bullets:
+        y += 14
+        gsz = 30
+        gf = ImageFont.truetype(str(ctx.fonts["regular"]), gsz)
+        colw = min(int(safe_w), 760)
+        col_x0 = cx - colw / 2
+        for bl in bullets:
+            cyc = y + gsz / 2
+            draw.ellipse((col_x0, cyc - 7, col_x0 + 14, cyc + 7), fill=pal["accent"])
+            seg = media._wrap(draw, bl, gf, colw - 44)[:1]
+            if seg:
+                draw.text((col_x0 + 34, y), seg[0], font=gf,
+                          fill=_centered_body_fill(ctx))
+            y += int(gsz * 1.55)
+
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+
+
+def _centered_close(img, sm, ctx, draw) -> None:
+    W, H = ctx.size
+    margin, cx = 80, W / 2
+    safe_w = W - 2 * margin
+    pal = ctx.palette
+
+    pf = ImageFont.truetype(str(ctx.fonts["bold"]), 40)
+    y = _pill(draw, cx, 150, "CHỐT LẠI", pf, pal["accent"], pal["on_accent"])
+    y += 56
+
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     64, 40, safe_w, 3)
+    line_h = int(hsz * 1.18)
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    hbox = (cx - max(widths) / 2, y, cx + max(widths) / 2, y + line_h * len(lines))
+    on_bar = ctx.style.accent_shape == "bar"
+    if on_bar:
+        _accent_shape(draw, hbox, "bar", pal["accent"])
+    y = _centre_lines(draw, lines, hf, cx, y,
+                      pal["on_accent"] if on_bar else pal["ink"], line_h)
+    if not on_bar:
+        _accent_shape(draw, (cx - 60, hbox[1], cx + 60, y),
+                      ctx.style.accent_shape, pal["accent"])
+
+    body = sm.body or ""
+    y += 40
+    if body:
+        bsz = 34
+        wrap_w = int(safe_w * 0.8)
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, wrap_w)
+        for bsz in (30, 28):
+            if len(blines) <= 7:
+                break
+            bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+            blines = media._wrap(draw, body, bf, wrap_w)
+        _centre_lines(draw, blines, bf, cx, y, _centered_body_fill(ctx),
+                      int(bsz * 1.34))
+
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=True)
+
+
+def _layout_centered(img, sm, ctx) -> None:
+    """The "centered" archetype: kicker/pill, headline, accent, body and (hook)
+    logo row all centred on the canvas. Furniture via the shared helpers."""
+    _draw_texture(img, ctx.style.texture, ctx.palette)
+    draw = ImageDraw.Draw(img)
+    if sm.role == "hook":
+        _centered_hook(img, sm, ctx, draw)
+    elif sm.role == "close":
+        _centered_close(img, sm, ctx, draw)
+    else:
+        _centered_item(img, sm, ctx, draw)
+
+
 LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
+LAYOUTS["centered"] = _layout_centered
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],

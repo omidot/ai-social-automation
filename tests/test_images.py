@@ -65,11 +65,12 @@ def test_build_images_renders_hook_plus_items(tmp_path):
         ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg"]
     for p in out:
         assert Image.open(p).size == (1080, 1350)
-    # slide 1 is the dark hook slide, slide 3 is a light item slide
-    for px in _corners(Image.open(out[0]).convert("RGB")):
-        assert _brightness(px) < 60, f"hook corner too bright: {px}"
-    for px in _corners(Image.open(out[2]).convert("RGB")):
-        assert all(c > 220 for c in px), f"item corner too dark: {px}"
+    # no config/styles.yaml under root -> the hardcoded default style
+    # (white-on-navy, centered layout), so every slide carries the same dark
+    # navy field now instead of the old dark-hook / light-item split.
+    for idx in (0, 2):
+        for px in _corners(Image.open(out[idx]).convert("RGB")):
+            assert _brightness(px) < 70, f"slide {idx} corner not navy: {px}"
 
 
 def test_slides_have_no_progress_bar(tmp_path):
@@ -242,6 +243,10 @@ def test_build_images_slide_error_degrades_to_hook_only(tmp_path, monkeypatch):
         raise RuntimeError("item render broke")
 
     monkeypatch.setattr(images, "_render_item_slide", boom)
+    # the default style's layout is "centered" (now a real fn, not a stub that
+    # delegates to _render_item_slide) -> also force it to fail so the item
+    # slide has no working render path and the OUTER degrade kicks in.
+    monkeypatch.setitem(images.LAYOUTS, "centered", boom)
     called = []
     monkeypatch.setattr(images, "_legacy_fallback",
                         lambda *a, **k: called.append(1) or ["nope"])
@@ -257,6 +262,9 @@ def test_build_images_falls_back_to_legacy_when_hook_render_fails(tmp_path, monk
 
     monkeypatch.setattr(images, "_render_hook_slide", boom)
     monkeypatch.setattr(images, "_render_item_slide", boom)
+    # default style layout "centered" is a real fn now — force it to fail too so
+    # every render path is exhausted and build_images drops to legacy media.
+    monkeypatch.setitem(images.LAYOUTS, "centered", boom)
     monkeypatch.setattr(images, "_legacy_fallback",
                         lambda art, od, size: [str(tmp_path / "legacy.jpg")])
     out = images.build_images(_art(), tmp_path, size=(1080, 1350), root=tmp_path)
@@ -462,6 +470,28 @@ def test_draw_texture_plain_is_true_noop():
     images._draw_texture(im, "plain", _pal())
     images._draw_texture(im, "totally-unknown-kind", _pal())
     assert im.tobytes() == before
+
+
+def test_layout_centered_renders_all_roles(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    spies = {k: [] for k in ("lockup", "hook", "swipe", "handle")}
+    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append(a) or 300)
+    monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: spies["hook"].append(a) or True)
+    monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: spies["swipe"].append(a))
+    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(a))
+    st = _st.Style("t", "centered", "ink-on-white", "grotesk", "dots", "underline", "tile")
+    ctx = images.RenderCtx((1080, 1350), _st.PALETTES["ink-on-white"],
+                           _st.font_paths("grotesk"), st, tmp_path, {})
+    models = images._slide_models(_story())
+    for sm in models:
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["centered"](im, sm, ctx)
+        assert im.size == (1080, 1350)
+    assert len(spies["hook"]) == 1          # hook drew the logo row
+    assert len(spies["lockup"]) == 1        # the one item with a tool (the _story() has 1)
+    assert len(spies["swipe"]) == 2         # hook + item, not close
+    assert len(spies["handle"]) == 3        # all roles
 
 
 def test_accent_shape_draws_for_shapes_and_noops_for_none():
