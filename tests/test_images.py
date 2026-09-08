@@ -288,6 +288,38 @@ def _story():
                           slides=slides, sources=[])
 
 
+def test_toolless_hook_draws_a_visible_fallback_on_every_layout(tmp_path, monkeypatch):
+    """A hook with tools=[] (topic-bank posts often name no product) must not
+    leave the mid-canvas empty — _hook_marks falls back to _draw_icon_fan.
+    Verified by rendering with the fan on vs. no-op'd and diffing."""
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    real_fan = images._draw_icon_fan
+    fan_on = {"v": True}
+    monkeypatch.setattr(images, "_draw_icon_fan",
+                        lambda *a, **k: real_fan(*a, **k) if fan_on["v"] else None)
+    hook = {"role": "hook", "headline": "Năm công cụ AI ít ai biết",
+            "body": "Bộ công cụ giúp bạn làm nhanh hơn.", "tools": []}
+    art = ArticleContent(format="share", caption_fb="x", caption_ig="y",
+                         hashtags=["#AI"], cover_title="T", sources=[],
+                         slides=[hook, {"role": "close", "headline": "Chốt",
+                                        "body": "Xong."}])
+    for layout in styles.LAYOUT_NAMES:
+        st = styles.Style("t", layout, "ink-on-white", "grotesk", "plain",
+                          "none", "tile")
+        ctx = images.RenderCtx((1080, 1350), styles.PALETTES["ink-on-white"],
+                               styles.font_paths("grotesk"), st, tmp_path,
+                               dict(images.BRAND_DEFAULTS), article=art)
+        sm = images._slide_models(art)[0]
+        fan_on["v"] = True
+        with_fan = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS[layout](with_fan, sm, ctx)
+        fan_on["v"] = False
+        no_fan = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS[layout](no_fan, sm, ctx)
+        diff = sum(1 for a, b in zip(with_fan.tobytes(), no_fan.tobytes()) if a != b)
+        assert diff > 5000, f"{layout}: fallback fan drew nothing ({diff} px changed)"
+
+
 def _rel_lum(hexstr):
     h = hexstr.lstrip("#")
     r, g, b = (int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))

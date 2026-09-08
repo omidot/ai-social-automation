@@ -173,25 +173,37 @@ def _make_tile(px: int, icon_fn, colour) -> Image.Image:
     return tile
 
 
-def _draw_icon_fan(img: Image.Image, b: dict, n: int = 5) -> None:
+def _draw_icon_fan(img: Image.Image, b: dict, n: int = 5,
+                   box: tuple | None = None) -> None:
     """Composite a shallow arc of ``n`` frosted-glass icon tiles onto ``img`` in
     place (the hook slide's signature element).
 
     Middle tile flat and lifted ~30px; neighbours rotate +/-8 deg, outer
     +/-16 deg. Each tile carries a soft, blurred drop shadow offset +8,+12.
+    ``box`` (x0,y0,x1,y1), when given, centres the fan inside that region
+    instead of the whole-canvas default — callers that repaint part of the
+    canvas afterwards must hand a box that clears it.
     """
     W, H = img.size
     names = [_ICON_ORDER[i % len(_ICON_ORDER)] for i in range(n)]
-    tile_px, step = 140, 200
-    base_y = int(H * 0.70)
+    if box is not None:
+        bx0, by0, bx1, by1 = (int(v) for v in box)
+        centre_x = (bx0 + bx1) // 2
+        base_y = int(by0 + (by1 - by0) * 0.62)
+        span = max(1, bx1 - bx0)
+        tile_px = min(140, int(span / (n + 0.5)))
+        step = min(200, int(span / (n + 0.2)))
+    else:
+        centre_x, base_y = W // 2, int(H * 0.70)
+        tile_px, step = 140, 200
     half = n // 2
     for k, name in enumerate(names):
         rel = k - half
         angle = -rel * 8
         lift = int(30 * (1 - abs(rel) / half)) if half else 30
-        cx = W // 2 + rel * step
+        cx = centre_x + rel * step
         cy = base_y - lift
-        tile = _make_tile(tile_px, _ICONS[name], b["tile_icon"])
+        tile = _make_tile(tile_px, _ICONS[name], b.get("tile_icon", "#1F2937"))
         rot = tile.rotate(angle, expand=True, resample=Image.BICUBIC)
         ox, oy = cx - rot.width // 2, cy - rot.height // 2
         shadow = Image.new("RGBA", rot.size, (0, 0, 0, 0))
@@ -521,7 +533,7 @@ def _hook_marks(img: Image.Image, box: tuple, ctx: "RenderCtx", sm) -> None:
     try:
         if _hook_logos(img, box, ctx.palette, sm.tools, ctx.style.logo, ctx.root):
             return
-        _draw_icon_fan(img, ctx.brand, n=3)
+        _draw_icon_fan(img, ctx.brand, n=3, box=box)
     except Exception as e:  # noqa: BLE001
         log.warning("hook marks failed: %s", e)
 
@@ -1969,9 +1981,9 @@ def _ticket_hook(img, sm, ctx, draw, perf_x: int) -> None:
 
     _hook_marks(img, (left_x, y + 40, perf_x - _TICKET_PAD, y + 40 + 300), ctx, sm)
     draw = ImageDraw.Draw(img)  # re-bind after paste
-    _swipe_hint(draw, ctx.size, pal, ctx.fonts, bottom=_TICKET_M + 30)
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts, bottom=_TICKET_M + 5)
     _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x,
-                 bottom=_TICKET_M + 30)
+                 bottom=_TICKET_M + 5)
 
 
 def _ticket_item(img, sm, ctx, draw, perf_x: int) -> None:
@@ -2029,9 +2041,9 @@ def _ticket_item(img, sm, ctx, draw, perf_x: int) -> None:
                           fill=_centered_body_fill(ctx))
             y += int(gsz * 1.55)
 
-    _swipe_hint(draw, ctx.size, pal, ctx.fonts, bottom=_TICKET_M + 30)
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts, bottom=_TICKET_M + 5)
     _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x,
-                 bottom=_TICKET_M + 30)
+                 bottom=_TICKET_M + 5)
 
 
 def _layout_ticket(img, sm, ctx) -> None:
