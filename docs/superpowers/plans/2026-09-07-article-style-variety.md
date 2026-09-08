@@ -4,7 +4,7 @@
 
 **Goal:** Every carousel is rendered in one of 24 rotating visual styles (6 Pillow layout archetypes × 4 palettes, each with its own font / texture / accent shape / logo treatment) instead of the single fixed v4 look; brand furniture (tool logos, "A Hít Official" handle, hook logo row, swipe hint, 40–70-word body) is identical across all styles.
 
-**Architecture:** A new `src/pipeline/styles.py` holds a `Style` dataclass, the palette/font tables, `load_styles()` (reads `config/styles.yaml`, validates 24 entries) and `pick_style()` (cyclic, skips the last 15, cursor in `data/style_cursor.json`). `images.py` keeps `build_images()` as the entry point but gains a `style=` param and a `LAYOUTS` dispatch table of 6 functions; the current v4 renderers are retained verbatim as `_fallback_hook` / `_fallback_item` for the degrade path. Each layout function draws background + texture + headline + body + accent within its own regions and calls four shared furniture helpers (`_logo_lockup`, `_hook_logos`, `_handle_line`, `_swipe_hint`) so brand elements can't drift.
+**Architecture:** A new `src/pipeline/styles.py` holds a `Style` dataclass, the palette/font tables, `load_styles()` (reads `config/styles.yaml`, validates 24 entries) and `pick_style()` (positional cursor, cursor in `data/style_cursor.json`). `images.py` keeps `build_images()` as the entry point but gains a `style=` param and a `LAYOUTS` dispatch table of 6 functions; the current v4 renderers `_render_hook_slide` / `_render_item_slide` stay under their existing names and are reused as the degrade path (a helper `_via_fallback` calls them). Each layout function draws background + texture + headline + body + accent within its own regions and calls four shared furniture helpers (`_logo_lockup`, `_hook_logos`, `_handle_line`, `_swipe_hint`) so brand elements can't drift.
 
 **Tech Stack:** Python 3.12, Pillow (`PIL`), PyYAML, `pytest`. No network image generation, no cutouts, no stock photos.
 
@@ -414,10 +414,10 @@ git commit -m "chore(assets): vendor Lora / JetBrains Mono / Nunito / Be Vietnam
   - `@dataclass SlideModel` — `role: str`, `index: int` (1-based slide number), `total: int`, `headline: str`, `body: str`, `bullets: list[str]`, `tool: dict | None`, `tools: list[dict]`.
   - `_slide_models(article) -> list[SlideModel]` — maps `article.slides` → `SlideModel`s, filling `index`/`total`, coercing missing keys to `""`/`[]`/`None`.
   - `@dataclass RenderCtx` — `size: tuple[int,int]`, `palette: dict`, `fonts: dict` (from `styles.font_paths`), `style: Style`, `root: Path`, `brand: dict`, `article` (the `ArticleContent`, so a layout can read `cover_title`).
-  - `LAYOUTS: dict[str, callable]` — keys = `styles.LAYOUT_NAMES`; each value `f(img, sm: SlideModel, ctx: RenderCtx) -> None` draws onto `img` in place. Task 3 ships all six as a thin stub that calls `_fallback_hook`/`_fallback_item` (so the dispatch is testable now; Tasks 5–10 replace them one by one).
-  - `_fallback_hook(article, slide, size, brand, root) -> Image` — the CURRENT `_render_hook_slide`, renamed, byte-for-byte.
-  - `_fallback_item(i, total, slide, size, brand, root) -> Image` — the CURRENT `_render_item_slide`, renamed, byte-for-byte.
-  - `build_images(article, out_dir, *, size, brand=None, root=None, style=None, **ignored) -> list[str]` — if `style is None`, `style = styles.pick_style(root)`; build `RenderCtx`; for each `SlideModel` create a `1080×1350` RGB canvas filled `palette["bg"]`, call `LAYOUTS[style.layout](img, sm, ctx)`, save. Per-slide `try/except` → that slide falls back to `_fallback_hook`/`_fallback_item`. Outer `try/except` unchanged (`_safe_fallback`).
+  - `LAYOUTS: dict[str, callable]` — keys = `styles.LAYOUT_NAMES`; each value `f(img, sm: SlideModel, ctx: RenderCtx) -> None` draws onto `img` in place. Task 3 ships all six as a thin stub (`_layout_stub`) that calls `_via_fallback` (so the dispatch is testable now; Tasks 5–10 replace them one by one).
+  - **No rename.** `_render_hook_slide(article, slide, size, brand, root)` and `_render_item_slide(i, total, slide, size, brand, root)` keep their names and bodies — `tests/test_images.py` has ~5 tests that call them directly to test the v4 renderers in isolation, plus 2 that monkeypatch them to test the degrade path; renaming would break all 7 for no benefit.
+  - `_via_fallback(sm: SlideModel, ctx: RenderCtx) -> Image` — rebuilds a `slide` dict from `sm` and calls `_render_hook_slide` (role "hook") or `_render_item_slide`, passing `ctx.article`.
+  - `build_images(article, out_dir, *, size, brand=None, root=None, style=None, **ignored) -> list[str]` — if `style is None`, `style = styles.pick_style(root)` (a `StyleError` → hardcoded default `Style`); build `RenderCtx`; for each `SlideModel` create a `1080×1350` RGB canvas filled `palette["bg"]`, call `LAYOUTS[style.layout](img, sm, ctx)`, save. Per-slide `try/except` → that slide re-renders via `_via_fallback`. Outer `try/except` unchanged (`_safe_fallback`).
 
 - [ ] **Step 1: Append tests to `tests/test_images.py`**
 
@@ -481,7 +481,7 @@ def test_one_bad_layout_slide_falls_back(tmp_path, monkeypatch):
     st = styles.Style("t", "centered", "ink-on-white", "grotesk", "dots", "underline", "tile")
     out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
                               brand={}, root=tmp_path, style=st)
-    assert len(out) == 3                          # still 3 images, item via _fallback_item
+    assert len(out) == 3                          # still 3 images, bad item via _via_fallback
     assert Image.open(out[1]).size == (1080, 1350)
 
 
@@ -508,9 +508,18 @@ from dataclasses import dataclass, field
 from . import media, styles
 ```
 
-Rename `_render_hook_slide` → `_fallback_hook` and `_render_item_slide` →
-`_fallback_item` (definitions AND the two call sites in `_safe_fallback` and the
-old `build_images` body). Leave their bodies untouched.
+Do **not** rename anything. `_render_hook_slide` and `_render_item_slide` keep
+their names and bodies. Existing `tests/test_images.py` keeps working:
+- the ~5 tests that call `_render_hook_slide` / `_render_item_slide` directly
+  still test the v4 renderers unchanged;
+- `test_build_images_slide_error_degrades_to_hook_only` and
+  `test_build_images_falls_back_to_legacy_when_hook_render_fails` monkeypatch
+  `_render_item_slide` / `_render_hook_slide` to raise — with the new
+  `build_images`, a raising layout stub routes the slide to `_via_fallback`,
+  which calls the same monkeypatched `_render_item_slide`, which also raises,
+  so the per-slide `except` propagates to the OUTER `try` → `_safe_fallback`
+  → same observable result (hook-only, then legacy). Both keep passing. Run
+  them explicitly in Step 4 and confirm.
 
 Add the models + dispatch, just above `build_images`:
 
@@ -561,8 +570,8 @@ def _via_fallback(sm: "SlideModel", ctx: "RenderCtx"):
     slide = {"role": sm.role, "headline": sm.headline, "body": sm.body,
              "bullets": sm.bullets, "tool": sm.tool, "tools": sm.tools}
     if sm.role == "hook":
-        return _fallback_hook(ctx.article, slide, ctx.size, b, ctx.root)
-    return _fallback_item(sm.index, sm.total, slide, ctx.size, b, ctx.root)
+        return _render_hook_slide(ctx.article, slide, ctx.size, b, ctx.root)
+    return _render_item_slide(sm.index, sm.total, slide, ctx.size, b, ctx.root)
 
 
 # Tasks 5-10 replace these stubs one at a time with real layout functions.
@@ -786,7 +795,7 @@ def test_layout_<name>_renders_all_roles(tmp_path, monkeypatch):
 **Look:** the closest to v4. Everything centred. Hook: dark feel comes from
 `white-on-navy`/`mono-contrast` palettes, not hard-coded. Kicker pill
 "A HÍT OFFICIAL" top-centre; headline centred mid-canvas with one long word blown
-up in `palette["accent"]` (reuse the `big_idx` trick from `_fallback_hook`);
+up in `palette["accent"]` (reuse the `big_idx` trick from `_render_hook_slide`);
 sub-body centred; `_hook_logos` box `(margin, y+40, W-margin, y+40+320)`.
 Item: `_logo_lockup` centred at top (`box` centred, 190px), brand name under or
 beside; headline centred; underline/accent centred; body centred (wrap to ~80% W);
