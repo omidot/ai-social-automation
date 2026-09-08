@@ -15,8 +15,8 @@ Plan-1 ledger archived at .superpowers/sdd/progress-plan1.md
 - Task 7: complete (commits 27e0df5..9100f93, review Needs-fixes -> fixed; accent bar bottom 45%, shadowed-palette recolour for handle/swipe on bar; fix: bulleted-item body capped 3 lines (measured all faces), _bottom_bar_close delegates to _centered_close. 189 green)
 - Task 8: complete (commits 9100f93..cc7839d, review Approved; 14% tint band top half + 3px divider, close delegates to _centered_close; minors: no fits-above-lockup test, left-aligned body/bullets dup across layouts 6/7/8)
 - Task 9: complete (commit be5af3d; _layout_magazine — forced editorial serif, 110px margins, tracked kicker, headline boxed by 2 hairline rules + accent_shape (underline/bracket only), body -> 2 columns when >6 col-width lines else 1, accent drop-cap hung in left gutter (first char sliced, no reflow), item lockup forced "mono", close -> _centered_close. 191 -> 194 green, no existing test edited. + fix 80b9d9c (review Needs-fixes): _logo_lockup gained name_font= kwarg, magazine passes serif fonts["bold"] so brand name matches; +_mag_wrap_body content_w param. 195 green. minors: drop-cap invisible-as-accent on mono-contrast (accent==ink); bracket/underline can sit near lower rule — Task 12 QA; left-aligned body/bullet dup now across layouts 6/7/8/9)
-- Task 10: IN PROGRESS — _layout_ticket
-- Task 11: pending — wire pick_style into article_run.draft() + store style name
+- Task 10: complete (commits 80b9d9c..9e39505, review Approved; inset dashed card over textured ground, perforation dots -> left content/right stub, ghost number in stub, close -> _centered_close; concerns for Task 12 QA: item body 6-line cap truncates mid-sentence on mono (bump to ~8-9), handle low-contrast in card footer)
+- Task 11: IN PROGRESS — wire pick_style into article_run.draft() + store style name
 - Task 12: pending — sample-render script + full suite + visual QA
 
 ## Minor findings roll-up
