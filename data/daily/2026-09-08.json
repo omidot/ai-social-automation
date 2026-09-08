@@ -2,26 +2,21 @@
   "date": "2026-09-08",
   "posts": {
     "morning": {
-      "status": "expired",
+      "status": "draft",
       "format": "share",
-      "title": "Cách dùng AI viết 30 bài đăng mạng xã hội trong một buổi",
-      "topic_key": "cach-dung-ai-viet-30-bai-ang-mang-xa-hoi-trong-mot",
-      "text_fb": "Mình từng mất cả tuần chỉ để nghĩ xem tháng này đăng gì. Giờ thì một buổi chiều là xong hết 30 bài, từ ý tưởng đến ảnh minh hoạ.\n\nBí quyết không phải là có AI xịn hơn người khác. Bí quyết nằm ở việc mình chuẩn bị trước khi mở AI lên. Mình dành 15 phút liệt kê 4-5 chủ đề lớn, mỗi chủ đề tách ra vài góc nhỏ, thế là có sẵn 30 ý tưởng khung xương trước khi viết một chữ nào.\n\nSau đó mình mới đưa hết danh sách đó vào ChatGPT cùng một lúc, kèm mẫu giọng văn muốn dùng. Viết hàng loạt như vậy nhanh hơn hẳn so với hỏi từng câu một, vì AI giữ mạch giọng xuyên suốt cả 30 bài. Mình chỉ cần đọc lại và chỉnh câu mở đầu cho từng bài để không bị lặp công thức.\n\nCaption viết xong thì mình dán vào một bảng Notion, chia cột theo ngày đăng và nền tảng. Nhìn cả tháng trên một màn hình giúp phát hiện ngay chỗ nào lặp ý hoặc thiếu ảnh.\n\nPhần hình ảnh mình không thiết kế từ đầu mỗi lần, mà dùng một template Canva cố định, chỉ đổi tiêu đề và ảnh nền. Cuối cùng, mọi thứ được đẩy vào Buffer để đặt lịch đăng tự động cho cả tháng.\n\nCả quy trình nghe có vẻ nhiều bước, nhưng làm quen rồi thì gói gọn trong một buổi làm việc tập trung. Quan trọng nhất vẫn là bước chuẩn bị khung nội dung, bỏ qua bước này thì AI viết nhanh mấy cũng thành lan man.",
-      "text_ig": "Một buổi chiều, xong 30 bài đăng cho cả tháng. Bí quyết: chuẩn bị khung chủ đề trước, rồi để ChatGPT viết hàng loạt, gom vào Notion, dựng ảnh bằng Canva, đặt lịch bằng Buffer. Chuẩn bị kỹ, AI làm phần còn lại nhanh gọn.",
+      "title": "Cách dùng AI lên lịch đăng bài Facebook, TikTok cả tuần trong 30 phút",
+      "topic_key": "cach-dung-ai-len-lich-ang-bai-facebook-tiktok-ca-t",
+      "text_fb": "Đăng bài thủ công mỗi ngày là nguyên nhân khiến nhiều bạn bán hàng online kiệt sức. Việc vò đầu bứt tóc tìm ý tưởng, viết caption rồi canh giờ đăng tốn quá nhiều thời gian quý báu.\n\nThực tế bạn hoàn toàn có thể giải quyết toàn bộ công việc nội dung cho cả tuần chỉ trong vòng ba mươi phút nhờ tận dụng các công cụ AI hiện có.\n\nĐầu tiên, bạn dùng ChatGPT để tạo bộ khung nội dung cho cả tuần. Hãy yêu cầu AI phân chia rõ các trụ cột gồm bài bán hàng, bài chia sẻ kinh nghiệm và bài tăng tương tác. Bạn sẽ nhận được kịch bản chi tiết từ tiêu đề đến lời kêu gọi hành động.\n\nTiếp theo, bạn mang toàn bộ nội dung chữ này sang công cụ Canva. Tính năng tạo hàng loạt sẽ giúp bạn xuất ra bộ ảnh bài đăng trong vài giây mà không cần thiết kế từng tấm thủ công.\n\nĐối với kênh TikTok, công cụ CapCut hỗ trợ biến kịch bản chữ thành video hoàn chỉnh. AI sẽ tự tạo giọng đọc, chèn phụ đề và ghép hình ảnh phù hợp chỉ qua một cú nhấp chuột.\n\nCuối cùng, bạn chỉ cần tải toàn bộ hình ảnh và video lên Meta Business Suite cùng TikTok Studio để lên lịch tự động. Hệ thống sẽ tự phân phối bài viết đúng khung giờ vàng mỗi ngày.\n\nThay vì mất hai tiếng mỗi ngày, giờ đây bạn chỉ tốn nửa tiếng vào đầu tuần. Bạn hãy thử áp dụng ngay quy trình này để dành thời gian tập trung vào việc chốt đơn và chăm sóc khách hàng.",
+      "text_ig": "Bạn mệt mỏi vì phải đăng bài Facebook, TikTok mỗi ngày? Hãy dùng AI để tự động hóa toàn bộ từ viết kịch bản, thiết kế ảnh đến lên lịch đăng cả tuần chỉ trong 30 phút. Xem ngay carousel để biết chi tiết!",
       "hashtags": [
-        "#AI",
-        "#ContentAI",
-        "#ViếtNộiDung",
-        "#MạngXãHội",
-        "#ChatGPT",
-        "#Notion",
-        "#Canva",
-        "#Buffer",
-        "#ContentCalendar",
-        "#SángTạoNộiDung",
         "#AHitOfficial",
-        "#NăngSuất",
-        "#DigitalMarketing"
+        "#CongNgheAI",
+        "#KinhDoanhOnline",
+        "#MeoMKT",
+        "#AIContent",
+        "#ThuThuatAI",
+        "#BanHangOnline",
+        "#TuDongHoa"
       ],
       "images": [
         "assets/posts/2026-09-08/morning/01.jpg",
@@ -29,8 +24,7 @@
         "assets/posts/2026-09-08/morning/03.jpg",
         "assets/posts/2026-09-08/morning/04.jpg",
         "assets/posts/2026-09-08/morning/05.jpg",
-        "assets/posts/2026-09-08/morning/06.jpg",
-        "assets/posts/2026-09-08/morning/07.jpg"
+        "assets/posts/2026-09-08/morning/06.jpg"
       ],
       "image_urls": [
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/01.jpg",
@@ -38,13 +32,13 @@
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/03.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/04.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/05.jpg",
-        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/06.jpg",
-        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/07.jpg"
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/06.jpg"
       ],
       "risk": false,
       "slot_ict": "11:30",
       "sources": [],
-      "angle": "Hướng dẫn từng bước để lên xong nội dung mạng xã hội cho cả tháng chỉ trong một buổi làm việc với AI"
+      "angle": "Bài này hướng dẫn từng bước dùng AI soạn và lên lịch nội dung cho cả tuần chỉ trong nửa tiếng, giúp người bán hàng online tiết kiệm thời gian đăng bài thủ công mỗi ngày.",
+      "style": "white-centered"
     }
   }
 }
