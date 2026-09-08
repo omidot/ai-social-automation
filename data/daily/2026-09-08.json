@@ -2,43 +2,55 @@
   "date": "2026-09-08",
   "posts": {
     "morning": {
-      "status": "expired",
+      "status": "posted",
       "format": "share",
-      "title": "Cách dùng AI lên lịch đăng bài Facebook, TikTok cả tuần trong 30 phút",
-      "topic_key": "cach-dung-ai-len-lich-ang-bai-facebook-tiktok-ca-t",
-      "text_fb": "Đăng bài thủ công mỗi ngày là nguyên nhân khiến nhiều bạn bán hàng online kiệt sức. Việc vò đầu bứt tóc tìm ý tưởng, viết caption rồi canh giờ đăng tốn quá nhiều thời gian quý báu.\n\nThực tế bạn hoàn toàn có thể giải quyết toàn bộ công việc nội dung cho cả tuần chỉ trong vòng ba mươi phút nhờ tận dụng các công cụ AI hiện có.\n\nĐầu tiên, bạn dùng ChatGPT để tạo bộ khung nội dung cho cả tuần. Hãy yêu cầu AI phân chia rõ các trụ cột gồm bài bán hàng, bài chia sẻ kinh nghiệm và bài tăng tương tác. Bạn sẽ nhận được kịch bản chi tiết từ tiêu đề đến lời kêu gọi hành động.\n\nTiếp theo, bạn mang toàn bộ nội dung chữ này sang công cụ Canva. Tính năng tạo hàng loạt sẽ giúp bạn xuất ra bộ ảnh bài đăng trong vài giây mà không cần thiết kế từng tấm thủ công.\n\nĐối với kênh TikTok, công cụ CapCut hỗ trợ biến kịch bản chữ thành video hoàn chỉnh. AI sẽ tự tạo giọng đọc, chèn phụ đề và ghép hình ảnh phù hợp chỉ qua một cú nhấp chuột.\n\nCuối cùng, bạn chỉ cần tải toàn bộ hình ảnh và video lên Meta Business Suite cùng TikTok Studio để lên lịch tự động. Hệ thống sẽ tự phân phối bài viết đúng khung giờ vàng mỗi ngày.\n\nThay vì mất hai tiếng mỗi ngày, giờ đây bạn chỉ tốn nửa tiếng vào đầu tuần. Bạn hãy thử áp dụng ngay quy trình này để dành thời gian tập trung vào việc chốt đơn và chăm sóc khách hàng.",
-      "text_ig": "Bạn mệt mỏi vì phải đăng bài Facebook, TikTok mỗi ngày? Hãy dùng AI để tự động hóa toàn bộ từ viết kịch bản, thiết kế ảnh đến lên lịch đăng cả tuần chỉ trong 30 phút. Xem ngay carousel để biết chi tiết!",
+      "title": "Cách dùng AI dựng landing page bán hàng không cần biết code",
+      "topic_key": "cach-dung-ai-dung-landing-page-ban-hang-khong-can-",
+      "text_fb": "Nhiều bạn nghĩ muốn có một landing page bán hàng chuyên nghiệp thì bắt buộc phải thuê lập trình viên hoặc biết viết code phức tạp. Sự thật là với các công cụ AI hiện nay, bạn hoàn toàn có thể tự tay hoàn thiện một trang bán hàng tối ưu chuyển đổi chỉ trong vài giờ.\n\nQuy trình bắt đầu từ việc chuẩn bị nội dung. Bạn sử dụng ChatGPT để xây dựng kịch bản bán hàng theo các mô hình chuẩn như PAS hay AIDA. Nhờ AI định hình rõ tiêu đề gây chú ý, dàn bài chi tiết và lời kêu gọi hành động dứt khoát dành riêng cho tệp khách hàng mục tiêu.\n\nTiếp theo, bạn đưa ý tưởng vào Framer AI để dựng khung giao diện. Chỉ cần nhập prompt mô tả sản phẩm, công cụ này sẽ tự động tạo ra một trang web đẹp mắt với đầy đủ màu sắc và bố cục hợp lý. Bạn chỉ việc tinh chỉnh lại nội dung cho chuẩn xác.\n\nĐể trang web thêm thu hút, bạn dùng Midjourney thiết kế các hình ảnh minh họa chất lượng cao. Việc này giúp sản phẩm xuất hiện ấn tượng, đồng bộ về phong cách và xây dựng niềm tin tốt hơn với người mua.\n\nCuối cùng, hãy kiểm tra lại toàn bộ hiển thị trên giao diện điện thoại và máy tính trước khi xuất bản. Việc làm chủ AI giúp bạn chủ động hoàn toàn trong khâu bán hàng mà không tốn chi phí thuê ngoài.",
+      "text_ig": "Tự làm landing page bán hàng chuyên nghiệp trong vài giờ mà không cần biết code. Kết hợp ChatGPT, Framer và Midjourney giúp bạn làm chủ toàn bộ quy trình từ kịch bản đến giao diện. Bắt đầu ngay hôm nay!",
       "hashtags": [
         "#AHitOfficial",
+        "#AI",
+        "#LandingPage",
+        "#FramerAI",
+        "#ChatGPT",
+        "#Midjourney",
+        "#HocAI",
         "#CongNgheAI",
         "#KinhDoanhOnline",
-        "#MeoMKT",
-        "#AIContent",
-        "#ThuThuatAI",
-        "#BanHangOnline",
-        "#TuDongHoa"
+        "#MarketingAI"
       ],
       "images": [
         "assets/posts/2026-09-08/morning/01.jpg",
         "assets/posts/2026-09-08/morning/02.jpg",
         "assets/posts/2026-09-08/morning/03.jpg",
         "assets/posts/2026-09-08/morning/04.jpg",
-        "assets/posts/2026-09-08/morning/05.jpg",
-        "assets/posts/2026-09-08/morning/06.jpg"
+        "assets/posts/2026-09-08/morning/05.jpg"
       ],
       "image_urls": [
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/01.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/02.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/03.jpg",
         "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/04.jpg",
-        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/05.jpg",
-        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/06.jpg"
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/05.jpg"
       ],
       "risk": false,
       "slot_ict": "11:30",
       "sources": [],
-      "angle": "Bài này hướng dẫn từng bước dùng AI soạn và lên lịch nội dung cho cả tuần chỉ trong nửa tiếng, giúp người bán hàng online tiết kiệm thời gian đăng bài thủ công mỗi ngày.",
-      "style": "white-centered"
+      "angle": "Bài này hướng dẫn từng bước tạo trang bán hàng chuyên nghiệp bằng AI trong vài giờ mà không cần biết lập trình.",
+      "style": "navy-centered",
+      "fb_post_id": "1381130541740424_122096304171476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122096304171476035",
+          "url": "https://facebook.com/1381130541740424_122096304171476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": true,
+          "media_id": "18458756035138521"
+        }
+      }
     }
   }
 }
