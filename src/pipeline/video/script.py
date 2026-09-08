@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json
+import re
 from pathlib import Path
 
 from ..llm import generate as _default_generate, parse_json_response, LLMError
@@ -59,6 +60,31 @@ def _validate(data: dict, cfg: dict) -> Script:
     if starts[-1] >= len(s.cards):
         raise VideoScriptError("section card_start beyond last card")
     return s
+
+
+_HASHTAG = re.compile(r"^#\S+$")
+
+
+def _validate_meta(data: dict) -> "VideoMeta":
+    from .models import VideoMeta
+    try:
+        title = str(data["title"]).strip()
+        desc = str(data["description"]).strip()
+        tags = [str(h).strip() for h in data["hashtags"]]
+        kws = [str(k).strip() for k in data["keywords"]]
+        tk = str(data["tiktok_caption"]).strip()
+    except (KeyError, TypeError) as e:
+        raise VideoScriptError(f"bad publish meta: {e}") from e
+    if not (10 <= len(title) <= 70):
+        raise VideoScriptError(f"meta title length {len(title)} outside 10..70")
+    if not (8 <= len(tags) <= 12) or not all(_HASHTAG.match(h) for h in tags):
+        raise VideoScriptError(f"meta hashtags invalid: {tags}")
+    if not (5 <= len(kws) <= 10):
+        raise VideoScriptError(f"meta keywords count {len(kws)} outside 5..10")
+    if len(tk) > 150:
+        raise VideoScriptError(f"tiktok_caption {len(tk)} > 150 chars")
+    return VideoMeta(title=title, description=desc, hashtags=tags,
+                     keywords=kws, tiktok_caption=tk)
 
 
 def generate(cand: Candidate, post: PostContent, voice: dict, cfg: dict, llm=None) -> Script:

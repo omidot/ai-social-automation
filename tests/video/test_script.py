@@ -90,3 +90,33 @@ def test_write_script_json(tmp_path):
     p = script.write_script_json(s, tmp_path)
     assert p.exists() and json.loads(p.read_text(encoding="utf-8"))["cards"]
     assert p.name == "script.json"
+
+_GOOD_META = {
+    "title": "AI vừa có một bước nhảy lớn hôm nay",
+    "description": "Một mô hình mới vừa ra mắt. Theo dõi kênh để không bỏ lỡ.",
+    "hashtags": ["#AI", "#congnghe", "#tudonghoa", "#ainews", "#chatgpt",
+                 "#automation", "#ahitofficial", "#vietnam"],
+    "keywords": ["ai", "tự động hoá", "công nghệ", "mô hình ngôn ngữ", "n8n", "chatgpt"],
+    "tiktok_caption": "AI vừa nhảy vọt, bạn theo kịp chưa? #AI #congnghe #fyp",
+}
+
+def test_validate_meta_ok():
+    m = script._validate_meta(dict(_GOOD_META))
+    assert m.title.startswith("AI vừa")
+    assert len(m.hashtags) == 8
+
+@pytest.mark.parametrize("mutate", [
+    lambda d: d.update(title="Ngắn"),                                   # < 10 chars
+    lambda d: d.update(title="x" * 71),                                 # > 70
+    lambda d: d.update(hashtags=d["hashtags"][:5]),                     # < 8
+    lambda d: d.update(hashtags=d["hashtags"] + ["#a"] * 6),            # > 12
+    lambda d: d.update(hashtags=["no-hash"] + d["hashtags"][1:]),       # bad element
+    lambda d: d.update(keywords=d["keywords"][:3]),                     # < 5
+    lambda d: d.update(tiktok_caption="x" * 151),                       # > 150
+    lambda d: d.pop("description"),                                     # missing
+])
+def test_validate_meta_rejects(mutate):
+    d = dict(_GOOD_META)
+    mutate(d)
+    with pytest.raises(VideoScriptError):
+        script._validate_meta(d)
