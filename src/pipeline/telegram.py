@@ -54,6 +54,18 @@ class Telegram:
                               data={"chat_id": self.chat_id, "caption": caption},
                               files={"document": (Path(path).name, fh)})
 
+    def send_video(self, path: str, caption: str = "",
+                   buttons: list[tuple[str, str]] | None = None) -> dict:
+        data = {"chat_id": self.chat_id}
+        if caption:
+            data["caption"] = caption
+        if buttons:
+            data["reply_markup"] = {"inline_keyboard": [
+                [{"text": lbl, "callback_data": cb} for lbl, cb in buttons]]}
+        with open(path, "rb") as fh:
+            return self._post("sendVideo", data=data,
+                              files={"video": (Path(path).name, fh, "video/mp4")})
+
     def get_updates(self, offset: int, timeout: int = 0) -> list[dict]:
         resp = self._post("getUpdates", data={"offset": offset, "timeout": timeout})
         return resp.get("result", [])
