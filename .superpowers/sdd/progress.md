@@ -17,7 +17,7 @@ Plan-1 ledger archived at .superpowers/sdd/progress-plan1.md
 - Task 9: complete (commit be5af3d; _layout_magazine — forced editorial serif, 110px margins, tracked kicker, headline boxed by 2 hairline rules + accent_shape (underline/bracket only), body -> 2 columns when >6 col-width lines else 1, accent drop-cap hung in left gutter (first char sliced, no reflow), item lockup forced "mono", close -> _centered_close. 191 -> 194 green, no existing test edited. + fix 80b9d9c (review Needs-fixes): _logo_lockup gained name_font= kwarg, magazine passes serif fonts["bold"] so brand name matches; +_mag_wrap_body content_w param. 195 green. minors: drop-cap invisible-as-accent on mono-contrast (accent==ink); bracket/underline can sit near lower rule — Task 12 QA; left-aligned body/bullet dup now across layouts 6/7/8/9)
 - Task 10: complete (commits 80b9d9c..9e39505, review Approved; inset dashed card over textured ground, perforation dots -> left content/right stub, ghost number in stub, close -> _centered_close; concerns for Task 12 QA: item body 6-line cap truncates mid-sentence on mono (bump to ~8-9), handle low-contrast in card footer)
 - Task 11: complete (commit 34afe88, diff verified by controller — pick_style before build_images, style= kwarg, style_name in ds.put, failure -> "default"; 198 green)
-- Task 12: IN PROGRESS — sample-render script + full suite + visual QA
+- Task 12: complete (commit 3b48db4; all 24 rendered 1080x1350 no crash; caps raised: ticket body 12, bottom-bar block 52%+cap 5, left-rail/split 9; +test_no_layout_truncates_a_45_word_body; 199 green. 23/24 clean, mono-bar clips ~2 words of a 60+word body (cosmetic, real bodies 40-70w)). ALL 12 TASKS COMPLETE.
 
 ## Minor findings roll-up
 (none yet)
