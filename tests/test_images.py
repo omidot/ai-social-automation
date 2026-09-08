@@ -59,7 +59,8 @@ def _band_has_brand_blue(path, y0, y1):
 # --- full carousel ------------------------------------------------------
 
 def test_build_images_renders_hook_plus_items(tmp_path):
-    out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None)
+    out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None,
+                              root=tmp_path)
     assert [Path(p).name for p in out] == \
         ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg"]
     for p in out:
@@ -74,7 +75,8 @@ def test_build_images_renders_hook_plus_items(tmp_path):
 def test_slides_have_no_progress_bar(tmp_path):
     # v4: the segmented top progress bar is gone — no long horizontal brand-blue
     # run anywhere in the top 60px band of any slide.
-    out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None)
+    out = images.build_images(_art(), tmp_path, size=(1080, 1350), brand=None,
+                              root=tmp_path)
     for p in out:
         im = Image.open(p).convert("RGB")
         W, _ = im.size
@@ -91,7 +93,7 @@ def test_slides_have_no_progress_bar(tmp_path):
 
 
 def test_build_images_ignores_retired_kwargs(tmp_path):
-    out = images.build_images(_art(), tmp_path, size=(1080, 1350),
+    out = images.build_images(_art(), tmp_path, size=(1080, 1350), root=tmp_path,
                               style_prompt="cinematic", provider="gemini", gen=object())
     assert len(out) == 6
 
@@ -243,7 +245,7 @@ def test_build_images_slide_error_degrades_to_hook_only(tmp_path, monkeypatch):
     called = []
     monkeypatch.setattr(images, "_legacy_fallback",
                         lambda *a, **k: called.append(1) or ["nope"])
-    out = images.build_images(_art(), tmp_path, size=(1080, 1350))
+    out = images.build_images(_art(), tmp_path, size=(1080, 1350), root=tmp_path)
     assert len(out) == 1
     assert Path(out[0]).name == "01.jpg" and Path(out[0]).exists()
     assert not called, "must not drop to legacy media when the hook slide still renders"
@@ -257,7 +259,7 @@ def test_build_images_falls_back_to_legacy_when_hook_render_fails(tmp_path, monk
     monkeypatch.setattr(images, "_render_item_slide", boom)
     monkeypatch.setattr(images, "_legacy_fallback",
                         lambda art, od, size: [str(tmp_path / "legacy.jpg")])
-    out = images.build_images(_art(), tmp_path, size=(1080, 1350))
+    out = images.build_images(_art(), tmp_path, size=(1080, 1350), root=tmp_path)
     assert out == [str(tmp_path / "legacy.jpg")]
 
 
@@ -281,23 +283,43 @@ def _story():
 def test_build_images_with_explicit_style(tmp_path, monkeypatch):
     monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
     st = styles.Style("t", "centered", "ink-on-white", "grotesk", "dots", "underline", "tile")
+    picked = []
+    monkeypatch.setattr(styles, "pick_style",
+                        lambda root, now=None: picked.append(root) or st)
+    seen = {}
+
+    def recorder(img, sm, ctx):
+        seen.setdefault("style", ctx.style)
+        seen.setdefault("palette", ctx.palette)
+
+    monkeypatch.setitem(images.LAYOUTS, "centered", recorder)
     out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
                               brand={}, root=tmp_path, style=st)
     assert len(out) == 3
     for p in out:
-        im = Image.open(p)
-        assert im.size == (1080, 1350)
+        assert Image.open(p).size == (1080, 1350)
+    assert picked == []                         # explicit style must NOT consult pick_style
+    assert seen["style"] is st                  # the given style reached the layout
+    assert seen["palette"] == styles.palette_for(st, {})
 
 
 def test_build_images_picks_a_style_when_none(tmp_path, monkeypatch):
     monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    seen = {}
+    st = styles.Style("x", "left-rail", "white-on-navy", "grotesk", "plain", "bar", "chip")
+    called = []
     monkeypatch.setattr(styles, "pick_style",
-                        lambda root, now=None: styles.Style(
-                            "x", "left-rail", "white-on-navy", "grotesk",
-                            "plain", "bar", "chip"))
+                        lambda root, now=None: (called.append(root), st)[1])
+
+    def recorder(img, sm, ctx):
+        seen.setdefault("style", ctx.style)
+
+    monkeypatch.setitem(images.LAYOUTS, "left-rail", recorder)
     out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
                               brand={}, root=tmp_path)
     assert len(out) == 3
+    assert called == [tmp_path]                 # pick_style was consulted with root
+    assert seen["style"].name == "x"            # and the chosen style reached the layout
 
 
 def test_one_bad_layout_slide_falls_back(tmp_path, monkeypatch):
@@ -323,9 +345,17 @@ def test_bad_style_config_uses_default(tmp_path, monkeypatch):
     monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
     monkeypatch.setattr(styles, "pick_style",
                         lambda *a, **k: (_ for _ in ()).throw(styles.StyleError("boom")))
+    seen = {}
+
+    def recorder(img, sm, ctx):
+        seen.setdefault("style", ctx.style)
+
+    monkeypatch.setitem(images.LAYOUTS, "centered", recorder)
     out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
                               brand={}, root=tmp_path)      # must not raise
     assert len(out) == 3
+    assert seen["style"].name == "default"      # bad config -> hardcoded default look
+    assert seen["style"].layout == "centered"
 
 
 def test_legacy_fallback_normalizes_to_size(tmp_path, monkeypatch):
