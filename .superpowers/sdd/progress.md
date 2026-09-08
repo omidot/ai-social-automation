@@ -35,3 +35,12 @@ Plan-1 ledger archived at .superpowers/sdd/progress-plan1.md
 - Task 5 added: _pill, _fit_lines_font, _centre_lines, _centered_body_fill (local to images.py).
 - Task 6 added: _handle_line gained `left: int = 80` kwarg (used by left-rail).
 - Duplication watch: 34->30->28 body-shrink loop + bullet ellipse/wrap/text loop are near-identical across _centered_item and _left_rail_item (differ only by anchor). Candidate for one shared alignment-parameterised helper — deferred cleanup.
+
+## Final whole-branch review (opus) — 3 rounds
+R1 (eb5fa41..00ceebe): "With fixes" — Critical: (#1) settings.yaml images.brand's v4 accent/ink/muted overrode EVERY palette -> 12/24 styles invisible; (#2) Lora/JetBrains/Nunito vendored as variable fonts -> hairline headlines. Important: (#3) tools-less hook = 40% empty canvas; (#4) ticket handle straddles card border; (#5) no test on the production brand path.
+Fix df921c4: #1 (drop 3 keys from settings.yaml), #2 (fontTools instancer -> static weights + OFL-NOTICE), #3 (_hook_marks helper), #4 (bottom= kwarg), #5 (test_production_config_every_style_is_legible), bonus _mono_logo opaque-favicon -> glyph.
+R2 (00ceebe..df921c4): "No" — #3/#4 not actually closed: _draw_icon_fan ignored its box (fan painted over by bottom-bar block = 0px; straddled ticket perforation); ticket bottom=_TICKET_M+30 overshot -> dashed frame struck through footer text.
+Fix 4541f63: _draw_icon_fan honours box=; ticket bottom=_TICKET_M+5; +test_toolless_hook_draws_a_visible_fallback_on_every_layout (fails on old tree with the 0px bottom-bar signature).
+R3 (df921c4..4541f63): "Yes" — both criticals closed, verified by measurement. 244 tests. Minor follow-ups: fan test asserts visibility not placement; b.get("tile_icon","#1F2937") literal; warm-editorial muted/bg 3.46:1 (pre-existing); JetBrainsMono/Nunito italic not vendored (falls back to BVP).
+
+ALL DONE — Plan 2 ready to merge. 24 styles, 6 layouts, auto-rotated per post, brand furniture identical across all, degrades to v4 on any failure.
