@@ -1478,10 +1478,158 @@ def _layout_bottom_bar(img, sm, ctx) -> None:
         _bottom_bar_item(img, sm, ctx, draw)
 
 
+# --- Task 8: the "split" archetype ------------------------------------
+# Top ~46% = a soft accent TINT band (bg blended ~14% toward accent) holding a
+# tracked small-caps kicker + the headline; a 3px solid accent divider at the
+# midline; the lower half carries body (+ bullets on item) and the furniture.
+# The close slide drops the band for the plain centred wrap-up (``_centered_close``).
+
+_SPLIT_MARGIN = 90
+
+
+def _split_band(img: Image.Image, ctx) -> tuple[ImageDraw.ImageDraw, int]:
+    """Texture over the whole canvas, then the top ~46% blended ~14% toward the
+    accent, then the 3px accent divider. Returns ``(draw, mid_y)`` — a fresh
+    ``ImageDraw`` bound to ``img`` (rebound after the blend paste) + the midline."""
+    _draw_texture(img, ctx.style.texture, ctx.palette)
+    W, H = ctx.size
+    mid = int(H * 0.46)
+    band = img.crop((0, 0, W, mid))
+    fill = Image.new("RGB", band.size, tuple(_hex(ctx.palette["accent"])))
+    img.paste(Image.blend(band, fill, 0.14), (0, 0))
+    draw = ImageDraw.Draw(img)  # re-bind after the paste
+    draw.rectangle((0, mid, W, mid + 2), fill=ctx.palette["accent"])  # 3px divider
+    return draw, mid
+
+
+def _split_kicker(draw, ctx, text: str) -> None:
+    """A small-caps, tracked-out kicker at the top of the tint band."""
+    kf = ImageFont.truetype(str(ctx.fonts["bold"]), 22)
+    x = _SPLIT_MARGIN
+    for ch in str(text).upper():
+        draw.text((x, 74), ch, font=kf, fill=ctx.palette["muted"])
+        x += draw.textlength(ch, font=kf) + 4
+
+
+def _split_headline(draw, sm, ctx, y0: int, start: int, floor: int) -> int:
+    """Left-aligned auto-fit headline in the tint band + its accent shape. A
+    ``bar`` is painted BEHIND the text (the tint band gives it contrast); every
+    other shape is drawn normally after. Returns the y below the text."""
+    m = _SPLIT_MARGIN
+    pal = ctx.palette
+    safe_w = ctx.size[0] - 2 * m
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     start, floor, safe_w, 3)
+    line_h = int(hsz * 1.16)
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    hbox = (m, y0, m + max(widths), y0 + line_h * len(lines))
+    on_bar = ctx.style.accent_shape == "bar"
+    if on_bar:
+        _accent_shape(draw, hbox, "bar", pal["accent"])
+    y = y0
+    for ln in lines:
+        draw.text((m, y), ln, font=hf,
+                  fill=pal["on_accent"] if on_bar else pal["ink"])
+        y += line_h
+    if not on_bar:
+        _accent_shape(draw, hbox, ctx.style.accent_shape, pal["accent"])
+    return y
+
+
+def _split_body(draw, sm, ctx, y: int, *, muted: bool = False) -> int:
+    """Left-aligned body paragraph in the lower half, shrink 34->30->28,
+    ``blines[:7]``. Returns the y below."""
+    body = sm.body or ""
+    if not body:
+        return y
+    m = _SPLIT_MARGIN
+    safe_w = ctx.size[0] - 2 * m
+    bsz = 34
+    bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+    blines = media._wrap(draw, body, bf, safe_w)
+    for bsz in (30, 28):
+        if len(blines) <= 7:
+            break
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, safe_w)
+    fill = ctx.palette["muted"] if muted else _centered_body_fill(ctx)
+    step = int(bsz * 1.34)
+    for ln in blines[:7]:
+        draw.text((m, y), ln, font=bf, fill=fill)
+        y += step
+    return y
+
+
+def _split_hook(img, sm, ctx, draw, mid: int) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    _split_kicker(draw, ctx, BRAND_DEFAULTS["kicker"])
+    _split_headline(draw, sm, ctx, 132, 92, 50)
+
+    y = _split_body(draw, sm, ctx, mid + 46, muted=True) + 24
+    _hook_logos(img, (_SPLIT_MARGIN, y, W - _SPLIT_MARGIN, H - 150), pal,
+                sm.tools, ctx.style.logo, ctx.root)
+    draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+
+
+def _split_item(img, sm, ctx, draw, mid: int) -> None:
+    W, H = ctx.size
+    m = _SPLIT_MARGIN
+    pal = ctx.palette
+    kick = str((sm.tool or {}).get("name", "")).strip() or "CÔNG CỤ"
+    _split_kicker(draw, ctx, kick)
+    _split_headline(draw, sm, ctx, 128, 84, 46)
+
+    y = _split_body(draw, sm, ctx, mid + 46)
+
+    bullets = sm.bullets[:3]
+    if bullets:
+        y += 14
+        gsz = 30
+        gf = ImageFont.truetype(str(ctx.fonts["regular"]), gsz)
+        safe_w = W - 2 * m
+        for bl in bullets:
+            cy = y + gsz / 2
+            draw.ellipse((m, cy - 7, m + 14, cy + 7), fill=pal["accent"])
+            seg = media._wrap(draw, bl, gf, safe_w - 44)[:1]
+            if seg:
+                draw.text((m + 34, y), seg[0], font=gf,
+                          fill=_centered_body_fill(ctx))
+            y += int(gsz * 1.55)
+
+    if sm.tool:
+        lh = 140
+        top_y = H - 100 - lh
+        _logo_lockup(img, (m, top_y, m + lh, top_y + lh), pal, sm.tool,
+                     ctx.style.logo, ctx.root, sm.index)
+        draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+
+
+def _layout_split(img, sm, ctx) -> None:
+    """The "split" archetype: a soft accent tint band over the top ~46% holding a
+    tracked kicker + the headline, a 3px accent divider at the midline, and body
+    (+ bullets on item) + furniture in the lower half. The close slide drops the
+    band for the plain centred wrap-up. Furniture via the shared helpers."""
+    if sm.role == "close":
+        _draw_texture(img, ctx.style.texture, ctx.palette)
+        _centered_close(img, sm, ctx, ImageDraw.Draw(img))
+        return
+    draw, mid = _split_band(img, ctx)
+    if sm.role == "hook":
+        _split_hook(img, sm, ctx, draw, mid)
+    else:
+        _split_item(img, sm, ctx, draw, mid)
+
+
 LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
 LAYOUTS["centered"] = _layout_centered
 LAYOUTS["left-rail"] = _layout_left_rail
 LAYOUTS["bottom-bar"] = _layout_bottom_bar
+LAYOUTS["split"] = _layout_split
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],

@@ -654,3 +654,42 @@ def test_bottom_bar_item_body_fits_above_handle(tmp_path, monkeypatch):
     assert copy_bottom < furn_top - 10, (copy_bottom, furn_top)
     # ...and nothing may run past the canvas bottom edge
     assert max(bot for _, _, bot in rows) <= 1350
+
+
+# --- Task 8: the "split" archetype -------------------------------------
+
+def test_layout_split_renders_all_roles(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    spies = {k: [] for k in ("lockup", "hook", "swipe", "handle")}
+    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append(a) or 300)
+    monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: spies["hook"].append(a) or True)
+    monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: spies["swipe"].append(a))
+    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(k))
+    st = _st.Style("t", "split", "ink-on-white", "grotesk", "dots", "underline", "tile")
+    ctx = images.RenderCtx((1080, 1350), _st.PALETTES["ink-on-white"],
+                           _st.font_paths("grotesk"), st, tmp_path, {},
+                           article=_story())
+    for sm in images._slide_models(_story()):
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["split"](im, sm, ctx)
+        assert im.size == (1080, 1350)
+    assert len(spies["hook"]) == 1          # hook drew the logo row
+    assert len(spies["lockup"]) == 1        # the one item with a tool
+    assert len(spies["swipe"]) == 2         # hook + item, not close
+    assert len(spies["handle"]) == 3        # all roles (close via _centered_close)
+
+
+def test_layout_split_survives_every_palette(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    for pname in _st.PALETTE_NAMES:
+        # accent_shape "bar" also exercises the on-bar headline path per palette
+        st = _st.Style("t", "split", pname, "grotesk", "plain", "bar", "tile")
+        ctx = images.RenderCtx((1080, 1350), _st.PALETTES[pname],
+                               _st.font_paths("grotesk"), st, tmp_path, {},
+                               article=_story())
+        for sm in images._slide_models(_story()):
+            im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+            images.LAYOUTS["split"](im, sm, ctx)   # must not raise
+            assert im.size == (1080, 1350)
