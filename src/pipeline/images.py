@@ -1373,7 +1373,21 @@ def _bottom_bar_copy(draw, sm, ctx, *, with_bullets: bool) -> None:
     margin = 80
     safe_w = W - 2 * margin
     pal = ctx.palette
-    y = _BAR_TOP + 54
+
+    # Bullets carry the scannable takeaways; when they're actually drawn the
+    # headline + body + 3 bullets all have to fit above the fixed handle/swipe
+    # (y ~= H-46 / H-54). A maxed 3-line 58px headline eats ~200px, so for the
+    # bulleted case we start the block higher, shorten the head/body gaps and
+    # cap the body at 3 lines — that lands the last bullet ~30px clear of the
+    # handle on the narrow ``mono`` face. A bulletless slide (the hook, or an
+    # item with no bullets) keeps the roomier start and the <=7 body cap.
+    drawing_bullets = bool(with_bullets and sm.bullets)
+    if drawing_bullets:
+        y = _BAR_TOP + 30
+        head_gap, body_cap, bullet_gap = 18, 3, 10
+    else:
+        y = _BAR_TOP + 54
+        head_gap, body_cap, bullet_gap = 24, 7, 12
 
     hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
                                      58, 38, safe_w, 3)
@@ -1381,7 +1395,7 @@ def _bottom_bar_copy(draw, sm, ctx, *, with_bullets: bool) -> None:
     for ln in lines:
         draw.text((margin, y), ln, font=hf, fill=pal["on_accent"])
         y += line_h
-    y += 24
+    y += head_gap
 
     body = sm.body or ""
     if body:
@@ -1389,19 +1403,19 @@ def _bottom_bar_copy(draw, sm, ctx, *, with_bullets: bool) -> None:
         bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
         blines = media._wrap(draw, body, bf, safe_w)
         for bsz in (30, 28):
-            if len(blines) <= 7:
+            if len(blines) <= body_cap:
                 break
             bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
             blines = media._wrap(draw, body, bf, safe_w)
         step = int(bsz * 1.34)
-        for ln in blines[:7]:
+        for ln in blines[:body_cap]:
             draw.text((margin, y), ln, font=bf, fill=pal["on_accent"])
             y += step
 
     if with_bullets:
         bullets = sm.bullets[:3]
         if bullets:
-            y += 12
+            y += bullet_gap
             gsz = 28
             gf = ImageFont.truetype(str(ctx.fonts["regular"]), gsz)
             dot = _mix(pal["accent"], pal["on_accent"], 0.6)  # a lighter tint
@@ -1442,47 +1456,10 @@ def _bottom_bar_item(img, sm, ctx, draw) -> None:
 
 
 def _bottom_bar_close(img, sm, ctx, draw) -> None:
-    """NO bar. Plain ``bg``: a centred "CHỐT LẠI" pill, centred headline +
-    accent shape, centred body, centred handle. No swipe, no lockup."""
-    W, H = ctx.size
-    margin, cx = 80, W / 2
-    safe_w = W - 2 * margin
-    pal = ctx.palette
-
-    pf = ImageFont.truetype(str(ctx.fonts["bold"]), 40)
-    y = _pill(draw, cx, 170, "CHỐT LẠI", pf, pal["accent"], pal["on_accent"])
-    y += 60
-
-    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
-                                     64, 40, safe_w, 3)
-    line_h = int(hsz * 1.18)
-    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
-    hbox = (cx - max(widths) / 2, y, cx + max(widths) / 2, y + line_h * len(lines))
-    on_bar = ctx.style.accent_shape == "bar"
-    if on_bar:
-        _accent_shape(draw, hbox, "bar", pal["accent"])
-    y = _centre_lines(draw, lines, hf, cx, y,
-                      pal["on_accent"] if on_bar else pal["ink"], line_h)
-    if not on_bar:
-        _accent_shape(draw, (cx - 60, hbox[1], cx + 60, y),
-                      ctx.style.accent_shape, pal["accent"])
-
-    body = sm.body or ""
-    y += 40
-    if body:
-        bsz = 34
-        wrap_w = int(safe_w * 0.8)
-        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
-        blines = media._wrap(draw, body, bf, wrap_w)
-        for bsz in (30, 28):
-            if len(blines) <= 7:
-                break
-            bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
-            blines = media._wrap(draw, body, bf, wrap_w)
-        _centre_lines(draw, blines, bf, cx, y, _centered_body_fill(ctx),
-                      int(bsz * 1.34))
-
-    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=True)
+    """NO bar. Plain ``bg`` centred wrap-up — identical to the "centered"
+    archetype's close slide (centred "CHỐT LẠI" pill, centred headline + accent
+    shape, centred body, centred handle; no swipe, no lockup), so just delegate."""
+    _centered_close(img, sm, ctx, draw)
 
 
 def _layout_bottom_bar(img, sm, ctx) -> None:

@@ -606,3 +606,51 @@ def test_layout_bottom_bar_survives_every_palette(tmp_path, monkeypatch):
             im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
             images.LAYOUTS["bottom-bar"](im, sm, ctx)   # shadowed palette must not KeyError
             assert im.size == (1080, 1350)
+
+
+def test_bottom_bar_item_body_fits_above_handle(tmp_path, monkeypatch):
+    # Regression for the review defect: a maxed bulleted item (3-line headline,
+    # ~70-word body, 3 bullets) used to push the last bullet down onto the fixed
+    # "A Hít Official" / "Vuốt tiếp" furniture (y ~= H-46 / H-54) and clip the
+    # canvas bottom. _bottom_bar_copy now caps the body to 3 lines and starts the
+    # block higher when bullets are drawn. Rendered on the narrowest face (mono).
+    # Fuller visual QA of the spacing is Task 12.
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    st = styles.Style("t", "bottom-bar", "mono-contrast", "mono", "diagonal", "none", "mono")
+    ctx = images.RenderCtx((1080, 1350), styles.PALETTES["mono-contrast"],
+                           styles.font_paths("mono"), st, tmp_path, {})
+    head = "Việc số hai ba bốn năm sáu bảy tám chín mười một hai ba bốn năm sáu"
+    body = ("Mô hình nhận một câu mô tả bằng tiếng Việt rồi trả về đoạn phim tám "
+            "giây ở độ phân giải 1080p, giữ khuôn mặt nhân vật thật ổn định qua "
+            "từng cảnh để cho bạn cắt ghép thành một video hoàn chỉnh chứ không "
+            "phải chỉ là một bản trình diễn cho vui mắt, và bạn xuất ra được "
+            "ngay trong trình duyệt mà không cần phải cài thêm bất cứ thứ gì cả.")
+    assert len(body.split()) >= 68
+    sm = images.SlideModel(role="item", index=2, total=4, headline=head,
+                           body=body,
+                           bullets=["nhập mô tả bằng tiếng Việt cho máy hiểu",
+                                    "xuất video 1080p chỉ trong vòng một phút",
+                                    "giữ nhân vật ổn định xuyên suốt các cảnh quay"])
+
+    # spy every text draw so we can separate the copy block from the furniture
+    real_text = ImageDraw.ImageDraw.text
+    rows = []
+
+    def spy_text(self, xy, text, *a, **k):
+        bb = self.textbbox(xy, text, font=k.get("font") or (a[0] if a else None))
+        rows.append((text, xy[1], bb[3]))
+        return real_text(self, xy, text, *a, **k)
+
+    monkeypatch.setattr(ImageDraw.ImageDraw, "text", spy_text)
+    im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+    images.LAYOUTS["bottom-bar"](im, sm, ctx)          # must not raise
+    monkeypatch.undo()
+
+    assert im.size == (1080, 1350)
+    furniture = {"A Hít Official", "Vuốt tiếp  ›"}
+    furn_top = min(top for txt, top, _ in rows if txt in furniture)
+    copy_bottom = max(bot for txt, _, bot in rows if txt not in furniture)
+    # the last bit of copy (bullet 3) must sit clearly above the handle/swipe...
+    assert copy_bottom < furn_top - 10, (copy_bottom, furn_top)
+    # ...and nothing may run past the canvas bottom edge
+    assert max(bot for _, _, bot in rows) <= 1350
