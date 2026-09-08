@@ -436,10 +436,13 @@ def _draw_mark(img: Image.Image, box: tuple, palette: dict,
 
 def _logo_lockup(img: Image.Image, box: tuple, palette: dict,
                  tool: dict | None, treatment: str, root: Path,
-                 index: int) -> int:
+                 index: int, *, name_font=None) -> int:
     """Draw the logo mark in ``box`` per ``treatment`` and, if ``tool`` has a
     ``name``, the brand name to its right (bundled bold face, auto-sized).
-    Returns the x where the name ends, else ``box``'s right edge."""
+    Returns the x where the name ends, else ``box``'s right edge.
+
+    ``name_font`` (str or Path to a ``.ttf``) overrides the brand-name face;
+    defaults to ``media.FONT_PATH`` (Be Vietnam Pro sans)."""
     end_x = 0
     try:
         x0, y0, x1, y1 = (int(v) for v in box)
@@ -453,11 +456,12 @@ def _logo_lockup(img: Image.Image, box: tuple, palette: dict,
             draw = ImageDraw.Draw(img)
             name_x = x1 + 34
             sz = 54
-            nf = ImageFont.truetype(str(media.FONT_PATH), sz)
+            name_fp = str(name_font or media.FONT_PATH)
+            nf = ImageFont.truetype(name_fp, sz)
             limit = img.size[0] - 80 - name_x
             while sz > 28 and draw.textlength(name, font=nf) > limit:
                 sz -= 4
-                nf = ImageFont.truetype(str(media.FONT_PATH), sz)
+                nf = ImageFont.truetype(name_fp, sz)
             asc, desc = nf.getmetrics()
             draw.text((name_x, y0 + (y1 - y0 - (asc + desc)) / 2), name,
                       font=nf, fill=palette["ink"])
@@ -1682,14 +1686,12 @@ def _mag_headline(draw, sm, ctx, fonts, y: int) -> int:
     return ty + 2
 
 
-def _mag_wrap_body(draw, fonts, body: str):
+def _mag_wrap_body(draw, fonts, body: str, content_w: int):
     """Wrap ``body`` (minus its first char, which becomes the drop-cap) at a
     single COLUMN width, shrinking 30 -> 27 -> 24 if it would overflow two
     ~9-line columns. Returns ``(cap_char, rest, lines, size)``."""
     cap = body[:1]
     rest = body[1:].lstrip() or body
-    W = 1080
-    content_w = W - 2 * _MAG_M
     col_w = int((content_w - _MAG_GUTTER) / 2)
     sz = 30
     bf = ImageFont.truetype(str(fonts["regular"]), sz)
@@ -1724,7 +1726,7 @@ def _mag_body(draw, sm, ctx, fonts, y: int) -> int:
     content_w = W - 2 * _MAG_M
     col_w = int((content_w - _MAG_GUTTER) / 2)
     fill = _centered_body_fill(ctx)
-    cap, rest, col_lines, sz = _mag_wrap_body(draw, fonts, body)
+    cap, rest, col_lines, sz = _mag_wrap_body(draw, fonts, body, content_w)
     line_h = int(sz * 1.34)
 
     if len(col_lines) <= 6:
@@ -1781,7 +1783,7 @@ def _magazine_hook(img, sm, ctx, fonts) -> None:
 
 
 def _magazine_item(img, sm, ctx, fonts) -> None:
-    W, H = ctx.size
+    _, H = ctx.size
     draw = ImageDraw.Draw(img)
     kick = str((sm.tool or {}).get("name", "")).strip() or "A HÍT OFFICIAL"
     y = _mag_kicker(draw, ctx, fonts, kick, 118) + 16
@@ -1793,7 +1795,8 @@ def _magazine_item(img, sm, ctx, fonts) -> None:
         lh = 120
         top = H - 96 - lh
         _logo_lockup(img, (_MAG_M, top, _MAG_M + lh, top + lh), ctx.palette,
-                     sm.tool, "mono", ctx.root, sm.index)
+                     sm.tool, "mono", ctx.root, sm.index,
+                     name_font=fonts["bold"])
         draw = ImageDraw.Draw(img)  # re-bind after paste
     _swipe_hint(draw, ctx.size, ctx.palette, fonts)
     _handle_line(draw, ctx.size, ctx.palette, fonts, centred=False, left=_MAG_M)

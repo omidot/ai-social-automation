@@ -413,6 +413,16 @@ def test_logo_lockup_returns_int_and_survives_no_logo(tmp_path, monkeypatch):
     assert isinstance(x, int) and x >= 270
 
 
+def test_logo_lockup_accepts_name_font(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    serif = styles.font_paths("editorial")["bold"]
+    x = images._logo_lockup(im, (80, 120, 270, 310), _pal(),
+                            {"name": "Sora", "domain": "openai.com"}, "mono",
+                            tmp_path, 1, name_font=serif)
+    assert isinstance(x, int) and x >= 270          # renders, returns int, no raise
+
+
 def test_accent_shape_variants_dont_crash():
     for kind in styles.ACCENT_SHAPES:
         im = Image.new("RGB", (1080, 1350), _pal()["bg"])
@@ -701,7 +711,7 @@ def test_layout_magazine_renders_all_roles(tmp_path, monkeypatch):
     _st = styles
     monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
     spies = {k: [] for k in ("lockup", "hook", "swipe", "handle")}
-    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append(a) or 300)
+    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append((a, k)) or 300)
     monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: spies["hook"].append(a) or True)
     monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: spies["swipe"].append(a))
     monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(k))
@@ -718,9 +728,13 @@ def test_layout_magazine_renders_all_roles(tmp_path, monkeypatch):
     assert len(spies["swipe"]) == 2         # hook + item, not close
     assert len(spies["handle"]) == 3        # all roles (close via _centered_close)
     # editorial restraint: the item lockup is forced to the "mono" treatment
-    # regardless of ctx.style.logo (a[4] is the treatment positional in
-    # _logo_lockup(img, box, pal, tool, treatment, root, index)).
-    assert spies["lockup"][0][4] == "mono"
+    # regardless of ctx.style.logo. spies["lockup"][0] is (args, kwargs);
+    # args[4] is the treatment positional in
+    # _logo_lockup(img, box, pal, tool, treatment, root, index).
+    lk_args, lk_kwargs = spies["lockup"][0]
+    assert lk_args[4] == "mono"
+    # and the brand name is rendered in the serif face, not the bundled sans
+    assert lk_kwargs.get("name_font") == styles.font_paths("editorial")["bold"]
 
 
 def test_layout_magazine_two_column_body(tmp_path, monkeypatch):
