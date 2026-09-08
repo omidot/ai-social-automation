@@ -821,3 +821,48 @@ def test_layout_ticket_survives_every_palette(tmp_path, monkeypatch):
             im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
             images.LAYOUTS["ticket"](im, sm, ctx)   # must not raise
             assert im.size == (1080, 1350)
+
+
+# --- Task 12: body caps hold a 40-70 word body on every layout --------
+
+_BODY50 = ("Mô hình nhận một câu mô tả bằng tiếng Việt rồi trả về đoạn phim tám "
+           "giây ở độ phân giải 1080p, giữ khuôn mặt nhân vật ổn định qua từng "
+           "cảnh để bạn cắt ghép thành một video thật, chứ không phải chỉ là một "
+           "bản trình diễn cho vui mắt, và xuất ra được ngay trong trình duyệt.")
+
+
+def test_no_layout_truncates_a_45_word_body(tmp_path, monkeypatch):
+    """For every one of the 24 styles: render an item slide with a ~50-word body,
+    then again with the body hard cut to 3 lines' worth of text. The only thing
+    that can differ between the two renders is the body text below line 3, so the
+    pixel diff measures exactly how much body survived the layout's cap -- it must
+    span well more than 3 extra lines. A weak-but-honest guard against the
+    mid-sentence truncation Task 12 fixed on the ticket + bottom-bar layouts."""
+    from PIL import ImageChops, ImageColor
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+
+    def render(st, ctx, bg_rgb, body):
+        sm = images.SlideModel(role="item", index=2, total=4,
+                               headline="Việc số hai: công cụ này làm được gì",
+                               body=body,
+                               bullets=["nhập mô tả bằng tiếng Việt",
+                                        "xuất 1080p trong một phút",
+                                        "giữ nhân vật ổn định giữa các cảnh"],
+                               tool={"name": "Sora", "domain": "openai.com"})
+        im = Image.new("RGB", (1080, 1350), bg_rgb)
+        images.LAYOUTS[st.layout](im, sm, ctx)
+        return im
+
+    for st in styles.load_styles(Path.cwd()):
+        ctx = images.RenderCtx((1080, 1350), styles.PALETTES[st.palette],
+                               styles.font_paths(st.font), st, tmp_path, {})
+        bg_rgb = ImageColor.getrgb(styles.PALETTES[st.palette]["bg"])
+        full = render(st, ctx, bg_rgb, _BODY50)
+        cut = render(st, ctx, bg_rgb, " ".join(_BODY50.split()[:12]))
+        diff = ImageChops.difference(full.convert("RGB"), cut.convert("RGB"))
+        box = diff.getbbox()
+        assert box is not None, f"{st.name}: full render == 3-line-cut body"
+        changed = sum(diff.convert("L").histogram()[9:])   # px with lum diff > 8
+        # >3 extra lines of body => a tall diff band + a few thousand changed px
+        assert box[3] - box[1] > 130, (st.name, box)
+        assert changed > 800, (st.name, changed)

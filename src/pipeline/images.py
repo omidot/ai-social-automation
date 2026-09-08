@@ -1222,7 +1222,9 @@ def _left_rail_headline(draw, sm, ctx, y: int):
 
 
 def _left_rail_body(draw, sm, ctx, y: int) -> int:
-    """Left-aligned body paragraph, shrink 34->30->28, <=7 lines. Returns y below."""
+    """Left-aligned body paragraph, shrink 34->30->28, <=9 lines. Returns y below.
+    Task 12: cap raised 7->9 so a 70-word body on the narrow ``mono`` face is not
+    truncated mid-sentence; the rail has ~200px+ of vertical room below."""
     body = sm.body or ""
     if not body:
         return y
@@ -1232,12 +1234,12 @@ def _left_rail_body(draw, sm, ctx, y: int) -> int:
     bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
     blines = media._wrap(draw, body, bf, safe_w)
     for bsz in (30, 28):
-        if len(blines) <= 7:
+        if len(blines) <= 9:
             break
         bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
         blines = media._wrap(draw, body, bf, safe_w)
     step = int(bsz * 1.34)
-    for ln in blines[:7]:
+    for ln in blines[:9]:
         draw.text((_RAIL_X, y), ln, font=bf, fill=_centered_body_fill(ctx))
         y += step
     return y
@@ -1333,7 +1335,7 @@ def _layout_left_rail(img, sm, ctx) -> None:
 # IS the accent block. The close slide drops the bar entirely for a plain
 # centred pill + body, exactly like ``_layout_centered``.
 
-_BAR_TOP = 742          # top edge of the accent bar (~55% of 1350)
+_BAR_TOP = 648          # top edge of the accent bar (bottom ~52% of 1350)
 
 
 def _bottom_bar_shadow_pal(ctx) -> dict:
@@ -1380,15 +1382,17 @@ def _bottom_bar_copy(draw, sm, ctx, *, with_bullets: bool) -> None:
 
     # Bullets carry the scannable takeaways; when they're actually drawn the
     # headline + body + 3 bullets all have to fit above the fixed handle/swipe
-    # (y ~= H-46 / H-54). A maxed 3-line 58px headline eats ~200px, so for the
-    # bulleted case we start the block higher, shorten the head/body gaps and
-    # cap the body at 3 lines — that lands the last bullet ~30px clear of the
-    # handle on the narrow ``mono`` face. A bulletless slide (the hook, or an
-    # item with no bullets) keeps the roomier start and the <=7 body cap.
+    # (y ~= H-46 / H-54). Task 12 grew the accent block (bottom ~52%, was ~45%)
+    # for ~95px more copy room, so the bulleted case now caps the body at 5 lines
+    # (was 3) -- a realistic 1-2 line headline + 5 body lines + 3 bullets clears
+    # the handle by 120px+; even an unrealistic maxed 3-line 58px headline still
+    # lands the last bullet ~37px clear on the narrowest (``mono``) face. Going to
+    # 6 would collide there, so 5 is the ceiling. A bulletless slide (the hook, or
+    # an item with no bullets) keeps the roomier start and the <=7 body cap.
     drawing_bullets = bool(with_bullets and sm.bullets)
     if drawing_bullets:
         y = _BAR_TOP + 30
-        head_gap, body_cap, bullet_gap = 18, 3, 10
+        head_gap, body_cap, bullet_gap = 18, 5, 10
     else:
         y = _BAR_TOP + 54
         head_gap, body_cap, bullet_gap = 24, 7, 12
@@ -1542,7 +1546,9 @@ def _split_headline(draw, sm, ctx, y0: int, start: int, floor: int) -> int:
 
 def _split_body(draw, sm, ctx, y: int, *, muted: bool = False) -> int:
     """Left-aligned body paragraph in the lower half, shrink 34->30->28,
-    ``blines[:7]``. Returns the y below."""
+    ``blines[:9]``. Returns the y below. Task 12: cap raised 7->9 so a 70-word
+    body on the narrow ``mono`` face is not truncated mid-sentence; the lower
+    half has ~200px+ of room above the furniture."""
     body = sm.body or ""
     if not body:
         return y
@@ -1552,13 +1558,13 @@ def _split_body(draw, sm, ctx, y: int, *, muted: bool = False) -> int:
     bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
     blines = media._wrap(draw, body, bf, safe_w)
     for bsz in (30, 28):
-        if len(blines) <= 7:
+        if len(blines) <= 9:
             break
         bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
         blines = media._wrap(draw, body, bf, safe_w)
     fill = ctx.palette["muted"] if muted else _centered_body_fill(ctx)
     step = int(bsz * 1.34)
-    for ln in blines[:7]:
+    for ln in blines[:9]:
         draw.text((m, y), ln, font=bf, fill=fill)
         y += step
     return y
@@ -1829,6 +1835,13 @@ _TICKET_M = 64            # card margin from every canvas edge
 _TICKET_R = 40            # card corner radius
 _TICKET_PAD = 44          # inner padding from the card edge to content
 _TICKET_PERF_F = 0.68     # perforation x = card_left + f * card_width
+# The left content area is ~559px wide with a huge empty lower region; a 45-70
+# word body on the narrow ``mono`` (JetBrains) face wraps to ~10-12 lines. Cap at
+# 12 (the shrink ladder 32->28->26 still runs first) so a full 70-word body shows
+# on ALL FOUR palettes including mono-ticket: measured worst case (3-line 58px
+# headline + logo lockup + 12 body lines + 3 bullets on ``mono``) ends ~1060px,
+# ~200px clear of the card-bottom handle (~H-66). See Task 12 clearance notes.
+_TICKET_BODY_CAP = 12
 
 
 def _ticket_lift(pal: dict) -> tuple:
@@ -1976,12 +1989,12 @@ def _ticket_item(img, sm, ctx, draw, perf_x: int) -> None:
         bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
         blines = media._wrap(draw, body, bf, area_w)
         for bsz in (28, 26):
-            if len(blines) <= 6:
+            if len(blines) <= _TICKET_BODY_CAP:
                 break
             bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
             blines = media._wrap(draw, body, bf, area_w)
         step = int(bsz * 1.36)
-        for ln in blines[:6]:
+        for ln in blines[:_TICKET_BODY_CAP]:
             draw.text((left_x, y), ln, font=bf, fill=_centered_body_fill(ctx))
             y += step
 
