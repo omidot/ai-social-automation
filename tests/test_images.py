@@ -693,3 +693,72 @@ def test_layout_split_survives_every_palette(tmp_path, monkeypatch):
             im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
             images.LAYOUTS["split"](im, sm, ctx)   # must not raise
             assert im.size == (1080, 1350)
+
+
+# --- Task 9: the "magazine" archetype ---------------------------------
+
+def test_layout_magazine_renders_all_roles(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    spies = {k: [] for k in ("lockup", "hook", "swipe", "handle")}
+    monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append(a) or 300)
+    monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: spies["hook"].append(a) or True)
+    monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: spies["swipe"].append(a))
+    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(k))
+    st = _st.Style("t", "magazine", "warm-editorial", "editorial", "plain", "bracket", "mono")
+    ctx = images.RenderCtx((1080, 1350), _st.PALETTES["warm-editorial"],
+                           _st.font_paths("editorial"), st, tmp_path, {},
+                           article=_story())
+    for sm in images._slide_models(_story()):
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["magazine"](im, sm, ctx)
+        assert im.size == (1080, 1350)
+    assert len(spies["hook"]) == 1          # hook drew the logo row
+    assert len(spies["lockup"]) == 1        # the one item with a tool
+    assert len(spies["swipe"]) == 2         # hook + item, not close
+    assert len(spies["handle"]) == 3        # all roles (close via _centered_close)
+    # editorial restraint: the item lockup is forced to the "mono" treatment
+    # regardless of ctx.style.logo (a[4] is the treatment positional in
+    # _logo_lockup(img, box, pal, tool, treatment, root, index)).
+    assert spies["lockup"][0][4] == "mono"
+
+
+def test_layout_magazine_two_column_body(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    st = styles.Style("t", "magazine", "ink-on-white", "editorial", "plain", "bracket", "mono")
+    ctx = images.RenderCtx((1080, 1350), styles.PALETTES["ink-on-white"],
+                           styles.font_paths("editorial"), st, tmp_path, {})
+    long_body = ("Mô hình nhận một câu mô tả bằng tiếng Việt rồi trả về một đoạn "
+                 "phim tám giây ở độ phân giải 1080p, giữ khuôn mặt nhân vật thật "
+                 "ổn định qua từng cảnh để cho bạn cắt ghép thành một video hoàn "
+                 "chỉnh chứ không phải chỉ là một bản trình diễn cho vui mắt, và "
+                 "bạn xuất ra được ngay trong trình duyệt mà không cần cài gì.")
+    assert len(long_body.split()) >= 60
+    short_body = "Một mô hình mới vừa ra mắt và ai cũng thử được ngay hôm nay."
+    assert len(short_body.split()) <= 18
+
+    def _render(body):
+        sm = images.SlideModel(role="item", index=2, total=4,
+                               headline="Nó làm được những gì cho bạn",
+                               body=body,
+                               tool={"name": "Sora", "domain": "openai.com"})
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["magazine"](im, sm, ctx)   # must not raise
+        assert im.size == (1080, 1350)
+        return im.tobytes()
+
+    assert _render(long_body) != _render(short_body)   # layout responds to length
+
+
+def test_layout_magazine_survives_every_palette(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    for pname in _st.PALETTE_NAMES:
+        st = _st.Style("t", "magazine", pname, "editorial", "plain", "underline", "mono")
+        ctx = images.RenderCtx((1080, 1350), _st.PALETTES[pname],
+                               _st.font_paths("editorial"), st, tmp_path, {},
+                               article=_story())
+        for sm in images._slide_models(_story()):
+            im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+            images.LAYOUTS["magazine"](im, sm, ctx)   # must not raise
+            assert im.size == (1080, 1350)

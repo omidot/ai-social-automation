@@ -1,5 +1,5 @@
 from __future__ import annotations
-import io, logging, os
+import io, logging, math, os
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -1625,11 +1625,201 @@ def _layout_split(img, sm, ctx) -> None:
         _split_item(img, sm, ctx, draw, mid)
 
 
+# --- Task 9: the "magazine" archetype --------------------------------
+# An editorial serif look: FORCED serif faces (``font_paths("editorial")``)
+# regardless of the style's own font, wide 110px margins, a tracked-out
+# uppercase kicker over a hairline rule, the headline boxed top-and-bottom by
+# 1px rules, then the body flowing into TWO columns once it runs long (one
+# full-width column when it's short) with a big accent drop-cap hung in the
+# left margin gutter. The item lockup is forced to the ``mono`` treatment;
+# the close slide delegates to ``_centered_close``.
+
+_MAG_M = 110              # left/right content margin
+_MAG_GUTTER = 48          # gap between the two body columns
+
+
+def _mag_tracked(text: str) -> str:
+    """Letter-spaced uppercase: a literal space between every character."""
+    return " ".join(str(text).upper())
+
+
+def _mag_kicker(draw, ctx, fonts, text: str, y: int) -> int:
+    """Tracked-out uppercase kicker, ``muted``, left-aligned at the margin.
+    Returns the y just below it."""
+    f = ImageFont.truetype(str(fonts["regular"]), 22)
+    asc, desc = f.getmetrics()
+    draw.text((_MAG_M, y), _mag_tracked(text), font=f, fill=ctx.palette["muted"])
+    return y + asc + desc
+
+
+def _mag_rule(draw, ctx, y: int) -> None:
+    """A 1px hairline in ``muted`` across the full content width."""
+    W = ctx.size[0]
+    draw.line((_MAG_M, y, W - _MAG_M, y), fill=ctx.palette["muted"], width=1)
+
+
+def _mag_headline(draw, sm, ctx, fonts, y: int) -> int:
+    """Serif headline auto-fit to <=3 lines, boxed by a rule above and below,
+    with the style's accent shape (bracket / underline only — a filled ``bar``
+    would bury the serif). Returns the y below the lower rule."""
+    W = ctx.size[0]
+    content_w = W - 2 * _MAG_M
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", fonts["bold"],
+                                     72, 40, content_w, 3)
+    line_h = int(hsz * 1.2)
+    _mag_rule(draw, ctx, y)
+    ty = y + 22
+    hy0 = ty
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    for ln in lines:
+        draw.text((_MAG_M, ty), ln, font=hf, fill=ctx.palette["ink"])
+        ty += line_h
+    if ctx.style.accent_shape in ("underline", "bracket"):
+        _accent_shape(draw, (_MAG_M, hy0, _MAG_M + max(widths), ty - line_h + hsz),
+                      ctx.style.accent_shape, ctx.palette["accent"])
+    ty += 14
+    _mag_rule(draw, ctx, ty)
+    return ty + 2
+
+
+def _mag_wrap_body(draw, fonts, body: str):
+    """Wrap ``body`` (minus its first char, which becomes the drop-cap) at a
+    single COLUMN width, shrinking 30 -> 27 -> 24 if it would overflow two
+    ~9-line columns. Returns ``(cap_char, rest, lines, size)``."""
+    cap = body[:1]
+    rest = body[1:].lstrip() or body
+    W = 1080
+    content_w = W - 2 * _MAG_M
+    col_w = int((content_w - _MAG_GUTTER) / 2)
+    sz = 30
+    bf = ImageFont.truetype(str(fonts["regular"]), sz)
+    lines = media._wrap(draw, rest, bf, col_w) or [""]
+    for sz in (27, 24):
+        if len(lines) <= 18:
+            break
+        bf = ImageFont.truetype(str(fonts["regular"]), sz)
+        lines = media._wrap(draw, rest, bf, col_w) or [""]
+    return cap, rest, lines, sz
+
+
+def _mag_dropcap(draw, ctx, fonts, cap: str, x_col: int, y: int, line_h: int) -> None:
+    """A big serif capital in ``accent`` hung into the left margin gutter."""
+    if not cap.strip():
+        return
+    cap_px = max(48, int(line_h * 2))
+    cf = ImageFont.truetype(str(fonts["bold"]), cap_px)
+    cw = draw.textlength(cap, font=cf)
+    x0 = max(8, int(x_col - cw - 12))
+    draw.text((x0, y - int(cap_px * 0.18)), cap, font=cf, fill=ctx.palette["accent"])
+
+
+def _mag_body(draw, sm, ctx, fonts, y: int) -> int:
+    """Draw the body: one full-width column when it wraps to <=6 lines, else two
+    columns (left = ceil(n/2), right = the rest). Drop-cap on the left column.
+    Returns the y below the deepest column."""
+    body = (sm.body or "").strip()
+    if not body:
+        return y
+    W = ctx.size[0]
+    content_w = W - 2 * _MAG_M
+    col_w = int((content_w - _MAG_GUTTER) / 2)
+    fill = _centered_body_fill(ctx)
+    cap, rest, col_lines, sz = _mag_wrap_body(draw, fonts, body)
+    line_h = int(sz * 1.34)
+
+    if len(col_lines) <= 6:
+        bf = ImageFont.truetype(str(fonts["regular"]), sz)
+        lines = media._wrap(draw, rest, bf, content_w) or [""]
+        _mag_dropcap(draw, ctx, fonts, cap, _MAG_M, y, line_h)
+        ly = y
+        for ln in lines:
+            draw.text((_MAG_M, ly), ln, font=bf, fill=fill)
+            ly += line_h
+        return ly
+
+    half = math.ceil(len(col_lines) / 2)
+    left, right = col_lines[:half], col_lines[half:]
+    bf = ImageFont.truetype(str(fonts["regular"]), sz)
+    right_x = _MAG_M + col_w + _MAG_GUTTER
+    _mag_dropcap(draw, ctx, fonts, cap, _MAG_M, y, line_h)
+    for i, ln in enumerate(left):
+        draw.text((_MAG_M, y + i * line_h), ln, font=bf, fill=fill)
+    for i, ln in enumerate(right):
+        draw.text((right_x, y + i * line_h), ln, font=bf, fill=fill)
+    return y + max(len(left), len(right)) * line_h
+
+
+def _mag_bullets(draw, sm, ctx, fonts, y: int) -> None:
+    bullets = sm.bullets[:3]
+    if not bullets:
+        return
+    W = ctx.size[0]
+    safe_w = W - 2 * _MAG_M
+    y += 20
+    gsz = 28
+    gf = ImageFont.truetype(str(fonts["regular"]), gsz)
+    for bl in bullets:
+        cy = y + gsz / 2
+        draw.ellipse((_MAG_M, cy - 7, _MAG_M + 14, cy + 7), fill=ctx.palette["accent"])
+        seg = media._wrap(draw, bl, gf, safe_w - 44)[:1]
+        if seg:
+            draw.text((_MAG_M + 34, y), seg[0], font=gf, fill=_centered_body_fill(ctx))
+        y += int(gsz * 1.55)
+
+
+def _magazine_hook(img, sm, ctx, fonts) -> None:
+    W, H = ctx.size
+    draw = ImageDraw.Draw(img)
+    y = _mag_kicker(draw, ctx, fonts, BRAND_DEFAULTS["kicker"], 118) + 16
+    y = _mag_headline(draw, sm, ctx, fonts, y) + 34
+    y = _mag_body(draw, sm, ctx, fonts, y)
+    box = (_MAG_M, y + 40, W - _MAG_M, H - 150)
+    _hook_logos(img, box, ctx.palette, sm.tools, ctx.style.logo, ctx.root)
+    draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, ctx.palette, fonts)
+    _handle_line(draw, ctx.size, ctx.palette, fonts, centred=False, left=_MAG_M)
+
+
+def _magazine_item(img, sm, ctx, fonts) -> None:
+    W, H = ctx.size
+    draw = ImageDraw.Draw(img)
+    kick = str((sm.tool or {}).get("name", "")).strip() or "A HÍT OFFICIAL"
+    y = _mag_kicker(draw, ctx, fonts, kick, 118) + 16
+    y = _mag_headline(draw, sm, ctx, fonts, y) + 34
+    y = _mag_body(draw, sm, ctx, fonts, y)
+    _mag_bullets(draw, sm, ctx, fonts, y)
+
+    if sm.tool:
+        lh = 120
+        top = H - 96 - lh
+        _logo_lockup(img, (_MAG_M, top, _MAG_M + lh, top + lh), ctx.palette,
+                     sm.tool, "mono", ctx.root, sm.index)
+        draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, ctx.palette, fonts)
+    _handle_line(draw, ctx.size, ctx.palette, fonts, centred=False, left=_MAG_M)
+
+
+def _layout_magazine(img, sm, ctx) -> None:
+    """The "magazine" archetype: forced serif faces, wide margins, a tracked-out
+    kicker, the headline boxed by hairline rules, a drop-capped body that flows
+    into two columns when long, and mono furniture. Close -> ``_centered_close``."""
+    _draw_texture(img, ctx.style.texture, ctx.palette)
+    fonts = styles.font_paths("editorial")
+    if sm.role == "close":
+        _centered_close(img, sm, ctx, ImageDraw.Draw(img))
+        return
+    if sm.role == "hook":
+        _magazine_hook(img, sm, ctx, fonts)
+    else:
+        _magazine_item(img, sm, ctx, fonts)
+
+
 LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
 LAYOUTS["centered"] = _layout_centered
 LAYOUTS["left-rail"] = _layout_left_rail
 LAYOUTS["bottom-bar"] = _layout_bottom_bar
 LAYOUTS["split"] = _layout_split
+LAYOUTS["magazine"] = _layout_magazine
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],
