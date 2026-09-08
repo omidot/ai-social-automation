@@ -33,6 +33,8 @@ def test_approve_and_ig_crons_and_modules():
     assert "python -m pipeline.article_approve" in a
     assert "*/5 * * * *" in a
     assert "playwright install" not in a
+    assert "npm ci" in a
+    assert "remotion browser ensure" in a
     assert "python -m pipeline.article_publish_ig" in g
     assert "0,15,30,45 4,5,12,13 * * *" in g
     assert "playwright install" not in g
