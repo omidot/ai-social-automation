@@ -393,6 +393,17 @@ def test_furniture_helpers_draw_expected_text(tmp_path):
     assert len(band) > 1
 
 
+def test_handle_line_respects_left_offset():
+    from PIL import ImageDraw as _D
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    d = _D.Draw(im)
+    images._handle_line(d, (1080, 1350), _pal(), styles.font_paths("grotesk"),
+                        centred=False, left=300)
+    # nothing drawn left of x=300 in the bottom band
+    strip = im.crop((0, 1250, 290, 1330)).getcolors()
+    assert strip is not None and len(strip) == 1        # untouched bg only
+
+
 def test_logo_lockup_returns_int_and_survives_no_logo(tmp_path, monkeypatch):
     monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
     im = Image.new("RGB", (1080, 1350), _pal()["bg"])
@@ -516,7 +527,7 @@ def test_layout_left_rail_renders_all_roles(tmp_path, monkeypatch):
     monkeypatch.setattr(images, "_logo_lockup", lambda *a, **k: spies["lockup"].append(a) or 360)
     monkeypatch.setattr(images, "_hook_logos", lambda *a, **k: spies["hook"].append(a) or True)
     monkeypatch.setattr(images, "_swipe_hint", lambda *a, **k: spies["swipe"].append(a))
-    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(a))
+    monkeypatch.setattr(images, "_handle_line", lambda *a, **k: spies["handle"].append(k))
     st = _st.Style("t", "left-rail", "ink-on-white", "grotesk", "dots", "underline", "tile")
     ctx = images.RenderCtx((1080, 1350), _st.PALETTES["ink-on-white"],
                            _st.font_paths("grotesk"), st, tmp_path, {},
@@ -529,6 +540,10 @@ def test_layout_left_rail_renders_all_roles(tmp_path, monkeypatch):
     assert len(spies["lockup"]) == 1        # the one item with a tool
     assert len(spies["swipe"]) == 2         # hook + item, not close
     assert len(spies["handle"]) == 3        # all roles
+    # the non-close roles anchor the handle past the rail; close stays centred
+    assert images._RAIL_X == 170
+    lefts = [k.get("left") for k in spies["handle"]]
+    assert lefts.count(images._RAIL_X) == 2 and lefts.count(None) == 1
 
 
 def test_layout_left_rail_bar_accent_downgrades_to_underline(tmp_path, monkeypatch):

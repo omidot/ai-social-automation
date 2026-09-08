@@ -508,15 +508,16 @@ def _hook_logos(img: Image.Image, box: tuple, palette: dict, tools: list,
 # --- handle + swipe hint ---------------------------------------------
 
 def _handle_line(draw: ImageDraw.ImageDraw, size: tuple, palette: dict,
-                 fonts: dict, *, centred: bool) -> None:
+                 fonts: dict, *, centred: bool, left: int = 80) -> None:
     """"A Hít Official" ~30px in ``fonts["regular"]``, ``palette["muted"]``,
-    ~46px above the bottom edge; centred or left at margin 80."""
+    ~46px above the bottom edge; centred or left-aligned at x=``left`` (default
+    margin 80). ``left`` is ignored when ``centred`` is True."""
     try:
         W, H = size
         txt = "A Hít Official"
         f = ImageFont.truetype(str(fonts["regular"]), 30)
         asc, desc = f.getmetrics()
-        x = (W - draw.textlength(txt, font=f)) / 2 if centred else 80
+        x = (W - draw.textlength(txt, font=f)) / 2 if centred else left
         draw.text((x, H - 46 - (asc + desc)), txt, font=f, fill=palette["muted"])
     except Exception as e:  # noqa: BLE001
         log.warning("handle line failed (%s); skipping", e)
@@ -1173,7 +1174,7 @@ def _rail_ghost_number(img: Image.Image, ctx, text: str) -> None:
     """The big translucent slide number painted INSIDE the accent rail."""
     try:
         W, H = ctx.size
-        f = ImageFont.truetype(str(ctx.fonts["black"]), 200)
+        f = ImageFont.truetype(str(ctx.fonts["black"]), 160)  # fits inside the 120px rail
         ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
         od = ImageDraw.Draw(ov)
         l, t, r, b = od.textbbox((0, 0), text, font=f)
@@ -1232,7 +1233,7 @@ def _left_rail_body(draw, sm, ctx, y: int) -> int:
         bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
         blines = media._wrap(draw, body, bf, safe_w)
     step = int(bsz * 1.34)
-    for ln in blines[:8]:
+    for ln in blines[:7]:
         draw.text((_RAIL_X, y), ln, font=bf, fill=_centered_body_fill(ctx))
         y += step
     return y
@@ -1256,7 +1257,7 @@ def _left_rail_hook(img, sm, ctx, draw) -> None:
                 sm.tools, ctx.style.logo, ctx.root)
     draw = ImageDraw.Draw(img)  # re-bind after paste
     _swipe_hint(draw, ctx.size, pal, ctx.fonts)
-    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=_RAIL_X)
 
 
 def _left_rail_item(img, sm, ctx, draw) -> None:
@@ -1289,7 +1290,7 @@ def _left_rail_item(img, sm, ctx, draw) -> None:
             y += int(gsz * 1.55)
 
     _swipe_hint(draw, ctx.size, pal, ctx.fonts)
-    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=_RAIL_X)
 
 
 def _left_rail_close(img, sm, ctx, draw) -> None:
@@ -1297,7 +1298,7 @@ def _left_rail_close(img, sm, ctx, draw) -> None:
     pf = ImageFont.truetype(str(ctx.fonts["bold"]), 40)
     # a left-aligned "CHỐT LẠI" pill where the lockup would sit
     tw = draw.textlength("CHỐT LẠI", font=pf)
-    cx = _RAIL_X + (tw + 52) / 2
+    cx = _RAIL_X + (tw + 52) / 2  # 52 = 2 * _pill's internal px padding (26)
     y = _pill(draw, cx, 130, "CHỐT LẠI", pf, pal["accent"], pal["on_accent"])
     y += 56
 
