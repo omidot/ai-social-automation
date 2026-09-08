@@ -1817,12 +1817,229 @@ def _layout_magazine(img, sm, ctx) -> None:
         _magazine_item(img, sm, ctx, fonts)
 
 
+# --- Task 10: the "ticket" archetype ---------------------------------
+# A boarding-pass / event-ticket look: a rounded inset card floating on the
+# textured ground, a dashed border just inside its edge, a vertical perforation
+# of punched dots splitting it into a LEFT content area and a RIGHT "stub" that
+# carries a big ghost slide number. Texture is painted over the WHOLE canvas
+# FIRST, then the opaque card fill on top masks it inside the card. The close
+# slide drops the card for the plain centred wrap-up (``_centered_close``).
+
+_TICKET_M = 64            # card margin from every canvas edge
+_TICKET_R = 40            # card corner radius
+_TICKET_PAD = 44          # inner padding from the card edge to content
+_TICKET_PERF_F = 0.68     # perforation x = card_left + f * card_width
+
+
+def _ticket_lift(pal: dict) -> tuple:
+    """A "raised surface" shade of ``bg``: dark grounds lift a few % toward
+    white, light grounds go to a clean white panel. Either way the card gains
+    contrast against the textured ground."""
+    r, g, b = _hex(pal["bg"])
+    lum = 0.299 * r + 0.587 * g + 0.114 * b
+    return _mix(pal["bg"], "#FFFFFF", 0.08 if lum < 128 else 1.0)
+
+
+def _ticket_card(img: Image.Image, ctx) -> ImageDraw.ImageDraw:
+    """Texture over the whole canvas, then the opaque rounded card fill on top
+    (that fill is the mask — texture inside the card is covered). A 1px hairline
+    in ``muted`` delineates the edge on every palette. Returns a fresh
+    ``ImageDraw`` bound to ``img``."""
+    _draw_texture(img, ctx.style.texture, ctx.palette)
+    W, H = ctx.size
+    d = ImageDraw.Draw(img)
+    box = (_TICKET_M, _TICKET_M, W - _TICKET_M, H - _TICKET_M)
+    d.rounded_rectangle(box, radius=_TICKET_R, fill=_ticket_lift(ctx.palette),
+                        outline=_mix(ctx.palette["bg"], ctx.palette["muted"], 0.4),
+                        width=1)
+    return d
+
+
+def _ticket_dashed_rect(draw, box: tuple, radius: int, colour,
+                        *, dash: int = 14, gap: int = 10, width: int = 2) -> None:
+    """A dashed outline around a rounded rect: short segments along the four
+    straight edges, solid quarter-arcs at the corners."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    r = int(radius)
+    step = dash + gap
+    for x in range(x0 + r, x1 - r, step):
+        xe = min(x + dash, x1 - r)
+        draw.line((x, y0, xe, y0), fill=colour, width=width)
+        draw.line((x, y1, xe, y1), fill=colour, width=width)
+    for y in range(y0 + r, y1 - r, step):
+        ye = min(y + dash, y1 - r)
+        draw.line((x0, y, x0, ye), fill=colour, width=width)
+        draw.line((x1, y, x1, ye), fill=colour, width=width)
+    draw.arc((x0, y0, x0 + 2 * r, y0 + 2 * r), 180, 270, fill=colour, width=width)
+    draw.arc((x1 - 2 * r, y0, x1, y0 + 2 * r), 270, 360, fill=colour, width=width)
+    draw.arc((x0, y1 - 2 * r, x0 + 2 * r, y1), 90, 180, fill=colour, width=width)
+    draw.arc((x1 - 2 * r, y1 - 2 * r, x1, y1), 0, 90, fill=colour, width=width)
+
+
+def _ticket_perf(draw, x: int, y0: int, y1: int, colour,
+                 *, r: int = 5, gap: int = 22) -> None:
+    """A vertical column of small filled circles — the punched perforation that
+    separates the content area from the stub."""
+    y = y0
+    while y <= y1:
+        draw.ellipse((x - r, y - r, x + r, y + r), fill=colour)
+        y += gap
+
+
+def _ticket_ghost(img: Image.Image, ctx, text: str, perf_x: int) -> None:
+    """The big translucent slide number, vertically centred in the stub (right
+    of the perforation), in ``muted`` at low alpha."""
+    try:
+        W, H = ctx.size
+        stub_w = (W - _TICKET_M) - perf_x
+        f = ImageFont.truetype(str(ctx.fonts["black"]), 210)
+        ov = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        od = ImageDraw.Draw(ov)
+        l, t, rr, b = od.textbbox((0, 0), text, font=f)
+        while (rr - l) > stub_w - 20 and f.size > 60:
+            f = ImageFont.truetype(str(ctx.fonts["black"]), f.size - 12)
+            l, t, rr, b = od.textbbox((0, 0), text, font=f)
+        gx = perf_x + (stub_w - (rr - l)) / 2 - l
+        gy = (H - (b - t)) / 2 - t
+        od.text((gx, gy), text, font=f,
+                fill=tuple(_hex(ctx.palette["muted"])) + (72,))
+        img.paste(Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB"),
+                  (0, 0))
+    except Exception as e:  # noqa: BLE001 - the ghost number is decorative
+        log.warning("ticket ghost number failed (%s); skipping", e)
+
+
+def _ticket_left_box(ctx, perf_x: int) -> tuple:
+    """``(left_x, left_area_w)`` for the content area between the card's left
+    padding and the perforation (with a pad kept clear of the dots)."""
+    left_x = _TICKET_M + _TICKET_PAD
+    return left_x, perf_x - left_x - _TICKET_PAD
+
+
+def _ticket_hook(img, sm, ctx, draw, perf_x: int) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    left_x, area_w = _ticket_left_box(ctx, perf_x)
+    y = _TICKET_M + _TICKET_PAD + 24
+
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     70, 40, area_w, 3)
+    line_h = int(hsz * 1.16)
+    for ln in lines:
+        draw.text((left_x, y), ln, font=hf, fill=pal["ink"])
+        y += line_h
+
+    sub = sm.body or ""
+    if sub:
+        y += 20
+        sf = ImageFont.truetype(str(ctx.fonts["regular"]), 32)
+        for ln in media._wrap(draw, sub, sf, area_w)[:3]:
+            draw.text((left_x, y), ln, font=sf, fill=pal["muted"])
+            y += 44
+
+    _hook_logos(img, (left_x, y + 40, perf_x - _TICKET_PAD, y + 40 + 300),
+                pal, sm.tools, ctx.style.logo, ctx.root)
+    draw = ImageDraw.Draw(img)  # re-bind after paste
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x)
+
+
+def _ticket_item(img, sm, ctx, draw, perf_x: int) -> None:
+    W, H = ctx.size
+    pal = ctx.palette
+    left_x, area_w = _ticket_left_box(ctx, perf_x)
+    top = _TICKET_M + _TICKET_PAD
+    y = top
+
+    if sm.tool:
+        lh = 132
+        _logo_lockup(img, (left_x, top, left_x + lh, top + lh), pal, sm.tool,
+                     ctx.style.logo, ctx.root, sm.index)
+        draw = ImageDraw.Draw(img)  # re-bind after paste
+        y = top + lh + 40
+
+    hf, lines, hsz = _fit_lines_font(draw, sm.headline or "", ctx.fonts["black"],
+                                     58, 32, area_w, 3)
+    line_h = int(hsz * 1.18)
+    hy0 = y
+    widths = [draw.textlength(ln, font=hf) for ln in lines] or [0]
+    for ln in lines:
+        draw.text((left_x, y), ln, font=hf, fill=pal["ink"])
+        y += line_h
+    _accent_shape(draw, (left_x, hy0, left_x + max(widths), y - line_h + hsz),
+                  ctx.style.accent_shape, pal["accent"])
+    y += 30
+
+    body = sm.body or ""
+    if body:
+        bsz = 32
+        bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+        blines = media._wrap(draw, body, bf, area_w)
+        for bsz in (28, 26):
+            if len(blines) <= 6:
+                break
+            bf = ImageFont.truetype(str(ctx.fonts["regular"]), bsz)
+            blines = media._wrap(draw, body, bf, area_w)
+        step = int(bsz * 1.36)
+        for ln in blines[:6]:
+            draw.text((left_x, y), ln, font=bf, fill=_centered_body_fill(ctx))
+            y += step
+
+    bullets = sm.bullets[:3]
+    if bullets:
+        y += 16
+        gsz = 28
+        gf = ImageFont.truetype(str(ctx.fonts["regular"]), gsz)
+        for bl in bullets:
+            cy = y + gsz / 2
+            draw.ellipse((left_x, cy - 7, left_x + 14, cy + 7), fill=pal["accent"])
+            seg = media._wrap(draw, bl, gf, area_w - 44)[:1]
+            if seg:
+                draw.text((left_x + 34, y), seg[0], font=gf,
+                          fill=_centered_body_fill(ctx))
+            y += int(gsz * 1.55)
+
+    _swipe_hint(draw, ctx.size, pal, ctx.fonts)
+    _handle_line(draw, ctx.size, pal, ctx.fonts, centred=False, left=left_x)
+
+
+def _layout_ticket(img, sm, ctx) -> None:
+    """The "ticket" archetype: a rounded inset card on the textured ground with
+    a dashed border, a punched vertical perforation splitting a left content
+    area from a right stub (big ghost slide number), a horizontal handle at the
+    card bottom. Close -> ``_centered_close`` (no card). Furniture via the
+    shared helpers."""
+    if sm.role == "close":
+        _draw_texture(img, ctx.style.texture, ctx.palette)
+        _centered_close(img, sm, ctx, ImageDraw.Draw(img))
+        return
+
+    W, H = ctx.size
+    draw = _ticket_card(img, ctx)  # texture + opaque card fill (the mask)
+    # The dashed frame stops ~52px above the card's bottom edge, leaving a
+    # "footer band" inside the card where the fixed-y handle + swipe hint land
+    # without colliding with the dashes.
+    foot = H - _TICKET_M - 52
+    _ticket_dashed_rect(draw, (_TICKET_M + 8, _TICKET_M + 8, W - _TICKET_M - 8,
+                               foot), _TICKET_R - 8, ctx.palette["muted"])
+    perf_x = int(_TICKET_M + _TICKET_PERF_F * (W - 2 * _TICKET_M))
+    _ticket_perf(draw, perf_x, _TICKET_M + 40, foot - 12, ctx.palette["muted"])
+
+    if sm.role == "hook":
+        _ticket_hook(img, sm, ctx, draw, perf_x)
+    else:
+        _ticket_ghost(img, ctx, str(max(sm.index - 1, 0)), perf_x)
+        draw = ImageDraw.Draw(img)  # re-bind after the ghost-number paste
+        _ticket_item(img, sm, ctx, draw, perf_x)
+
+
 LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
 LAYOUTS["centered"] = _layout_centered
 LAYOUTS["left-rail"] = _layout_left_rail
 LAYOUTS["bottom-bar"] = _layout_bottom_bar
 LAYOUTS["split"] = _layout_split
 LAYOUTS["magazine"] = _layout_magazine
+LAYOUTS["ticket"] = _layout_ticket
 
 
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],

@@ -776,3 +776,48 @@ def test_layout_magazine_survives_every_palette(tmp_path, monkeypatch):
             im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
             images.LAYOUTS["magazine"](im, sm, ctx)   # must not raise
             assert im.size == (1080, 1350)
+
+
+# --- Task 10: the "ticket" archetype ---------------------------------
+
+def test_layout_ticket_renders_all_roles(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    spies = {k: [] for k in ("lockup", "hook", "swipe", "handle")}
+    monkeypatch.setattr(images, "_logo_lockup",
+                        lambda *a, **k: spies["lockup"].append((a, k)) or 300)
+    monkeypatch.setattr(images, "_hook_logos",
+                        lambda *a, **k: spies["hook"].append((a, k)) or True)
+    monkeypatch.setattr(images, "_swipe_hint",
+                        lambda *a, **k: spies["swipe"].append((a, k)))
+    monkeypatch.setattr(images, "_handle_line",
+                        lambda *a, **k: spies["handle"].append((a, k)))
+    st = _st.Style("t", "ticket", "ink-on-white", "grotesk", "dots", "none", "tile")
+    ctx = images.RenderCtx((1080, 1350), _st.PALETTES["ink-on-white"],
+                           _st.font_paths("grotesk"), st, tmp_path, {},
+                           article=_story())
+    for sm in images._slide_models(_story()):
+        im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+        images.LAYOUTS["ticket"](im, sm, ctx)
+        assert im.size == (1080, 1350)
+    assert len(spies["hook"]) == 1          # hook drew the logo row
+    assert len(spies["lockup"]) == 1        # the one item with a tool
+    assert len(spies["swipe"]) == 2         # hook + item, not close
+    assert len(spies["handle"]) == 3        # all roles (close via _centered_close)
+    # the non-close handle calls sit INSIDE the card: left kwarg well past x=80
+    lefts = [k.get("left") for _a, k in spies["handle"] if k.get("left") is not None]
+    assert len(lefts) == 2 and all(l > 80 for l in lefts), lefts
+
+
+def test_layout_ticket_survives_every_palette(tmp_path, monkeypatch):
+    _st = styles
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    for pname in _st.PALETTE_NAMES:
+        st = _st.Style("t", "ticket", pname, "grotesk", "plain", "bracket", "tile")
+        ctx = images.RenderCtx((1080, 1350), _st.PALETTES[pname],
+                               _st.font_paths("grotesk"), st, tmp_path, {},
+                               article=_story())
+        for sm in images._slide_models(_story()):
+            im = Image.new("RGB", (1080, 1350), ctx.palette["bg"])
+            images.LAYOUTS["ticket"](im, sm, ctx)   # must not raise
+            assert im.size == (1080, 1350)
