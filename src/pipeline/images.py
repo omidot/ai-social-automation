@@ -291,6 +291,250 @@ def _dot_grid(draw: ImageDraw.ImageDraw, size: tuple[int, int], colour: str,
             draw.ellipse((gx - r, gy - r, gx + r, gy + r), fill=colour)
 
 
+# --- Task 4: shared "furniture" helpers -------------------------------------
+# Every one of the 24 layout functions (Tasks 5-10) calls these so the brand
+# elements (textures, accent shapes, tool logos, handle, swipe hint) render
+# identically across styles. Each helper draws in place and swallows its own
+# internal failure (a bad font / logo must never break the slide).
+
+def _hex(c) -> tuple[int, int, int]:
+    if isinstance(c, (tuple, list)):
+        return tuple(int(v) for v in c[:3])  # type: ignore[return-value]
+    s = str(c).lstrip("#")
+    return tuple(int(s[i:i + 2], 16) for i in (0, 2, 4))  # type: ignore[return-value]
+
+
+def _mix(c1, c2, t: float) -> tuple[int, int, int]:
+    """Linear blend ``c1`` -> ``c2`` by ``t`` in [0, 1]."""
+    a, b = _hex(c1), _hex(c2)
+    return tuple(int(round(a[i] + (b[i] - a[i]) * t)) for i in range(3))  # type: ignore[return-value]
+
+
+# --- textures -------------------------------------------------------------
+
+def _tex_dots(img: Image.Image, palette: dict) -> None:
+    _dot_grid(ImageDraw.Draw(img), img.size,
+              _mix(palette["bg"], palette["muted"], 0.18), step=44, r=2)
+
+
+def _tex_grid(img: Image.Image, palette: dict) -> None:
+    W, H = img.size
+    d = ImageDraw.Draw(img)
+    col = _mix(palette["bg"], palette["muted"], 0.15)
+    for gx in range(90, W, 90):
+        d.line((gx, 0, gx, H), fill=col, width=1)
+    for gy in range(90, H, 90):
+        d.line((0, gy, W, gy), fill=col, width=1)
+
+
+def _tex_diagonal(img: Image.Image, palette: dict) -> None:
+    W, H = img.size
+    d = ImageDraw.Draw(img)
+    col = _mix(palette["bg"], palette["muted"], 0.15)
+    for off in range(-H, W, 120):
+        d.line((off, 0, off + H, H), fill=col, width=1)
+
+
+def _tex_gradient_band(img: Image.Image, palette: dict) -> None:
+    W, H = img.size
+    bw = max(1, int(W * 0.22))
+    band = Image.new("RGB", (bw, H), tuple(_hex(palette["bg"])))
+    bd = ImageDraw.Draw(band)
+    for x in range(bw):
+        t = (x / max(1, bw - 1)) * 0.14
+        bd.line((x, 0, x, H), fill=_mix(palette["bg"], palette["accent"], t))
+    img.paste(band, (W - bw, 0))
+
+
+_TEXTURES = {"dots": _tex_dots, "grid": _tex_grid, "diagonal": _tex_diagonal,
+             "gradient-band": _tex_gradient_band}
+
+
+def _draw_texture(img: Image.Image, kind: str, palette: dict) -> None:
+    """Paint a faint full-bleed background texture. ``plain`` (and anything
+    unknown) is a no-op."""
+    fn = _TEXTURES.get(kind)
+    if fn is None:
+        return
+    try:
+        fn(img, palette)
+    except Exception as e:  # noqa: BLE001 - a texture must never sink a slide
+        log.warning("texture %r failed (%s); skipping", kind, e)
+
+
+# --- accent shape behind / under the headline --------------------------
+
+def _accent_shape(draw: ImageDraw.ImageDraw, box: tuple, kind: str,
+                  colour: str) -> None:
+    """Draw the headline's accent per ``kind``. ``box`` is the headline bbox.
+    ``bar`` is drawn BEFORE the text by callers that want it. ``none`` no-ops."""
+    if kind not in ("underline", "bar", "bracket"):
+        return
+    try:
+        x0, y0, x1, y1 = (int(v) for v in box)
+        if kind == "underline":
+            uy = y1 + 16
+            draw.rectangle((x0, uy, x0 + 120, uy + 4), fill=colour)
+        elif kind == "bar":
+            draw.rounded_rectangle((x0 - 24, y0 - 12, x1 + 24, y1 + 12),
+                                   radius=18, fill=colour)
+        else:  # bracket: 6px L-strokes at top-left + bottom-right
+            t, arm = 6, 30
+            draw.rectangle((x0, y0, x0 + arm, y0 + t), fill=colour)
+            draw.rectangle((x0, y0, x0 + t, y0 + arm), fill=colour)
+            draw.rectangle((x1 - arm, y1 - t, x1, y1), fill=colour)
+            draw.rectangle((x1 - t, y1 - arm, x1, y1), fill=colour)
+    except Exception as e:  # noqa: BLE001
+        log.warning("accent shape %r failed (%s); skipping", kind, e)
+
+
+# --- tool logo marks ---------------------------------------------------
+
+def _mono_logo(logo: Image.Image | None, ink) -> Image.Image | None:
+    """Recolour ``logo``'s silhouette to a flat ``ink`` (keeps its alpha)."""
+    if logo is None:
+        return None
+    try:
+        alpha = logo.convert("RGBA").getchannel("A")
+        solid = Image.new("RGBA", alpha.size, tuple(_hex(ink)) + (255,))
+        solid.putalpha(alpha)
+        return solid
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _place_mark(img: Image.Image, box: tuple, logo: Image.Image | None,
+                icon_fn, colour) -> None:
+    """Centre ``logo`` (or a monochrome ``icon_fn`` glyph) in ``box``, no tile."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    w, h = x1 - x0, y1 - y0
+    pad = int(min(w, h) * 0.18)
+    if logo is not None:
+        lg = logo.copy()
+        lg.thumbnail((max(1, w - 2 * pad), max(1, h - 2 * pad)), Image.LANCZOS)
+        img.paste(lg, (int(x0 + (w - lg.width) / 2), int(y0 + (h - lg.height) / 2)),
+                  lg if lg.mode == "RGBA" else None)
+    else:
+        icon_fn(ImageDraw.Draw(img), (x0 + pad, y0 + pad, x1 - pad, y1 - pad), colour)
+
+
+def _draw_mark(img: Image.Image, box: tuple, palette: dict,
+               logo: Image.Image | None, icon_fn, treatment: str) -> None:
+    """One logo mark in ``box`` per ``treatment`` (no brand name)."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    if treatment == "chip":
+        ImageDraw.Draw(img).rounded_rectangle((x0, y0, x1, y1), radius=20,
+                                              fill=palette["accent"])
+        _place_mark(img, (x0, y0, x1, y1), logo, icon_fn, palette["on_accent"])
+    elif treatment == "mono":
+        _place_mark(img, (x0, y0, x1, y1), _mono_logo(logo, palette["ink"]),
+                    icon_fn, palette["ink"])
+    else:  # tile
+        _logo_tile(img, (x0, y0, x1, y1), BRAND_DEFAULTS, logo, icon_fn)
+
+
+def _logo_lockup(img: Image.Image, box: tuple, palette: dict,
+                 tool: dict | None, treatment: str, root: Path,
+                 index: int) -> int:
+    """Draw the logo mark in ``box`` per ``treatment`` and, if ``tool`` has a
+    ``name``, the brand name to its right (bundled bold face, auto-sized).
+    Returns the x where the name ends, else ``box``'s right edge."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    end_x = x1
+    try:
+        dom = str((tool or {}).get("domain", "")).strip().lower()
+        logo = _fetch_logo(dom, root) if dom else None
+        icon_fn = _ICONS[_ICON_ORDER[(index - 1) % len(_ICON_ORDER)]]
+        _draw_mark(img, (x0, y0, x1, y1), palette, logo, icon_fn, treatment)
+        name = str((tool or {}).get("name", "")).strip()
+        if name:
+            draw = ImageDraw.Draw(img)
+            name_x = x1 + 34
+            sz = 54
+            nf = ImageFont.truetype(str(media.FONT_PATH), sz)
+            limit = img.size[0] - 80 - name_x
+            while sz > 28 and draw.textlength(name, font=nf) > limit:
+                sz -= 4
+                nf = ImageFont.truetype(str(media.FONT_PATH), sz)
+            asc, desc = nf.getmetrics()
+            draw.text((name_x, y0 + (y1 - y0 - (asc + desc)) / 2), name,
+                      font=nf, fill=palette["ink"])
+            end_x = int(name_x + draw.textlength(name, font=nf))
+    except Exception as e:  # noqa: BLE001 - a lockup must never sink a slide
+        log.warning("logo lockup failed (%s); bare box", e)
+    return int(end_x)
+
+
+def _hook_logos(img: Image.Image, box: tuple, palette: dict, tools: list,
+                treatment: str, root: Path) -> bool:
+    """One mark per tool centred in ``box``; wrap to a 2nd row past 4 (the
+    ``_hook_logo_row`` sizing: 150px tiles, 30px gaps). True if >=1 drawn."""
+    try:
+        x0, y0, x1, y1 = (int(v) for v in box)
+        picked = [t for t in (tools or []) if isinstance(t, dict)][:6]
+        marks: list[tuple[dict, Image.Image | None]] = []
+        for t in picked:
+            dom = str(t.get("domain", "")).strip().lower()
+            marks.append((t, _fetch_logo(dom, root) if dom else None))
+        if treatment == "tile":  # no empty tile — drop failed fetches
+            marks = [m for m in marks if m[1] is not None] or marks
+        if not marks:
+            return False
+
+        tile, gap = 150, 30
+        n = len(marks)
+        per_row = n if n <= 4 else (n + 1) // 2
+        rows = [marks[i:i + per_row] for i in range(0, n, per_row)]
+        total_h = len(rows) * tile + (len(rows) - 1) * gap
+        y = y0 + max(0, ((y1 - y0) - total_h) // 2)
+        drew = 0
+        for ri, row in enumerate(rows):
+            row_w = len(row) * tile + (len(row) - 1) * gap
+            x = x0 + max(0, ((x1 - x0) - row_w) // 2)
+            for ci, (_t, lg) in enumerate(row):
+                gi = _ICONS[_ICON_ORDER[(ri * per_row + ci) % len(_ICON_ORDER)]]
+                _draw_mark(img, (x, y, x + tile, y + tile), palette, lg, gi, treatment)
+                drew += 1
+                x += tile + gap
+            y += tile + gap
+        return drew > 0
+    except Exception as e:  # noqa: BLE001
+        log.warning("hook logos failed (%s); skipping", e)
+        return False
+
+
+# --- handle + swipe hint ---------------------------------------------
+
+def _handle_line(draw: ImageDraw.ImageDraw, size: tuple, palette: dict,
+                 fonts: dict, *, centred: bool) -> None:
+    """"A Hít Official" ~30px in ``fonts["regular"]``, ``palette["muted"]``,
+    ~46px above the bottom edge; centred or left at margin 80."""
+    try:
+        W, H = size
+        txt = "A Hít Official"
+        f = ImageFont.truetype(str(fonts["regular"]), 30)
+        asc, desc = f.getmetrics()
+        x = (W - draw.textlength(txt, font=f)) / 2 if centred else 80
+        draw.text((x, H - 46 - (asc + desc)), txt, font=f, fill=palette["muted"])
+    except Exception as e:  # noqa: BLE001
+        log.warning("handle line failed (%s); skipping", e)
+
+
+def _swipe_hint(draw: ImageDraw.ImageDraw, size: tuple, palette: dict,
+                fonts: dict) -> None:
+    """"Vuốt tiếp  ›" ~26px in ``fonts["regular"]``, ``palette["muted"]``,
+    bottom-right at margin 80."""
+    try:
+        W, H = size
+        txt = "Vuốt tiếp  ›"
+        f = ImageFont.truetype(str(fonts["regular"]), 26)
+        asc, desc = f.getmetrics()
+        draw.text((W - 80 - draw.textlength(txt, font=f), H - 54 - (asc + desc)),
+                  txt, font=f, fill=palette["muted"])
+    except Exception as e:  # noqa: BLE001
+        log.warning("swipe hint failed (%s); skipping", e)
+
+
 def _fit_lines(draw, text: str, start: int, floor: int, max_w: int,
                max_lines: int, step: int = 6):
     """Wrap ``text`` at the biggest font (``start`` .. ``floor``) that fits in

@@ -1,6 +1,6 @@
 from pathlib import Path
 import pytest
-from PIL import Image
+from PIL import Image, ImageDraw
 from pipeline import images, styles
 from pipeline.models import ArticleContent
 
@@ -356,6 +356,49 @@ def test_bad_style_config_uses_default(tmp_path, monkeypatch):
     assert len(out) == 3
     assert seen["style"].name == "default"      # bad config -> hardcoded default look
     assert seen["style"].layout == "centered"
+
+
+# --- Task 4: shared furniture helpers ---------------------------------
+
+def _pal():
+    return styles.PALETTES["ink-on-white"]
+
+
+def test_draw_texture_variants_dont_crash_and_change_pixels(tmp_path):
+    for kind in styles.TEXTURE_NAMES:
+        im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+        before = im.tobytes()
+        images._draw_texture(im, kind, _pal())
+        if kind != "plain":
+            assert im.tobytes() != before
+        assert im.size == (1080, 1350)
+
+
+def test_furniture_helpers_draw_expected_text(tmp_path):
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    d = ImageDraw.Draw(im)
+    fonts = styles.font_paths("grotesk")
+    images._handle_line(d, (1080, 1350), _pal(), fonts, centred=True)
+    images._swipe_hint(d, (1080, 1350), _pal(), fonts)
+    # bottom 120px band now has non-bg pixels
+    band = im.crop((0, 1230, 1080, 1350)).getcolors(maxcolors=100000)
+    assert len(band) > 1
+
+
+def test_logo_lockup_returns_int_and_survives_no_logo(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    x = images._logo_lockup(im, (80, 120, 270, 310), _pal(),
+                            {"name": "Sora", "domain": "openai.com"}, "tile",
+                            tmp_path, 1)
+    assert isinstance(x, int) and x >= 270
+
+
+def test_accent_shape_variants_dont_crash():
+    for kind in styles.ACCENT_SHAPES:
+        im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+        images._accent_shape(ImageDraw.Draw(im), (80, 400, 700, 480), kind,
+                             _pal()["accent"])
 
 
 def test_legacy_fallback_normalizes_to_size(tmp_path, monkeypatch):
