@@ -7,8 +7,5 @@ class VideoScriptError(VideoError):
 class CodegenError(VideoError):
     pass
 
-class TTSError(VideoError):
-    pass
-
 class AlignError(VideoError):
     pass

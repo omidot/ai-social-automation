@@ -34,8 +34,8 @@ images:
     cta_text: "#E5E7EB"
 
 video:
-  enabled: false
+  enabled: true
   target_seconds: 40
   words_min: 110
   words_max: 140
-  tts_provider: auto
+  render_composition: CodexShort

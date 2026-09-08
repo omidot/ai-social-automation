@@ -16,13 +16,12 @@ from . import VideoError
 from . import script as _script
 from . import variants as _variants
 from . import codegen as _codegen
-from . import tts as _tts
 from . import align as _align
 
 log = logging.getLogger("video.build")
 
 _CFG_DEFAULTS = {"enabled": False, "target_seconds": 40, "words_min": 110,
-                 "words_max": 140, "tts_provider": "auto"}
+                 "words_max": 140}
 
 # Canned script for --fake-llm: lets the CLI / CI smoke run the full chain with
 # no LLM credentials. ~117 displayed Vietnamese words, 14 cards, 3 sections.
@@ -88,8 +87,22 @@ def _load_story(path: Path) -> tuple[Candidate, PostContent]:
     return Candidate.from_dict(d["candidate"]), PostContent.from_dict(d["post"])
 
 
+def _copy_as_mp3(src: Path, dst: Path, video_dir: Path) -> None:
+    """Put ``src`` audio at ``dst`` as mp3. If already .mp3, copy; else ffmpeg."""
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    if src.suffix.lower() == ".mp3":
+        shutil.copy(src, dst)
+        return
+    ff = _align._ffmpeg_bin(video_dir)
+    r = subprocess.run([ff, "-y", "-hide_banner", "-i", str(src),
+                        "-ac", "1", "-ar", "44100", "-b:a", "128k", str(dst)],
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if r.returncode != 0:
+        raise VideoError(f"ffmpeg mp3 convert failed: {r.stderr[-300:]}")
+
+
 def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: dict,
-          fake: bool = False, render_smoke: bool = False, llm=None) -> dict:
+          *, voice_wav: Path, render_smoke: bool = False, llm=None) -> dict:
     cfg = {**_CFG_DEFAULTS, **(cfg or {})}
     if not cfg.get("enabled"):
         return {"skipped": "video.enabled=false"}
@@ -112,8 +125,8 @@ def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: di
     _script.write_script_json(s, out_dir)
 
     voice_mp3 = video_dir / "public" / "voice.mp3"
-    seconds = _tts.synthesize(s.spoken_text, voice_mp3, cfg, video_dir, fake=fake)
-    backend = "fake" if fake else cfg.get("tts_provider", "auto")
+    _copy_as_mp3(Path(voice_wav), voice_mp3, video_dir)
+    backend = "user-audio"
 
     sil_dur = _align.make_silence_txt(voice_mp3, video_dir / "ref" / "silence.txt", video_dir)
     tl_path = _align.run_aligner(video_dir, sil_dur)
@@ -125,11 +138,11 @@ def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: di
         shutil.copy(f, out_dir / f.name)
 
     manifest = {
-        "id": pid, "seconds": round(tl.get("duration", seconds), 2),
+        "id": pid, "seconds": round(tl.get("duration", 0.0), 2),
         "word_count": s.word_count, "cards": len(s.cards),
         "sections": [sec.label for sec in s.sections],
         "timeline_off": timeline_off, "voice_path": str(voice_mp3),
-        "video_dir": str(video_dir), "tts_backend": backend,
+        "video_dir": str(video_dir), "audio_source": backend,
     }
 
     if render_smoke:
@@ -151,35 +164,29 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Phase 2A — build Remotion inputs for one story")
     ap.add_argument("--root", default=".")
     ap.add_argument("--story", required=False)
-    ap.add_argument("--fake", action="store_true")
+    ap.add_argument("--voice", required=False)
     ap.add_argument("--fake-llm", action="store_true",
                     help="use a canned script instead of calling any LLM (offline smoke)")
     ap.add_argument("--render-smoke", action="store_true")
-    ap.add_argument("--tts-check", action="store_true")
     args = ap.parse_args(argv)
     root = Path(args.root)
     cfg = yaml.safe_load((root / "config/settings.yaml").read_text(encoding="utf-8")).get("video", {})
 
-    if args.tts_check:
-        secs = _tts.synthesize("Xin chào, đây là bản kiểm tra giọng đọc của kênh.",
-                               root / "video/public/voice.mp3", cfg, root / "video",
-                               fake=args.fake)
-        print(f"SUMMARY: tts-check ok, {secs:.1f}s -> video/public/voice.mp3")
-        return 0
-
     if not args.story:
-        ap.error("--story is required unless --tts-check")
+        ap.error("--story is required")
+    if not args.voice:
+        ap.error("--voice is required with --story")
     cand, post = _load_story(Path(args.story))
     cfg["enabled"] = True  # an explicit CLI invocation IS the request to build
     try:
         man = build(root, cand, post, datetime.now(timezone.utc), cfg,
-                    fake=args.fake, render_smoke=args.render_smoke,
+                    voice_wav=Path(args.voice), render_smoke=args.render_smoke,
                     llm=_fake_llm if args.fake_llm else None)
     except VideoError as e:
         print(f"SUMMARY: video build failed: {e}")
         return 1
     print(f"SUMMARY: built {man.get('id')} — {man.get('cards')} cards, "
-          f"{man.get('seconds')}s, tts={man.get('tts_backend')}")
+          f"{man.get('seconds')}s, audio={man.get('audio_source')}")
     return 0
 
 

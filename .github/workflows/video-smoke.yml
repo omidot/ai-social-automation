@@ -28,4 +28,4 @@ jobs:
       - name: Unit tests (incl. needs_node)
         run: python -m pytest tests/video -q
       - name: End-to-end fake build + render smoke
-        run: python -m pipeline.video.build_video --fake --fake-llm --story tests/fixtures/video/story.json --render-smoke --root .
+        run: python -m pipeline.video.build_video --fake-llm --story tests/fixtures/video/story.json --voice tests/fixtures/video/voice_fixture.wav --render-smoke --root .
