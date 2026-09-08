@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-08",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Cách dùng AI viết 30 bài đăng mạng xã hội trong một buổi",
+      "topic_key": "cach-dung-ai-viet-30-bai-ang-mang-xa-hoi-trong-mot",
+      "text_fb": "Mình từng mất cả tuần chỉ để nghĩ xem tháng này đăng gì. Giờ thì một buổi chiều là xong hết 30 bài, từ ý tưởng đến ảnh minh hoạ.\n\nBí quyết không phải là có AI xịn hơn người khác. Bí quyết nằm ở việc mình chuẩn bị trước khi mở AI lên. Mình dành 15 phút liệt kê 4-5 chủ đề lớn, mỗi chủ đề tách ra vài góc nhỏ, thế là có sẵn 30 ý tưởng khung xương trước khi viết một chữ nào.\n\nSau đó mình mới đưa hết danh sách đó vào ChatGPT cùng một lúc, kèm mẫu giọng văn muốn dùng. Viết hàng loạt như vậy nhanh hơn hẳn so với hỏi từng câu một, vì AI giữ mạch giọng xuyên suốt cả 30 bài. Mình chỉ cần đọc lại và chỉnh câu mở đầu cho từng bài để không bị lặp công thức.\n\nCaption viết xong thì mình dán vào một bảng Notion, chia cột theo ngày đăng và nền tảng. Nhìn cả tháng trên một màn hình giúp phát hiện ngay chỗ nào lặp ý hoặc thiếu ảnh.\n\nPhần hình ảnh mình không thiết kế từ đầu mỗi lần, mà dùng một template Canva cố định, chỉ đổi tiêu đề và ảnh nền. Cuối cùng, mọi thứ được đẩy vào Buffer để đặt lịch đăng tự động cho cả tháng.\n\nCả quy trình nghe có vẻ nhiều bước, nhưng làm quen rồi thì gói gọn trong một buổi làm việc tập trung. Quan trọng nhất vẫn là bước chuẩn bị khung nội dung, bỏ qua bước này thì AI viết nhanh mấy cũng thành lan man.",
+      "text_ig": "Một buổi chiều, xong 30 bài đăng cho cả tháng. Bí quyết: chuẩn bị khung chủ đề trước, rồi để ChatGPT viết hàng loạt, gom vào Notion, dựng ảnh bằng Canva, đặt lịch bằng Buffer. Chuẩn bị kỹ, AI làm phần còn lại nhanh gọn.",
+      "hashtags": [
+        "#AI",
+        "#ContentAI",
+        "#ViếtNộiDung",
+        "#MạngXãHội",
+        "#ChatGPT",
+        "#Notion",
+        "#Canva",
+        "#Buffer",
+        "#ContentCalendar",
+        "#SángTạoNộiDung",
+        "#AHitOfficial",
+        "#NăngSuất",
+        "#DigitalMarketing"
+      ],
+      "images": [
+        "assets/posts/2026-09-08/morning/01.jpg",
+        "assets/posts/2026-09-08/morning/02.jpg",
+        "assets/posts/2026-09-08/morning/03.jpg",
+        "assets/posts/2026-09-08/morning/04.jpg",
+        "assets/posts/2026-09-08/morning/05.jpg",
+        "assets/posts/2026-09-08/morning/06.jpg",
+        "assets/posts/2026-09-08/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-08/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "Hướng dẫn từng bước để lên xong nội dung mạng xã hội cho cả tháng chỉ trong một buổi làm việc với AI"
+    }
+  }
+}
