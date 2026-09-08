@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
 from PIL import Image
-from pipeline import images
+from pipeline import images, styles
 from pipeline.models import ArticleContent
 
 
@@ -259,6 +259,73 @@ def test_build_images_falls_back_to_legacy_when_hook_render_fails(tmp_path, monk
                         lambda art, od, size: [str(tmp_path / "legacy.jpg")])
     out = images.build_images(_art(), tmp_path, size=(1080, 1350))
     assert out == [str(tmp_path / "legacy.jpg")]
+
+
+def _story():
+    slides = [
+        {"role": "hook", "headline": "AI dựng phim tám giây", "body": "Một mô hình mới.",
+         "tools": [{"name": "Sora", "domain": "openai.com"},
+                   {"name": "Veo", "domain": "deepmind.google"}]},
+        {"role": "item", "headline": "Nó làm được gì", "tool": {"name": "Sora", "domain": "openai.com"},
+         "body": ("Mô hình nhận một câu tiếng Việt rồi trả về đoạn phim tám giây ở "
+                  "1080p, giữ khuôn mặt nhân vật ổn định để cắt ghép thật chứ không "
+                  "chỉ là bản trình diễn cho vui mắt, và bạn xuất được ngay."),
+         "bullets": ["điểm nhấn một", "điểm nhấn hai"]},
+        {"role": "close", "headline": "Chốt lại", "body": "Kỹ năng mới là viết mô tả."},
+    ]
+    return ArticleContent(format="share", caption_fb="fb", caption_ig="ig",
+                          hashtags=["#AI"], cover_title="AI dựng phim",
+                          slides=slides, sources=[])
+
+
+def test_build_images_with_explicit_style(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    st = styles.Style("t", "centered", "ink-on-white", "grotesk", "dots", "underline", "tile")
+    out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
+                              brand={}, root=tmp_path, style=st)
+    assert len(out) == 3
+    for p in out:
+        im = Image.open(p)
+        assert im.size == (1080, 1350)
+
+
+def test_build_images_picks_a_style_when_none(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    monkeypatch.setattr(styles, "pick_style",
+                        lambda root, now=None: styles.Style(
+                            "x", "left-rail", "white-on-navy", "grotesk",
+                            "plain", "bar", "chip"))
+    out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
+                              brand={}, root=tmp_path)
+    assert len(out) == 3
+
+
+def test_one_bad_layout_slide_falls_back(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    calls = {"n": 0}
+    real_centered = images.LAYOUTS["centered"]
+
+    def flaky(img, sm, ctx):
+        calls["n"] += 1
+        if sm.role == "item":
+            raise RuntimeError("layout boom")
+        return real_centered(img, sm, ctx)
+
+    monkeypatch.setitem(images.LAYOUTS, "centered", flaky)
+    st = styles.Style("t", "centered", "ink-on-white", "grotesk", "dots", "underline", "tile")
+    out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
+                              brand={}, root=tmp_path, style=st)
+    assert len(out) == 3                          # still 3 images, bad item via _via_fallback
+    assert Image.open(out[1]).size == (1080, 1350)
+
+
+def test_bad_style_config_uses_default(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    monkeypatch.setattr(styles, "pick_style",
+                        lambda *a, **k: (_ for _ in ()).throw(styles.StyleError("boom")))
+    out = images.build_images(_story(), tmp_path / "o", size=(1080, 1350),
+                              brand={}, root=tmp_path)      # must not raise
+    assert len(out) == 3
 
 
 def test_legacy_fallback_normalizes_to_size(tmp_path, monkeypatch):

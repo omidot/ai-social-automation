@@ -1,11 +1,12 @@
 from __future__ import annotations
 import io, logging, os
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import httpx
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-from . import media
+from . import media, styles
 from .models import ArticleContent, PostContent
 
 log = logging.getLogger("images")
@@ -632,40 +633,114 @@ def _safe_fallback(article: ArticleContent, out_dir: Path,
         return _legacy_fallback(article, out_dir, size)
 
 
+@dataclass
+class SlideModel:
+    role: str
+    index: int
+    total: int
+    headline: str
+    body: str
+    bullets: list = field(default_factory=list)
+    tool: dict | None = None
+    tools: list = field(default_factory=list)
+
+
+def _slide_models(article) -> list["SlideModel"]:
+    raw = [s for s in (getattr(article, "slides", []) or []) if isinstance(s, dict)]
+    total = len(raw)
+    out: list[SlideModel] = []
+    for i, s in enumerate(raw):
+        role = str(s.get("role", "")).strip().lower() or ("hook" if i == 0 else "item")
+        out.append(SlideModel(
+            role=role, index=i + 1, total=total,
+            headline=str(s.get("headline", "")).strip(),
+            body=str(s.get("body", "")).strip(),
+            bullets=[str(b).strip() for b in (s.get("bullets") or []) if str(b).strip()],
+            tool=s.get("tool") if isinstance(s.get("tool"), dict) else None,
+            tools=[t for t in (s.get("tools") or []) if isinstance(t, dict)]))
+    return out
+
+
+@dataclass
+class RenderCtx:
+    size: tuple
+    palette: dict
+    fonts: dict
+    style: "styles.Style"
+    root: Path
+    brand: dict
+    article: object = None
+
+
+def _via_fallback(sm: "SlideModel", ctx: "RenderCtx"):
+    """Render one slide with the retained v4 renderer (used as each layout's
+    stub in Task 3 and as the per-slide degrade path afterwards)."""
+    b = {**BRAND_DEFAULTS, **(ctx.brand or {})}
+    slide = {"role": sm.role, "headline": sm.headline, "body": sm.body,
+             "bullets": sm.bullets, "tool": sm.tool, "tools": sm.tools}
+    if sm.role == "hook":
+        return _render_hook_slide(ctx.article, slide, ctx.size, b, ctx.root)
+    return _render_item_slide(sm.index, sm.total, slide, ctx.size, b, ctx.root)
+
+
+# Tasks 5-10 replace these stubs one at a time with real layout functions.
+def _layout_stub(img, sm, ctx):
+    img.paste(_via_fallback(sm, ctx).convert("RGB"), (0, 0))
+
+
+LAYOUTS: dict = {name: _layout_stub for name in styles.LAYOUT_NAMES}
+
+
 def build_images(article: ArticleContent, out_dir, *, size: tuple[int, int],
                  brand: dict | None = None, root: Path | None = None,
-                 **ignored) -> list[str]:
+                 style=None, **ignored) -> list[str]:
     """Render the storyboard carousel: ``01.jpg`` .. ``0N.jpg``, one image per
     ``article.slides`` entry (4-9 of them — the count is not fixed), all in one
-    visual system. Slide 1 is the dark hook slide (with a row of the logos the
-    carousel covers); the rest are the light "item" slides (the last one being
-    the "close"), each opening with a big logo-lockup when the slide carries a
-    ``tool``.
+    visual system.
 
-    ``root`` is the repo root — logos cache under ``<root>/assets/logos/``. On
-    ANY exception the whole render degrades to a minimal safe fallback (hook
-    slide alone, else ``media.build_media``); it never propagates. ``**ignored``
+    ``style`` selects one of the 24 rotating carousel styles; when ``None`` it
+    is drawn from ``styles.pick_style(root)`` (a bad ``config/styles.yaml`` ->
+    a hardcoded default look). ``LAYOUTS[style.layout]`` draws each slide; in
+    Task 3 every layout is a thin stub that reproduces the v4 renderers, which
+    are retained as the degrade path.
+
+    ``root`` is the repo root — logos cache under ``<root>/assets/logos/``. A
+    single failing layout slide re-renders via the v4 fallback; on ANY other
+    exception the whole render degrades to a minimal safe fallback (hook slide
+    alone, else ``media.build_media``); it never propagates. ``**ignored``
     swallows retired kwargs (``style_prompt``, ``provider``, ``gen``).
     """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    b = {**BRAND_DEFAULTS, **(brand or {})}
     root = Path(root) if root is not None else Path(".")
+    b = {**BRAND_DEFAULTS, **(brand or {})}
 
     try:
-        slides = [s for s in (getattr(article, "slides", []) or []) if isinstance(s, dict)]
-        if not slides:
+        if style is None:
+            try:
+                style = styles.pick_style(root)
+            except Exception as e:  # noqa: BLE001 - bad styles.yaml -> default look
+                log.warning("pick_style failed (%s); using default style", e)
+                style = styles.Style("default", "centered", "white-on-navy",
+                                     "grotesk", "dots", "bar", "tile")
+        ctx = RenderCtx(size=size, palette=styles.palette_for(style, brand),
+                        fonts=styles.font_paths(style.font), style=style,
+                        root=root, brand=b, article=article)
+        models = _slide_models(article)
+        if not models:
             raise ValueError("article has no slides")
-        total = len(slides)
+        layout_fn = LAYOUTS.get(style.layout, _layout_stub)
         paths: list[str] = []
-        for idx, slide in enumerate(slides):
-            role = str(slide.get("role", "")).strip().lower()
-            if idx == 0 or role == "hook":
-                im = _render_hook_slide(article, slide, size, b, root)
-            else:
-                im = _render_item_slide(idx + 1, total, slide, size, b, root)
-            paths.append(str(media._save_jpeg(im, out_dir / f"{idx + 1:02d}.jpg", size)))
+        for sm in models:
+            img = Image.new("RGB", size, ctx.palette["bg"])
+            try:
+                layout_fn(img, sm, ctx)
+            except Exception as e:  # noqa: BLE001 - one bad slide -> v4 fallback
+                log.warning("layout %s slide %d failed (%s); v4 fallback",
+                            style.layout, sm.index, e)
+                img = _via_fallback(sm, ctx).convert("RGB")
+            paths.append(str(media._save_jpeg(img, out_dir / f"{sm.index:02d}.jpg", size)))
         return paths
-    except Exception as e:  # noqa: BLE001 - a broken slide must not sink the post
+    except Exception as e:  # noqa: BLE001 - a broken render must not sink the post
         log.warning("storyboard render failed (%s); using safe fallback", e)
         return _safe_fallback(article, out_dir, size)
