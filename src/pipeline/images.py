@@ -399,7 +399,8 @@ def _mono_logo(logo: Image.Image | None, ink) -> Image.Image | None:
         solid = Image.new("RGBA", alpha.size, tuple(_hex(ink)) + (255,))
         solid.putalpha(alpha)
         return solid
-    except Exception:  # noqa: BLE001
+    except Exception as e:  # noqa: BLE001
+        log.warning("mono logo failed: %s", e)
         return None
 
 
@@ -439,9 +440,10 @@ def _logo_lockup(img: Image.Image, box: tuple, palette: dict,
     """Draw the logo mark in ``box`` per ``treatment`` and, if ``tool`` has a
     ``name``, the brand name to its right (bundled bold face, auto-sized).
     Returns the x where the name ends, else ``box``'s right edge."""
-    x0, y0, x1, y1 = (int(v) for v in box)
-    end_x = x1
+    end_x = 0
     try:
+        x0, y0, x1, y1 = (int(v) for v in box)
+        end_x = x1
         dom = str((tool or {}).get("domain", "")).strip().lower()
         logo = _fetch_logo(dom, root) if dom else None
         icon_fn = _ICONS[_ICON_ORDER[(index - 1) % len(_ICON_ORDER)]]

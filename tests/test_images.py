@@ -416,3 +416,62 @@ def test_legacy_fallback_normalizes_to_size(tmp_path, monkeypatch):
     out = images._legacy_fallback(_art(), tmp_path, size)
     assert len(out) == 2
     assert all(Image.open(p).size == size for p in out)
+
+
+def test_hook_logos_draws_marks_and_returns_bool(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    before = im.tobytes()
+    tools = [{"name": "A", "domain": "a.com"}, {"name": "B", "domain": "b.com"},
+             {"name": "C", "domain": "c.com"}, {"name": "D", "domain": "d.com"},
+             {"name": "E", "domain": "e.com"}]
+    out = images._hook_logos(im, (80, 300, 1000, 700), _pal(), tools, "chip", tmp_path)
+    assert out is True                        # chip keeps a glyph even without a real logo
+    assert im.tobytes() != before            # something was drawn
+    # empty tool list -> nothing drawn, returns False
+    im2 = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    assert images._hook_logos(im2, (80, 300, 1000, 700), _pal(), [], "chip", tmp_path) is False
+
+
+def test_logo_lockup_chip_and_mono_paths(tmp_path, monkeypatch):
+    # a real (tiny) logo image so the mono desaturate + chip composite paths run
+    from PIL import Image as _I
+    monkeypatch.setattr(images, "_fetch_logo",
+                        lambda *a, **k: _I.new("RGBA", (64, 64), (10, 120, 200, 255)))
+    for treatment in ("chip", "mono", "tile"):
+        im = _I.new("RGB", (1080, 1350), _pal()["bg"])
+        before = im.tobytes()
+        x = images._logo_lockup(im, (80, 120, 270, 310), _pal(),
+                                {"name": "Sora", "domain": "openai.com"}, treatment,
+                                tmp_path, 1)
+        assert isinstance(x, int) and x >= 270
+        assert im.tobytes() != before, f"{treatment} drew nothing"
+
+
+def test_logo_lockup_survives_malformed_box(tmp_path, monkeypatch):
+    monkeypatch.setattr(images, "_fetch_logo", lambda *a, **k: None)
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    x = images._logo_lockup(im, (80, 120, 270), _pal(),      # 3-tuple, malformed
+                            {"name": "X", "domain": "x.com"}, "tile", tmp_path, 1)
+    assert isinstance(x, int)                                 # did not raise
+
+
+def test_draw_texture_plain_is_true_noop():
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    before = im.tobytes()
+    images._draw_texture(im, "plain", _pal())
+    images._draw_texture(im, "totally-unknown-kind", _pal())
+    assert im.tobytes() == before
+
+
+def test_accent_shape_draws_for_shapes_and_noops_for_none():
+    from PIL import ImageDraw as _D
+    for kind in ("underline", "bar", "bracket"):
+        im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+        b = im.tobytes()
+        images._accent_shape(_D.Draw(im), (80, 400, 700, 480), kind, _pal()["accent"])
+        assert im.tobytes() != b, f"{kind} drew nothing"
+    im = Image.new("RGB", (1080, 1350), _pal()["bg"])
+    b = im.tobytes()
+    images._accent_shape(_D.Draw(im), (80, 400, 700, 480), "none", _pal()["accent"])
+    assert im.tobytes() == b
