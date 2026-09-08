@@ -6,6 +6,7 @@ from pathlib import Path
 import yaml
 
 from . import write, images, topics, collect, score, publish, styles
+from .video import draft_script as _video_draft
 from .daily_state import DailyState
 from .models import ArticleContent
 from .state import State
@@ -172,6 +173,22 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
         ds.set_status(date, slot, "draft")
         _notify_failure(slot, e)
         return {"slot": slot, "status": "error"}
+
+    # The article is scheduled. If video is on, kick off script generation for
+    # the same story — but a video failure must never break the article flow.
+    if settings.get("video", {}).get("enabled"):
+        try:
+            _video_draft.draft(
+                slot, root, title=title,
+                source_url=(state_sources[0]["url"] if state_sources else ""),
+                body_text=article.caption_fb, caption_fb=article.caption_fb,
+                angle=angle, now=now, generate=generate, tg=tg)
+        except Exception as e:  # noqa: BLE001 - video is secondary; the article is already scheduled
+            log.warning("video draft_script failed: %s", e)
+            try:
+                tg.send_message(f"⚠️ Kịch bản video {slot} lỗi: {e}")
+            except Exception:  # noqa: BLE001
+                pass
     return ds.get(date, slot)
 
 

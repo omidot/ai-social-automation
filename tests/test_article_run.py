@@ -342,6 +342,50 @@ def test_main_notifies_on_draft_failure(monkeypatch):
     assert sent and "Pipeline lỗi" in sent[-1]
 
 
+def _enable_video(root):
+    p = root / "config" / "settings.yaml"
+    p.write_text(p.read_text(encoding="utf-8") + "video:\n  enabled: true\n",
+                 encoding="utf-8")
+
+
+def test_draft_triggers_video_when_enabled(wired, monkeypatch):
+    root, _ = wired
+    _enable_video(root)
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=FakeTG(), meta=object())
+    assert out["status"] == "scheduled"
+    assert seen["slot"] == "morning"
+    assert "title" in seen and "caption_fb" in seen
+
+
+def test_draft_video_failure_does_not_break_article(wired, monkeypatch):
+    root, _ = wired
+    _enable_video(root)
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom")))
+    tg = FakeTG()
+    out = article_run.draft("morning", root,
+                            datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc),
+                            tg=tg, meta=object())
+    assert out["status"] == "scheduled"
+    assert any("Kịch bản video morning lỗi" in m[0] for m in tg.msgs)
+
+
+def test_draft_no_video_when_disabled(wired, monkeypatch):
+    root, _ = wired   # fixture settings.yaml has no video block -> disabled
+    called = []
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda *a, **k: called.append(1))
+    article_run.draft("morning", root,
+                      datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc),
+                      tg=FakeTG(), meta=object())
+    assert called == []
+
+
 def test_main_logs_traceback_on_failure(monkeypatch, caplog):
     def boom(*a, **k):
         raise RuntimeError("boom")
