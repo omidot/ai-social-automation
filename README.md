@@ -71,8 +71,21 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
   `video.status = "rendered"` + nút `🗑 Gỡ`. Render lỗi → slot quay lại `awaiting_audio`,
   gửi lại audio để thử.
 - Nền video cố định: `video/public/bg.mp4` (đặt một lần).
-- Đăng YouTube / FB Reel / IG Reel / TikTok = Phase 2C (chưa làm).
 - Tắt cả nhánh video: `config/settings.yaml` → `video.enabled: false`.
+
+## Đăng video (Phase 2C)
+
+- Sau khi render, `video-render` cũng chạy `publish_pending`: đưa MP4 lên một
+  GitHub Release ẩn (`video-assets`) lấy URL công khai, rồi đăng lần lượt YouTube
+  Shorts → FB Reel → IG Reel → TikTok (nháp). Bật từng nền tảng ở
+  `config/settings.yaml` → `video.publish.<platform>: true`.
+- Đăng xong đủ các nền tảng đang bật → `video.status = "published"`, xoá asset,
+  Telegram gửi tổng kết + nút `🗑 Gỡ tất cả` (60 phút, xoá YT/FB/IG; TikTok tự xoá
+  nháp trong app).
+- Lỗi một nền tảng → thử lại tick sau, tối đa 5 lần rồi bỏ cuộc + cảnh báo.
+- Secrets: `YOUTUBE_CLIENT_ID/SECRET/REFRESH_TOKEN` (chạy
+  `python scripts/mint_youtube_token.py` một lần để lấy); FB/IG Reel dùng lại
+  `META_PAGE_TOKEN`.
 
 ## Nguồn nội dung
 

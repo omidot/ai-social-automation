@@ -8,6 +8,7 @@ from pipeline.video import publish as pub
 class FakeTG:
     def __init__(self): self.msgs = []
     def send_message(self, text, buttons=None): self.msgs.append((text, buttons))
+    def answer_callback(self, cid, text=""): pass
 
 
 def _settings(root, **flags):
@@ -15,7 +16,7 @@ def _settings(root, **flags):
     body = ["video:", "  channel_footer: \"— A Hít Official\"", "  publish:"]
     for k in ("youtube", "fb_reel", "ig_reel", "tiktok"):
         body.append(f"    {k}: {str(flags.get(k, False)).lower()}")
-    body.append("    youtube_category: 27")
+    body.append(f"    youtube_category: {flags.get('youtube_category', 27)}")
     (root / "config" / "settings.yaml").write_text("\n".join(body) + "\n", encoding="utf-8")
 
 
@@ -124,3 +125,66 @@ def test_already_published_slot_is_skipped(tmp_path, monkeypatch):
     _patch(monkeypatch)
     assert pub.publish_pending(ds, FakeTG(), tmp_path,
                                datetime(2026, 9, 9, 5, tzinfo=timezone.utc)) == []
+
+
+def test_youtube_category_from_publish_block_reaches_upload(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True, youtube_category=22)
+    ds = _seed(tmp_path)
+    seen = {}
+    monkeypatch.setattr(pub._assets, "upload_release_asset",
+                        lambda mp4, name, **k: f"https://gh/rel/{name}")
+    monkeypatch.setattr(pub._assets, "delete_release_asset", lambda name, **k: True)
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def upload(self, mp4, meta, cfg):
+            seen.update(cfg)
+            return {"id": "VID", "url": "https://youtu.be/VID"}
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    out = pub.publish_pending(ds, FakeTG(), tmp_path,
+                              datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]
+    assert seen["youtube_category"] == 22        # video.publish.youtube_category
+    assert seen["channel_footer"] == "— A Hít Official"   # video.channel_footer
+
+
+def test_handle_unpublish_deletes_and_marks(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="published",
+               result={"youtube": {"id": "VID", "url": "u", "at": "x"},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "published_at": datetime(2026, 9, 9, 5, tzinfo=timezone.utc).isoformat()})
+    dels = []
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def delete(self, vid): dels.append(vid)
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    tg = FakeTG()
+    out = pub.handle_unpublish({"id": "c", "data": "vid:2026-09-09:morning:unpub"},
+                               ds, tg, tmp_path,
+                               datetime(2026, 9, 9, 5, 30, tzinfo=timezone.utc))
+    assert out == "unpublished:2026-09-09:morning"
+    assert dels == ["VID"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "unpublished" and v["result"]["youtube"]["undone"] is True
+
+
+def test_handle_unpublish_past_grace(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="published",
+               result={"youtube": {"id": "VID", "url": "u", "at": "x"},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "published_at": datetime(2026, 9, 9, 5, tzinfo=timezone.utc).isoformat()})
+    tg = FakeTG()
+    out = pub.handle_unpublish({"id": "c", "data": "vid:2026-09-09:morning:unpub"},
+                               ds, tg, tmp_path,
+                               datetime(2026, 9, 9, 7, tzinfo=timezone.utc))   # 120 min
+    assert out == "undo-expired:2026-09-09:morning"
+    assert ds.get_safe("2026-09-09", "morning")["video"]["status"] == "published"

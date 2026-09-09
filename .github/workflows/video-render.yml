@@ -20,7 +20,7 @@ jobs:
       - name: Any pending audio?
         id: g
         run: |
-          if grep -lR '"audio_received"' data/daily/ 2>/dev/null | grep -q .; then
+          if grep -lRE '"(audio_received|rendered|publishing)"' data/daily/ 2>/dev/null | grep -q .; then
             echo "go=1" >> "$GITHUB_OUTPUT"
           else
             echo "go=0" >> "$GITHUB_OUTPUT"
@@ -47,11 +47,17 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install -e .
-      - name: Render pending videos
+      - name: Render + publish
         if: steps.g.outputs.go == '1'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
         run: python -m pipeline.video.render_run
       - name: Commit state
         if: always()

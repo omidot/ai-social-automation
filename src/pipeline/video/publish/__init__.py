@@ -2,12 +2,13 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 import yaml
 
 from ..models import VideoMeta
+from ...meta import Meta
 from . import assets as _assets
 from . import youtube as _youtube
 
@@ -53,7 +54,8 @@ def _do_youtube(ctx: _Ctx) -> dict:
     yt = _youtube.YouTube.from_env()
     if ctx.mp4_path is None:
         raise _youtube.YouTubeError("youtube needs the mp4 on disk")
-    r = yt.upload(ctx.mp4_path, ctx.meta, ctx.cfg)
+    # channel_footer lives on `video`, youtube_category on `video.publish`
+    r = yt.upload(ctx.mp4_path, ctx.meta, {**ctx.cfg, **(ctx.cfg.get("publish") or {})})
     return {"id": r["id"], "url": r["url"]}
 
 
@@ -162,3 +164,69 @@ def _summary(date, slot, v, enabled) -> str:
         else:
             lines.append(f"❌ {_PLATFORM_LABEL[p]} (bỏ cuộc)")
     return "\n".join(lines)
+
+
+# ---- undo (🗑 Gỡ tất cả) ----------------------------------------------------
+
+_UNDO_GRACE_MIN = 60
+
+
+def _ack(tg, cbq, text: str) -> None:
+    try:
+        tg.answer_callback(cbq["id"], text)
+    except Exception:  # noqa: BLE001 - an expired callback id must never abort the poll
+        pass
+
+
+def _delete_platform(p: str, res: dict, tg) -> str | None:
+    """Best-effort remote delete. Returns an error string or None."""
+    try:
+        if p == "youtube":
+            _youtube.YouTube.from_env().delete(res["id"])
+        elif p == "fb_reel":
+            Meta.from_env().fb_delete_post(res["id"])
+        elif p == "ig_reel":
+            Meta.from_env().ig_delete_media(res["id"])
+        elif p == "tiktok":
+            return "TikTok: tự xoá nháp trong app"
+        return None
+    except Exception as e:  # noqa: BLE001 - one platform delete must not block the rest
+        return f"{_PLATFORM_LABEL.get(p, p)}: {e}"
+
+
+def handle_unpublish(cbq: dict, ds, tg, root, now: datetime) -> str | None:
+    parts = cbq.get("data", "").split(":")
+    if len(parts) != 4 or parts[0] != "vid" or parts[3] != "unpub":
+        return None
+    _, date, slot, _ = parts
+    row = ds.get_safe(date, slot) or {}
+    v = row.get("video") or {}
+    if v.get("status") != "published":
+        _ack(tg, cbq, "Không có gì để gỡ.")
+        return None
+    try:
+        pub_at = datetime.fromisoformat(v["published_at"])
+    except (KeyError, ValueError, TypeError):
+        pub_at = now
+    if (now - pub_at).total_seconds() > _UNDO_GRACE_MIN * 60:
+        _ack(tg, cbq, "Đăng lâu rồi — gỡ tay trên từng nền tảng.")
+        tg.send_message(f"⚠️ {date}:{slot} đã đăng quá {_UNDO_GRACE_MIN} phút, gỡ thủ công.")
+        return f"undo-expired:{date}:{slot}"
+
+    errs: list[str] = []
+    result = dict(v.get("result", {}))
+    for p, res in list(result.items()):
+        if not (res and res.get("id")) and not (res and res.get("status") == "draft_uploaded"):
+            continue
+        err = _delete_platform(p, res, tg)
+        if err:
+            errs.append(err)
+        result[p] = {**res, "undone": True}
+    ds.put(date, slot, video={**((ds.get_safe(date, slot) or {}).get("video") or v),
+                              "status": "unpublished", "result": result})
+    _ack(tg, cbq, "Đã gỡ.")
+    msg = f"🗑 Đã gỡ {date}:{slot}."
+    if errs:
+        msg += " Lỗi: " + "; ".join(errs)
+    tg.send_message(msg)
+    return f"unpublished:{date}:{slot}"
