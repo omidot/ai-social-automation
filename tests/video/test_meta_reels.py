@@ -48,3 +48,37 @@ def test_fb_publish_reel_raises_on_error_status():
         return httpx.Response(500, json={})
     with pytest.raises(Exception):
         _meta(h).fb_publish_reel("https://x/x.mp4", "d")
+
+
+def test_ig_publish_reel_create_poll_publish():
+    seen = []
+
+    def h(req: httpx.Request) -> httpx.Response:
+        url = str(req.url)
+        seen.append(f"{req.method} {url}")
+        if url.endswith("/IGID/media") and req.method == "POST":
+            assert b"REELS" in req.content and b"share_to_feed" in req.content
+            return httpx.Response(200, json={"id": "CREATION1"})
+        if "/CREATION1" in url and req.method == "GET":
+            return httpx.Response(200, json={"status_code": "FINISHED"})
+        if url.endswith("/IGID/media_publish"):
+            return httpx.Response(200, json={"id": "MEDIA9"})
+        if "/MEDIA9" in url and req.method == "GET":
+            return httpx.Response(200, json={"permalink": "https://instagram.com/reel/abc"})
+        return httpx.Response(500, json={"u": url})
+
+    out = _meta(h).ig_publish_reel("https://gh/rel/x.mp4", "caption #AI")
+    assert out["id"] == "MEDIA9"
+    assert out["url"] == "https://instagram.com/reel/abc"
+
+
+def test_ig_publish_reel_raises_on_error_status():
+    def h(req):
+        url = str(req.url)
+        if url.endswith("/IGID/media") and req.method == "POST":
+            return httpx.Response(200, json={"id": "C1"})
+        if "/C1" in url:
+            return httpx.Response(200, json={"status_code": "ERROR"})
+        return httpx.Response(500, json={})
+    with pytest.raises(Exception):
+        _meta(h).ig_publish_reel("https://x/x.mp4", "c")

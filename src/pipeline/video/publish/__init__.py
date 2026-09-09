@@ -65,7 +65,14 @@ def _do_fb_reel(ctx: _Ctx) -> dict:
     return Meta.from_env().fb_publish_reel(ctx.asset_url, desc)
 
 
-_PLATFORMS = {"youtube": _do_youtube, "fb_reel": _do_fb_reel}   # Tasks 6-7 add ig_reel / tiktok
+def _do_ig_reel(ctx: _Ctx) -> dict:
+    cap = (f"{ctx.meta.description}".strip()
+           + ("\n\n" + " ".join(ctx.meta.hashtags) if ctx.meta.hashtags else ""))
+    return Meta.from_env().ig_publish_reel(ctx.asset_url, cap)
+
+
+_PLATFORMS = {"youtube": _do_youtube, "fb_reel": _do_fb_reel}   # Task 7 adds tiktok
+_PLATFORMS["ig_reel"] = _do_ig_reel
 
 
 # ---- orchestrator -------------------------------------------------------

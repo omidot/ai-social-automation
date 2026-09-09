@@ -102,6 +102,33 @@ class Meta:
         raise MetaError(f"fb reel {vid} not ready after 300s")
 
     # ---------- Instagram ----------
+    def ig_publish_reel(self, video_url: str, caption: str) -> dict:
+        import time as _t
+        res = self._post(f"{BASE}/{self.ig_id}/media",
+                         data={"media_type": "REELS", "video_url": video_url,
+                               "caption": caption, "share_to_feed": "true",
+                               "access_token": self.token})
+        creation = str(res["id"])
+        deadline = _t.time() + 300
+        while _t.time() < deadline:
+            st = self._get(creation, {"fields": "status_code"})
+            code = st.get("status_code")
+            if code == "FINISHED":
+                break
+            if code == "ERROR":
+                raise MetaError(f"ig reel {creation} processing ERROR: {st}")
+            _t.sleep(10)
+        else:
+            raise MetaError(f"ig reel {creation} not FINISHED after 300s")
+        pub = self._post(f"{BASE}/{self.ig_id}/media_publish",
+                         data={"creation_id": creation, "access_token": self.token})
+        mid = str(pub["id"])
+        try:
+            link = self._get(mid, {"fields": "permalink"}).get("permalink")
+        except Exception:  # noqa: BLE001
+            link = None
+        return {"id": mid, "url": link or f"https://instagram.com/reel/{mid}"}
+
     def ig_upload_temp(self, image_path: str) -> str:
         with open(image_path, "rb") as fh:
             res = self._post("https://tmpfiles.org/api/v1/upload",
