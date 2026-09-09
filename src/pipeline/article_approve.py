@@ -9,6 +9,7 @@ from .telegram import Telegram
 from . import publish
 from .publish import slot_unix, _fb_message, _ig_caption  # noqa: F401 - re-export
 from .video import render
+from .video import publish as _pub
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_approve")
@@ -147,6 +148,17 @@ def expire_stale(ds, tg, now: datetime) -> list[str]:
                     ds.put(date, slot_name, video={**v, "status": "awaiting_audio",
                                                    "render_err": "render timed out (>40 min)"})
                     stuck.append(f"{date}:{slot_name} (video)")
+            if (v.get("status") == "publishing" and v.get("publish_started_at")
+                    and not v.get("publish_stale_warned")):
+                try:
+                    ps = datetime.fromisoformat(v["publish_started_at"])
+                    if ps.tzinfo is None:
+                        ps = ps.replace(tzinfo=timezone.utc)
+                except (ValueError, TypeError):
+                    ps = now
+                if (now - ps).total_seconds() > 6 * 3600:
+                    ds.put(date, slot_name, video={**v, "publish_stale_warned": True})
+                    tg.send_message(f"⚠️ {date}:{slot_name} đăng video kẹt >6h, xem log")
     if out:
         tg.send_message("⚠️ không lên lịch được, đã bỏ: " + ", ".join(out))
     for s in stuck:
@@ -175,7 +187,9 @@ def poll(root: Path, now: datetime | None = None) -> dict:
             msg = up.get("message")
             if cbq:
                 data = cbq.get("data", "")
-                if data.startswith("vid:"):
+                if data.startswith("vid:") and data.endswith(":unpub"):
+                    r = _pub.handle_unpublish(cbq, ds, tg, root, now)
+                elif data.startswith("vid:"):
                     r = render.handle_undo(cbq, ds, tg, root, now)
                 else:
                     r = handle_callback(cbq, ds, tg, meta, root, now)

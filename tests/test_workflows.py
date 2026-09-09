@@ -50,6 +50,10 @@ def test_video_render_workflow():
     assert "cache: npm" in v
     assert "if: always()" in v
     assert "steps.g.outputs.go" in v
+    assert "YOUTUBE_REFRESH_TOKEN" in v
+    assert "TIKTOK_REFRESH_TOKEN" in v
+    assert "GITHUB_TOKEN:" in v
+    assert "publishing" in v            # gate matches the publish status
 
 
 def test_refresh_workflow_monthly():

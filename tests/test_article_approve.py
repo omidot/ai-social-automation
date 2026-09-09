@@ -319,3 +319,42 @@ def test_expire_stale_fails_stuck_video_render(tmp_path):
     assert v["status"] == "awaiting_audio"
     assert "timed out" in v["render_err"]
     assert any("kẹt khi render" in m for m in tg.msgs)
+
+
+def test_poll_routes_vid_unpub(tmp_path, monkeypatch):
+    from pipeline import article_approve
+    from pipeline.state import State
+    seen = {"unpub": 0, "undo": 0}
+    monkeypatch.setattr(article_approve.render, "handle_undo",
+                        lambda *a, **k: seen.__setitem__("undo", seen["undo"] + 1) or "x")
+    monkeypatch.setattr(article_approve._pub, "handle_unpublish",
+                        lambda *a, **k: seen.__setitem__("unpub", seen["unpub"] + 1) or "y")
+
+    class FakeTelegram:
+        def __init__(self, *a, **k): pass
+        def get_updates(self, offset, timeout=0):
+            return [{"update_id": 5, "callback_query": {"id": "c",
+                     "data": "vid:2026-09-09:morning:unpub"}},
+                    {"update_id": 6, "callback_query": {"id": "c2",
+                     "data": "vid:2026-09-09:morning:undo"}}]
+        def send_message(self, *a, **k): pass
+        def answer_callback(self, *a, **k): pass
+    monkeypatch.setattr(article_approve, "Telegram", FakeTelegram)
+    monkeypatch.setattr(article_approve, "_meta", lambda: object())
+    article_approve.poll(tmp_path, now=datetime(2026, 9, 9, 6, tzinfo=timezone.utc))
+    assert seen == {"unpub": 1, "undo": 1}
+
+
+def test_expire_stale_nudges_stuck_publishing_video(tmp_path):
+    from pipeline import article_approve
+    ds = DailyState(tmp_path / "data")
+    ds.put("2026-09-09", "morning", status="scheduled", slot_ict="11:30",
+           video={"status": "publishing",
+                  "publish_started_at": datetime(2026, 9, 9, 0, tzinfo=timezone.utc).isoformat()})
+    tg = FakeTG()
+    article_approve.expire_stale(ds, tg, datetime(2026, 9, 9, 7, tzinfo=timezone.utc))
+    assert any("đăng video kẹt" in m for m in tg.msgs)
+    assert ds.get_safe("2026-09-09", "morning")["video"]["publish_stale_warned"] is True
+    tg.msgs.clear()
+    article_approve.expire_stale(ds, tg, datetime(2026, 9, 9, 8, tzinfo=timezone.utc))
+    assert not any("đăng video kẹt" in m for m in tg.msgs)   # once only

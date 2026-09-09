@@ -1,0 +1,385 @@
+from datetime import datetime, timezone
+from pathlib import Path
+import pytest
+from pipeline.daily_state import DailyState
+from pipeline.video import publish as pub
+
+
+class FakeTG:
+    def __init__(self): self.msgs = []
+    def send_message(self, text, buttons=None): self.msgs.append((text, buttons))
+    def answer_callback(self, cid, text=""): pass
+
+
+def _settings(root, **flags):
+    (root / "config").mkdir(exist_ok=True)
+    body = ["video:", "  channel_footer: \"— A Hít Official\"", "  publish:"]
+    for k in ("youtube", "fb_reel", "ig_reel", "tiktok"):
+        body.append(f"    {k}: {str(flags.get(k, False)).lower()}")
+    body.append(f"    youtube_category: {flags.get('youtube_category', 27)}")
+    (root / "config" / "settings.yaml").write_text("\n".join(body) + "\n", encoding="utf-8")
+
+
+def _seed(root, *, date="2026-09-09", slot="morning", status="rendered", result=None):
+    ds = DailyState(root / "data")
+    v = {"status": status, "meta": {"title": "Tiêu đề video AI đủ dài mười ký",
+         "description": "d", "hashtags": ["#AI"], "keywords": ["ai"],
+         "tiktok_caption": "c"},
+         "mp4_path": f"output/{date}/{date}-x/{date}-x.mp4",
+         "tg_file_id": "TG", "asset_url": None, "publish_due": "2026-09-09T04:30:00+00:00",
+         "result": result or {"youtube": None, "fb_reel": None,
+                              "ig_reel": None, "tiktok": None}}
+    ds.put(date, slot, status="scheduled", slot_ict="11:30", video=v)
+    (root / "output" / f"{date}" / f"{date}-x").mkdir(parents=True, exist_ok=True)
+    (root / "output" / f"{date}" / f"{date}-x" / f"{date}-x.mp4").write_bytes(b"MP4")
+    return ds
+
+
+def _patch(monkeypatch, *, yt_result=None, yt_raises=None):
+    monkeypatch.setattr(pub._assets, "upload_release_asset",
+                        lambda mp4, name, **k: f"https://gh/rel/{name}")
+    deleted = []
+    monkeypatch.setattr(pub._assets, "delete_release_asset",
+                        lambda name, **k: deleted.append(name) or True)
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def upload(self, mp4, meta, cfg):
+            if yt_raises:
+                raise yt_raises
+            return yt_result or {"id": "VID", "url": "https://youtu.be/VID"}
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    return deleted
+
+
+def test_disabled_everywhere_is_skip(tmp_path, monkeypatch):
+    _settings(tmp_path)                      # all False
+    ds = _seed(tmp_path)
+    _patch(monkeypatch)
+    assert pub.publish_pending(ds, FakeTG(), tmp_path,
+                               datetime(2026, 9, 9, 5, tzinfo=timezone.utc)) == []
+
+
+def test_youtube_happy_path_marks_published(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path)
+    deleted = _patch(monkeypatch)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "published" and v["published_at"]
+    assert v["result"]["youtube"]["id"] == "VID"
+    assert v["asset_url"] is None and deleted == ["2026-09-09-morning.mp4"]
+    assert any("🚀" in m for m, _ in tg.msgs)
+    assert any(btns and btns[0][1] == "vid:2026-09-09:morning:unpub" for _, btns in tg.msgs)
+
+
+def test_youtube_failure_increments_attempts(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path)
+    _patch(monkeypatch, yt_raises=RuntimeError("boom"))
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["publishing:2026-09-09:morning"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "publishing"
+    assert v["result"]["youtube"]["attempts"] == 1
+    assert v["result"]["youtube"]["gave_up"] is False
+
+
+def test_gave_up_after_5_and_slot_can_finish(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="publishing",
+               result={"youtube": {"error": "e", "attempts": 4, "last_at": "x",
+                                   "gave_up": False}})
+    deleted = _patch(monkeypatch, yt_raises=RuntimeError("boom"))
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]     # gave_up counts as done
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["result"]["youtube"]["gave_up"] is True
+    assert v["status"] == "published" and deleted == ["2026-09-09-morning.mp4"]
+    assert any("bỏ cuộc" in m for m, _ in tg.msgs)
+
+
+def test_mp4_gone_resets_to_awaiting_audio(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path)
+    (tmp_path / "output" / "2026-09-09" / "2026-09-09-x" / "2026-09-09-x.mp4").unlink()
+    _patch(monkeypatch)
+    # also block the telegram-download fallback
+    monkeypatch.setattr(pub, "_download_tg_mp4", lambda *a, **k: None)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "awaiting_audio" and "mp4" in (v["render_err"] or "")
+
+
+def test_already_published_slot_is_skipped(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="published",
+               result={"youtube": {"id": "V", "url": "u", "at": "x"},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    _patch(monkeypatch)
+    assert pub.publish_pending(ds, FakeTG(), tmp_path,
+                               datetime(2026, 9, 9, 5, tzinfo=timezone.utc)) == []
+
+
+def test_youtube_category_from_publish_block_reaches_upload(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True, youtube_category=22)
+    ds = _seed(tmp_path)
+    seen = {}
+    monkeypatch.setattr(pub._assets, "upload_release_asset",
+                        lambda mp4, name, **k: f"https://gh/rel/{name}")
+    monkeypatch.setattr(pub._assets, "delete_release_asset", lambda name, **k: True)
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def upload(self, mp4, meta, cfg):
+            seen.update(cfg)
+            return {"id": "VID", "url": "https://youtu.be/VID"}
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    out = pub.publish_pending(ds, FakeTG(), tmp_path,
+                              datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]
+    assert seen["youtube_category"] == 22        # video.publish.youtube_category
+    assert seen["channel_footer"] == "— A Hít Official"   # video.channel_footer
+
+
+def test_two_platforms_partial_then_complete(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True, fb_reel=True)
+    ds = _seed(tmp_path)
+    _patch(monkeypatch)                       # youtube OK
+
+    def _boom(ctx):
+        raise RuntimeError("fb down")
+    monkeypatch.setitem(pub._PLATFORMS, "fb_reel", _boom)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["publishing:2026-09-09:morning"]   # fb not done yet
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["result"]["youtube"]["id"] == "VID"
+    assert v["result"]["fb_reel"]["attempts"] == 1
+    assert v["status"] == "publishing" and v["asset_url"]   # asset kept for retry
+
+
+def test_handle_unpublish_deletes_and_marks(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="published",
+               result={"youtube": {"id": "VID", "url": "u", "at": "x"},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "published_at": datetime(2026, 9, 9, 5, tzinfo=timezone.utc).isoformat()})
+    dels = []
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def delete(self, vid): dels.append(vid)
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    tg = FakeTG()
+    out = pub.handle_unpublish({"id": "c", "data": "vid:2026-09-09:morning:unpub"},
+                               ds, tg, tmp_path,
+                               datetime(2026, 9, 9, 5, 30, tzinfo=timezone.utc))
+    assert out == "unpublished:2026-09-09:morning"
+    assert dels == ["VID"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "unpublished" and v["result"]["youtube"]["undone"] is True
+
+
+def test_delete_asset_failure_still_publishes(tmp_path, monkeypatch):
+    """C2 — a raising delete_release_asset must not wedge the slot in `publishing`."""
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path)
+    _patch(monkeypatch)
+
+    def _boom(name, **k):
+        raise RuntimeError("gh 500 during cleanup")
+    monkeypatch.setattr(pub._assets, "delete_release_asset", _boom)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "published" and v["asset_url"] is None
+    assert any("🚀" in m for m, _ in tg.msgs)
+    assert any(btns and btns[0][1] == "vid:2026-09-09:morning:unpub" for _, btns in tg.msgs)
+
+
+def test_youtube_only_never_uploads_release_asset(tmp_path, monkeypatch):
+    """I3 — a byte-upload-only rollout must not push the MP4 to a public Release."""
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path)
+
+    def _boom_upload(*a, **k):
+        raise AssertionError("upload_release_asset must not run for youtube-only")
+    monkeypatch.setattr(pub._assets, "upload_release_asset", _boom_upload)
+    monkeypatch.setattr(pub._assets, "delete_release_asset", lambda name, **k: True)
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def upload(self, mp4, meta, cfg): return {"id": "VID", "url": "https://youtu.be/VID"}
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    out = pub.publish_pending(ds, FakeTG(), tmp_path,
+                              datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]
+
+
+def test_youtube_retry_refetches_mp4_from_asset_url(tmp_path, monkeypatch):
+    """I1 — a 2nd tick after a YouTube failure re-materializes the MP4 and can succeed."""
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="publishing",
+               result={"youtube": {"error": "503", "attempts": 1, "gave_up": False}})
+    # runner is fresh: on-disk MP4 gone, only the Release asset URL survives in state
+    (tmp_path / "output" / "2026-09-09" / "2026-09-09-x" / "2026-09-09-x.mp4").unlink()
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "asset_url": "https://gh/rel/2026-09-09-morning.mp4"})
+    monkeypatch.setattr(pub._assets, "upload_release_asset",
+                        lambda *a, **k: (_ for _ in ()).throw(AssertionError("no upload")))
+    monkeypatch.setattr(pub._assets, "delete_release_asset", lambda name, **k: True)
+
+    def _fake_dl(url, dest):
+        Path(dest).parent.mkdir(parents=True, exist_ok=True)
+        Path(dest).write_bytes(b"REFETCHED")
+        return Path(dest)
+    monkeypatch.setattr(pub, "_download_url", _fake_dl)
+
+    seen = {}
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def upload(self, mp4, meta, cfg):
+            seen["mp4"] = mp4
+            return {"id": "VID", "url": "https://youtu.be/VID"}
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    out = pub.publish_pending(ds, FakeTG(), tmp_path,
+                              datetime(2026, 9, 9, 6, tzinfo=timezone.utc))
+    assert out == ["published:2026-09-09:morning"]
+    assert seen["mp4"] is not None and Path(seen["mp4"]).exists()
+
+
+def test_handle_unpublish_naive_published_at(tmp_path, monkeypatch):
+    """I4 — a tz-naive `published_at` must not crash the undo path."""
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="published",
+               result={"youtube": {"id": "VID", "url": "u", "at": "x"},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "published_at": "2026-09-09T05:00:00"})   # naive, 5 min before `now`
+    dels = []
+
+    class _YT:
+        @classmethod
+        def from_env(cls): return cls()
+        def delete(self, vid): dels.append(vid)
+    monkeypatch.setattr(pub._youtube, "YouTube", _YT)
+    out = pub.handle_unpublish({"id": "c", "data": "vid:2026-09-09:morning:unpub"},
+                               ds, FakeTG(), tmp_path,
+                               datetime(2026, 9, 9, 5, 5, tzinfo=timezone.utc))
+    assert out == "unpublished:2026-09-09:morning"
+    assert dels == ["VID"]
+
+
+def _wrapper_ctx():
+    meta = pub.VideoMeta(title="Tiêu đề video AI đủ dài", description="Mô tả",
+                         hashtags=["#AI"], keywords=["ai"], tiktok_caption="cap TT")
+    return pub._Ctx(root=Path("."), cfg={}, meta=meta,
+                    asset_url="https://gh/rel/x.mp4", mp4_path=None, tg=None)
+
+
+def test_do_fb_reel_description_has_title_body_and_hashtag(monkeypatch):
+    """I6 — FB gets title + description + hashtags."""
+    seen = {}
+
+    class _M:
+        @classmethod
+        def from_env(cls): return cls()
+        def fb_publish_reel(self, url, desc):
+            seen.update(url=url, desc=desc)
+            return {"id": "FBID", "url": "https://facebook.com/reel/FBID"}
+    monkeypatch.setattr(pub, "Meta", _M)
+    out = pub._do_fb_reel(_wrapper_ctx())
+    assert out["id"] == "FBID"
+    assert seen["url"] == "https://gh/rel/x.mp4"
+    assert "Tiêu đề video AI đủ dài" in seen["desc"]
+    assert "Mô tả" in seen["desc"] and "#AI" in seen["desc"]
+
+
+def test_do_ig_reel_caption_drops_title(monkeypatch):
+    """I6 — IG gets description + hashtags but deliberately no title."""
+    seen = {}
+
+    class _M:
+        @classmethod
+        def from_env(cls): return cls()
+        def ig_publish_reel(self, url, cap):
+            seen.update(url=url, cap=cap)
+            return {"id": "IGID", "url": "https://instagram.com/reel/IGID"}
+    monkeypatch.setattr(pub, "Meta", _M)
+    out = pub._do_ig_reel(_wrapper_ctx())
+    assert out["id"] == "IGID"
+    assert "Mô tả" in seen["cap"] and "#AI" in seen["cap"]
+    assert "Tiêu đề video AI đủ dài" not in seen["cap"]
+
+
+def test_do_tiktok_passes_asset_url_and_caption(monkeypatch):
+    """I6 — TikTok wrapper hands the asset URL + tiktok_caption to upload_draft."""
+    seen = {}
+
+    class _TT:
+        @classmethod
+        def from_env(cls): return cls()
+        def upload_draft(self, video_url, caption, *, tg=None):
+            seen.update(video_url=video_url, caption=caption)
+            return {"status": "draft_uploaded"}
+    monkeypatch.setattr(pub._tiktok, "TikTok", _TT)
+    out = pub._do_tiktok(_wrapper_ctx())
+    assert out == {"status": "draft_uploaded"}
+    assert seen["video_url"] == "https://gh/rel/x.mp4" and seen["caption"] == "cap TT"
+
+
+def test_handle_unpublish_past_grace(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="published",
+               result={"youtube": {"id": "VID", "url": "u", "at": "x"},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "published_at": datetime(2026, 9, 9, 5, tzinfo=timezone.utc).isoformat()})
+    tg = FakeTG()
+    out = pub.handle_unpublish({"id": "c", "data": "vid:2026-09-09:morning:unpub"},
+                               ds, tg, tmp_path,
+                               datetime(2026, 9, 9, 7, tzinfo=timezone.utc))   # 120 min
+    assert out == "undo-expired:2026-09-09:morning"
+    assert ds.get_safe("2026-09-09", "morning")["video"]["status"] == "published"
+
+
+def test_transient_asset_fetch_failure_holds_slot(tmp_path, monkeypatch):
+    # asset_url is already set from a prior tick, but _download_url fails this
+    # tick -> slot must NOT be dumped back to awaiting_audio (no wasteful
+    # re-render); it holds at its current status for the next tick.
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="publishing",
+               result={"youtube": {"error": "boom", "attempts": 1, "last_at": "x",
+                                   "gave_up": False},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "asset_url": "https://gh/rel/2026-09-09-morning.mp4"})
+    (tmp_path / "output" / "2026-09-09" / "2026-09-09-x" / "2026-09-09-x.mp4").unlink()
+    _patch(monkeypatch)
+    monkeypatch.setattr(pub, "_download_url", lambda *a, **k: None)   # transient fail
+    monkeypatch.setattr(pub, "_download_tg_mp4", lambda *a, **k: None)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["retry:2026-09-09:morning"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "publishing"        # held, not reset
+    assert not any("cần render lại" in m for m, _ in tg.msgs)

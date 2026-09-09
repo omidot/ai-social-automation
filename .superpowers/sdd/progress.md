@@ -1,52 +1,51 @@
-# Phase 2B — Video Render & Review — Subagent-Driven Execution Ledger
+# Phase 2C — Video Publish — Subagent-Driven Execution Ledger
 
-Plan: docs/superpowers/plans/2026-09-08-phase2b-video-render-review.md
-Branch: feature/p2b-video-render
-Base: 8f1d786 (docs(p2b): implementation plan)
-Prior ledgers archived: progress-plan1.md, progress-plan2.md
+Plan: docs/superpowers/plans/2026-09-09-phase2c-video-publish.md
+Spec: docs/superpowers/specs/2026-09-09-phase2c-video-publish-design.md
+Branch: feature/p2c-video-publish
+Base: 3db71f8 (docs(p2c): implementation plan)
+Prior phases: progress-p2b.md (2B, merged df91af1), progress-plan1/2.md
 
 ## Tasks
-- Task 1: complete — retired TTS: deleted tts.py/test_tts.py, removed TTSError, build_video now takes keyword-only voice_wav + CLI --voice (required with --story), _copy_as_mp3 helper, manifest tts_backend->audio_source ("user-audio"); settings.yaml video block (enabled:true, render_composition:CodexShort, no tts_provider); requirements-video.txt emptied to comment. Also updated video-smoke.yml + test_workflows_video.py (--fake -> --voice fixture) since brief self-review forbids dangling --fake. Video 38 pass, non-video 202 pass.
-- Task 2: complete (commit 3790640..9206e30, controller-verified; BgVideo.BG single bg.mp4 entry, adsbot-vox.mp4 re-encoded 27MB->6.6MB, 5 pool files removed, +test_single_fixed_background. 39 video / 202 non-video green)
-- Task 3: complete (commit 9206e30..fd3df18, review Approved; VideoMeta dataclass + _validate_meta (title 10-70, hashtags 8-12 ^#S+$, keywords 5-10, tiktok <=150); module-level _GOOD_META in test_script.py. 49 video / 202 non-video)
-- Task 4: complete (commit fd3df18..675f723, review Approved; build_prompt with_meta= kwarg (additive), generate_from_article builds Candidate/PostContent shim -> (Script, VideoMeta), 2-attempt word-band retry. 53 video / 202 non-video)
-- Task 5: complete (commit 675f723..90d3ab5, review Approved; draft_script.draft() gen -> codegen -> awaiting_audio state -> Telegram script msg; enabled-gate short-circuits before LLM. 56 video / 202 non-video)
-- Task 6: complete (commit 90d3ab5..3de7af9, review Approved; article_run.draft() calls _video_draft.draft after schedule_slot when video.enabled, double-guarded; existing article tests unchanged. 205 non-video / 56 video)
-- Task 7: complete (commit 3de7af9..1e3cc0c, controller-verified; Telegram.send_video multipart sendVideo, mirrors send_document. 206 non-video)
-- Task 8: complete (commit 1e3cc0c..04e8eba, controller-verified; render.py helpers _audio_file_id/_to_mp3/_remotion_render, 5 tests, subprocess module-scope import. 61 video / 206 non-video)
-  - T8 minor: no test for _remotion_render returncode=1 "never raises" (brief-inherited gap); dead `import logging`/`log` in render.py; mime not lower-cased before startswith.
-- Task 9: complete (commit 04e8eba..0410011, review Approved + fix wave; _find_slot + receive_audio + handle_undo, 13 render tests incl. discriminating reply-match + undo negative paths. 69 video / 206 non-video). Minor open: pid=out_dir.name -> mp4 named video.mp4; unused DailyState import (brief-mandated).
-- Task 10: complete (commit 0410011..7e0ee89, review Approved; 4 minor brief-mandated. 18 article_approve / 208 non-video / 69 video)
-- Task 11: complete (commit 7e0ee89..ca6d88f, controller-verified pending review; article-approve.yml +node20 +remotion browser ensure +timeout25, README "Luồng video (Phase 2B)" + 2A staleness cleanup, test_workflows +2 asserts. 208 non-video / 69 video)
+- Task 1: complete (commit 3db71f8..5ff3a9b, controller-verified pending review; assets.py upload/delete Release asset, _client module-level for MockTransport, 4 tests. 78 video / 209 non-video)
+  - T1 minor (fold later): delete_release_asset raises httpx.HTTPStatusError not AssetError on non-404; _repo_token bare KeyError on unset env.
+- Task 2: complete (commit 5ff3a9b..edd3418, controller-verified pending review; youtube.py adapter _access_token/upload/delete + scripts/mint_youtube_token.py, 5 tests. 83 video / 209 non-video)
+  - T2 minor (fold later): mint script no exit on OAuth access_denied; httpx.Client never closed in __init__; delete() extra token round-trip.
+- Task 3: complete (commit edd3418..9709d06, controller-verified pending review; publish_pending orchestrator + _PLATFORMS{youtube} + _Ctx + render_run wiring + settings video.publish block. 6 orchestrator tests, 89 video / 209 non-video)
+  - T3 minor: youtube_category at video.publish.* not honored (_do_youtube passes video block; upload reads flat). value==default so masked. FIX IN T4.
+  - T3 minor: dead `timezone` import in publish/__init__.py.
+- Task 4: complete (commit 9709d06..003b108, controller-verified pending review; handle_unpublish undo + poll vid:*:unpub routing + expire_stale publishing>6h nudge + video-render.yml gate/env + README. Folded: youtube_category merge fix + dead timezone import. 92 video / 211 non-video)
+  - T4 minor (final review): now-pub_at in handle_unpublish outside try/except (naive published_at -> TypeError escapes to poll catch-all). always written as now.isoformat() so latent.
+- Task 5: complete (commit 003b108..66a4e59, controller-verified pending review; Meta.fb_publish_reel 3-phase + _do_fb_reel registered, 2 meta_reels tests + orchestrator two-platform test. 95 video / 211 non-video)  [review Approved, 4 minor]
+- Task 6: complete (commit 66a4e59..ac8854d, controller-finished after subagent hit session limit mid-impl; Meta.ig_publish_reel create->poll->publish->permalink + _do_ig_reel registered, 2 ig tests. 97 video / 211 non-video)  [review Approved]
+- Task 7: complete (commit ac8854d..3b68fbb, controller-verified pending review; tiktok.py _refresh + rotate via gh-secret/Telegram fallback + upload_draft PULL_FROM_URL; _Ctx.tg field; workflow TIKTOK_* + GH_PAT env; README + test_workflows. 3 tiktok tests, 100 video / 211 non-video)
 
-## Minor findings roll-up
-- T5: _make_id(title, now) can collide if two slots share an identical title on one date (shared output/ dir, last write wins). Fold `slot` into the id later.
-- T4: generate + generate_from_article duplicate the 2-attempt retry loop (plan-mandated). Shared helper candidate.
-- T9: mp4_path shaped .../video/video.mp4 (pid = script_path parent dir name = "video"). Confirm Task 10/2C tolerate it.
-- T9: `import logging`/`log` + `DailyState` import unused in render.py (brief-mandated). Final review: prune.
+## Pre-flight notes (fold into the relevant task, not plan contradictions)
+- T3: `_publish_one` draft has publish_started_at written 3x — collapse to one `patch.setdefault(...)`.
+- T4: plan adds `from ...publish import slot_unix` to publish/__init__.py but handle_unpublish uses published_at, not slot time — drop the unused import.
 
 ## Notes
-- 42 video tests currently pass; ~202 non-video tests pass.
 - Local: .venv/Scripts/python.exe, Python 3.12.3, run from D:\Automation Social.
-- Task 2 Step 2: bg.mp4 — user provides adsbot-vox.mp4; re-encode to <=40MB and commit, OR gitignore + README. Needs the actual file; if absent, implementer commits a placeholder/note and flags it.
-- video tests use `needs_node` skip when node absent locally.
+- Baseline suites: 74 video / 209 non-video green at 3db71f8.
+- Repo is PUBLIC -> Actions free/unlimited; NEVER commit a token.
 
-## Addendum (2026-09-09) — render-split + final-review fixes
-Plan: docs/superpowers/plans/2026-09-09-phase2b-render-split-addendum.md
-Base: ca6d88f. Trigger: final-review.md found C1 (stale cards.mjs -> wrong script), C2 (failed dead-end),
-C3 (uncaught FileNotFoundError), I1-I5. User chose: split render into its own video-render.yml workflow.
-- Task 12: complete (commit ca6d88f..12fbe44, controller-verified pending review; render.py split record_audio/render_pending, C1 regen from video.script, C2 fail->awaiting_audio, C3 try-wrap, I1 tg_file_id, I5 cfg-or-{}; draft_script persists video.script. 14 test_render / 70 video / 207 non-video +1 expected fail = test_poll_routes fixed in T13)
-  - T12 M-A: _find_slot reply-match + M6/M7 same-day-tie lost test coverage (old test_receive_audio_matches_by_reply deleted, no replacement) -> add record_audio reply-match test in T14.
-- Task 13: complete (commit 12fbe44..0b0f3fa, controller-verified pending review; poll->record_audio/is_audio, UNDO_GRACE_MIN 45, expire_stale rendering>40min->awaiting_audio+render_err; new render_run.py + video-render.yml (cron 3-59/10, bash go-gate, Commit if:always); article-approve.yml drops node/timeout15/commit-if:always. 209 non-video / 70 video)
-  - T13 Important (fold into T14): UNDO_GRACE_MIN=45 thin vs 25min render + cron latency -> bump to 60.
-  - T13 minor (defer): killed-render recovery is 40min sweep + manual re-send; rendering-stuck slots not seen by grep gate; unused import sys in render_run.py.
-- Task 14: complete (commit 0b0f3fa..HEAD, controller-done; UNDO_GRACE_MIN 60 + test retimed, _make_id(slot,title,now), draft_script cfg-or-{}, render.py drop unused DailyState, render_run drop import sys, git rm 5 Klickpin mp4s (~16MB), README 2A + 2B split note, +2 record_audio slot-match tests. 72 video / 209 non-video)
-Deferred from final review: M5 (dup retry loop, plan-mandated), M10 (send_video 50MB guard - folded into C3 area, left as raise), nit hard-coded timeline band (fixed in T12 via target*0.6..1.4).
+## Minor findings roll-up (for final whole-branch review to triage)
+- T1: delete_release_asset raises httpx.HTTPStatusError (not AssetError) on non-404; _repo_token bare KeyError on unset env.
+- T2: mint_youtube_token.py no exit on OAuth access_denied (spins); YouTube httpx.Client never closed; delete() extra token round-trip.
+- T3: (fixed in T4) youtube_category merge; dead timezone import removed.
+- T4: `now - pub_at` in handle_unpublish is OUTSIDE try/except — a naive/malformed video.published_at raises TypeError that escapes to poll's catch-all. Always written as now.isoformat() so latent only.
+- T7: body["access_token"] bare KeyError on malformed 2xx TikTok response; gh-write-then-inbox-fail leaves stale token in job env (self-heals next tick); CalledProcessError surfaced without e.stderr.
+- General: fb_publish_reel / ig_publish_reel do real time.sleep(10) polling up to 300s — fine for 1-slot cron, but a slow platform holds the pipeline-state concurrency lock. Consider a shorter deadline or accept.
 
-## Addendum fix wave (final-review-2, 2026-09-09)
-Review .superpowers/sdd/final-review-2.md verdict READY TO MERGE; folded in 4 deltas:
-- I-A: draft_script.draft -> render.render_pending seam test (test_render.py) guards the C1 producer line `"script": s.to_dict()`. Mutation-verified red->green.
-- I-B: render_pending — send_video + rendered-write moved inside the try; +50MB MP4 guard -> RuntimeError -> _fail -> awaiting_audio (M10 closed).
-- I-D: render_pending re-reads state before send; slot gone `discarded` mid-render -> drop result, no send, no overwrite. +test.
-- Minor: article_run.py:179 `(settings.get("video") or {})` — 3rd I5 site.
-74 video / 209 non-video green.
+## All 7 tasks complete
+Base 3db71f8 -> HEAD 3b68fbb (+ ledger commits). 100 video / 211 non-video green.
+
+## Final whole-branch review (final-review-p2c.md) — MERGE AFTER fixing C1,C2,I1-I6
+- FIX WAVE commit 7360944: C1,C2,I1-I6 fixed; I7 README-noted; M1/M8/M11/M12/N1 folded. 321 tests. Re-review pending.
+- Follow-up 322e (commit 8b88b86): re-review new Important closed — _publish_one only re-renders when mp4 unrecoverable from disk+asset_url; transient fetch fail -> "retry" hold. 322 tests. Re-review: READY TO MERGE.
+Full suite 311 passed. State-machine write discipline verified clean. One fix wave dispatched:
+C1 GITHUB_TOKEN not in workflow env -> KeyError loop; C2 unguarded delete_release_asset wedges slot;
+I1 YouTube retry can't get MP4 off disk; I2 failed gh-secret bricks TikTok token; I3 asset uploaded
+even YT-only; I4 handle_unpublish grace subtraction outside guard; I5 FB/IG 300s polls hold lock;
+I6 _do_fb_reel/_do_ig_reel/_do_tiktok zero coverage. I7 (TikTok PULL_FROM_URL needs verified domain,
+github.com can't) = README note + defer (flag off by default).
