@@ -17,8 +17,8 @@ Prior phases: progress-p2b.md (2B, merged df91af1), progress-plan1/2.md
 - Task 4: complete (commit 9709d06..003b108, controller-verified pending review; handle_unpublish undo + poll vid:*:unpub routing + expire_stale publishing>6h nudge + video-render.yml gate/env + README. Folded: youtube_category merge fix + dead timezone import. 92 video / 211 non-video)
   - T4 minor (final review): now-pub_at in handle_unpublish outside try/except (naive published_at -> TypeError escapes to poll catch-all). always written as now.isoformat() so latent.
 - Task 5: complete (commit 003b108..66a4e59, controller-verified pending review; Meta.fb_publish_reel 3-phase + _do_fb_reel registered, 2 meta_reels tests + orchestrator two-platform test. 95 video / 211 non-video)  [review Approved, 4 minor]
-- Task 6: complete (commit 66a4e59..ac8854d, controller-finished after subagent hit session limit mid-impl; Meta.ig_publish_reel create->poll->publish->permalink + _do_ig_reel registered, 2 ig tests. 97 video / 211 non-video)
-- Task 7: pending — tiktok.py + refresh-token rotation + register tiktok
+- Task 6: complete (commit 66a4e59..ac8854d, controller-finished after subagent hit session limit mid-impl; Meta.ig_publish_reel create->poll->publish->permalink + _do_ig_reel registered, 2 ig tests. 97 video / 211 non-video)  [review Approved]
+- Task 7: complete (commit ac8854d..3b68fbb, controller-verified pending review; tiktok.py _refresh + rotate via gh-secret/Telegram fallback + upload_draft PULL_FROM_URL; _Ctx.tg field; workflow TIKTOK_* + GH_PAT env; README + test_workflows. 3 tiktok tests, 100 video / 211 non-video)
 
 ## Pre-flight notes (fold into the relevant task, not plan contradictions)
 - T3: `_publish_one` draft has publish_started_at written 3x — collapse to one `patch.setdefault(...)`.
