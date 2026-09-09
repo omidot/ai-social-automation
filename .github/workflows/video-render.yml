@@ -1,0 +1,58 @@
+name: video-render
+on:
+  schedule:
+    - cron: '3-59/10 * * * *'   # every 10 min, offset from article-approve (*/5)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pipeline-state
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Any pending audio?
+        id: g
+        run: |
+          if grep -lR '"audio_received"' data/daily/ 2>/dev/null | grep -q .; then
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=0" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.g.outputs.go == '1'
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: video/package-lock.json
+      - name: Cache Remotion browser
+        if: steps.g.outputs.go == '1'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/remotion
+          key: remotion-browser-${{ runner.os }}
+      - name: Video render deps
+        if: steps.g.outputs.go == '1'
+        run: |
+          cd video && npm ci
+          npx remotion browser ensure
+      - name: Install deps
+        if: steps.g.outputs.go == '1'
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+      - name: Render pending videos
+        if: steps.g.outputs.go == '1'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m pipeline.video.render_run
+      - name: Commit state
+        if: always()
+        run: bash scripts/commit_state.sh

@@ -25,7 +25,7 @@ def _ack(tg, cbq_id: str, text: str = "") -> None:
         log.warning("answer_callback failed: %s", e)
 
 
-UNDO_GRACE_MIN = 15
+UNDO_GRACE_MIN = 45
 
 
 def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str | None:
@@ -141,16 +141,17 @@ def expire_stale(ds, tg, now: datetime) -> list[str]:
                     started = datetime.fromisoformat(v["started_at"])
                     if started.tzinfo is None:
                         started = started.replace(tzinfo=timezone.utc)
-                except ValueError:
+                except (ValueError, TypeError):
                     started = now
                 if (now - started).total_seconds() > 40 * 60:
-                    ds.put(date, slot_name, video={**v, "status": "failed"})
+                    ds.put(date, slot_name, video={**v, "status": "awaiting_audio",
+                                                   "render_err": "render timed out (>40 min)"})
                     stuck.append(f"{date}:{slot_name} (video)")
     if out:
         tg.send_message("⚠️ không lên lịch được, đã bỏ: " + ", ".join(out))
     for s in stuck:
         if s.endswith("(video)"):
-            tg.send_message(f"⚠️ {s} kẹt khi render, gửi lại audio để thử.")
+            tg.send_message(f"⚠️ {s} kẹt khi render — đã trả lại, gửi lại audio.")
         else:
             tg.send_message(f"⚠️ {s} kẹt ở 'publishing' — đã đánh dấu posted, kiểm tra Page.")
     return out
@@ -180,8 +181,8 @@ def poll(root: Path, now: datetime | None = None) -> dict:
                     r = handle_callback(cbq, ds, tg, meta, root, now)
                 if r:
                     handled.append(r)
-            elif msg and render._audio_file_id(msg):
-                r = render.receive_audio(msg, ds, tg, root, now)
+            elif msg and render.is_audio(msg):
+                r = render.record_audio(msg, ds, tg, root, now)
                 if r:
                     handled.append(r)
         except Exception as e:  # noqa: BLE001 - a poison update must not stall the poller

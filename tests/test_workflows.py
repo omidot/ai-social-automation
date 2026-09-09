@@ -6,7 +6,8 @@ WF = Path(__file__).resolve().parents[1] / ".github/workflows"
 
 def test_all_workflows_valid_yaml():
     for name in ("article-morning.yml", "article-evening.yml", "article-approve.yml",
-                 "article-publish-ig.yml", "refresh-token.yml", "article-test.yml"):
+                 "article-publish-ig.yml", "refresh-token.yml", "article-test.yml",
+                 "video-render.yml"):
         data = yaml.safe_load((WF / name).read_text(encoding="utf-8"))
         assert True in data or "on" in data
         assert data["jobs"]
@@ -33,11 +34,22 @@ def test_approve_and_ig_crons_and_modules():
     assert "python -m pipeline.article_approve" in a
     assert "*/5 * * * *" in a
     assert "playwright install" not in a
-    assert "npm ci" in a
-    assert "remotion browser ensure" in a
+    assert "setup-node" not in a
+    assert "timeout-minutes: 15" in a
     assert "python -m pipeline.article_publish_ig" in g
     assert "0,15,30,45 4,5,12,13 * * *" in g
     assert "playwright install" not in g
+
+
+def test_video_render_workflow():
+    v = (WF / "video-render.yml").read_text(encoding="utf-8")
+    assert "3-59/10 * * * *" in v
+    assert "pipeline.video.render_run" in v
+    assert "npm ci" in v
+    assert "remotion browser ensure" in v
+    assert "cache: npm" in v
+    assert "if: always()" in v
+    assert "steps.g.outputs.go" in v
 
 
 def test_refresh_workflow_monthly():
@@ -47,7 +59,7 @@ def test_refresh_workflow_monthly():
 def test_common_workflow_boilerplate():
     """Assert common boilerplate elements present in all article workflows."""
     for name in ("article-morning.yml", "article-evening.yml", "article-approve.yml",
-                 "article-publish-ig.yml"):
+                 "article-publish-ig.yml", "video-render.yml"):
         text = (WF / name).read_text(encoding="utf-8")
         assert "bash scripts/commit_state.sh" in text, f"{name} missing commit_state.sh"
         assert "workflow_dispatch:" in text, f"{name} missing workflow_dispatch"
