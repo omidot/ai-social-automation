@@ -160,13 +160,25 @@ def _publish_one(ds, tg, root, cfg, enabled, date, slot, v, now) -> str:
         if src is not None:
             asset_url = _assets.upload_release_asset(src, f"{date}-{slot}.mp4")
 
-    # --- nothing can proceed without the bytes / URL a platform needs -> back to render ---
+    # --- a platform still needs bytes/URL we don't have this tick ---
     if (needs_bytes and mp4_path is None) or (needs_url and not asset_url):
-        cur = (ds.get_safe(date, slot) or {}).get("video") or v
-        ds.put(date, slot, video={**cur, "status": "awaiting_audio",
-                                  "render_err": "mp4 unavailable for publish"})
-        tg.send_message(f"⚠️ {date}:{slot} không có MP4 để đăng — cần render lại.")
-        return f"skip:{date}:{slot}"
+        # A re-render is only warranted when neither the bytes (disk) nor the
+        # already-uploaded Release URL exist. If one of those IS present but this
+        # tick's fetch merely failed (transient HTTP), hold the slot and retry
+        # next tick — re-rendering would be wasteful and would drop the slot out
+        # of the workflow gate. (A stale-only tg_file_id that won't download is
+        # treated as unrecoverable: a re-render produces the same oversized file,
+        # but at least surfaces via the render path / expire_stale nudge.)
+        can_recover = bool(mp4_path) or bool(asset_url)
+        if not can_recover:
+            cur = (ds.get_safe(date, slot) or {}).get("video") or v
+            ds.put(date, slot, video={**cur, "status": "awaiting_audio",
+                                      "render_err": "mp4 unavailable for publish"})
+            tg.send_message(f"⚠️ {date}:{slot} không có MP4 để đăng — cần render lại.")
+            return f"skip:{date}:{slot}"
+        log.warning("publish %s:%s: mp4/url fetch failed this tick, retrying next tick",
+                    date, slot)
+        return f"retry:{date}:{slot}"
 
     cur = (ds.get_safe(date, slot) or {}).get("video") or v
     patch = {**cur, "status": "publishing", "asset_url": asset_url}

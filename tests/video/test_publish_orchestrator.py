@@ -359,3 +359,27 @@ def test_handle_unpublish_past_grace(tmp_path, monkeypatch):
                                datetime(2026, 9, 9, 7, tzinfo=timezone.utc))   # 120 min
     assert out == "undo-expired:2026-09-09:morning"
     assert ds.get_safe("2026-09-09", "morning")["video"]["status"] == "published"
+
+
+def test_transient_asset_fetch_failure_holds_slot(tmp_path, monkeypatch):
+    # asset_url is already set from a prior tick, but _download_url fails this
+    # tick -> slot must NOT be dumped back to awaiting_audio (no wasteful
+    # re-render); it holds at its current status for the next tick.
+    _settings(tmp_path, youtube=True)
+    ds = _seed(tmp_path, status="publishing",
+               result={"youtube": {"error": "boom", "attempts": 1, "last_at": "x",
+                                   "gave_up": False},
+                       "fb_reel": None, "ig_reel": None, "tiktok": None})
+    ds.put("2026-09-09", "morning",
+           video={**ds.get_safe("2026-09-09", "morning")["video"],
+                  "asset_url": "https://gh/rel/2026-09-09-morning.mp4"})
+    (tmp_path / "output" / "2026-09-09" / "2026-09-09-x" / "2026-09-09-x.mp4").unlink()
+    _patch(monkeypatch)
+    monkeypatch.setattr(pub, "_download_url", lambda *a, **k: None)   # transient fail
+    monkeypatch.setattr(pub, "_download_tg_mp4", lambda *a, **k: None)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["retry:2026-09-09:morning"]
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["status"] == "publishing"        # held, not reset
+    assert not any("cần render lại" in m for m, _ in tg.msgs)
