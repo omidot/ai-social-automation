@@ -15,8 +15,9 @@ Prior phases: progress-p2b.md (2B, merged df91af1), progress-plan1/2.md
   - T3 minor: youtube_category at video.publish.* not honored (_do_youtube passes video block; upload reads flat). value==default so masked. FIX IN T4.
   - T3 minor: dead `timezone` import in publish/__init__.py.
 - Task 4: complete (commit 9709d06..003b108, controller-verified pending review; handle_unpublish undo + poll vid:*:unpub routing + expire_stale publishing>6h nudge + video-render.yml gate/env + README. Folded: youtube_category merge fix + dead timezone import. 92 video / 211 non-video)
-- Task 5: pending — Meta.fb_publish_reel + register fb_reel
-- Task 6: pending — Meta.ig_publish_reel + register ig_reel
+  - T4 minor (final review): now-pub_at in handle_unpublish outside try/except (naive published_at -> TypeError escapes to poll catch-all). always written as now.isoformat() so latent.
+- Task 5: complete (commit 003b108..66a4e59, controller-verified pending review; Meta.fb_publish_reel 3-phase + _do_fb_reel registered, 2 meta_reels tests + orchestrator two-platform test. 95 video / 211 non-video)  [review Approved, 4 minor]
+- Task 6: complete (commit 66a4e59..ac8854d, controller-finished after subagent hit session limit mid-impl; Meta.ig_publish_reel create->poll->publish->permalink + _do_ig_reel registered, 2 ig tests. 97 video / 211 non-video)
 - Task 7: pending — tiktok.py + refresh-token rotation + register tiktok
 
 ## Pre-flight notes (fold into the relevant task, not plan contradictions)
