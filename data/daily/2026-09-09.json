@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-09",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "3 công cụ AI tự động cắt video dài thành clip ngắn đăng TikTok",
+      "style": "mono-centered",
+      "topic_key": "3-cong-cu-ai-tu-ong-cat-video-dai-thanh-clip-ngan-",
+      "text_fb": "Nếu bạn đang làm podcast, livestream hoặc quay các video dài hàng tiếng đồng hồ, việc ngồi cắt lại từng đoạn ngắn đăng TikTok thực sự rất mất thời gian. Mình từng tốn hàng giờ chỉ để tìm những câu nói hay rồi căn chỉnh khung hình dọc, thêm phụ đề cho từng clip. Nhưng hiện tại, công nghệ AI đã giúp xử lý toàn bộ quy trình này chỉ trong vài cú nhấp chuột.\n\nCông cụ đầu tiên mình muốn chia sẻ là Opus Clip. Công cụ này có khả năng tự động phân tích video dài, chấm điểm độ thu hút và chọn ra những phân cảnh đắt giá nhất. Nó tự chèn phụ đề nổi bật và căn chỉnh tỷ lệ khung hình 9:16 rất chuẩn. Bạn chỉ cần dán link Youtube vào là xong.\n\nTiếp theo là Vizard AI, giải pháp tuyệt vời cho các video phỏng vấn hoặc chia sẻ kiến thức. Vizard AI có tính năng tự động nhận diện người đang phát biểu để bắt góc quay phù hợp, giúp clip ngắn sinh động hơn hẳn. Bạn cũng có thể sửa phụ đề bằng cách xóa chữ, AI sẽ tự cắt bỏ đoạn video tương ứng.\n\nCuối cùng là Munch, một công cụ rất mạnh về phân tích xu hướng. Munch không chỉ cắt video mà còn so sánh nội dung của bạn với dữ liệu tìm kiếm trên mạng xã hội. Từ đó, nó chọn ra đoạn có khả năng lên xu hướng cao nhất, đồng thời viết sẵn tiêu đề và từ khóa để bạn đăng ngay.\n\nViệc ứng dụng AI vào làm video ngắn sẽ giúp bạn tiết kiệm tối đa thời gian mà vẫn duy trì được lịch đăng bài đều đặn. Bạn đã thử công cụ nào trong số này chưa, hãy chia sẻ trải nghiệm với mình nhé!",
+      "text_ig": "Biến video dài thành hàng loạt clip ngắn TikTok cực nhanh nhờ AI. Tiết kiệm thời gian dựng bài, tự tạo phụ đề và tối ưu khung hình dọc tự động. Bạn đã thử chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#CongNgheAI",
+        "#VideoShorts",
+        "#TikTokSEO",
+        "#OpusClip",
+        "#VizardAI",
+        "#MunchAI",
+        "#MeoCongNghe",
+        "#ChinhSuaVideo"
+      ],
+      "images": [
+        "assets/posts/2026-09-09/morning/01.jpg",
+        "assets/posts/2026-09-09/morning/02.jpg",
+        "assets/posts/2026-09-09/morning/03.jpg",
+        "assets/posts/2026-09-09/morning/04.jpg",
+        "assets/posts/2026-09-09/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "Giúp bạn biến 1 video dài (livestream, podcast) thành nhiều clip ngắn viral mà không cần ngồi dựng tay từng đoạn.",
+      "fb_post_id": "1381130541740424_122096668557476035",
+      "ig_due": "2026-09-09T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122096668557476035",
+          "url": "https://facebook.com/1381130541740424_122096668557476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
