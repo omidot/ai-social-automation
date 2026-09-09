@@ -25,7 +25,7 @@ def _ack(tg, cbq_id: str, text: str = "") -> None:
         log.warning("answer_callback failed: %s", e)
 
 
-UNDO_GRACE_MIN = 45
+UNDO_GRACE_MIN = 60
 
 
 def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str | None:

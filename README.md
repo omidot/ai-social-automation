@@ -63,9 +63,13 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
 
 - `article_run.draft` (07:00 / 17:00 ICT), sau khi lên lịch bài viết, sinh **kịch bản
   video** + tiêu đề/mô tả/hashtag/từ khoá cho cùng câu chuyện, gửi kịch bản lên Telegram.
-- Bạn thu âm đọc kịch bản, gửi file audio vào bot (bất cứ lúc nào).
-- `article-approve` (mỗi 5 phút) nhận audio → căn giờ (`align.mjs`) → `npx remotion
-  render CodexShort` → gửi MP4 lên Telegram → `video.status = "rendered"` + nút `🗑 Gỡ`.
+- Bạn thu âm đọc kịch bản, gửi file audio vào bot (bất cứ lúc nào). `article-approve`
+  chỉ ghi nhận "đã nhận audio" (`video.status = "audio_received"`) rồi thoát ngay.
+- Workflow riêng `video-render` (cron mỗi 10 phút, KHÔNG nằm trong poller bài viết) quét
+  slot có audio → dựng lại project Remotion từ `video.script` trong state → căn giờ
+  (`align.mjs`) → `npx remotion render CodexShort` → gửi MP4 lên Telegram →
+  `video.status = "rendered"` + nút `🗑 Gỡ`. Render lỗi → slot quay lại `awaiting_audio`,
+  gửi lại audio để thử.
 - Nền video cố định: `video/public/bg.mp4` (đặt một lần).
 - Đăng YouTube / FB Reel / IG Reel / TikTok = Phase 2C (chưa làm).
 - Tắt cả nhánh video: `config/settings.yaml` → `video.enabled: false`.
@@ -113,9 +117,8 @@ Cache đã trỏ về D: qua biến môi trường user (`PIP_CACHE_DIR`, `HF_HO
 
 ## Phase 2A — video (kịch bản + timeline)
 
-Bật `config/settings.yaml` → `video.enabled: true`. Chuẩn bị:
-- `assets/voice/sample.wav` — 3–10 phút giọng kể (WAV mono 44.1kHz)
-- `assets/voice/sample.txt` — lời thoại của mẫu (không có thì pipeline tự transcribe)
+Bật `config/settings.yaml` → `video.enabled: true`. Audio là do bạn tự thu và gửi
+qua Telegram (xem "Luồng video (Phase 2B)" ở trên) — không còn TTS/clone giọng.
 
 Thử offline (không cần audio thật):
 

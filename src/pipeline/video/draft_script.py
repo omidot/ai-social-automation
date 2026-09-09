@@ -22,15 +22,15 @@ def _slug(text: str) -> str:
     return re.sub(r"-{2,}", "-", t)
 
 
-def _make_id(title: str, now: datetime) -> str:
-    return f"{now:%Y-%m-%d}-{_slug(title)[:40]}".rstrip("-")
+def _make_id(slot: str, title: str, now: datetime) -> str:
+    return f"{now:%Y-%m-%d}-{slot}-{_slug(title)[:40]}".rstrip("-")
 
 
 def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
           caption_fb: str, angle: str, now: datetime, generate=None, tg=None) -> dict:
     root = Path(root)
     cfg = (yaml.safe_load((root / "config/settings.yaml").read_text(encoding="utf-8"))
-           or {}).get("video", {})
+           or {}).get("video") or {}
     if not cfg.get("enabled"):
         return {"skipped": True}
 
@@ -57,7 +57,7 @@ def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
     except FileNotFoundError:
         log.warning("node not available, skipping tools/*.mjs --check")
 
-    pid = _make_id(title, now)
+    pid = _make_id(slot, title, now)
     out_dir = root / "output" / date / pid / "video"
     _script.write_script_json(s, out_dir)
 

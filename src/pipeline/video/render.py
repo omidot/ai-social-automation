@@ -10,7 +10,6 @@ import yaml
 
 from . import AlignError
 from . import align as _align
-from ..daily_state import DailyState
 from ..publish import slot_unix
 
 log = logging.getLogger("video.render")

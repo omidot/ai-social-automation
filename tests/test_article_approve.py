@@ -65,7 +65,7 @@ def test_undo_deletes_fb_and_ig_within_grace(tmp_path):
 def test_undo_past_grace_is_refused(tmp_path):
     ds = _seed_scheduled(tmp_path)
     tg, meta = FakeTG(), FakeMeta()
-    now = datetime(2026, 9, 6, 5, 20, tzinfo=timezone.utc)     # 50 min after slot (> 45 grace)
+    now = datetime(2026, 9, 6, 5, 40, tzinfo=timezone.utc)     # 70 min after slot (> 60 grace)
     res = article_approve.handle_callback(_cbq("undo"), ds, tg, meta, tmp_path, now)
     assert res == "undo-expired:2026-09-06:morning"
     assert meta.fb_deleted == [] and meta.ig_deleted == []

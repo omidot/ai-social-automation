@@ -38,5 +38,7 @@ C3 (uncaught FileNotFoundError), I1-I5. User chose: split render into its own vi
 - Task 12: complete (commit ca6d88f..12fbe44, controller-verified pending review; render.py split record_audio/render_pending, C1 regen from video.script, C2 fail->awaiting_audio, C3 try-wrap, I1 tg_file_id, I5 cfg-or-{}; draft_script persists video.script. 14 test_render / 70 video / 207 non-video +1 expected fail = test_poll_routes fixed in T13)
   - T12 M-A: _find_slot reply-match + M6/M7 same-day-tie lost test coverage (old test_receive_audio_matches_by_reply deleted, no replacement) -> add record_audio reply-match test in T14.
 - Task 13: complete (commit 12fbe44..0b0f3fa, controller-verified pending review; poll->record_audio/is_audio, UNDO_GRACE_MIN 45, expire_stale rendering>40min->awaiting_audio+render_err; new render_run.py + video-render.yml (cron 3-59/10, bash go-gate, Commit if:always); article-approve.yml drops node/timeout15/commit-if:always. 209 non-video / 70 video)
-- Task 14: pending — M1 _make_id+slot, N1 rm Klickpin mp4s, N2 README, whole suite, delta re-review, finish branch
+  - T13 Important (fold into T14): UNDO_GRACE_MIN=45 thin vs 25min render + cron latency -> bump to 60.
+  - T13 minor (defer): killed-render recovery is 40min sweep + manual re-send; rendering-stuck slots not seen by grep gate; unused import sys in render_run.py.
+- Task 14: pending (folds: UNDO_GRACE_MIN 45->60; T12 M-A record_audio reply-match test; rm import sys) — M1 _make_id+slot, N1 rm Klickpin mp4s, N2 README, whole suite, delta re-review, finish branch
 Deferred from final review: M5 (dup retry loop, plan-mandated), M10 (send_video 50MB guard - folded into C3 area, left as raise), nit hard-coded timeline band (fixed in T12 via target*0.6..1.4).

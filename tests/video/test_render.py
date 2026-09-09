@@ -150,6 +150,34 @@ def test_record_audio_no_slot_warns(tmp_path):
     assert any("không có video nào đang chờ" in m for m in tg.msgs)
 
 
+def test_record_audio_matches_by_reply(tmp_path):
+    # OLDER slot carries script_msg_id 901; NEWER slot a different id (902).
+    ds = _seed(tmp_path, slot="evening", date="2026-09-07", script_msg_id=901)
+    _seed(tmp_path, slot="morning", date="2026-09-08", script_msg_id=902)
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    r = render.record_audio(
+        {"message_id": 30, "voice": {"file_id": "V"},
+         "reply_to_message": {"message_id": 901}}, ds, tg, tmp_path, now)
+    # Reply points at 901 = the OLDER slot; reply-match must beat date-recency.
+    assert r == "audio_received:2026-09-07:evening"
+    assert ds.get_safe("2026-09-07", "evening")["video"]["status"] == "audio_received"
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "awaiting_audio"
+
+
+def test_record_audio_same_day_prefers_later_slot(tmp_path):
+    # Both slots on one date, both awaiting_audio, no reply -> newest slot_ict wins (M6).
+    ds = _seed(tmp_path, slot="morning", date="2026-09-08")
+    ds.put("2026-09-08", "morning", slot_ict="11:30")
+    _seed(tmp_path, slot="evening", date="2026-09-08")
+    ds.put("2026-09-08", "evening", slot_ict="19:45")
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    r = render.record_audio({"message_id": 31, "voice": {"file_id": "V"}},
+                            ds, tg, tmp_path, now)
+    assert r == "audio_received:2026-09-08:evening"
+
+
 # --- render_pending (workflow side) ----------------------------------------
 
 def test_render_pending_regenerates_script_and_renders(tmp_path, monkeypatch):
