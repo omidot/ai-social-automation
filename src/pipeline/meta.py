@@ -77,6 +77,30 @@ class Meta:
         pid = str(res["id"])
         return {"id": pid, "url": f"https://facebook.com/{pid}", "scheduled": scheduled}
 
+    def fb_publish_reel(self, video_url: str, description: str) -> dict:
+        import time as _t
+        start = self._post(f"{BASE}/{self.page_id}/video_reels",
+                           data={"upload_phase": "start", "access_token": self.token})
+        vid = str(start["video_id"])
+        up = self._client.post(start["upload_url"],
+                               headers={"Authorization": f"OAuth {self.token}",
+                                        "file_url": video_url})
+        _raise_for_graph(up)
+        self._post(f"{BASE}/{self.page_id}/video_reels",
+                   data={"upload_phase": "finish", "video_id": vid,
+                         "video_state": "PUBLISHED", "description": description,
+                         "access_token": self.token})
+        deadline = _t.time() + 300
+        while _t.time() < deadline:
+            st = self._get(vid, {"fields": "status"})
+            vs = (st.get("status") or {}).get("video_status")
+            if vs in ("ready", "published"):
+                return {"id": vid, "url": f"https://facebook.com/reel/{vid}"}
+            if vs == "error":
+                raise MetaError(f"fb reel {vid} processing error: {st}")
+            _t.sleep(10)
+        raise MetaError(f"fb reel {vid} not ready after 300s")
+
     # ---------- Instagram ----------
     def ig_upload_temp(self, image_path: str) -> str:
         with open(image_path, "rb") as fh:

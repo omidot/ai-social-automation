@@ -149,6 +149,23 @@ def test_youtube_category_from_publish_block_reaches_upload(tmp_path, monkeypatc
     assert seen["channel_footer"] == "— A Hít Official"   # video.channel_footer
 
 
+def test_two_platforms_partial_then_complete(tmp_path, monkeypatch):
+    _settings(tmp_path, youtube=True, fb_reel=True)
+    ds = _seed(tmp_path)
+    _patch(monkeypatch)                       # youtube OK
+
+    def _boom(ctx):
+        raise RuntimeError("fb down")
+    monkeypatch.setitem(pub._PLATFORMS, "fb_reel", _boom)
+    tg = FakeTG()
+    out = pub.publish_pending(ds, tg, tmp_path, datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == ["publishing:2026-09-09:morning"]   # fb not done yet
+    v = ds.get_safe("2026-09-09", "morning")["video"]
+    assert v["result"]["youtube"]["id"] == "VID"
+    assert v["result"]["fb_reel"]["attempts"] == 1
+    assert v["status"] == "publishing" and v["asset_url"]   # asset kept for retry
+
+
 def test_handle_unpublish_deletes_and_marks(tmp_path, monkeypatch):
     _settings(tmp_path, youtube=True)
     ds = _seed(tmp_path, status="published",
