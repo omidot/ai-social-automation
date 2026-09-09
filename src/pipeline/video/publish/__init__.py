@@ -10,6 +10,7 @@ import yaml
 from ..models import VideoMeta
 from ...meta import Meta
 from . import assets as _assets
+from . import tiktok as _tiktok
 from . import youtube as _youtube
 
 log = logging.getLogger("video.publish")
@@ -26,6 +27,7 @@ class _Ctx:
     meta: VideoMeta
     asset_url: str
     mp4_path: Path | None
+    tg: object = None
 
 
 def _cfg(root: Path) -> dict:
@@ -71,8 +73,14 @@ def _do_ig_reel(ctx: _Ctx) -> dict:
     return Meta.from_env().ig_publish_reel(ctx.asset_url, cap)
 
 
-_PLATFORMS = {"youtube": _do_youtube, "fb_reel": _do_fb_reel}   # Task 7 adds tiktok
+def _do_tiktok(ctx: _Ctx) -> dict:
+    return _tiktok.TikTok.from_env().upload_draft(
+        ctx.asset_url, ctx.meta.tiktok_caption, tg=ctx.tg)
+
+
+_PLATFORMS = {"youtube": _do_youtube, "fb_reel": _do_fb_reel}
 _PLATFORMS["ig_reel"] = _do_ig_reel
+_PLATFORMS["tiktok"] = _do_tiktok
 
 
 # ---- orchestrator -------------------------------------------------------
@@ -131,7 +139,7 @@ def _publish_one(ds, tg, root, cfg, enabled, date, slot, v, now) -> str:
     ds.put(date, slot, video=patch)
 
     ctx = _Ctx(root=root, cfg=cfg, meta=VideoMeta.from_dict(v["meta"]),
-               asset_url=asset_url, mp4_path=mp4_path)
+               asset_url=asset_url, mp4_path=mp4_path, tg=tg)
 
     for p in enabled:
         cur = (ds.get_safe(date, slot) or {}).get("video") or v

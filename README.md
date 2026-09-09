@@ -86,6 +86,10 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
 - Secrets: `YOUTUBE_CLIENT_ID/SECRET/REFRESH_TOKEN` (chạy
   `python scripts/mint_youtube_token.py` một lần để lấy); FB/IG Reel dùng lại
   `META_PAGE_TOKEN`.
+- TikTok: đăng vào hộp nháp (app chưa audit). Secrets `TIKTOK_CLIENT_KEY/SECRET/
+  REFRESH_TOKEN` + `GH_PAT` (fine-grained PAT repo này, quyền Secrets: read/write —
+  để workflow tự ghi lại refresh token TikTok mỗi lần xoay vòng). Không có `GH_PAT`
+  thì bot Telegram token mới cho bạn dán tay.
 
 ## Nguồn nội dung
 
