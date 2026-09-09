@@ -28,3 +28,14 @@ Prior phases: progress-p2b.md (2B, merged df91af1), progress-plan1/2.md
 - Local: .venv/Scripts/python.exe, Python 3.12.3, run from D:\Automation Social.
 - Baseline suites: 74 video / 209 non-video green at 3db71f8.
 - Repo is PUBLIC -> Actions free/unlimited; NEVER commit a token.
+
+## Minor findings roll-up (for final whole-branch review to triage)
+- T1: delete_release_asset raises httpx.HTTPStatusError (not AssetError) on non-404; _repo_token bare KeyError on unset env.
+- T2: mint_youtube_token.py no exit on OAuth access_denied (spins); YouTube httpx.Client never closed; delete() extra token round-trip.
+- T3: (fixed in T4) youtube_category merge; dead timezone import removed.
+- T4: `now - pub_at` in handle_unpublish is OUTSIDE try/except — a naive/malformed video.published_at raises TypeError that escapes to poll's catch-all. Always written as now.isoformat() so latent only.
+- T7: body["access_token"] bare KeyError on malformed 2xx TikTok response; gh-write-then-inbox-fail leaves stale token in job env (self-heals next tick); CalledProcessError surfaced without e.stderr.
+- General: fb_publish_reel / ig_publish_reel do real time.sleep(10) polling up to 300s — fine for 1-slot cron, but a slow platform holds the pipeline-state concurrency lock. Consider a shorter deadline or accept.
+
+## All 7 tasks complete
+Base 3db71f8 -> HEAD 3b68fbb (+ ledger commits). 100 video / 211 non-video green.
