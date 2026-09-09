@@ -24,3 +24,13 @@ def test_script_roundtrip():
     s = Script(cards=[_card(["x y"], num=None), _card(["2000 lính"], variant="numeral", num=2000)],
                sections=[SectionMark("A", 0), SectionMark("B", 1)])
     assert Script.from_dict(s.to_dict()).to_dict() == s.to_dict()
+
+from pipeline.video.models import VideoMeta
+
+def test_videometa_roundtrip():
+    m = VideoMeta(title="Tiêu đề giật tít về AI", description="Mô tả. CTA.",
+                  hashtags=["#AI", "#congnghe", "#tudonghoa", "#ainews",
+                            "#chatgpt", "#automation", "#ahit", "#vn"],
+                  keywords=["ai", "tự động hoá", "công nghệ", "chatgpt", "n8n"],
+                  tiktok_caption="AI vừa có bước nhảy lớn #AI #congnghe #fyp")
+    assert VideoMeta.from_dict(m.to_dict()) == m

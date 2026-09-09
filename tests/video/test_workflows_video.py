@@ -8,6 +8,7 @@ def test_workflow_valid_and_targeted():
     assert data["jobs"]
     text = WF.read_text(encoding="utf-8")
     assert "npm ci" in text
-    assert "pipeline.video.build_video --fake" in text
+    assert "pipeline.video.build_video --fake-llm" in text
+    assert "--voice tests/fixtures/video/voice_fixture.wav" in text
     assert "render-smoke" in text
     assert "video/**" in text

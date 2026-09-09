@@ -75,3 +75,23 @@ class Script:
     def from_dict(cls, d: dict) -> "Script":
         return cls(cards=[Card.from_dict(c) for c in d["cards"]],
                    sections=[SectionMark.from_dict(s) for s in d["sections"]])
+
+
+@dataclass
+class VideoMeta:
+    title: str
+    description: str
+    hashtags: list[str]
+    keywords: list[str]
+    tiktok_caption: str
+
+    def to_dict(self) -> dict:
+        return {"title": self.title, "description": self.description,
+                "hashtags": list(self.hashtags), "keywords": list(self.keywords),
+                "tiktok_caption": self.tiktok_caption}
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "VideoMeta":
+        return cls(title=d["title"], description=d["description"],
+                   hashtags=list(d["hashtags"]), keywords=list(d["keywords"]),
+                   tiktok_caption=d["tiktok_caption"])

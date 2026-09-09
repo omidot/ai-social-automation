@@ -2,13 +2,9 @@ import React from 'react';
 import { AbsoluteFill, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { LIGHT, DARK, type Pal } from './palette';
 
-/** Lịch nền — mỗi chương một video, khớp đúng mốc đổi chương của kịch bản */
+/** Nền cố định — một video xuyên suốt mọi clip của kênh. */
 export const BG = [
-  { from: 0.0,   file: 'bg-topo.mp4',   pal: DARK, rate: 0.8 },  // hook — AI nghĩ hộ bạn
-  { from: 19.45, file: 'bg-navy.mp4',   pal: DARK, rate: 0.7 },  // Claude Code schedule ads
-  { from: 23.09, file: 'bg-purple.mp4', pal: DARK, rate: 0.6 },  // trong khi bạn ngủ — lặng trước bão
-  { from: 24.72, file: 'bg-red.mp4',    pal: DARK, rate: 0.75 }, // ★ escalation — hàng ngàn robot TQ
-  { from: 35.95, file: 'bg-topo.mp4',   pal: DARK, rate: 0.8 },  // SỰ THẬT — chốt
+  { from: 0.0, file: 'bg.mp4', pal: DARK, rate: 1 },
 ];
 
 const FADE = 14; // số frame chuyển cảnh giữa hai nền

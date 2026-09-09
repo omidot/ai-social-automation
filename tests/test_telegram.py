@@ -62,3 +62,27 @@ def test_download_file_writes_bytes(tmp_path, monkeypatch):
     assert result == str(dest)
     assert dest.read_bytes() == b"audio-bytes"
     assert calls[0] == "https://api.telegram.org/file/botT/voice/abc.oga"
+
+
+def test_send_video_multipart(monkeypatch, tmp_path):
+    vid = tmp_path / "v.mp4"; vid.write_bytes(b"\x00\x00fakemp4")
+    seen = {}
+
+    class R:
+        status_code = 200
+        def raise_for_status(self): pass
+        def json(self): return {"ok": True, "result": {"message_id": 5}}
+
+    def fake_post(url, data=None, files=None):
+        seen["url"] = url; seen["data"] = data; seen["files"] = files
+        return R()
+
+    t = Telegram(token="T", chat_id="C")
+    monkeypatch.setattr(t._client, "post", fake_post)
+    out = t.send_video(str(vid), caption="hi", buttons=[("🗑 Gỡ", "vid:2026-09-08:morning:undo")])
+    assert out["result"]["message_id"] == 5
+    assert seen["url"].endswith("/sendVideo")
+    assert seen["data"]["chat_id"] == "C"
+    assert seen["data"]["caption"] == "hi"
+    assert "reply_markup" in seen["data"]
+    assert "video" in seen["files"]

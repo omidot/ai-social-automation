@@ -59,6 +59,21 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
 - Khi lập lịch thất bại: bài ở trạng thái `draft`, `article-approve` thử lại
   mỗi 5 phút cho tới giờ slot, rồi đánh dấu `expired` với cảnh báo.
 
+## Luồng video (Phase 2B)
+
+- `article_run.draft` (07:00 / 17:00 ICT), sau khi lên lịch bài viết, sinh **kịch bản
+  video** + tiêu đề/mô tả/hashtag/từ khoá cho cùng câu chuyện, gửi kịch bản lên Telegram.
+- Bạn thu âm đọc kịch bản, gửi file audio vào bot (bất cứ lúc nào). `article-approve`
+  chỉ ghi nhận "đã nhận audio" (`video.status = "audio_received"`) rồi thoát ngay.
+- Workflow riêng `video-render` (cron mỗi 10 phút, KHÔNG nằm trong poller bài viết) quét
+  slot có audio → dựng lại project Remotion từ `video.script` trong state → căn giờ
+  (`align.mjs`) → `npx remotion render CodexShort` → gửi MP4 lên Telegram →
+  `video.status = "rendered"` + nút `🗑 Gỡ`. Render lỗi → slot quay lại `awaiting_audio`,
+  gửi lại audio để thử.
+- Nền video cố định: `video/public/bg.mp4` (đặt một lần).
+- Đăng YouTube / FB Reel / IG Reel / TikTok = Phase 2C (chưa làm).
+- Tắt cả nhánh video: `config/settings.yaml` → `video.enabled: false`.
+
 ## Nguồn nội dung
 
 Bài morning/evening **không cào tin** nữa. Mỗi lần chạy, pipeline nạp ngân hàng
@@ -100,25 +115,16 @@ Cache đã trỏ về D: qua biến môi trường user (`PIP_CACHE_DIR`, `HF_HO
 `TORCH_HOME`, `UV_CACHE_DIR` → `D:\cache\*`). Cài lại deps:
 `.venv\Scripts\python.exe -m pip install -r requirements.txt -r requirements-video.txt -e .`
 
-## Phase 2A — video (kịch bản + giọng + timeline)
+## Phase 2A — video (kịch bản + timeline)
 
-Bật `config/settings.yaml` → `video.enabled: true`. Chuẩn bị:
-- `assets/voice/sample.wav` — 3–10 phút giọng kể (WAV mono 44.1kHz)
-- `assets/voice/sample.txt` — lời thoại của mẫu (không có thì pipeline tự transcribe)
-- `video/public/bg-*.mp4` — pool nền (2B dùng)
+Bật `config/settings.yaml` → `video.enabled: true`. Audio là do bạn tự thu và gửi
+qua Telegram (xem "Luồng video (Phase 2B)" ở trên) — không còn TTS/clone giọng.
 
-Thử offline (không gọi TTS thật):
+Thử offline (không cần audio thật):
 
-    python -m pipeline.video.build_video --fake --fake-llm --story tests/fixtures/video/story.json
+    python -m pipeline.video.build_video --fake-llm --voice tests/fixtures/video/voice_fixture.wav --story tests/fixtures/video/story.json
 
 Sau khi chạy build_video ở máy local, hoàn nguyên file sinh ra: `git checkout -- video/tools video/src/timeline.json video/public/voice.mp3`.
-
-Kiểm tra giọng clone thật:
-
-    python -m pipeline.video.build_video --tts-check
-
-TTS engine do spike chọn (xem docs/superpowers/specs/2026-09-03-phase2a-script-voice-timeline-design.md (mục 4 — spike TTS)).
-F5-TTS checkpoint tiếng Việt có ràng buộc license — chỉ dùng làm fallback.
 
 ## Kiến trúc
 

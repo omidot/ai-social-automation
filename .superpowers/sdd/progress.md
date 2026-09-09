@@ -1,46 +1,52 @@
-# P1.5 — Article Image Style Variety — Subagent-Driven Execution Ledger
+# Phase 2B — Video Render & Review — Subagent-Driven Execution Ledger
 
-Plan: docs/superpowers/plans/2026-09-07-article-style-variety.md
-Branch: feature/p1-style-variety
-Base: c8928cc (merge of feature/p1-style-autopublish)
-Plan-1 ledger archived at .superpowers/sdd/progress-plan1.md
+Plan: docs/superpowers/plans/2026-09-08-phase2b-video-render-review.md
+Branch: feature/p2b-video-render
+Base: 8f1d786 (docs(p2b): implementation plan)
+Prior ledgers archived: progress-plan1.md, progress-plan2.md
 
 ## Tasks
-- Task 1: complete (commits a4913d8..49b1ec9, review Approved; plan had to be fixed first — pick_style is now a positional cursor. FOLLOW-UP for Task 2: add a dup-name StyleError test)
-- Task 2: complete (commits 49b1ec9..27b370f, all 7 font downloads OK, 12 ttf, +dup-name test, 169 green; verified files are real TrueType by controller)
-- Task 3: complete (commits 27b370f..a2c80be, review Needs-fixes -> fixed; no rename (plan corrected), _via_fallback reuses _render_*_slide; +hermetic tests +selection asserts; 173 green)
-- Task 4: complete (commits a2c80be..8ad3425, review Approved; +fix: lockup box-unpack guarded, _mono_logo logs, +5 coverage tests chip/mono/hook_logos; 182 green)
-- Task 5: complete (commits 8ad3425..e62de50, review Approved; 3 existing build_images tests edited legitimately — default style is now centered=real layout not stub; hook suppresses bar/none accent; nits: item/close ~30-line dup, _fit_lines not refactored, body not hard-capped at 7 lines, pre-existing _legacy_fallback IndexError on sources==[])
-- Task 6: complete (commits e2ec0db..27e0df5, review Approved + fix; accent rail L, bar->underline downgrade, ghost number; fix: _handle_line gained left= kwarg so handle clears the rail. 186 green)
-- Task 7: complete (commits 27e0df5..9100f93, review Needs-fixes -> fixed; accent bar bottom 45%, shadowed-palette recolour for handle/swipe on bar; fix: bulleted-item body capped 3 lines (measured all faces), _bottom_bar_close delegates to _centered_close. 189 green)
-- Task 8: complete (commits 9100f93..cc7839d, review Approved; 14% tint band top half + 3px divider, close delegates to _centered_close; minors: no fits-above-lockup test, left-aligned body/bullets dup across layouts 6/7/8)
-- Task 9: complete (commit be5af3d; _layout_magazine — forced editorial serif, 110px margins, tracked kicker, headline boxed by 2 hairline rules + accent_shape (underline/bracket only), body -> 2 columns when >6 col-width lines else 1, accent drop-cap hung in left gutter (first char sliced, no reflow), item lockup forced "mono", close -> _centered_close. 191 -> 194 green, no existing test edited. + fix 80b9d9c (review Needs-fixes): _logo_lockup gained name_font= kwarg, magazine passes serif fonts["bold"] so brand name matches; +_mag_wrap_body content_w param. 195 green. minors: drop-cap invisible-as-accent on mono-contrast (accent==ink); bracket/underline can sit near lower rule — Task 12 QA; left-aligned body/bullet dup now across layouts 6/7/8/9)
-- Task 10: complete (commits 80b9d9c..9e39505, review Approved; inset dashed card over textured ground, perforation dots -> left content/right stub, ghost number in stub, close -> _centered_close; concerns for Task 12 QA: item body 6-line cap truncates mid-sentence on mono (bump to ~8-9), handle low-contrast in card footer)
-- Task 11: complete (commit 34afe88, diff verified by controller — pick_style before build_images, style= kwarg, style_name in ds.put, failure -> "default"; 198 green)
-- Task 12: complete (commit 3b48db4; all 24 rendered 1080x1350 no crash; caps raised: ticket body 12, bottom-bar block 52%+cap 5, left-rail/split 9; +test_no_layout_truncates_a_45_word_body; 199 green. 23/24 clean, mono-bar clips ~2 words of a 60+word body (cosmetic, real bodies 40-70w)). ALL 12 TASKS COMPLETE.
+- Task 1: complete — retired TTS: deleted tts.py/test_tts.py, removed TTSError, build_video now takes keyword-only voice_wav + CLI --voice (required with --story), _copy_as_mp3 helper, manifest tts_backend->audio_source ("user-audio"); settings.yaml video block (enabled:true, render_composition:CodexShort, no tts_provider); requirements-video.txt emptied to comment. Also updated video-smoke.yml + test_workflows_video.py (--fake -> --voice fixture) since brief self-review forbids dangling --fake. Video 38 pass, non-video 202 pass.
+- Task 2: complete (commit 3790640..9206e30, controller-verified; BgVideo.BG single bg.mp4 entry, adsbot-vox.mp4 re-encoded 27MB->6.6MB, 5 pool files removed, +test_single_fixed_background. 39 video / 202 non-video green)
+- Task 3: complete (commit 9206e30..fd3df18, review Approved; VideoMeta dataclass + _validate_meta (title 10-70, hashtags 8-12 ^#S+$, keywords 5-10, tiktok <=150); module-level _GOOD_META in test_script.py. 49 video / 202 non-video)
+- Task 4: complete (commit fd3df18..675f723, review Approved; build_prompt with_meta= kwarg (additive), generate_from_article builds Candidate/PostContent shim -> (Script, VideoMeta), 2-attempt word-band retry. 53 video / 202 non-video)
+- Task 5: complete (commit 675f723..90d3ab5, review Approved; draft_script.draft() gen -> codegen -> awaiting_audio state -> Telegram script msg; enabled-gate short-circuits before LLM. 56 video / 202 non-video)
+- Task 6: complete (commit 90d3ab5..3de7af9, review Approved; article_run.draft() calls _video_draft.draft after schedule_slot when video.enabled, double-guarded; existing article tests unchanged. 205 non-video / 56 video)
+- Task 7: complete (commit 3de7af9..1e3cc0c, controller-verified; Telegram.send_video multipart sendVideo, mirrors send_document. 206 non-video)
+- Task 8: complete (commit 1e3cc0c..04e8eba, controller-verified; render.py helpers _audio_file_id/_to_mp3/_remotion_render, 5 tests, subprocess module-scope import. 61 video / 206 non-video)
+  - T8 minor: no test for _remotion_render returncode=1 "never raises" (brief-inherited gap); dead `import logging`/`log` in render.py; mime not lower-cased before startswith.
+- Task 9: complete (commit 04e8eba..0410011, review Approved + fix wave; _find_slot + receive_audio + handle_undo, 13 render tests incl. discriminating reply-match + undo negative paths. 69 video / 206 non-video). Minor open: pid=out_dir.name -> mp4 named video.mp4; unused DailyState import (brief-mandated).
+- Task 10: complete (commit 0410011..7e0ee89, review Approved; 4 minor brief-mandated. 18 article_approve / 208 non-video / 69 video)
+- Task 11: complete (commit 7e0ee89..ca6d88f, controller-verified pending review; article-approve.yml +node20 +remotion browser ensure +timeout25, README "Luồng video (Phase 2B)" + 2A staleness cleanup, test_workflows +2 asserts. 208 non-video / 69 video)
 
 ## Minor findings roll-up
-(none yet)
+- T5: _make_id(title, now) can collide if two slots share an identical title on one date (shared output/ dir, last write wins). Fold `slot` into the id later.
+- T4: generate + generate_from_article duplicate the 2-attempt retry loop (plan-mandated). Shared helper candidate.
+- T9: mp4_path shaped .../video/video.mp4 (pid = script_path parent dir name = "video"). Confirm Task 10/2C tolerate it.
+- T9: `import logging`/`log` + `DailyState` import unused in render.py (brief-mandated). Final review: prune.
 
 ## Notes
-- Plan 1 (auto-publish) merged to local master as c8928cc; local master ahead 16 / behind 2
-  of origin (behind = pipeline state-commits from Actions). NOT pushed — needs user.
-- Layout tasks 5-10 have manual visual-QA steps; controller renders samples and surfaces to user.
+- 42 video tests currently pass; ~202 non-video tests pass.
+- Local: .venv/Scripts/python.exe, Python 3.12.3, run from D:\Automation Social.
+- Task 2 Step 2: bg.mp4 — user provides adsbot-vox.mp4; re-encode to <=40MB and commit, OR gitignore + README. Needs the actual file; if absent, implementer commits a placeholder/note and flags it.
+- video tests use `needs_node` skip when node absent locally.
 
-## Deferred from Task 4 review (for final review / magazine layout task)
-- F2: _logo_lockup brand name is always Be Vietnam Pro Bold (no fonts param). editorial/mono/rounded styles show a Lora/JetBrains/Nunito headline beside a BVP wordmark. Resolve if magazine layout needs the style face (add a font param) — else it's an intentional brand-consistency choice.
-- F3: _hook_logos drops individually-failed logos for `tile` but keeps a glyph for chip/mono; add one docstring line.
+## Addendum (2026-09-09) — render-split + final-review fixes
+Plan: docs/superpowers/plans/2026-09-09-phase2b-render-split-addendum.md
+Base: ca6d88f. Trigger: final-review.md found C1 (stale cards.mjs -> wrong script), C2 (failed dead-end),
+C3 (uncaught FileNotFoundError), I1-I5. User chose: split render into its own video-render.yml workflow.
+- Task 12: complete (commit ca6d88f..12fbe44, controller-verified pending review; render.py split record_audio/render_pending, C1 regen from video.script, C2 fail->awaiting_audio, C3 try-wrap, I1 tg_file_id, I5 cfg-or-{}; draft_script persists video.script. 14 test_render / 70 video / 207 non-video +1 expected fail = test_poll_routes fixed in T13)
+  - T12 M-A: _find_slot reply-match + M6/M7 same-day-tie lost test coverage (old test_receive_audio_matches_by_reply deleted, no replacement) -> add record_audio reply-match test in T14.
+- Task 13: complete (commit 12fbe44..0b0f3fa, controller-verified pending review; poll->record_audio/is_audio, UNDO_GRACE_MIN 45, expire_stale rendering>40min->awaiting_audio+render_err; new render_run.py + video-render.yml (cron 3-59/10, bash go-gate, Commit if:always); article-approve.yml drops node/timeout15/commit-if:always. 209 non-video / 70 video)
+  - T13 Important (fold into T14): UNDO_GRACE_MIN=45 thin vs 25min render + cron latency -> bump to 60.
+  - T13 minor (defer): killed-render recovery is 40min sweep + manual re-send; rendering-stuck slots not seen by grep gate; unused import sys in render_run.py.
+- Task 14: complete (commit 0b0f3fa..HEAD, controller-done; UNDO_GRACE_MIN 60 + test retimed, _make_id(slot,title,now), draft_script cfg-or-{}, render.py drop unused DailyState, render_run drop import sys, git rm 5 Klickpin mp4s (~16MB), README 2A + 2B split note, +2 record_audio slot-match tests. 72 video / 209 non-video)
+Deferred from final review: M5 (dup retry loop, plan-mandated), M10 (send_video 50MB guard - folded into C3 area, left as raise), nit hard-coded timeline band (fixed in T12 via target*0.6..1.4).
 
-## Shared-helper evolution (for final review awareness)
-- Task 5 added: _pill, _fit_lines_font, _centre_lines, _centered_body_fill (local to images.py).
-- Task 6 added: _handle_line gained `left: int = 80` kwarg (used by left-rail).
-- Duplication watch: 34->30->28 body-shrink loop + bullet ellipse/wrap/text loop are near-identical across _centered_item and _left_rail_item (differ only by anchor). Candidate for one shared alignment-parameterised helper — deferred cleanup.
-
-## Final whole-branch review (opus) — 3 rounds
-R1 (eb5fa41..00ceebe): "With fixes" — Critical: (#1) settings.yaml images.brand's v4 accent/ink/muted overrode EVERY palette -> 12/24 styles invisible; (#2) Lora/JetBrains/Nunito vendored as variable fonts -> hairline headlines. Important: (#3) tools-less hook = 40% empty canvas; (#4) ticket handle straddles card border; (#5) no test on the production brand path.
-Fix df921c4: #1 (drop 3 keys from settings.yaml), #2 (fontTools instancer -> static weights + OFL-NOTICE), #3 (_hook_marks helper), #4 (bottom= kwarg), #5 (test_production_config_every_style_is_legible), bonus _mono_logo opaque-favicon -> glyph.
-R2 (00ceebe..df921c4): "No" — #3/#4 not actually closed: _draw_icon_fan ignored its box (fan painted over by bottom-bar block = 0px; straddled ticket perforation); ticket bottom=_TICKET_M+30 overshot -> dashed frame struck through footer text.
-Fix 4541f63: _draw_icon_fan honours box=; ticket bottom=_TICKET_M+5; +test_toolless_hook_draws_a_visible_fallback_on_every_layout (fails on old tree with the 0px bottom-bar signature).
-R3 (df921c4..4541f63): "Yes" — both criticals closed, verified by measurement. 244 tests. Minor follow-ups: fan test asserts visibility not placement; b.get("tile_icon","#1F2937") literal; warm-editorial muted/bg 3.46:1 (pre-existing); JetBrainsMono/Nunito italic not vendored (falls back to BVP).
-
-ALL DONE — Plan 2 ready to merge. 24 styles, 6 layouts, auto-rotated per post, brand furniture identical across all, degrades to v4 on any failure.
+## Addendum fix wave (final-review-2, 2026-09-09)
+Review .superpowers/sdd/final-review-2.md verdict READY TO MERGE; folded in 4 deltas:
+- I-A: draft_script.draft -> render.render_pending seam test (test_render.py) guards the C1 producer line `"script": s.to_dict()`. Mutation-verified red->green.
+- I-B: render_pending — send_video + rendered-write moved inside the try; +50MB MP4 guard -> RuntimeError -> _fail -> awaiting_audio (M10 closed).
+- I-D: render_pending re-reads state before send; slot gone `discarded` mid-render -> drop result, no send, no overwrite. +test.
+- Minor: article_run.py:179 `(settings.get("video") or {})` — 3rd I5 site.
+74 video / 209 non-video green.

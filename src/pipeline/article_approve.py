@@ -8,6 +8,7 @@ from .state import State
 from .telegram import Telegram
 from . import publish
 from .publish import slot_unix, _fb_message, _ig_caption  # noqa: F401 - re-export
+from .video import render
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("article_approve")
@@ -24,7 +25,7 @@ def _ack(tg, cbq_id: str, text: str = "") -> None:
         log.warning("answer_callback failed: %s", e)
 
 
-UNDO_GRACE_MIN = 15
+UNDO_GRACE_MIN = 60
 
 
 def handle_callback(cbq: dict, ds, tg, meta, root: Path, now: datetime) -> str | None:
@@ -134,10 +135,25 @@ def expire_stale(ds, tg, now: datetime) -> list[str]:
                 if now.timestamp() - due > 2 * 3600:
                     ds.set_status(date, slot_name, "posted")
                     stuck.append(f"{date}:{slot_name}")
+            v = slot.get("video") or {}
+            if v.get("status") == "rendering" and v.get("started_at"):
+                try:
+                    started = datetime.fromisoformat(v["started_at"])
+                    if started.tzinfo is None:
+                        started = started.replace(tzinfo=timezone.utc)
+                except (ValueError, TypeError):
+                    started = now
+                if (now - started).total_seconds() > 40 * 60:
+                    ds.put(date, slot_name, video={**v, "status": "awaiting_audio",
+                                                   "render_err": "render timed out (>40 min)"})
+                    stuck.append(f"{date}:{slot_name} (video)")
     if out:
         tg.send_message("⚠️ không lên lịch được, đã bỏ: " + ", ".join(out))
     for s in stuck:
-        tg.send_message(f"⚠️ {s} kẹt ở 'publishing' — đã đánh dấu posted, kiểm tra Page.")
+        if s.endswith("(video)"):
+            tg.send_message(f"⚠️ {s} kẹt khi render — đã trả lại, gửi lại audio.")
+        else:
+            tg.send_message(f"⚠️ {s} kẹt ở 'publishing' — đã đánh dấu posted, kiểm tra Page.")
     return out
 
 
@@ -156,8 +172,17 @@ def poll(root: Path, now: datetime | None = None) -> dict:
         try:
             max_uid = max(max_uid, up.get("update_id", max_uid))
             cbq = up.get("callback_query")
+            msg = up.get("message")
             if cbq:
-                r = handle_callback(cbq, ds, tg, meta, root, now)
+                data = cbq.get("data", "")
+                if data.startswith("vid:"):
+                    r = render.handle_undo(cbq, ds, tg, root, now)
+                else:
+                    r = handle_callback(cbq, ds, tg, meta, root, now)
+                if r:
+                    handled.append(r)
+            elif msg and render.is_audio(msg):
+                r = render.record_audio(msg, ds, tg, root, now)
                 if r:
                     handled.append(r)
         except Exception as e:  # noqa: BLE001 - a poison update must not stall the poller
