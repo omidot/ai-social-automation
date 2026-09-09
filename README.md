@@ -89,7 +89,10 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
 - TikTok: đăng vào hộp nháp (app chưa audit). Secrets `TIKTOK_CLIENT_KEY/SECRET/
   REFRESH_TOKEN` + `GH_PAT` (fine-grained PAT repo này, quyền Secrets: read/write —
   để workflow tự ghi lại refresh token TikTok mỗi lần xoay vòng). Không có `GH_PAT`
-  thì bot Telegram token mới cho bạn dán tay.
+  thì bot Telegram token mới cho bạn dán tay. TikTok `PULL_FROM_URL` cần domain đã
+  xác minh trong TikTok developer portal; `github.com` không xác minh được → TikTok
+  chỉ chạy khi có host tự xác minh được (hoặc chuyển sang `FILE_UPLOAD`). Để cờ
+  `video.publish.tiktok: false` cho tới khi giải quyết.
 
 ## Nguồn nội dung
 

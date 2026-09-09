@@ -52,6 +52,7 @@ def test_video_render_workflow():
     assert "steps.g.outputs.go" in v
     assert "YOUTUBE_REFRESH_TOKEN" in v
     assert "TIKTOK_REFRESH_TOKEN" in v
+    assert "GITHUB_TOKEN:" in v
     assert "publishing" in v            # gate matches the publish status
 
 

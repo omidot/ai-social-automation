@@ -47,9 +47,17 @@ class YouTube:
             desc += "\n\n" + " ".join(meta.hashtags)
         if footer:
             desc += "\n\n" + footer
+        desc = desc[:4900]
+        tags: list[str] = []
+        total = 0
+        for t in meta.keywords:
+            total += len(t) + 1
+            if total > 450:
+                break
+            tags.append(t)
         body = {
             "snippet": {"title": title, "description": desc,
-                        "tags": list(meta.keywords),
+                        "tags": tags,
                         "categoryId": str(cfg.get("youtube_category", 27))},
             "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False},
         }

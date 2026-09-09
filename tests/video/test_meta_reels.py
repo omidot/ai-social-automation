@@ -82,3 +82,32 @@ def test_ig_publish_reel_raises_on_error_status():
         return httpx.Response(500, json={})
     with pytest.raises(Exception):
         _meta(h).ig_publish_reel("https://x/x.mp4", "c")
+
+
+def test_fb_publish_reel_times_out_fast_with_injected_sleep():
+    """I5/M10 — a never-ready reel raises MetaError at the deadline without real sleeping."""
+    def h(req):
+        url = str(req.url)
+        if url.endswith("/PAGE/video_reels") and b"start" in req.content:
+            return httpx.Response(200, json={"video_id": "RID", "upload_url": "https://x/RID"})
+        if url == "https://x/RID":
+            return httpx.Response(200, json={"success": True})
+        if b"finish" in req.content:
+            return httpx.Response(200, json={"success": True})
+        if req.method == "GET":
+            return httpx.Response(200, json={"status": {"video_status": "processing"}})
+        return httpx.Response(500, json={})
+    with pytest.raises(Exception):
+        _meta(h).fb_publish_reel("https://x/x.mp4", "d", deadline_s=0.02, sleep=lambda *_: None)
+
+
+def test_ig_publish_reel_times_out_fast_with_injected_sleep():
+    def h(req):
+        url = str(req.url)
+        if url.endswith("/IGID/media") and req.method == "POST":
+            return httpx.Response(200, json={"id": "C1"})
+        if "/C1" in url:
+            return httpx.Response(200, json={"status_code": "IN_PROGRESS"})
+        return httpx.Response(500, json={})
+    with pytest.raises(Exception):
+        _meta(h).ig_publish_reel("https://x/x.mp4", "c", deadline_s=0.02, sleep=lambda *_: None)

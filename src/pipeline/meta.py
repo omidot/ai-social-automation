@@ -77,8 +77,8 @@ class Meta:
         pid = str(res["id"])
         return {"id": pid, "url": f"https://facebook.com/{pid}", "scheduled": scheduled}
 
-    def fb_publish_reel(self, video_url: str, description: str) -> dict:
-        import time as _t
+    def fb_publish_reel(self, video_url: str, description: str, *,
+                        deadline_s: float = 120, sleep=time.sleep) -> dict:
         start = self._post(f"{BASE}/{self.page_id}/video_reels",
                            data={"upload_phase": "start", "access_token": self.token})
         vid = str(start["video_id"])
@@ -90,36 +90,36 @@ class Meta:
                    data={"upload_phase": "finish", "video_id": vid,
                          "video_state": "PUBLISHED", "description": description,
                          "access_token": self.token})
-        deadline = _t.time() + 300
-        while _t.time() < deadline:
+        deadline = time.time() + deadline_s
+        while time.time() < deadline:
             st = self._get(vid, {"fields": "status"})
             vs = (st.get("status") or {}).get("video_status")
             if vs in ("ready", "published"):
                 return {"id": vid, "url": f"https://facebook.com/reel/{vid}"}
             if vs == "error":
                 raise MetaError(f"fb reel {vid} processing error: {st}")
-            _t.sleep(10)
-        raise MetaError(f"fb reel {vid} not ready after 300s")
+            sleep(10)
+        raise MetaError(f"fb reel {vid} not ready after {deadline_s}s")
 
     # ---------- Instagram ----------
-    def ig_publish_reel(self, video_url: str, caption: str) -> dict:
-        import time as _t
+    def ig_publish_reel(self, video_url: str, caption: str, *,
+                        deadline_s: float = 120, sleep=time.sleep) -> dict:
         res = self._post(f"{BASE}/{self.ig_id}/media",
                          data={"media_type": "REELS", "video_url": video_url,
                                "caption": caption, "share_to_feed": "true",
                                "access_token": self.token})
         creation = str(res["id"])
-        deadline = _t.time() + 300
-        while _t.time() < deadline:
+        deadline = time.time() + deadline_s
+        while time.time() < deadline:
             st = self._get(creation, {"fields": "status_code"})
             code = st.get("status_code")
             if code == "FINISHED":
                 break
             if code == "ERROR":
                 raise MetaError(f"ig reel {creation} processing ERROR: {st}")
-            _t.sleep(10)
+            sleep(10)
         else:
-            raise MetaError(f"ig reel {creation} not FINISHED after 300s")
+            raise MetaError(f"ig reel {creation} not FINISHED after {deadline_s}s")
         pub = self._post(f"{BASE}/{self.ig_id}/media_publish",
                          data={"creation_id": creation, "access_token": self.token})
         mid = str(pub["id"])

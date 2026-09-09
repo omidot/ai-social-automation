@@ -7,10 +7,13 @@ persist the new one — via `gh secret set` when a PAT is available, else we
 Telegram it for a manual paste.
 """
 from __future__ import annotations
+import logging
 import os
 import subprocess
 
 import httpx
+
+log = logging.getLogger("video.publish.tiktok")
 
 _TOKEN = "https://open.tiktokapis.com/v2/oauth/token/"
 _INBOX = "https://open.tiktokapis.com/v2/post/publish/inbox/video/init/"
@@ -42,25 +45,38 @@ class TikTok:
         body = r.json()
         new_rt = body.get("refresh_token")
         if new_rt and new_rt != self.refresh_token:
-            self._persist_refresh_token(new_rt, tg)
+            # adopt it first — the old refresh token is already dead server-side
             self.refresh_token = new_rt
-        return body["access_token"]
+            self._persist_refresh_token(new_rt, tg)
+        access = body.get("access_token")
+        if not access:
+            raise TikTokError(f"tiktok token refresh: no access_token in body: {str(body)[:300]}")
+        return access
 
     def _persist_refresh_token(self, new_rt: str, tg=None) -> None:
         pat = os.environ.get("GH_PAT")
         repo = os.environ.get("GITHUB_REPOSITORY", "")
         if pat and repo:
-            subprocess.run(
-                ["gh", "secret", "set", "TIKTOK_REFRESH_TOKEN",
-                 "--body", new_rt, "--repo", repo],
-                env={**os.environ, "GH_TOKEN": pat},
-                check=True, capture_output=True, text=True)
-            return
+            try:
+                subprocess.run(
+                    ["gh", "secret", "set", "TIKTOK_REFRESH_TOKEN",
+                     "--body", new_rt, "--repo", repo],
+                    env={**os.environ, "GH_TOKEN": pat},
+                    check=True, capture_output=True, text=True)
+                return
+            except (subprocess.CalledProcessError, OSError) as e:
+                log.error("gh secret set failed: %s", getattr(e, "stderr", e))
+        # gh unavailable or failed -> fall back to a manual paste via Telegram
         if tg is not None:
             tg.send_message("🔑 TikTok refresh token vừa xoay vòng — cập nhật GitHub "
                             f"Secret `TIKTOK_REFRESH_TOKEN`:\n{new_rt}")
 
     def upload_draft(self, video_url: str, caption: str, *, tg=None) -> dict:
+        """Push the video into the user's TikTok inbox as a draft.
+
+        `caption` is accepted for parity; the inbox endpoint has no caption field —
+        the user writes it in-app.
+        """
         access = self._refresh(tg)
         r = self._client.post(
             _INBOX,

@@ -48,6 +48,25 @@ def test_upload_draft_telegrams_token_without_pat(monkeypatch):
     assert any("ROTATED2" in m and "TIKTOK_REFRESH_TOKEN" in m for m in tg.msgs)
 
 
+def test_upload_draft_falls_back_to_telegram_when_gh_fails(monkeypatch):
+    """I2 — a failed `gh secret set` must still surface the rotated token via Telegram."""
+    def _boom(*a, **k):
+        raise subprocess.CalledProcessError(1, a[0] if a else "gh", stderr="no perms")
+    monkeypatch.setattr(subprocess, "run", _boom)
+    monkeypatch.setenv("GH_PAT", "PAT")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "omidot/ai-social-automation")
+
+    class TG:
+        def __init__(self): self.msgs = []
+        def send_message(self, t, buttons=None): self.msgs.append(t)
+    tg = TG()
+    t = _tt(_handler(new_rt="ROTATED3"))
+    out = t.upload_draft("https://gh/rel/x.mp4", "cap", tg=tg)
+    assert out == {"status": "draft_uploaded"}
+    assert t.refresh_token == "ROTATED3"           # adopted in-memory despite gh failure
+    assert any("ROTATED3" in m and "TIKTOK_REFRESH_TOKEN" in m for m in tg.msgs)
+
+
 def test_upload_draft_raises_on_init_error(monkeypatch):
     monkeypatch.delenv("GH_PAT", raising=False)
     t = _tt(_handler(init_status=403))

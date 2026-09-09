@@ -2,9 +2,10 @@
 from __future__ import annotations
 import logging
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
+import httpx
 import yaml
 
 from ..models import VideoMeta
@@ -18,6 +19,8 @@ log = logging.getLogger("video.publish")
 _PLATFORM_LABEL = {"youtube": "YouTube", "fb_reel": "FB Reel",
                    "ig_reel": "IG Reel", "tiktok": "TikTok"}
 _MAX_ATTEMPTS = 5
+# platforms that fetch the MP4 from a public URL rather than reading bytes off disk
+_PULL_PLATFORMS = {"fb_reel", "ig_reel", "tiktok"}
 
 
 @dataclass
@@ -47,6 +50,21 @@ def _download_tg_mp4(tg, file_id: str, dest: Path) -> Path | None:
         return Path(tg.download_file(file_id, str(dest)))
     except Exception:  # noqa: BLE001
         log.exception("tg mp4 download failed")
+        return None
+
+
+def _download_url(url: str, dest: Path) -> Path | None:
+    """Stream a URL (e.g. the Release asset) back to disk. None on any failure."""
+    try:
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        with httpx.stream("GET", url, follow_redirects=True, timeout=300.0) as r:
+            r.raise_for_status()
+            with open(dest, "wb") as fh:
+                for chunk in r.iter_bytes():
+                    fh.write(chunk)
+        return dest
+    except Exception:  # noqa: BLE001
+        log.exception("asset url download failed: %s", url)
         return None
 
 
@@ -113,25 +131,42 @@ def publish_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> lis
 
 
 def _publish_one(ds, tg, root, cfg, enabled, date, slot, v, now) -> str:
-    # --- ensure asset ---
+    res_now = v.get("result") or {}
+    # --- locate the mp4 on disk if this runner still has it ---
     asset_url = v.get("asset_url")
     mp4_path = None
     if v.get("mp4_path"):
         p = root / v["mp4_path"]
         if p.exists():
             mp4_path = p
-    if not asset_url:
+
+    # --- re-materialize the mp4 bytes when a byte-uploading platform still needs them,
+    #     independent of asset_url (runners are ephemeral; output/ is git-ignored) ---
+    needs_bytes = "youtube" in enabled and not _done(res_now.get("youtube"))
+    if mp4_path is None and needs_bytes:
+        dest = root / "output" / f"{date}-{slot}.mp4"
+        if asset_url:
+            mp4_path = _download_url(asset_url, dest)
+        elif v.get("tg_file_id"):
+            mp4_path = _download_tg_mp4(tg, v["tg_file_id"], dest)
+
+    # --- create the public Release asset only when a pull platform still needs the URL ---
+    needs_url = any(p in _PULL_PLATFORMS and not _done(res_now.get(p)) for p in enabled)
+    if needs_url and not asset_url:
         src = mp4_path
         if src is None and v.get("tg_file_id"):
             src = _download_tg_mp4(tg, v["tg_file_id"], root / "output" / f"{date}-{slot}.mp4")
             mp4_path = src
-        if src is None:
-            cur = (ds.get_safe(date, slot) or {}).get("video") or v
-            ds.put(date, slot, video={**cur, "status": "awaiting_audio",
-                                      "render_err": "mp4 unavailable for publish"})
-            tg.send_message(f"⚠️ {date}:{slot} không có MP4 để đăng — cần render lại.")
-            return f"skip:{date}:{slot}"
-        asset_url = _assets.upload_release_asset(src, f"{date}-{slot}.mp4")
+        if src is not None:
+            asset_url = _assets.upload_release_asset(src, f"{date}-{slot}.mp4")
+
+    # --- nothing can proceed without the bytes / URL a platform needs -> back to render ---
+    if (needs_bytes and mp4_path is None) or (needs_url and not asset_url):
+        cur = (ds.get_safe(date, slot) or {}).get("video") or v
+        ds.put(date, slot, video={**cur, "status": "awaiting_audio",
+                                  "render_err": "mp4 unavailable for publish"})
+        tg.send_message(f"⚠️ {date}:{slot} không có MP4 để đăng — cần render lại.")
+        return f"skip:{date}:{slot}"
 
     cur = (ds.get_safe(date, slot) or {}).get("video") or v
     patch = {**cur, "status": "publishing", "asset_url": asset_url}
@@ -165,9 +200,14 @@ def _publish_one(ds, tg, root, cfg, enabled, date, slot, v, now) -> str:
 
     cur = (ds.get_safe(date, slot) or {}).get("video") or v
     if all(_done(cur.get("result", {}).get(p)) for p in enabled):
-        _assets.delete_release_asset(f"{date}-{slot}.mp4")
+        # flip to published FIRST — cleanup failure must never wedge the slot
         ds.put(date, slot, video={**cur, "status": "published",
                                   "published_at": now.isoformat(), "asset_url": None})
+        try:
+            _assets.delete_release_asset(f"{date}-{slot}.mp4")
+        except Exception:  # noqa: BLE001 - cleanup must not block the transition
+            log.exception("release asset cleanup failed for %s:%s", date, slot)
+        cur = (ds.get_safe(date, slot) or {}).get("video") or cur
         tg.send_message(_summary(date, slot, cur, enabled),
                         buttons=[("🗑 Gỡ tất cả", f"vid:{date}:{slot}:unpub")])
         return f"published:{date}:{slot}"
@@ -175,7 +215,12 @@ def _publish_one(ds, tg, root, cfg, enabled, date, slot, v, now) -> str:
 
 
 def _summary(date, slot, v, enabled) -> str:
-    lines = [f"🚀 Video {slot} ({date}) đã đăng:"]
+    got_any = any((v.get("result", {}).get(p) or {}).get("id")
+                  or (v.get("result", {}).get(p) or {}).get("status") == "draft_uploaded"
+                  for p in enabled)
+    header = (f"🚀 Video {slot} ({date}) đã đăng:" if got_any
+              else f"⚠️ Video {slot} ({date}) — không đăng được:")
+    lines = [header]
     for p in enabled:
         r = v.get("result", {}).get(p) or {}
         if r.get("id"):
@@ -227,6 +272,8 @@ def handle_unpublish(cbq: dict, ds, tg, root, now: datetime) -> str | None:
         return None
     try:
         pub_at = datetime.fromisoformat(v["published_at"])
+        if pub_at.tzinfo is None:
+            pub_at = pub_at.replace(tzinfo=timezone.utc)
     except (KeyError, ValueError, TypeError):
         pub_at = now
     if (now - pub_at).total_seconds() > _UNDO_GRACE_MIN * 60:
@@ -236,6 +283,8 @@ def handle_unpublish(cbq: dict, ds, tg, root, now: datetime) -> str | None:
 
     errs: list[str] = []
     result = dict(v.get("result", {}))
+    # iterate the recorded results, not the currently-enabled list — a since-disabled
+    # platform's post should still be removed.
     for p, res in list(result.items()):
         if not (res and res.get("id")) and not (res and res.get("status") == "draft_uploaded"):
             continue

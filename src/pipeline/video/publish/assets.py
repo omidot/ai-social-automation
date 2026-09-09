@@ -23,8 +23,10 @@ def _client(token: str) -> httpx.Client:
 
 
 def _repo_token(repo: str | None, token: str | None) -> tuple[str, str]:
-    repo = repo or os.environ["GITHUB_REPOSITORY"]
-    token = token or os.environ["GITHUB_TOKEN"]
+    repo = repo or os.environ.get("GITHUB_REPOSITORY")
+    token = token or os.environ.get("GITHUB_TOKEN")
+    if not repo or not token:
+        raise AssetError("GITHUB_REPOSITORY / GITHUB_TOKEN must be set for release assets")
     return repo, token
 
 
