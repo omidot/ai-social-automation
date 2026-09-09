@@ -39,3 +39,10 @@ video:
   words_min: 110
   words_max: 140
   render_composition: CodexShort
+  channel_footer: "— A Hít Official · AI & năng suất mỗi ngày"
+  publish:
+    youtube: false
+    fb_reel: false
+    ig_reel: false
+    tiktok: false
+    youtube_category: 27
