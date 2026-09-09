@@ -52,6 +52,264 @@
           "media_id": "17902267596584836"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "5 công cụ AI lồng tiếng Việt tự động cho video từ giọng nói tiếng Anh",
+      "style": "white-rail",
+      "topic_key": "5-cong-cu-ai-long-tieng-viet-tu-ong-cho-video-tu-g",
+      "text_fb": "Nếu bạn đang muốn làm nội dung từ các nguồn video tiếng Anh nhưng ngại khoản thuê người đọc thoại hay tự dựng phim phức tạp, AI hiện tại đã giải quyết triệt để vấn đề này.\n\nĐầu tiên phải kể đến ElevenLabs với tính năng Dubbing đỉnh cao. Bạn chỉ cần tải video tiếng Anh lên, hệ thống sẽ tự dịch và lồng giọng tiếng Việt mượt mà, giữ trọn cảm xúc của người nói gốc.\n\nTiếp theo là HeyGen, nền tảng không chỉ chuyển giọng nói sang tiếng Việt mà còn tự động chỉnh khớp khẩu hình nhân vật. Điều này giúp clip nói chuyện hay bán hàng nhìn vô cùng chân thực.\n\nNếu video có nhiều nhân vật tranh luận, Rask AI sẽ là trợ thủ đắc lực. Công cụ này nhận diện chính xác từng người nói và nhái lại chất giọng gốc sang tiếng Việt rất tự nhiên.\n\nVới nhu cầu đơn giản và hoàn toàn miễn phí, CapCut là lựa chọn dễ tiếp cận nhất. Bạn chỉ cần dịch phụ đề tự động rồi dùng tính năng đọc văn bản thành giọng nói tiếng Việt có sẵn trên app.\n\nCuối cùng, Dubverse giúp bạn lồng tiếng nhanh bằng cách dán trực tiếp link video YouTube. Bạn còn được phép chỉnh sửa kịch bản dịch trước khi xuất file để đảm bảo chuẩn thuật ngữ.\n\nBạn hãy thử trải nghiệm ngay các công cụ này để sáng tạo nội dung hiệu quả hơn.",
+      "text_ig": "5 công cụ AI giúp bạn tự động dịch và lồng tiếng Việt cho video tiếng Anh cực kỳ tự nhiên. Xem ngay carousel để chọn công cụ phù hợp!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#ElevenLabs",
+        "#HeyGen",
+        "#RaskAI",
+        "#CapCut",
+        "#Dubverse",
+        "#LongTiengAI",
+        "#ThaoTacAI",
+        "#MeoCapCut"
+      ],
+      "images": [
+        "assets/posts/2026-09-09/evening/01.jpg",
+        "assets/posts/2026-09-09/evening/02.jpg",
+        "assets/posts/2026-09-09/evening/03.jpg",
+        "assets/posts/2026-09-09/evening/04.jpg",
+        "assets/posts/2026-09-09/evening/05.jpg",
+        "assets/posts/2026-09-09/evening/06.jpg",
+        "assets/posts/2026-09-09/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-09/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "Giúp bạn tự dịch và lồng tiếng video ngoại ngữ sang tiếng Việt bằng giọng tự nhiên mà không cần thuê người đọc hay dựng phim.",
+      "fb_post_id": "1381130541740424_122097010419476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122097010419476035",
+          "url": "https://facebook.com/1381130541740424_122097010419476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AwZvRF8ADTTqaG1RDxvu3Ft"
+        }
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "meta": {
+          "title": "5 AI Lồng Tiếng Việt Tự Động Tự Nhiên Như Người Thật",
+          "description": "Bạn muốn tự dịch video ngoại ngữ sang tiếng Việt mà không tốn tiền thuê đọc thoại hay dựng phim? 5 công cụ AI này sẽ giúp bạn chuyển giọng nói cực mượt, giữ nguyên cảm xúc và khớp khẩu hình chuẩn xác. Bấm theo dõi kênh A Hít Official để cập nhật thêm nhiều mẹo AI hay mỗi ngày!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AILongTieng",
+            "#AITool",
+            "#DichVideoAI",
+            "#CongCuAI",
+            "#LongTiengTuDong",
+            "#MeoAI",
+            "#CapCutAI",
+            "#ElevenLabs",
+            "#HeyGen"
+          ],
+          "keywords": [
+            "AI lồng tiếng",
+            "A Hít Official",
+            "dịch video tiếng Anh sang tiếng Việt",
+            "ElevenLabs dubbing",
+            "HeyGen AI",
+            "CapCut đọc văn bản",
+            "công cụ AI lồng tiếng"
+          ],
+          "tiktok_caption": "Tự dịch và lồng tiếng video ngoại ngữ sang tiếng Việt mượt mà nhờ AI! #AHitOfficial #AILongTieng #CongCuAI #DichVideo"
+        },
+        "spoken_text": "Muốn dịch video tiếng Anh sang tiếng Việt siêu tự nhiên?\nKhỏi thuê người đọc thoại Khỏi tốn tiền dựng phim\nAI làm hết từ A tới Z cực kỳ nhanh chóng và tiện lợi\n5 Công cụ lồng tiếng đỉnh nhất\nĐầu tiên là ElevenLabs giúp Tự dịch và giữ trọn cảm xúc\nThứ hai là HeyGen Tự chỉnh khớp khẩu hình nhân vật Nhìn chân thực vô cùng\nNhiều người nói thì dùng Rask AI Nhận diện từng giọng nói chuẩn\nMuốn miễn phí chọn ngay CapCut Dịch phụ đề rồi chuyển giọng đọc\nDubverse dán thẳng link YouTube Cho sửa kịch bản chuẩn thuật ngữ\nKhông còn lo bất đồng ngôn ngữ Làm nội dung ngoại ngữ cực dễ\nTiết kiệm vô số thời gian Tăng tốc độ sản xuất video\nThử ngay hôm nay bạn nhé! Bấm theo dõi A Hít Official",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Muốn dịch video tiếng Anh",
+                "~sang",
+                "tiếng Việt siêu tự nhiên?"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Khỏi thuê người đọc thoại",
+                "Khỏi tốn tiền dựng phim"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "AI làm hết từ A tới Z",
+                "~cực",
+                "kỳ nhanh chóng và tiện lợi"
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "5",
+                "Công cụ lồng tiếng đỉnh nhất"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": "5"
+            },
+            {
+              "lines": [
+                "Đầu tiên là ElevenLabs",
+                "~giúp",
+                "Tự dịch và giữ trọn cảm xúc"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Thứ hai là HeyGen",
+                "Tự chỉnh khớp khẩu hình nhân vật",
+                "Nhìn chân thực vô cùng"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nhiều người nói thì dùng Rask AI",
+                "Nhận diện từng giọng nói chuẩn"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Muốn miễn phí chọn ngay CapCut",
+                "Dịch phụ đề rồi chuyển giọng đọc"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Dubverse dán thẳng link YouTube",
+                "Cho sửa kịch bản chuẩn thuật ngữ"
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Không còn lo bất đồng ngôn ngữ",
+                "Làm nội dung ngoại ngữ cực dễ"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Tiết kiệm vô số thời gian",
+                "Tăng tốc độ sản xuất video"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Thử ngay hôm nay bạn nhé!",
+                "Bấm theo dõi A Hít Official"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Mở đầu",
+              "card_start": 0
+            },
+            {
+              "label": "Top công cụ AI",
+              "card_start": 3
+            },
+            {
+              "label": "Lợi ích",
+              "card_start": 9
+            },
+            {
+              "label": "Kêu gọi",
+              "card_start": 11
+            }
+          ]
+        },
+        "script_path": "output/2026-09-09/2026-09-09-evening-5-cong-cu-ai-long-tieng-viet-tu-ong-cho/video/script.json",
+        "script_msg_id": 156,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
