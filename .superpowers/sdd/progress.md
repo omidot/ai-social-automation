@@ -39,3 +39,11 @@ Prior phases: progress-p2b.md (2B, merged df91af1), progress-plan1/2.md
 
 ## All 7 tasks complete
 Base 3db71f8 -> HEAD 3b68fbb (+ ledger commits). 100 video / 211 non-video green.
+
+## Final whole-branch review (final-review-p2c.md) — MERGE AFTER fixing C1,C2,I1-I6
+Full suite 311 passed. State-machine write discipline verified clean. One fix wave dispatched:
+C1 GITHUB_TOKEN not in workflow env -> KeyError loop; C2 unguarded delete_release_asset wedges slot;
+I1 YouTube retry can't get MP4 off disk; I2 failed gh-secret bricks TikTok token; I3 asset uploaded
+even YT-only; I4 handle_unpublish grace subtraction outside guard; I5 FB/IG 300s polls hold lock;
+I6 _do_fb_reel/_do_ig_reel/_do_tiktok zero coverage. I7 (TikTok PULL_FROM_URL needs verified domain,
+github.com can't) = README note + defer (flag off by default).
