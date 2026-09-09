@@ -2,7 +2,7 @@
   "date": "2026-09-09",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "3 công cụ AI tự động cắt video dài thành clip ngắn đăng TikTok",
       "style": "mono-centered",
@@ -47,7 +47,10 @@
           "url": "https://facebook.com/1381130541740424_122096668557476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17902267596584836"
+        }
       }
     }
   }
