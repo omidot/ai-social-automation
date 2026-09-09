@@ -41,7 +41,7 @@ video:
   render_composition: CodexShort
   channel_footer: "— A Hít Official · AI & năng suất mỗi ngày"
   publish:
-    youtube: false
+    youtube: true
     fb_reel: false
     ig_reel: false
     tiktok: false
