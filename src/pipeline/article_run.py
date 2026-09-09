@@ -176,7 +176,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
 
     # The article is scheduled. If video is on, kick off script generation for
     # the same story — but a video failure must never break the article flow.
-    if settings.get("video", {}).get("enabled"):
+    if (settings.get("video") or {}).get("enabled"):
         try:
             _video_draft.draft(
                 slot, root, title=title,

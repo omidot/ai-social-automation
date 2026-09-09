@@ -42,3 +42,11 @@ C3 (uncaught FileNotFoundError), I1-I5. User chose: split render into its own vi
   - T13 minor (defer): killed-render recovery is 40min sweep + manual re-send; rendering-stuck slots not seen by grep gate; unused import sys in render_run.py.
 - Task 14: complete (commit 0b0f3fa..HEAD, controller-done; UNDO_GRACE_MIN 60 + test retimed, _make_id(slot,title,now), draft_script cfg-or-{}, render.py drop unused DailyState, render_run drop import sys, git rm 5 Klickpin mp4s (~16MB), README 2A + 2B split note, +2 record_audio slot-match tests. 72 video / 209 non-video)
 Deferred from final review: M5 (dup retry loop, plan-mandated), M10 (send_video 50MB guard - folded into C3 area, left as raise), nit hard-coded timeline band (fixed in T12 via target*0.6..1.4).
+
+## Addendum fix wave (final-review-2, 2026-09-09)
+Review .superpowers/sdd/final-review-2.md verdict READY TO MERGE; folded in 4 deltas:
+- I-A: draft_script.draft -> render.render_pending seam test (test_render.py) guards the C1 producer line `"script": s.to_dict()`. Mutation-verified red->green.
+- I-B: render_pending — send_video + rendered-write moved inside the try; +50MB MP4 guard -> RuntimeError -> _fail -> awaiting_audio (M10 closed).
+- I-D: render_pending re-reads state before send; slot gone `discarded` mid-render -> drop result, no send, no overwrite. +test.
+- Minor: article_run.py:179 `(settings.get("video") or {})` — 3rd I5 site.
+74 video / 209 non-video green.

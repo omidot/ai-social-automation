@@ -178,29 +178,42 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
             r = _remotion_render(video_dir, comp, out_mp4)
             if r.returncode != 0 or not out_mp4.exists():
                 raise RuntimeError(f"remotion exit {r.returncode}: {(r.stderr or '')[-300:]}")
+
+            slot_ict = (ds.get_safe(date, slot) or {}).get("slot_ict", "11:30")
+            due = max(now, datetime.fromtimestamp(slot_unix(date, slot_ict), tz=timezone.utc))
+
+            # An undo pressed mid-render must win: re-read before we send/persist,
+            # so a discarded slot is neither sent nor overwritten with `rendered`. (I-D)
+            cur = (ds.get_safe(date, slot) or {}).get("video") or v
+            if cur.get("status") == "discarded":
+                log.info("render_pending %s:%s discarded mid-render, dropping result", date, slot)
+                out.append(f"discarded:{date}:{slot}")
+                continue
+
+            sz = out_mp4.stat().st_size
+            if sz > 50 * 1024 * 1024:                    # Telegram sendVideo hard cap (M10)
+                raise RuntimeError(f"MP4 {sz // 1024 // 1024}MB > 50MB Telegram limit")
+
+            cap = (f"🎬 Video {slot} — {(v.get('meta') or {}).get('title', '')}\n"
+                   f"{round(seconds, 1)}s. Tự lên lịch đăng {slot_ict}.")
+            resp = tg.send_video(str(out_mp4), caption=cap,
+                                 buttons=[("🗑 Gỡ", f"vid:{date}:{slot}:undo")])
+            tg_file_id = (((resp or {}).get("result") or {}).get("video") or {}).get("file_id")   # I1
+
+            cur = (ds.get_safe(date, slot) or {}).get("video") or v
+            ds.put(date, slot, video={**cur, "status": "rendered",
+                                      "mp4_path": str(out_mp4.relative_to(root)).replace("\\", "/"),
+                                      "tg_file_id": tg_file_id,
+                                      "seconds": round(seconds, 1), "render_err": None,
+                                      "publish_due": due.isoformat()})
+            target = cfg.get("target_seconds", 40)
+            if not (target * 0.6 <= seconds <= target * 1.4):
+                tg.send_message(f"⚠️ Timeline lệch ({seconds:.0f}s), xem kỹ trước khi đăng.")
+            out.append(f"rendered:{date}:{slot}")
         except Exception as e:  # noqa: BLE001 - any failure => slot back to awaiting_audio (C2/C3)
             log.exception("render_pending %s:%s failed", date, slot)
             out.append(_fail(e))
             continue
-
-        slot_ict = (ds.get_safe(date, slot) or {}).get("slot_ict", "11:30")
-        due = max(now, datetime.fromtimestamp(slot_unix(date, slot_ict), tz=timezone.utc))
-        cap = (f"🎬 Video {slot} — {(v.get('meta') or {}).get('title', '')}\n"
-               f"{round(seconds, 1)}s. Tự lên lịch đăng {slot_ict}.")
-        resp = tg.send_video(str(out_mp4), caption=cap,
-                             buttons=[("🗑 Gỡ", f"vid:{date}:{slot}:undo")])
-        tg_file_id = (((resp or {}).get("result") or {}).get("video") or {}).get("file_id")   # I1
-
-        cur = (ds.get_safe(date, slot) or {}).get("video") or v
-        ds.put(date, slot, video={**cur, "status": "rendered",
-                                  "mp4_path": str(out_mp4.relative_to(root)).replace("\\", "/"),
-                                  "tg_file_id": tg_file_id,
-                                  "seconds": round(seconds, 1), "render_err": None,
-                                  "publish_due": due.isoformat()})
-        target = cfg.get("target_seconds", 40)
-        if not (target * 0.6 <= seconds <= target * 1.4):
-            tg.send_message(f"⚠️ Timeline lệch ({seconds:.0f}s), xem kỹ trước khi đăng.")
-        out.append(f"rendered:{date}:{slot}")
 
     return out
 

@@ -2,6 +2,7 @@ from pathlib import Path
 import subprocess
 import pytest
 from pipeline.video import render
+from pipeline.video import draft_script
 
 
 def test_audio_file_id_variants():
@@ -263,3 +264,87 @@ def test_handle_undo_ignores_terminal_status(tmp_path):
                              ds, tg, tmp_path, datetime(2026, 9, 8, 4, 0, tzinfo=timezone.utc))
     assert out is None
     assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "discarded"
+
+
+# --- I-D: an undo pressed mid-render must not be overwritten -----------------
+
+def test_render_pending_undo_mid_render_drops_result(tmp_path, monkeypatch):
+    ds = _seed(tmp_path, extra_status="audio_received",
+               script=_mini_script_dict(), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    _mock_pipeline(monkeypatch)
+
+    # Simulate the user pressing 🗑 Gỡ while the render is running: the aligner /
+    # remotion step flips the slot to `discarded` behind render_pending's back.
+    mocked_render = render._remotion_render
+    def discard_during_render(vd, comp, out):
+        r = mocked_render(vd, comp, out)
+        cur = ds.get_safe("2026-09-08", "morning")["video"]
+        ds.put("2026-09-08", "morning", video={**cur, "status": "discarded"})
+        return r
+    monkeypatch.setattr(render, "_remotion_render", discard_during_render)
+
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, tg, tmp_path, now)
+    assert out == ["discarded:2026-09-08:morning"]
+    assert tg.videos == []                                   # video never sent
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "discarded"
+
+
+# --- I-A: real draft -> real render seam, guarding the C1 producer -----------
+
+def _seam_llm(system, user, provider="auto"):
+    """Fake LLM for draft_script: valid script+meta JSON, cards carry SEAMTOKENZZ."""
+    import json
+    cards = [{"lines": ["Cau SEAMTOKENZZ", "vai tu nua cho du chu"], "variant": "stack",
+              "anchor": "mid", "motion_in": "rise", "motion_out": "up"} for _ in range(12)]
+    return json.dumps({
+        "sections": [{"label": "MO", "card_start": 0}, {"label": "GIUA", "card_start": 6}],
+        "cards": cards,
+        "publish": {"title": "AI vua co mot buoc nhay lon hom nay",
+                    "description": "Mo hinh moi ra mat. Theo doi kenh nhe.",
+                    "hashtags": ["#AI", "#congnghe", "#tudonghoa", "#ainews", "#chatgpt",
+                                 "#automation", "#ahitofficial", "#vietnam"],
+                    "keywords": ["ai", "tu dong hoa", "cong nghe", "mo hinh", "chatgpt"],
+                    "tiktok_caption": "AI vua nhay vot #AI #congnghe #fyp"},
+    }, ensure_ascii=False)
+
+
+def test_draft_to_render_seam_regenerates_from_persisted_script(tmp_path, monkeypatch):
+    (tmp_path / "config").mkdir()
+    (tmp_path / "config" / "settings.yaml").write_text(
+        "video:\n  enabled: true\n  target_seconds: 40\n  words_min: 110\n"
+        "  words_max: 140\n  render_composition: CodexShort\n", encoding="utf-8")
+    (tmp_path / "config" / "voice.yaml").write_text(
+        "ten_kenh: A Hit\ngiong: vui\nxung_ho: {nguoi_noi: minh, nguoi_nghe: ban}\ncam_ky: []\n",
+        encoding="utf-8")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+
+    ds = DailyState(tmp_path / "data")
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+
+    v = draft_script.draft("morning", tmp_path, title="OpenAI ra mat mo hinh video",
+                           source_url="https://openai.com/x", body_text="Bai goc dai",
+                           caption_fb="Caption.", angle="chia se", now=now,
+                           generate=_seam_llm, tg=tg)
+    # Producer side of C1: drafting persisted a real script dict.
+    assert v["status"] == "awaiting_audio"
+    assert isinstance(v["script"], dict) and v["script"]["cards"]
+    saved = ds.get_safe("2026-09-08", "morning")["video"]
+    assert saved["status"] == "awaiting_audio"
+    assert isinstance(saved["script"], dict) and saved["script"]["cards"]
+
+    # Advance to audio_received, then run the real render against the same state.
+    ds.put("2026-09-08", "morning",
+           video={**saved, "status": "audio_received", "audio_file_id": "V"})
+    _mock_pipeline(monkeypatch)
+    (tmp_path / "video" / "tools" / "cards.mjs").write_text(
+        "// STALE cards left by the drafting runner\n", encoding="utf-8")
+
+    out = render.render_pending(ds, tg, tmp_path, now)
+    assert out == ["rendered:2026-09-08:morning"]
+    cards = (tmp_path / "video" / "tools" / "cards.mjs").read_text(encoding="utf-8")
+    assert "STALE" not in cards                              # regenerated
+    assert "SEAMTOKENZZ" in cards                            # from the persisted video.script
