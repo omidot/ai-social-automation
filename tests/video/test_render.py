@@ -66,13 +66,16 @@ class FakeTG:
         Path(dest).write_bytes(b"audio"); return str(dest)
     def send_message(self, text, buttons=None): self.msgs.append(text)
     def send_video(self, path, caption="", buttons=None):
-        self.videos.append((path, caption)); return {"result": {"message_id": 7}}
+        self.videos.append((path, caption))
+        return {"result": {"video": {"file_id": "TGVID"}}}
 
 
-def _seed(root, slot="morning", date="2026-09-08", **extra):
+def _seed(root, slot="morning", date="2026-09-08", *, enabled=True, **extra):
     (root / "config").mkdir(exist_ok=True)
-    (root / "config" / "settings.yaml").write_text(
-        "video:\n  render_composition: CodexShort\n", encoding="utf-8")
+    _yaml = "video:\n  render_composition: CodexShort\n  target_seconds: 40\n"
+    if enabled:
+        _yaml += "  enabled: true\n"
+    (root / "config" / "settings.yaml").write_text(_yaml, encoding="utf-8")
     ds = DailyState(root / "data")
     sp = f"output/{date}/{date}-openai-x/video/script.json"
     v = {"status": extra.pop("extra_status", "awaiting_audio"),
@@ -99,70 +102,107 @@ def _mock_pipeline(monkeypatch, render_rc=0):
                                                subprocess.CompletedProcess([], render_rc, "", "err tail"))[-1])
 
 
-def test_receive_audio_renders_and_sends(tmp_path, monkeypatch):
-    ds = _seed(tmp_path)
-    (tmp_path / "video" / "tools").mkdir(parents=True)
-    for f in ("cards.mjs", "variants.mjs"):
-        (tmp_path / "video" / "tools" / f).write_text("//", encoding="utf-8")
-    (tmp_path / "video" / "public").mkdir(parents=True)
-    _mock_pipeline(monkeypatch)
+from pipeline.video.models import Script, Card, SectionMark
+
+
+def _mini_script_dict(token="TOKZZZ"):
+    c = Card(lines=[f"dong {token} mot"], variant="stack", anchor="mid",
+             motion_in="rise", motion_out="up", num=None)
+    return Script(cards=[c], sections=[SectionMark(label="MO", card_start=0)]).to_dict()
+
+
+# --- record_audio (poller side) ---------------------------------------------
+
+def test_record_audio_attaches_and_marks(tmp_path):
+    ds = _seed(tmp_path, enabled=True)
     tg = FakeTG()
     now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
-    r = render.receive_audio({"message_id": 950, "voice": {"file_id": "V"}},
-                             ds, tg, tmp_path, now)
-    assert r == "rendered:2026-09-08:morning"
+    r = render.record_audio({"message_id": 9, "voice": {"file_id": "V"}},
+                            ds, tg, tmp_path, now)
+    assert r == "audio_received:2026-09-08:morning"
     v = ds.get_safe("2026-09-08", "morning")["video"]
-    assert v["status"] == "rendered" and v["mp4_path"].endswith(".mp4")
-    assert v["seconds"] == 41.0 and v["publish_due"]
-    assert tg.videos and "Video morning" in tg.videos[0][1]
+    assert v["status"] == "audio_received"
+    assert v["audio_file_id"] == "V"
+    assert v["audio_msg_id"] == 9
+    assert any("🎧" in m for m in tg.msgs)
 
 
-def test_receive_audio_render_failure(tmp_path, monkeypatch):
-    ds = _seed(tmp_path)
-    (tmp_path / "video" / "tools").mkdir(parents=True)
-    for f in ("cards.mjs", "variants.mjs"):
-        (tmp_path / "video" / "tools" / f).write_text("//", encoding="utf-8")
-    _mock_pipeline(monkeypatch, render_rc=1)
+def test_record_audio_disabled_is_silent(tmp_path):
+    ds = _seed(tmp_path, enabled=False)
     tg = FakeTG()
-    r = render.receive_audio({"message_id": 950, "audio": {"file_id": "A"}},
-                             ds, tg, tmp_path, datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc))
-    assert r == "failed:2026-09-08:morning"
-    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "failed"
-    assert any("Render video morning lỗi" in m for m in tg.msgs)
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    r = render.record_audio({"message_id": 9, "voice": {"file_id": "V"}},
+                            ds, tg, tmp_path, now)
+    assert r is None
+    assert tg.msgs == []
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "awaiting_audio"
 
 
-def test_receive_audio_not_audio_returns_none(tmp_path):
-    ds = _seed(tmp_path)
-    assert render.receive_audio({"message_id": 1, "text": "hi"}, ds, FakeTG(),
-                                tmp_path, datetime(2026, 9, 8, tzinfo=timezone.utc)) is None
-
-
-def test_receive_audio_no_waiting_slot(tmp_path):
+def test_record_audio_no_slot_warns(tmp_path):
     ds = DailyState(tmp_path / "data")
     (tmp_path / "config").mkdir()
-    (tmp_path / "config" / "settings.yaml").write_text("video: {}\n", encoding="utf-8")
+    (tmp_path / "config" / "settings.yaml").write_text(
+        "video:\n  enabled: true\n", encoding="utf-8")
     tg = FakeTG()
-    assert render.receive_audio({"message_id": 1, "voice": {"file_id": "V"}}, ds, tg,
-                                tmp_path, datetime(2026, 9, 8, tzinfo=timezone.utc)) is None
+    r = render.record_audio({"message_id": 1, "voice": {"file_id": "V"}}, ds, tg,
+                            tmp_path, datetime(2026, 9, 8, tzinfo=timezone.utc))
+    assert r is None
     assert any("không có video nào đang chờ" in m for m in tg.msgs)
 
 
-def test_receive_audio_matches_by_reply(tmp_path, monkeypatch):
-    # OLDER slot carries script_msg_id 901; NEWER slot carries a different id (902).
-    ds = _seed(tmp_path, slot="evening", date="2026-09-07", script_msg_id=901)
-    _seed(tmp_path, slot="morning", date="2026-09-08", script_msg_id=902)
+# --- render_pending (workflow side) ----------------------------------------
+
+def test_render_pending_regenerates_script_and_renders(tmp_path, monkeypatch):
+    tok = "CARDTOKEN9"
+    ds = _seed(tmp_path, extra_status="audio_received",
+               script=_mini_script_dict(tok), audio_file_id="V")
     (tmp_path / "video" / "tools").mkdir(parents=True)
-    for f in ("cards.mjs", "variants.mjs"):
-        (tmp_path / "video" / "tools" / f).write_text("//", encoding="utf-8")
-    (tmp_path / "video" / "public").mkdir(parents=True)
+    (tmp_path / "video" / "tools" / "cards.mjs").write_text(
+        "// STALE cards from the drafting runner\n", encoding="utf-8")
     _mock_pipeline(monkeypatch)
-    r = render.receive_audio(
-        {"message_id": 960, "voice": {"file_id": "V"},
-         "reply_to_message": {"message_id": 901}}, ds, FakeTG(), tmp_path,
-        datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc))
-    # The reply points at 901 = the OLDER slot. Reply-match must beat date-recency,
-    # so the replied-to older slot wins over the newer un-replied one.
-    assert r == "rendered:2026-09-07:evening"
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, tg, tmp_path, now)
+    assert out == ["rendered:2026-09-08:morning"]
+    v = ds.get_safe("2026-09-08", "morning")["video"]
+    assert v["status"] == "rendered"
+    assert v["tg_file_id"] == "TGVID"
+    assert v["mp4_path"].endswith(".mp4")
+    assert v["seconds"] == 41.0 and v["publish_due"]
+    assert tg.videos
+    cards = (tmp_path / "video" / "tools" / "cards.mjs").read_text(encoding="utf-8")
+    assert "STALE" not in cards
+    assert tok in cards
+
+
+def test_render_pending_failure_resets_to_awaiting(tmp_path, monkeypatch):
+    ds = _seed(tmp_path, extra_status="audio_received",
+               script=_mini_script_dict(), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    _mock_pipeline(monkeypatch, render_rc=1)
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, tg, tmp_path, now)
+    assert out == ["failed:2026-09-08:morning"]
+    v = ds.get_safe("2026-09-08", "morning")["video"]
+    assert v["status"] == "awaiting_audio"
+    assert "remotion exit 1" in v["render_err"]
+    assert any("Render video morning" in m and "lỗi" in m for m in tg.msgs)
+
+
+def test_render_pending_limit_one(tmp_path, monkeypatch):
+    _seed(tmp_path, slot="evening", date="2026-09-07", extra_status="audio_received",
+          script=_mini_script_dict(), audio_file_id="V")
+    ds = _seed(tmp_path, slot="morning", date="2026-09-08", extra_status="audio_received",
+               script=_mini_script_dict(), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    _mock_pipeline(monkeypatch)
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, tg, tmp_path, now, limit=1)
+    assert out == ["rendered:2026-09-07:evening"]
+    assert ds.get_safe("2026-09-07", "evening")["video"]["status"] == "rendered"
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "audio_received"
 
 
 def test_handle_undo(tmp_path):
