@@ -2,7 +2,7 @@
   "date": "2026-09-10",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Cách dùng AI viết 30 bài đăng mạng xã hội trong một buổi",
       "style": "navy-rail",
@@ -47,7 +47,10 @@
           "url": "https://facebook.com/1381130541740424_122097305067476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18084704996275688"
+        }
       },
       "video": {
         "status": "awaiting_audio",
