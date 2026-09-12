@@ -39,6 +39,45 @@
       "slot_ict": "11:30",
       "sources": [],
       "angle": "Bài viết giúp bạn biến dàn ý thô thành bộ slide hoàn chỉnh, chuyên nghiệp mà không tốn hàng giờ căn chỉnh."
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "3 prompt AI giúp tóm tắt tài liệu dài trong 2 phút",
+      "style": "warm-bar",
+      "topic_key": "3-prompt-ai-giup-tom-tat-tai-lieu-dai-trong-2-phut",
+      "text_fb": "Đọc một tài liệu PDF vài trăm trang để tìm ý chính là thảm họa đối với những người bận rộn. Bạn hoàn toàn có thể tiết kiệm 90% thời gian nếu biết cách ra lệnh chính xác cho AI. Mình thử nghiệm hàng chục câu lệnh khác nhau và rút ra 3 cấu trúc hiệu quả nhất giúp xử lý báo cáo dài trong chớp mắt.\n\nCấu trúc đầu tiên tập trung vào việc tạo ra bản tóm tắt điều hành. Bạn yêu cầu AI đóng vai một chuyên gia phân tích ngành, chia tài liệu thành mục tiêu cốt lõi, năm phát hiện lớn nhất và các hành động cần làm ngay. Cách này giúp bạn nắm trọn bức tranh toàn cảnh mà không bị chìm trong chi tiết thừa.\n\nCấu trúc tiếp theo giải quyết bài toán lọc dữ liệu định lượng trong các báo cáo tài chính. Thay vì đọc từng trang chữ, bạn ra lệnh cho AI trích xuất toàn bộ con số, mốc thời gian, phần trăm và hệ thống lại thành một bảng gồm ba cột rõ ràng. Mọi nhận định mang tính cảm tính của tác giả sẽ bị loại bỏ hoàn toàn.\n\nCấu trúc cuối cùng giúp bạn soi lỗi và tìm điểm ẩn trong các hợp đồng phức tạp. AI sẽ phân tích các điểm mâu thuẫn, rủi ro tiềm ẩn và đưa ra câu hỏi phản biện kèm số trang cụ thể để bạn đối chiếu.\n\nÁp dụng ngay các câu lệnh này trên ChatGPT hoặc Claude để tối ưu hóa quy trình xử lý thông tin hằng ngày của bạn.",
+      "text_ig": "Đọc tài liệu dài không còn là nỗi ác mộng. Mình chia sẻ 3 cấu trúc prompt chuẩn giúp bạn lọc sạch dữ liệu cốt lõi, số liệu và rủi ro từ file PDF trong 2 phút. Lưu lại áp dụng ngay!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#ChatGPT",
+        "#ClaudeAI",
+        "#MeoAI",
+        "#HocAI",
+        "#ThuThuatMayTinh",
+        "#TietKiemThoiGian",
+        "#CongNghe",
+        "#PromptEngineering"
+      ],
+      "images": [
+        "assets/posts/2026-09-12/evening/01.jpg",
+        "assets/posts/2026-09-12/evening/02.jpg",
+        "assets/posts/2026-09-12/evening/03.jpg",
+        "assets/posts/2026-09-12/evening/04.jpg",
+        "assets/posts/2026-09-12/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "Bài viết giúp bạn trích xuất nhanh các thông tin cốt lõi từ tài liệu PDF và báo cáo dài mà không tốn thời gian đọc."
     }
   }
 }
