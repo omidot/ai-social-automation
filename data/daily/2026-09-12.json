@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-12",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Quy trình 3 bước dùng AI làm slide thuyết trình đẹp trong 10 phút",
+      "style": "navy-bar",
+      "topic_key": "quy-trinh-3-buoc-dung-ai-lam-slide-thuyet-trinh-ep",
+      "text_fb": "Nhiều bạn tốn hàng giờ đồng hồ chỉ để căn chỉnh từng khung hình, chọn font chữ hay kéo thả từng bức ảnh trên slide. Cách làm thủ công này vừa mất thời gian vừa dễ khiến bạn kiệt sức trước buổi thuyết trình.\n\nMình vừa tối ưu quy trình 3 bước kết hợp AI giúp bạn biến dàn ý thô thành bộ slide hoàn chỉnh trong đúng 10 phút. Bạn sẽ không còn phải thức đêm để sửa từng trang slide nữa.\n\nĐầu tiên, bạn dùng ChatGPT để cấu trúc lại toàn bộ nội dung thô. Hãy yêu cầu AI phân chia bài viết thành định dạng Markdown rõ ràng gồm tiêu đề và các ý chính. Khi dàn ý đã mạch lạc, việc dựng slide sẽ trở nên vô cùng đơn giản.\n\nTiếp theo, bạn đưa toàn bộ dàn ý Markdown này vào Gamma App qua tính năng chuyển văn bản thành slide. Chỉ trong chưa đầy một phút, công cụ này sẽ tự động phân trang, chọn giao diện và sắp xếp bố cục cho bạn cực kỳ bắt mắt.\n\nCuối cùng, bạn xuất file sang định dạng trình chiếu và tải lên Canva để chỉnh sửa chi tiết. Đây là bước giúp bạn thay font chữ đúng nhận diện thương hiệu, chọn lại icon hoặc bổ sung logo doanh nghiệp.\n\nQuy trình này giải phóng bạn khỏi những thao tác thủ công lặp đi lặp lại. Bạn vừa có bài thuyết trình đẹp mắt vừa giữ được năng lượng để tập trung trình bày thật tốt.",
+      "text_ig": "Quy trình 3 bước dùng ChatGPT, Gamma và Canva giúp bạn biến dàn ý thô thành slide chuyên nghiệp trong 10 phút. Tiết kiệm thời gian để tập trung vào tư duy nội dung.",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#MeoAI",
+        "#HocAI",
+        "#SlideThuyetTrinh",
+        "#GammaApp",
+        "#ChatGPT",
+        "#Canva",
+        "#HieuSuaCongViec",
+        "#SlideDep"
+      ],
+      "images": [
+        "assets/posts/2026-09-12/morning/01.jpg",
+        "assets/posts/2026-09-12/morning/02.jpg",
+        "assets/posts/2026-09-12/morning/03.jpg",
+        "assets/posts/2026-09-12/morning/04.jpg",
+        "assets/posts/2026-09-12/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-12/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "Bài viết giúp bạn biến dàn ý thô thành bộ slide hoàn chỉnh, chuyên nghiệp mà không tốn hàng giờ căn chỉnh."
+    }
+  }
+}
