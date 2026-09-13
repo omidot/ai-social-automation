@@ -30,6 +30,11 @@ def test_two_segment_background():
     for old in ("bg-topo.mp4", "bg-navy.mp4", "bg-purple.mp4", "bg-red.mp4", "bg-grid.mp4"):
         assert old not in src, f"stale per-chapter pool reference left in BgVideo.tsx: {old}"
 
+def test_align_mjs_threads_chart_and_screenshot_file():
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "c.chart = ch" in src
+    assert "c.screenshotFile = sf" in src
+
 @pytest.mark.needs_node
 def test_align_mjs_syntax_ok():
     r = subprocess.run(["node", "--check", "tools/align.mjs"], cwd=VIDEO,

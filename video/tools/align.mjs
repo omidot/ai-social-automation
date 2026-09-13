@@ -86,7 +86,7 @@ const cards = CARDS.map((lines, ci) => {
 cards.forEach((c, i) => { c.out = i < cards.length - 1 ? cards[i + 1].start : DURATION; });
 
 const sectionFor = (ci) => { let lbl = SECTIONS[0][1]; for (const [at, l] of SECTIONS) if (ci >= at) lbl = l; return lbl; };
-cards.forEach((c) => { c.section = sectionFor(c.index); const [v, a, n, mi, mo] = LAYOUT[c.index]; c.variant = v; c.anchor = a; c.motion = mi; c.exit = mo; if (n) c.num = n; });
+cards.forEach((c) => { c.section = sectionFor(c.index); const [v, a, n, mi, mo, ch, sf] = LAYOUT[c.index]; c.variant = v; c.anchor = a; c.motion = mi; c.exit = mo; if (n) c.num = n; if (ch) c.chart = ch; if (sf) c.screenshotFile = sf; });
 
 const out = { fps: FPS, duration: DURATION, durationInFrames: Math.ceil(DURATION * FPS) + 18, cards };
 fs.writeFileSync('src/timeline.json', JSON.stringify(out, null, 1));
