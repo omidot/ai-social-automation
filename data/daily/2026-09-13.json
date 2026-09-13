@@ -322,6 +322,272 @@
           "tiktok": null
         }
       }
+    },
+    "test": {
+      "video": {
+        "status": "awaiting_audio",
+        "meta": {
+          "title": "CEO Anthropic Dario Amodei đòi bóp phanh AI, vì sao?",
+          "description": "Dario Amodei, CEO Anthropic, vừa gây sốt khi kêu gọi bóp phanh AI. Nhưng đề xuất ba bước của Anthropic - từ kiểm định độc lập METR đến cấm distillation - lại giống một nước cờ chiến lược hơn là lòng tốt. Nếu bạn đang làm sản phẩm AI, luật chơi sắp thay đổi và bạn cần biết trước. Theo dõi A Hít Official để không bỏ lỡ những góc nhìn thẳng thắn về AI nhé!",
+          "hashtags": [
+            "#AI",
+            "#AnthropicAI",
+            "#DarioAmodei",
+            "#TinCongNgheAI",
+            "#AIVietNam",
+            "#CongNgheAI",
+            "#TriTueNhanTao",
+            "#AHitOfficial",
+            "#GocNhinAI",
+            "#TinAI"
+          ],
+          "keywords": [
+            "Anthropic",
+            "Dario Amodei",
+            "bóp phanh AI",
+            "METR",
+            "distillation",
+            "an toàn AI",
+            "quy định AI",
+            "chip AI",
+            "frontier AI",
+            "tin công nghệ AI"
+          ],
+          "tiktok_caption": "CEO Anthropic kêu gọi bóp phanh AI - an toàn thật hay chiêu bài? #AI #Anthropic #DarioAmodei #CongNgheAI"
+        },
+        "spoken_text": "Dario Amodei, CEO Anthropic, vừa kêu gọi bóp phanh AI\nBạn tưởng ông ấy tốt bụng? Tự nguyện đi chậm vì nhân loại?\nKhông hề nha bạn ơi\nCái thật sự quan trọng thì nằm ở bản đề xuất\nĐề xuất có ba bước\nMột, mời bên kiểm định độc lập như METR vào đánh giá AI\nMETR là ai vậy? Một tổ chức chuyên test AI xem nó nguy hiểm cỡ nào\nHai, siết chặt tiêu chuẩn an toàn và kêu chính phủ ra tay\nBa, chặn xuất khẩu chip xịn và cấm luôn distillation\nDistillation nôm na là gì? Dùng AI khổng lồ dạy AI nhỏ rẻ hơn, nhanh hơn nhiều\nNghe có vẻ vì an toàn đúng không\nNhưng đây là nước cờ chiến lược\nMấy công ty nhỏ hơn sẽ khó lòng đuổi kịp vì luật chơi quá tốn kém\nBạn đang làm sản phẩm AI? Fine-tune hay distillation từ model lớn?\nCoi chừng nha Luật chơi sắp đổi chi phí tham gia đắt hơn nhiều\nViệc nên làm ngay bây giờ là giải bài toán thực tế bằng công cụ đang có sẵn\nAn toàn thật hay rào cản giả? Bạn tự trả lời đi nhé",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Dario Amodei, CEO Anthropic,",
+                "vừa kêu gọi bóp phanh AI"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bạn tưởng ông ấy tốt bụng?",
+                "Tự nguyện đi chậm vì nhân loại?"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Không hề nha bạn ơi"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Cái thật sự quan trọng",
+                "~thì",
+                "nằm ở bản đề xuất"
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Đề xuất có ba bước"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": 3
+            },
+            {
+              "lines": [
+                "Một, mời bên kiểm định độc lập",
+                "như METR vào đánh giá AI"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "METR là ai vậy?",
+                "Một tổ chức chuyên test AI",
+                "xem nó nguy hiểm cỡ nào"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Hai, siết chặt tiêu chuẩn an toàn",
+                "và kêu chính phủ ra tay"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Ba, chặn xuất khẩu chip xịn",
+                "và cấm luôn distillation"
+              ],
+              "variant": "stack",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Distillation nôm na là gì?",
+                "Dùng AI khổng lồ dạy AI nhỏ",
+                "rẻ hơn, nhanh hơn nhiều"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nghe có vẻ vì an toàn",
+                "~đúng không"
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nhưng đây là nước cờ chiến lược"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Mấy công ty nhỏ hơn",
+                "sẽ khó lòng đuổi kịp",
+                "vì luật chơi quá tốn kém"
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bạn đang làm sản phẩm AI?",
+                "Fine-tune hay distillation từ model lớn?"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Coi chừng nha",
+                "Luật chơi sắp đổi",
+                "chi phí tham gia đắt hơn nhiều"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Việc nên làm ngay bây giờ",
+                "là giải bài toán thực tế",
+                "bằng công cụ đang có sẵn"
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "An toàn thật hay rào cản giả?",
+                "Bạn tự trả lời đi nhé"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Mở đầu",
+              "card_start": 0
+            },
+            {
+              "label": "Ba bước đề xuất",
+              "card_start": 3
+            },
+            {
+              "label": "Vì sao là chiến lược",
+              "card_start": 10
+            },
+            {
+              "label": "Ảnh hưởng tới bạn",
+              "card_start": 13
+            },
+            {
+              "label": "Chốt",
+              "card_start": 16
+            }
+          ]
+        },
+        "script_path": "output/2026-09-13/2026-09-13-test-anthropic-ceo-says-its-time-to-pump-the/video/script.json",
+        "script_msg_id": 222,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
