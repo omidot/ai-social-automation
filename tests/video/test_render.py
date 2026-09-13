@@ -223,6 +223,33 @@ def test_render_pending_regenerates_script_and_renders(tmp_path, monkeypatch):
     assert tok in cards
 
 
+def test_render_pending_resolves_relative_root_to_absolute_out_mp4(tmp_path, monkeypatch):
+    # Real incident: render_run.main() always calls render_pending(root=Path("."))
+    # -- a relative path. _remotion_render() runs `npx remotion render` with
+    # cwd=video_dir, so if out_mp4 stayed relative, the real npx process would
+    # resolve it against video_dir instead of the caller's actual cwd: the
+    # render exits 0 (success) but writes to the wrong nested path, and the
+    # out_mp4.exists() check back in this process (relative to the original
+    # cwd) never finds it. This never showed up in other tests because they
+    # all pass tmp_path, which pytest always hands out as an absolute path.
+    tok = "CARDTOKEN9"
+    ds = _seed(tmp_path, extra_status="audio_received",
+              script=_mini_script_dict(tok), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    (tmp_path / "video" / "tools" / "cards.mjs").write_text("//", encoding="utf-8")
+    _mock_pipeline(monkeypatch)
+    seen = {}
+    inner = render._remotion_render
+    monkeypatch.setattr(render, "_remotion_render",
+                        lambda vd, comp, out: (seen.__setitem__("out_mp4", out),
+                                               inner(vd, comp, out))[1])
+    monkeypatch.chdir(tmp_path.parent)
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, FakeTG(), Path(tmp_path.name), now)
+    assert out == ["rendered:2026-09-08:morning"]
+    assert Path(seen["out_mp4"]).is_absolute()
+
+
 def test_render_pending_failure_resets_to_awaiting(tmp_path, monkeypatch):
     ds = _seed(tmp_path, extra_status="audio_received",
                script=_mini_script_dict(), audio_file_id="V")

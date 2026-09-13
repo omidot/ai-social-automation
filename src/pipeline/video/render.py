@@ -125,7 +125,14 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
     from . import codegen as _codegen
     from .models import Script
 
-    root = Path(root)
+    # _remotion_render() runs `npx remotion render` with cwd=video_dir, so any
+    # relative out_mp4 (e.g. the production caller's root=Path(".")) gets
+    # resolved by remotion against video_dir instead of the caller's cwd --
+    # the render then succeeds (exit 0) but writes to the wrong nested path,
+    # and this process's out_mp4.exists() check (still relative to the
+    # original cwd) never finds it. Resolve once, up front, so every path
+    # built from root downstream is unambiguous regardless of subprocess cwd.
+    root = Path(root).resolve()
     cfg = _cfg(root)
     comp = cfg.get("render_composition", "CodexShort")
     video_dir = root / "video"
