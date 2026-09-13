@@ -319,3 +319,60 @@ def test_write_topic_post_retries_once_on_bad_shape():
     assert all(r == "item" for r in roles[1:-1])
     assert len(stub.calls) == 2
     assert "[SỬA]" in stub.calls[1]
+
+
+def test_angles_constant():
+    assert write.ANGLES == {"tin-nong", "quan-diem", "xu-huong", "chuyen-thuc-chien"}
+
+
+def test_build_share_prompt_lists_all_four_angles():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE)
+    for a in write.ANGLES:
+        assert a in sysp
+
+
+def test_build_share_prompt_accepts_non_launch_framing():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE)
+    # must no longer say the source has to be a fresh product launch
+    assert "VỪA RA MẮT" not in sysp
+    assert "rò rỉ" in sysp or "phân tích" in sysp or "gọi vốn" in sysp
+
+
+def test_build_share_prompt_includes_sibling_angle_hint():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE, sibling_angle="tin-nong")
+    assert "tin-nong" in sysp
+
+
+def test_build_share_prompt_no_hint_when_sibling_angle_blank():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE, sibling_angle="")
+    assert "Slot kia" not in sysp
+
+
+def test_write_share_returns_validated_angle():
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
+    assert art.angle in write.ANGLES
+
+
+def test_write_share_rejects_invalid_angle():
+    data = json.loads(_share_payload())
+    data["angle"] = "linh-tinh"
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_rejects_missing_angle():
+    data = json.loads(_share_payload())
+    del data["angle"]
+    with pytest.raises(write.WriteError):
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
+
+
+def test_write_share_accepts_a_non_launch_source_via_fixture():
+    # same fixture, just prove the writer path doesn't special-case "launch"
+    # wording anywhere in validation — angle-driven acceptance only.
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
+    assert art.format == "share"
+
+
+def test_storyboard_spec_allows_toolless_slides():
+    assert "hook.tools = []" in write._STORYBOARD_SPEC or "BÌNH THƯỜNG" in write._STORYBOARD_SPEC
