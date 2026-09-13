@@ -77,8 +77,8 @@ def test_pick_returns_top():
     assert best.url == "https://a/2" and sc >= 45
 
 
-def _c(title, hint=0.0, sc=1):
-    return Candidate(url=f"https://x/{title[:8]}", title=title, source="rss:X",
+def _c(title, hint=0.0, sc=1, url=None):
+    return Candidate(url=url or f"https://x/{title[:8]}", title=title, source="rss:X",
                      published_at=datetime(2026, 9, 5, 6, tzinfo=timezone.utc),
                      raw_score_hint=hint, summary=title, source_count=sc)
 
@@ -122,6 +122,40 @@ def test_pick_n_skips_non_ai():
     picked = pick_n([non_ai, ai], 2, min_score=10, now=NOW,
                     keywords=["AI", "trí tuệ nhân tạo"])
     assert [c.url for _, c in picked] == ["https://a/ai"]
+
+
+def test_source_tier_recognises_tier1_and_tier2():
+    assert score._source_tier(mk("x", 0, 0, src="rss:OpenAI Blog")) == 15.0
+    assert score._source_tier(mk("x", 0, 0, src="rss:Google DeepMind")) == 15.0
+    assert score._source_tier(mk("x", 0, 0, src="rss:Anthropic News")) == 15.0
+    assert score._source_tier(mk("x", 0, 0, src="rss:TechCrunch AI")) == 8.0
+    assert score._source_tier(mk("x", 0, 0, src="rss:The Verge AI")) == 8.0
+    assert score._source_tier(mk("x", 0, 0, src="reddit:artificial")) == 0.0
+    assert score._source_tier(mk("x", 0, 0, src="hn")) == 0.0
+
+
+def test_single_source_tier1_news_clears_new_gate():
+    # the exact failure mode from production: one first-party blog post, one
+    # source, 30h old, no reddit/HN signal.
+    cand = mk("OpenAI ra tính năng mới cho agent", 30, 0, src="rss:OpenAI Blog")
+    sc = score.score_candidate(cand, NOW, [cand], KW)
+    assert sc >= 20  # config/settings.yaml articles.min_score after this task
+
+
+def test_breaking_cross_posted_story_still_outranks_single_source():
+    # NOTE: distinct urls are required here — _c's default url derives from
+    # title[:8], and these two titles share the prefix "OpenAI s", which would
+    # otherwise collide and make _cross_source's `other.url == c.url` guard
+    # treat them as the same candidate (masking the bonus this test checks).
+    breaking = [
+        _c("OpenAI ships GPT-6 today", hint=0, sc=1, url="https://x/breaking1"),
+        _c("OpenAI ships GPT-6 model today", hint=0, sc=1, url="https://x/breaking2"),
+    ]
+    single = _c("OpenAI shares a minor blog update", hint=0, sc=1)
+    breaking_scores = [score.score_candidate(c, NOW, breaking + [single], KW)
+                       for c in breaking]
+    single_score = score.score_candidate(single, NOW, breaking + [single], KW)
+    assert min(breaking_scores) > single_score
 
 
 def test_pick_n_respects_exclude_titles():

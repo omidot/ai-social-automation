@@ -243,6 +243,17 @@ def test_ensure_fulltext_skips_when_already_has_text(monkeypatch):
     assert called == []
 
 
+def test_max_age_hours_is_96():
+    assert collect.MAX_AGE_HOURS == 96
+
+
+def test_fresh_keeps_80h_drops_100h():
+    now = datetime(2026, 9, 5, 12, tzinfo=timezone.utc)
+    from datetime import timedelta
+    assert collect._fresh(now - timedelta(hours=80), now) is True
+    assert collect._fresh(now - timedelta(hours=100), now) is False
+
+
 def test_ensure_fulltext_skips_google_news_interstitial(monkeypatch):
     from pipeline.models import Candidate
     c = Candidate(url="https://news.google.com/rss/articles/xyz", title="t",

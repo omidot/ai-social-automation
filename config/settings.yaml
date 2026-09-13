@@ -9,7 +9,7 @@ articles:
   slots:
     morning: "11:30"
     evening: "19:45"
-  min_score: 45
+  min_score: 20
 images:
   size: "1080x1350"
   raw_base: "https://raw.githubusercontent.com/omidot/ai-social-automation/master"

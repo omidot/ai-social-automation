@@ -63,7 +63,7 @@ def has_body(c: Candidate, min_chars: int = 400) -> bool:
 
 def _recency(c: Candidate, now: datetime) -> float:
     hours = max(0.0, (now - c.published_at).total_seconds() / 3600.0)
-    return max(0.0, 40.0 * (1.0 - hours / 48.0))
+    return max(0.0, 40.0 * (1.0 - hours / 96.0))
 
 
 def _popularity(c: Candidate) -> float:
@@ -95,10 +95,26 @@ def _source_spread(c: Candidate) -> float:
     return min(max(c.source_count - 1, 0), 4) * 5.0
 
 
+_TIER1 = frozenset({"openai", "anthropic", "deepmind", "google research", "meta ai",
+                    "nvidia", "mistral", "stability", "hugging face", "xai",
+                    "microsoft"})
+_TIER2 = frozenset({"techcrunch", "the verge", "venturebeat", "ars technica",
+                    "mit tech review", "engadget"})
+
+
+def _source_tier(c: Candidate) -> float:
+    s = (c.source or "").lower()
+    if any(t in s for t in _TIER1):
+        return 15.0
+    if any(t in s for t in _TIER2):
+        return 8.0
+    return 0.0
+
+
 def score_candidate(c: Candidate, now: datetime, cohort: list[Candidate],
                     keywords: list[str]) -> float:
     return round(_recency(c, now) + _popularity(c) + _cross_source(c, cohort)
-                 + _keyword_fit(c, keywords) + _source_spread(c), 2)
+                 + _keyword_fit(c, keywords) + _source_spread(c) + _source_tier(c), 2)
 
 
 def pick(cands: list[Candidate], min_score: float, now: datetime,
@@ -121,11 +137,11 @@ def pick_n(cands, n, min_score, now, keywords, exclude_titles=()):
             hours = max(0.0, (now - c.published_at).total_seconds() / 3600.0)
             log.info(
                 "cand=%r source=%s age_h=%.1f recency=%.1f popularity=%.1f "
-                "cross_source=%.1f keyword_fit=%.1f source_spread=%.1f total=%.1f "
-                "min_score=%.1f",
+                "cross_source=%.1f keyword_fit=%.1f source_spread=%.1f "
+                "source_tier=%.1f total=%.1f min_score=%.1f",
                 c.title, c.source, hours, _recency(c, now), _popularity(c),
                 _cross_source(c, cands), _keyword_fit(c, keywords),
-                _source_spread(c), sc, min_score)
+                _source_spread(c), _source_tier(c), sc, min_score)
     picked: list[tuple[float, Candidate]] = []
     for sc, c in scored:
         if not is_ai_relevant(c, keywords):

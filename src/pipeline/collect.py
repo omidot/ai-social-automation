@@ -20,7 +20,7 @@ def _DEBUG() -> bool:
     # has already been imported, and so a long-lived process can be flipped
     # into debug mode without a restart.
     return os.environ.get("ARTICLE_DEBUG") == "1"
-MAX_AGE_HOURS = 48
+MAX_AGE_HOURS = 96
 
 
 class CollectError(Exception):
