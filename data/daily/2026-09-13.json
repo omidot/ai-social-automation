@@ -114,213 +114,200 @@
       "video": {
         "status": "awaiting_audio",
         "meta": {
-          "title": "Vì sao CEO Anthropic đòi làm chậm AI? Chiêu bài ngầm!",
-          "description": "Các ông lớn công nghệ đột nhiên kêu gọi kiểm soát và làm chậm tốc độ phát triển AI. Liệu đây là tinh thần trách nhiệm với nhân loại hay là chiến thuật thâu tóm quy định để đè bẹp các đối thủ nhỏ? Cùng A Hít Official giải mã nước đi cực kỳ cao tay này nhé. Nhấn theo dõi kênh để cập nhật những góc nhìn công nghệ mới nhất!",
+          "title": "Vì sao các trùm AI bất ngờ đòi giảm tốc độ phát triển?",
+          "description": "CEO Anthropic cùng Elon Musk và Sam Altman vừa đồng loạt ủng hộ kế hoạch kiểm soát AI. Tuy nhiên, đằng sau động thái trách nhiệm này lại là chiến thuật thâu tóm quy định nhằm dựng rào cản với các đối thủ nhỏ. Đừng quên nhấn đăng ký kênh A Hít Official để xem thêm nhiều phân tích công nghệ thú vị nhé!",
           "hashtags": [
             "#AHitOfficial",
+            "#CongNghe",
+            "#TriTueNhanTao",
+            "#AI",
             "#Anthropic",
-            "#TinTucAI",
-            "#GocNhinCongNghe",
-            "#CongNgheAI",
-            "#TechNews",
-            "#AI2026",
-            "#DarioAmodei",
-            "#PhapLyAI"
+            "#OpenAI",
+            "#ElonMusk",
+            "#TinTucAI"
           ],
           "keywords": [
             "A Hít Official",
-            "Anthropic",
-            "Dario Amodei",
-            "làm chậm AI",
-            "thâu tóm quy định",
-            "OpenAI",
             "tin tức AI",
-            "công nghệ"
+            "Anthropic",
+            "OpenAI",
+            "Elon Musk",
+            "thâu tóm quy định",
+            "phát triển AI"
           ],
-          "tiktok_caption": "Sự thật đằng sau việc CEO Anthropic đòi làm chậm AI! #AHitOfficial #Anthropic #TinTucAI #CongNghe"
+          "tiktok_caption": "Vì sao các trùm AI đòi giảm tốc? Chiêu trò đằng sau ít ai ngờ! #AHitOfficial #AI #CongNghe #Anthropic"
         },
-        "spoken_text": "CEO Dario Amodei của Anthropic vừa đòi giảm tốc AI\nSam Altman và Elon Musk thì gật đầu đồng ý ngay!\nAnthropic còn cho METR vào tận trụ sở giám sát\nBạn nghĩ các trùm AI đang sợ tận thế ư?\nThực ra phía sau cái bức màn truyền thông\nLại là một tính toán rất cao tay!\nKhi xin chính phủ can thiệp và đặt chuẩn\nHọ dựng nên rào cản pháp lý khổng lồ\nGiới phân tích gọi đây là thâu tóm quy định\nCác startup nhỏ đến sau thì sẽ đuối sức tuân thủ\nCòn các gã khổng lồ thong thả củng cố vị thế\nThời kỳ phát triển tự do sắp khép lại rồi\nCuộc chiến pháp lý mới chính là tương lai\nBạn thấy đây là trách nhiệm hay chiêu bài chặn đối thủ?",
+        "spoken_text": "Dario Amodei CEO Anthropic vừa đề xuất phanh lại tốc độ phát triển AI.\nSam Altman và Elon Musk cũng gật đầu ủng hộ ngay.\nAnthropic còn cho METR vào tận trụ sở giám sát.\nMETR là bên kiểm duyệt độc lập đến soi từng dòng code.\nBạn tưởng các ông lớn đang sợ ngày tận thế?\nKhông đâu, đây là chiêu thâu tóm quy định!\nNghĩa là tự xin luật khó để chặn đối thủ nhỏ.\nGiống như xây bức tường chi phí kiểm duyệt thật cao.\nCông ty nhỏ sẽ đuối sức thì ông lớn độc quyền sân chơi.\nNếu bạn đang làm AI hoặc xài ứng dụng công nghệ,\nThời kỳ xài AI miễn phí và tự do sắp kết thúc.\nGiá dịch vụ sẽ tăng do chi phí tuân thủ luật.\nBạn thấy đây là trách nhiệm hay chiêu trò chặn đường?",
         "script": {
           "cards": [
             {
               "lines": [
-                "CEO Dario Amodei của Anthropic",
-                "vừa đòi giảm tốc AI"
+                "Dario Amodei CEO Anthropic",
+                "vừa đề xuất phanh lại",
+                "tốc độ phát triển AI."
               ],
               "variant": "hero",
               "anchor": "mid",
               "motion_in": "slam",
-              "motion_out": "shrink",
+              "motion_out": "dissolve",
               "num": null
             },
             {
               "lines": [
                 "Sam Altman và Elon Musk",
-                "~thì",
-                "gật đầu đồng ý ngay!"
+                "~cũng",
+                "gật đầu ủng hộ ngay."
               ],
               "variant": "stack",
-              "anchor": "top",
-              "motion_in": "pop",
-              "motion_out": "dissolve",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
               "num": null
             },
             {
               "lines": [
                 "Anthropic còn cho METR",
-                "vào tận trụ sở giám sát"
+                "vào tận trụ sở giám sát."
               ],
               "variant": "right",
-              "anchor": "mid",
-              "motion_in": "slideR",
-              "motion_out": "up",
-              "num": null
-            },
-            {
-              "lines": [
-                "Bạn nghĩ các trùm AI",
-                "đang sợ tận thế ư?"
-              ],
-              "variant": "invert",
-              "anchor": "low",
-              "motion_in": "fall",
-              "motion_out": "down",
-              "num": null
-            },
-            {
-              "lines": [
-                "Thực ra phía sau",
-                "~cái",
-                "bức màn truyền thông"
-              ],
-              "variant": "mark",
-              "anchor": "mid",
-              "motion_in": "rise",
+              "anchor": "top",
+              "motion_in": "slideL",
               "motion_out": "wipeOut",
               "num": null
             },
             {
               "lines": [
-                "Lại là một tính toán",
-                "rất cao tay!"
+                "METR là bên kiểm duyệt độc lập",
+                "đến soi từng dòng code."
               ],
-              "variant": "stair",
-              "anchor": "top",
-              "motion_in": "wipe",
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "pop",
               "motion_out": "shrink",
               "num": null
             },
             {
               "lines": [
-                "Khi xin chính phủ",
-                "can thiệp và đặt chuẩn"
+                "Bạn tưởng các ông lớn",
+                "đang sợ ngày tận thế?"
               ],
-              "variant": "stack",
+              "variant": "stair",
               "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "dissolve",
+              "motion_in": "wipe",
+              "motion_out": "down",
               "num": null
             },
             {
               "lines": [
-                "Họ dựng nên rào cản",
-                "pháp lý khổng lồ"
+                "Không đâu, đây là chiêu",
+                "thâu tóm quy định!"
               ],
               "variant": "hero",
-              "anchor": "low",
-              "motion_in": "slam",
-              "motion_out": "up",
-              "num": null
-            },
-            {
-              "lines": [
-                "Giới phân tích gọi đây",
-                "là thâu tóm quy định"
-              ],
-              "variant": "strike",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "down",
-              "num": null
-            },
-            {
-              "lines": [
-                "Các startup nhỏ đến sau",
-                "~thì",
-                "sẽ đuối sức tuân thủ"
-              ],
-              "variant": "invert",
-              "anchor": "top",
-              "motion_in": "slideR",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Còn các gã khổng lồ",
-                "thong thả củng cố vị thế"
-              ],
-              "variant": "mark",
               "anchor": "mid",
               "motion_in": "fall",
-              "motion_out": "shrink",
-              "num": null
-            },
-            {
-              "lines": [
-                "Thời kỳ phát triển tự do",
-                "sắp khép lại rồi"
-              ],
-              "variant": "stair",
-              "anchor": "low",
-              "motion_in": "rise",
               "motion_out": "dissolve",
               "num": null
             },
             {
               "lines": [
-                "Cuộc chiến pháp lý mới",
-                "chính là tương lai"
+                "Nghĩa là tự xin luật khó",
+                "để chặn đối thủ nhỏ."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Giống như xây bức tường",
+                "chi phí kiểm duyệt thật cao."
               ],
               "variant": "right",
               "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Công ty nhỏ sẽ đuối sức",
+                "~thì",
+                "ông lớn độc quyền sân chơi."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm AI",
+                "hoặc xài ứng dụng công nghệ,"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
               "motion_in": "wipe",
-              "motion_out": "up",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Thời kỳ xài AI miễn phí",
+                "và tự do sắp kết thúc."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Giá dịch vụ sẽ tăng",
+                "do chi phí tuân thủ luật."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
               "num": null
             },
             {
               "lines": [
                 "Bạn thấy đây là trách nhiệm",
-                "hay chiêu bài chặn đối thủ?"
+                "hay chiêu trò chặn đường?"
               ],
               "variant": "invert",
               "anchor": "mid",
               "motion_in": "slam",
-              "motion_out": "down",
+              "motion_out": "dissolve",
               "num": null
             }
           ],
           "sections": [
             {
-              "label": "Hiện tượng lạ",
+              "label": "Hook tin tức",
               "card_start": 0
             },
             {
-              "label": "Góc nhìn thật",
+              "label": "Bản chất sự thật",
               "card_start": 4
             },
             {
-              "label": "Thâu tóm quy định",
-              "card_start": 8
+              "label": "Tác động đến bạn",
+              "card_start": 9
             },
             {
-              "label": "Tương lai AI",
-              "card_start": 11
+              "label": "Góc nhìn cuộc sống",
+              "card_start": 12
             }
           ]
         },
         "script_path": "output/2026-09-13/2026-09-13-evening-anthropic-ceo-outlines-plan-to-slow-ai-d/video/script.json",
-        "script_msg_id": 220,
+        "script_msg_id": 221,
         "audio_file_id": null,
         "audio_msg_id": null,
         "mp4_path": null,
