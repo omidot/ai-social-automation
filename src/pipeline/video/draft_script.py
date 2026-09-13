@@ -8,6 +8,7 @@ from pathlib import Path
 import yaml
 
 from ..daily_state import DailyState
+from ..telegram import Telegram
 from . import VideoScriptError
 from . import script as _script
 from . import variants as _variants
@@ -93,3 +94,37 @@ def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
     existing = ds.get_safe(date, slot) or {}
     ds.put(date, slot, video={**(existing.get("video") or {}), **video})
     return video
+
+
+def redraft(slot: str, date: str, root: Path) -> dict:
+    """Re-run video script generation for a slot that already has an article
+    committed (used to pick up a script-quality fix without re-running the
+    whole article draft, which refuses to touch an already-scheduled slot)."""
+    root = Path(root)
+    ds = DailyState(root / "data")
+    existing = ds.get(date, slot)
+    if not existing:
+        raise SystemExit(f"no slot {date}:{slot} found")
+    sources = existing.get("sources") or []
+    return draft(
+        slot, root, title=existing.get("title", ""),
+        source_url=(sources[0]["url"] if sources else ""),
+        body_text=existing.get("text_fb", ""), caption_fb=existing.get("text_fb", ""),
+        angle=existing.get("angle", ""), now=datetime.now(timezone.utc),
+        tg=Telegram())
+
+
+def main() -> None:
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--slot", choices=("morning", "evening"), required=True)
+    ap.add_argument("--date", required=True, help="YYYY-MM-DD")
+    ap.add_argument("--root", default=".")
+    args = ap.parse_args()
+    out = redraft(args.slot, args.date, Path(args.root))
+    print("SUMMARY:", out.get("status", "awaiting_audio"))
+
+
+if __name__ == "__main__":
+    main()

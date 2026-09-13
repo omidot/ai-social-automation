@@ -1,0 +1,48 @@
+name: video-redraft
+on:
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'Slot to redraft (morning or evening)'
+        required: true
+        type: choice
+        options: [morning, evening]
+      date:
+        description: 'Date YYYY-MM-DD (blank = today UTC)'
+        required: false
+permissions:
+  contents: write
+concurrency:
+  group: pipeline-state
+  cancel-in-progress: false
+jobs:
+  redraft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+          npm install -g @anthropic-ai/claude-code
+      - name: Resolve date
+        id: d
+        run: |
+          d="${{ inputs.date }}"
+          if [ -z "$d" ]; then d=$(date -u +%F); fi
+          echo "date=$d" >> "$GITHUB_OUTPUT"
+      - name: Redraft video script
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m pipeline.video.draft_script --slot ${{ inputs.slot }} --date ${{ steps.d.outputs.date }}
+      - name: Commit state
+        run: bash scripts/commit_state.sh

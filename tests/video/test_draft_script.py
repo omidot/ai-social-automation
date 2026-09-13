@@ -71,6 +71,34 @@ def test_draft_gen_failure_warns_no_state(tmp_path):
     assert DailyState(root / "data").get_safe("2026-09-08", "evening") is None
 
 
+def test_redraft_pulls_fields_from_existing_slot(tmp_path, monkeypatch):
+    root = _wire(tmp_path)
+    ds = DailyState(root / "data")
+    ds.put("2026-09-13", "evening", status="scheduled",
+           title="Anthropic CEO outlines plan to slow AI development",
+           text_fb="Caption đầy đủ.", angle="quan-diem",
+           sources=[{"name": "TechCrunch AI", "url": "https://techcrunch.com/x"}])
+    monkeypatch.setattr(draft_script, "Telegram", lambda: FakeTG())
+    seen = {}
+    monkeypatch.setattr(draft_script, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    out = draft_script.redraft("evening", "2026-09-13", root)
+    assert out == {"status": "awaiting_audio"}
+    assert seen["slot"] == "evening"
+    assert seen["title"] == "Anthropic CEO outlines plan to slow AI development"
+    assert seen["source_url"] == "https://techcrunch.com/x"
+    assert seen["body_text"] == "Caption đầy đủ."
+    assert seen["caption_fb"] == "Caption đầy đủ."
+    assert seen["angle"] == "quan-diem"
+
+
+def test_redraft_missing_slot_raises(tmp_path):
+    root = _wire(tmp_path)
+    with pytest.raises(SystemExit):
+        draft_script.redraft("evening", "2026-09-13", root)
+
+
 def test_draft_skipped_when_video_disabled(tmp_path):
     root = _wire(tmp_path)
     (root / "config" / "settings.yaml").write_text(
