@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-13",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "5 công cụ AI luyện phản xạ nói tiếng Anh 15 phút mỗi ngày",
+      "style": "mono-bar",
+      "topic_key": "5-cong-cu-ai-luyen-phan-xa-noi-tieng-anh-15-phut-m",
+      "text_fb": "Nhiều bạn nghĩ muốn giỏi phản xạ tiếng Anh thì bắt buộc phải tốn tiền thuê gia sư hoặc đến trung tâm. Sự thật là với sự phát triển của AI hiện tại, bạn hoàn toàn có thể tự luyện nói tự tin ngay tại nhà chỉ với 15 phút mỗi ngày.\n\nNếu bạn muốn luyện phản xạ hai chiều linh hoạt, ChatGPT Voice Mode là lựa chọn tuyệt vời. Bạn chỉ cần yêu cầu AI đóng vai người đối thoại và sửa lỗi sai ngay lập tức. Đối với những bạn còn yếu phần phát âm, ELSA Speak sẽ giúp phân tích chi tiết từng âm tiết và ngữ điệu để bạn chỉnh sửa.\n\nNếu muốn thực hành các kịch bản thực tế như đi du lịch hay phỏng vấn, TalkPal AI mang đến môi trường đóng vai rất tự nhiên. Trong khi đó, Character.ai lại giúp việc học trở nên thú vị hơn khi bạn được trò chuyện cùng các nhân vật yêu thích. Cuối cùng, Pi AI với giọng nói truyền cảm sẽ là người bạn đồng hành kiên nhẫn, lắng nghe và đặt câu hỏi gợi mở để bạn thoải mái trải lòng bằng tiếng Anh.\n\nBí quyết không nằm ở việc học bao nhiêu giờ, mà là sự đều đặn mỗi ngày. Hãy chọn một công cụ phù hợp nhất và bắt đầu 15 phút ngay hôm nay. Bạn sẽ thấy phản xạ của mình cải thiện rõ rệt chỉ sau vài tuần.",
+      "text_ig": "Không cần gia sư đắt đỏ, bạn vẫn có thể luyện phản xạ tiếng Anh tự tin mỗi ngày nhờ AI. Chỉ cần 15 phút đều đặn với ChatGPT, ELSA hay Pi AI, khả năng giao tiếp của bạn sẽ tiến bộ vượt bậc. Bắt đầu ngay hôm nay nhé!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#HocTiengAnh",
+        "#LuyenNoiTiengAnh",
+        "#AIHocTiengAnh",
+        "#ChatGPT",
+        "#ELSASpeak",
+        "#TalkPal",
+        "#CharacterAI",
+        "#PiAI",
+        "#MeoHocTiengAnh",
+        "#CongCuAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-13/morning/01.jpg",
+        "assets/posts/2026-09-13/morning/02.jpg",
+        "assets/posts/2026-09-13/morning/03.jpg",
+        "assets/posts/2026-09-13/morning/04.jpg",
+        "assets/posts/2026-09-13/morning/05.jpg",
+        "assets/posts/2026-09-13/morning/06.jpg",
+        "assets/posts/2026-09-13/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "Giúp người đọc chọn được công cụ AI phù hợp để luyện nói tiếng Anh tự tin hơn mỗi ngày mà không cần thuê gia sư."
+    }
+  }
+}
