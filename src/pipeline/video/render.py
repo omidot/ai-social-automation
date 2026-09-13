@@ -55,8 +55,12 @@ def _remotion_render(video_dir: Path, composition: str,
 
 def _find_slot(ds, msg: dict, now: datetime):
     """(date, slot, videodict) of the awaiting_audio slot this audio belongs to,
-    or (None, None, None). Prefer a reply to a known script_msg_id; else newest
-    awaiting_audio within 3 days."""
+    or (None, None, None). Prefer a reply to a known script_msg_id; else the
+    most recently *sent* script (highest script_msg_id) still awaiting_audio
+    within 3 days -- falling back to the later slot_ict on a tie (M6), since
+    two ad hoc test scripts or a real slot plus a test-tool script can be
+    awaiting_audio at once and the operator is almost always replying to
+    whichever script they read last, not whichever posts later in the day."""
     reply_id = (msg.get("reply_to_message") or {}).get("message_id")
     best = None
     cutoff = now.timestamp() - 3 * 86400
@@ -78,7 +82,7 @@ def _find_slot(ds, msg: dict, now: datetime):
                 continue
             if reply_id is not None and v.get("script_msg_id") == reply_id:
                 return date, slot, v
-            if best is None:
+            if best is None or (v.get("script_msg_id") or -1) > (best[2].get("script_msg_id") or -1):
                 best = (date, slot, v)
     return best if best else (None, None, None)
 

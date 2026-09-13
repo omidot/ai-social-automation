@@ -167,7 +167,8 @@ def test_record_audio_matches_by_reply(tmp_path):
 
 
 def test_record_audio_same_day_prefers_later_slot(tmp_path):
-    # Both slots on one date, both awaiting_audio, no reply -> newest slot_ict wins (M6).
+    # Both slots on one date, both awaiting_audio, no reply, SAME script_msg_id
+    # -> tie-break falls back to newest slot_ict (M6).
     ds = _seed(tmp_path, slot="morning", date="2026-09-08")
     ds.put("2026-09-08", "morning", slot_ict="11:30")
     _seed(tmp_path, slot="evening", date="2026-09-08")
@@ -177,6 +178,24 @@ def test_record_audio_same_day_prefers_later_slot(tmp_path):
     r = render.record_audio({"message_id": 31, "voice": {"file_id": "V"}},
                             ds, tg, tmp_path, now)
     assert r == "audio_received:2026-09-08:evening"
+
+
+def test_record_audio_prefers_more_recent_script_over_slot_ict(tmp_path):
+    # Real incident: a real 'evening' slot (slot_ict 19:45, script sent
+    # earlier) and an ad hoc 'test' slot (no slot_ict, script sent later)
+    # were both awaiting_audio with no reply. The audio was for the test
+    # script the operator had just read, but slot_ict-first tie-break
+    # attached it to 'evening' instead. Recency of the script itself must
+    # win whenever the two differ.
+    ds = _seed(tmp_path, slot="evening", date="2026-09-13", script_msg_id=221)
+    ds.put("2026-09-13", "evening", slot_ict="19:45")
+    _seed(tmp_path, slot="test", date="2026-09-13", script_msg_id=225)
+    tg = FakeTG()
+    now = datetime(2026, 9, 13, 12, 0, tzinfo=timezone.utc)
+    r = render.record_audio({"message_id": 226, "voice": {"file_id": "V"}},
+                            ds, tg, tmp_path, now)
+    assert r == "audio_received:2026-09-13:test"
+    assert ds.get_safe("2026-09-13", "evening")["video"]["status"] == "awaiting_audio"
 
 
 # --- render_pending (workflow side) ----------------------------------------
