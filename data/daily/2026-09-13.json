@@ -54,6 +54,313 @@
         },
         "ig": null
       }
+    },
+    "evening": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Anthropic CEO outlines plan to slow AI development",
+      "style": "white-split",
+      "topic_key": "anthropic-ceo-outlines-plan-to-slow-ai-development",
+      "text_fb": "Đa số mọi người đang hiểu sai khi thấy các trùm AI đồng loạt kêu gọi giảm tốc độ phát triển.\n\nTheo TechCrunch, CEO Dario Amodei của Anthropic vừa đề xuất kế hoạch kiểm soát tốc độ AI tiên phong. Ngay lập tức, Sam Altman của OpenAI và Elon Musk cũng lên tiếng đồng tình. Anthropic thậm chí cam kết đơn phương cho tổ chức kiểm duyệt bên thứ ba như METR vào tận trụ sở, cấp thẻ nhân viên và laptop để giám sát quy trình an toàn.\n\nNhiều người tưởng các tập đoàn công nghệ đang thực sự hoảng sợ trước nguy cơ tận thế. Nhưng cái thực sự quan trọng nằm ở phía sau bức màn truyền thông.\n\nKhi các ông lớn chủ động đòi chính phủ can thiệp, thiết lập chuẩn an toàn chung và xin miễn trừ luật chống độc quyền, họ đang dựng lên rào cản pháp lý khổng lồ. Giới phân tích gọi đây là hiện tượng thâu tóm quy định. Những công ty khởi nghiệp đến sau sẽ đuối sức trước chi phí tuân thủ, trong khi các gã khổng lồ thong thả củng cố vị thế độc quyền.\n\nNếu bạn đang làm sản phẩm công nghệ, hãy chuẩn bị cho một giai đoạn mới: thời kỳ phát triển tự do sắp khép lại để nhường chỗ cho cuộc chiến pháp lý.\n\nBạn thấy đây là hành động trách nhiệm vì nhân loại hay chiêu bài chặn đường đối thủ?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Các ông lớn AI đòi chậm lại không phải vì sợ tận thế. Đó là chiến lược dựng rào cản pháp lý để khóa chặt vị thế dẫn đầu. Bạn thấy đây là trách nhiệm hay chiêu bài?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#Anthropic",
+        "#OpenAI",
+        "#AISafety",
+        "#CongNgheAI",
+        "#PhanTichAI",
+        "#TinTucAI",
+        "#DarioAmodei",
+        "#SamAltman"
+      ],
+      "images": [
+        "assets/posts/2026-09-13/evening/01.jpg",
+        "assets/posts/2026-09-13/evening/02.jpg",
+        "assets/posts/2026-09-13/evening/03.jpg",
+        "assets/posts/2026-09-13/evening/04.jpg",
+        "assets/posts/2026-09-13/evening/05.jpg",
+        "assets/posts/2026-09-13/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-13/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/12/anthropic-ceo-outlines-plan-to-pace-the-frontier/"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122099438181476035",
+      "ig_due": "2026-09-13T12:45:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122099438181476035",
+          "url": "https://facebook.com/1381130541740424_122099438181476035",
+          "scheduled": true
+        },
+        "ig": null
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "meta": {
+          "title": "Tại sao các ông lớn AI đột ngột muốn chạy chậm lại?",
+          "description": "Khi Anthropic, OpenAI và Elon Musk đồng loạt ủng hộ kiểm soát tốc độ phát triển AI, liệu đó có phải vì sự an toàn của nhân loại? Nhiều chuyên gia chỉ ra đây có thể là chiêu bài thâu tóm quy định nhằm tạo rào cản pháp lý với đối thủ. Cùng A Hít Official bóc tách góc nhìn này nhé! Đừng quên bấm theo dõi kênh để cập nhật tin tức AI hot nhất.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AI",
+            "#CongNghe",
+            "#TinTucAI",
+            "#Anthropic",
+            "#OpenAI",
+            "#ElonMusk",
+            "#ThauTomQuyDinh",
+            "#GocNhinAI",
+            "#KienThucAI"
+          ],
+          "keywords": [
+            "AI phát triển chậm lại",
+            "Anthropic CEO",
+            "Sam Altman OpenAI",
+            "Elon Musk AI",
+            "thâu tóm quy định",
+            "tin tức AI mới nhất",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "Vì sao các trùm AI đột ngột đòi chạy chậm lại? Chiêu bài hay vì nhân loại? #AHitOfficial #AI #CongNghe #ElonMusk"
+        },
+        "spoken_text": "Vì sao các trùm AI đột ngột đòi chậm lại?\nAnthropic, OpenAI hay cả Elon Musk đều đồng ý.\nChính phủ cần siết an toàn cho AI.\nMời bên thứ ba vào tận trụ sở kiểm duyệt.\nNghe thật trách nhiệm vì nhân loại, phải không?\nNhưng bạn có tin họ thực sự sợ tận thế?\nHãy nhìn sau bức màn truyền thông.\nKhi luật an toàn được áp dụng chung...\nMột rào cản pháp lý khổng lồ được dựng lên.\nCác startup đến sau sẽ đuối sức.\nVì chi phí tuân thủ quá đắt đỏ.\nCòn các gã khổng lồ thì thong thả thâu tóm.\nGiới phân tích gọi là thâu tóm quy định.\nThời kỳ phát triển tự do sắp khép lại.\nMở ra cuộc chiến pháp lý khốc liệt.\nĐây là trách nhiệm hay chiêu chặn đối thủ?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Vì sao các trùm AI",
+                "đột ngột đòi",
+                "chậm lại?"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Anthropic, OpenAI",
+                "hay cả Elon Musk",
+                "đều đồng ý."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Chính phủ cần siết",
+                "an toàn cho AI."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Mời bên thứ ba",
+                "vào tận trụ sở",
+                "kiểm duyệt."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nghe thật trách nhiệm",
+                "vì nhân loại,",
+                "phải không?"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nhưng bạn có tin",
+                "họ thực sự",
+                "sợ tận thế?"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn sau",
+                "bức màn truyền thông."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Khi luật an toàn",
+                "được áp dụng chung..."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Một rào cản",
+                "pháp lý khổng lồ",
+                "được dựng lên."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Các startup đến sau",
+                "sẽ đuối sức."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Vì chi phí tuân thủ",
+                "quá đắt đỏ."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Còn các gã khổng lồ",
+                "~thì",
+                "thong thả thâu tóm."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Giới phân tích gọi là",
+                "thâu tóm quy định."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Thời kỳ phát triển",
+                "tự do",
+                "sắp khép lại."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Mở ra cuộc chiến",
+                "pháp lý khốc liệt."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Đây là trách nhiệm",
+                "hay chiêu chặn đối thủ?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Động thái bất ngờ",
+              "card_start": 0
+            },
+            {
+              "label": "Góc khuất truyền thông",
+              "card_start": 5
+            },
+            {
+              "label": "Bức tường pháp lý",
+              "card_start": 8
+            },
+            {
+              "label": "Cuộc chiến mới",
+              "card_start": 13
+            }
+          ]
+        },
+        "script_path": "output/2026-09-13/2026-09-13-evening-anthropic-ceo-outlines-plan-to-slow-ai-d/video/script.json",
+        "script_msg_id": 217,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
