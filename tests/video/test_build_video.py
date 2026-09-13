@@ -115,3 +115,13 @@ def test_build_propagates_script_error(tmp_path, monkeypatch):
     with pytest.raises(VideoScriptError):
         build_video.build(tmp_path, cand, post, NOW, CFG, voice_wav=VOICE_FX,
                           llm=lambda s, u, **k: '{"cards": [], "sections": []}')
+
+
+def test_fake_script_includes_chart_and_screenshot_cards():
+    d = json.loads(build_video._FAKE_SCRIPT_JSON)
+    chart_cards = [c for c in d["cards"] if c.get("chart")]
+    shot_cards = [c for c in d["cards"] if c.get("screenshot_file")]
+    assert len(chart_cards) == 1
+    assert chart_cards[0]["chart"]["kind"] in {"line", "bar", "hbar"}
+    assert len(shot_cards) == 1
+    assert shot_cards[0]["screenshot_file"] == "smoke-screenshot.png"
