@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json
+import math
 import re
 from pathlib import Path
 
@@ -101,7 +102,8 @@ def _validate(data: dict, cfg: dict) -> Script:
                 raise VideoScriptError(
                     f"card {i}: chart '{c.chart.kind}' có {n_items} items, cần {lo}..{hi or 'nhiều hơn'}")
             for item in c.chart.items:
-                if not isinstance(item.get("value"), (int, float)):
+                v = item.get("value")
+                if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v):
                     raise VideoScriptError(f"card {i}: chart item thiếu 'value' dạng số: {item}")
         if c.screenshot is not None:
             q = c.screenshot.query

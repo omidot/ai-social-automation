@@ -178,9 +178,10 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
                     continue
                 shot_path = video_dir / "public" / "screenshots" / f"{ci}.png"
                 try:
-                    _screenshot.search_and_capture(card.screenshot.query, shot_path,
-                                                   api_key=api_key, cx=cx)
+                    url = _screenshot.search_and_capture(card.screenshot.query, shot_path,
+                                                         api_key=api_key, cx=cx)
                     card.screenshot_file = f"screenshots/{ci}.png"
+                    card.screenshot_url = url
                 except _screenshot.ScreenshotError as e:
                     log.warning("screenshot card %d failed (%s) -- falling back to text card", ci, e)
                     card.screenshot = None

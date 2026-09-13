@@ -34,6 +34,7 @@ def test_align_mjs_threads_chart_and_screenshot_file():
     src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
     assert "c.chart = ch" in src
     assert "c.screenshotFile = sf" in src
+    assert "c.screenshotUrl = su" in src
 
 @pytest.mark.needs_node
 def test_align_mjs_syntax_ok():
@@ -74,6 +75,7 @@ def test_screenshot_tsx_exists_and_exports_screenshotcard():
     src = (VIDEO / "src/Screenshot.tsx").read_text(encoding="utf-8")
     assert "export const ScreenshotCard" in src
     assert "staticFile" in src
+    assert "card.screenshotUrl" in src
 
 def test_kineticshort_renders_screenshot_before_variant_switch():
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")

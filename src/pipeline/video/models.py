@@ -41,6 +41,7 @@ class Card:
     chart: ChartSpec | None = None
     screenshot: ScreenshotSpec | None = None
     screenshot_file: str | None = None
+    screenshot_url: str | None = None
 
     @property
     def spoken(self) -> str:
@@ -55,7 +56,7 @@ class Card:
                 "motion_in": self.motion_in, "motion_out": self.motion_out, "num": self.num,
                 "chart": self.chart.to_dict() if self.chart is not None else None,
                 "screenshot": self.screenshot.to_dict() if self.screenshot is not None else None,
-                "screenshot_file": self.screenshot_file}
+                "screenshot_file": self.screenshot_file, "screenshot_url": self.screenshot_url}
 
     @classmethod
     def from_dict(cls, d: dict) -> "Card":
@@ -64,7 +65,7 @@ class Card:
         return cls(lines=list(d["lines"]), variant=d["variant"], anchor=d["anchor"],
                    motion_in=d["motion_in"], motion_out=d["motion_out"],
                    num=_coerce_num(d.get("num")), chart=chart, screenshot=screenshot,
-                   screenshot_file=d.get("screenshot_file"))
+                   screenshot_file=d.get("screenshot_file"), screenshot_url=d.get("screenshot_url"))
 
 
 @dataclass

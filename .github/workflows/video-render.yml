@@ -47,7 +47,16 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install -e .
-          python -m playwright install --with-deps chromium
+      - name: Cache Playwright browser
+        if: steps.g.outputs.go == '1'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}
+      - name: Install Playwright Chromium (optional -- screenshot cards only)
+        if: steps.g.outputs.go == '1'
+        continue-on-error: true
+        run: python -m playwright install --with-deps chromium
       - name: Render + publish
         if: steps.g.outputs.go == '1'
         env:

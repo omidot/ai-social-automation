@@ -23,6 +23,13 @@ export const ScreenshotCard: React.FC<P> = ({ card, ff, leaving }) => {
             <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#ff5f57' }} />
             <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#28c840' }} />
+            {card.screenshotUrl ? (
+              <div style={{ flex: 1, background: '#fff', borderRadius: 6, fontSize: 20, color: '#555',
+                            padding: '4px 12px', marginLeft: 8, overflow: 'hidden', textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap', fontFamily: 'monospace' }}>
+                {card.screenshotUrl.replace(/^https?:\/\//, '')}
+              </div>
+            ) : null}
           </div>
           <Img src={staticFile(card.screenshotFile!)}
                style={{ width: '100%', display: 'block' }} />

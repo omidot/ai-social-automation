@@ -22,10 +22,16 @@ def search_top_url(query: str, *, api_key: str, cx: str, timeout: int = 10) -> s
         raise ScreenshotError(f"search request failed: {e}") from e
     if r.status_code != 200:
         raise ScreenshotError(f"search HTTP {r.status_code}: {r.text[:200]}")
-    items = (r.json() or {}).get("items") or []
-    if not items:
+    try:
+        data = r.json()
+        items = (data or {}).get("items") or []
+        link = items[0]["link"] if items else None
+    except (ValueError, AttributeError, KeyError, TypeError) as e:
+        raise ScreenshotError(f"malformed search response: {e}") from e
+    if not link:
         raise ScreenshotError(f"no results for query: {query!r}")
-    return items[0]["link"]
+    log.info("screenshot: resolved %r -> %s", query, link)
+    return link
 
 
 def search_and_capture(query: str, out_path: Path, *, api_key: str, cx: str) -> str:
@@ -36,4 +42,7 @@ def search_and_capture(query: str, out_path: Path, *, api_key: str, cx: str) -> 
         _media.capture_screenshot(url, out_path)
     except Exception as e:  # noqa: BLE001 - any capture failure must degrade, never crash the render
         raise ScreenshotError(f"capture failed for {url}: {e}") from e
+    if not out_path.exists() or out_path.stat().st_size == 0:
+        raise ScreenshotError(f"capture produced an empty file for {url}")
+    log.info("screenshot: captured %s -> %s", url, out_path)
     return url

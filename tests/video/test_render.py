@@ -248,6 +248,7 @@ def test_render_pending_captures_screenshot_before_codegen(tmp_path, monkeypatch
     inner_write = render._codegen.write
     def spy_write(s, video_dir):
         seen_variants["screenshot_file"] = s.cards[0].screenshot_file
+        seen_variants["screenshot_url"] = s.cards[0].screenshot_url
         return inner_write(s, video_dir)
     monkeypatch.setattr(render._codegen, "write", spy_write)
     now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
@@ -255,6 +256,7 @@ def test_render_pending_captures_screenshot_before_codegen(tmp_path, monkeypatch
     assert out == ["rendered:2026-09-08:morning"]
     assert captured_calls[0][0] == "GitHub OpenAI Codex"
     assert seen_variants["screenshot_file"] is not None
+    assert seen_variants["screenshot_url"] == "https://github.com/openai/codex"
 
 
 def test_render_pending_falls_back_to_text_card_on_screenshot_failure(tmp_path, monkeypatch):

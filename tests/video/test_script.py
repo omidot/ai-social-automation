@@ -244,6 +244,12 @@ def test_validate_rejects_chart_item_without_numeric_value():
     with pytest.raises(VideoScriptError, match="value"):
         script._validate(data, CFG)
 
+def test_validate_rejects_chart_item_with_bool_value():
+    data = _script_with_card({"chart": {"kind": "bar",
+                              "items": [{"label": "A", "value": True}, {"label": "B", "value": 2}]}})
+    with pytest.raises(VideoScriptError, match="value"):
+        script._validate(data, CFG)
+
 def test_validate_accepts_valid_line_chart():
     data = _script_with_card({"chart": {"kind": "line",
                               "items": [{"value": 1}, {"value": 2}, {"value": 5}], "unit": "%"}})

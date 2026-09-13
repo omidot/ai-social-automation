@@ -31,9 +31,10 @@ def render_variants_mjs(s: Script) -> str:
         num = "null" if c.num is None else str(c.num)
         chart = "null" if c.chart is None else json.dumps(c.chart.to_dict(), ensure_ascii=False)
         shot = "null" if c.screenshot_file is None else _q(c.screenshot_file)
+        url = "null" if c.screenshot_url is None else _q(c.screenshot_url)
         lines.append(
             f"  [{_q(c.variant)}, {_q(c.anchor)}, {num}, "
-            f"{_q(c.motion_in)}, {_q(c.motion_out)}, {chart}, {shot}],\n"
+            f"{_q(c.motion_in)}, {_q(c.motion_out)}, {chart}, {shot}, {url}],\n"
         )
     lines.append("];\n")
     return "".join(lines)

@@ -23,13 +23,15 @@ def test_render_variants_mjs_includes_chart_and_screenshot_file():
     c1 = Card(lines=["x"], variant="stack", anchor="mid", motion_in="rise", motion_out="up",
               chart=chart)
     c2 = Card(lines=["y"], variant="stack", anchor="mid", motion_in="fall", motion_out="up",
-              screenshot=ScreenshotSpec(query="q"), screenshot_file="screenshots/1.png")
+              screenshot=ScreenshotSpec(query="q"), screenshot_file="screenshots/1.png",
+              screenshot_url="https://example.com/page")
     s = Script(cards=[c1, c2], sections=[SectionMark("A", 0)])
     out = codegen.render_variants_mjs(s)
     assert '"kind": "bar"' in out
     assert '"label": "Astra"' in out
     assert '"screenshots/1.png"' in out
-    assert out.count("null, null") == 0  # neither row should show both new slots as null
+    assert '"https://example.com/page"' in out
+    assert out.count("null, null, null") == 0  # neither row should show all 3 new slots as null
 
 def test_write_creates_both(tmp_path):
     (tmp_path / "tools").mkdir()

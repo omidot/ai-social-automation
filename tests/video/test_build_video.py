@@ -125,3 +125,4 @@ def test_fake_script_includes_chart_and_screenshot_cards():
     assert chart_cards[0]["chart"]["kind"] in {"line", "bar", "hbar"}
     assert len(shot_cards) == 1
     assert shot_cards[0]["screenshot_file"] == "smoke-screenshot.png"
+    assert shot_cards[0]["screenshot_url"] == "https://github.com/openai/codex"

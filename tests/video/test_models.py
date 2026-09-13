@@ -73,10 +73,12 @@ def test_card_chart_and_screenshot_roundtrip():
     c2 = _card(["y"])
     c2.screenshot = shot
     c2.screenshot_file = "screenshots/2.png"
+    c2.screenshot_url = "https://anthropic.com/claude-fable-5-1"
     d2 = c2.to_dict()
     back2 = Card.from_dict(d2)
     assert back2.screenshot == shot
     assert back2.screenshot_file == "screenshots/2.png"
+    assert back2.screenshot_url == "https://anthropic.com/claude-fable-5-1"
 
 def test_card_from_dict_defaults_chart_and_screenshot_to_none():
     # existing fixtures (norm_script.json etc.) never include these keys

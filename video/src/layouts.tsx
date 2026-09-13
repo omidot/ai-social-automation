@@ -13,6 +13,7 @@ export type Card = {
   variant: string; anchor: 'top' | 'mid' | 'low'; num?: number; motion: Motion; exit: Exit;
   chart?: { kind: 'line' | 'bar' | 'hbar'; items: { label?: string; value: number }[]; unit?: string };
   screenshotFile?: string;
+  screenshotUrl?: string;
 };
 export type P = { card: Card; ff: string; leaving: number; activeIdx: number };
 
