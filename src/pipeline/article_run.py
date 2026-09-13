@@ -83,6 +83,9 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
             log.info("picked_after_score=%d: %s", len(picked),
                      [(sc, c.title, len(c.full_text or ""), len(c.summary or ""))
                       for sc, c in picked])
+        for _sc, c in picked:
+            if not score.has_body(c):
+                collect.ensure_fulltext(c)
         picked = [(sc, c) for sc, c in picked if score.has_body(c)]
         if os.environ.get("ARTICLE_DEBUG") == "1":
             log.info("picked_after_has_body=%d", len(picked))

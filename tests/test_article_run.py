@@ -159,6 +159,46 @@ def test_draft_falls_back_to_topic_bank(wired, monkeypatch):
     assert any("💡" in c for c in tg.captions)   # topic-bank marker
 
 
+def test_picked_candidates_get_fulltext_before_has_body_filter(wired, monkeypatch):
+    root, _ = wired
+    from pipeline.models import Candidate
+
+    short = Candidate(url="https://a/short", title="Short summary AI news",
+                      source="rss:OpenAI Blog",
+                      published_at=datetime(2026, 9, 6, tzinfo=timezone.utc),
+                      summary="s" * 50)
+    already_full = Candidate(url="https://a/full", title="Already has body",
+                             source="rss:OpenAI Blog",
+                             published_at=datetime(2026, 9, 6, tzinfo=timezone.utc),
+                             full_text="f" * 500)
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [short, already_full])
+    monkeypatch.setattr(article_run.score, "pick_n",
+                        lambda *a, **k: [(99.0, short), (98.0, already_full)])
+
+    calls = []
+
+    def fake_ensure_fulltext(c):
+        calls.append(c.url)
+        if c is short:
+            c.full_text = "f" * 500   # simulate a successful fetch
+
+    monkeypatch.setattr(article_run.collect, "ensure_fulltext", fake_ensure_fulltext)
+
+    # write_share failing isn't the point of this test; let the news branch run
+    # to completion by falling through to the topic bank, and just assert on
+    # the ensure_fulltext call pattern captured above.
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda *a, **k: (_ for _ in ()).throw(article_run.write.WriteError("x")))
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)
+    assert out["status"] == "scheduled"
+    # ensure_fulltext must be called for the short-summary candidate...
+    assert "https://a/short" in calls
+    # ...but NOT for the one that already has enough body.
+    assert "https://a/full" not in calls
+
+
 def test_draft_falls_back_when_collect_fails(wired, monkeypatch):
     root, _ = wired
 

@@ -219,3 +219,37 @@ def test_from_rss_debug_silent_by_default(monkeypatch, caplog):
     with caplog.at_level(logging.INFO, logger="collect"):
         collect.from_rss([{"name": "Test Feed", "url": "https://feed"}], now)
     assert not any("parsed=" in m for m in caplog.messages)
+
+
+def test_ensure_fulltext_populates_full_text(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://example.com/a", title="t", source="rss:X",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc))
+    monkeypatch.setattr(collect, "_extract", lambda url: ("full article text here", "https://img/x.jpg"))
+    collect.ensure_fulltext(c)
+    assert c.full_text == "full article text here"
+    assert c.top_image == "https://img/x.jpg"
+
+
+def test_ensure_fulltext_skips_when_already_has_text(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://example.com/a", title="t", source="rss:X",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc),
+                 full_text="already here")
+    called = []
+    monkeypatch.setattr(collect, "_extract", lambda url: called.append(url) or ("new", None))
+    collect.ensure_fulltext(c)
+    assert c.full_text == "already here"
+    assert called == []
+
+
+def test_ensure_fulltext_skips_google_news_interstitial(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://news.google.com/rss/articles/xyz", title="t",
+                 source="rss:Google News (x)",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc))
+    called = []
+    monkeypatch.setattr(collect, "_extract", lambda url: called.append(url) or ("new", None))
+    collect.ensure_fulltext(c)
+    assert c.full_text == ""
+    assert called == []

@@ -279,15 +279,21 @@ def collect(sources: dict, settings: dict, seen: State, now: datetime,
         raise CollectError("all collect sources failed and produced nothing")
 
     for c in result[:fulltext_top]:
-        if c.full_text:
-            continue
-        if _is_google_news_url(c.url):
-            log.info("skip fulltext for Google-News interstitial: %s", c.url)
-            continue
-        try:
-            c.full_text, img = _extract(c.url)
-            c.top_image = c.top_image or img
-        except Exception as e:  # noqa: BLE001
-            log.warning("extract %s failed: %s", c.url, e)
+        ensure_fulltext(c)
         time.sleep(0.5)
     return result
+
+
+def ensure_fulltext(c: Candidate) -> None:
+    """Fetch and attach full article text to ``c`` in place, unless it already
+    has some or its URL is a known-unfetchable Google-News interstitial."""
+    if c.full_text:
+        return
+    if _is_google_news_url(c.url):
+        log.info("skip fulltext for Google-News interstitial: %s", c.url)
+        return
+    try:
+        c.full_text, img = _extract(c.url)
+        c.top_image = c.top_image or img
+    except Exception as e:  # noqa: BLE001
+        log.warning("extract %s failed: %s", c.url, e)
