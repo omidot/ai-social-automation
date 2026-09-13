@@ -170,6 +170,24 @@ def test_generate_from_article_bad_meta_raises():
                                      caption_fb="c", angle="a", voice=_VOICE, cfg=_CFG, llm=llm)
 
 
+def test_generate_from_article_retries_on_validation_error():
+    # a validation failure (here: tiktok_caption 1 char over the 150 limit)
+    # must get the same one-shot corrective retry as a bad word count does,
+    # instead of failing the whole run on the first bad response.
+    bad = json.loads(_fake_full_reply())
+    bad["publish"]["tiktok_caption"] = "x" * 151
+    calls = []
+    def llm(system, user, provider="auto"):
+        calls.append(user)
+        return json.dumps(bad, ensure_ascii=False) if len(calls) == 1 else _fake_full_reply()
+    s, m = script.generate_from_article(
+        title="OpenAI ra mắt mô hình video", source_url="", body_text="b",
+        caption_fb="c", angle="a", voice=_VOICE, cfg=_CFG, llm=llm)
+    assert len(calls) == 2
+    assert "[SỬA]" in calls[1] and "150" in calls[1]
+    assert isinstance(s, Script) and isinstance(m, VideoMeta)
+
+
 def test_generate_from_article_retries_on_word_band():
     short = json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 3}],

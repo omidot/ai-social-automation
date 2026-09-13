@@ -125,6 +125,12 @@ def generate(cand: Candidate, post: PostContent, voice: dict, cfg: dict, llm=Non
             s = _validate(data, cfg)
         except LLMError as e:
             raise VideoScriptError(f"LLM failed: {e}") from e
+        except VideoScriptError as e:
+            if attempt == 2:
+                raise
+            user = (user + f"\n\n[SỬA] Bản vừa rồi bị lỗi: {e}. "
+                    "Sửa đúng lỗi này, giữ nguyên cấu trúc JSON.")
+            continue
         wc = s.word_count
         if wmin - _NUDGE <= wc <= wmax + _NUDGE:
             return s
@@ -158,6 +164,12 @@ def generate_from_article(title: str, source_url: str, body_text: str,
             meta = _validate_meta(data.get("publish", {}))
         except LLMError as e:
             raise VideoScriptError(f"LLM failed: {e}") from e
+        except VideoScriptError as e:
+            if attempt == 2:
+                raise
+            user = (user + f"\n\n[SỬA] Bản vừa rồi bị lỗi: {e}. "
+                    "Sửa đúng lỗi này, giữ nguyên cấu trúc JSON kể cả 'publish'.")
+            continue
         wc = s.word_count
         if wmin - _NUDGE <= wc <= wmax + _NUDGE:
             return s, meta
