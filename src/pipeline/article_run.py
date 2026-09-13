@@ -69,6 +69,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     other = ds.get_safe(date, _OTHER[slot]) or {}
     if other.get("title"):
         recent = [other["title"]] + recent
+    sibling_angle = (other.get("angle") or "").strip()
 
     # --- 1. launch-news first: what big tech just shipped ------------------
     # Any collect failure (CollectError or otherwise) is non-fatal — we just
@@ -101,7 +102,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     for sc, cand in picked:
         attempted.append(cand.url_hash)
         try:
-            article = write.write_share(cand, voice, generate=generate)
+            article = write.write_share(cand, voice, sibling_angle, generate=generate)
         except write.WriteError as e:
             log.warning("write_share rejected %r: %s", cand.title, e)
             continue
@@ -121,23 +122,25 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     # --- 2. fall back to the curated topic bank --------------------------
     if article is None:
         try:
-            spec = topics.propose_topic(topics_cfg, recent, voice, generate)
+            spec = topics.propose_topic(topics_cfg, recent, voice, generate,
+                                        sibling_angle=sibling_angle)
         except Exception as e:  # noqa: BLE001 - any proposal failure is non-fatal
             tg.send_message(f"⚠️ Không đề xuất được chủ đề {slot}: {e}")
             return {"slot": slot, "status": "error"}
         try:
-            article = write.write_topic_post(
-                spec["topic"], spec.get("angle", ""), voice, generate=generate)
+            article = write.write_take(
+                spec["topic"], spec["angle"], spec.get("why", ""), voice,
+                generate=generate)
         except write.WriteError as e:
             tg.send_message(
                 f"⚠️ Không viết được bài {slot} (chủ đề: {spec['topic']}): {e}")
             return {"slot": slot, "status": "error"}
         title = spec["topic"]
-        angle = spec.get("angle", "")
+        angle = spec["angle"]
         state_sources: list[dict] = []
     else:
         title = news_title
-        angle = ""
+        angle = article.angle
         state_sources = news_sources
 
     rel_dir = f"assets/posts/{date}/{slot}"
