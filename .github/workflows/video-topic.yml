@@ -1,0 +1,67 @@
+name: video-topic
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Story title'
+        required: true
+        default: "OpenAI launches GPT-6 Astra, claims 'AGI era' has arrived"
+      url:
+        description: 'Source URL'
+        required: false
+        default: 'https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html'
+      body:
+        description: 'Facts to write from (plain text, any language)'
+        required: true
+        default: >-
+          OpenAI officially launched GPT-6 Astra on September 3, 2026, calling
+          it the world's most intelligent and aligned AI model. Astra earned
+          near-perfect scores on key AI reasoning benchmarks, beating both
+          OpenAI's own prior model GPT-5.6 Sol and rival Anthropic's Claude
+          Fable 5. It is state-of-the-art at cybersecurity, computer use,
+          software engineering, professional work, and science. Rollout is
+          phased: companies in OpenAI's application-based cybersecurity
+          program get access first, followed by ChatGPT Plus/Pro/Business/
+          Enterprise users, the OpenAI API, and Amazon Web Services in the
+          coming days. Pricing on the standard API is $10 per million input
+          tokens and $50 per million output tokens -- 2.5 times the current
+          promotional rate of GPT-5.6 Sol. OpenAI President Greg Brockman
+          said future observers might look back at Astra as the model
+          marking the arrival of the "AGI era." The launch also drew
+          scrutiny: coverage noted rising safety concerns and a "curious
+          false start" in OpenAI's initial rollout announcement.
+permissions:
+  contents: write
+concurrency:
+  group: pipeline-state
+  cancel-in-progress: false
+jobs:
+  topic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          pip install -e .
+          npm install -g @anthropic-ai/claude-code
+      - name: Draft video for the given story
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TOPIC_TITLE: ${{ inputs.title }}
+          TOPIC_URL: ${{ inputs.url }}
+          TOPIC_BODY: ${{ inputs.body }}
+        run: |
+          python -m pipeline.article_run --topic-title "$TOPIC_TITLE" \
+            --topic-url "$TOPIC_URL" --topic-body "$TOPIC_BODY"
+      - name: Commit state
+        run: bash scripts/commit_state.sh
