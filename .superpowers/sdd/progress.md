@@ -28,7 +28,7 @@ Prior phases: progress-p2c.md, progress-p2b.md, progress-plan1/2.md
   has_body funnel logging (controller-added after live diagnostic, commit 1c0ba48).
   Deviations: test_collect.py pre-existed (appended not overwrote); _DEBUG const->fn.
   215 non-video / 111 video)
-- Task 2: pending — target fulltext extraction at picked candidates (collect.ensure_fulltext)
+- Task 2: complete (commit 1c0ba48..0900fbc, controller-verified pending review; collect.ensure_fulltext() extracted from collect()'s loop (preserves original try/except + time.sleep(0.5) rate-limit not captured in the plan brief, correctly discovered+preserved); article_run.py calls ensure_fulltext on picked candidates lacking body before has_body filter. Deviation: test_article_run.py addition used the file's real fixtures (wired/FakeTG), not the brief's assumed NOW/FakeTelegram/FakeMeta. 219 non-video / 111 video)  [review Approved]
 - Task 3: pending — fix scoring gate (_source_tier, recency denom, min_score, MAX_AGE_HOURS)
 - Task 4: pending — write_share broadened + ANGLES + ArticleContent.angle + storyboard relax
 - Task 5: pending — replace listicle fallback bank (topics.yaml, propose_topic, write_take)
@@ -39,3 +39,10 @@ Prior phases: progress-p2c.md, progress-p2b.md, progress-plan1/2.md
 - Baseline suites: 215 non-video / 111 video green at 1c0ba48.
 - ARTICLE_DEBUG in score.py/collect.py is a zero-arg function _DEBUG(), NOT a bool
   constant (frozen-at-import bools can't observe monkeypatch.setenv in tests).
+
+## Live sanity check after Task 2 (2026-09-09, controller-run)
+picked_after_score=4 -> picked_after_has_body=2 (was 0 pre-Task-2). write_share attempt
+1/2 actually invoked for the first time this session. Both rejected only because
+--fake-llm's canned payload isn't shaped for write_share's schema (expected artifact of
+the smoke-test fake, not a real defect) -> correctly fell through to topic-bank
+fallback. Root cause #2 (extraction targeting) CONFIRMED FIXED live.
