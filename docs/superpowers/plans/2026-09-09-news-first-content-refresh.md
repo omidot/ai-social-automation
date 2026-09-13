@@ -45,30 +45,32 @@ slots toward different angles.
 
 | File | Change |
 |---|---|
-| `src/pipeline/collect.py` | `MAX_AGE_HOURS` 48→96; `ARTICLE_DEBUG` per-feed logging |
+| `src/pipeline/collect.py` | `MAX_AGE_HOURS` 48→96; `ARTICLE_DEBUG` per-feed logging; `ensure_fulltext` exposed |
 | `src/pipeline/score.py` | `_TIER1`/`_TIER2`/`_source_tier`; `_recency` denominator 48→96; `ARTICLE_DEBUG` per-candidate logging |
 | `src/pipeline/write.py` | `ANGLES`; `build_share_prompt` + `write_share` rewrite (accepts all AI news, emits/validates `angle`, takes a `sibling_angle` hint); `_STORYBOARD_SPEC` reworded; `write_topic_post`/`build_topic_prompt` replaced by `write_take`/`build_take_prompt` |
 | `src/pipeline/topics.py` | `propose_topic` prompt targets `takes`/`shifts`, returns `{topic, angle, why}`, takes a `sibling_angle` hint |
 | `src/pipeline/models.py` | `ArticleContent.angle: str = ""` |
-| `src/pipeline/article_run.py` | pass `sibling_angle` into both writer calls; take the news angle from `write_share`'s result instead of hard-coding `""` |
+| `src/pipeline/article_run.py` | call `collect.ensure_fulltext` on picked candidates before `has_body`; pass `sibling_angle` into both writer calls; take the news angle from `write_share`'s result instead of hard-coding `""` |
 | `config/settings.yaml` | `articles.min_score` 45→20 |
 | `config/topics.yaml` | replaced: `takes` + `shifts` (drops `formats`/`themes`/`seeds`) |
-| `tests/test_score.py`, `tests/test_write.py`, `tests/test_topics.py`, `tests/test_article_run.py` | new/updated tests per task |
+| `tests/test_score.py`, `tests/test_write.py`, `tests/test_topics.py`, `tests/test_article_run.py`, `tests/test_collect.py` | new/updated tests per task |
 | `tests/fixtures/sample_share_response.json` | gains `"angle": "tin-nong"` |
 
-Build order: **Task 1** diagnostic logging → **Task 2** scoring gate → **Task 3**
-`write_share` + `ANGLES` + `ArticleContent.angle` → **Task 4** fallback rewrite
-(`topics.yaml` + `propose_topic` + `write_take`) → **Task 5** `article_run` wiring +
-full suite.
+Build order: **Task 1** diagnostic logging (done 2026-09-09 — see below) → **Task 2**
+fulltext extraction targeting → **Task 3** scoring gate → **Task 4** `write_share` +
+`ANGLES` + `ArticleContent.angle` → **Task 5** fallback rewrite (`topics.yaml` +
+`propose_topic` + `write_take`) → **Task 6** `article_run` wiring + full suite.
 
-**Controller note between Task 1 and Task 2:** Task 1 only adds logging — no behaviour
-change. Before dispatching Task 2, the controller should run
-`ARTICLE_DEBUG=1 .venv/Scripts/python.exe -m pipeline.article_run --slot morning --root . --fake-llm`
-once (needs network) and eyeball the per-feed/per-candidate log lines against §1 of the
-spec (`docs/superpowers/specs/2026-09-09-news-first-content-refresh-design.md`). If the
-real numbers contradict the root-cause analysis, stop and reconsider Task 2's constants
-before proceeding — this is a controller action, not a subagent step, and is not
-gated by any test.
+**Controller note — already actioned 2026-09-09.** Task 1's diagnostic was run live
+against real feeds (`ARTICLE_DEBUG=1 .venv/Scripts/python.exe -m pipeline.article_run
+--slot morning --root . --fake-llm`). It confirmed the scoring-gate hypothesis (§1) AND
+surfaced a second, more immediately-blocking root cause (§1a of the spec): every
+candidate `pick_n` selects has `full_text=0` because `collect()` full-text-extracts the
+top-8-by-*recency* candidates, not the top-4-by-*score* `pick_n` will actually return —
+so `has_body()` zeroes out `picked` before `write_share` is ever called, independent of
+the scoring formula. Task 2 fixes this specifically; Task 3 (scoring) still matters for
+quiet news days with no cross-posted story to inflate scores. Both are needed together
+before the news path will visibly fire in production.
 
 ---
 
@@ -275,10 +277,10 @@ def pick_n(cands, n, min_score, now, keywords, exclude_titles=()):
         ...  # unchanged below this line
 ```
 
-(`_source_tier` does not exist yet — Task 2 adds it. For Task 1, replace the
+(`_source_tier` does not exist yet — Task 3 adds it. For Task 1, replace the
 `_source_tier(c)` reference in the f-string args with a literal `0.0` placeholder
 computed inline as `0.0` — i.e. drop `source_tier=%.1f` and its arg from this task's
-log line entirely; Task 2 adds both the field and the function together. This keeps
+log line entirely; Task 3 adds both the field and the function together. This keeps
 Task 1 free of a forward reference to code that doesn't exist yet.)
 
 Corrected log line for Task 1 (no `source_tier` term):
@@ -318,7 +320,240 @@ git commit -m "feat(content): ARTICLE_DEBUG diagnostic logging in collect + scor
 
 ---
 
-## Task 2: Fix the scoring gate
+## Task 2: Target fulltext extraction at picked candidates, not recency order
+
+**Context (found live, 2026-09-09):** running Task 1's diagnostic against real feeds
+showed `score.pick_n` selects 4 legitimate distinct candidates above the *old*
+`min_score=45` — but every one had `full_text` empty and a summary under 400 chars, so
+`score.has_body()` filtered all 4 out and `write.write_share` was never called.
+Cause: `collect.collect()` only fetches full article text for the top-8-by-*recency*
+candidates (`result[:fulltext_top]`), which rarely overlaps with the top-4-by-*score*
+`pick_n` actually returns. This task fixes that mismatch; it is a prerequisite for
+Task 3 (scoring) to have any visible effect in production.
+
+**Files:**
+- Modify: `src/pipeline/collect.py`
+- Modify: `src/pipeline/article_run.py`
+- Test: `tests/test_collect.py`, `tests/test_article_run.py`
+
+**Interfaces:**
+- Consumes: `Candidate` (`pipeline.models`); `collect._extract(url) -> tuple[str, str | None]`
+  and `collect._is_google_news_url(url) -> bool` (both already exist, private, unchanged).
+- Produces: `collect.ensure_fulltext(c: Candidate) -> None` — fetches and attaches full
+  article text to `c` **in place**; no-op if `c.full_text` is already truthy or the URL
+  is a Google-News interstitial. `article_run.draft` calls it on every `pick_n`-picked
+  candidate that still lacks a body, immediately before the existing `has_body` filter.
+
+- [ ] **Step 1: Write the failing tests**
+
+Add to `tests/test_collect.py`:
+
+```python
+def test_ensure_fulltext_populates_full_text(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://example.com/a", title="t", source="rss:X",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc))
+    monkeypatch.setattr(collect, "_extract", lambda url: ("full article text here", "https://img/x.jpg"))
+    collect.ensure_fulltext(c)
+    assert c.full_text == "full article text here"
+    assert c.top_image == "https://img/x.jpg"
+
+
+def test_ensure_fulltext_skips_when_already_has_text(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://example.com/a", title="t", source="rss:X",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc),
+                 full_text="already here")
+    called = []
+    monkeypatch.setattr(collect, "_extract", lambda url: called.append(url) or ("new", None))
+    collect.ensure_fulltext(c)
+    assert c.full_text == "already here"
+    assert called == []
+
+
+def test_ensure_fulltext_skips_google_news_interstitial(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://news.google.com/rss/articles/xyz", title="t",
+                 source="rss:Google News (x)",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc))
+    called = []
+    monkeypatch.setattr(collect, "_extract", lambda url: called.append(url) or ("new", None))
+    collect.ensure_fulltext(c)
+    assert c.full_text == ""
+    assert called == []
+```
+
+(`datetime`, `timezone` are already imported at the top of `tests/test_collect.py` —
+verify before adding; add if missing.)
+
+Add to `tests/test_article_run.py`:
+
+```python
+def test_picked_candidates_get_fulltext_before_has_body_filter(tmp_path, monkeypatch):
+    from pipeline import article_run
+    from pipeline.models import Candidate
+
+    short = Candidate(url="https://a/short", title="Short summary AI news",
+                      source="rss:OpenAI Blog",
+                      published_at=datetime.now(timezone.utc), summary="s" * 50)
+    already_full = Candidate(url="https://a/full", title="Already has body",
+                             source="rss:OpenAI Blog",
+                             published_at=datetime.now(timezone.utc),
+                             full_text="f" * 500)
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [short, already_full])
+    monkeypatch.setattr(article_run.score, "pick_n",
+                        lambda *a, **k: [(99.0, short), (98.0, already_full)])
+
+    calls = []
+    def fake_ensure_fulltext(c):
+        calls.append(c.url)
+        if c is short:
+            c.full_text = "f" * 500   # simulate a successful fetch
+    monkeypatch.setattr(article_run.collect, "ensure_fulltext", fake_ensure_fulltext)
+
+    # collect() failing isn't the point of this test; let the news branch run to
+    # completion by making write_share fail so we fall through cleanly, and just
+    # assert on the ensure_fulltext call pattern captured above.
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda *a, **k: (_ for _ in ()).throw(article_run.write.WriteError("x")))
+    monkeypatch.setattr(article_run.topics, "propose_topic",
+                        lambda *a, **k: {"topic": "t", "angle": "quan-diem", "why": "w"})
+    from pipeline.models import ArticleContent
+    monkeypatch.setattr(
+        article_run.write, "write_take",
+        lambda topic, angle, why, voice, generate=None: ArticleContent(
+            format="share", caption_fb="x", caption_ig="y", hashtags=["#AI"],
+            cover_title="t",
+            slides=[{"role": "hook", "headline": "h", "body": "b", "tools": []},
+                    {"role": "item", "headline": "h", "body": "b " * 45,
+                     "tool": None, "bullets": []},
+                    {"role": "close", "headline": "h", "body": "b"}],
+            sources=[], angle=angle))
+
+    article_run.draft("morning", tmp_path, NOW, generate=lambda *a, **k: "",
+                      tg=FakeTelegram(), meta=FakeMeta())
+    # ensure_fulltext must be called for the short-summary candidate...
+    assert "https://a/short" in calls
+    # ...but NOT for the one that already has enough body.
+    assert "https://a/full" not in calls
+```
+
+(As in Task 6's test guidance below: reuse this file's existing `NOW`/`FakeTelegram`/
+`FakeMeta` fixtures and whatever `config`/`data` setup its existing `draft()` tests
+already perform — do not invent a different fixture shape. Re-read the file's current
+top-of-file fixtures before writing this test.)
+
+- [ ] **Step 2: Run, verify fail**
+
+Run: `.venv/Scripts/python.exe -m pytest tests/test_collect.py tests/test_article_run.py -k "ensure_fulltext or fulltext_before_has_body" -q`
+Expected: FAIL — `collect.ensure_fulltext` doesn't exist yet.
+
+- [ ] **Step 3: Implement**
+
+In `src/pipeline/collect.py`, find the `collect()` function's fulltext loop (near the
+end of the function):
+
+```python
+    for c in result[:fulltext_top]:
+        if c.full_text:
+            continue
+        if _is_google_news_url(c.url):
+            log.info("skip fulltext for Google-News interstitial: %s", c.url)
+            continue
+        text, image = _extract(c.url)
+        c.full_text = text
+        if image and not c.top_image:
+            c.top_image = image
+```
+
+Replace it with a call to a new, reusable function:
+
+```python
+    for c in result[:fulltext_top]:
+        ensure_fulltext(c)
+```
+
+And add the function itself (place it just above `collect()`, after `_collapse_similar`
+or near the other module-level helpers):
+
+```python
+def ensure_fulltext(c: Candidate) -> None:
+    """Fetch and attach full article text to ``c`` in place, unless it already
+    has some or its URL is a known-unfetchable Google-News interstitial."""
+    if c.full_text:
+        return
+    if _is_google_news_url(c.url):
+        log.info("skip fulltext for Google-News interstitial: %s", c.url)
+        return
+    text, image = _extract(c.url)
+    c.full_text = text
+    if image and not c.top_image:
+        c.top_image = image
+```
+
+In `src/pipeline/article_run.py`, find (this already carries Task 1's debug lines):
+
+```python
+        cands = collect.collect(sources, settings, State(root / "data"), now)
+        picked = score.pick_n(cands, 4, acfg["min_score"], now, keywords,
+                              exclude_titles=recent)
+        if os.environ.get("ARTICLE_DEBUG") == "1":
+            log.info("picked_after_score=%d: %s", len(picked),
+                     [(sc, c.title, len(c.full_text or ""), len(c.summary or ""))
+                      for sc, c in picked])
+        picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+        if os.environ.get("ARTICLE_DEBUG") == "1":
+            log.info("picked_after_has_body=%d", len(picked))
+```
+
+Insert the extraction call between the two debug blocks, right before the `has_body`
+filter:
+
+```python
+        cands = collect.collect(sources, settings, State(root / "data"), now)
+        picked = score.pick_n(cands, 4, acfg["min_score"], now, keywords,
+                              exclude_titles=recent)
+        if os.environ.get("ARTICLE_DEBUG") == "1":
+            log.info("picked_after_score=%d: %s", len(picked),
+                     [(sc, c.title, len(c.full_text or ""), len(c.summary or ""))
+                      for sc, c in picked])
+        for _sc, c in picked:
+            if not score.has_body(c):
+                collect.ensure_fulltext(c)
+        picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+        if os.environ.get("ARTICLE_DEBUG") == "1":
+            log.info("picked_after_has_body=%d", len(picked))
+```
+
+- [ ] **Step 4: Run, verify pass**
+
+Run: `.venv/Scripts/python.exe -m pytest tests/test_collect.py tests/test_article_run.py -q`
+Expected: PASS (all, including the 3 + 1 new tests).
+
+- [ ] **Step 5: Full regression**
+
+Run: `.venv/Scripts/python.exe -m pytest tests --ignore=tests/video -q`
+Expected: PASS.
+Run: `.venv/Scripts/python.exe -m pytest tests/video -q`
+Expected: PASS, unchanged.
+
+- [ ] **Step 6: Live sanity check (controller, optional but recommended)**
+
+`ARTICLE_DEBUG=1 .venv/Scripts/python.exe -m pipeline.article_run --slot morning --root . --fake-llm`
+— confirm `picked_after_has_body` is now > 0 on a normal news day (it was 0 before this
+task, per the diagnostic run logged in `.superpowers/sdd/progress.md`). This needs
+network and is not part of the automated test suite.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add src/pipeline/collect.py src/pipeline/article_run.py tests/test_collect.py tests/test_article_run.py
+git commit -m "fix(content): extract fulltext for score-picked candidates, not recency order"
+```
+
+---
+
+## Task 3: Fix the scoring gate
 
 **Files:**
 - Modify: `src/pipeline/score.py`
@@ -468,7 +703,7 @@ articles:
 - [ ] **Step 4: Run, verify pass**
 
 Run: `.venv/Scripts/python.exe -m pytest tests/test_score.py tests/test_collect.py -q`
-Expected: PASS (all, including Task 1's + Task 2's new tests).
+Expected: PASS (all, including Task 1's + Task 3's new tests).
 
 - [ ] **Step 5: Full regression**
 
@@ -488,7 +723,7 @@ git commit -m "fix(content): scoring gate no longer rejects single-source first-
 
 ---
 
-## Task 3: Broaden `write_share`, add `ANGLES`, relax the storyboard spec
+## Task 4: Broaden `write_share`, add `ANGLES`, relax the storyboard spec
 
 **Files:**
 - Modify: `src/pipeline/write.py`
@@ -757,7 +992,7 @@ to
 Run: `.venv/Scripts/python.exe -m pytest tests/test_write.py -q`
 Expected: PASS (all existing `write_share`/`write_post` tests + the new ones — note
 `test_write_topic_post_*` tests still reference the untouched `write_topic_post`, which
-this task does not remove; Task 4 removes/renames them).
+this task does not remove; Task 5 removes/renames them).
 
 - [ ] **Step 5: Full regression**
 
@@ -777,7 +1012,7 @@ git commit -m "feat(content): write_share accepts all AI news, emits a validated
 
 ---
 
-## Task 4: Replace the listicle fallback bank
+## Task 5: Replace the listicle fallback bank
 
 **Files:**
 - Modify: `config/topics.yaml` (full replace)
@@ -787,7 +1022,7 @@ git commit -m "feat(content): write_share accepts all AI news, emits a validated
 
 **Interfaces:**
 - Consumes: `write.ANGLES`, `write._IMAN_VOICE`, `write._ARTICLE_GUARDRAILS`,
-  `write._STORYBOARD_SPEC`, `write._validate_share`, `write._SHAPE_NUDGE` (Task 3).
+  `write._STORYBOARD_SPEC`, `write._validate_share`, `write._SHAPE_NUDGE` (Task 4).
 - Produces:
   - `topics.propose_topic(topics: dict, recent: list[str], voice: dict, generate, sibling_angle: str = "") -> dict`
     — now returns `{"topic": str, "angle": str, "why": str}` with
@@ -1104,7 +1339,7 @@ git commit -m "feat(content): replace listicle fallback bank with opinion/trend 
 
 ---
 
-## Task 5: Wire angles through `article_run.draft`
+## Task 6: Wire angles through `article_run.draft`
 
 **Files:**
 - Modify: `src/pipeline/article_run.py`
@@ -1350,46 +1585,53 @@ git commit -m "feat(content): article_run wires angle through both writers + sib
 ## Self-Review
 
 **Spec coverage:**
-- §1 root cause / §2 goals 1-2 (gate fix, `write_share` broadening) → Task 2, Task 3.
-- §2 goal 3 (four angles) → `ANGLES` in Task 3, used by Task 3's `write_share` and
-  Task 4's `propose_topic`/`write_take`.
-- §2 goal 4 (evergreen fallback, no listicles) → Task 4 (`topics.yaml` replace,
+- §1 root cause / §2 goals 1-2 (gate fix, `write_share` broadening) → Task 3, Task 4.
+- §1a second root cause (fulltext extraction targets recency, not score) → Task 2.
+- §2 goal 3 (four angles) → `ANGLES` in Task 4, used by Task 4's `write_share` and
+  Task 5's `propose_topic`/`write_take`.
+- §2 goal 4 (evergreen fallback, no listicles) → Task 5 (`topics.yaml` replace,
   `write_take`).
-- §2 goal 5 (daily variety) → Task 5 (`sibling_angle` threaded through both writers).
-- §2 goal 6 (diagnostic first) → Task 1, with the controller-run gate documented before
-  Task 2 is dispatched.
-- §3 angle table → verbatim in Task 3's `build_share_prompt` and Task 4's
+- §2 goal 5 (daily variety) → Task 6 (`sibling_angle` threaded through both writers).
+- §2 goal 6 (diagnostic first) → Task 1, whose live run (2026-09-09) directly produced
+  Task 2 and confirmed Task 3's premise — the controller gate described for Task 1→3
+  has already fired and is recorded in `.superpowers/sdd/progress.md`.
+- §3 angle table → verbatim in Task 4's `build_share_prompt` and Task 5's
   `build_take_prompt`/`_build_prompt`.
-- §4.1 diagnostic → Task 1. §4.2 scoring gate → Task 2. §4.3 `write_share` → Task 3.
-  §4.4 fallback (`topics.yaml`, `propose_topic`, `write_take`) → Task 4. §4.5
-  `article_run` wiring incl. sibling-angle hint → Task 5. §4.6 storyboard relaxation →
-  Task 3.
+- §4.1 diagnostic → Task 1. §4.2a fulltext extraction targeting → Task 2. §4.2 scoring
+  gate → Task 3. §4.3 `write_share` → Task 4. §4.4 fallback (`topics.yaml`,
+  `propose_topic`, `write_take`) → Task 5. §4.5 `article_run` wiring incl.
+  sibling-angle hint → Task 6. §4.6 storyboard relaxation → Task 4.
 - §5 file table → matches the plan's File Structure table.
-- §6 test list → each task's Step 1 covers its corresponding bullet (score/collect
-  tests in Task 2, write tests in Task 3/4, topics tests in Task 4, article_run tests
-  in Task 5, full-suite green checks in every task's Step 5).
-- §7 build order → Task 1→5 order matches.
+- §6 test list → each task's Step 1 covers its corresponding bullet (collect/
+  extraction-targeting tests in Task 2, score tests in Task 3, write tests in Task 4,
+  topics tests in Task 5, article_run tests in Task 6, full-suite green checks in every
+  task's Step 5).
+- §7 build order → Task 1→6 order matches.
 - §8 out of scope → no task touches `write_post`/`build_prompt`/`ALLOWED_ANGLES`, the
   video pipeline, `styles`, or `images`; no LLM web search is introduced; the fallback
   never recycles stale news.
 
 **Placeholder scan:** no "TBD"/"handle appropriately"/"similar to Task N" language.
-Task 5's Step 1 explicitly instructs re-reading the live file before editing (since it
-depends on exact surrounding text Tasks 1-4 don't touch) rather than assuming stale
+Task 6's Step 1 explicitly instructs re-reading the live file before editing (since it
+depends on exact surrounding text Tasks 1-5 don't touch) rather than assuming stale
 line numbers — this is a deliberate hedge against drift, not a placeholder, and the
-Step 3 old/new text blocks are given in full either way.
+Step 3 old/new text blocks are given in full either way. Task 2's Step 3 old-text block
+for `article_run.py` was written against the file's *actual* current state (it already
+carries Task 1's debug lines, added by the controller directly and committed as
+`1c0ba48`) rather than the pre-Task-1 state — verified by reading the file before
+writing this section.
 
-**Type consistency:** `write.ANGLES` (Task 3) is the same set referenced by
-`build_share_prompt`'s angle list (Task 3) and `topics.propose_topic`'s
-`{"quan-diem","xu-huong"}` subset (Task 4) and `write_take`'s accepted `angle` param
-(Task 4, not re-validated against `ANGLES` since the caller — `propose_topic` — already
-constrains it). `write_share(cand, voice, sibling_angle="", generate=...)` (Task 3) and
-its Task 5 call site `write.write_share(cand, voice, sibling_angle, generate=generate)`
-match positionally. `write_take(topic, angle, why, voice, generate=...)` (Task 4) and
-its Task 5 call site `write.write_take(spec["topic"], spec["angle"], spec.get("why",""), voice, generate=generate)`
+**Type consistency:** `write.ANGLES` (Task 4) is the same set referenced by
+`build_share_prompt`'s angle list (Task 4) and `topics.propose_topic`'s
+`{"quan-diem","xu-huong"}` subset (Task 5) and `write_take`'s accepted `angle` param
+(Task 5, not re-validated against `ANGLES` since the caller — `propose_topic` — already
+constrains it). `write_share(cand, voice, sibling_angle="", generate=...)` (Task 4) and
+its Task 6 call site `write.write_share(cand, voice, sibling_angle, generate=generate)`
+match positionally. `write_take(topic, angle, why, voice, generate=...)` (Task 5) and
+its Task 6 call site `write.write_take(spec["topic"], spec["angle"], spec.get("why",""), voice, generate=generate)`
 match. `topics.propose_topic(topics, recent, voice, generate, sibling_angle="")`
-(Task 4) and its Task 5 call site
+(Task 5) and its Task 6 call site
 `topics.propose_topic(topics_cfg, recent, voice, generate, sibling_angle=sibling_angle)`
-match. `ArticleContent.angle: str = ""` (Task 3) is set by both `write_share` (from the
+match. `ArticleContent.angle: str = ""` (Task 4) is set by both `write_share` (from the
 validated model output) and `write_take` (from the caller argument) and read by
-`article_run.draft`'s `angle = article.angle` (Task 5) — consistent end to end.
+`article_run.draft`'s `angle = article.angle` (Task 6) — consistent end to end.
