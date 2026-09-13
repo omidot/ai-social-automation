@@ -327,164 +327,213 @@
       "video": {
         "status": "awaiting_audio",
         "meta": {
-          "title": "CEO Anthropic Dario Amodei đòi bóp phanh AI, vì sao?",
-          "description": "Dario Amodei, CEO Anthropic, vừa gây sốt khi kêu gọi bóp phanh AI. Nhưng đề xuất ba bước của Anthropic - từ kiểm định độc lập METR đến cấm distillation - lại giống một nước cờ chiến lược hơn là lòng tốt. Nếu bạn đang làm sản phẩm AI, luật chơi sắp thay đổi và bạn cần biết trước. Theo dõi A Hít Official để không bỏ lỡ những góc nhìn thẳng thắn về AI nhé!",
+          "title": "OpenAI ra GPT-6 Astra: Giá API tăng 2.5 lần, kỷ nguyên AGI có thật?",
+          "description": "OpenAI tuyên bố kỷ nguyên AGI đã đến với GPT-6 Astra, nhưng giá API lại tăng gấp 2,5 lần theo CNBC. Cuộc đua AI không còn rẻ mà đã bước vào giai đoạn thương mại hóa khốc liệt. Bạn cần học cách phân tầng mô hình để không bị chi phí đè bẹp. Hãy theo dõi kênh A Hít Official để cập nhật góc nhìn thực chiến về AI mỗi ngày!",
           "hashtags": [
-            "#AI",
-            "#AnthropicAI",
-            "#DarioAmodei",
-            "#TinCongNgheAI",
-            "#AIVietNam",
-            "#CongNgheAI",
-            "#TriTueNhanTao",
             "#AHitOfficial",
-            "#GocNhinAI",
-            "#TinAI"
+            "#OpenAI",
+            "#GPT6Astra",
+            "#AGI",
+            "#CongNghe",
+            "#ChiPhiAI",
+            "#LapTrinh",
+            "#TinTucAI"
           ],
           "keywords": [
-            "Anthropic",
-            "Dario Amodei",
-            "bóp phanh AI",
-            "METR",
-            "distillation",
-            "an toàn AI",
-            "quy định AI",
-            "chip AI",
-            "frontier AI",
-            "tin công nghệ AI"
+            "OpenAI",
+            "GPT 6 Astra",
+            "AGI",
+            "gia API OpenAI",
+            "A Hit Official",
+            "hoc AI",
+            "cong nghe AI"
           ],
-          "tiktok_caption": "CEO Anthropic kêu gọi bóp phanh AI - an toàn thật hay chiêu bài? #AI #Anthropic #DarioAmodei #CongNgheAI"
+          "tiktok_caption": "OpenAI ra GPT-6 Astra nhưng giá API tăng gấp 2.5 lần! Bạn nghĩ sao? #AHitOfficial #OpenAI #GPT6 #AGI"
         },
-        "spoken_text": "Dario Amodei, CEO Anthropic, vừa kêu gọi bóp phanh AI\nBạn tưởng ông ấy tốt bụng? Tự nguyện đi chậm vì nhân loại?\nKhông hề nha bạn ơi\nCái thật sự quan trọng thì nằm ở bản đề xuất\nĐề xuất có ba bước\nMột, mời bên kiểm định độc lập như METR vào đánh giá AI\nMETR là ai vậy? Một tổ chức chuyên test AI xem nó nguy hiểm cỡ nào\nHai, siết chặt tiêu chuẩn an toàn và kêu chính phủ ra tay\nBa, chặn xuất khẩu chip xịn và cấm luôn distillation\nDistillation nôm na là gì? Dùng AI khổng lồ dạy AI nhỏ rẻ hơn, nhanh hơn nhiều\nNghe có vẻ vì an toàn đúng không\nNhưng đây là nước cờ chiến lược\nMấy công ty nhỏ hơn sẽ khó lòng đuổi kịp vì luật chơi quá tốn kém\nBạn đang làm sản phẩm AI? Fine-tune hay distillation từ model lớn?\nCoi chừng nha Luật chơi sắp đổi chi phí tham gia đắt hơn nhiều\nViệc nên làm ngay bây giờ là giải bài toán thực tế bằng công cụ đang có sẵn\nAn toàn thật hay rào cản giả? Bạn tự trả lời đi nhé",
+        "spoken_text": "OpenAI ra mắt GPT-6 Astra tuyên bố kỷ nguyên AGI đã tới.\nĐừng tin ngay vào những tuyên bố mỹ miều đó.\nSự thật thương trường luôn thô ráp hơn nhiều.\nTheo đưa tin từ CNBC, giá API vừa tăng vọt: 10 đô đầu vào, 50 đô đầu ra.\nMức giá này đắt hơn lần so với trước đây.\nĐa số mọi người đang hiểu sai chỗ này:\nBạn nghĩ AI mạnh hơn nghĩa là công việc rẻ hơn.\nNhưng cái thực sự quan trọng là: Cuộc đua đã chuyển sang thương mại hóa gắt gao.\nAI đỉnh cao không dành để chat giải trí nữa.\nNó được thiết kế để can thiệp sâu vào hạ tầng kỹ thuật.\nĐây là điều tin này dạy mình:\nNếu bạn đang làm lập trình viên hoặc vận hành doanh nghiệp,\nDùng AI vô tội vạ sẽ khiến chi phí đè bẹp lợi thế của bạn.\nBạn phải học cách phân tầng mô hình ngay: dùng mô hình nhỏ cho tác vụ hằng ngày,\nVà chỉ bật mô hình mạnh nhất khi gặp bài toán khó.\nĐừng chờ AGI cứu rỗi, hãy tự tối ưu quy trình.\nBạn thấy mức giá mới của OpenAI là hợp lý hay quá đắt đỏ?",
         "script": {
           "cards": [
             {
               "lines": [
-                "Dario Amodei, CEO Anthropic,",
-                "vừa kêu gọi bóp phanh AI"
-              ],
-              "variant": "hero",
-              "anchor": "mid",
-              "motion_in": "slam",
-              "motion_out": "dissolve",
-              "num": null
-            },
-            {
-              "lines": [
-                "Bạn tưởng ông ấy tốt bụng?",
-                "Tự nguyện đi chậm vì nhân loại?"
-              ],
-              "variant": "stack",
-              "anchor": "top",
-              "motion_in": "rise",
-              "motion_out": "up",
-              "num": null
-            },
-            {
-              "lines": [
-                "Không hề nha bạn ơi"
-              ],
-              "variant": "invert",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "shrink",
-              "num": null
-            },
-            {
-              "lines": [
-                "Cái thật sự quan trọng",
-                "~thì",
-                "nằm ở bản đề xuất"
-              ],
-              "variant": "right",
-              "anchor": "low",
-              "motion_in": "fall",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Đề xuất có ba bước"
+                "OpenAI ra mắt GPT-6 Astra",
+                "tuyên bố kỷ nguyên AGI đã tới."
               ],
               "variant": "numeral",
               "anchor": "mid",
-              "motion_in": "slideR",
-              "motion_out": "down",
-              "num": 3
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 6
             },
             {
               "lines": [
-                "Một, mời bên kiểm định độc lập",
-                "như METR vào đánh giá AI"
+                "Đừng tin ngay vào",
+                "những tuyên bố mỹ miều đó."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Sự thật thương trường",
+                "luôn thô ráp hơn nhiều."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Theo đưa tin từ CNBC,",
+                "giá API vừa tăng vọt:",
+                "10 đô đầu vào,",
+                "50 đô đầu ra."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": 10
+            },
+            {
+              "lines": [
+                "Mức giá này đắt hơn",
+                "~lần so với trước đây."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": 2.5
+            },
+            {
+              "lines": [
+                "Đa số mọi người",
+                "đang hiểu sai chỗ này:"
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bạn nghĩ AI mạnh hơn",
+                "nghĩa là công việc rẻ hơn."
               ],
               "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nhưng cái thực sự",
+                "quan trọng là:",
+                "Cuộc đua đã chuyển sang",
+                "thương mại hóa gắt gao."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "AI đỉnh cao không dành",
+                "để chat giải trí nữa."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nó được thiết kế",
+                "để can thiệp sâu",
+                "vào hạ tầng kỹ thuật."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Đây là điều",
+                "tin này dạy mình:"
+              ],
+              "variant": "hero",
               "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm",
+                "lập trình viên",
+                "hoặc vận hành doanh nghiệp,"
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Dùng AI vô tội vạ",
+                "sẽ khiến chi phí",
+                "đè bẹp lợi thế của bạn."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bạn phải học cách",
+                "phân tầng mô hình ngay:",
+                "dùng mô hình nhỏ",
+                "cho tác vụ hằng ngày,"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
               "motion_in": "wipe",
               "motion_out": "up",
               "num": null
             },
             {
               "lines": [
-                "METR là ai vậy?",
-                "Một tổ chức chuyên test AI",
-                "xem nó nguy hiểm cỡ nào"
+                "Và chỉ bật",
+                "mô hình mạnh nhất",
+                "khi gặp bài toán khó."
               ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "dissolve",
-              "num": null
-            },
-            {
-              "lines": [
-                "Hai, siết chặt tiêu chuẩn an toàn",
-                "và kêu chính phủ ra tay"
-              ],
-              "variant": "stack",
-              "anchor": "top",
-              "motion_in": "rise",
-              "motion_out": "up",
-              "num": null
-            },
-            {
-              "lines": [
-                "Ba, chặn xuất khẩu chip xịn",
-                "và cấm luôn distillation"
-              ],
-              "variant": "stack",
+              "variant": "strike",
               "anchor": "low",
-              "motion_in": "pop",
+              "motion_in": "slideL",
               "motion_out": "shrink",
               "num": null
             },
             {
               "lines": [
-                "Distillation nôm na là gì?",
-                "Dùng AI khổng lồ dạy AI nhỏ",
-                "rẻ hơn, nhanh hơn nhiều"
-              ],
-              "variant": "strike",
-              "anchor": "mid",
-              "motion_in": "fall",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Nghe có vẻ vì an toàn",
-                "~đúng không"
+                "Đừng chờ AGI cứu rỗi,",
+                "hãy tự tối ưu quy trình."
               ],
               "variant": "hero",
-              "anchor": "top",
-              "motion_in": "slideR",
-              "motion_out": "down",
-              "num": null
-            },
-            {
-              "lines": [
-                "Nhưng đây là nước cờ chiến lược"
-              ],
-              "variant": "invert",
               "anchor": "mid",
               "motion_in": "slam",
               "motion_out": "dissolve",
@@ -492,88 +541,38 @@
             },
             {
               "lines": [
-                "Mấy công ty nhỏ hơn",
-                "sẽ khó lòng đuổi kịp",
-                "vì luật chơi quá tốn kém"
-              ],
-              "variant": "strike",
-              "anchor": "low",
-              "motion_in": "wipe",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Bạn đang làm sản phẩm AI?",
-                "Fine-tune hay distillation từ model lớn?"
-              ],
-              "variant": "right",
-              "anchor": "top",
-              "motion_in": "rise",
-              "motion_out": "shrink",
-              "num": null
-            },
-            {
-              "lines": [
-                "Coi chừng nha",
-                "Luật chơi sắp đổi",
-                "chi phí tham gia đắt hơn nhiều"
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Việc nên làm ngay bây giờ",
-                "là giải bài toán thực tế",
-                "bằng công cụ đang có sẵn"
-              ],
-              "variant": "strike",
-              "anchor": "low",
-              "motion_in": "fall",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "An toàn thật hay rào cản giả?",
-                "Bạn tự trả lời đi nhé"
+                "Bạn thấy mức giá mới",
+                "của OpenAI là hợp lý",
+                "hay quá đắt đỏ?"
               ],
               "variant": "invert",
               "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "dissolve",
+              "motion_in": "pop",
+              "motion_out": "down",
               "num": null
             }
           ],
           "sections": [
             {
-              "label": "Mở đầu",
+              "label": "Bẫy Kỷ Nguyên AGI",
               "card_start": 0
             },
             {
-              "label": "Ba bước đề xuất",
-              "card_start": 3
+              "label": "Sự Thật Thương Trường",
+              "card_start": 5
             },
             {
-              "label": "Vì sao là chiến lược",
+              "label": "Bài Học Phân Tầng AI",
               "card_start": 10
             },
             {
-              "label": "Ảnh hưởng tới bạn",
-              "card_start": 13
-            },
-            {
-              "label": "Chốt",
-              "card_start": 16
+              "label": "Tối Ưu Hoặc Bị Đè Bẹp",
+              "card_start": 15
             }
           ]
         },
-        "script_path": "output/2026-09-13/2026-09-13-test-anthropic-ceo-says-its-time-to-pump-the/video/script.json",
-        "script_msg_id": 222,
+        "script_path": "output/2026-09-13/2026-09-13-test-openai-launches-gpt-6-astra-claims-agi-e/video/script.json",
+        "script_msg_id": 224,
         "audio_file_id": null,
         "audio_msg_id": null,
         "mp4_path": null,
