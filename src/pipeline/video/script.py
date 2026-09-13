@@ -37,7 +37,13 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         "BẮT BUỘC giữ nguyên tên riêng cụ thể xuất hiện trong TIÊU ĐỀ/TÓM TẮT (tên người, "
         "tên công ty/sản phẩm) — card HOOK phải nêu rõ ai/hãng nào vừa làm gì, TUYỆT ĐỐI "
         "không thay bằng đại từ mơ hồ như 'họ', 'các trùm AI', 'ông lớn' khi danh tính cụ thể "
-        "đã biết."
+        "đã biết. "
+        "Người xem chỉ nghe MỘT LẦN, không tua lại được: mỗi khi dùng thuật ngữ trừu tượng "
+        "hoặc tên tổ chức lạ (vd 'thâu tóm quy định', 'METR'), câu ngay sau đó PHẢI giải "
+        "thích bằng lời thật đơn giản, không cần biết trước mới hiểu. Tránh xâu chuỗi liên "
+        "tiếp nhiều lập luận trừu tượng mà không xen ví dụ/hệ quả cụ thể. 2-3 card gần cuối "
+        "phải nói thẳng điều này ảnh hưởng gì tới người xem (vd: người làm sản phẩm AI, "
+        "người dùng công nghệ) thay vì chỉ chốt bằng câu hỏi mơ hồ."
     )
     if with_meta:
         system += (
