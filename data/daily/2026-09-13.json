@@ -54,10 +54,10 @@
         },
         "ig": null
       },
-      "ig_attempts": 1
+      "ig_attempts": 2
     },
     "evening": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Anthropic CEO outlines plan to slow AI development",
       "style": "white-split",
@@ -109,7 +109,10 @@
           "url": "https://facebook.com/1381130541740424_122099438181476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18112857200048073"
+        }
       },
       "video": {
         "status": "awaiting_audio",
