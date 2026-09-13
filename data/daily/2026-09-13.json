@@ -112,7 +112,7 @@
         "ig": null
       },
       "video": {
-        "status": "awaiting_audio",
+        "status": "audio_received",
         "meta": {
           "title": "Vì sao các trùm AI bất ngờ đòi giảm tốc độ phát triển?",
           "description": "CEO Anthropic cùng Elon Musk và Sam Altman vừa đồng loạt ủng hộ kế hoạch kiểm soát AI. Tuy nhiên, đằng sau động thái trách nhiệm này lại là chiến thuật thâu tóm quy định nhằm dựng rào cản với các đối thủ nhỏ. Đừng quên nhấn đăng ký kênh A Hít Official để xem thêm nhiều phân tích công nghệ thú vị nhé!",
@@ -308,8 +308,8 @@
         },
         "script_path": "output/2026-09-13/2026-09-13-evening-anthropic-ceo-outlines-plan-to-slow-ai-d/video/script.json",
         "script_msg_id": 221,
-        "audio_file_id": null,
-        "audio_msg_id": null,
+        "audio_file_id": "CQACAgUAAxkBAAPiaqaHvO_mytqmMi3vCacsc62_evMAApUgAAItvjBV3CXplWhycTw9BA",
+        "audio_msg_id": 226,
         "mp4_path": null,
         "seconds": null,
         "render_err": null,
