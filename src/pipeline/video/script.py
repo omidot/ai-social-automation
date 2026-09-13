@@ -16,7 +16,7 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
                  *, with_meta: bool = False) -> tuple[str, str]:
     wmin, wmax = cfg["words_min"], cfg["words_max"]
     shape = ("{sections:[{label,card_start}], "
-             "cards:[{lines,variant,anchor,motion_in,motion_out,num?}]"
+             "cards:[{lines,variant,anchor,motion_in,motion_out,num?,chart?,screenshot?}]"
              + (", publish:{title,description,hashtags,keywords,tiktok_caption}}"
                 if with_meta else "}"))
     system = (

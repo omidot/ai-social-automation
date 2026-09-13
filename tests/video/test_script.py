@@ -268,3 +268,7 @@ def test_validate_accepts_valid_screenshot():
 def test_build_prompt_mentions_chart_and_screenshot():
     sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
     assert "chart" in sysp and "screenshot" in sysp
+
+def test_build_prompt_shape_hint_includes_chart_and_screenshot():
+    sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
+    assert "chart?" in sysp and "screenshot?" in sysp
