@@ -5,6 +5,7 @@ from pathlib import Path
 
 from ..llm import generate as _default_generate, parse_json_response, LLMError
 from ..models import Candidate, PostContent
+from ..write import _IMAN_VOICE
 from . import VideoScriptError
 from .models import Script
 
@@ -21,7 +22,8 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
     system = (
         f"Bạn viết kịch bản video dọc ~{cfg['target_seconds']} giây cho kênh "
         f"\"{voice.get('ten_kenh', '')}\" về AI, phong cách kinetic typography. "
-        f"Giọng: {voice.get('giong', '')}. Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
+        f"{_IMAN_VOICE} "
+        f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Góc bài: {post.angle}. Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. "
         f"CHỈ trả về một object JSON: {shape}. "

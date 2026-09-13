@@ -389,6 +389,27 @@ def test_draft_fresh_video_raises_when_no_candidate_qualifies(wired, monkeypatch
         article_run.draft_fresh_video(root, now, tg=FakeTG())
 
 
+def test_draft_topic_video_uses_supplied_story(wired, monkeypatch):
+    root, _ = wired
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda c, voice, sibling_angle="", generate=None: _art(c.title))
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 13, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft_topic_video(
+        root, now, title="OpenAI ra mắt GPT-6 Astra", url="https://openai.com/astra",
+        body_text="OpenAI công bố GPT-6 Astra ngày 3/9/2026...", tg=FakeTG())
+    assert out == {"status": "awaiting_audio"}
+    assert seen["slot"] == "test"
+    assert seen["title"] == "OpenAI ra mắt GPT-6 Astra"
+    assert seen["source_url"] == "https://openai.com/astra"
+    ds = DailyState(root / "data")
+    assert ds.get_safe("2026-09-13", "morning") is None
+    assert ds.get_safe("2026-09-13", "evening") is None
+
+
 def test_main_notifies_on_draft_failure(monkeypatch):
     def boom(*a, **k):
         raise RuntimeError("boom")

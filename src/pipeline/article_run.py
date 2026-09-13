@@ -254,6 +254,26 @@ def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> d
     raise SystemExit("no fresh real-news candidate available for a test video")
 
 
+def draft_topic_video(root: Path, now: datetime, *, title: str, url: str, body_text: str,
+                      generate=None, tg=None) -> dict:
+    """Draft a video script for a specific, caller-supplied story (e.g. a real
+    launch the automated RSS/HN/Reddit collection missed) instead of picking
+    one automatically. Same 'test' slot / no-posting contract as
+    draft_fresh_video."""
+    from .models import Candidate
+    root = Path(root)
+    generate = generate or _default_generate
+    tg = tg or Telegram()
+    _sources, voice, _settings = _configs(root)
+    cand = Candidate(url=url, title=title, source="", published_at=now,
+                     summary="", full_text=body_text)
+    article = write.write_share(cand, voice, "", generate=generate)
+    return _video_draft.draft(
+        "test", root, title=cand.title, source_url=cand.url,
+        body_text=article.caption_fb, caption_fb=article.caption_fb,
+        angle=article.angle, now=now, generate=generate, tg=tg)
+
+
 class _NoopTelegram:
     """Stand-in used for offline smoke runs when no bot token is configured."""
 
@@ -308,9 +328,20 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--fresh-video", action="store_true",
                     help="draft a video script from an unused real news item "
                          "instead of running the normal --slot flow")
+    ap.add_argument("--topic-title",
+                    help="draft a video script for this specific story "
+                         "(use with --topic-body) instead of auto-discovering one")
+    ap.add_argument("--topic-url", default="")
+    ap.add_argument("--topic-body", default="")
     args = ap.parse_args(argv)
-    if not args.fresh_video and not args.slot:
-        ap.error("--slot is required unless --fresh-video is given")
+    if not args.fresh_video and not args.topic_title and not args.slot:
+        ap.error("--slot is required unless --fresh-video or --topic-title is given")
+    if args.topic_title:
+        out = draft_topic_video(Path(args.root), datetime.now(timezone.utc),
+                                title=args.topic_title, url=args.topic_url,
+                                body_text=args.topic_body)
+        print("SUMMARY:", out.get("status", "awaiting_audio"))
+        return 0
     if args.fresh_video:
         out = draft_fresh_video(Path(args.root), datetime.now(timezone.utc))
         print("SUMMARY:", out.get("status", "awaiting_audio"))
