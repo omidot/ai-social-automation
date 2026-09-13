@@ -10,12 +10,15 @@ const W = 1080 - T.PAD * 2;
 type ChartItem = { label?: string; value: number };
 
 const LineChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; accent: string; ink: string }> = ({ items, unit, reveal, accent, ink }) => {
+  if (items.length === 0) return null;
   const w = W, h = 420;
-  const max = Math.max(...items.map((i) => i.value));
-  const min = Math.min(0, ...items.map((i) => i.value));
+  const values = items.map((i) => i.value);
+  const max = Math.max(...values);
+  const min = Math.min(0, ...values);
   const span = max - min || 1;
+  const denom = items.length > 1 ? items.length - 1 : 1;
   const pts = items.map((it, i) => {
-    const x = (i / (items.length - 1)) * (w - 40) + 20;
+    const x = (i / denom) * (w - 40) + 20;
     const y = h - 30 - ((it.value - min) / span) * (h - 60);
     return [x, y] as const;
   });
@@ -39,6 +42,7 @@ const LineChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; ac
 };
 
 const BarChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; accent: string; ink: string }> = ({ items, unit, reveal, accent, ink }) => {
+  if (items.length === 0) return null;
   const w = W, h = 420, barW = 220, gap = 90;
   const max = Math.max(...items.map((i) => i.value)) || 1;
   const totalW = items.length * barW + (items.length - 1) * gap;
@@ -70,6 +74,7 @@ const BarChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; acc
 };
 
 const HBarChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; accent: string; ink: string }> = ({ items, unit, reveal, accent, ink }) => {
+  if (items.length === 0) return null;
   const w = W, rowH = 96;
   const max = Math.max(...items.map((i) => i.value)) || 1;
   return (
