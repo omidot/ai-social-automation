@@ -179,15 +179,19 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
             tg.send_message(f"⚠️ {date}:{slot} — bài này gắn cờ nhạy cảm, kiểm tra nhanh.")
         except Exception as e:  # noqa: BLE001 - a notice failure must not stop publishing
             log.warning("risk notice send failed: %s", e)
+    schedule_failed = False
     try:
         publish.schedule_slot(ds, meta or _meta(), root, date, slot, now, tg)
     except Exception as e:  # noqa: BLE001 - transient publish failure -> retryable
         ds.set_status(date, slot, "draft")
         _notify_failure(slot, e)
-        return {"slot": slot, "status": "error"}
+        schedule_failed = True
 
-    # The article is scheduled. If video is on, kick off script generation for
-    # the same story — but a video failure must never break the article flow.
+    # Kick off video script generation for the same story regardless of
+    # whether scheduling above succeeded: a transient FB failure here still
+    # leaves the article eligible for retry_unscheduled, which only retries
+    # the schedule call and never revisits video — so this is the one chance
+    # to draft the video. A video failure must never break the article flow.
     if (settings.get("video") or {}).get("enabled"):
         try:
             _video_draft.draft(
@@ -195,12 +199,15 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
                 source_url=(state_sources[0]["url"] if state_sources else ""),
                 body_text=article.caption_fb, caption_fb=article.caption_fb,
                 angle=angle, now=now, generate=generate, tg=tg)
-        except Exception as e:  # noqa: BLE001 - video is secondary; the article is already scheduled
+        except Exception as e:  # noqa: BLE001 - video is secondary; the article flow must continue
             log.warning("video draft_script failed: %s", e)
             try:
                 tg.send_message(f"⚠️ Kịch bản video {slot} lỗi: {e}")
             except Exception:  # noqa: BLE001
                 pass
+
+    if schedule_failed:
+        return {"slot": slot, "status": "error"}
     return ds.get(date, slot)
 
 

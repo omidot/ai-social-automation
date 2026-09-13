@@ -415,6 +415,27 @@ def test_draft_video_failure_does_not_break_article(wired, monkeypatch):
     assert any("Kịch bản video morning lỗi" in m[0] for m in tg.msgs)
 
 
+def test_draft_video_still_drafted_when_schedule_fails(wired, monkeypatch):
+    root, _ = wired
+    _enable_video(root)
+    monkeypatch.setattr(article_run.publish, "schedule_slot",
+                        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("(190) token expired")))
+    monkeypatch.setattr(article_run, "_notify_failure", lambda *a, **k: None)
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=FakeTG(), meta=object())
+    # the article failed to schedule (retryable), but the video script must
+    # still be drafted now — retry_unscheduled only retries the FB call and
+    # never revisits video, so this is the only chance to draft it.
+    assert out == {"slot": "morning", "status": "error"}
+    assert DailyState(root / "data").get("2026-09-06", "morning")["status"] == "draft"
+    assert seen["slot"] == "morning"
+    assert "title" in seen and "caption_fb" in seen
+
+
 def test_draft_no_video_when_disabled(wired, monkeypatch):
     root, _ = wired   # fixture settings.yaml has no video block -> disabled
     called = []
