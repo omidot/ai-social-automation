@@ -40,3 +40,8 @@ def test_align_mjs_syntax_ok():
     r = subprocess.run(["node", "--check", "tools/align.mjs"], cwd=VIDEO,
                        capture_output=True, text=True)
     assert r.returncode == 0, r.stderr
+
+def test_palette_has_accent_color():
+    src = (VIDEO / "src/palette.ts").read_text(encoding="utf-8")
+    assert src.count("#FF4D2E") == 2  # once in LIGHT, once in DARK
+    assert "accent: string;" in src

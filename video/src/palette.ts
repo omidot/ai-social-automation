@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 export type Pal = {
   dark: boolean;
+  accent: string;   // màu nhấn thương hiệu, giống nhau ở cả 2 theme
   ink: string;      // chữ chính
   ink2: string;     // chữ phụ
   gray: string;     // dòng accent
@@ -16,6 +17,7 @@ export type Pal = {
 /** nền SÁNG → chữ đen */
 export const LIGHT: Pal = {
   dark: false,
+  accent: '#FF4D2E',
   ink: '#0B0B0B',
   ink2: '#2E2D2B',
   gray: '#7E7C79',
@@ -30,6 +32,7 @@ export const LIGHT: Pal = {
 /** nền TỐI → chữ trắng, tấm invert đảo thành trắng */
 export const DARK: Pal = {
   dark: true,
+  accent: '#FF4D2E',
   ink: '#FFFFFF',
   ink2: '#DEDEDC',
   gray: '#9E9E9B',
