@@ -211,6 +211,49 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     return ds.get(date, slot)
 
 
+def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> dict:
+    """Draft a video script from a fresh, real news candidate that neither
+    of today's slots already used — for ad hoc pipeline testing once both
+    slots are committed. Never touches morning/evening state and never
+    posts anything; the script is written under a synthetic 'test' slot
+    purely so draft_script.draft() has somewhere to record it."""
+    root = Path(root)
+    generate = generate or _default_generate
+    tg = tg or Telegram()
+    sources, voice, settings = _configs(root)
+    acfg = settings["articles"]
+    date = now.astimezone(timezone.utc).strftime("%Y-%m-%d")
+    ds = DailyState(root / "data")
+
+    topics_cfg = topics.load_topics(root)
+    recent = topics.recent_titles(root, topics_cfg.get("recent_window_days", 45))
+    for slot_name in ("morning", "evening"):
+        used = ds.get_safe(date, slot_name) or {}
+        if used.get("title"):
+            recent.append(used["title"])
+
+    keywords = sources.get("keywords", [])
+    cands = collect.collect(sources, settings, State(root / "data"), now)
+    picked = score.pick_n(cands, 6, acfg["min_score"], now, keywords,
+                          exclude_titles=recent)
+    for _sc, c in picked:
+        if not score.has_body(c):
+            collect.ensure_fulltext(c)
+    picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+
+    for _sc, cand in picked:
+        try:
+            article = write.write_share(cand, voice, "", generate=generate)
+        except write.WriteError as e:
+            log.warning("fresh-video: write_share rejected %r: %s", cand.title, e)
+            continue
+        return _video_draft.draft(
+            "test", root, title=cand.title, source_url=cand.url,
+            body_text=article.caption_fb, caption_fb=article.caption_fb,
+            angle=article.angle, now=now, generate=generate, tg=tg)
+    raise SystemExit("no fresh real-news candidate available for a test video")
+
+
 class _NoopTelegram:
     """Stand-in used for offline smoke runs when no bot token is configured."""
 
@@ -259,10 +302,19 @@ def _notify_failure(slot: str, e: BaseException) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--slot", choices=("morning", "evening"), required=True)
+    ap.add_argument("--slot", choices=("morning", "evening"))
     ap.add_argument("--root", default=".")
     ap.add_argument("--fake-llm", action="store_true")
+    ap.add_argument("--fresh-video", action="store_true",
+                    help="draft a video script from an unused real news item "
+                         "instead of running the normal --slot flow")
     args = ap.parse_args(argv)
+    if not args.fresh_video and not args.slot:
+        ap.error("--slot is required unless --fresh-video is given")
+    if args.fresh_video:
+        out = draft_fresh_video(Path(args.root), datetime.now(timezone.utc))
+        print("SUMMARY:", out.get("status", "awaiting_audio"))
+        return 0
     gen = None
     if args.fake_llm:
         from .llm import _fake_generate as gen  # reuse the existing canned generator

@@ -359,6 +359,36 @@ def test_draft_reports_write_failure(wired, monkeypatch):
     assert "5 công cụ AI dựng video" in tg.msgs[-1][0]
 
 
+def test_draft_fresh_video_uses_unused_real_candidate(wired, monkeypatch):
+    root, _ = wired
+    cand = _news_cand()
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda c, voice, sibling_angle="", generate=None: _art(c.title))
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft_fresh_video(root, now, tg=FakeTG())
+    assert out == {"status": "awaiting_audio"}
+    assert seen["slot"] == "test"
+    assert seen["title"] == cand.title
+    assert seen["source_url"] == cand.url
+    # a fresh test draft must never touch either real daily slot
+    ds = DailyState(root / "data")
+    assert ds.get_safe("2026-09-06", "morning") is None
+    assert ds.get_safe("2026-09-06", "evening") is None
+
+
+def test_draft_fresh_video_raises_when_no_candidate_qualifies(wired, monkeypatch):
+    root, _ = wired
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [])
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    with pytest.raises(SystemExit):
+        article_run.draft_fresh_video(root, now, tg=FakeTG())
+
+
 def test_main_notifies_on_draft_failure(monkeypatch):
     def boom(*a, **k):
         raise RuntimeError("boom")
