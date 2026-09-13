@@ -2,9 +2,10 @@ import React from 'react';
 import { AbsoluteFill, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { LIGHT, DARK, type Pal } from './palette';
 
-/** Nền cố định — một video xuyên suốt mọi clip của kênh. */
+/** Nền video — hai đoạn nối tiếp, chuyển cảnh mềm ở giây 30. */
 export const BG = [
-  { from: 0.0, file: 'bg.mp4', pal: DARK, rate: 1 },
+  { from: 0.0, file: 'bg1.mp4', pal: DARK, rate: 1 },
+  { from: 30.0, file: 'bg2.mp4', pal: DARK, rate: 1 },
 ];
 
 const FADE = 14; // số frame chuyển cảnh giữa hai nền
