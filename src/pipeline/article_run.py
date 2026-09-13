@@ -79,7 +79,13 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
         cands = collect.collect(sources, settings, State(root / "data"), now)
         picked = score.pick_n(cands, 4, acfg["min_score"], now, keywords,
                               exclude_titles=recent)
+        if os.environ.get("ARTICLE_DEBUG") == "1":
+            log.info("picked_after_score=%d: %s", len(picked),
+                     [(sc, c.title, len(c.full_text or ""), len(c.summary or ""))
+                      for sc, c in picked])
         picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+        if os.environ.get("ARTICLE_DEBUG") == "1":
+            log.info("picked_after_has_body=%d", len(picked))
     except collect.CollectError as e:
         log.warning("collect failed (%s) — using the topic bank", e)
     except Exception as e:  # noqa: BLE001 - a broken source must not sink the run
