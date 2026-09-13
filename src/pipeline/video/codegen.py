@@ -29,9 +29,11 @@ def render_variants_mjs(s: Script) -> str:
     lines = [_HEADER, "export const LAYOUT = [\n"]
     for c in s.cards:
         num = "null" if c.num is None else str(c.num)
+        chart = "null" if c.chart is None else json.dumps(c.chart.to_dict(), ensure_ascii=False)
+        shot = "null" if c.screenshot_file is None else _q(c.screenshot_file)
         lines.append(
             f"  [{_q(c.variant)}, {_q(c.anchor)}, {num}, "
-            f"{_q(c.motion_in)}, {_q(c.motion_out)}],\n"
+            f"{_q(c.motion_in)}, {_q(c.motion_out)}, {chart}, {shot}],\n"
         )
     lines.append("];\n")
     return "".join(lines)
