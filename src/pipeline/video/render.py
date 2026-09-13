@@ -1,6 +1,7 @@
 from __future__ import annotations
 import json
 import logging
+import os
 import shutil
 import subprocess
 from datetime import datetime, timezone
@@ -10,6 +11,8 @@ import yaml
 
 from . import AlignError
 from . import align as _align
+from . import codegen as _codegen
+from . import screenshot as _screenshot
 from ..publish import slot_unix
 
 log = logging.getLogger("video.render")
@@ -122,7 +125,6 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
     """Workflow side: render up to `limit` slots sitting at `audio_received`
     (oldest first). Regenerates the Remotion project from `video.script` in
     state; on any failure the slot returns to `awaiting_audio`."""
-    from . import codegen as _codegen
     from .models import Script
 
     # _remotion_render() runs `npx remotion render` with cwd=video_dir, so any
@@ -166,7 +168,23 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
             pid = out_dir.parent.name                    # real story id, not "video" (M2)
             out_mp4 = out_dir / f"{pid}.mp4"
 
-            _codegen.write(Script.from_dict(v["script"]), video_dir)   # C1
+            s = Script.from_dict(v["script"])
+            api_key, cx = os.environ.get("GOOGLE_CSE_API_KEY"), os.environ.get("GOOGLE_CSE_CX")
+            for ci, card in enumerate(s.cards):
+                if card.screenshot is None:
+                    continue
+                if not (api_key and cx):
+                    card.screenshot = None
+                    continue
+                shot_path = video_dir / "public" / "screenshots" / f"{ci}.png"
+                try:
+                    _screenshot.search_and_capture(card.screenshot.query, shot_path,
+                                                   api_key=api_key, cx=cx)
+                    card.screenshot_file = f"screenshots/{ci}.png"
+                except _screenshot.ScreenshotError as e:
+                    log.warning("screenshot card %d failed (%s) -- falling back to text card", ci, e)
+                    card.screenshot = None
+            _codegen.write(s, video_dir)   # C1
 
             raw = tg.download_file(v["audio_file_id"], str(video_dir / "public" / "voice_in"))
             _to_mp3(Path(raw), video_dir / "public" / "voice.mp3", video_dir)

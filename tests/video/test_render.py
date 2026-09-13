@@ -223,6 +223,74 @@ def test_render_pending_regenerates_script_and_renders(tmp_path, monkeypatch):
     assert tok in cards
 
 
+def _mini_script_with_screenshot(token="TOKZZZ"):
+    d = _mini_script_dict(token)
+    d["cards"][0]["screenshot"] = {"query": "GitHub OpenAI Codex"}
+    return d
+
+
+def test_render_pending_captures_screenshot_before_codegen(tmp_path, monkeypatch):
+    ds = _seed(tmp_path, extra_status="audio_received",
+              script=_mini_script_with_screenshot(), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    (tmp_path / "video" / "tools" / "cards.mjs").write_text("//", encoding="utf-8")
+    _mock_pipeline(monkeypatch)
+    monkeypatch.setenv("GOOGLE_CSE_API_KEY", "K")
+    monkeypatch.setenv("GOOGLE_CSE_CX", "CX")
+    captured_calls = []
+    def fake_search_and_capture(query, out_path, *, api_key, cx):
+        captured_calls.append((query, out_path, api_key, cx))
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(b"\x89PNG")
+        return "https://github.com/openai/codex"
+    monkeypatch.setattr(render._screenshot, "search_and_capture", fake_search_and_capture)
+    seen_variants = {}
+    inner_write = render._codegen.write
+    def spy_write(s, video_dir):
+        seen_variants["screenshot_file"] = s.cards[0].screenshot_file
+        return inner_write(s, video_dir)
+    monkeypatch.setattr(render._codegen, "write", spy_write)
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, FakeTG(), tmp_path, now)
+    assert out == ["rendered:2026-09-08:morning"]
+    assert captured_calls[0][0] == "GitHub OpenAI Codex"
+    assert seen_variants["screenshot_file"] is not None
+
+
+def test_render_pending_falls_back_to_text_card_on_screenshot_failure(tmp_path, monkeypatch):
+    ds = _seed(tmp_path, extra_status="audio_received",
+              script=_mini_script_with_screenshot(), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    (tmp_path / "video" / "tools" / "cards.mjs").write_text("//", encoding="utf-8")
+    _mock_pipeline(monkeypatch)
+    monkeypatch.setenv("GOOGLE_CSE_API_KEY", "K")
+    monkeypatch.setenv("GOOGLE_CSE_CX", "CX")
+    def boom(query, out_path, *, api_key, cx):
+        raise render._screenshot.ScreenshotError("no results")
+    monkeypatch.setattr(render._screenshot, "search_and_capture", boom)
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, FakeTG(), tmp_path, now)
+    # render must still succeed end to end -- the failed screenshot card degrades, nothing crashes
+    assert out == ["rendered:2026-09-08:morning"]
+
+
+def test_render_pending_screenshot_skipped_without_secrets(tmp_path, monkeypatch):
+    ds = _seed(tmp_path, extra_status="audio_received",
+              script=_mini_script_with_screenshot(), audio_file_id="V")
+    (tmp_path / "video" / "tools").mkdir(parents=True)
+    (tmp_path / "video" / "tools" / "cards.mjs").write_text("//", encoding="utf-8")
+    _mock_pipeline(monkeypatch)
+    monkeypatch.delenv("GOOGLE_CSE_API_KEY", raising=False)
+    monkeypatch.delenv("GOOGLE_CSE_CX", raising=False)
+    called = []
+    monkeypatch.setattr(render._screenshot, "search_and_capture",
+                        lambda *a, **k: called.append(1))
+    now = datetime(2026, 9, 8, 6, 0, tzinfo=timezone.utc)
+    out = render.render_pending(ds, FakeTG(), tmp_path, now)
+    assert out == ["rendered:2026-09-08:morning"]
+    assert called == []  # never even attempted a network call
+
+
 def test_render_pending_resolves_relative_root_to_absolute_out_mp4(tmp_path, monkeypatch):
     # Real incident: render_run.main() always calls render_pending(root=Path("."))
     # -- a relative path. _remotion_render() runs `npx remotion render` with
