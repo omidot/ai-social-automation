@@ -1,0 +1,557 @@
+{
+  "date": "2026-09-10",
+  "posts": {
+    "morning": {
+      "status": "posted",
+      "format": "share",
+      "title": "Cách dùng AI viết 30 bài đăng mạng xã hội trong một buổi",
+      "style": "navy-rail",
+      "topic_key": "cach-dung-ai-viet-30-bai-ang-mang-xa-hoi-trong-mot",
+      "text_fb": "Lên kế hoạch nội dung cho cả tháng luôn là cơn ác mộng nếu bạn làm theo cách thủ công. Nhiều người mất cả ngày chỉ để nghĩ xem hôm nay đăng gì, dẫn đến việc nội dung bị đứt gãy và thiếu tính nhất quán.\n\nQuy trình chuẩn hóa bằng AI sẽ giải quyết triệt để vấn đề này chỉ trong một buổi làm việc. Đầu tiên, bạn dùng ChatGPT để phân tích đối tượng mục tiêu và xây dựng bốn trụ cột nội dung cốt lõi. Từ bộ khung này, bạn yêu cầu AI tạo ngay ba mươi ý tưởng bài viết chi tiết, phân bổ đều cho từng tuần.\n\nTiếp theo, hãy đưa toàn bộ dàn ý đó sang Claude. Đây là công cụ xuất sắc trong việc sáng tạo văn phong tự nhiên. Bạn chỉ cần nạp cho Claude một bài viết mẫu của chính mình để máy học giọng văn, sau đó triển khai từng nhóm năm bài viết một. Cách làm này giúp bài đăng giữ được cá tính riêng mà không bị rập khuôn.\n\nCuối cùng, lưu trữ toàn bộ ba mươi bài đăng vào Notion để theo dõi lịch xuất bản. Việc hệ thống hóa từ khâu ý tưởng, viết lách đến quản lý sẽ giúp bạn chủ động hoàn toàn quỹ thời gian và duy trì kênh luôn hoạt động hiệu quả.\n\nHãy thử áp dụng quy trình này ngay tuần này để cảm nhận sự thay đổi rõ rệt trong năng suất công việc của bạn.",
+      "text_ig": "Lên nội dung cả tháng chỉ trong hai giờ nhờ quy trình kết hợp ChatGPT, Claude và Notion. Tối ưu năng suất, giữ vững văn phong cá nhân và không lo cạn ý tưởng. Thử ngay hôm nay để làm chủ thời gian!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#SangTaoNoiDung",
+        "#ChatGPT",
+        "#ClaudeAI",
+        "#Notion",
+        "#MeoAI",
+        "#HieuSuatCongViec",
+        "#ContentMarketing",
+        "#AIForWork"
+      ],
+      "images": [
+        "assets/posts/2026-09-10/morning/01.jpg",
+        "assets/posts/2026-09-10/morning/02.jpg",
+        "assets/posts/2026-09-10/morning/03.jpg",
+        "assets/posts/2026-09-10/morning/04.jpg",
+        "assets/posts/2026-09-10/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "Bài viết giúp bạn làm chủ quy trình lên ý tưởng và viết nội dung tự động cho cả tháng chỉ trong vài giờ.",
+      "fb_post_id": "1381130541740424_122097305067476035",
+      "ig_due": "2026-09-10T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122097305067476035",
+          "url": "https://facebook.com/1381130541740424_122097305067476035",
+          "scheduled": true
+        },
+        "ig": {
+          "ok": true,
+          "media_id": "18084704996275688"
+        }
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "meta": {
+          "title": "Bí quyết dùng AI viết 30 bài đăng cả tháng chỉ trong 2 giờ!",
+          "description": "Bạn mệt mỏi vì ngày nào cũng phải vắt óc nghĩ nội dung bài đăng? Quy trình chuẩn hóa bằng AI sẽ giải quyết vấn đề này vô cùng dễ dàng và nhanh chóng. Bằng cách kết hợp ChatGPT, Claude và Notion, bạn sẽ chuẩn bị xong bài đăng cả tháng chỉ trong một buổi. Bấm theo dõi kênh A Hít Official để cập nhật thêm nhiều mẹo AI thực chiến nhé!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#CongNgheAI",
+            "#MeoHayAI",
+            "#ChatGPT",
+            "#ClaudeAI",
+            "#NotionVN",
+            "#SangTaoNoiDung",
+            "#ContentCreator",
+            "#HocKienThuc"
+          ],
+          "keywords": [
+            "A Hít Official",
+            "AI content creation",
+            "cách dùng ChatGPT",
+            "mẹo Claude AI",
+            "quản lý nội dung Notion",
+            "quy trình làm content bằng AI",
+            "viết bài tự động"
+          ],
+          "tiktok_caption": "Cách tạo 30 bài đăng cả tháng bằng AI siêu nhanh! #AHitOfficial #MeoAI #ContentCreator #ChatGPT"
+        },
+        "spoken_text": "Viết 30 bài đăng mạng xã hội chỉ trong một buổi?\nNghe tưởng chừng vô lý nhưng lại cực kỳ đơn giản!\nDừng ngay việc ngồi vò đầu vắt óc nghĩ bài mỗi ngày.\nQuy trình chuẩn bằng AI giúp bạn xong cả tháng.\nBước 1: Dùng ChatGPT phân tích khách hàng.\nTạo dựng bộ khung 4 trụ cột cốt lõi.\nYêu cầu AI tạo ngay 30 ý tưởng chi tiết.\nBước 2: Đưa dàn ý sang công cụ Claude.\nCho AI đọc bài mẫu học văn phong cá nhân.\nTriển khai nội dung nhóm 5 bài một lần.\nGiữ trọn cá tính, chẳng sợ rập khuôn!\nBước 3: Lưu toàn bộ vào không gian Notion.\nTheo dõi lịch đăng, kiểm soát tiến độ dễ dàng.\nLàm chủ quỹ thời gian, thảnh thơi cả tháng dài.\nÁp dụng ngay tuần này và follow A Hít Official nhé!",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Viết 30 bài đăng",
+                "mạng xã hội",
+                "chỉ trong một buổi?"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 30
+            },
+            {
+              "lines": [
+                "Nghe tưởng chừng vô lý",
+                "~nhưng",
+                "lại cực kỳ đơn giản!"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Dừng ngay việc ngồi vò đầu",
+                "vắt óc nghĩ bài mỗi ngày."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Quy trình chuẩn bằng AI",
+                "giúp bạn xong cả tháng."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bước 1: Dùng ChatGPT",
+                "phân tích khách hàng."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 1
+            },
+            {
+              "lines": [
+                "Tạo dựng bộ khung",
+                "4 trụ cột cốt lõi."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": "4"
+            },
+            {
+              "lines": [
+                "Yêu cầu AI tạo ngay",
+                "30 ý tưởng chi tiết."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": "30"
+            },
+            {
+              "lines": [
+                "Bước 2: Đưa dàn ý",
+                "sang công cụ Claude."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": 2
+            },
+            {
+              "lines": [
+                "Cho AI đọc bài mẫu",
+                "học văn phong cá nhân."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Triển khai nội dung",
+                "nhóm 5 bài một lần."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": "5"
+            },
+            {
+              "lines": [
+                "Giữ trọn cá tính,",
+                "chẳng sợ rập khuôn!"
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bước 3: Lưu toàn bộ",
+                "vào không gian Notion."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": 3
+            },
+            {
+              "lines": [
+                "Theo dõi lịch đăng,",
+                "kiểm soát tiến độ dễ dàng."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Làm chủ quỹ thời gian,",
+                "thảnh thơi cả tháng dài."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Áp dụng ngay tuần này",
+                "~và",
+                "follow A Hít Official nhé!"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Đặt vấn đề",
+              "card_start": 0
+            },
+            {
+              "label": "Bước 1: Lên ý tưởng với ChatGPT",
+              "card_start": 4
+            },
+            {
+              "label": "Bước 2: Viết nội dung bằng Claude",
+              "card_start": 7
+            },
+            {
+              "label": "Bước 3: Quản lý & Tổng kết",
+              "card_start": 11
+            }
+          ]
+        },
+        "script_path": "output/2026-09-10/2026-09-10-morning-cach-dung-ai-viet-30-bai-ang-mang-xa-hoi/video/script.json",
+        "script_msg_id": 163,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Quy trình 4 bước dùng AI viết ebook tạo thu nhập thụ động",
+      "style": "warm-rail",
+      "topic_key": "quy-trinh-4-buoc-dung-ai-viet-ebook-tao-thu-nhap-t",
+      "text_fb": "Nhiều bạn nghĩ viết một cuốn ebook tốn cả vài tháng trời. Nhưng với sự hỗ trợ của các công cụ AI hiện nay, bạn hoàn toàn có thể đóng gói kiến thức thành một cuốn sách điện tử chỉnh chu chỉ trong vài ngày.\n\nĐầu tiên, bạn cần xác định chủ đề mà thị trường đang tìm kiếm và dùng ChatGPT để xây dựng dàn ý chi tiết. AI sẽ giúp bạn thu thập các câu hỏi phổ biến của người học, từ đó phân chia thành các chương sách logic.\n\nTiếp theo, hãy đưa từng chương dàn ý vào Claude để triển khai nội dung chi tiết. Claude có khả năng viết văn phong tự nhiên, mượt mà. Bạn lưu ý thêm các ví dụ thực tế và trải nghiệm cá nhân để cuốn sách có dấu ấn riêng, không bị rập khuôn.\n\nKhi đã có nội dung, bạn chuyển sang bước thiết kế giao diện bằng Canva. Tìm các mẫu template ebook sẵn có, điều chỉnh font chữ dễ đọc và chèn thêm hình ảnh minh họa cho sinh động. Sau đó xuất ra định dạng PDF.\n\nCuối cùng, hãy đưa file PDF lên Gumroad để thiết lập hệ thống bán tự động. Nền tảng này sẽ xử lý thanh toán và tự động gửi file cho khách hàng mỗi khi có đơn thành công.\n\nBạn chỉ cần tập trung truyền thông đường link bán hàng trên các kênh cá nhân để bắt đầu tạo thu nhập thụ động.",
+      "text_ig": "Cách đóng gói kiến thức thành ebook và bán tự động nhờ AI. Xem ngay quy trình 4 bước đơn giản để tạo nguồn thu nhập thụ động bền vững!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#EbookAI",
+        "#ThuNhapThuDong",
+        "#ChatGPT",
+        "#ClaudeAI",
+        "#Canva",
+        "#Gumroad",
+        "#KinhDoanhOnline",
+        "#MeoAI",
+        "#VietSachAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-10/evening/01.jpg",
+        "assets/posts/2026-09-10/evening/02.jpg",
+        "assets/posts/2026-09-10/evening/03.jpg",
+        "assets/posts/2026-09-10/evening/04.jpg",
+        "assets/posts/2026-09-10/evening/05.jpg",
+        "assets/posts/2026-09-10/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-10/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "Bài viết từng bước hướng dẫn bạn cách dùng AI đóng gói kiến thức thành cuốn ebook hoàn chỉnh để bắt đầu bán online.",
+      "fb_post_id": "1381130541740424_122097605637476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122097605637476035",
+          "url": "https://facebook.com/1381130541740424_122097605637476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AXsn37AHrjA3cLuwoOhk6NR"
+        }
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "meta": {
+          "title": "Cách viết Ebook bằng AI cực nhanh chỉ trong 4 bước đơn giản",
+          "description": "Viết một cuốn Ebook không còn tốn cả vài tháng như bạn nghĩ. Với sự hỗ trợ từ ChatGPT, Claude và Canva, bạn có thể đóng gói kiến thức và xuất bản dễ dàng. Nền tảng Gumroad sẽ giúp bạn tự động hóa toàn bộ khâu bán hàng. Hãy theo dõi kênh A Hít Official để học thêm nhiều công cụ AI đỉnh cao mỗi ngày!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AI",
+            "#Ebook",
+            "#ChatGPT",
+            "#ClaudeAI",
+            "#Canva",
+            "#Gumroad",
+            "#KinhDoanhOnline",
+            "#ThuNhapThuDong",
+            "#MeoAI"
+          ],
+          "keywords": [
+            "viet ebook bang ai",
+            "huong dan ai",
+            "chatgpt viet sach",
+            "claude ai viet lach",
+            "canva ebook",
+            "gumroad ban ebook",
+            "a hit official"
+          ],
+          "tiktok_caption": "Tạo Ebook tự động cực nhanh cùng AI chỉ với 4 bước đơn giản! #AHitOfficial #AI #Ebook #ChatGPT #MeoAI"
+        },
+        "spoken_text": "Muốn viết một cuốn Ebook thì sợ tốn vài tháng?\nThực ra với AI bạn chỉ cần vài ngày!\nBước 1: Dùng ChatGPT nghiên cứu thị trường và tạo dàn ý.\nAI tổng hợp câu hỏi người đọc thắc mắc nhất.\nBước 2: Đưa dàn ý sang Claude viết chi tiết.\nNhớ thêm câu chuyện cá nhân cái cho sách mượt mà hơn!\nBước 3: Thiết kế giao diện bằng Canva chuyên nghiệp.\nChỉnh font chữ đẹp rồi xuất ra file PDF.\nBước 4: Đưa file PDF lên hệ thống Gumroad.\nNền tảng tự thu tiền và tự động gửi sách.\nBạn chỉ cần chia sẻ link lên các trang cá nhân.\nĐóng gói kiến thức và tạo thu nhập ngay!\nTheo dõi A Hít Official để làm chủ AI!",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Muốn viết một cuốn Ebook",
+                "~thì",
+                "sợ tốn vài tháng?"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Thực ra với AI",
+                "bạn chỉ cần vài ngày!"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bước 1: Dùng ChatGPT",
+                "nghiên cứu thị trường",
+                "và tạo dàn ý."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": 1
+            },
+            {
+              "lines": [
+                "AI tổng hợp câu hỏi",
+                "người đọc thắc mắc nhất."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bước 2: Đưa dàn ý",
+                "sang Claude viết chi tiết."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 2
+            },
+            {
+              "lines": [
+                "Nhớ thêm câu chuyện cá nhân",
+                "~cái",
+                "cho sách mượt mà hơn!"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bước 3: Thiết kế giao diện",
+                "bằng Canva chuyên nghiệp."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": 3
+            },
+            {
+              "lines": [
+                "Chỉnh font chữ đẹp",
+                "rồi xuất ra file PDF."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bước 4: Đưa file PDF",
+                "lên hệ thống Gumroad."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": 4
+            },
+            {
+              "lines": [
+                "Nền tảng tự thu tiền",
+                "và tự động gửi sách."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null
+            },
+            {
+              "lines": [
+                "Bạn chỉ cần chia sẻ link",
+                "lên các trang cá nhân."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Đóng gói kiến thức",
+                "và tạo thu nhập ngay!"
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null
+            },
+            {
+              "lines": [
+                "Theo dõi A Hít Official",
+                "để làm chủ AI!"
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Đặt vấn đề",
+              "card_start": 0
+            },
+            {
+              "label": "Tạo nội dung với AI",
+              "card_start": 2
+            },
+            {
+              "label": "Thiết kế & Bán tự động",
+              "card_start": 6
+            },
+            {
+              "label": "Tổng kết & Kêu gọi",
+              "card_start": 11
+            }
+          ]
+        },
+        "script_path": "output/2026-09-10/2026-09-10-evening-quy-trinh-4-buoc-dung-ai-viet-ebook-tao/video/script.json",
+        "script_msg_id": 172,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}

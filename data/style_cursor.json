@@ -1,6 +1,13 @@
 {
-  "last": "white-rail",
+  "last": "mono-bar",
   "recent": [
+    "mono-bar",
+    "warm-bar",
+    "navy-bar",
+    "white-bar",
+    "mono-rail",
+    "warm-rail",
+    "navy-rail",
     "white-rail",
     "mono-centered",
     "warm-centered",
