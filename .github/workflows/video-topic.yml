@@ -5,31 +5,36 @@ on:
       title:
         description: 'Story title'
         required: true
-        default: "OpenAI launches GPT-6 Astra, claims 'AGI era' has arrived"
+        default: 'GPT-6 Astra vs Claude Fable 5.1: the benchmark battle splits down the middle'
       url:
         description: 'Source URL'
         required: false
-        default: 'https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html'
+        default: 'https://artificialanalysis.ai/models/comparisons/gpt-6-astra-vs-claude-fable-5-1'
       body:
         description: 'Facts to write from (plain text, any language)'
         required: true
         default: >-
-          OpenAI officially launched GPT-6 Astra on September 3, 2026, calling
-          it the world's most intelligent and aligned AI model. Astra earned
-          near-perfect scores on key AI reasoning benchmarks, beating both
-          OpenAI's own prior model GPT-5.6 Sol and rival Anthropic's Claude
-          Fable 5. It is state-of-the-art at cybersecurity, computer use,
-          software engineering, professional work, and science. Rollout is
-          phased: companies in OpenAI's application-based cybersecurity
-          program get access first, followed by ChatGPT Plus/Pro/Business/
-          Enterprise users, the OpenAI API, and Amazon Web Services in the
-          coming days. Pricing on the standard API is $10 per million input
-          tokens and $50 per million output tokens -- 2.5 times the current
-          promotional rate of GPT-5.6 Sol. OpenAI President Greg Brockman
-          said future observers might look back at Astra as the model
-          marking the arrival of the "AGI era." The launch also drew
-          scrutiny: coverage noted rising safety concerns and a "curious
-          false start" in OpenAI's initial rollout announcement.
+          OpenAI's GPT-6 Astra (launched September 3, 2026) and Anthropic's
+          Claude Fable 5.1 are now going head to head, and the two sides
+          can't even agree on who wins. On OpenAI's own comparison table,
+          Astra leads Fable 5.1 on nearly every published benchmark row. But
+          independent evaluator Artificial Analysis reverses that verdict.
+          In robot control and computer use, Astra crushes Fable 5.1: 95%
+          success versus just 40%, plus advantages in speed, cost,
+          debugging and agentic tasks. In coding, Astra wins the published
+          benchmark rows by a small margin and wins on efficiency outright,
+          but Fable 5.1 holds the only independent coding-agent score that
+          beats both models. On raw math, Astra scored 97.6% on
+          FrontierMath Tier 4 v2. On raw generation speed, Fable 5.1 is
+          actually faster: 65.0 tokens per second versus Astra's 53.9. Both
+          models charge the same headline price, $10 per million input
+          tokens and $50 per million output tokens, but Artificial Analysis
+          found Fable 5.1 costs $3.76 per Intelligence Index task versus
+          Astra's $1.67, because Astra needs far fewer tokens to reach the
+          same score. The upshot: Astra wins research-level math,
+          cybersecurity and abstract reasoning; Fable 5.1 wins agentic
+          coding, scientific research agents and cache economics -- there
+          is no single overall winner.
 permissions:
   contents: write
 concurrency:
