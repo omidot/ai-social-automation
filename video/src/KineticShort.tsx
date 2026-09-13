@@ -5,6 +5,7 @@ import {
 } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { BgVideo, palAt } from './BgVideo';
+import { ChartCard } from './Chart';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { Shots } from './Shots';
 import { Cutouts } from './Cutouts';
@@ -30,6 +31,7 @@ const CardView: React.FC<{ card: Card }> = ({ card }) => {
   shown(card).forEach((l, i) => { if (t >= l.start - 0.02) activeIdx = i; });
 
   const p = { card, ff: fontFamily, leaving, activeIdx };
+  if (card.chart) return <ChartCard {...p} />;
   switch (card.variant) {
     case 'hero': return <Hero {...p} />;
     case 'invert': return <Invert {...p} />;

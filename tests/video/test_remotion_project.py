@@ -57,3 +57,14 @@ def test_layouts_stack_accent_uses_brand_color():
 def test_layouts_numeral_badge_uses_accent_border():
     src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
     assert "border: `4px solid ${pal.accent}`" in src
+
+def test_chart_tsx_exists_and_exports_chartcard():
+    assert (VIDEO / "src/Chart.tsx").is_file()
+    src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
+    assert "export const ChartCard" in src
+    assert "'line'" in src and "'bar'" in src and "'hbar'" in src
+
+def test_kineticshort_renders_chart_before_variant_switch():
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "ChartCard" in src
+    assert "card.chart" in src
