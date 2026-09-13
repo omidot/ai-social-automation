@@ -11,6 +11,8 @@ export type Line = { text: string; start: number; end: number; hidden?: boolean 
 export type Card = {
   index: number; lines: Line[]; start: number; end: number; out: number; section: string;
   variant: string; anchor: 'top' | 'mid' | 'low'; num?: number; motion: Motion; exit: Exit;
+  chart?: { kind: 'line' | 'bar' | 'hbar'; items: { label?: string; value: number }[]; unit?: string };
+  screenshotFile?: string;
 };
 export type P = { card: Card; ff: string; leaving: number; activeIdx: number };
 
@@ -28,7 +30,7 @@ export const anchorStyle = (a: string, push = 0): React.CSSProperties =>
       ? { justifyContent: 'flex-end', paddingBottom: 1920 * 0.24 }   // card thấp không bị ảnh che
       : { justifyContent: 'center', transform: `translateY(${-46 + push * 150}px)` };
 
-const Frame: React.FC<{ card: Card; align: 'flex-start' | 'center' | 'flex-end'; children: React.ReactNode }> = ({ card, align, children }) => {
+export const Frame: React.FC<{ card: Card; align: 'flex-start' | 'center' | 'flex-end'; children: React.ReactNode }> = ({ card, align, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const push = shotPushAt(frame / fps);
@@ -53,7 +55,7 @@ export const Stack: React.FC<P & { mirror?: boolean }> = ({ card, ff, leaving, a
         const w = T.WEIGHT[role];
         const size = fit(l.text, ff, w, T.SIZE[role]);
         const a = useMotion(frame, fps, Math.max(l.start, card.start), leaving, T.EXIT, card.motion, card.exit);
-        const color = role === 'accent' ? (n === 1 ? pal.ink : pal.gray) : role === 'small' ? pal.ink2 : pal.ink;
+        const color = role === 'accent' ? pal.accent : role === 'small' ? pal.ink2 : pal.ink;
         return (
           <div key={i} style={{
             position: 'relative', display: 'inline-block', margin: '9px 0', opacity: a.opacity,
@@ -63,6 +65,7 @@ export const Stack: React.FC<P & { mirror?: boolean }> = ({ card, ff, leaving, a
             <span style={{
               fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.04, color,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre', textShadow: pal.shadow,
+              textTransform: role === 'accent' ? 'uppercase' : 'none',
             }}>{l.text}</span>
             {i === activeIdx ? <SelectionBox since={frame - ls[activeIdx].start * fps} leaving={leaving} mirror={mirror} /> : null}
           </div>
@@ -184,7 +187,7 @@ export const Stair: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
             opacity: a.opacity, transform: a.transform, filter: a.filter, clipPath: a.clipPath, transformOrigin: 'left center',
           }}>
             <span style={{
-              fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.05, color: i === n - 1 ? pal.ink : pal.gray,
+              fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.05, color: i === n - 1 ? pal.accent : pal.gray,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre', textShadow: pal.shadow,
             }}>{l.text}</span>
             {i === activeIdx ? <SelectionBox since={frame - ls[activeIdx].start * fps} leaving={leaving} /> : null}
@@ -207,10 +210,11 @@ export const Numeral: React.FC<P> = ({ card, ff, leaving }) => {
   return (
     <Frame card={card} align="flex-start">
       <div style={{
-        width: 168, height: 168, background: pal.ink, borderRadius: 22, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        width: 168, height: 168, background: 'rgba(0,0,0,0.35)', border: `4px solid ${pal.accent}`, borderRadius: 22,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
         marginBottom: 30, opacity: b.opacity, transform: `${b.transform} rotate(${spin}deg)`, filter: b.filter,
       }}>
-        <span style={{ fontFamily: ff, fontWeight: '900', fontSize: 104, color: pal.dark ? '#0A0A0A' : '#FFFFFF', lineHeight: 1 }}>{card.num}</span>
+        <span style={{ fontFamily: ff, fontWeight: '900', fontSize: 104, color: pal.accent, lineHeight: 1 }}>{card.num}</span>
       </div>
       {ls.map((l, i) => {
         const w = i === n - 1 ? '900' : '700';
@@ -249,7 +253,7 @@ export const Strike: React.FC<P> = ({ card, ff, leaving }) => {
             transform: a.transform, filter: a.filter, clipPath: a.clipPath, transformOrigin: 'left center',
           }}>
             <span style={{
-              fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.05, color: i === n - 1 ? pal.ink : pal.gray,
+              fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.05, color: i === n - 1 ? pal.accent : pal.gray,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre', textShadow: pal.shadow,
             }}>{l.text}</span>
             <div style={{ position: 'absolute', left: -6, right: -6, top: '52%', height: 9, background: pal.ink, transform: `scaleX(${cut})`, transformOrigin: 'left center' }} />

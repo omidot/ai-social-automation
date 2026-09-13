@@ -45,3 +45,15 @@ def test_palette_has_accent_color():
     src = (VIDEO / "src/palette.ts").read_text(encoding="utf-8")
     assert src.count("#FF4D2E") == 2  # once in LIGHT, once in DARK
     assert "accent: string;" in src
+
+def test_layouts_export_frame():
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "export const Frame" in src
+
+def test_layouts_stack_accent_uses_brand_color():
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "role === 'accent' ? pal.accent" in src
+
+def test_layouts_numeral_badge_uses_accent_border():
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "border: `4px solid ${pal.accent}`" in src
