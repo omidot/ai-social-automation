@@ -1,4 +1,4 @@
-from pipeline.video.models import Card, SectionMark, Script
+from pipeline.video.models import Card, SectionMark, Script, ChartSpec, ScreenshotSpec
 from pipeline.video import variants
 
 def C(lines, variant="stack", anchor="mid", mi="rise", mo="up", num=None):
@@ -44,3 +44,23 @@ def test_anchor_breaks_three_in_a_row():
                sections=[SectionMark("A", 0)])
     out = variants.normalize(s)
     assert not (out.cards[0].anchor == out.cards[1].anchor == out.cards[2].anchor)
+
+def test_chart_card_with_digit_is_not_forced_to_numeral():
+    chart_card = C(["Astra rẻ hơn Fable 5.1", "95% so với 40%"])
+    chart_card.chart = ChartSpec(kind="hbar", items=[{"label": "Astra", "value": 95},
+                                                     {"label": "Fable 5.1", "value": 40}])
+    s = Script(cards=[C(["mở đầu"]), chart_card, C(["kết"])],
+               sections=[SectionMark("A", 0)])
+    out = variants.normalize(s)
+    assert out.cards[1].variant == chart_card.variant  # unchanged, still whatever the LLM picked
+    assert out.cards[1].chart == chart_card.chart
+
+
+def test_screenshot_card_as_last_card_is_not_forced_to_invert():
+    shot_card = C(["Xem trang GitHub của repo này"])
+    shot_card.screenshot = ScreenshotSpec(query="GitHub OpenAI Codex")
+    s = Script(cards=[C(["mở đầu"]), shot_card],
+               sections=[SectionMark("A", 0)])
+    out = variants.normalize(s)
+    assert out.cards[-1].variant == shot_card.variant
+    assert out.cards[-1].screenshot == shot_card.screenshot

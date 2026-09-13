@@ -43,18 +43,21 @@ def normalize(s: Script) -> Script:
         if c.motion_out not in VALID_MOTION_OUT:
             c.motion_out = "up"
 
-        # 2. digit card -> numeral
+        typed = c.chart is not None or c.screenshot is not None
+
+        # 2. digit card -> numeral (skip cards already typed as chart/screenshot)
         joined = " ".join(l for l in c.lines if not l.startswith("~"))
-        if _DIGIT.search(joined):
+        if not typed and _DIGIT.search(joined):
             if c.num is None:
                 c.num = _first_int(joined)
             c.variant = "numeral"
 
-        # 3. section-final / last-card variants
-        if i == n - 1:
-            c.variant = "invert"
-        elif i in finals and c.variant in {"stack", "right"}:
-            c.variant = "strike"
+        # 3. section-final / last-card variants (skip cards already typed as chart/screenshot)
+        if not typed:
+            if i == n - 1:
+                c.variant = "invert"
+            elif i in finals and c.variant in {"stack", "right"}:
+                c.variant = "strike"
 
     # 4. anchor: no 3 in a row
     for i in range(2, n):
