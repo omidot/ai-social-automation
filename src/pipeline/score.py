@@ -1,11 +1,17 @@
 from __future__ import annotations
-import logging, math, re
+import logging, math, os, re
 from datetime import datetime
 from difflib import SequenceMatcher
 
 from .models import Candidate
 
 log = logging.getLogger("score")
+def _DEBUG() -> bool:
+    # Re-read the env var on every call (not cached at import time) so that
+    # tests can toggle it with monkeypatch.setenv/delenv after this module
+    # has already been imported, and so a long-lived process can be flipped
+    # into debug mode without a restart.
+    return os.environ.get("ARTICLE_DEBUG") == "1"
 
 # Short/ambiguous keyword tokens that must only be honoured when they hit the
 # TITLE — never a bare summary match (they collide with ordinary words and
@@ -110,12 +116,24 @@ def pick(cands: list[Candidate], min_score: float, now: datetime,
 def pick_n(cands, n, min_score, now, keywords, exclude_titles=()):
     scored = [(score_candidate(c, now, cands, keywords), c) for c in cands]
     scored.sort(key=lambda t: t[0], reverse=True)
+    if _DEBUG():
+        for sc, c in scored:
+            hours = max(0.0, (now - c.published_at).total_seconds() / 3600.0)
+            log.info(
+                "cand=%r source=%s age_h=%.1f recency=%.1f popularity=%.1f "
+                "cross_source=%.1f keyword_fit=%.1f source_spread=%.1f total=%.1f "
+                "min_score=%.1f",
+                c.title, c.source, hours, _recency(c, now), _popularity(c),
+                _cross_source(c, cands), _keyword_fit(c, keywords),
+                _source_spread(c), sc, min_score)
     picked: list[tuple[float, Candidate]] = []
     for sc, c in scored:
         if not is_ai_relevant(c, keywords):
             log.info("skip non-AI: %s", c.title)
             continue
         if sc < min_score:
+            if _DEBUG():
+                log.info("reject %r: below min_score (%.1f < %.1f)", c.title, sc, min_score)
             break
         blockers = list(exclude_titles) + [pc.title for _, pc in picked]
         if any(SequenceMatcher(None, c.title.lower(), b.lower()).ratio() >= 0.5

@@ -1,5 +1,5 @@
 from __future__ import annotations
-import logging, time
+import logging, os, time
 from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -14,6 +14,12 @@ from .state import State
 log = logging.getLogger("collect")
 _HTTP = httpx.Client(timeout=20.0, follow_redirects=True,
                      headers={"User-Agent": "ai-social-bot/0.1 (+github actions)"})
+def _DEBUG() -> bool:
+    # Re-read the env var on every call (not cached at import time) so that
+    # tests can toggle it with monkeypatch.setenv/delenv after this module
+    # has already been imported, and so a long-lived process can be flipped
+    # into debug mode without a restart.
+    return os.environ.get("ARTICLE_DEBUG") == "1"
 MAX_AGE_HOURS = 48
 
 
@@ -99,16 +105,23 @@ def from_rss(feeds: list[dict], now: datetime) -> list[Candidate]:
             raw = _get(feed["url"]).text
         except Exception as e:  # noqa: BLE001
             log.warning("rss %s failed: %s", feed["name"], e)
+            if _DEBUG():
+                log.info("feed=%s status=error error=%s", feed["name"], e)
             continue
         parsed = feedparser.parse(raw)
+        fresh_count = 0
         for e in parsed.entries:
             dt = _parse_date(e)
             if not dt or not _fresh(dt, now):
                 continue
+            fresh_count += 1
             out.append(Candidate(
                 url=e.get("link", ""), title=e.get("title", "").strip(),
                 source=f"rss:{feed['name']}", published_at=dt,
                 summary=(e.get("summary", "") or "")[:500]))
+        if _DEBUG():
+            log.info("feed=%s parsed=%d fresh=%d", feed["name"],
+                     len(parsed.entries), fresh_count)
     return out
 
 

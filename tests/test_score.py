@@ -1,3 +1,4 @@
+import logging
 import math
 from datetime import datetime, timedelta, timezone
 from pipeline.models import Candidate
@@ -6,6 +7,27 @@ from pipeline.score import pick_n
 
 NOW = datetime(2026, 9, 3, 12, 0, tzinfo=timezone.utc)
 KW = ["AI", "mô hình", "OpenAI"]
+
+
+def test_pick_n_debug_logs_component_breakdown(monkeypatch, caplog):
+    monkeypatch.setenv("ARTICLE_DEBUG", "1")
+    cand = _c("OpenAI ships GPT-6", hint=0)
+    with caplog.at_level(logging.INFO, logger="score"):
+        pick_n([cand], 1, min_score=1000, now=datetime(2026, 9, 5, 8, tzinfo=timezone.utc),
+              keywords=["AI", "GPT"])
+    text = "\n".join(caplog.messages)
+    assert "OpenAI ships GPT-6" in text
+    assert "recency=" in text and "total=" in text
+    assert "below min_score" in text  # min_score=1000 rejects everything
+
+
+def test_pick_n_debug_silent_by_default(monkeypatch, caplog):
+    monkeypatch.delenv("ARTICLE_DEBUG", raising=False)
+    cand = _c("OpenAI ships GPT-6", hint=0)
+    with caplog.at_level(logging.INFO, logger="score"):
+        pick_n([cand], 1, min_score=1000, now=datetime(2026, 9, 5, 8, tzinfo=timezone.utc),
+              keywords=["AI", "GPT"])
+    assert not any("recency=" in m for m in caplog.messages)
 
 
 def mk(title, hours_old, hint, url="https://a.com/x", src="hn", summary=""):
