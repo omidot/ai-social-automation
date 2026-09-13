@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import pytest
@@ -178,3 +179,88 @@ def test_collapse_similar_merges_and_counts():
     assert len(out) == 2
     merged = [x for x in out if "OpenAI" in x.title][0]
     assert merged.source_count == 2
+
+
+def _rss_response(entries_xml: str) -> str:
+    return (
+        "<?xml version='1.0'?><rss version='2.0'><channel>"
+        f"{entries_xml}"
+        "</channel></rss>"
+    )
+
+
+def test_from_rss_debug_logs_feed_counts(monkeypatch, caplog):
+    monkeypatch.setenv("ARTICLE_DEBUG", "1")
+    now = datetime(2026, 9, 5, 12, tzinfo=timezone.utc)
+    fresh_pub = "Sat, 05 Sep 2026 10:00:00 GMT"   # 2h old -> kept
+    stale_pub = "Mon, 01 Sep 2026 10:00:00 GMT"   # way stale -> dropped
+    xml = _rss_response(
+        f"<item><title>Fresh item</title><link>https://x/1</link>"
+        f"<pubDate>{fresh_pub}</pubDate></item>"
+        f"<item><title>Stale item</title><link>https://x/2</link>"
+        f"<pubDate>{stale_pub}</pubDate></item>"
+    )
+    monkeypatch.setattr(collect, "_get", lambda url, params=None: FakeResp(text=xml))
+    with caplog.at_level(logging.INFO, logger="collect"):
+        out = collect.from_rss([{"name": "Test Feed", "url": "https://feed"}], now)
+    assert len(out) == 1 and out[0].title == "Fresh item"
+    text = "\n".join(caplog.messages)
+    assert "Test Feed" in text and "parsed=2" in text and "fresh=1" in text
+
+
+def test_from_rss_debug_silent_by_default(monkeypatch, caplog):
+    monkeypatch.delenv("ARTICLE_DEBUG", raising=False)
+    now = datetime(2026, 9, 5, 12, tzinfo=timezone.utc)
+    xml = _rss_response(
+        "<item><title>Fresh item</title><link>https://x/1</link>"
+        "<pubDate>Sat, 05 Sep 2026 10:00:00 GMT</pubDate></item>"
+    )
+    monkeypatch.setattr(collect, "_get", lambda url, params=None: FakeResp(text=xml))
+    with caplog.at_level(logging.INFO, logger="collect"):
+        collect.from_rss([{"name": "Test Feed", "url": "https://feed"}], now)
+    assert not any("parsed=" in m for m in caplog.messages)
+
+
+def test_ensure_fulltext_populates_full_text(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://example.com/a", title="t", source="rss:X",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc))
+    monkeypatch.setattr(collect, "_extract", lambda url: ("full article text here", "https://img/x.jpg"))
+    collect.ensure_fulltext(c)
+    assert c.full_text == "full article text here"
+    assert c.top_image == "https://img/x.jpg"
+
+
+def test_ensure_fulltext_skips_when_already_has_text(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://example.com/a", title="t", source="rss:X",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc),
+                 full_text="already here")
+    called = []
+    monkeypatch.setattr(collect, "_extract", lambda url: called.append(url) or ("new", None))
+    collect.ensure_fulltext(c)
+    assert c.full_text == "already here"
+    assert called == []
+
+
+def test_max_age_hours_is_96():
+    assert collect.MAX_AGE_HOURS == 96
+
+
+def test_fresh_keeps_80h_drops_100h():
+    now = datetime(2026, 9, 5, 12, tzinfo=timezone.utc)
+    from datetime import timedelta
+    assert collect._fresh(now - timedelta(hours=80), now) is True
+    assert collect._fresh(now - timedelta(hours=100), now) is False
+
+
+def test_ensure_fulltext_skips_google_news_interstitial(monkeypatch):
+    from pipeline.models import Candidate
+    c = Candidate(url="https://news.google.com/rss/articles/xyz", title="t",
+                 source="rss:Google News (x)",
+                 published_at=datetime(2026, 9, 5, tzinfo=timezone.utc))
+    called = []
+    monkeypatch.setattr(collect, "_extract", lambda url: called.append(url) or ("new", None))
+    collect.ensure_fulltext(c)
+    assert c.full_text == ""
+    assert called == []

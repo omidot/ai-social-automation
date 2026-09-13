@@ -1,51 +1,70 @@
-# Phase 2C — Video Publish — Subagent-Driven Execution Ledger
+# News-First Content Refresh — Subagent-Driven Execution Ledger
 
-Plan: docs/superpowers/plans/2026-09-09-phase2c-video-publish.md
-Spec: docs/superpowers/specs/2026-09-09-phase2c-video-publish-design.md
-Branch: feature/p2c-video-publish
-Base: 3db71f8 (docs(p2c): implementation plan)
-Prior phases: progress-p2b.md (2B, merged df91af1), progress-plan1/2.md
+Plan: docs/superpowers/plans/2026-09-09-news-first-content-refresh.md
+Spec: docs/superpowers/specs/2026-09-09-news-first-content-refresh-design.md
+Branch: feature/news-first-content-refresh
+Base: 53a9c94 (docs: implementation plan, pre-renumber)
+Prior phases: progress-p2c.md, progress-p2b.md, progress-plan1/2.md
+
+## Live diagnostic findings (2026-09-09, controller-run against real feeds)
+1. Root cause #1 (spec §1, confirmed): quiet days, single-source tier-1 AI news scores
+   well under min_score=45 (no cross_source/source_spread/popularity bonus available).
+2. Root cause #2 (spec §1a, NEW — found live, not anticipated in original spec):
+   pick_n DID select 4 distinct candidates >=45 on the day tested (a viral cross-posted
+   Anthropic story inflated scores), but ALL 4 had full_text=0 + summary <400 chars ->
+   has_body() zeroed picked to 0 -> write_share never called. Cause: collect() extracts
+   fulltext for top-8-by-RECENCY, not top-4-by-SCORE that pick_n returns. GPT-6 Astra
+   candidate WAS present in feed (rss:OpenAI, 0.5h old, score 46.2 - barely over 45).
+   -> Plan revised: inserted new Task 2 (fulltext extraction targeting) before the
+   scoring-gate task (now Task 3). Spec updated with §1a + §4.2a. Both fixes needed
+   together for the news path to visibly fire.
+   Raw diagnostic output: see conversation history / re-run `ARTICLE_DEBUG=1
+   .venv/Scripts/python.exe -m pipeline.article_run --slot morning --root . --fake-llm`
+   to reproduce.
 
 ## Tasks
-- Task 1: complete (commit 3db71f8..5ff3a9b, controller-verified pending review; assets.py upload/delete Release asset, _client module-level for MockTransport, 4 tests. 78 video / 209 non-video)
-  - T1 minor (fold later): delete_release_asset raises httpx.HTTPStatusError not AssetError on non-404; _repo_token bare KeyError on unset env.
-- Task 2: complete (commit 5ff3a9b..edd3418, controller-verified pending review; youtube.py adapter _access_token/upload/delete + scripts/mint_youtube_token.py, 5 tests. 83 video / 209 non-video)
-  - T2 minor (fold later): mint script no exit on OAuth access_denied; httpx.Client never closed in __init__; delete() extra token round-trip.
-- Task 3: complete (commit edd3418..9709d06, controller-verified pending review; publish_pending orchestrator + _PLATFORMS{youtube} + _Ctx + render_run wiring + settings video.publish block. 6 orchestrator tests, 89 video / 209 non-video)
-  - T3 minor: youtube_category at video.publish.* not honored (_do_youtube passes video block; upload reads flat). value==default so masked. FIX IN T4.
-  - T3 minor: dead `timezone` import in publish/__init__.py.
-- Task 4: complete (commit 9709d06..003b108, controller-verified pending review; handle_unpublish undo + poll vid:*:unpub routing + expire_stale publishing>6h nudge + video-render.yml gate/env + README. Folded: youtube_category merge fix + dead timezone import. 92 video / 211 non-video)
-  - T4 minor (final review): now-pub_at in handle_unpublish outside try/except (naive published_at -> TypeError escapes to poll catch-all). always written as now.isoformat() so latent.
-- Task 5: complete (commit 003b108..66a4e59, controller-verified pending review; Meta.fb_publish_reel 3-phase + _do_fb_reel registered, 2 meta_reels tests + orchestrator two-platform test. 95 video / 211 non-video)  [review Approved, 4 minor]
-- Task 6: complete (commit 66a4e59..ac8854d, controller-finished after subagent hit session limit mid-impl; Meta.ig_publish_reel create->poll->publish->permalink + _do_ig_reel registered, 2 ig tests. 97 video / 211 non-video)  [review Approved]
-- Task 7: complete (commit ac8854d..3b68fbb, controller-verified pending review; tiktok.py _refresh + rotate via gh-secret/Telegram fallback + upload_draft PULL_FROM_URL; _Ctx.tg field; workflow TIKTOK_* + GH_PAT env; README + test_workflows. 3 tiktok tests, 100 video / 211 non-video)
-
-## Pre-flight notes (fold into the relevant task, not plan contradictions)
-- T3: `_publish_one` draft has publish_started_at written 3x — collapse to one `patch.setdefault(...)`.
-- T4: plan adds `from ...publish import slot_unix` to publish/__init__.py but handle_unpublish uses published_at, not slot time — drop the unused import.
+- Task 1: complete (commit 53a9c94..12da364..1c0ba48, review Approved; ARTICLE_DEBUG()
+  fn (not const, monkeypatch-safe) in collect.py+score.py + article_run.py picked/
+  has_body funnel logging (controller-added after live diagnostic, commit 1c0ba48).
+  Deviations: test_collect.py pre-existed (appended not overwrote); _DEBUG const->fn.
+  215 non-video / 111 video)
+- Task 2: complete (commit 1c0ba48..0900fbc, controller-verified pending review; collect.ensure_fulltext() extracted from collect()'s loop (preserves original try/except + time.sleep(0.5) rate-limit not captured in the plan brief, correctly discovered+preserved); article_run.py calls ensure_fulltext on picked candidates lacking body before has_body filter. Deviation: test_article_run.py addition used the file's real fixtures (wired/FakeTG), not the brief's assumed NOW/FakeTelegram/FakeMeta. 219 non-video / 111 video)  [review Approved]
+- Task 3: complete (commit 0900fbc..4fb8121, controller-verified pending review; _source_tier/_TIER1/_TIER2 in score.py, recency denom 96, ARTICLE_DEBUG log line updated with source_tier field, MAX_AGE_HOURS 96, settings.yaml articles.min_score 20. Deviation: _c() test helper default URL truncates title[:8] causing a collision/false-tie in the new cross-posted-outranks test - added optional url= param, distinct URLs for that test only, no prod logic touched. 224 non-video / 111 video)  [review Approved]
+- Task 4: complete (commit 4fb8121..6c5a641, controller-verified pending review; ANGLES frozenset, build_share_prompt+write_share sibling_angle param + angle validation, _STORYBOARD_SPEC toolless-slide sentence, ArticleContent.angle field, fixture gains angle key, 10 new tests. Self-caught+fixed an edit slip clipping a pre-existing test line before running suite. Note for Task 6: sibling_angle sits before generate positionally, current call site uses generate= kwarg so safe. 234 non-video / 111 video)  [review: Important vacuous-test fixed by controller (commit 870f191); Minor duplicate-test finding deferred]
+- Task 5: complete (commit 6c5a641..870f191..c21903e, controller-verified pending review; config/topics.yaml replaced (takes/shifts), propose_topic returns {topic,angle,why} + sibling_angle param, write_take/build_take_prompt replace write_topic_post/build_topic_prompt. Note: tests/test_write.py edits landed split across controller commit 870f191 (accidental concurrent-edit scoop, see earlier ledger note) + this commit - net diff correct, no duplication/loss, agent self-detected and handled it. Also fixed stale comment + an unbriefed pre-existing test (test_propose_topic_parses_and_validates) needing schema update. KNOWN EXPECTED GAP: test_article_run.py has 16 AttributeError (write_topic_post removed) - Task 6 fixes. 217 non-video (+16 known errors) / 111 video)  [review Approved; concurrency-incident split confirmed clean, 0% overlap]
+- Task 6: complete (commit c21903e..232481d, controller-verified pending review; sibling_angle computed once after `other`, threaded into write_share (positional) + propose_topic (kwarg); news angle now article.angle (was hard-coded ""); fallback angle = spec["angle"] (required key). Fixed all 16 write_topic_post AttributeErrors + 3 new tests + 1 unbriefed fallout (test_draft_excludes_recent_and_other_slot fake_propose needed sibling_angle kwarg). 236 non-video / 111 video — ALL 6 TASKS COMPLETE)  [review Approved]
 
 ## Notes
 - Local: .venv/Scripts/python.exe, Python 3.12.3, run from D:\Automation Social.
-- Baseline suites: 74 video / 209 non-video green at 3db71f8.
-- Repo is PUBLIC -> Actions free/unlimited; NEVER commit a token.
+- Baseline suites: 215 non-video / 111 video green at 1c0ba48.
+- ARTICLE_DEBUG in score.py/collect.py is a zero-arg function _DEBUG(), NOT a bool
+  constant (frozen-at-import bools can't observe monkeypatch.setenv in tests).
+
+## Live sanity check after Task 2 (2026-09-09, controller-run)
+picked_after_score=4 -> picked_after_has_body=2 (was 0 pre-Task-2). write_share attempt
+1/2 actually invoked for the first time this session. Both rejected only because
+--fake-llm's canned payload isn't shaped for write_share's schema (expected artifact of
+the smoke-test fake, not a real defect) -> correctly fell through to topic-bank
+fallback. Root cause #2 (extraction targeting) CONFIRMED FIXED live.
 
 ## Minor findings roll-up (for final whole-branch review to triage)
-- T1: delete_release_asset raises httpx.HTTPStatusError (not AssetError) on non-404; _repo_token bare KeyError on unset env.
-- T2: mint_youtube_token.py no exit on OAuth access_denied (spins); YouTube httpx.Client never closed; delete() extra token round-trip.
-- T3: (fixed in T4) youtube_category merge; dead timezone import removed.
-- T4: `now - pub_at` in handle_unpublish is OUTSIDE try/except — a naive/malformed video.published_at raises TypeError that escapes to poll's catch-all. Always written as now.isoformat() so latent only.
-- T7: body["access_token"] bare KeyError on malformed 2xx TikTok response; gh-write-then-inbox-fail leaves stale token in job env (self-heals next tick); CalledProcessError surfaced without e.stderr.
-- General: fb_publish_reel / ig_publish_reel do real time.sleep(10) polling up to 300s — fine for 1-slot cron, but a slow platform holds the pipeline-state concurrency lock. Consider a shorter deadline or accept.
+- T3: microsoft in tier-1 (15.0) - odd categorization per brief's literal spec, not currently a real feed source, harmless.
+- T3: all 3 titles in test_breaking_cross_posted_story_still_outranks_single_source collide on title[:8] in _c()'s default url - pre-existing test-infra debt, worked around locally for the new test only.
+- T4: test_write_share_accepts_a_non_launch_source_via_fixture duplicates test_write_share_returns_validated_angle.
+- T5: no test directly asserts "hook.tools PHẢI là []/item.tool PHẢI là null" prompt text presence (traces to brief's own test list, implementation is compliant by inspection).
+- T6: no test exercises write_share receiving a non-empty sibling_angle (only propose_topic/fallback path tested with a real value) - mirrors a gap in the brief's own test spec.
+- General: data/seen.json locally polluted by controller's live diagnostic runs (--root . instead of a tmp dir) - to be reverted before merge, not part of any commit.
 
-## All 7 tasks complete
-Base 3db71f8 -> HEAD 3b68fbb (+ ledger commits). 100 video / 211 non-video green.
+## ALL 6 TASKS COMPLETE — ready for final whole-branch review
 
-## Final whole-branch review (final-review-p2c.md) — MERGE AFTER fixing C1,C2,I1-I6
-- FIX WAVE commit 7360944: C1,C2,I1-I6 fixed; I7 README-noted; M1/M8/M11/M12/N1 folded. 321 tests. Re-review pending.
-- Follow-up 322e (commit 8b88b86): re-review new Important closed — _publish_one only re-renders when mp4 unrecoverable from disk+asset_url; transient fetch fail -> "retry" hold. 322 tests. Re-review: READY TO MERGE.
-Full suite 311 passed. State-machine write discipline verified clean. One fix wave dispatched:
-C1 GITHUB_TOKEN not in workflow env -> KeyError loop; C2 unguarded delete_release_asset wedges slot;
-I1 YouTube retry can't get MP4 off disk; I2 failed gh-secret bricks TikTok token; I3 asset uploaded
-even YT-only; I4 handle_unpublish grace subtraction outside guard; I5 FB/IG 300s polls hold lock;
-I6 _do_fb_reel/_do_ig_reel/_do_tiktok zero coverage. I7 (TikTok PULL_FROM_URL needs verified domain,
-github.com can't) = README note + defer (flag off by default).
+## Final whole-branch review — MERGE AFTER fixing I1 (data/seen.json revert)
+Verdict: READY after I1. 0 Critical, 1 Important (I1: data/seen.json diagnostic
+pollution, reverted via `git checkout -- data/seen.json`, no commit needed - was
+never staged/committed). 13 Minor + 4 Nits, all triaged, none blocking, deferred for
+a later cleanup pass (notable: M1 Google-News items get _source_tier bonus but are
+URL-unfetchable -> occupy pick slots that can't pass has_body; M2 write_take's retry
+loop lost its test coverage when test_write_topic_post_retries_once_on_bad_shape was
+deleted without replacement).
+Full suite after I1 fix: 347 passed.
+
+## BRANCH READY TO MERGE

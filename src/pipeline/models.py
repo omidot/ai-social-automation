@@ -88,6 +88,7 @@ class ArticleContent:
     slides: list[dict]
     sources: list[dict]
     risk: bool = False
+    angle: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)

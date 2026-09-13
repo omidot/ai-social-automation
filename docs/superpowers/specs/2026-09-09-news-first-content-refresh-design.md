@@ -31,6 +31,29 @@ product" and returns `{"skip": true}` for anything else (rumor, analysis, fundin
 research, benchmark, drama, policy). And the fallback bank is 100% listicle, so every
 fallback day is "top AI tools".
 
+## 1a. Second root cause (found during live diagnostic, 2026-09-09)
+
+Running `ARTICLE_DEBUG=1` against real feeds (Task 1's diagnostic logging, before any
+threshold change) showed `score.pick_n` *does* select 4 distinct candidates scoring
+above the old `min_score=45` on a normal day. But **all 4 reached `has_body()` with
+`full_text=0` and a summary under 400 chars**, so every one was filtered out before
+`write_share` was ever called — `picked_after_has_body=0`.
+
+Cause: `collect.collect()` fetches full article text for `result[:fulltext_top]` — the
+top **8 candidates by recency** — not the ones `score.pick_n` will actually pick (top 4
+by *score*). Recency-order and score-order rarely overlap, so the candidates
+`article_run.draft` tries to write from routinely have no full text and a short
+RSS-feed summary, and die at the `has_body` gate regardless of how the scoring formula
+is tuned.
+
+**Fix:** extract full text for the *picked* candidates, not a recency-ordered guess.
+`collect.py` gains a public `ensure_fulltext(c: Candidate) -> None` (the existing
+per-candidate extraction logic, unchanged, just named and exposed); `article_run.draft`
+calls it on each of `pick_n`'s results that still lack a body, immediately before the
+`has_body` filter. This is additive — `collect()`'s own blind top-8-by-recency pass is
+left in place (harmless, sometimes gives `_cross_source`/dedup a fuller title/summary
+to compare) and costs at most 4 extra fetches per run.
+
 ## 2. Goals
 
 1. A single-source first-party AI news item, ≤ ~4 days old, **reliably clears** the
@@ -107,6 +130,40 @@ Net effect on the worked example (OpenAI blog, single feed, 30 h old):
 `_recency ≈ 27 + _popularity 0 + _cross_source 0 + _keyword_fit ≈ 7 + _source_spread 0
 + _source_tier 15 ≈ 49` → clears `20` comfortably, and still ranks *below* a
 cross-posted breaking story (which also gets `_cross_source 20 + _source_spread ≥5`).
+
+### 4.2a Fulltext extraction targets picked candidates (`collect.py`, `article_run.py`)
+
+- `collect.py` — extract the existing private per-candidate extraction body (already
+  used inline in `collect()`'s `result[:fulltext_top]` loop) into a public function:
+
+  ```python
+  def ensure_fulltext(c: Candidate) -> None:
+      """Fetch and attach full article text to ``c`` in place, unless it already
+      has some or its URL is a known-unfetchable Google-News interstitial."""
+      if c.full_text or _is_google_news_url(c.url):
+          return
+      text, image = _extract(c.url)
+      c.full_text = text
+      if image and not c.top_image:
+          c.top_image = image
+  ```
+
+  `collect()`'s existing loop becomes `for c in result[:fulltext_top]: ensure_fulltext(c)`
+  — behaviourally identical, just named and reusable.
+- `article_run.draft` — immediately after `pick_n` and before the `has_body` filter,
+  call `collect.ensure_fulltext` on every picked candidate that doesn't already have a
+  body:
+
+  ```python
+  picked = score.pick_n(cands, 4, acfg["min_score"], now, keywords, exclude_titles=recent)
+  for _sc, c in picked:
+      if not score.has_body(c):
+          collect.ensure_fulltext(c)
+  picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+  ```
+
+  At most 4 extra HTTP fetches per run (bounded by `pick_n`'s `n=4`), only for
+  candidates that would otherwise be discarded anyway.
 
 ### 4.3 `write.write_share` — accept all AI news, emit an angle (`write.py`)
 
@@ -233,15 +290,15 @@ slide as an edge case. Reword so opinion/trend pieces are first-class:
 
 | File | Change |
 |---|---|
-| `src/pipeline/collect.py` | `MAX_AGE_HOURS` 48→96; `ARTICLE_DEBUG` per-feed logging |
+| `src/pipeline/collect.py` | `MAX_AGE_HOURS` 48→96; `ARTICLE_DEBUG` per-feed logging; `ensure_fulltext` exposed |
 | `src/pipeline/score.py` | `_source_tier` + `_TIER1`/`_TIER2`; `_recency` denom 48→96; `ARTICLE_DEBUG` per-candidate logging |
 | `src/pipeline/write.py` | `ANGLES`; `build_share_prompt` rewrite; `write_share` returns angle; `write_take` replaces `write_topic_post`; `build_topic_prompt` removed; `_STORYBOARD_SPEC` reworded |
 | `src/pipeline/topics.py` | `propose_topic` prompt + return `{topic, angle, why}` |
 | `src/pipeline/models.py` | `ArticleContent.angle: str = ""` |
-| `src/pipeline/article_run.py` | news angle from `write_share`; `write_take` call; sibling-angle hint |
+| `src/pipeline/article_run.py` | `ensure_fulltext` on picked candidates before `has_body`; news angle from `write_share`; `write_take` call; sibling-angle hint |
 | `config/settings.yaml` | `articles.min_score` 45→20 |
 | `config/topics.yaml` | replaced: `takes` + `shifts` |
-| `tests/test_score.py`, `tests/test_write.py`, `tests/test_topics.py`, `tests/test_article_run.py` | per §6 |
+| `tests/test_score.py`, `tests/test_write.py`, `tests/test_topics.py`, `tests/test_article_run.py`, `tests/test_collect.py` | per §6 |
 
 ## 6. Testing
 
@@ -254,6 +311,15 @@ slide as an edge case. Reword so opinion/trend pieces are first-class:
     (fixture feed with `_fresh`).
   - the ordering invariant still holds: a cross-posted breaking story (2 similar
     titles, both < 6 h) outranks the single-source tier-1 item.
+- **`tests/test_collect.py`**
+  - `ensure_fulltext` populates `c.full_text` via a mocked `_extract`; a no-op when
+    `full_text` is already set; a no-op (does not call `_extract`) for a Google-News
+    interstitial URL.
+- **`tests/test_article_run.py`** (extraction-targeting half, see below for the rest)
+  - a picked candidate with no `full_text` and a short summary gets
+    `collect.ensure_fulltext` called on it before the `has_body` filter runs; a picked
+    candidate that already has `full_text` does not (assert the fake `ensure_fulltext`
+    call count).
 - **`tests/test_write.py`**
   - `write_share` on a fake *analysis* source (title "Phân tích: vì sao mô hình mở
     đang bắt kịp", body ≥ 400 chars, no "ra mắt") → returns `ArticleContent` with
@@ -288,14 +354,20 @@ slide as an edge case. Reword so opinion/trend pieces are first-class:
 ## 7. Build order (→ plan)
 
 1. **Diagnostic** — `ARTICLE_DEBUG` logging in `collect` + `score`; run once with
-   network; report the real feed/score numbers. Gate: numbers confirm §1.
-2. **Scoring gate** — `min_score`, `MAX_AGE_HOURS`, `_source_tier`, `_recency` denom +
+   network; report the real feed/score numbers. Gate: numbers confirm §1. (Done
+   2026-09-09; also surfaced §1a — see below.)
+2. **Fulltext extraction targeting** (§1a/§4.2a) — `collect.ensure_fulltext`,
+   `article_run.draft` calls it on picked candidates before `has_body` +
+   `test_collect.py` + `test_article_run.py` (extraction half). Landed *before* the
+   scoring-gate task since the live diagnostic showed it, not the score formula, is
+   what currently zeroes out every news candidate.
+3. **Scoring gate** — `min_score`, `MAX_AGE_HOURS`, `_source_tier`, `_recency` denom +
    `test_score.py`.
-3. **`ANGLES` + `write_share`** — prompt rewrite, return angle, `ArticleContent.angle`,
+4. **`ANGLES` + `write_share`** — prompt rewrite, return angle, `ArticleContent.angle`,
    `_STORYBOARD_SPEC` reword + `test_write.py` (share half).
-4. **Fallback** — `topics.yaml` replace, `propose_topic`, `write_take` (replace
+5. **Fallback** — `topics.yaml` replace, `propose_topic`, `write_take` (replace
    `write_topic_post`) + `test_topics.py` + `test_write.py` (take half).
-5. **`article_run` wiring** — news angle, `write_take` call, sibling-angle hint +
+6. **`article_run` wiring** — news angle, `write_take` call, sibling-angle hint +
    `test_article_run.py` + full suite green.
 
 ## 8. Out of scope

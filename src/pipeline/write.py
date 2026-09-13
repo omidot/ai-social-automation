@@ -43,6 +43,7 @@ def _strip_urls(text: str) -> str:
 
 
 ALLOWED_ANGLES = {"tin-tuc", "ung-dung-mmo", "phan-tich", "giat-gan"}
+ANGLES = frozenset({"tin-nong", "quan-diem", "xu-huong", "chuyen-thuc-chien"})
 _REQUIRED = ("angle", "caption_fb", "caption_ig", "hashtags", "thumbnail_prompt",
              "thumbnail_title", "youtube_title", "youtube_desc", "tiktok_caption")
 
@@ -126,7 +127,7 @@ _SHAPE_NUDGE = (
     "cụt. Giữ nguyên nội dung, chỉ sửa cấu trúc."
 )
 
-# The `slides` contract, shared by build_share_prompt + build_topic_prompt so the
+# The `slides` contract, shared by build_share_prompt + build_take_prompt so the
 # storyboard rules stay in one place.
 _STORYBOARD_SPEC = (
     "slides (mảng 4-9 object storyboard — SỐ LƯỢNG KHÔNG CỐ ĐỊNH, tự quyết theo "
@@ -146,6 +147,9 @@ _STORYBOARD_SPEC = (
     "\"bullets\": [ tối đa 3 dòng, mỗi dòng <=10 từ ] hoặc []}. "
     "CLOSE = {\"role\":\"close\", \"headline\": <=9 từ, \"body\": <=40 từ}. "
     "Các slide 'item' phải bám ĐÚNG mạch của hook. "
+    "Nhiều bài (quan-diem / xu-huong / tin-nong không xoay quanh một sản phẩm cụ thể) "
+    "sẽ có hook.tools = [] và mọi item.tool = null — đó là BÌNH THƯỜNG, không phải "
+    "thiếu sót. "
     "Khi nhắc tới một sản phẩm/công cụ CÓ THẬT, BẮT BUỘC điền \"domain\" gốc chính "
     "thức (vd openai.com, deepmind.google, anthropic.com, canva.com, "
     "elevenlabs.io, runwayml.com, capcut.com, notion.so) và gom tất cả sản phẩm "
@@ -256,29 +260,44 @@ _IMAN_VOICE = (
 )
 
 
-def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
+def build_share_prompt(cand: Candidate, voice: dict, sibling_angle: str = "") -> tuple[str, str]:
     """System + user prompt for the launch-analysis writer.
 
-    The piece is ONE person analysing ONE thing a big tech company / AI lab just
-    shipped — in the channel's sharing voice, NOT a reporter, NOT a numbered news
-    round-up.
+    The piece is ONE person analysing ONE noteworthy AI-world event — in the
+    channel's sharing voice, NOT a reporter, NOT a numbered news round-up. The
+    source no longer has to be a fresh product launch: rumor, analysis, funding,
+    research, benchmark, controversy, or policy all qualify.
     """
+    sibling_line = (
+        f"Slot kia hôm nay đã dùng góc \"{sibling_angle}\" — nếu hợp lý, chọn góc "
+        "khác cho đa dạng. " if sibling_angle else ""
+    )
     system = (
         f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
         f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. {_ARTICLE_GUARDRAILS} "
         f"{_IMAN_VOICE} "
-        "NHIỆM VỤ: bài nguồn nói về MỘT thứ mà một hãng công nghệ lớn / phòng lab "
-        "AI (Google, Meta, OpenAI, xAI, Anthropic, NVIDIA, ByteDance, Zhipu...) "
-        "VỪA RA MẮT. Viết một bài PHÂN TÍCH thứ vừa ra đó, bằng giọng CHIA SẺ của "
-        "kênh — KHÔNG phải phóng viên, KHÔNG phải một bản tin, KHÔNG đánh số danh "
-        "sách tin. "
-        "Mở bằng câu hook gây tò mò về thứ vừa ra mắt — KHÔNG mở bằng "
-        "\"Công ty X vừa công bố...\". "
-        "Các slide item lần lượt bám mạch: (a) CÁI GÌ VỪA RA → (b) NÓ THỰC SỰ LÀM "
-        "ĐƯỢC GÌ, cụ thể, có ví dụ / con số lấy từ bài nguồn → (c) KHÁC GÌ CÁI "
-        "ĐANG CÓ → (d) BẠN DÙNG ĐƯỢC VÀO VIỆC GÌ → (e) CÁCH THỬ NGAY. "
+        "NHIỆM VỤ: bài nguồn nói về MỘT chuyện đáng chú ý trong giới AI — có thể là "
+        "ra mắt sản phẩm, rò rỉ/tin đồn, phân tích, gọi vốn, kết quả nghiên cứu, "
+        "benchmark, tranh cãi, hay chính sách. Viết một bài PHÂN TÍCH/CHIA SẺ về "
+        "chuyện đó, bằng giọng CHIA SẺ của kênh — KHÔNG phải phóng viên, KHÔNG phải "
+        "một bản tin, KHÔNG đánh số danh sách tin. "
+        f"{sibling_line}"
+        "Chọn 'angle' HỢP NHẤT với tin, một trong bốn: "
+        "tin-nong (chuyện vừa xảy ra — 'tin này dạy mình điều gì'), "
+        "quan-diem (phản biện cách hiểu số đông về chuyện này), "
+        "xu-huong (tin này nằm trong một cú dịch chuyển lớn hơn — nêu cú dịch "
+        "chuyển đó và nó ảnh hưởng tới người đọc thế nào), "
+        "chuyen-thuc-chien (rút ra được cách áp dụng thật, kể như trải nghiệm). "
+        "Mở bằng câu hook gây tò mò — KHÔNG mở bằng \"Công ty X vừa công bố...\". "
+        "Nếu angle là tin-nong/xu-huong, các slide item bám mạch: (a) chuyện gì "
+        "→ (b) nó thực sự nghĩa là gì, dùng chi tiết THẬT trong bài nguồn → "
+        "(c) khác gì trước đây → (d) ảnh hưởng tới bạn thế nào → (e) nên làm gì. "
+        "Nếu angle là quan-diem: nêu cách hiểu phổ biến → vì sao nó thiếu/sai → "
+        "góc đúng hơn → hệ quả. "
+        "Nếu angle là chuyen-thuc-chien: bối cảnh → thử thế nào → vướng gì → "
+        "bài học rút ra. "
         "Mỗi item body 40-70 từ, cụ thể, dùng chi tiết THẬT trong bài nguồn — "
         "KHÔNG bịa số liệu. "
         "caption_fb: 200-350 từ, VIẾT THÀNH ĐOẠN VĂN MẠCH LẠC (xuống dòng giữa các "
@@ -287,12 +306,13 @@ def build_share_prompt(cand: Candidate, voice: dict) -> tuple[str, str]:
         "PR sáo rỗng, không hàn lâm. Kết bằng một câu hỏi. "
         "caption_ig: <=50 từ, cùng tinh thần. "
         "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
+        "angle (một trong bốn mã ở trên), "
         "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
         "cover_title (<=9 từ, chính là câu hook), "
         f"{_STORYBOARD_SPEC}, "
         "risk (bool). Toàn bộ tiếng Việt. "
-        "Nếu bài nguồn KHÔNG nói về AI hoặc không đủ dữ kiện để viết, trả về "
-        "ĐÚNG JSON {\"skip\": true, \"reason\": \"...\"} và không gì khác."
+        "Nếu bài nguồn KHÔNG liên quan AI, hoặc không có đủ dữ kiện cụ thể để viết, "
+        "trả về ĐÚNG JSON {\"skip\": true, \"reason\": \"...\"} và không gì khác."
     )
     article = (cand.full_text or cand.summary or cand.title)[:6000]
     user = (
@@ -362,17 +382,19 @@ def _validate_share(data: dict) -> list[dict]:
     return slides
 
 
-def write_share(cand: Candidate, voice: dict, generate=_default_generate):
+def write_share(cand: Candidate, voice: dict, sibling_angle: str = "",
+                generate=_default_generate):
     """Turn one candidate into a single-topic knowledge-share article
-    (``format="share"``) with a 5-to-7-slide hook / item... / close storyboard.
+    (``format="share"``) with a 4-to-9-slide hook / item... / close storyboard
+    and a validated ``angle`` (see ``ANGLES``).
 
     The LLM often returns a wrong-shaped payload (slide count out of range,
-    hook/close not at the ends). Mirror ``video/script.py``: validate, and on failure retry
-    once with a correction nudge. A dead backend (``LLMError`` from the
-    ``generate`` call itself) is *not* retried; a JSON-parse or validation
-    failure — a model-output problem — is.
+    hook/close not at the ends, invalid angle). Mirror ``video/script.py``:
+    validate, and on failure retry once with a correction nudge. A dead backend
+    (``LLMError`` from the ``generate`` call itself) is *not* retried; a
+    JSON-parse or validation failure — a model-output problem — is.
     """
-    system, user = build_share_prompt(cand, voice)
+    system, user = build_share_prompt(cand, voice, sibling_angle)
 
     for attempt in (1, 2):
         log.info("write_share attempt %d", attempt)
@@ -385,6 +407,9 @@ def write_share(cand: Candidate, voice: dict, generate=_default_generate):
             if isinstance(data, dict) and data.get("skip"):
                 raise _Decline(
                     f"nguồn không phù hợp: {str(data.get('reason', ''))[:200]}")
+            angle = str(data.get("angle", "")).strip()
+            if angle not in ANGLES:
+                raise WriteError(f"angle không hợp lệ: {angle!r}")
             slides = _validate_share(data)
         except _Decline:  # a legitimate, machine-readable refusal — do NOT retry
             raise
@@ -409,62 +434,56 @@ def write_share(cand: Candidate, voice: dict, generate=_default_generate):
             cover_title=str(data["cover_title"]).strip(),
             slides=slides,
             sources=[{"name": name, "url": cand.url}],
-            risk=bool(data.get("risk", False)))
+            risk=bool(data.get("risk", False)),
+            angle=angle)
     raise WriteError("unreachable")  # for type-checkers
 
 
-def build_topic_prompt(topic: str, angle: str, voice: dict) -> tuple[str, str]:
-    """System + user prompt for the knowledge-sourced writer.
+def build_take_prompt(topic: str, angle: str, why: str, voice: dict) -> tuple[str, str]:
+    """System + user prompt for the knowledge-sourced (fallback) writer.
 
-    No article to work from — the model writes ``topic`` from its own knowledge,
-    same single-person sharing voice and 5-7-slide storyboard as ``write_share``.
+    No source article — the model writes ``topic`` from its own knowledge, in the
+    same Iman-Gadzhi sharing voice and 4-9-slide storyboard as ``write_share``.
+    Only ever called with angle 'quan-diem' or 'xu-huong' (see topics.propose_topic).
     """
     system = (
         f"Bạn là người viết tiếng Việt cho kênh \"{voice.get('ten_kenh','')}\" về AI. "
         f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. {_ARTICLE_GUARDRAILS} "
-        f"Viết về ĐÚNG chủ đề: \"{topic}\". Góc: {angle}. "
-        "GIỌNG: người chia sẻ hiểu biết, dứt khoát, có chính kiến, xưng \"mình\" "
-        "gọi \"bạn\", câu ngắn. KHÔNG phải bản tin. Trong caption_fb KHÔNG đánh số "
-        "kiểu \"1. 2. 3.\" — viết thành đoạn văn mạch lạc; nếu chủ đề là \"top N\" "
-        "thì vẫn kể liền mạch, mỗi công cụ/bước một đoạn ngắn, KHÔNG dùng đầu mục "
-        "đánh số. "
-        "NỘI DUNG phải CỤ THỂ và DÙNG ĐƯỢC: nêu tên công cụ thật, bước làm thật, "
-        "con số thật mà bạn chắc chắn. Nếu không chắc một chi tiết thì nói chung "
-        "chung thay vì bịa. "
-        "Cấu trúc suy nghĩ: hook → cụ thể là gì → người đọc được gì → cách bắt đầu "
-        "→ chốt. "
-        "Mỗi slide 'item' phải có body 40-70 từ, cụ thể (ví dụ / con số / bước "
-        "làm), KHÔNG một dòng cụt. Khi item nói về một sản phẩm có thật, điền "
-        "\"tool\": {\"name\", \"domain\"} với domain chính thức, và gom mọi sản "
-        "phẩm được nhắc vào hook.tools (tối đa 6). "
-        "caption_fb: 200-350 từ, xuống dòng giữa các ý, KHÔNG chèn URL. "
-        "caption_ig: <=50 từ, cùng tinh thần, KHÔNG chèn URL. "
+        f"{_IMAN_VOICE} "
+        f"Đây là bài KHÔNG có bài nguồn — viết từ hiểu biết chung, góc \"{angle}\". "
+        "KHÔNG bịa số liệu cụ thể; nếu cần ví dụ, dùng ví dụ chung/định tính thay vì "
+        "một con số bạn không chắc. "
+        "hook.tools PHẢI là [] và mọi item.tool PHẢI là null — bài này không xoay "
+        "quanh một sản phẩm cụ thể. "
+        "caption_fb: 200-350 từ, VIẾT THÀNH ĐOẠN VĂN MẠCH LẠC, TUYỆT ĐỐI KHÔNG đánh "
+        "số \"1. 2. 3.\", KHÔNG chèn URL. Kết bằng một câu hỏi. "
+        "caption_ig: <=50 từ, cùng tinh thần. "
         "CHỈ trả về một object JSON hợp lệ với đúng các khoá: "
         "caption_fb, caption_ig, hashtags (mảng 8-15 chuỗi bắt đầu bằng #), "
-        "cover_title (<=9 từ), "
+        "cover_title (<=9 từ, chính là câu hook), "
         f"{_STORYBOARD_SPEC}, "
         "risk (bool). Toàn bộ tiếng Việt. "
         "Nếu bạn không đủ hiểu biết chắc chắn để viết chủ đề này, trả về ĐÚNG JSON "
         "{\"skip\": true, \"reason\": \"...\"} và không gì khác."
     )
-    user = f"CHỦ ĐỀ: {topic}\nGÓC: {angle}\n"
+    user = f"CHỦ ĐỀ: {topic}\nGÓC: {angle}\nÝ: {why}\n"
     return system, user
 
 
-def write_topic_post(topic: str, angle: str, voice: dict, generate=_default_generate):
-    """Write a single-topic knowledge-share article (``format="share"``) from the
-    model's own knowledge instead of a source article.
-
-    Same 2-attempt retry-with-``[SỬA]``-nudge loop, same ``{"skip": true}``
-    handling and the same 5-7-slide validation as ``write_share``. ``sources`` is
-    empty and no ``Nguồn:`` line is appended.
+def write_take(topic: str, angle: str, why: str, voice: dict,
+               generate=_default_generate):
+    """Write a single-topic opinion/trend article (``format="share"``) from the
+    model's own knowledge — the fallback bank's writer. Same 2-attempt
+    retry-with-``[SỬA]``-nudge loop and 4-9-slide validation as ``write_share``.
+    ``sources`` is empty, ``angle`` is the caller-supplied value (not re-derived
+    from the model), and no ``Nguồn:`` line is appended.
     """
-    system, user = build_topic_prompt(topic, angle, voice)
+    system, user = build_take_prompt(topic, angle, why, voice)
 
     for attempt in (1, 2):
-        log.info("write_topic_post attempt %d", attempt)
+        log.info("write_take attempt %d", attempt)
         try:
             raw = generate(system, user, provider="auto")
         except LLMError as e:  # backend down — retrying won't help
@@ -480,7 +499,7 @@ def write_topic_post(topic: str, angle: str, voice: dict, generate=_default_gene
         except (LLMError, WriteError) as e:  # bad model output — retryable
             if attempt == 2:
                 raise e if isinstance(e, WriteError) else WriteError(f"LLM failed: {e}")
-            log.warning("write_topic_post attempt %d rejected: %s", attempt, e)
+            log.warning("write_take attempt %d rejected: %s", attempt, e)
             user = user + f"\n\n[SỬA] Bản vừa rồi sai định dạng: {e}. " + _SHAPE_NUDGE
             continue
 
@@ -494,5 +513,6 @@ def write_topic_post(topic: str, angle: str, voice: dict, generate=_default_gene
             cover_title=str(data["cover_title"]).strip(),
             slides=slides,
             sources=[],
-            risk=bool(data.get("risk", False)))
+            risk=bool(data.get("risk", False)),
+            angle=angle)
     raise WriteError("unreachable")  # for type-checkers

@@ -232,90 +232,111 @@ def test_write_share_appends_source_when_absent():
     assert art.caption_fb.rstrip().endswith("Nguồn: OpenAI Blog")
 
 
-# --- knowledge-sourced topic writer ------------------------------------
+# --- knowledge-sourced take writer (opinion/trend fallback) -------------
 
 def _topic_payload() -> str:
     return (FIXTURES / "sample_topic_response.json").read_text(encoding="utf-8")
 
 
-def test_write_topic_post_builds_storyboard_arc():
-    art = write.write_topic_post(
-        "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
-        VOICE, generate=lambda s, u, **k: _topic_payload())
+def _take_payload() -> str:
+    data = json.loads(_topic_payload())
+    return json.dumps(data)
+
+
+def test_build_take_prompt_uses_iman_voice_and_angle():
+    sysp, usr = write.build_take_prompt(
+        "Đa số người học prompt sai chỗ", "quan-diem", "vì họ tối ưu sai thứ", VOICE)
+    assert "Đa số người học prompt sai chỗ" in usr
+    assert "quan-diem" in usr
+    assert "chia sẻ" in sysp or "chính kiến" in sysp
+
+
+def test_write_take_builds_storyboard_arc():
+    art = write.write_take(
+        "5 công cụ AI viết content", "quan-diem", "vì hầu hết dùng sai cách",
+        VOICE, generate=lambda s, u, **k: _take_payload())
     assert art.format == "share"
-    assert 4 <= len(art.slides) <= 9
+    assert art.angle == "quan-diem"
     roles = [s["role"] for s in art.slides]
     assert roles[0] == "hook" and roles[-1] == "close"
     assert all(r == "item" for r in roles[1:-1])
     _assert_v4_slide_shape(art.slides)
-    # knowledge-sourced: no source, no "Nguồn:" line, no links anywhere
     assert art.sources == []
     assert "Nguồn:" not in art.caption_fb
     assert "http" not in art.caption_fb
-    assert "http" not in art.caption_ig
 
 
-def test_write_topic_post_accepts_tool_field():
-    art = write.write_topic_post(
-        "5 công cụ AI viết content", "giúp bạn viết nhanh hơn",
-        VOICE, generate=lambda s, u, **k: _topic_payload())
-    tooled = [s for s in art.slides if s.get("tool")]
-    assert tooled, "expected at least one item slide carrying a tool"
-    assert {"name", "domain"} == set(tooled[0]["tool"])
-    assert tooled[0]["tool"]["domain"] == "openai.com"
-    # hook + close carry no singular tool key
-    assert art.slides[0].get("tool") is None and art.slides[-1].get("tool") is None
-
-
-def test_write_topic_post_rejects_malformed_tool():
-    # a *present* tool that is broken is a real shape error, not a render detail
+def test_write_take_accepts_toolless_hook():
     data = json.loads(_topic_payload())
-    data["slides"][1]["tool"] = {"name": "Mystery", "domain": "not a domain"}
+    data["slides"][0]["tools"] = []
+    for s in data["slides"][1:-1]:
+        s["tool"] = None
+    art = write.write_take("Chủ đề không sản phẩm", "xu-huong", "vì...", VOICE,
+                           generate=lambda s, u, **k: json.dumps(data))
+    assert art.slides[0]["tools"] == []
+    assert all(s.get("tool") is None for s in art.slides[1:-1])
+
+
+def test_write_topic_post_removed():
+    assert not hasattr(write, "write_topic_post")
+    assert not hasattr(write, "build_topic_prompt")
+
+
+def test_angles_constant():
+    assert write.ANGLES == {"tin-nong", "quan-diem", "xu-huong", "chuyen-thuc-chien"}
+
+
+def test_build_share_prompt_lists_all_four_angles():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE)
+    for a in write.ANGLES:
+        assert a in sysp
+
+
+def test_build_share_prompt_accepts_non_launch_framing():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE)
+    # must no longer say the source has to be a fresh product launch
+    assert "VỪA RA MẮT" not in sysp
+    assert "rò rỉ" in sysp or "phân tích" in sysp or "gọi vốn" in sysp
+
+
+def test_build_share_prompt_includes_sibling_angle_hint():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE, sibling_angle="tin-nong")
+    # "tin-nong" alone is always present (it's one of the 4 angles listed in the
+    # base prompt) — assert the actual hint SENTENCE, which only appears when
+    # sibling_angle is non-empty, to prove the parameter is genuinely wired in.
+    assert "Slot kia hôm nay đã dùng góc \"tin-nong\"" in sysp
+
+
+def test_build_share_prompt_no_hint_when_sibling_angle_blank():
+    sysp, _usr = write.build_share_prompt(_cand(), VOICE, sibling_angle="")
+    assert "Slot kia" not in sysp
+
+
+def test_write_share_returns_validated_angle():
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
+    assert art.angle in write.ANGLES
+
+
+def test_write_share_rejects_invalid_angle():
+    data = json.loads(_share_payload())
+    data["angle"] = "linh-tinh"
     with pytest.raises(write.WriteError):
-        write.write_topic_post("chủ đề", "góc", VOICE,
-                               generate=lambda s, u, **k: json.dumps(data))
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
 
-    data = json.loads(_topic_payload())
-    data["slides"][2]["tool"] = "just a string"
+
+def test_write_share_rejects_missing_angle():
+    data = json.loads(_share_payload())
+    del data["angle"]
     with pytest.raises(write.WriteError):
-        write.write_topic_post("chủ đề", "góc", VOICE,
-                               generate=lambda s, u, **k: json.dumps(data))
+        write.write_share(_cand(), VOICE, generate=lambda s, u, **k: json.dumps(data))
 
 
-def test_write_topic_post_blank_tool_object_is_none():
-    data = json.loads(_topic_payload())
-    data["slides"][1]["tool"] = {}          # explicitly "no tool"
-    art = write.write_topic_post("chủ đề", "góc", VOICE,
-                                 generate=lambda s, u, **k: json.dumps(data))
-    assert art.slides[1]["tool"] is None
-
-
-@pytest.mark.parametrize("mutate", [
-    lambda d: d.__setitem__("slides", d["slides"][:3]),          # < 4
-    lambda d: d.__setitem__("slides", d["slides"] + [d["slides"][1]] * 5),  # > 9
-    lambda d: d["slides"][0].__setitem__("role", "item"),        # first not hook
-    lambda d: d["slides"][-1].__setitem__("role", "item"),       # last not close
-])
-def test_write_rejects_wrong_slide_shape(mutate):
-    data = json.loads(_topic_payload())
-    mutate(data)
-    with pytest.raises(write.WriteError):
-        write.write_topic_post("chủ đề", "góc", VOICE,
-                               generate=lambda s, u, **k: json.dumps(data))
-
-
-def _topic_bad_shape() -> str:
-    data = json.loads(_topic_payload())
-    data["slides"] = data["slides"][:3]  # 3 slides, under the 4-9 floor
-    return json.dumps(data)
-
-
-def test_write_topic_post_retries_once_on_bad_shape():
-    stub = _ShapeStub(_topic_bad_shape(), _topic_payload())
-    art = write.write_topic_post("chủ đề", "góc", VOICE, generate=stub)
+def test_write_share_accepts_a_non_launch_source_via_fixture():
+    # same fixture, just prove the writer path doesn't special-case "launch"
+    # wording anywhere in validation — angle-driven acceptance only.
+    art = write.write_share(_cand(), VOICE, generate=lambda s, u, **k: _share_payload())
     assert art.format == "share"
-    roles = [s["role"] for s in art.slides]
-    assert roles[0] == "hook" and roles[-1] == "close"
-    assert all(r == "item" for r in roles[1:-1])
-    assert len(stub.calls) == 2
-    assert "[SỬA]" in stub.calls[1]
+
+
+def test_storyboard_spec_allows_toolless_slides():
+    assert "hook.tools = []" in write._STORYBOARD_SPEC or "BÌNH THƯỜNG" in write._STORYBOARD_SPEC

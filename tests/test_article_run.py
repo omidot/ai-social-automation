@@ -43,7 +43,7 @@ def wired(tmp_path, monkeypatch):
     monkeypatch.setattr(article_run.topics, "propose_topic",
                         lambda *a, **k: {"topic": "5 công cụ AI dựng video",
                                          "angle": "giúp bạn ra video nhanh hơn"})
-    monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: _art())
+    monkeypatch.setattr(article_run.write, "write_take", lambda *a, **k: _art())
     captured = {}
 
     def fake_build(article, out_dir, *, size, brand=None, root=None, style=None, **k):
@@ -97,7 +97,7 @@ def test_draft_excludes_recent_and_other_slot(wired, monkeypatch):
     ds.put("2026-09-06", "morning", status="scheduled", title="Chủ đề buổi sáng")
     seen = {}
 
-    def fake_propose(topics_cfg, recent, voice, generate):
+    def fake_propose(topics_cfg, recent, voice, generate, sibling_angle=""):
         seen["recent"] = list(recent)
         return {"topic": "Chủ đề buổi tối", "angle": "abc"}
 
@@ -122,7 +122,7 @@ def test_draft_prefers_news_candidate(wired, monkeypatch):
     monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
     seen = {}
 
-    def fake_write_share(c, voice, generate=None):
+    def fake_write_share(c, voice, sibling_angle="", generate=None):
         seen["cand"] = c
         return _art(c.title)
 
@@ -157,6 +157,46 @@ def test_draft_falls_back_to_topic_bank(wired, monkeypatch):
     assert saved["title"] == "5 công cụ AI dựng video"
     assert saved["sources"] == []
     assert any("💡" in c for c in tg.captions)   # topic-bank marker
+
+
+def test_picked_candidates_get_fulltext_before_has_body_filter(wired, monkeypatch):
+    root, _ = wired
+    from pipeline.models import Candidate
+
+    short = Candidate(url="https://a/short", title="Short summary AI news",
+                      source="rss:OpenAI Blog",
+                      published_at=datetime(2026, 9, 6, tzinfo=timezone.utc),
+                      summary="s" * 50)
+    already_full = Candidate(url="https://a/full", title="Already has body",
+                             source="rss:OpenAI Blog",
+                             published_at=datetime(2026, 9, 6, tzinfo=timezone.utc),
+                             full_text="f" * 500)
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [short, already_full])
+    monkeypatch.setattr(article_run.score, "pick_n",
+                        lambda *a, **k: [(99.0, short), (98.0, already_full)])
+
+    calls = []
+
+    def fake_ensure_fulltext(c):
+        calls.append(c.url)
+        if c is short:
+            c.full_text = "f" * 500   # simulate a successful fetch
+
+    monkeypatch.setattr(article_run.collect, "ensure_fulltext", fake_ensure_fulltext)
+
+    # write_share failing isn't the point of this test; let the news branch run
+    # to completion by falling through to the topic bank, and just assert on
+    # the ensure_fulltext call pattern captured above.
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda *a, **k: (_ for _ in ()).throw(article_run.write.WriteError("x")))
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg)
+    assert out["status"] == "scheduled"
+    # ensure_fulltext must be called for the short-summary candidate...
+    assert "https://a/short" in calls
+    # ...but NOT for the one that already has enough body.
+    assert "https://a/full" not in calls
 
 
 def test_draft_falls_back_when_collect_fails(wired, monkeypatch):
@@ -202,7 +242,7 @@ def test_draft_risk_flagged_even_when_schedule_raises(wired, monkeypatch):
                            slides=[{"role": r, "headline": "h", "body": "b"}
                                    for r in ("hook", "item", "close")],
                            sources=[], risk=True)
-    monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: risky)
+    monkeypatch.setattr(article_run.write, "write_take", lambda *a, **k: risky)
     monkeypatch.setattr(article_run.publish, "schedule_slot",
                         lambda *a, **k: (_ for _ in ()).throw(RuntimeError("(190) token")))
     monkeypatch.setattr(article_run, "_notify_failure", lambda *a, **k: None)
@@ -223,7 +263,7 @@ def test_draft_risk_notice_failure_does_not_block_scheduling(wired, monkeypatch)
                            slides=[{"role": r, "headline": "h", "body": "b"}
                                    for r in ("hook", "item", "close")],
                            sources=[], risk=True)
-    monkeypatch.setattr(article_run.write, "write_topic_post", lambda *a, **k: risky)
+    monkeypatch.setattr(article_run.write, "write_take", lambda *a, **k: risky)
 
     calls = []
 
@@ -279,7 +319,7 @@ def test_draft_skips_committed_slot(wired, monkeypatch):
         raise AssertionError("must not run when the slot is already committed")
 
     monkeypatch.setattr(article_run.topics, "propose_topic", boom)
-    monkeypatch.setattr(article_run.write, "write_topic_post", boom)
+    monkeypatch.setattr(article_run.write, "write_take", boom)
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     out = article_run.draft("morning", root, now, tg=tg)
@@ -310,7 +350,7 @@ def test_draft_reports_write_failure(wired, monkeypatch):
     def boom(*a, **k):
         raise article_run.write.WriteError("chủ đề không viết được: x")
 
-    monkeypatch.setattr(article_run.write, "write_topic_post", boom)
+    monkeypatch.setattr(article_run.write, "write_take", boom)
     tg = FakeTG()
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     out = article_run.draft("morning", root, now, tg=tg)  # must NOT raise
@@ -410,3 +450,94 @@ def test_main_logs_traceback_on_failure(monkeypatch, caplog):
     assert "boom" in caplog.text
     assert "draft(morning) failed" in caplog.text
     assert sent and "RuntimeError" in sent[-1]
+
+
+def _fake_share_article(cand, angle="tin-nong"):
+    return ArticleContent(
+        format="share", caption_fb="x", caption_ig="y", hashtags=["#AI"],
+        cover_title="t",
+        slides=[{"role": "hook", "headline": "h", "body": "b", "tools": []},
+                {"role": "item", "headline": "h", "body": "b " * 45,
+                 "tool": None, "bullets": []},
+                {"role": "close", "headline": "h", "body": "b"}],
+        sources=[{"name": "OpenAI", "url": cand.url}], angle=angle)
+
+
+def _fake_take_article(angle):
+    return ArticleContent(
+        format="share", caption_fb="x", caption_ig="y", hashtags=["#AI"],
+        cover_title="t",
+        slides=[{"role": "hook", "headline": "h", "body": "b", "tools": []},
+                {"role": "item", "headline": "h", "body": "b " * 45,
+                 "tool": None, "bullets": []},
+                {"role": "close", "headline": "h", "body": "b"}],
+        sources=[], angle=angle)
+
+
+def test_news_path_uses_write_share_angle(wired, monkeypatch):
+    root, _ = wired
+    cand = _news_cand()
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
+    captured = {}
+
+    def fake_write_share(c, voice, sibling_angle="", generate=None):
+        captured["sibling_angle"] = sibling_angle
+        return _fake_share_article(c, angle="tin-nong")
+
+    monkeypatch.setattr(article_run.write, "write_share", fake_write_share)
+    monkeypatch.setattr(article_run.topics, "propose_topic",
+                        lambda *a, **k: (_ for _ in ()).throw(
+                            AssertionError("topic bank must not run")))
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg, meta=object())
+    assert out["status"] == "scheduled"
+    saved = DailyState(root / "data").get("2026-09-06", "morning")
+    assert saved["angle"] == "tin-nong"
+    assert saved["sources"] and saved["sources"][0]["url"] == cand.url
+    assert captured["sibling_angle"] == ""  # no sibling slot drafted yet today
+
+
+def test_fallback_path_uses_write_take_and_angle(wired, monkeypatch):
+    root, _ = wired
+    monkeypatch.setattr(article_run.topics, "propose_topic",
+                        lambda *a, **k: {"topic": "Một chủ đề", "angle": "xu-huong",
+                                        "why": "vì lý do X"})
+    captured = {}
+
+    def fake_write_take(topic, angle, why, voice, generate=None):
+        captured["angle"] = angle
+        return _fake_take_article(angle)
+
+    monkeypatch.setattr(article_run.write, "write_take", fake_write_take)
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=tg, meta=object())
+    assert out["status"] == "scheduled"
+    saved = DailyState(root / "data").get("2026-09-06", "morning")
+    assert saved["angle"] == "xu-huong"
+    assert saved["sources"] == []
+    assert captured["angle"] == "xu-huong"
+
+
+def test_evening_gets_morning_angle_as_sibling_hint(wired, monkeypatch):
+    root, _ = wired
+    ds = DailyState(root / "data")
+    ds.put("2026-09-06", "morning", status="scheduled", title="Bài sáng",
+          angle="tin-nong")
+
+    captured = {}
+
+    def fake_propose(topics_cfg, recent, voice, generate, sibling_angle=""):
+        captured["sibling_angle"] = sibling_angle
+        return {"topic": "Chủ đề tối", "angle": "quan-diem", "why": "vì..."}
+
+    monkeypatch.setattr(article_run.topics, "propose_topic", fake_propose)
+    monkeypatch.setattr(
+        article_run.write, "write_take",
+        lambda topic, angle, why, voice, generate=None: _fake_take_article(angle))
+
+    tg = FakeTG()
+    now = datetime(2026, 9, 6, 10, 5, tzinfo=timezone.utc)
+    article_run.draft("evening", root, now, tg=tg, meta=object())
+    assert captured["sibling_angle"] == "tin-nong"

@@ -29,9 +29,9 @@ def test_recent_titles_skips_corrupt_file(tmp_path):
 
 def test_propose_topic_parses_and_validates():
     good = lambda s, u, **k: json.dumps(
-        {"topic": "5 công cụ AI dựng video", "angle": "giúp bạn ra video nhanh hơn"})
+        {"topic": "5 công cụ AI dựng video", "angle": "quan-diem", "why": "giúp bạn ra video nhanh hơn"})
     out = topics.propose_topic({}, [], VOICE, good)
-    assert out == {"topic": "5 công cụ AI dựng video", "angle": "giúp bạn ra video nhanh hơn"}
+    assert out == {"topic": "5 công cụ AI dựng video", "angle": "quan-diem", "why": "giúp bạn ra video nhanh hơn"}
 
     with pytest.raises(topics.TopicError):
         topics.propose_topic({}, [], VOICE, lambda s, u, **k: json.dumps({}))
@@ -48,3 +48,34 @@ def test_propose_topic_passes_recent_to_prompt():
                          ["Tiêu đề đã đăng A", "Tiêu đề đã đăng B"], VOICE, gen)
     assert "Tiêu đề đã đăng A" in seen["user"]
     assert "Tiêu đề đã đăng B" in seen["user"]
+
+
+def test_load_topics_has_takes_and_shifts(tmp_path):
+    (tmp_path / "config").mkdir()
+    import shutil
+    shutil.copy("config/topics.yaml", tmp_path / "config" / "topics.yaml")
+    t = topics.load_topics(tmp_path)
+    assert "takes" in t and "shifts" in t
+    assert "formats" not in t and "seeds" not in t
+
+
+def test_propose_topic_returns_angle_and_why():
+    spec = topics.propose_topic(
+        {"takes": ["A"], "shifts": ["B"]}, [], VOICE,
+        generate=lambda s, u, **k: json.dumps(
+            {"topic": "Một chủ đề", "angle": "xu-huong", "why": "vì lý do X"}))
+    assert spec == {"topic": "Một chủ đề", "angle": "xu-huong", "why": "vì lý do X"}
+
+
+def test_propose_topic_defaults_bad_angle_to_quan_diem(caplog):
+    spec = topics.propose_topic(
+        {"takes": ["A"], "shifts": ["B"]}, [], VOICE,
+        generate=lambda s, u, **k: json.dumps(
+            {"topic": "Một chủ đề", "angle": "linh-tinh", "why": "x"}))
+    assert spec["angle"] == "quan-diem"
+
+
+def test_propose_topic_prompt_includes_sibling_angle_hint():
+    sysp, _usr = topics._build_prompt({"takes": [], "shifts": []}, [], VOICE,
+                                      sibling_angle="tin-nong")
+    assert "tin-nong" in sysp
