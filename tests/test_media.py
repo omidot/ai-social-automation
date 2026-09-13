@@ -54,9 +54,21 @@ def test_fetch_source_image_ok(tmp_path, monkeypatch):
     assert out and Path(out).exists()
 
 
+def test_capture_screenshot_is_public_and_used_by_screenshot(monkeypatch, tmp_path):
+    calls = []
+    # media.screenshot() crops+re-saves as JPEG via PIL -- write real PNG bytes a decoder accepts
+    def fake_capture(url, dest):
+        calls.append((url, dest))
+        Image.new("RGB", (100, 100), "white").save(dest, format="PNG")
+    monkeypatch.setattr(media, "capture_screenshot", fake_capture)
+    out = media.screenshot("https://example.com", tmp_path / "shot.jpg")
+    assert out is not None
+    assert calls[0][0] == "https://example.com"
+
+
 def test_build_media_orders_and_flags(tmp_path, monkeypatch):
     monkeypatch.setattr(media, "_download", lambda url, timeout=60: _png_bytes(1000, 800))
-    monkeypatch.setattr(media, "_shoot", lambda url, dest: Image.new("RGB", (1280, 800)).save(dest))
+    monkeypatch.setattr(media, "capture_screenshot", lambda url, dest: Image.new("RGB", (1280, 800)).save(dest))
     paths, low = media.build_media(_cand(), _post(), tmp_path, "A Hít Official")
     assert 3 <= len(paths) <= 4
     assert Path(paths[0]).name.startswith("01_thumbnail")
@@ -66,7 +78,7 @@ def test_build_media_orders_and_flags(tmp_path, monkeypatch):
 def test_build_media_low_flag_when_few(tmp_path, monkeypatch):
     monkeypatch.setattr(media, "_download",
                         lambda url, timeout=60: (_ for _ in ()).throw(RuntimeError("x")))
-    monkeypatch.setattr(media, "_shoot",
+    monkeypatch.setattr(media, "capture_screenshot",
                         lambda url, dest: (_ for _ in ()).throw(RuntimeError("x")))
     cand = _cand()
     cand.top_image = None

@@ -20,7 +20,7 @@ def _download(url: str, timeout: int = 60) -> bytes:
     return r.content
 
 
-def _shoot(url: str, dest: Path) -> None:
+def capture_screenshot(url: str, dest: Path) -> None:
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -110,7 +110,7 @@ def fetch_source_image(url: str | None, dest: Path) -> Path | None:
 def screenshot(url: str, dest: Path) -> Path | None:
     tmp = dest.with_suffix(".png")
     try:
-        _shoot(url, tmp)
+        capture_screenshot(url, tmp)
         im = Image.open(tmp)
         w, h = im.size
         im = im.crop((0, 0, w, min(h, int(w * 9 / 16))))
