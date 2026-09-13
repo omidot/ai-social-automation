@@ -42,7 +42,7 @@ video:
   channel_footer: "— A Hít Official · AI & năng suất mỗi ngày"
   publish:
     youtube: true
-    fb_reel: false
-    ig_reel: false
+    fb_reel: true
+    ig_reel: true
     tiktok: false
     youtube_category: 27
