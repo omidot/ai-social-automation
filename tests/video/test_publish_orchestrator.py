@@ -53,6 +53,21 @@ def _patch(monkeypatch, *, yt_result=None, yt_raises=None):
     return deleted
 
 
+def test_test_slot_never_published(tmp_path, monkeypatch):
+    # draft_fresh_video/draft_topic_video render ad hoc test scripts under the
+    # synthetic "test" slot key -- it must never reach a real platform even
+    # when fully rendered and every platform is enabled.
+    _settings(tmp_path, youtube=True, fb_reel=True, ig_reel=True, tiktok=True)
+    ds = _seed(tmp_path, slot="test")
+    deleted = _patch(monkeypatch)
+    out = pub.publish_pending(ds, FakeTG(), tmp_path,
+                              datetime(2026, 9, 9, 5, tzinfo=timezone.utc))
+    assert out == []
+    assert deleted == []
+    v = ds.get("2026-09-09", "test")["video"]
+    assert v["result"] == {"youtube": None, "fb_reel": None, "ig_reel": None, "tiktok": None}
+
+
 def test_disabled_everywhere_is_skip(tmp_path, monkeypatch):
     _settings(tmp_path)                      # all False
     ds = _seed(tmp_path)

@@ -7,7 +7,7 @@ import yaml
 
 from . import write, images, topics, collect, score, publish, styles
 from .video import draft_script as _video_draft
-from .daily_state import DailyState
+from .daily_state import DailyState, TEST_SLOT
 from .models import ArticleContent
 from .state import State
 from .telegram import Telegram
@@ -248,7 +248,7 @@ def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> d
             log.warning("fresh-video: write_share rejected %r: %s", cand.title, e)
             continue
         return _video_draft.draft(
-            "test", root, title=cand.title, source_url=cand.url,
+            TEST_SLOT, root, title=cand.title, source_url=cand.url,
             body_text=article.caption_fb, caption_fb=article.caption_fb,
             angle=article.angle, now=now, generate=generate, tg=tg)
     raise SystemExit("no fresh real-news candidate available for a test video")
@@ -269,7 +269,7 @@ def draft_topic_video(root: Path, now: datetime, *, title: str, url: str, body_t
                      summary="", full_text=body_text)
     article = write.write_share(cand, voice, "", generate=generate)
     return _video_draft.draft(
-        "test", root, title=cand.title, source_url=cand.url,
+        TEST_SLOT, root, title=cand.title, source_url=cand.url,
         body_text=article.caption_fb, caption_fb=article.caption_fb,
         angle=article.angle, now=now, generate=generate, tg=tg)
 

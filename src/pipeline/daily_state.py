@@ -9,6 +9,12 @@ log = logging.getLogger("daily_state")
 
 TERMINAL = frozenset({"posted", "discarded", "expired"})
 
+# Slot key used for ad hoc video-script test drafts (article_run.draft_fresh_video /
+# draft_topic_video) that never go through the real morning/evening article flow.
+# Rendering must still work for it, but it must never be eligible for real
+# publishing to YouTube/FB Reel/IG Reel/TikTok.
+TEST_SLOT = "test"
+
 
 class DailyState:
     def __init__(self, data_dir: Path):

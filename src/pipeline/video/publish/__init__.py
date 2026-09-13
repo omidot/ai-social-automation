@@ -9,6 +9,7 @@ import httpx
 import yaml
 
 from ..models import VideoMeta
+from ...daily_state import TEST_SLOT
 from ...meta import Meta
 from . import assets as _assets
 from . import tiktok as _tiktok
@@ -116,6 +117,8 @@ def publish_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> lis
         if doc is None:
             continue
         for slot, row in doc["posts"].items():
+            if slot == TEST_SLOT:
+                continue  # ad hoc test draft -- render only, never publish for real
             v = row.get("video") or {}
             if v.get("status") not in ("rendered", "publishing"):
                 continue
