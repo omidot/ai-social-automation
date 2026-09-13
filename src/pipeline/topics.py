@@ -55,18 +55,23 @@ def recent_titles(root: Path, days: int) -> list[str]:
     return out
 
 
-def _build_prompt(topics: dict, recent: list[str], voice: dict) -> tuple[str, str]:
+def _build_prompt(topics: dict, recent: list[str], voice: dict,
+                  sibling_angle: str = "") -> tuple[str, str]:
     ten_kenh = voice.get("ten_kenh", "")
+    sibling_line = (
+        f"Slot kia hôm nay đã dùng góc \"{sibling_angle}\" — nếu hợp lý, chọn góc "
+        "khác cho đa dạng. " if sibling_angle else ""
+    )
     system = (
         f"Bạn là người lên chủ đề nội dung cho kênh \"{ten_kenh}\" về AI, năng suất "
-        "và kiếm tiền online cho khán giả Việt Nam. "
-        "Hãy đề xuất ĐÚNG MỘT chủ đề cụ thể, thực dụng mà người ta thật sự tìm kiếm "
-        "và muốn đọc. Chủ đề có thể lấy từ danh sách 'seeds', ghép một 'format' với "
-        "một 'theme', hoặc là một ý tưởng mới cùng tinh thần đó. "
-        "Chủ đề phải CỤ THỂ (nêu rõ số lượng hoặc việc cụ thể), hữu ích, và KHÔNG "
-        "được trùng hay xào lại bất cứ mục nào trong danh sách 'đã đăng gần đây'. "
-        "CHỈ trả về JSON: {\"topic\": chuỗi <=14 từ, "
-        "\"angle\": một câu nêu bài này sẽ giúp người đọc làm được gì}."
+        "và kiếm tiền online cho khán giả Việt Nam. Chọn ĐÚNG MỘT mục từ 'takes' "
+        "hoặc 'shifts' trong ngân hàng bên dưới (hoặc tự nghĩ một câu cùng tinh "
+        "thần), KHÔNG được trùng hay xào lại bất cứ mục nào trong danh sách 'đã "
+        f"đăng gần đây'. {sibling_line}"
+        "CHỈ trả về JSON: {\"topic\": chuỗi <=16 từ, "
+        "\"angle\": \"quan-diem\" nếu lấy cảm hứng từ 'takes' hoặc \"xu-huong\" nếu "
+        "từ 'shifts', "
+        "\"why\": một câu nêu góc nhìn/lý do chủ đề này đáng nói}."
     )
     recent_block = "\n".join(f"- {t}" for t in recent[:30]) or "(chưa có)"
     user = (
@@ -78,9 +83,10 @@ def _build_prompt(topics: dict, recent: list[str], voice: dict) -> tuple[str, st
     return system, user
 
 
-def propose_topic(topics: dict, recent: list[str], voice: dict, generate) -> dict:
-    """One LLM call: propose a single specific, non-repeated topic + angle."""
-    system, user = _build_prompt(topics, recent, voice)
+def propose_topic(topics: dict, recent: list[str], voice: dict, generate,
+                  sibling_angle: str = "") -> dict:
+    """One LLM call: propose a single specific, non-repeated topic + angle + why."""
+    system, user = _build_prompt(topics, recent, voice, sibling_angle)
     raw = generate(system, user, provider="auto")
     try:
         data = parse_json_response(raw)
@@ -92,5 +98,9 @@ def propose_topic(topics: dict, recent: list[str], voice: dict, generate) -> dic
     if not topic:
         raise TopicError(f"topic proposal missing 'topic': {data!r}")
     angle = str(data.get("angle", "")).strip()
-    log.info("proposed topic: %s | angle: %s", topic, angle)
-    return {"topic": topic, "angle": angle}
+    if angle not in ("quan-diem", "xu-huong"):
+        log.warning("propose_topic got invalid angle %r, defaulting to quan-diem", angle)
+        angle = "quan-diem"
+    why = str(data.get("why", "")).strip()
+    log.info("proposed topic: %s | angle: %s | why: %s", topic, angle, why)
+    return {"topic": topic, "angle": angle, "why": why}
