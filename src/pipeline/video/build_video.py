@@ -24,7 +24,10 @@ _CFG_DEFAULTS = {"enabled": False, "target_seconds": 40, "words_min": 110,
                  "words_max": 140}
 
 # Canned script for --fake-llm: lets the CLI / CI smoke run the full chain with
-# no LLM credentials. ~117 displayed Vietnamese words, 14 cards, 3 sections.
+# no LLM credentials. ~166 displayed Vietnamese words, 19 cards, 3 sections --
+# must stay inside config/settings.yaml's video.words_min/words_max band (the
+# fake LLM always returns this same script, so it can never self-correct via
+# the retry-and-nudge loop like a real one would).
 _FAKE_SCRIPT_JSON = json.dumps({
     "sections": [
         {"label": "AI ĐANG TĂNG TỐC", "card_start": 0},
@@ -58,6 +61,16 @@ _FAKE_SCRIPT_JSON = json.dumps({
          "variant": "stack", "anchor": "top", "motion_in": "rise", "motion_out": "down"},
         {"lines": ["Sự thật là", "nó đang ở đây rồi."],
          "variant": "invert", "anchor": "mid", "motion_in": "pop", "motion_out": "wipeOut"},
+        {"lines": ["Nhưng có một điều", "rất ít người để ý tới."],
+         "variant": "stack", "anchor": "top", "motion_in": "slideL", "motion_out": "up"},
+        {"lines": ["Công cụ không tự nhiên", "làm bạn giỏi hơn được."],
+         "variant": "mark", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+        {"lines": ["Người biết dùng đúng cách", "mới thực sự bứt phá nhanh."],
+         "variant": "stair", "anchor": "mid", "motion_in": "slam", "motion_out": "shrink"},
+        {"lines": ["Vậy nên đừng chỉ tải về", "rồi để đó không đụng tới."],
+         "variant": "right", "anchor": "low", "motion_in": "slideR", "motion_out": "dissolve"},
+        {"lines": ["Hãy thử nó ngay hôm nay", "với một việc nhỏ thôi đã."],
+         "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "down"},
         {"lines": ["Chỉ là", "bạn đã bắt đầu chưa?"],
          "variant": "invert", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut"},
     ],

@@ -69,8 +69,8 @@ def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
     (repo / "config").mkdir()
     (repo / "config/voice.yaml").write_text("giong: x\n", encoding="utf-8")
     (repo / "config/settings.yaml").write_text(
-        "video:\n  enabled: false\n  target_seconds: 40\n  words_min: 110\n"
-        "  words_max: 140\n  render_composition: CodexShort\n", encoding="utf-8")
+        "video:\n  enabled: false\n  target_seconds: 60\n  words_min: 165\n"
+        "  words_max: 210\n  render_composition: CodexShort\n", encoding="utf-8")
 
     monkeypatch.setattr(build_video, "_copy_as_mp3",
                         lambda s, d, v: shutil.copy(s, d))
@@ -91,7 +91,7 @@ def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
     man = json.loads(manifests[0].read_text(encoding="utf-8"))
     assert "skipped" not in man
     assert man["audio_source"] == "user-audio"
-    assert man["cards"] == 14
+    assert man["cards"] == 19
 
 
 def test_main_requires_voice(capsys):
