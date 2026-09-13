@@ -327,252 +327,234 @@
       "video": {
         "status": "awaiting_audio",
         "meta": {
-          "title": "OpenAI ra GPT-6 Astra: Giá API tăng 2.5 lần, kỷ nguyên AGI có thật?",
-          "description": "OpenAI tuyên bố kỷ nguyên AGI đã đến với GPT-6 Astra, nhưng giá API lại tăng gấp 2,5 lần theo CNBC. Cuộc đua AI không còn rẻ mà đã bước vào giai đoạn thương mại hóa khốc liệt. Bạn cần học cách phân tầng mô hình để không bị chi phí đè bẹp. Hãy theo dõi kênh A Hít Official để cập nhật góc nhìn thực chiến về AI mỗi ngày!",
+          "title": "GPT-6 Astra vs Claude Fable 5.1: AI Nào Thực Sự Áp Đảo?",
+          "description": "Bảng điểm quảng cáo của các hãng AI thường không phản ánh đúng thực tế sử dụng. Cuộc đối đầu giữa GPT-6 Astra và Claude Fable 5.1 cho thấy mỗi mô hình chỉ mạnh ở từng tác vụ riêng biệt và chi phí thực tế mới là yếu tố quyết định. Hãy theo dõi kênh A Hít Official để cập nhật góc nhìn công nghệ sắc bén mỗi ngày!",
           "hashtags": [
             "#AHitOfficial",
-            "#OpenAI",
             "#GPT6Astra",
-            "#AGI",
-            "#CongNghe",
-            "#ChiPhiAI",
-            "#LapTrinh",
-            "#TinTucAI"
+            "#ClaudeFable",
+            "#CôngNghệAI",
+            "#ArtificialAnalysis",
+            "#LậpTrìnhAI",
+            "#SoSánhAI",
+            "#ChiPhíAI",
+            "#AI2026"
           ],
           "keywords": [
-            "OpenAI",
-            "GPT 6 Astra",
-            "AGI",
-            "gia API OpenAI",
-            "A Hit Official",
-            "hoc AI",
-            "cong nghe AI"
+            "GPT-6 Astra",
+            "Claude Fable 5.1",
+            "A Hít Official",
+            "so sánh AI",
+            "Artificial Analysis",
+            "chi phí token AI",
+            "AI benchmark",
+            "công nghệ AI"
           ],
-          "tiktok_caption": "OpenAI ra GPT-6 Astra nhưng giá API tăng gấp 2.5 lần! Bạn nghĩ sao? #AHitOfficial #OpenAI #GPT6 #AGI"
+          "tiktok_caption": "GPT-6 Astra hay Claude Fable 5.1 mới là chân lý? Đừng chọn AI vì quảng cáo! #AHitOfficial #GPT6Astra #ClaudeFable #CongNgheAI #AI"
         },
-        "spoken_text": "OpenAI ra mắt GPT-6 Astra tuyên bố kỷ nguyên AGI đã tới.\nĐừng tin ngay vào những tuyên bố mỹ miều đó.\nSự thật thương trường luôn thô ráp hơn nhiều.\nTheo đưa tin từ CNBC, giá API vừa tăng vọt: 10 đô đầu vào, 50 đô đầu ra.\nMức giá này đắt hơn lần so với trước đây.\nĐa số mọi người đang hiểu sai chỗ này:\nBạn nghĩ AI mạnh hơn nghĩa là công việc rẻ hơn.\nNhưng cái thực sự quan trọng là: Cuộc đua đã chuyển sang thương mại hóa gắt gao.\nAI đỉnh cao không dành để chat giải trí nữa.\nNó được thiết kế để can thiệp sâu vào hạ tầng kỹ thuật.\nĐây là điều tin này dạy mình:\nNếu bạn đang làm lập trình viên hoặc vận hành doanh nghiệp,\nDùng AI vô tội vạ sẽ khiến chi phí đè bẹp lợi thế của bạn.\nBạn phải học cách phân tầng mô hình ngay: dùng mô hình nhỏ cho tác vụ hằng ngày,\nVà chỉ bật mô hình mạnh nhất khi gặp bài toán khó.\nĐừng chờ AGI cứu rỗi, hãy tự tối ưu quy trình.\nBạn thấy mức giá mới của OpenAI là hợp lý hay quá đắt đỏ?",
+        "spoken_text": "GPT-6 Astra đấu Claude Fable 5.1: Đa số mọi người đều hiểu sai chỗ này!\nThấy AI đứng đầu bảng điểm là nghĩ nó bá chủ tuyệt đối.\nThực tế hoàn toàn ngược đời!\nTheo Artificial Analysis, đơn vị kiểm định AI độc lập:\nAstra đè bẹp Fable 5.1 ở mảng điều khiển robot và vi tính.\nĐạt 95% thành công, vượt xa 40% của đối thủ.\nNhưng Claude Fable 5.1 lại nắm kỷ lục mảng lập trình, tốc độ 65 token một giây.\nCái thực sự quan trọng là: Bài toán chi phí thực tế.\nAstra chỉ tốn 1.67 USD cho một bài kiểm tra trí tuệ.\nTrong khi Fable 5.1 ngốn tới 3.76 USD. Cái đắt hơn gấp đôi!\nVì Astra giải đúng bài toán với lượng token ít hơn hẳn.\nĐây là điều tin này dạy mình: Không có AI nào thắng tuyệt đối.\nNếu bạn làm tự động hóa, Astra là lựa chọn số một.\nNếu bạn cần agent lập trình, Fable 5.1 mới là chân lý.\nĐừng chọn AI vì quảng cáo, hãy chọn theo chi phí mỗi tác vụ!\nĐừng đốt tiền vô ích! Bạn ưu tiên tốc độ hay giá tiền?",
         "script": {
           "cards": [
             {
               "lines": [
-                "OpenAI ra mắt GPT-6 Astra",
-                "tuyên bố kỷ nguyên AGI đã tới."
+                "GPT-6 Astra đấu Claude Fable 5.1:",
+                "Đa số mọi người",
+                "đều hiểu sai chỗ này!"
               ],
               "variant": "numeral",
               "anchor": "mid",
               "motion_in": "slam",
-              "motion_out": "up",
+              "motion_out": "dissolve",
               "num": 6
             },
             {
               "lines": [
-                "Đừng tin ngay vào",
-                "những tuyên bố mỹ miều đó."
-              ],
-              "variant": "invert",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "dissolve",
-              "num": null
-            },
-            {
-              "lines": [
-                "Sự thật thương trường",
-                "luôn thô ráp hơn nhiều."
-              ],
-              "variant": "mark",
-              "anchor": "top",
-              "motion_in": "slideR",
-              "motion_out": "down",
-              "num": null
-            },
-            {
-              "lines": [
-                "Theo đưa tin từ CNBC,",
-                "giá API vừa tăng vọt:",
-                "10 đô đầu vào,",
-                "50 đô đầu ra."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "fall",
-              "motion_out": "shrink",
-              "num": 10
-            },
-            {
-              "lines": [
-                "Mức giá này đắt hơn",
-                "~lần so với trước đây."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "rise",
-              "motion_out": "wipeOut",
-              "num": 2.5
-            },
-            {
-              "lines": [
-                "Đa số mọi người",
-                "đang hiểu sai chỗ này:"
-              ],
-              "variant": "strike",
-              "anchor": "top",
-              "motion_in": "wipe",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Bạn nghĩ AI mạnh hơn",
-                "nghĩa là công việc rẻ hơn."
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "down",
-              "num": null
-            },
-            {
-              "lines": [
-                "Nhưng cái thực sự",
-                "quan trọng là:",
-                "Cuộc đua đã chuyển sang",
-                "thương mại hóa gắt gao."
-              ],
-              "variant": "right",
-              "anchor": "low",
-              "motion_in": "pop",
-              "motion_out": "dissolve",
-              "num": null
-            },
-            {
-              "lines": [
-                "AI đỉnh cao không dành",
-                "để chat giải trí nữa."
-              ],
-              "variant": "stair",
-              "anchor": "mid",
-              "motion_in": "slam",
-              "motion_out": "shrink",
-              "num": null
-            },
-            {
-              "lines": [
-                "Nó được thiết kế",
-                "để can thiệp sâu",
-                "vào hạ tầng kỹ thuật."
-              ],
-              "variant": "invert",
-              "anchor": "mid",
-              "motion_in": "rise",
-              "motion_out": "wipeOut",
-              "num": null
-            },
-            {
-              "lines": [
-                "Đây là điều",
-                "tin này dạy mình:"
+                "Thấy AI đứng đầu bảng điểm",
+                "là nghĩ nó bá chủ tuyệt đối."
               ],
               "variant": "hero",
-              "anchor": "top",
-              "motion_in": "fall",
-              "motion_out": "dissolve",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
               "num": null
             },
             {
               "lines": [
-                "Nếu bạn đang làm",
-                "lập trình viên",
-                "hoặc vận hành doanh nghiệp,"
+                "Thực tế hoàn toàn ngược đời!"
               ],
-              "variant": "mark",
+              "variant": "strike",
               "anchor": "top",
-              "motion_in": "slideR",
+              "motion_in": "pop",
               "motion_out": "wipeOut",
               "num": null
             },
             {
               "lines": [
-                "Dùng AI vô tội vạ",
-                "sẽ khiến chi phí",
-                "đè bẹp lợi thế của bạn."
+                "Theo Artificial Analysis,",
+                "đơn vị kiểm định AI độc lập:"
               ],
-              "variant": "strike",
+              "variant": "invert",
               "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "down",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
               "num": null
             },
             {
               "lines": [
-                "Bạn phải học cách",
-                "phân tầng mô hình ngay:",
-                "dùng mô hình nhỏ",
-                "cho tác vụ hằng ngày,"
+                "Astra đè bẹp Fable 5.1",
+                "ở mảng điều khiển robot và vi tính."
               ],
-              "variant": "stack",
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 51
+            },
+            {
+              "lines": [
+                "Đạt 95% thành công,",
+                "vượt xa 40% của đối thủ."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": 95
+            },
+            {
+              "lines": [
+                "Nhưng Claude Fable 5.1",
+                "lại nắm kỷ lục mảng lập trình,",
+                "tốc độ 65 token một giây."
+              ],
+              "variant": "numeral",
               "anchor": "mid",
               "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": 51
+            },
+            {
+              "lines": [
+                "Cái thực sự quan trọng là:",
+                "Bài toán chi phí thực tế."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
               "motion_out": "up",
               "num": null
             },
             {
               "lines": [
-                "Và chỉ bật",
-                "mô hình mạnh nhất",
-                "khi gặp bài toán khó."
+                "Astra chỉ tốn 1.67 USD",
+                "cho một bài kiểm tra trí tuệ."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 1.67
+            },
+            {
+              "lines": [
+                "Trong khi Fable 5.1",
+                "ngốn tới 3.76 USD.",
+                "~Cái đắt hơn gấp đôi!"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": 3.76
+            },
+            {
+              "lines": [
+                "Vì Astra giải đúng bài toán",
+                "với lượng token ít hơn hẳn."
               ],
               "variant": "strike",
-              "anchor": "low",
-              "motion_in": "slideL",
-              "motion_out": "shrink",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
               "num": null
             },
             {
               "lines": [
-                "Đừng chờ AGI cứu rỗi,",
-                "hãy tự tối ưu quy trình."
+                "Đây là điều tin này dạy mình:",
+                "Không có AI nào thắng tuyệt đối."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nếu bạn làm tự động hóa,",
+                "Astra là lựa chọn số một."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null
+            },
+            {
+              "lines": [
+                "Nếu bạn cần agent lập trình,",
+                "Fable 5.1 mới là chân lý."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": 51
+            },
+            {
+              "lines": [
+                "Đừng chọn AI vì quảng cáo,",
+                "hãy chọn theo chi phí mỗi tác vụ!"
               ],
               "variant": "hero",
-              "anchor": "mid",
+              "anchor": "top",
               "motion_in": "slam",
               "motion_out": "dissolve",
               "num": null
             },
             {
               "lines": [
-                "Bạn thấy mức giá mới",
-                "của OpenAI là hợp lý",
-                "hay quá đắt đỏ?"
+                "Đừng đốt tiền vô ích!",
+                "Bạn ưu tiên tốc độ hay giá tiền?"
               ],
               "variant": "invert",
               "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "down",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
               "num": null
             }
           ],
           "sections": [
             {
-              "label": "Bẫy Kỷ Nguyên AGI",
+              "label": "Mở đầu & Sự thật",
               "card_start": 0
             },
             {
-              "label": "Sự Thật Thương Trường",
-              "card_start": 5
+              "label": "So sánh hiệu năng",
+              "card_start": 3
             },
             {
-              "label": "Bài Học Phân Tầng AI",
-              "card_start": 10
+              "label": "Bài toán chi phí",
+              "card_start": 7
             },
             {
-              "label": "Tối Ưu Hoặc Bị Đè Bẹp",
-              "card_start": 15
+              "label": "Bài học & Lựa chọn",
+              "card_start": 11
             }
           ]
         },
-        "script_path": "output/2026-09-13/2026-09-13-test-openai-launches-gpt-6-astra-claims-agi-e/video/script.json",
-        "script_msg_id": 224,
+        "script_path": "output/2026-09-13/2026-09-13-test-gpt-6-astra-vs-claude-fable-5-1-the-benc/video/script.json",
+        "script_msg_id": 225,
         "audio_file_id": null,
         "audio_msg_id": null,
         "mp4_path": null,
