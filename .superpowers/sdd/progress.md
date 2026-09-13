@@ -56,3 +56,15 @@ fallback. Root cause #2 (extraction targeting) CONFIRMED FIXED live.
 - General: data/seen.json locally polluted by controller's live diagnostic runs (--root . instead of a tmp dir) - to be reverted before merge, not part of any commit.
 
 ## ALL 6 TASKS COMPLETE — ready for final whole-branch review
+
+## Final whole-branch review — MERGE AFTER fixing I1 (data/seen.json revert)
+Verdict: READY after I1. 0 Critical, 1 Important (I1: data/seen.json diagnostic
+pollution, reverted via `git checkout -- data/seen.json`, no commit needed - was
+never staged/committed). 13 Minor + 4 Nits, all triaged, none blocking, deferred for
+a later cleanup pass (notable: M1 Google-News items get _source_tier bonus but are
+URL-unfetchable -> occupy pick slots that can't pass has_body; M2 write_take's retry
+loop lost its test coverage when test_write_topic_post_retries_once_on_bad_shape was
+deleted without replacement).
+Full suite after I1 fix: 347 passed.
+
+## BRANCH READY TO MERGE
