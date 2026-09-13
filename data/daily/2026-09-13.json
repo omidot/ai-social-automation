@@ -2,7 +2,7 @@
   "date": "2026-09-13",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "scheduled",
       "format": "share",
       "title": "5 công cụ AI luyện phản xạ nói tiếng Anh 15 phút mỗi ngày",
       "style": "mono-bar",
@@ -43,7 +43,17 @@
       "risk": false,
       "slot_ict": "11:30",
       "sources": [],
-      "angle": "Giúp người đọc chọn được công cụ AI phù hợp để luyện nói tiếng Anh tự tin hơn mỗi ngày mà không cần thuê gia sư."
+      "angle": "Giúp người đọc chọn được công cụ AI phù hợp để luyện nói tiếng Anh tự tin hơn mỗi ngày mà không cần thuê gia sư.",
+      "fb_post_id": "1381130541740424_122099268621476035",
+      "ig_due": "2026-09-13T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122099268621476035",
+          "url": "https://facebook.com/1381130541740424_122099268621476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
     }
   }
 }
