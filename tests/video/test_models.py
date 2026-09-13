@@ -46,6 +46,45 @@ def test_card_from_dict_drops_unparseable_num():
     assert c.num is None
 
 
+from pipeline.video.models import ChartSpec, ScreenshotSpec
+
+def test_chartspec_roundtrip():
+    c = ChartSpec(kind="bar", items=[{"label": "Astra", "value": 1.67},
+                                     {"label": "Fable 5.1", "value": 3.76}], unit="$")
+    assert ChartSpec.from_dict(c.to_dict()) == c
+
+def test_screenshotspec_roundtrip():
+    s = ScreenshotSpec(query="GitHub OpenAI Codex repository")
+    assert ScreenshotSpec.from_dict(s.to_dict()) == s
+
+def test_card_chart_and_screenshot_roundtrip():
+    chart = ChartSpec(kind="line", items=[{"value": 1}, {"value": 2}, {"value": 5}])
+    c = _card(["x"], num=None)
+    c.chart = chart
+    d = c.to_dict()
+    assert d["chart"] == chart.to_dict()
+    assert d["screenshot"] is None
+    assert d["screenshot_file"] is None
+    back = Card.from_dict(d)
+    assert back.chart == chart
+    assert back.screenshot is None
+
+    shot = ScreenshotSpec(query="Anthropic Claude Fable 5.1")
+    c2 = _card(["y"])
+    c2.screenshot = shot
+    c2.screenshot_file = "screenshots/2.png"
+    d2 = c2.to_dict()
+    back2 = Card.from_dict(d2)
+    assert back2.screenshot == shot
+    assert back2.screenshot_file == "screenshots/2.png"
+
+def test_card_from_dict_defaults_chart_and_screenshot_to_none():
+    # existing fixtures (norm_script.json etc.) never include these keys
+    c = Card.from_dict({"lines": ["x"], "variant": "stack", "anchor": "mid",
+                        "motion_in": "rise", "motion_out": "up"})
+    assert c.chart is None and c.screenshot is None and c.screenshot_file is None
+
+
 from pipeline.video.models import VideoMeta
 
 def test_videometa_roundtrip():

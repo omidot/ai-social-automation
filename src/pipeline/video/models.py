@@ -38,6 +38,9 @@ class Card:
     motion_in: str
     motion_out: str
     num: int | float | None = None
+    chart: ChartSpec | None = None
+    screenshot: ScreenshotSpec | None = None
+    screenshot_file: str | None = None
 
     @property
     def spoken(self) -> str:
@@ -49,13 +52,45 @@ class Card:
 
     def to_dict(self) -> dict:
         return {"lines": list(self.lines), "variant": self.variant, "anchor": self.anchor,
-                "motion_in": self.motion_in, "motion_out": self.motion_out, "num": self.num}
+                "motion_in": self.motion_in, "motion_out": self.motion_out, "num": self.num,
+                "chart": self.chart.to_dict() if self.chart is not None else None,
+                "screenshot": self.screenshot.to_dict() if self.screenshot is not None else None,
+                "screenshot_file": self.screenshot_file}
 
     @classmethod
     def from_dict(cls, d: dict) -> "Card":
+        chart = ChartSpec.from_dict(d["chart"]) if d.get("chart") else None
+        screenshot = ScreenshotSpec.from_dict(d["screenshot"]) if d.get("screenshot") else None
         return cls(lines=list(d["lines"]), variant=d["variant"], anchor=d["anchor"],
                    motion_in=d["motion_in"], motion_out=d["motion_out"],
-                   num=_coerce_num(d.get("num")))
+                   num=_coerce_num(d.get("num")), chart=chart, screenshot=screenshot,
+                   screenshot_file=d.get("screenshot_file"))
+
+
+@dataclass
+class ChartSpec:
+    kind: str
+    items: list[dict]
+    unit: str = ""
+
+    def to_dict(self) -> dict:
+        return {"kind": self.kind, "items": [dict(i) for i in self.items], "unit": self.unit}
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "ChartSpec":
+        return cls(kind=d["kind"], items=[dict(i) for i in d["items"]], unit=d.get("unit", ""))
+
+
+@dataclass
+class ScreenshotSpec:
+    query: str
+
+    def to_dict(self) -> dict:
+        return {"query": self.query}
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "ScreenshotSpec":
+        return cls(query=d["query"])
 
 
 @dataclass
