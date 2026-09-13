@@ -205,3 +205,66 @@ def test_generate_from_article_retries_on_word_band():
     assert len(calls) == 2
     assert "[SỬA]" in calls[1] and "publish" in calls[1]
     assert isinstance(s, Script) and isinstance(m, VideoMeta)
+
+
+def _base_card():
+    return {"lines": ["x"], "variant": "stack", "anchor": "mid",
+            "motion_in": "rise", "motion_out": "up"}
+
+def _script_with_card(extra_card_fields, n_extra_cards=8):
+    # _validate() requires 8 <= len(cards) <= 20 -- 8 is the floor, so this
+    # default must stay at 8 (not 7) or every test below would fail on the
+    # card-count check before ever reaching the chart/screenshot validation
+    # this helper exists to exercise.
+    cards = [_base_card() for _ in range(n_extra_cards)]
+    cards[3] = {**_base_card(), **extra_card_fields}
+    return {"sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 4}],
+            "cards": cards}
+
+def test_validate_rejects_card_with_both_num_and_chart():
+    data = _script_with_card({"num": 5, "chart": {"kind": "bar",
+                              "items": [{"label": "A", "value": 1}, {"label": "B", "value": 2}]}})
+    with pytest.raises(VideoScriptError, match="chỉ được set 1 trong"):
+        script._validate(data, CFG)
+
+def test_validate_rejects_bad_chart_kind():
+    data = _script_with_card({"chart": {"kind": "pie", "items": [{"value": 1}]}})
+    with pytest.raises(VideoScriptError, match="kind"):
+        script._validate(data, CFG)
+
+def test_validate_rejects_bar_with_wrong_item_count():
+    data = _script_with_card({"chart": {"kind": "bar",
+                              "items": [{"label": "A", "value": 1}]}})
+    with pytest.raises(VideoScriptError, match="items"):
+        script._validate(data, CFG)
+
+def test_validate_rejects_chart_item_without_numeric_value():
+    data = _script_with_card({"chart": {"kind": "line",
+                              "items": [{"value": 1}, {"value": 2}, {"value": "nhiều"}]}})
+    with pytest.raises(VideoScriptError, match="value"):
+        script._validate(data, CFG)
+
+def test_validate_accepts_valid_line_chart():
+    data = _script_with_card({"chart": {"kind": "line",
+                              "items": [{"value": 1}, {"value": 2}, {"value": 5}], "unit": "%"}})
+    s = script._validate(data, CFG)
+    assert s.cards[3].chart.kind == "line"
+
+def test_validate_rejects_empty_screenshot_query():
+    data = _script_with_card({"screenshot": {"query": "  "}})
+    with pytest.raises(VideoScriptError, match="query"):
+        script._validate(data, CFG)
+
+def test_validate_rejects_screenshot_query_too_long():
+    data = _script_with_card({"screenshot": {"query": "x" * 101}})
+    with pytest.raises(VideoScriptError, match="query"):
+        script._validate(data, CFG)
+
+def test_validate_accepts_valid_screenshot():
+    data = _script_with_card({"screenshot": {"query": "GitHub OpenAI Codex"}})
+    s = script._validate(data, CFG)
+    assert s.cards[3].screenshot.query == "GitHub OpenAI Codex"
+
+def test_build_prompt_mentions_chart_and_screenshot():
+    sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
+    assert "chart" in sysp and "screenshot" in sysp

@@ -47,7 +47,15 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         "thích bằng lời thật đơn giản, không cần biết trước mới hiểu. Tránh xâu chuỗi liên "
         "tiếp nhiều lập luận trừu tượng mà không xen ví dụ/hệ quả cụ thể. 2-3 card gần cuối "
         "phải nói thẳng điều này ảnh hưởng gì tới người xem (vd: người làm sản phẩm AI, "
-        "người dùng công nghệ) thay vì chỉ chốt bằng câu hỏi mơ hồ."
+        "người dùng công nghệ) thay vì chỉ chốt bằng câu hỏi mơ hồ. "
+        "Một card có thể thêm 'chart' HOẶC 'screenshot' (không dùng chung với nhau hay với "
+        "'num', tối đa một trong ba trên mỗi card, và cả hai đều KHÔNG bắt buộc): "
+        "'chart': {kind:'line'|'bar'|'hbar', items:[...], unit?} — chỉ thêm khi có ít nhất "
+        "2 số liệu THẬT đáng so sánh trong bài; kind='line' cần >=3 items dạng {value}, "
+        "'bar' cần ĐÚNG 2 items dạng {label,value}, 'hbar' cần 2-4 items dạng {label,value}. "
+        "'screenshot': {query} — chỉ thêm khi bài nhắc tới một sản phẩm/repo/trang web CỤ THỂ "
+        "có thể tìm bằng Google (vd query='GitHub OpenAI Codex'), query tối đa 100 ký tự. "
+        "Không bắt buộc mỗi kịch bản phải có chart hay screenshot."
     )
     if with_meta:
         system += (
@@ -78,6 +86,29 @@ def _validate(data: dict, cfg: dict) -> Script:
         s = Script.from_dict(data)
     except (KeyError, TypeError) as e:
         raise VideoScriptError(f"bad card/section fields: {e}") from e
+    _CHART_ITEM_BOUNDS = {"line": (3, None), "bar": (2, 2), "hbar": (2, 4)}
+    for i, c in enumerate(s.cards):
+        set_fields = [name for name, val in (("num", c.num), ("chart", c.chart),
+                                             ("screenshot", c.screenshot)) if val is not None]
+        if len(set_fields) > 1:
+            raise VideoScriptError(f"card {i}: chỉ được set 1 trong num/chart/screenshot, có {set_fields}")
+        if c.chart is not None:
+            if c.chart.kind not in _CHART_ITEM_BOUNDS:
+                raise VideoScriptError(f"card {i}: chart.kind {c.chart.kind!r} không hợp lệ")
+            lo, hi = _CHART_ITEM_BOUNDS[c.chart.kind]
+            n_items = len(c.chart.items)
+            if n_items < lo or (hi is not None and n_items > hi):
+                raise VideoScriptError(
+                    f"card {i}: chart '{c.chart.kind}' có {n_items} items, cần {lo}..{hi or 'nhiều hơn'}")
+            for item in c.chart.items:
+                if not isinstance(item.get("value"), (int, float)):
+                    raise VideoScriptError(f"card {i}: chart item thiếu 'value' dạng số: {item}")
+        if c.screenshot is not None:
+            q = c.screenshot.query
+            if not isinstance(q, str) or not q.strip():
+                raise VideoScriptError(f"card {i}: screenshot.query rỗng")
+            if len(q) > 100:
+                raise VideoScriptError(f"card {i}: screenshot.query dài {len(q)} > 100 ký tự")
     if s.sections[0].card_start != 0:
         raise VideoScriptError("sections[0].card_start must be 0")
     starts = [sec.card_start for sec in s.sections]
