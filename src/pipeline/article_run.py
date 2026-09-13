@@ -337,13 +337,23 @@ def main(argv: list[str] | None = None) -> int:
     if not args.fresh_video and not args.topic_title and not args.slot:
         ap.error("--slot is required unless --fresh-video or --topic-title is given")
     if args.topic_title:
-        out = draft_topic_video(Path(args.root), datetime.now(timezone.utc),
-                                title=args.topic_title, url=args.topic_url,
-                                body_text=args.topic_body)
+        try:
+            out = draft_topic_video(Path(args.root), datetime.now(timezone.utc),
+                                    title=args.topic_title, url=args.topic_url,
+                                    body_text=args.topic_body)
+        except Exception as e:  # noqa: BLE001 - surface every failure to the operator
+            log.exception("draft_topic_video failed")
+            _notify_failure("topic-video", e)
+            return 1
         print("SUMMARY:", out.get("status", "awaiting_audio"))
         return 0
     if args.fresh_video:
-        out = draft_fresh_video(Path(args.root), datetime.now(timezone.utc))
+        try:
+            out = draft_fresh_video(Path(args.root), datetime.now(timezone.utc))
+        except Exception as e:  # noqa: BLE001 - surface every failure to the operator
+            log.exception("draft_fresh_video failed")
+            _notify_failure("fresh-video", e)
+            return 1
         print("SUMMARY:", out.get("status", "awaiting_audio"))
         return 0
     gen = None

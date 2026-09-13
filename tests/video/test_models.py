@@ -25,6 +25,27 @@ def test_script_roundtrip():
                sections=[SectionMark("A", 0), SectionMark("B", 1)])
     assert Script.from_dict(s.to_dict()).to_dict() == s.to_dict()
 
+def test_card_from_dict_strips_unit_from_num():
+    # the LLM occasionally returns "50 USD" instead of a bare 50 -- codegen
+    # writes num verbatim into a JS array literal, so a stray unit there
+    # breaks the generated file. from_dict must extract the numeric part.
+    c = Card.from_dict({"lines": ["x"], "variant": "numeral", "anchor": "mid",
+                        "motion_in": "rise", "motion_out": "up", "num": "50 USD"})
+    assert c.num == 50
+
+
+def test_card_from_dict_keeps_plain_number():
+    c = _card(["x"], num=2000)
+    d = c.to_dict()
+    assert Card.from_dict(d).num == 2000
+
+
+def test_card_from_dict_drops_unparseable_num():
+    c = Card.from_dict({"lines": ["x"], "variant": "stack", "anchor": "mid",
+                        "motion_in": "rise", "motion_out": "up", "num": "many"})
+    assert c.num is None
+
+
 from pipeline.video.models import VideoMeta
 
 def test_videometa_roundtrip():

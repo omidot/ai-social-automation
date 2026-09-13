@@ -8,10 +8,26 @@ VALID_MOTION_IN = frozenset({"rise", "fall", "slideR", "slideL", "wipe", "pop", 
 VALID_MOTION_OUT = frozenset({"up", "down", "dissolve", "shrink", "wipeOut"})
 
 _WORD = re.compile(r"\S+")
+_NUM = re.compile(r"-?\d+(?:\.\d+)?")
 
 
 def _strip_tilde(line: str) -> str:
     return line[1:] if line.startswith("~") else line
+
+
+def _coerce_num(num: object) -> int | float | None:
+    """The LLM occasionally returns 'num' with a unit/currency attached (e.g.
+    "50 USD", "2.5x") despite the prompt asking for a bare number — codegen
+    writes this value verbatim into a JS array literal, so anything but a
+    real number there breaks the generated variants.mjs. Extract the leading
+    numeric value instead of letting a malformed one crash the render."""
+    if num is None or isinstance(num, (int, float)):
+        return num
+    m = _NUM.search(str(num))
+    if not m:
+        return None
+    text = m.group()
+    return float(text) if "." in text else int(text)
 
 
 @dataclass
@@ -21,7 +37,7 @@ class Card:
     anchor: str
     motion_in: str
     motion_out: str
-    num: int | None = None
+    num: int | float | None = None
 
     @property
     def spoken(self) -> str:
@@ -38,7 +54,8 @@ class Card:
     @classmethod
     def from_dict(cls, d: dict) -> "Card":
         return cls(lines=list(d["lines"]), variant=d["variant"], anchor=d["anchor"],
-                   motion_in=d["motion_in"], motion_out=d["motion_out"], num=d.get("num"))
+                   motion_in=d["motion_in"], motion_out=d["motion_out"],
+                   num=_coerce_num(d.get("num")))
 
 
 @dataclass
