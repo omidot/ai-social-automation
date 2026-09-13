@@ -29,7 +29,7 @@ Prior phases: progress-p2c.md, progress-p2b.md, progress-plan1/2.md
   Deviations: test_collect.py pre-existed (appended not overwrote); _DEBUG const->fn.
   215 non-video / 111 video)
 - Task 2: complete (commit 1c0ba48..0900fbc, controller-verified pending review; collect.ensure_fulltext() extracted from collect()'s loop (preserves original try/except + time.sleep(0.5) rate-limit not captured in the plan brief, correctly discovered+preserved); article_run.py calls ensure_fulltext on picked candidates lacking body before has_body filter. Deviation: test_article_run.py addition used the file's real fixtures (wired/FakeTG), not the brief's assumed NOW/FakeTelegram/FakeMeta. 219 non-video / 111 video)  [review Approved]
-- Task 3: pending — fix scoring gate (_source_tier, recency denom, min_score, MAX_AGE_HOURS)
+- Task 3: complete (commit 0900fbc..4fb8121, controller-verified pending review; _source_tier/_TIER1/_TIER2 in score.py, recency denom 96, ARTICLE_DEBUG log line updated with source_tier field, MAX_AGE_HOURS 96, settings.yaml articles.min_score 20. Deviation: _c() test helper default URL truncates title[:8] causing a collision/false-tie in the new cross-posted-outranks test - added optional url= param, distinct URLs for that test only, no prod logic touched. 224 non-video / 111 video)  [review Approved]
 - Task 4: pending — write_share broadened + ANGLES + ArticleContent.angle + storyboard relax
 - Task 5: pending — replace listicle fallback bank (topics.yaml, propose_topic, write_take)
 - Task 6: pending — article_run wiring (angle propagation + sibling-angle hint)
