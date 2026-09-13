@@ -325,7 +325,7 @@
     },
     "test": {
       "video": {
-        "status": "audio_received",
+        "status": "awaiting_audio",
         "meta": {
           "title": "GPT-6 Astra vs Claude Fable 5.1: AI Nào Thực Sự Áp Đảo?",
           "description": "Bảng điểm quảng cáo của các hãng AI thường không phản ánh đúng thực tế sử dụng. Cuộc đối đầu giữa GPT-6 Astra và Claude Fable 5.1 cho thấy mỗi mô hình chỉ mạnh ở từng tác vụ riêng biệt và chi phí thực tế mới là yếu tố quyết định. Hãy theo dõi kênh A Hít Official để cập nhật góc nhìn công nghệ sắc bén mỗi ngày!",
@@ -559,8 +559,8 @@
         "audio_msg_id": 226,
         "mp4_path": null,
         "seconds": null,
-        "render_err": null,
-        "started_at": null,
+        "render_err": "RuntimeError: remotion exit 0: ",
+        "started_at": "2026-09-13T12:19:39.050992+00:00",
         "publish_due": null,
         "result": {
           "yt": null,
