@@ -68,3 +68,14 @@ def test_kineticshort_renders_chart_before_variant_switch():
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
     assert "ChartCard" in src
     assert "card.chart" in src
+
+def test_screenshot_tsx_exists_and_exports_screenshotcard():
+    assert (VIDEO / "src/Screenshot.tsx").is_file()
+    src = (VIDEO / "src/Screenshot.tsx").read_text(encoding="utf-8")
+    assert "export const ScreenshotCard" in src
+    assert "staticFile" in src
+
+def test_kineticshort_renders_screenshot_before_variant_switch():
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "ScreenshotCard" in src
+    assert "card.screenshotFile" in src

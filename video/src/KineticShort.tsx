@@ -6,6 +6,7 @@ import {
 import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { BgVideo, palAt } from './BgVideo';
 import { ChartCard } from './Chart';
+import { ScreenshotCard } from './Screenshot';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { Shots } from './Shots';
 import { Cutouts } from './Cutouts';
@@ -32,6 +33,7 @@ const CardView: React.FC<{ card: Card }> = ({ card }) => {
 
   const p = { card, ff: fontFamily, leaving, activeIdx };
   if (card.chart) return <ChartCard {...p} />;
+  if (card.screenshotFile) return <ScreenshotCard {...p} />;
   switch (card.variant) {
     case 'hero': return <Hero {...p} />;
     case 'invert': return <Invert {...p} />;
