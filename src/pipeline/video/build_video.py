@@ -17,6 +17,7 @@ from . import script as _script
 from . import variants as _variants
 from . import codegen as _codegen
 from . import align as _align
+from . import transcribe as _transcribe
 
 log = logging.getLogger("video.build")
 
@@ -119,7 +120,7 @@ def _copy_as_mp3(src: Path, dst: Path, video_dir: Path) -> None:
 
 
 def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: dict,
-          *, voice_wav: Path, render_smoke: bool = False, llm=None) -> dict:
+          *, voice_wav: Path, render_smoke: bool = False, llm=None, transcribe=None) -> dict:
     cfg = {**_CFG_DEFAULTS, **(cfg or {})}
     if not cfg.get("enabled"):
         return {"skipped": "video.enabled=false"}
@@ -144,6 +145,13 @@ def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: di
     voice_mp3 = video_dir / "public" / "voice.mp3"
     _copy_as_mp3(Path(voice_wav), voice_mp3, video_dir)
     backend = "user-audio"
+
+    transcribe = transcribe or _transcribe.transcribe_words
+    try:
+        transcribe(voice_mp3, video_dir / "ref" / "words.json")
+    except Exception:
+        log.warning("word transcription raised -- align.mjs will use its silence heuristic",
+                   exc_info=True)
 
     sil_dur = _align.make_silence_txt(voice_mp3, video_dir / "ref" / "silence.txt", video_dir)
     tl_path = _align.run_aligner(video_dir, sil_dur)

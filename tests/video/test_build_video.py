@@ -55,6 +55,60 @@ def test_build_writes_all_artefacts(tmp_path, monkeypatch):
     assert man["audio_source"] == "user-audio"
 
 
+def test_build_calls_transcribe_before_aligning(tmp_path, monkeypatch):
+    repo = tmp_path
+    (repo / "video").mkdir()
+    for sub in ("tools", "src", "ref", "public", "node_modules"):
+        (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
+    import shutil
+    shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
+                    repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
+    monkeypatch.setattr(build_video, "_copy_as_mp3",
+                        lambda s, d, v: shutil.copy(s, d))
+    raw = (FX / "raw_script.json").read_text(encoding="utf-8")
+    voice = {"xung_ho": {"nguoi_noi": "mình", "nguoi_nghe": "bạn"}, "giong": "thân thiện",
+             "cam_ky": [], "ten_kenh": "A Hít Official"}
+    monkeypatch.setattr(build_video, "_load_voice", lambda root: voice)
+
+    calls = []
+
+    def fake_transcribe(voice_path, out_json):
+        calls.append((Path(voice_path).name, Path(out_json).name))
+        assert Path(voice_path).exists()  # voice.mp3 must already be written
+        return False
+
+    cand, post = _story()
+    build_video.build(repo, cand, post, NOW, CFG, voice_wav=VOICE_FX,
+                      llm=lambda s, u, **k: raw, transcribe=fake_transcribe)
+    assert calls == [("voice.mp3", "words.json")]
+
+
+def test_build_survives_transcribe_exception(tmp_path, monkeypatch):
+    repo = tmp_path
+    (repo / "video").mkdir()
+    for sub in ("tools", "src", "ref", "public", "node_modules"):
+        (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
+    import shutil
+    shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
+                    repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
+    monkeypatch.setattr(build_video, "_copy_as_mp3",
+                        lambda s, d, v: shutil.copy(s, d))
+    raw = (FX / "raw_script.json").read_text(encoding="utf-8")
+    voice = {"xung_ho": {"nguoi_noi": "mình", "nguoi_nghe": "bạn"}, "giong": "thân thiện",
+             "cam_ky": [], "ten_kenh": "A Hít Official"}
+    monkeypatch.setattr(build_video, "_load_voice", lambda root: voice)
+
+    def boom(voice_path, out_json):
+        raise RuntimeError("model download failed")
+
+    cand, post = _story()
+    man = build_video.build(repo, cand, post, NOW, CFG, voice_wav=VOICE_FX,
+                            llm=lambda s, u, **k: raw, transcribe=boom)
+    assert man["cards"] == 14  # build completes on the silence-heuristic fallback
+
+
 def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
     # Staged isolated repo. settings.yaml sets video.enabled: false ON PURPOSE —
     # an explicit CLI invocation must override it and actually build (not skip).

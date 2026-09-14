@@ -5,6 +5,16 @@ import { LAYOUT } from './variants.mjs';
 const FPS = 30;
 const DURATION = Number(process.argv[2] ?? 136.803265);
 
+// ---- 0. Mốc thời gian THẬT (nhận diện giọng nói), nếu có ----
+// transcribe.py ghi ref/words.json khi nhận diện thành công. Không có file
+// này (chưa cài model, nhận diện lỗi, ...) -> rơi về ước lượng khoảng lặng
+// ở dưới, y như trước.
+let realWords = null;
+try {
+  const parsed = JSON.parse(fs.readFileSync('ref/words.json', 'utf8'));
+  if (Array.isArray(parsed) && parsed.length > 0) realWords = parsed;
+} catch { /* không có file hoặc lỗi đọc -> dùng ước lượng khoảng lặng */ }
+
 // ---- 1. Đọc các khoảng lặng do ffmpeg silencedetect tìm ra ----
 const raw = fs.readFileSync('ref/silence.txt', 'utf8');
 const silences = [];
@@ -53,28 +63,91 @@ for (let ci = 1; ci < CARDS.length; ci++) {
 const allWords = units.flatMap((u) => u.words);
 const totalWeight = allWords.reduce((a, x) => a + x.weight, 0);
 
-// ---- 4. Rải từ vào các đoạn có tiếng, tỷ lệ theo trọng số ----
-let wi = 0, carried = 0;
-for (let si = 0; si < speech.length; si++) {
-  const [s0, s1] = speech[si];
-  const isLast = si === speech.length - 1;
-  let quota = (totalWeight * (s1 - s0)) / totalSpeech + carried;
-  const bucket = [];
-  let used = 0;
-  while (wi < allWords.length && (used < quota || (isLast && wi < allWords.length))) {
-    bucket.push(allWords[wi]); used += allWords[wi].weight; wi++;
+// ---- 4. Gán mốc thời gian cho từng từ trong kịch bản ----
+// Chuẩn hoá để so khớp: bỏ dấu tiếng Việt + dấu câu, viết thường. ASR và
+// kịch bản không khớp chữ 100% (lỗi nhận diện, khác cách viết hoa...) nên
+// so khớp "gần đúng" theo hình dạng chữ cái, không so khớp tuyệt đối.
+const COMBINING_MARKS = new RegExp('[̀-ͯ]', 'g');
+const norm = (s) => s.toLowerCase().replace(/đ/g, 'd').normalize('NFD')
+  .replace(COMBINING_MARKS, '').replace(/[^\p{L}\p{N}]/gu, '');
+
+/** Căn chuỗi kịch bản (a) với chuỗi ASR (b) bằng quy hoạch động (Needleman-Wunsch).
+ *  Trả về map[i] = j (từ ASR khớp với từ kịch bản thứ i) hoặc null nếu ASR bỏ sót. */
+function alignWords(a, b) {
+  const n = a.length, m = b.length;
+  const na = a.map(norm), nb = b.map(norm);
+  const dp = Array.from({ length: n + 1 }, () => new Float64Array(m + 1));
+  for (let i = 0; i <= n; i++) dp[i][0] = i;
+  for (let j = 0; j <= m; j++) dp[0][j] = j;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= m; j++) {
+      const sub = dp[i - 1][j - 1] + (na[i - 1] === nb[j - 1] && na[i - 1] !== '' ? 0 : 1);
+      dp[i][j] = Math.min(sub, dp[i - 1][j] + 1, dp[i][j - 1] + 1);
+    }
   }
-  carried = quota - used;
-  const sum = bucket.reduce((a, x) => a + x.weight, 0) || 1;
-  let acc = 0;
-  for (const w of bucket) {
-    w.start = s0 + ((s1 - s0) * acc) / sum;
-    acc += w.weight;
-    w.end = s0 + ((s1 - s0) * acc) / sum;
+  const map = new Array(n).fill(null);
+  let i = n, j = m;
+  while (i > 0 && j > 0) {
+    const sub = dp[i - 1][j - 1] + (na[i - 1] === nb[j - 1] && na[i - 1] !== '' ? 0 : 1);
+    if (dp[i][j] === sub) { map[i - 1] = j - 1; i--; j--; }
+    else if (dp[i][j] === dp[i - 1][j] + 1) { i--; }
+    else { j--; }
   }
+  return map;
 }
-// từ nào chưa được gán (phòng hờ) -> dính vào cuối
-for (const w of allWords) if (w.start === undefined) { w.start = DURATION - 0.2; w.end = DURATION; }
+
+/** Gán start/end từ mốc ASR thật; trả về false nếu tỉ lệ khớp quá thấp
+ *  (giọng đọc lệch quá xa kịch bản) để rơi về ước lượng khoảng lặng. */
+function assignFromRealWords(words, real) {
+  const map = alignWords(words.map((w) => w.w), real.map((w) => w.w));
+  const matched = map.filter((x) => x !== null).length;
+  if (words.length === 0 || matched / words.length < 0.4) return false;
+  for (let i = 0; i < words.length; i++) {
+    if (map[i] !== null) { words[i].start = real[map[i]].start; words[i].end = real[map[i]].end; }
+  }
+  let i = 0;
+  while (i < words.length) {
+    if (words[i].start !== undefined) { i++; continue; }
+    let j = i;
+    while (j < words.length && words[j].start === undefined) j++;
+    const prevEnd = i > 0 ? words[i - 1].end : 0;
+    const nextStart = j < words.length ? words[j].start : prevEnd + (j - i) * 0.3;
+    const span = Math.max(nextStart - prevEnd, 0.05 * (j - i));
+    for (let k = i; k < j; k++) {
+      words[k].start = prevEnd + (span * (k - i)) / (j - i);
+      words[k].end = prevEnd + (span * (k - i + 1)) / (j - i);
+    }
+    i = j;
+  }
+  return true;
+}
+
+const usedRealWords = realWords ? assignFromRealWords(allWords, realWords) : false;
+
+// ---- 4b. Không có (hoặc không dùng được) mốc thật -> rải từ theo khoảng lặng ----
+if (!usedRealWords) {
+  let wi = 0, carried = 0;
+  for (let si = 0; si < speech.length; si++) {
+    const [s0, s1] = speech[si];
+    const isLast = si === speech.length - 1;
+    let quota = (totalWeight * (s1 - s0)) / totalSpeech + carried;
+    const bucket = [];
+    let used = 0;
+    while (wi < allWords.length && (used < quota || (isLast && wi < allWords.length))) {
+      bucket.push(allWords[wi]); used += allWords[wi].weight; wi++;
+    }
+    carried = quota - used;
+    const sum = bucket.reduce((a, x) => a + x.weight, 0) || 1;
+    let acc = 0;
+    for (const w of bucket) {
+      w.start = s0 + ((s1 - s0) * acc) / sum;
+      acc += w.weight;
+      w.end = s0 + ((s1 - s0) * acc) / sum;
+    }
+  }
+  // từ nào chưa được gán (phòng hờ) -> dính vào cuối
+  for (const w of allWords) if (w.start === undefined) { w.start = DURATION - 0.2; w.end = DURATION; }
+}
 
 // ---- 5. Gộp lên mức dòng rồi mức card ----
 for (const u of units) { u.start = u.words[0].start; u.end = u.words[u.words.length - 1].end; }
@@ -92,6 +165,9 @@ const out = { fps: FPS, duration: DURATION, durationInFrames: Math.ceil(DURATION
 fs.writeFileSync('src/timeline.json', JSON.stringify(out, null, 1));
 
 // ---- 6. Báo cáo ----
+console.log(usedRealWords
+  ? `canh chữ: dùng mốc THẬT từ nhận diện giọng nói (${realWords.length} từ ASR)`
+  : `canh chữ: dùng ước lượng khoảng lặng (không có/không dùng được ref/words.json)`);
 console.log(`đoạn có tiếng: ${speech.length} | tổng ${totalSpeech.toFixed(1)}s / ${DURATION.toFixed(1)}s`);
 console.log(`card: ${cards.length} | dòng: ${units.length} | từ: ${allWords.length}`);
 const durs = cards.map((c) => c.out - c.start);
