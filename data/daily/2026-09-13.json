@@ -2,7 +2,7 @@
   "date": "2026-09-13",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "5 công cụ AI luyện phản xạ nói tiếng Anh 15 phút mỗi ngày",
       "style": "mono-bar",
@@ -52,7 +52,10 @@
           "url": "https://facebook.com/1381130541740424_122099268621476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18107387369186289"
+        }
       },
       "ig_attempts": 2
     },

@@ -638,7 +638,7 @@
       }
     },
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Obama urges Democrats to have a ‘clear plan’ for AI safeguards",
       "style": "navy-split",
@@ -690,7 +690,10 @@
           "url": "https://facebook.com/1381130541740424_122099975001476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17907861087307251"
+        }
       },
       "video": {
         "status": "awaiting_audio",
