@@ -416,6 +416,10 @@ def _seam_llm(system, user, provider="auto"):
     cards = [{"lines": ["Cau SEAMTOKENZZ", "vai tu nua cho du chu dai hon", "va them chut nua day"],
               "variant": "stack", "anchor": "mid", "motion_in": "rise",
               "motion_out": "up"} for _ in range(20)]
+    # Clear the visual-density gate; this test is about the draft->render seam.
+    for i in (2, 7, 12, 17):
+        cards[i]["chart"] = {"kind": "bar",
+                             "items": [{"label": "A", "value": 2}, {"label": "B", "value": 1}]}
     return json.dumps({
         "sections": [{"label": "MO", "card_start": 0}, {"label": "GIUA", "card_start": 6}],
         "cards": cards,

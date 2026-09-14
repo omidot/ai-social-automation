@@ -271,20 +271,34 @@ if (usedRealWords) {
 cards.forEach((c, i) => { c.out = i < cards.length - 1 ? cards[i + 1].start : DURATION; });
 
 const sectionFor = (ci) => { let lbl = SECTIONS[0][1]; for (const [at, l] of SECTIONS) if (ci >= at) lbl = l; return lbl; };
-// biểu đồ / ảnh chụp chỉ gắn vào card ĐẦU TIÊN ánh xạ về dòng LAYOUT đó,
-// nếu không sẽ bị lặp lại trên nhiều card liền nhau.
-const usedSrc = new Set();
+
+// Hình minh hoạ (biểu đồ / ảnh chụp / tiêu đề) phải ĐỨNG NGUYÊN suốt cả
+// đoạn kịch bản, y như bản tham chiếu: hình nói CHỦ ĐỀ, caption dưới chạy
+// theo lời nói. Trước đây chỉ gắn vào card ĐẦU TIÊN ánh xạ về dòng LAYOUT
+// đó, nên một biểu đồ chỉ loé lên 2-3 giây rồi cả chục card sau trống đen.
+// Gắn cho MỌI card cùng nguồn, kèm visualAt = mốc card đầu của nhóm để
+// hiệu ứng dựng hình không chạy lại từ đầu mỗi lần sang card mới.
+const groupStart = new Map();   // si -> start của card đầu tiên thuộc nhóm
 cards.forEach((c) => {
   const si = srcOf(c.index);
-  const first = !usedSrc.has(si);
-  usedSrc.add(si);
+  if (!groupStart.has(si)) groupStart.set(si, c.start);
+});
+
+cards.forEach((c) => {
+  const si = srcOf(c.index);
   c.section = sectionFor(si);
   const [v, a, n, mi, mo, ch, sf, su] = LAYOUT[si];
   c.variant = v; c.anchor = a; c.motion = mi; c.exit = mo;
-  if (n && first) c.num = n;
-  if (ch && first) c.chart = ch;
-  if (sf && first) c.screenshotFile = sf;
-  if (su && first) c.screenshotUrl = su;
+  c.visualAt = groupStart.get(si);
+  if (n) c.num = n;
+  if (ch) c.chart = ch;
+  if (sf) c.screenshotFile = sf;
+  if (su) c.screenshotUrl = su;
+  // Tiêu đề TO phía trên = chữ KỊCH BẢN của card gốc, đứng yên suốt cả
+  // đoạn (không chạy theo từng từ).
+  c.headline = CARDS[si].map((raw) => (raw.startsWith('~') ? raw.slice(1) : raw))
+    .filter(Boolean);
+  c.headlineAt = si;
 });
 
 // Phụ đề = nguyên văn lời nói. Chỉ có khi nhận diện giọng nói dùng được --

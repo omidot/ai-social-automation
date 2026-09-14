@@ -175,8 +175,11 @@ def test_fake_script_includes_chart_and_screenshot_cards():
     d = json.loads(build_video._FAKE_SCRIPT_JSON)
     chart_cards = [c for c in d["cards"] if c.get("chart")]
     shot_cards = [c for c in d["cards"] if c.get("screenshot_file")]
-    assert len(chart_cards) == 1
-    assert chart_cards[0]["chart"]["kind"] in {"line", "bar", "hbar"}
+    # Must clear the same visual-density gate real scripts do, and exercise
+    # several chart kinds so the smoke render actually paints them.
+    n = len(d["cards"])
+    assert len(chart_cards) + len(shot_cards) >= max(4, n // 6)
+    assert {c["chart"]["kind"] for c in chart_cards} >= {"bar", "chips", "gauge"}
     assert len(shot_cards) == 1
     assert shot_cards[0]["screenshot_file"] == "smoke-screenshot.png"
     assert shot_cards[0]["screenshot_url"] == "https://github.com/openai/codex"

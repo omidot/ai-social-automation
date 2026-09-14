@@ -131,6 +131,11 @@ def _fake_full_reply():
     cards = [{"lines": [f"Dòng số {i}", "thêm vài từ nữa cho đủ dài", "và thêm chút"],
               "variant": "stack", "anchor": "mid", "motion_in": "rise",
               "motion_out": "up"} for i in range(20)]
+    # Enough chart cards to clear the visual-density gate, so these tests
+    # exercise the meta/retry paths they are actually about.
+    for i in (2, 7, 12, 17):
+        cards[i]["chart"] = {"kind": "bar",
+                             "items": [{"label": "A", "value": 2}, {"label": "B", "value": 1}]}
     return json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
         "cards": cards,
@@ -218,6 +223,13 @@ def _script_with_card(extra_card_fields, n_extra_cards=20):
     # card-count check before ever reaching the chart/screenshot validation
     # this helper exists to exercise.
     cards = [_base_card() for _ in range(n_extra_cards)]
+    # Padding cards carry charts so the visual-density gate is satisfied and
+    # the card under test is what actually decides pass/fail. Card 3 is left
+    # for the caller; filler charts go on later cards only.
+    filler = {"kind": "bar", "items": [{"label": "A", "value": 2}, {"label": "B", "value": 1}]}
+    for i in (5, 9, 13, 17):
+        if i < n_extra_cards:
+            cards[i] = {**_base_card(), "chart": dict(filler)}
     cards[3] = {**_base_card(), **extra_card_fields}
     return {"sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 4}],
             "cards": cards}
@@ -308,6 +320,37 @@ def test_gauge_needs_a_score_and_a_ceiling():
         script._validate(bad, CFG)
 
 
+def test_all_text_script_is_rejected_for_having_no_visuals():
+    """Measured on a real drafted script: 1 chart across 38 cards, despite the
+    prompt asking for 4-8. The user's complaint ("đen thui") traced straight
+    back to this -- 95% of the runtime had nothing on screen but a caption.
+    Visual density is now a pass/fail gate so the retry loop forces it."""
+    cards = [_base_card() for _ in range(24)]
+    data = {"sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
+            "cards": cards}
+    with pytest.raises(VideoScriptError, match="video toàn chữ"):
+        script._validate(data, CFG)
+
+
+def test_visual_gate_scales_with_script_length():
+    """A long script needs proportionally more visuals, not a flat four --
+    four charts spread over 60 cards would still leave minutes of dead frame."""
+    filler = {"kind": "bar", "items": [{"label": "A", "value": 2}, {"label": "B", "value": 1}]}
+    cards = [_base_card() for _ in range(60)]
+    for i in range(0, 60, 12):          # 5 visuals -- fine for 24 cards, short for 60
+        cards[i] = {**_base_card(), "chart": dict(filler)}
+    data = {"sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
+            "cards": cards}
+    with pytest.raises(VideoScriptError, match="cần ít nhất 10"):
+        script._validate(data, CFG)
+
+
+def test_prompt_states_the_visual_gate_as_pass_fail():
+    sys_prompt, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
+    assert "ĐIỀU KIỆN ĐẠT/TRƯỢT" in sys_prompt
+    assert "chips" in sys_prompt and "screenshot" in sys_prompt
+
+
 def _reply_with_word_count(target_words):
     """A valid script whose displayed-word count lands near `target_words`."""
     # 40 cards is the card-count ceiling, so length is varied per card
@@ -318,6 +361,11 @@ def _reply_with_word_count(target_words):
     line = " ".join(["từ"] * per)
     cards = [{"lines": [line], "variant": "stack", "anchor": "mid",
               "motion_in": "rise", "motion_out": "up"} for _ in range(n)]
+    # Clear the visual-density gate so these length-focused tests exercise the
+    # word-count path rather than tripping on "video toàn chữ" first.
+    for i in range(0, n, 6):
+        cards[i]["chart"] = {"kind": "bar",
+                             "items": [{"label": "A", "value": 2}, {"label": "B", "value": 1}]}
     return json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
         "cards": cards,

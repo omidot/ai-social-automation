@@ -29,6 +29,11 @@ def _fake_gen_ok(system, user, provider="auto"):
     cards = [{"lines": [f"Câu {i}", "vài từ nữa cho đủ chữ dài hơn", "và thêm chút"],
               "variant": "stack", "anchor": "mid", "motion_in": "rise",
               "motion_out": "up"} for i in range(20)]
+    # Enough visuals to clear the density gate -- these tests are about the
+    # draft/Telegram seam, not about script visuals.
+    for i in (2, 7, 12, 17):
+        cards[i]["chart"] = {"kind": "bar",
+                             "items": [{"label": "A", "value": 2}, {"label": "B", "value": 1}]}
     return json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
         "cards": cards,

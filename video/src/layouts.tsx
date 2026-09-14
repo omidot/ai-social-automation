@@ -14,6 +14,12 @@ export type Card = {
   chart?: { kind: 'line' | 'bar' | 'hbar'; items: { label?: string; value: number }[]; unit?: string };
   screenshotFile?: string;
   screenshotUrl?: string;
+  headline?: string[];
+  headlineAt?: number;
+  /** Mốc dựng hình: card ĐẦU của nhóm cùng một dòng kịch bản. Hình minh hoạ
+   *  đứng nguyên cả đoạn nên hiệu ứng phải tính từ đây, không phải từ
+   *  card.start của từng card nhỏ (nếu không hình sẽ dựng lại liên tục). */
+  visualAt?: number;
 };
 export type P = { card: Card; ff: string; leaving: number; activeIdx: number };
 

@@ -9,7 +9,7 @@ export const T = {
   grid: '#B5B3AF',
   PAD: 104,          // lề trái/phải của khối chữ
   EXIT: 8,           // số frame cho hiệu ứng mờ dần khi card thoát
-  SIZE: { small: 52, big: 84, accent: 80 },
+  SIZE: { small: 44, big: 58, accent: 56 },
   WEIGHT: { small: '700', big: '900', accent: '900' },
 };
 export const roleOf = (i: number, n: number) =>

@@ -201,25 +201,23 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
 
   const t = frame / fps;
   const max = Math.max(...items.map((i) => i.value), 0);
-  const span = Math.max(0.3, (card.out - card.start) * BUILD);
+  // Biểu đồ đứng nguyên suốt cả đoạn kịch bản -> dựng hình tính từ mốc
+  // card đầu của nhóm, nếu không mỗi card nhỏ sẽ dựng lại từ đầu.
+  const base = card.visualAt ?? card.start;
+  const span = Math.max(0.3, (card.out - base) * BUILD);
   const step = Math.min(STEP, span / items.length);
-  const at = (i: number) => card.start + i * step;
+  const at = (i: number) => base + i * step;
 
   // hàng "đang nói tới" = hàng cuối cùng đã hiện
   let active = 0;
   items.forEach((_, i) => { if (t >= at(i)) active = i; });
 
-  const title = card.lines.find((l) => !l.hidden)?.text ?? '';
-
+  // Không in tiêu đề ở đây nữa: lớp Headline phía trên đã nói CHỦ ĐỀ bằng
+  // chữ kịch bản, còn caption dưới đáy chạy theo lời nói. In thêm ở giữa
+  // là chữ chồng chữ ba lần trên cùng một khung.
   return (
     <Frame card={card} align="center">
       <div style={{ width: W }}>
-        {title ? (
-          <div style={{
-            fontFamily: ff, fontWeight: '800', fontSize: 46, color: pal.ink,
-            textAlign: 'center', marginBottom: 44, textShadow: pal.shadow,
-          }}>{title}</div>
-        ) : null}
         {chart.kind === 'gauge' ? (
           <Gauge items={items} unit={chart.unit ?? ''} ff={ff} at={at(0)}
                  ink={pal.ink} accent={pal.accent} />

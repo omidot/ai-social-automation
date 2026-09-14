@@ -13,7 +13,8 @@ import { T } from './theme';
 export const ScreenshotCard: React.FC<P> = ({ card, leaving }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const a = useMotion(frame, fps, card.start, leaving, T.EXIT, card.motion, card.exit);
+  // Ảnh đứng nguyên cả đoạn -> hiệu ứng vào tính từ mốc card đầu của nhóm.
+  const a = useMotion(frame, fps, card.visualAt ?? card.start, leaving, T.EXIT, card.motion, card.exit);
   return (
     <AbsoluteFill style={{ opacity: a.opacity, transform: a.transform, filter: a.filter }}>
       <Img src={staticFile(card.screenshotFile!)}

@@ -32,6 +32,12 @@ _NUDGE = 40
 # failed loudly.
 _SALVAGE_HI = 1.6
 
+# Mật độ hình minh hoạ tối thiểu. Đo thật trên bản nháp LLM sinh ra: chỉ 1
+# chart / 38 card dù prompt đã xin 4-8 -- nên ngưỡng này được kiểm ở
+# _validate để vòng thử lại ép mô hình làm đúng, không chỉ là lời khuyên.
+_MIN_VISUAL_CARDS = 4
+_CARDS_PER_VISUAL = 6
+
 
 def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
                  *, with_meta: bool = False) -> tuple[str, str]:
@@ -115,10 +121,14 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         "— dùng khi bài kể tên vài sản phẩm/tính năng mới cùng lúc. "
         "'screenshot': {query} — chỉ thêm khi bài nhắc tới một sản phẩm/repo/trang web CỤ THỂ "
         "có thể tìm bằng Google (vd query='GitHub OpenAI Codex'), query tối đa 100 ký tự. "
-        "QUAN TRỌNG: video toàn chữ rất chán. Hễ card nào có từ 2 con số trở lên đáng so "
-        "sánh thì PHẢI gắn 'chart'. Nhắm ít nhất 4-8 card có chart hoặc screenshot trong "
-        "mỗi kịch bản (tỉ lệ theo độ dài — bài càng dài càng cần nhiều); chỉ bỏ qua khi bài "
-        "thật sự không có số liệu hay sản phẩm cụ thể nào. "
+        "BẮT BUỘC — ĐIỀU KIỆN ĐẠT/TRƯỢT, bản nháp không đủ sẽ bị loại và phải viết lại: "
+        f"cứ {_CARDS_PER_VISUAL} card phải có ÍT NHẤT 1 card mang 'chart' hoặc "
+        f"'screenshot', và không dưới {_MIN_VISUAL_CARDS} card có hình trong cả kịch bản. "
+        "Người xem nhìn màn hình toàn chữ vài giây là lướt qua — mỗi đoạn phải có thứ để "
+        "NHÌN. Hễ card nào có từ 2 con số trở lên đáng so sánh thì PHẢI gắn 'chart'. "
+        "Nếu một đoạn không có số liệu, hãy dùng kind='chips' (kể tên sản phẩm/tính năng) "
+        "hoặc 'screenshot' (trang/repo/sản phẩm cụ thể được nhắc tới) — luôn có cách hợp lệ "
+        "để đoạn đó có hình mà KHÔNG cần bịa số. Tuyệt đối không bịa số liệu chỉ để có chart. "
         "Khi bài gốc bên dưới có NHIỀU NGUỒN (đánh dấu [Nguồn 1], [Nguồn 2]...): mỗi nguồn "
         "thường có SỐ LIỆU RIÊNG, không trùng nhau — ưu tiên dựng chart từ những số liệu "
         "khác nhau đó (vd nguồn A cho giá, nguồn B cho tốc độ, nguồn C cho thị phần) thay vì "
@@ -186,6 +196,16 @@ def _validate(data: dict, cfg: dict) -> Script:
                 raise VideoScriptError(f"card {i}: screenshot.query rỗng")
             if len(q) > 100:
                 raise VideoScriptError(f"card {i}: screenshot.query dài {len(q)} > 100 ký tự")
+    # Một video toàn chữ là video chết. Yêu cầu "nhắm 4-8 card có hình" nằm
+    # trong prompt bị mô hình phớt lờ có hệ thống (đo thật: 1 chart / 38
+    # card), nên nó phải là ĐIỀU KIỆN ĐẠT/TRƯỢT để vòng thử lại ép làm đúng.
+    n_visual = sum(1 for c in s.cards if c.chart is not None or c.screenshot is not None)
+    need_visual = max(_MIN_VISUAL_CARDS, len(s.cards) // _CARDS_PER_VISUAL)
+    if n_visual < need_visual:
+        raise VideoScriptError(
+            f"chỉ có {n_visual} card có chart/screenshot, cần ít nhất {need_visual} "
+            f"trên {len(s.cards)} card -- video toàn chữ không dùng được")
+
     if s.sections[0].card_start != 0:
         raise VideoScriptError("sections[0].card_start must be 0")
     starts = [sec.card_start for sec in s.sections]

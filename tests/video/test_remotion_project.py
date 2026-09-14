@@ -226,6 +226,70 @@ def test_screenshot_is_full_bleed_not_a_floating_card():
     assert "objectFit: 'cover'" in src
     assert "linear-gradient" in src
 
+def test_headline_layer_carries_the_scripted_text():
+    """The reference frames have TWO text layers: a big scripted headline
+    up top that holds still for seconds (topic of the moment, last line in
+    an accent-filled box), and a small spoken caption at the bottom that
+    tracks the voice. Dropping the headline left a dead-black middle of
+    frame, which the user reported with a screenshot."""
+    assert (VIDEO / "src/Headline.tsx").is_file()
+    src = (VIDEO / "src/Headline.tsx").read_text(encoding="utf-8")
+    assert "export const Headline" in src
+    assert "card.headline" in src
+    ks = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "<Headline card={cur} ff={fontFamily} at={headStart} />" in ks
+
+def test_headline_holds_still_across_caption_cards():
+    """A headline that re-animated on every caption card would flicker
+    several times a second. It keys off the first card sharing the same
+    source script card, so it animates once and then holds."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "cards.find((c) => c.headlineAt === cur.headlineAt)" in src
+
+def test_align_emits_headline_from_the_script_card():
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "c.headline = CARDS[si]" in src
+    assert "c.headlineAt = si" in src
+
+def test_headline_layer_fills_the_frame_on_every_card():
+    """The user's screenshot showed a near-empty black frame: one short
+    caption at the bottom and nothing else. The reference always carries a
+    big static headline (the SCRIPT's wording, not the running speech) in
+    the upper third. It renders on every card except screenshot/versus
+    cards, which already own the whole frame."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "import { Headline }" in src
+    assert "const showHead = !cur.screenshotFile && !versusOf(cur);" in src
+    assert (VIDEO / "src/Headline.tsx").is_file()
+
+def test_visuals_persist_across_the_whole_script_card():
+    """Measured: charts attached only to the FIRST re-cut card of a script
+    card, so a chart flashed for ~3s and the next dozen cards were bare --
+    5% of runtime had any visual. They now attach to every card of the
+    group, animating from the group's own start so the build-in does not
+    restart on each caption change."""
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "groupStart" in src
+    assert "c.visualAt = groupStart.get(si)" in src
+    assert "if (ch) c.chart = ch;" in src, "chart must attach to every card of the group"
+    for comp in ("src/Chart.tsx", "src/Screenshot.tsx"):
+        assert "card.visualAt ?? card.start" in (VIDEO / comp).read_text(encoding="utf-8"), comp
+
+def test_chart_cards_still_show_the_spoken_caption():
+    """Chart/screenshot cards drew no spoken words at all, so the viewer
+    lost the thread whenever a visual was on screen."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const Caption" in src
+    assert "hasVisual ? <Caption card={cur} activeIdx={capIdx} /> : null" in src
+
+def test_bare_narration_cards_get_a_presence_dot():
+    """Cards with no chart/screenshot/versus still left the middle of the
+    frame dead black. A breathing glow dot is not a hand-drawn per-topic
+    illustration, but it beats an empty frame."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const Presence" in src
+    assert "bare ? <Presence /> : null" in src
+
 def test_gauge_and_chip_elements_exist():
     """Two more of the reference's illustration types: a gauge with an
     arrow parked at the score reached ("98.6 / 100"), and name chips for
