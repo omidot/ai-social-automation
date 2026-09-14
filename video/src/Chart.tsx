@@ -71,6 +71,40 @@ const Row: React.FC<{
 };
 
 /**
+ * Khối SỐ LIỆU: hộp bo góc, nhãn nhỏ bên trái, con số to bên phải -- đúng
+ * kiểu bản tham chiếu dùng cho thông số rời rạc (giá, dung lượng, tốc độ),
+ * nơi vẽ thanh bar là vô nghĩa vì các số không cùng thang đo.
+ */
+const StatRow: React.FC<{
+  item: ChartItem; unit: string; ff: string;
+  at: number; active: boolean; ink: string; accent: string;
+}> = ({ item, unit, ff, at, active, ink, accent }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const s = spring({ frame: frame - at * fps, fps, config: { damping: 20, stiffness: 150, mass: 0.8 } });
+  const dim = !active;
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      padding: '34px 40px', marginBottom: 26, borderRadius: 26,
+      background: 'rgba(255,255,255,0.045)',
+      border: `1px solid ${active ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.07)'}`,
+      opacity: interpolate(s, [0, 1], [0, 1]),
+      transform: `translateY(${interpolate(s, [0, 1], [22, 0])}px)`,
+    }}>
+      <span style={{
+        fontFamily: ff, fontWeight: '700', fontSize: 38,
+        color: dim ? '#8A8A88' : ink, letterSpacing: '0.01em',
+      }}>{item.label ?? ''}</span>
+      <span style={{
+        fontFamily: ff, fontWeight: '900', fontSize: 72, lineHeight: 1,
+        color: dim ? '#8A8A88' : (active ? accent : ink),
+      }}>{fmt(item.value, unit)}</span>
+    </div>
+  );
+};
+
+/**
  * Biểu đồ dạng HÀNG NGANG, không phải đồ thị vẽ trục. Mọi kiểu (line/bar/
  * hbar) đều đổ về một cách trình bày: đọc được trên điện thoại ở khung dọc,
  * và hợp với nhịp nói -- mỗi hàng rơi vào đúng lúc con số đó được nhắc.
@@ -104,10 +138,14 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
             textAlign: 'center', marginBottom: 44, textShadow: pal.shadow,
           }}>{title}</div>
         ) : null}
-        {items.map((it, i) => (
-          <Row key={i} item={it} max={max} unit={chart.unit ?? ''} ff={ff}
-               at={at(i)} active={i === active} ink={pal.ink} accent={pal.accent} />
-        ))}
+        {items.map((it, i) =>
+          chart.kind === 'stat' ? (
+            <StatRow key={i} item={it} unit={chart.unit ?? ''} ff={ff}
+                     at={at(i)} active={i === active} ink={pal.ink} accent={pal.accent} />
+          ) : (
+            <Row key={i} item={it} max={max} unit={chart.unit ?? ''} ff={ff}
+                 at={at(i)} active={i === active} ink={pal.ink} accent={pal.accent} />
+          ))}
       </div>
     </Frame>
   );

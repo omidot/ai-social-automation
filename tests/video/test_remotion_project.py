@@ -181,3 +181,20 @@ def test_numeral_badge_hidden_when_there_is_no_number():
     outline floating beside the logos -- the frame must go with it."""
     src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
     assert "card.num === undefined || card.num === null ? null : (" in src
+
+def test_stat_block_element_exists():
+    """A video of nothing but words is dull. The 'stat' chart kind renders
+    the reference's stat blocks -- rounded box, small label left, large
+    number right -- for figures that share no common scale, where drawing a
+    bar would be meaningless."""
+    src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
+    assert "const StatRow" in src
+    assert "chart.kind === 'stat'" in src
+
+def test_versus_tiles_mark_winner_and_loser():
+    """The reference crosses out the beaten models and crowns the winner."""
+    src = (VIDEO / "src/Versus.tsx").read_text(encoding="utf-8")
+    assert "export const hasWinner" in src
+    assert "verdict === 'lose'" in src and "verdict === 'win'" in src
+    assert "👑" in src
+    assert "grayscale(1)" in src

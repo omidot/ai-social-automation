@@ -51,12 +51,16 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         "người dùng công nghệ) thay vì chỉ chốt bằng câu hỏi mơ hồ. "
         "Một card có thể thêm 'chart' HOẶC 'screenshot' (không dùng chung với nhau hay với "
         "'num', tối đa một trong ba trên mỗi card, và cả hai đều KHÔNG bắt buộc): "
-        "'chart': {kind:'line'|'bar'|'hbar', items:[...], unit?} — chỉ thêm khi có ít nhất "
-        "2 số liệu THẬT đáng so sánh trong bài; kind='line' cần >=3 items dạng {value}, "
-        "'bar' cần ĐÚNG 2 items dạng {label,value}, 'hbar' cần 2-4 items dạng {label,value}. "
+        "'chart': {kind:'stat'|'line'|'bar'|'hbar', items:[...], unit?} — "
+        "kind='stat' là khối số liệu (nhãn trái, số to bên phải), cần 2-4 items dạng "
+        "{label,value}; dùng cho thông số rời rạc như giá, dung lượng, tốc độ. "
+        "kind='bar' cần ĐÚNG 2 items {label,value} để so kè hai bên; 'hbar' cần 2-4 items "
+        "{label,value}; 'line' cần >=3 items dạng {value} cho xu hướng theo thời gian. "
         "'screenshot': {query} — chỉ thêm khi bài nhắc tới một sản phẩm/repo/trang web CỤ THỂ "
         "có thể tìm bằng Google (vd query='GitHub OpenAI Codex'), query tối đa 100 ký tự. "
-        "Không bắt buộc mỗi kịch bản phải có chart hay screenshot."
+        "QUAN TRỌNG: video toàn chữ rất chán. Hễ card nào có từ 2 con số trở lên đáng so "
+        "sánh thì PHẢI gắn 'chart'. Nhắm ít nhất 3-4 card có chart hoặc screenshot trong "
+        "mỗi kịch bản; chỉ bỏ qua khi bài thật sự không có số liệu hay sản phẩm cụ thể nào."
     )
     if with_meta:
         system += (
@@ -87,7 +91,7 @@ def _validate(data: dict, cfg: dict) -> Script:
         s = Script.from_dict(data)
     except (KeyError, TypeError) as e:
         raise VideoScriptError(f"bad card/section fields: {e}") from e
-    _CHART_ITEM_BOUNDS = {"line": (3, None), "bar": (2, 2), "hbar": (2, 4)}
+    _CHART_ITEM_BOUNDS = {"line": (3, None), "bar": (2, 2), "hbar": (2, 4), "stat": (2, 4)}
     for i, c in enumerate(s.cards):
         set_fields = [name for name, val in (("num", c.num), ("chart", c.chart),
                                              ("screenshot", c.screenshot)) if val is not None]
