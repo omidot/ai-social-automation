@@ -9,8 +9,6 @@ import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { Shots } from './Shots';
-import { Cutouts } from './Cutouts';
-import { Sfx } from './Sfx';
 import { Stack, Hero, Invert, Mark, Stair, Numeral, Strike, shown, type Card } from './layouts';
 import { T } from './theme';
 import timeline from './timeline.json';
@@ -110,11 +108,7 @@ export const KineticShort: React.FC = () => {
       <PalCtx.Provider value={pal}>
         <Stage />
       </PalCtx.Provider>
-      {/* Cutout B-roll nổi TRÊN cả card "invert" (tấm phủ trắng toàn khung),
-          nếu không ảnh sẽ bị tấm phủ che mất ở 2 card cuối. */}
-      <Cutouts />
       <Audio src={staticFile('voice.mp3')} />
-      <Sfx />
     </AbsoluteFill>
   );
 };

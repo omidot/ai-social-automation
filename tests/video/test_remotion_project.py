@@ -81,3 +81,8 @@ def test_kineticshort_renders_screenshot_before_variant_switch():
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
     assert "ScreenshotCard" in src
     assert "card.screenshotFile" in src
+
+def test_kineticshort_drops_cutouts_and_sfx():
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "Cutouts" not in src
+    assert "Sfx" not in src
