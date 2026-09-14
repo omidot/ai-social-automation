@@ -5,48 +5,42 @@
       "video": {
         "status": "awaiting_audio",
         "meta": {
-          "title": "GPT-6 Astra vs Claude Fable 5.1: AI Nào Mới Thực Sự Bá Chủ?",
-          "description": "Đa số mọi người đang hiểu sai về cuộc đua AI hiện tại khi cho rằng luôn có một mô hình đè bẹp tất cả. Báo cáo mới nhất từ Artificial Analysis giữa GPT-6 Astra và Claude Fable 5.1 cho thấy mỗi bên nắm giữ một lợi thế riêng biệt. Nhấn theo dõi kênh A Hít Official để cập nhật góc nhìn công nghệ sắc bén mỗi ngày!",
+          "title": "GPT-6 Astra vs Claude Fable 5.1: Sự Thật Benchmark Bị Giấu?",
+          "description": "Nhiều người nghĩ cuộc đua AI đã kết thúc khi OpenAI tung ra GPT-6 Astra. Tuy nhiên, bảng xếp hạng kiểm tra độc lập từ Artificial Analysis lại cho thấy câu chuyện hoàn toàn khác. Việc chọn mô hình chuẩn xác cho từng tác vụ mới là chìa khóa tiết kiệm chi phí tối đa. Nhấn đăng ký kênh A Hít Official để cập nhật góc nhìn AI thực chiến mỗi ngày!",
           "hashtags": [
             "#AHitOfficial",
-            "#ArtificialAnalysis",
             "#GPT6Astra",
             "#ClaudeFable",
             "#OpenAI",
-            "#Anthropic",
-            "#CongNghe",
-            "#TriTueNhanTao",
-            "#TinTucAI",
-            "#GocNhinhCongNghe"
+            "#ArtificialAnalysis",
+            "#CongNgheAI",
+            "#DanhGiaAI",
+            "#LapTrinhAI"
           ],
           "keywords": [
             "GPT-6 Astra",
             "Claude Fable 5.1",
             "OpenAI",
-            "Anthropic",
             "Artificial Analysis",
             "so sánh AI",
-            "A Hít Official",
-            "công nghệ AI"
+            "benchmark AI",
+            "A Hít Official"
           ],
-          "tiktok_caption": "GPT-6 Astra hay Claude Fable 5.1 mới là trùm AI? Sự thật sẽ làm bạn bất ngờ! #AHitOfficial #OpenAI #Claude #GPT6 #CongNghe"
+          "tiktok_caption": "GPT-6 Astra vs Claude Fable 5.1: Không có AI nào bá chủ tuyệt đối! Bạn chọn tốc độ hay chính xác? #AHitOfficial #GPT6 #ClaudeFable #AI"
         },
-        "spoken_text": "Đa số mọi người đang hiểu sai khi so sánh GPT-6 Astra của OpenAI với Claude Fable 5.1 của Anthropic.\nBạn nghĩ luôn có một AI bá chủ mạnh nhất thế giới đè bẹp tất cả? Nhầm lớn.\nOpenAI tự tin khoe Astra thắng mọi benchmark tức các bài kiểm tra.\nNhưng theo đơn vị độc lập Artificial Analysis kết quả lại hoàn toàn khác.\nNếu bạn làm tự động hóa và điều khiển máy tính Astra vượt trội hoàn toàn.\nTỉ lệ thành công đạt tới 95% bỏ xa mức 40% của đối thủ.\nAstra chỉ tốn 1,67 đô cho mỗi bài test rẻ hơn mức 3,76 đô từ Fable 5.1.\nThế nhưng nếu bạn là lập trình viên Claude Fable 5.1 mới là kẻ nắm trùm.\nTốc độ 65 token một giây của Fable bỏ xa mức 53,9 của Astra.\nĐây là điều tin này dạy cho mình: Thời đại của AI bá chủ đã chính thức kết thúc.\nNếu bạn làm sản phẩm AI chọn sai mô hình chi phí thực tế sẽ chênh lệch gấp đôi.\nNếu bạn là người dùng chọn đúng công cụ sẽ giúp tiết kiệm hàng giờ làm việc.\nCái thực sự quan trọng là bạn phải hiểu rõ nhu cầu công việc hàng ngày.\nĐừng chọn AI theo phong trào. Bạn ưu tiên tốc độ, chi phí hay độ chính xác?",
+        "spoken_text": "GPT-6 Astra và Claude Fable 5.1 không cái nào thắng tuyệt đối!\nĐa số mọi người hiểu sai chỗ này.\nOpenAI vừa công bố Astra đè bẹp đối thủ. thì Bảng xếp hạng độc lập lại nói ngược lại.\nTheo trang Artificial Analysis, điểm số thực tế bị chia đôi.\nphần trăm thành công khi Astra điều khiển robot, Fable chỉ đạt bốn mươi.\nUSD cho một tác vụ. Astra rẻ hơn một nửa so với Fable.\nNhưng Fable 5.1 lại đè bẹp về tốc độ:\nSáu mươi lăm token mỗi giây. Cộng thêm điểm viết code tự động cao nhất.\nĐây là điều tin này dạy mình:\nCái thực sự quan trọng: Đừng chọn AI theo quảng cáo của hãng!\nCùng niêm yết mười đô cho một triệu token, cái chi phí thực tế lệch nhau rất xa.\nNó phụ thuộc hoàn toàn vào công việc cụ thể.\nNếu bạn đang làm tự động hóa sản phẩm, thì Astra là lựa chọn tối ưu chi phí.\nNếu bạn là lập trình viên cần viết code agent, hãy chọn Fable 5.1 để lấy tốc độ.\nKhông có AI tốt nhất, chỉ có AI phù hợp nhất.\nBạn ưu tiên tốc độ hay độ chính xác toán học trong công việc?",
         "script": {
           "cards": [
             {
               "lines": [
-                "Đa số mọi người",
-                "đang hiểu sai",
-                "khi so sánh GPT-6 Astra",
-                "của OpenAI với",
+                "GPT-6 Astra và",
                 "Claude Fable 5.1",
-                "của Anthropic."
+                "không cái nào thắng tuyệt đối!"
               ],
               "variant": "numeral",
               "anchor": "mid",
               "motion_in": "slam",
-              "motion_out": "down",
+              "motion_out": "wipeOut",
               "num": 6,
               "chart": null,
               "screenshot": null,
@@ -55,15 +49,12 @@
             },
             {
               "lines": [
-                "Bạn nghĩ luôn có",
-                "một AI bá chủ",
-                "mạnh nhất thế giới",
-                "đè bẹp tất cả?",
-                "Nhầm lớn."
+                "Đa số mọi người",
+                "hiểu sai chỗ này."
               ],
-              "variant": "stack",
+              "variant": "mark",
               "anchor": "mid",
-              "motion_in": "rise",
+              "motion_in": "slideR",
               "motion_out": "dissolve",
               "num": null,
               "chart": null,
@@ -73,13 +64,15 @@
             },
             {
               "lines": [
-                "OpenAI tự tin khoe",
-                "Astra thắng mọi benchmark",
-                "~tức các bài kiểm tra."
+                "OpenAI vừa công bố",
+                "Astra đè bẹp đối thủ.",
+                "~thì",
+                "Bảng xếp hạng độc lập",
+                "lại nói ngược lại."
               ],
-              "variant": "right",
+              "variant": "stack",
               "anchor": "top",
-              "motion_in": "slideL",
+              "motion_in": "rise",
               "motion_out": "up",
               "num": null,
               "chart": null,
@@ -89,110 +82,13 @@
             },
             {
               "lines": [
-                "Nhưng theo đơn vị độc lập",
-                "Artificial Analysis",
-                "kết quả lại hoàn toàn khác."
+                "Theo trang Artificial Analysis,",
+                "điểm số thực tế",
+                "bị chia đôi."
               ],
               "variant": "invert",
               "anchor": "mid",
               "motion_in": "fall",
-              "motion_out": "shrink",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Nếu bạn làm tự động hóa",
-                "và điều khiển máy tính",
-                "Astra vượt trội hoàn toàn."
-              ],
-              "variant": "mark",
-              "anchor": "top",
-              "motion_in": "slideR",
-              "motion_out": "wipeOut",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Tỉ lệ thành công",
-                "đạt tới 95%",
-                "bỏ xa mức 40%",
-                "của đối thủ."
-              ],
-              "variant": "hero",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "down",
-              "num": null,
-              "chart": {
-                "kind": "hbar",
-                "items": [
-                  {
-                    "label": "Astra",
-                    "value": 95
-                  },
-                  {
-                    "label": "Fable 5.1",
-                    "value": 40
-                  }
-                ],
-                "unit": "%"
-              },
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Astra chỉ tốn 1,67 đô",
-                "cho mỗi bài test",
-                "rẻ hơn mức 3,76 đô",
-                "từ Fable 5.1."
-              ],
-              "variant": "numeral",
-              "anchor": "low",
-              "motion_in": "wipe",
-              "motion_out": "up",
-              "num": 167,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Thế nhưng nếu bạn",
-                "là lập trình viên",
-                "Claude Fable 5.1",
-                "mới là kẻ nắm trùm."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "rise",
-              "motion_out": "dissolve",
-              "num": 51,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Tốc độ 65 token một giây",
-                "của Fable",
-                "bỏ xa mức 53,9",
-                "của Astra."
-              ],
-              "variant": "right",
-              "anchor": "mid",
-              "motion_in": "slideL",
               "motion_out": "shrink",
               "num": null,
               "chart": null,
@@ -204,48 +100,89 @@
             },
             {
               "lines": [
-                "Đây là điều tin này",
-                "dạy cho mình:",
-                "Thời đại của AI bá chủ",
-                "đã chính thức kết thúc."
+                "phần trăm thành công",
+                "khi Astra điều khiển robot,",
+                "Fable chỉ đạt bốn mươi."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": 95,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "USD cho một tác vụ.",
+                "Astra rẻ hơn một nửa",
+                "so với Fable."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": 1.67,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng Fable 5.1",
+                "lại đè bẹp về tốc độ:"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Fable 5.1",
+                    "value": 65
+                  },
+                  {
+                    "label": "Astra",
+                    "value": 40
+                  }
+                ],
+                "unit": "tok/s"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sáu mươi lăm token",
+                "mỗi giây.",
+                "Cộng thêm điểm viết code",
+                "tự động cao nhất."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là điều",
+                "tin này dạy mình:"
               ],
               "variant": "hero",
               "anchor": "top",
               "motion_in": "slam",
-              "motion_out": "down",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Nếu bạn làm sản phẩm AI",
-                "chọn sai mô hình",
-                "chi phí thực tế",
-                "sẽ chênh lệch gấp đôi."
-              ],
-              "variant": "strike",
-              "anchor": "mid",
-              "motion_in": "fall",
-              "motion_out": "wipeOut",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Nếu bạn là người dùng",
-                "chọn đúng công cụ",
-                "sẽ giúp tiết kiệm",
-                "hàng giờ làm việc."
-              ],
-              "variant": "mark",
-              "anchor": "mid",
-              "motion_in": "slideR",
               "motion_out": "up",
               "num": null,
               "chart": null,
@@ -255,13 +192,13 @@
             },
             {
               "lines": [
-                "Cái thực sự quan trọng",
-                "là bạn phải hiểu rõ",
-                "nhu cầu công việc hàng ngày."
+                "Cái thực sự quan trọng:",
+                "Đừng chọn AI",
+                "theo quảng cáo của hãng!"
               ],
-              "variant": "stack",
-              "anchor": "top",
-              "motion_in": "rise",
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
               "motion_out": "dissolve",
               "num": null,
               "chart": null,
@@ -271,14 +208,97 @@
             },
             {
               "lines": [
-                "Đừng chọn AI theo phong trào.",
-                "Bạn ưu tiên tốc độ,",
-                "chi phí hay độ chính xác?"
+                "Cùng niêm yết mười đô",
+                "cho một triệu token,",
+                "~cái",
+                "chi phí thực tế",
+                "lệch nhau rất xa."
               ],
               "variant": "invert",
               "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó phụ thuộc hoàn toàn",
+                "vào công việc cụ thể."
+              ],
+              "variant": "strike",
+              "anchor": "top",
               "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm",
+                "tự động hóa sản phẩm,",
+                "~thì",
+                "Astra là lựa chọn",
+                "tối ưu chi phí."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
               "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn là lập trình viên",
+                "cần viết code agent,",
+                "hãy chọn Fable 5.1",
+                "để lấy tốc độ."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": 51,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không có AI tốt nhất,",
+                "chỉ có AI phù hợp nhất."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn ưu tiên tốc độ",
+                "hay độ chính xác toán học",
+                "trong công việc?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
               "num": null,
               "chart": null,
               "screenshot": null,
@@ -288,25 +308,25 @@
           ],
           "sections": [
             {
-              "label": "SỰ THẬT TẠI BENCHMARK",
+              "label": "HOOK & SỰ THẬT",
               "card_start": 0
             },
             {
-              "label": "SO SÁNH THỰC TẾ",
+              "label": "SO SÁNH BẢNG ĐIỂM",
               "card_start": 4
             },
             {
-              "label": "TÁC ĐỘNG THỰC TẾ",
-              "card_start": 9
+              "label": "NGUYÊN TẮC LỰA CHỌN",
+              "card_start": 8
             },
             {
-              "label": "BÀI HỌC VÀ LỰA CHỌN",
+              "label": "TÁC ĐỘNG TỚI BẠN",
               "card_start": 12
             }
           ]
         },
         "script_path": "output/2026-09-14/2026-09-14-test-gpt-6-astra-vs-claude-fable-5-1-the-benc/video/script.json",
-        "script_msg_id": 235,
+        "script_msg_id": 237,
         "audio_file_id": null,
         "audio_msg_id": null,
         "mp4_path": null,
