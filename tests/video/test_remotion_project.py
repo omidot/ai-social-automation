@@ -56,6 +56,22 @@ def test_layouts_numeral_badge_uses_accent_border():
     src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
     assert "border: `4px solid ${pal.accent}`" in src
 
+def test_layouts_reveal_words_on_their_own_timestamp_not_whole_line():
+    """Every text-rendering layout must show words as spoken, not the whole
+    line at once (the earlier design showed a full line then only
+    highlighted the active one -- future not-yet-spoken words were already
+    visible, which read as "text and voice in two different places")."""
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "export const WordFade" in src
+    assert "{l.text}</span>" not in src, "a layout still renders a whole line at once, bypassing WordFade"
+    assert src.count("<WordFade line={l} />") == 6  # Stack, Invert, Mark, Stair, Numeral, Strike
+    # Hero already split per-word; it must key off each word's REAL timestamp too.
+    assert "Math.max(w.start, card.start)" in src
+
+def test_align_mjs_emits_per_word_timestamps():
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "words: u.words.map" in src
+
 def test_chart_tsx_exists_and_exports_chartcard():
     assert (VIDEO / "src/Chart.tsx").is_file()
     src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")

@@ -153,7 +153,16 @@ if (!usedRealWords) {
 for (const u of units) { u.start = u.words[0].start; u.end = u.words[u.words.length - 1].end; }
 const cards = CARDS.map((lines, ci) => {
   const mine = units.filter((u) => u.card === ci);
-  return { index: ci, lines: mine.map((u) => ({ text: u.text, start: u.start, end: u.end, hidden: u.hidden })), start: mine[0].start, end: mine[mine.length - 1].end };
+  return {
+    index: ci,
+    lines: mine.map((u) => ({
+      text: u.text, start: u.start, end: u.end, hidden: u.hidden,
+      // mốc từng TỪ riêng lẻ -- để chữ hiện ra đúng lúc giọng đọc tới, không
+      // phải cả dòng hiện cùng lúc rồi mới tô sáng dòng đang nói.
+      words: u.words.map((w) => ({ text: w.w, start: w.start, end: w.end })),
+    })),
+    start: mine[0].start, end: mine[mine.length - 1].end,
+  };
 });
 // card sống tới khi card sau bắt đầu -> không có khoảng trống trắng
 cards.forEach((c, i) => { c.out = i < cards.length - 1 ? cards[i + 1].start : DURATION; });

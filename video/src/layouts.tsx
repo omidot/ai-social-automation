@@ -7,7 +7,8 @@ import { usePal } from './palette';
 import { shotPushAt } from './Shots';
 import { T } from './theme';
 
-export type Line = { text: string; start: number; end: number; hidden?: boolean };
+export type Word = { text: string; start: number; end: number };
+export type Line = { text: string; start: number; end: number; hidden?: boolean; words?: Word[] };
 export type Card = {
   index: number; lines: Line[]; start: number; end: number; out: number; section: string;
   variant: string; anchor: 'top' | 'mid' | 'low'; num?: number; motion: Motion; exit: Exit;
@@ -23,6 +24,32 @@ const fit = (text: string, ff: string, w: string, cap: number, within = MAXW) =>
 
 /** chỉ những dòng không bị đánh dấu "~" mới hiện; dòng ẩn vẫn giữ chỗ tính giờ */
 export const shown = (c: Card) => c.lines.filter((l) => !l.hidden);
+
+/**
+ * Hiện chữ ĐÚNG THEO TỪNG TỪ giọng đọc tới đâu -- không phải cả dòng bật lên
+ * cùng lúc. Mỗi từ tự mờ dần vào đúng mốc `word.start` của chính nó (dữ liệu
+ * thật từ nhận diện giọng nói, hoặc ước lượng khoảng lặng khi không có).
+ * Kế thừa font/màu/cỡ chữ từ span cha bọc ngoài -- không lặp lại style ở đây.
+ */
+export const WordFade: React.FC<{ line: Line }> = ({ line }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const words = line.words && line.words.length > 0
+    ? line.words : [{ text: line.text, start: line.start, end: line.end }];
+  return (
+    <span style={{ whiteSpace: 'nowrap' }}>
+      {words.map((w, i) => {
+        const p = interpolate(t - w.start, [0, 0.12], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+        return (
+          <span key={i} style={{ opacity: p }}>
+            {w.text}{i < words.length - 1 ? ' ' : ''}
+          </span>
+        );
+      })}
+    </span>
+  );
+};
 
 export const anchorStyle = (a: string, push = 0): React.CSSProperties =>
   a === 'top'
@@ -67,7 +94,7 @@ export const Stack: React.FC<P & { mirror?: boolean }> = ({ card, ff, leaving, a
               fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.04, color,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre', textShadow: pal.shadow,
               textTransform: role === 'accent' ? 'uppercase' : 'none',
-            }}>{l.text}</span>
+            }}><WordFade line={l} /></span>
             {i === activeIdx ? <SelectionBox since={frame - ls[activeIdx].start * fps} leaving={leaving} mirror={mirror} /> : null}
           </div>
         );
@@ -85,20 +112,23 @@ export const Hero: React.FC<P> = ({ card, ff, leaving }) => {
   const size = Math.min(...ls.map((l) => fit(l.text, ff, '900', 168)));
   return (
     <Frame card={card} align="center">
-      {ls.map((l, i) => (
-        <div key={i} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 22px', margin: '4px 0' }}>
-          {l.text.split(' ').map((wd, j) => {
-            const a = useMotion(frame, fps, Math.max(l.start, card.start), leaving, T.EXIT, card.motion, card.exit, j * 2.5);
-            return (
-              <span key={j} style={{
-                fontFamily: ff, fontWeight: '900', fontSize: size, lineHeight: 1.0, color: pal.ink,
-                letterSpacing: a.letterSpacing ?? '-0.03em', display: 'inline-block', textShadow: pal.shadow,
-                opacity: a.opacity, transform: a.transform, filter: a.filter, clipPath: a.clipPath,
-              }}>{wd}</span>
-            );
-          })}
-        </div>
-      ))}
+      {ls.map((l, i) => {
+        const words = l.words && l.words.length > 0 ? l.words : l.text.split(' ').map((wd) => ({ text: wd, start: l.start, end: l.end }));
+        return (
+          <div key={i} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 22px', margin: '4px 0' }}>
+            {words.map((w, j) => {
+              const a = useMotion(frame, fps, Math.max(w.start, card.start), leaving, T.EXIT, card.motion, card.exit);
+              return (
+                <span key={j} style={{
+                  fontFamily: ff, fontWeight: '900', fontSize: size, lineHeight: 1.0, color: pal.ink,
+                  letterSpacing: a.letterSpacing ?? '-0.03em', display: 'inline-block', textShadow: pal.shadow,
+                  opacity: a.opacity, transform: a.transform, filter: a.filter, clipPath: a.clipPath,
+                }}>{w.text}</span>
+              );
+            })}
+          </div>
+        );
+      })}
     </Frame>
   );
 };
@@ -125,7 +155,7 @@ export const Invert: React.FC<P> = ({ card, ff, leaving }) => {
               letterSpacing: a.letterSpacing ?? '-0.02em', color: i === ls.length - 1 ? pal.panelInk : dim,
               margin: '8px 0', whiteSpace: 'pre',
               opacity: a.opacity, transform: a.transform, filter: a.filter, clipPath: a.clipPath,
-            }}>{l.text}</span>
+            }}><WordFade line={l} /></span>
           );
         })}
       </Frame>
@@ -161,7 +191,7 @@ export const Mark: React.FC<P> = ({ card, ff, leaving }) => {
               position: 'relative', fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.06, color: col,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre',
               textShadow: last ? 'none' : pal.shadow,
-            }}>{l.text}</span>
+            }}><WordFade line={l} /></span>
           </div>
         );
       })}
@@ -190,7 +220,7 @@ export const Stair: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
             <span style={{
               fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.05, color: i === n - 1 ? pal.accent : pal.gray,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre', textShadow: pal.shadow,
-            }}>{l.text}</span>
+            }}><WordFade line={l} /></span>
             {i === activeIdx ? <SelectionBox since={frame - ls[activeIdx].start * fps} leaving={leaving} /> : null}
           </div>
         );
@@ -226,7 +256,7 @@ export const Numeral: React.FC<P> = ({ card, ff, leaving }) => {
             fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.06, color: i === n - 1 ? pal.ink : pal.ink2,
             letterSpacing: a.letterSpacing ?? '-0.02em', margin: '7px 0', whiteSpace: 'pre', textShadow: pal.shadow,
             opacity: a.opacity, transform: a.transform, filter: a.filter, clipPath: a.clipPath,
-          }}>{l.text}</span>
+          }}><WordFade line={l} /></span>
         );
       })}
     </Frame>
@@ -256,7 +286,7 @@ export const Strike: React.FC<P> = ({ card, ff, leaving }) => {
             <span style={{
               fontFamily: ff, fontWeight: w, fontSize: size, lineHeight: 1.05, color: i === n - 1 ? pal.accent : pal.gray,
               letterSpacing: a.letterSpacing ?? '-0.02em', display: 'block', whiteSpace: 'pre', textShadow: pal.shadow,
-            }}>{l.text}</span>
+            }}><WordFade line={l} /></span>
             <div style={{ position: 'absolute', left: -6, right: -6, top: '52%', height: 9, background: pal.ink, transform: `scaleX(${cut})`, transformOrigin: 'left center' }} />
           </div>
         );

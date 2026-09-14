@@ -68,6 +68,13 @@ def test_run_aligner_uses_real_words_when_present(stage):
     assert tl["cards"][0]["start"] == pytest.approx(0.10, abs=1e-6)
     assert tl["cards"][1]["start"] == pytest.approx(1.00, abs=1e-6)
     assert tl["cards"][2]["start"] == pytest.approx(2.00, abs=1e-6)
+    # Mỗi TỪ trong dòng phải có mốc riêng (không chỉ mốc cả dòng) -- đây là
+    # điều kiện để chữ hiện ra đúng từng từ, không phải cả câu hiện cùng lúc.
+    card0_words = tl["cards"][0]["lines"][0]["words"]
+    assert [w["text"] for w in card0_words] == ["một", "hai", "ba"]
+    assert card0_words[0]["start"] == pytest.approx(0.10, abs=1e-6)
+    assert card0_words[1]["start"] == pytest.approx(0.30, abs=1e-6)
+    assert card0_words[2]["start"] == pytest.approx(0.50, abs=1e-6)
 
 def test_run_aligner_falls_back_when_words_dont_match(stage):
     """words.json ASR gibberish that shares nothing with the script -> the
