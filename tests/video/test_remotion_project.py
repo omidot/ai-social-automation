@@ -60,34 +60,12 @@ def test_align_mjs_emits_per_word_timestamps():
     src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
     assert "words: u.words.map" in src
 
-def test_subtitle_layer_exists_and_is_mounted():
-    """The reference splits the frame in two: a designed slide that holds
-    still, and a subtitle at the bottom that tracks the voice word by word.
-    Only the subtitle may chase individual words."""
-    assert (VIDEO / "src/Subtitle.tsx").is_file()
-    sub = (VIDEO / "src/Subtitle.tsx").read_text(encoding="utf-8")
-    assert "export const Subtitle" in sub
-    assert "pal.accent" in sub, "the word being spoken must be highlighted"
-    short = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "<Subtitle ff={fontFamily} />" in short
-
 def test_accent_line_is_measured_in_the_case_it_is_drawn_in():
     """Stack's accent line is uppercased at paint time. Measuring the
     lower-case string and then uppercasing it made the widest lines run off
     the right edge of the 1080px frame."""
     src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
     assert "role === 'accent' ? l.text.toUpperCase() : l.text" in src
-
-def test_slide_layer_does_not_chase_individual_words():
-    """Packing the full narration into the slide produced 20-line cards with
-    unreadably shrunken text -- spoken words belong to the subtitle, so the
-    slide reveals its scripted lines one line at a time instead."""
-    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
-    assert "WordFade" not in src
-
-def test_align_mjs_emits_the_spoken_subtitle_track():
-    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
-    assert "cards, subtitle" in src
 
 def test_chart_tsx_exists_and_exports_chartcard():
     assert (VIDEO / "src/Chart.tsx").is_file()
@@ -157,9 +135,25 @@ def test_legacy_decoration_layers_are_gone():
         for dead in ("Cutouts", "Sfx", "Shots", "shotPushAt"):
             assert dead not in src, f"{dead} still referenced in {src_name}"
 
-def test_subtitle_uses_theme_ink_not_hardcoded_white():
-    """An invert card lays a light panel over the whole frame; a hardcoded
-    white subtitle then reads white-on-white."""
-    src = (VIDEO / "src/Subtitle.tsx").read_text(encoding="utf-8")
-    assert "'#FFFFFF'" not in src
-    assert "pal.ink" in src
+def test_slide_text_is_revealed_word_by_word():
+    """Measured regression: with scripted wording on the slides, the text ran
+    up to ten seconds ahead of the voice (20.1s showed "USD cho mot tac vu"
+    while the narrator was still on "vuot xa 40%"). Slides carry the spoken
+    words again, each appearing on its own timestamp."""
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "export const WordFade" in src
+    assert src.count("<WordFade line={l} />") == 6
+    assert "{l.text}</span>" not in src
+
+def test_no_separate_subtitle_layer():
+    """With the spoken words back on the slides, a subtitle would print the
+    same text twice on screen."""
+    assert not (VIDEO / "src/Subtitle.tsx").exists()
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "Subtitle" not in src
+
+def test_brand_mark_is_large_enough_to_read():
+    """A 64px logo tucked in a small white chip was not legible at phone
+    size; the reference shows the brand mark far larger."""
+    src = (VIDEO / "src/BrandMark.tsx").read_text(encoding="utf-8")
+    assert "width: 92, height: 92" in src

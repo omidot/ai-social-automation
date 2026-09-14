@@ -72,14 +72,29 @@ def test_run_aligner_uses_real_words_when_present(stage):
     assert [w["text"] for w in flat] == [w["w"] for w in words]
     assert [w["start"] for w in flat] == [pytest.approx(w["start"], abs=1e-6) for w in words]
 
-def test_subtitle_track_is_the_spoken_words_verbatim(stage):
-    """The narrator paraphrases: they add words, swap words, drop words. The
-    subtitle layer is the one that must follow the voice exactly, so it
-    carries the transcript verbatim rather than the scripted wording."""
+def test_run_aligner_falls_back_when_words_dont_match(stage):
+    """words.json ASR gibberish that shares nothing with the script -> the
+    low match-ratio guard must discard it and use the silence heuristic,
+    not silently poison the timeline with meaningless timestamps."""
     dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
                                  video_dir=VIDEO)
-    # Script says "một hai ba" / "bốn năm sáu" / "bảy tám chín" (see `stage`),
-    # but the speaker paraphrased: kept some words, swapped others, added one.
+    garbage = [{"w": "xyz", "start": 0.0, "end": 0.1}, {"w": "qwe", "start": 0.1, "end": 0.2}]
+    (stage / "ref/words.json").write_text(json.dumps(garbage), encoding="utf-8")
+    out = align.run_aligner(stage, dur)
+    tl = json.loads(out.read_text(encoding="utf-8"))
+    assert len(tl["cards"]) == 3
+    starts = [c["start"] for c in tl["cards"]]
+    assert starts == sorted(starts)
+
+
+def test_slides_carry_the_spoken_words_not_the_script(stage):
+    """The narrator paraphrases: they add words, swap words, drop words.
+    Keeping the scripted wording on screen put the text up to ten seconds
+    out of step with the voice, so the slides are rebuilt from what was
+    actually said."""
+    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
+                                 video_dir=VIDEO)
+    # Script says "một hai ba" / "bốn năm sáu" / "bảy tám chín" (see `stage`).
     spoken = [
         {"w": "một", "start": 0.10, "end": 0.30},
         {"w": "hai", "start": 0.30, "end": 0.50},
@@ -94,48 +109,25 @@ def test_subtitle_track_is_the_spoken_words_verbatim(stage):
     (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
     tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
 
-    assert [w["text"] for w in tl["subtitle"]] == [s["w"] for s in spoken]
-    assert [w["start"] for w in tl["subtitle"]] ==         [pytest.approx(s["start"], abs=1e-6) for s in spoken]
-    # The slide layer keeps the scripted wording -- it is a designed headline.
-    assert "ba" in " ".join(l["text"] for c in tl["cards"] for l in c["lines"])
+    flat = [w for c in tl["cards"] for l in c["lines"] for w in l["words"]]
+    assert [w["text"] for w in flat] == [s["w"] for s in spoken]
+    # Each word keeps its own real timestamp, so nothing can appear early.
+    assert [w["start"] for w in flat] ==         [pytest.approx(s["start"], abs=1e-6) for s in spoken]
 
 
-def test_no_subtitle_when_real_timing_is_unavailable(stage):
-    """Without a usable transcript the words on screen would be guesses, not
-    what was said -- showing nothing beats showing wrong captions."""
-    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
-                                 video_dir=VIDEO)
-    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
-    assert tl["subtitle"] == []
-
-
-def test_long_speech_does_not_bloat_the_slide_layer(stage):
+def test_long_speech_never_overflows_a_slide(stage):
     """A real recording carries far more words than the (deliberately terse)
-    kinetic script -- 502 vs 166 in the incident that prompted this. Routing
-    the narration into the slides produced a 21-line card shrunk to
-    unreadable, so the slides stay scripted and the speech goes to the
-    subtitle."""
+    kinetic script -- 502 vs 166 in the incident that prompted this. Packing
+    it into the script's own card slots gave a 21-line card shrunk to
+    unreadable, so slides are re-cut from the speech."""
     dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
                                  video_dir=VIDEO)
     spoken = [{"w": f"từ{i}", "start": i * 0.04, "end": i * 0.04 + 0.03} for i in range(120)]
     (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
     tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
 
-    assert len(tl["cards"]) == 3, "slides stay one-per-scripted-card"
     assert all(len(c["lines"]) <= 3 for c in tl["cards"])
-    assert len(tl["subtitle"]) == 120, "every spoken word still reaches the subtitle"
-
-
-def test_run_aligner_falls_back_when_words_dont_match(stage):
-    """words.json ASR gibberish that shares nothing with the script -> the
-    low match-ratio guard must discard it and use the silence heuristic,
-    not silently poison the timeline with meaningless timestamps."""
-    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
-                                 video_dir=VIDEO)
-    garbage = [{"w": "xyz", "start": 0.0, "end": 0.1}, {"w": "qwe", "start": 0.1, "end": 0.2}]
-    (stage / "ref/words.json").write_text(json.dumps(garbage), encoding="utf-8")
-    out = align.run_aligner(stage, dur)
-    tl = json.loads(out.read_text(encoding="utf-8"))
-    assert len(tl["cards"]) == 3
-    starts = [c["start"] for c in tl["cards"]]
-    assert starts == sorted(starts)
+    assert all(len(l["text"]) <= 26 for c in tl["cards"] for l in c["lines"])
+    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
+    assert shown == [s["w"] for s in spoken], "no spoken word may be dropped"
+    assert all(c["variant"] and c["section"] for c in tl["cards"])

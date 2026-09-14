@@ -32,14 +32,20 @@ export const BrandMark: React.FC<{ card: Card }> = ({ card }) => {
   if (!brand) return null;
   const s = spring({ frame: frame - card.start * fps, fps, config: { damping: 18, stiffness: 200, mass: 0.7 } });
   return (
+    // To và đứng một mình trên nền, không nhét trong ô trắng bé xíu -- bản
+    // tham chiếu để logo hãng ở cỡ đọc được từ xa. Vẫn giữ một nền sáng rất
+    // nhạt vì nhiều favicon là hình đen, đặt thẳng lên nền tối sẽ mất hút.
     <div style={{
-      position: 'absolute', top: 120, right: 56,
-      width: 64, height: 64, borderRadius: 14, overflow: 'hidden',
-      background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      position: 'absolute', top: 124, right: 52,
+      width: 92, height: 92, borderRadius: 22, overflow: 'hidden',
+      background: 'rgba(255,255,255,0.94)',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.45)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
       opacity: interpolate(s, [0, 1], [0, 1]),
       transform: `scale(${interpolate(s, [0, 1], [0.6, 1])})`,
     }}>
-      <Img src={staticFile(brand.file)} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      <Img src={staticFile(brand.file)}
+           style={{ width: '76%', height: '76%', objectFit: 'contain' }} />
     </div>
   );
 };

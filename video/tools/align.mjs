@@ -154,27 +154,59 @@ if (!usedRealWords) {
   for (const w of allWords) if (w.start === undefined) { w.start = DURATION - 0.2; w.end = DURATION; }
 }
 
+const MAX_LINE_CHARS = 26;   // đủ to để đọc trên điện thoại ở khung dọc 1080
+const LINES_PER_CARD = 3;    // quá số này thì chữ bị co nhỏ, khó đọc
+
+/** Gói chuỗi từ thành các dòng không quá MAX_LINE_CHARS ký tự. */
+function packLines(ws) {
+  const groups = [];
+  let cur = [], len = 0;
+  for (const w of ws) {
+    const add = w.text.length + (cur.length ? 1 : 0);
+    if (cur.length && len + add > MAX_LINE_CHARS) { groups.push(cur); cur = []; len = 0; }
+    cur.push(w); len += add;
+  }
+  if (cur.length) groups.push(cur);
+  return groups.map((g) => ({
+    text: g.map((x) => x.text).join(' '),
+    start: g[0].start, end: g[g.length - 1].end, hidden: false, words: g,
+  }));
+}
+
 // ---- 5. Gộp lên mức dòng rồi mức card ----
-// Hai tầng tách bạch, đúng như bản tham chiếu:
-//  - CARD (tầng trên) = chữ KỊCH BẢN, bản rút gọn đã thiết kế, đứng yên vài
-//    giây rồi hiện thêm từng dòng một;
-//  - PHỤ ĐỀ (tầng dưới) = ĐÚNG LỜI NÓI, chạy theo từng từ.
-// Nhồi nguyên lời nói lên tầng trên sẽ ra card cả chục dòng, chữ co nhỏ
-// không đọc nổi -- lời nói thuộc về phụ đề, không thuộc về slide.
 for (const u of units) { u.start = u.words[0].start; u.end = u.words[u.words.length - 1].end; }
 
-const cards = CARDS.map((lines, ci) => {
-  const mine = units.filter((u) => u.card === ci);
-  return {
-    index: ci,
-    lines: mine.map((u) => ({
-      text: u.text, start: u.start, end: u.end, hidden: u.hidden,
-      words: u.words.map((w) => ({ text: w.w, start: w.start, end: w.end })),
-    })),
-    start: mine[0].start, end: mine[mine.length - 1].end,
-  };
-});
-const srcOf = (k) => k;
+let cards;
+let srcOf;   // card mới -> dòng LAYOUT/section gốc của kịch bản
+if (usedRealWords) {
+  // Chữ trên màn hình phải là ĐÚNG LỜI NÓI. Kịch bản là bản rút gọn và
+  // người đọc gần như không bao giờ đọc y nguyên -- giữ chữ kịch bản thì
+  // slide chạy trước hoặc sau tiếng nói cả chục giây (đo được: giây 20.1
+  // hiện "USD cho một tác vụ" trong khi giọng còn ở "vượt xa 40%").
+  // Nhồi lời nói vào đúng khung card của kịch bản thì card phình tới cả
+  // chục dòng, nên card được chia lại theo chính lời nói, còn kiểu dáng
+  // của kịch bản ánh xạ lên theo tỉ lệ để giữ mạch thiết kế.
+  const lines = packLines(realWords.map((r) => ({ text: r.w, start: r.start, end: r.end })));
+  const groups = [];
+  for (let i = 0; i < lines.length; i += LINES_PER_CARD) groups.push(lines.slice(i, i + LINES_PER_CARD));
+  cards = groups.map((g, k) => ({
+    index: k, lines: g, start: g[0].start, end: g[g.length - 1].end,
+  }));
+  srcOf = (k) => Math.min(CARDS.length - 1, Math.floor((k * CARDS.length) / cards.length));
+} else {
+  cards = CARDS.map((lines, ci) => {
+    const mine = units.filter((u) => u.card === ci);
+    return {
+      index: ci,
+      lines: mine.map((u) => ({
+        text: u.text, start: u.start, end: u.end, hidden: u.hidden,
+        words: u.words.map((w) => ({ text: w.w, start: w.start, end: w.end })),
+      })),
+      start: mine[0].start, end: mine[mine.length - 1].end,
+    };
+  });
+  srcOf = (k) => k;
+}
 // card sống tới khi card sau bắt đầu -> không có khoảng trống trắng
 cards.forEach((c, i) => { c.out = i < cards.length - 1 ? cards[i + 1].start : DURATION; });
 
