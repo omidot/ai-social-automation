@@ -2,6 +2,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import shutil
 import subprocess
 from datetime import datetime, timezone
@@ -19,20 +20,39 @@ from ..publish import slot_unix
 log = logging.getLogger("video.render")
 
 _AUDIO_EXT = (".mp3", ".m4a", ".wav", ".ogg", ".oga")
+# How long to hold a slot before rendering once its newest audio part
+# arrived, so a burst of multi-take uploads (a long script recorded as
+# several files) has time to finish landing before render_pending locks in
+# whatever audio_parts currently holds.
+_AUDIO_GRACE_SECONDS = 90
 
 
 def _audio_file_id(msg: dict) -> str | None:
+    return _audio_file_id_and_name(msg)[0]
+
+
+def _audio_file_id_and_name(msg: dict) -> tuple[str | None, str]:
     if isinstance(msg.get("voice"), dict) and msg["voice"].get("file_id"):
-        return msg["voice"]["file_id"]
+        return msg["voice"]["file_id"], ""
     if isinstance(msg.get("audio"), dict) and msg["audio"].get("file_id"):
-        return msg["audio"]["file_id"]
+        a = msg["audio"]
+        return a["file_id"], str(a.get("file_name") or "")
     doc = msg.get("document")
     if isinstance(doc, dict) and doc.get("file_id"):
         mime = str(doc.get("mime_type", ""))
-        name = str(doc.get("file_name", "")).lower()
-        if mime.startswith("audio/") or name.endswith(_AUDIO_EXT):
-            return doc["file_id"]
-    return None
+        name = str(doc.get("file_name", ""))
+        if mime.startswith("audio/") or name.lower().endswith(_AUDIO_EXT):
+            return doc["file_id"], name
+    return None, ""
+
+
+def _part_sort_key(part: dict, index: int) -> tuple[int, int]:
+    """Order audio parts by a leading number in the filename ("1.mp3" before
+    "2.mp3") when present, falling back to arrival order otherwise -- lets
+    the user record a long script in several takes and send them as
+    separate files instead of one single recording."""
+    m = re.match(r"\s*(\d+)", part.get("name") or "")
+    return (0, int(m.group(1))) if m else (1, index)
 
 
 def _to_mp3(src: Path, dst: Path, video_dir: Path) -> None:
@@ -49,6 +69,65 @@ def _to_mp3(src: Path, dst: Path, video_dir: Path) -> None:
         raise AlignError(f"ffmpeg mp3 convert failed: {(r.stderr or '')[-300:]}")
 
 
+def _fetch_voice(v: dict, tg, video_dir: Path) -> Path:
+    """Download the slot's audio -- one file, or several takes stitched into
+    one in the order implied by their filenames (falling back to arrival
+    order) -- and return the path to the raw (pre-mp3) result.
+
+    Each part is normalized to the same WAV format before concatenation
+    (rather than stream-copying the originals): a voice note and an
+    uploaded mp3 file are not guaranteed to share a codec, and ffmpeg's
+    concat demuxer only stream-copies cleanly when every input already
+    matches. Re-encoding each short part first costs little and never
+    silently produces a corrupt joined file.
+    """
+    public = video_dir / "public"
+    parts = list(v.get("audio_parts") or [])
+    if len(parts) <= 1:
+        fid = parts[0]["file_id"] if parts else v["audio_file_id"]
+        return Path(tg.download_file(fid, str(public / "voice_in")))
+
+    # sorted(), not parts.sort(): CPython's in-place list.sort() detaches
+    # the list's backing array while it runs, so a key function that reads
+    # `parts` (as _part_sort_key's arrival-order fallback does via
+    # .index()) sees it as empty and raises. sorted() leaves the original
+    # list intact for the key function to read.
+    orig = list(parts)
+    parts = sorted(parts, key=lambda p: _part_sort_key(p, orig.index(p)))
+    ff = _align._ffmpeg_bin(video_dir)
+    raw_dir = public / "voice_parts"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    normalized: list[Path] = []
+    for i, p in enumerate(parts):
+        raw = Path(tg.download_file(p["file_id"], str(raw_dir / f"{i}_raw")))
+        wav = raw_dir / f"{i}.wav"
+        r = subprocess.run(
+            [ff, "-y", "-hide_banner", "-i", str(raw), "-ac", "1", "-ar", "44100", str(wav)],
+            capture_output=True, text=True, encoding="utf-8", errors="replace")
+        if r.returncode != 0:
+            raise AlignError(f"ffmpeg normalize audio part {i + 1} failed: "
+                             f"{(r.stderr or '')[-300:]}")
+        normalized.append(wav)
+
+    list_path = raw_dir / "concat.txt"
+    list_path.write_text(
+        "\n".join(f"file '{p.resolve().as_posix()}'" for p in normalized) + "\n",
+        encoding="utf-8")
+    joined = public / "voice_in_joined"
+    r = subprocess.run(
+        # the leading "-f concat" sets the INPUT demuxer; "voice_in_joined"
+        # has no extension for ffmpeg to infer an output container from, so
+        # the output side needs its own explicit "-f wav" (the parts were
+        # just normalized to wav) or ffmpeg refuses to open it.
+        [ff, "-y", "-hide_banner", "-f", "concat", "-safe", "0", "-i", str(list_path),
+         "-c", "copy", "-f", "wav", str(joined)],
+        capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if r.returncode != 0:
+        raise AlignError(f"ffmpeg concat of {len(parts)} audio parts failed: "
+                         f"{(r.stderr or '')[-300:]}")
+    return joined
+
+
 def _remotion_render(video_dir: Path, composition: str,
                      out_mp4: Path) -> subprocess.CompletedProcess:
     return subprocess.run(
@@ -57,14 +136,27 @@ def _remotion_render(video_dir: Path, composition: str,
         encoding="utf-8", errors="replace")
 
 
+def _accepts_more_audio(v: dict) -> bool:
+    """A slot can still take an audio part: either nothing has arrived yet,
+    or parts have but rendering hasn't started -- a script this long (2-5
+    min) is routinely recorded as several takes sent as separate messages,
+    and each one must reach the same slot instead of only the last-received
+    part surviving."""
+    if v.get("status") == "awaiting_audio":
+        return True
+    return v.get("status") == "audio_received" and v.get("mp4_path") is None
+
+
 def _find_slot(ds, msg: dict, now: datetime):
-    """(date, slot, videodict) of the awaiting_audio slot this audio belongs to,
-    or (None, None, None). Prefer a reply to a known script_msg_id; else the
-    most recently *sent* script (highest script_msg_id) still awaiting_audio
-    within 3 days -- falling back to the later slot_ict on a tie (M6), since
-    two ad hoc test scripts or a real slot plus a test-tool script can be
-    awaiting_audio at once and the operator is almost always replying to
-    whichever script they read last, not whichever posts later in the day."""
+    """(date, slot, videodict) of the slot this audio belongs to, or
+    (None, None, None). Prefer a reply to a known script_msg_id; else the
+    most recently *sent* script (highest script_msg_id) still accepting
+    audio within 3 days -- falling back to the later slot_ict on a tie (M6),
+    since two ad hoc test scripts or a real slot plus a test-tool script can
+    be open at once and the operator is almost always replying to whichever
+    script they read last, not whichever posts later in the day. "Accepting
+    audio" includes a slot already holding earlier takes but not yet
+    rendered, so a script recorded as several separate files all reach it."""
     reply_id = (msg.get("reply_to_message") or {}).get("message_id")
     best = None
     cutoff = now.timestamp() - 3 * 86400
@@ -82,7 +174,7 @@ def _find_slot(ds, msg: dict, now: datetime):
                                 key=lambda kv: kv[1].get("slot_ict", ""),
                                 reverse=True):  # same-day tie prefers the later slot (M6)
             v = row.get("video") or {}
-            if v.get("status") != "awaiting_audio":
+            if not _accepts_more_audio(v):
                 continue
             if reply_id is not None and v.get("script_msg_id") == reply_id:
                 return date, slot, v
@@ -102,8 +194,14 @@ def is_audio(msg: dict) -> bool:
 
 def record_audio(msg: dict, ds, tg, root: Path, now: datetime) -> str | None:
     """Poller side: attach the uploaded audio to a waiting slot and mark it
-    `audio_received`. The heavy render happens later in `render_pending`."""
-    fid = _audio_file_id(msg)
+    `audio_received`. The heavy render happens later in `render_pending`.
+
+    A long script (2-5 min) is routinely recorded as several takes sent as
+    separate files -- each one APPENDS to `audio_parts` instead of the
+    newest silently overwriting `audio_file_id` and discarding the rest.
+    `audio_file_id`/`audio_msg_id` stay in sync with the newest part for any
+    reader that hasn't been updated to look at `audio_parts`."""
+    fid, name = _audio_file_id_and_name(msg)
     if fid is None:
         return None
     root = Path(root)
@@ -113,11 +211,17 @@ def record_audio(msg: dict, ds, tg, root: Path, now: datetime) -> str | None:
     if date is None:
         tg.send_message("⚠️ Nhận được audio nhưng không có video nào đang chờ.")
         return None
+    parts = list(v.get("audio_parts") or [])
+    parts.append({"file_id": fid, "msg_id": msg.get("message_id"), "name": name,
+                  "received_at": msg.get("date")})
     ds.put(date, slot, video={**v, "status": "audio_received",
                               "audio_file_id": fid,
                               "audio_msg_id": msg.get("message_id"),
+                              "audio_parts": parts,
                               "render_err": None})
-    tg.send_message(f"🎧 Đã nhận audio cho video {slot} ({date}). "
+    n = len(parts)
+    note = f" (phần {n})" if n > 1 else ""
+    tg.send_message(f"🎧 Đã nhận audio{note} cho video {slot} ({date}). "
                     "Đang dựng, vài phút nữa có kết quả.")
     return f"audio_received:{date}:{slot}"
 
@@ -148,8 +252,17 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
             continue
         for slot, row in doc["posts"].items():
             v = row.get("video") or {}
-            if v.get("status") == "audio_received":
-                pending.append((f.stem, slot, v))
+            if v.get("status") != "audio_received":
+                continue
+            # A long script is often recorded as several takes sent close
+            # together -- if the newest one just arrived, hold off one cycle
+            # so a take still in flight lands before rendering locks in
+            # whatever audio_parts currently has.
+            parts = v.get("audio_parts") or []
+            received = [p.get("received_at") for p in parts if p.get("received_at")]
+            if received and (now.timestamp() - max(received)) < _AUDIO_GRACE_SECONDS:
+                continue
+            pending.append((f.stem, slot, v))
 
     for date, slot, v in pending[:limit]:
         ds.put(date, slot, video={**v, "status": "rendering",
@@ -188,8 +301,8 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
                     card.screenshot = None
             _codegen.write(s, video_dir)   # C1
 
-            raw = tg.download_file(v["audio_file_id"], str(video_dir / "public" / "voice_in"))
-            _to_mp3(Path(raw), video_dir / "public" / "voice.mp3", video_dir)
+            raw = _fetch_voice(v, tg, video_dir)
+            _to_mp3(raw, video_dir / "public" / "voice.mp3", video_dir)
             dur = _align.make_silence_txt(video_dir / "public" / "voice.mp3",
                                          video_dir / "ref" / "silence.txt", video_dir)
             tl_path = _align.run_aligner(video_dir, dur)

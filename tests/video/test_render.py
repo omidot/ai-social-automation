@@ -465,3 +465,141 @@ def test_draft_to_render_seam_regenerates_from_persisted_script(tmp_path, monkey
     cards = (tmp_path / "video" / "tools" / "cards.mjs").read_text(encoding="utf-8")
     assert "STALE" not in cards                              # regenerated
     assert "SEAMTOKENZZ" in cards                            # from the persisted video.script
+
+
+# --- multi-part audio (a long script recorded as several takes) -----------
+
+def test_part_sort_key_orders_by_leading_filename_number():
+    parts = [{"name": "2.mp3"}, {"name": "3.mp3"}, {"name": "1.mp3"}]
+    ordered = sorted(parts, key=lambda p: render._part_sort_key(p, parts.index(p)))
+    assert [p["name"] for p in ordered] == ["1.mp3", "2.mp3", "3.mp3"]
+
+
+def test_part_sort_key_falls_back_to_arrival_order_without_a_number():
+    parts = [{"name": "take-b.mp3"}, {"name": "take-a.mp3"}]
+    ordered = sorted(parts, key=lambda p: render._part_sort_key(p, parts.index(p)))
+    assert [p["name"] for p in ordered] == ["take-b.mp3", "take-a.mp3"]  # arrival order kept
+
+
+def test_record_audio_appends_parts_instead_of_overwriting(tmp_path):
+    """The exact incident this exists for: a 2-5 minute script routinely gets
+    recorded as several takes sent as separate files. The old code
+    overwrote audio_file_id on every message, so only the LAST of three
+    files survived and the first two were silently discarded."""
+    ds = _seed(tmp_path, enabled=True)
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    for i, fid in enumerate(["A1", "A2", "A3"], start=1):
+        render.record_audio(
+            {"message_id": 9 + i, "date": 1000 + i,
+             "document": {"file_id": fid, "file_name": f"{i}.mp3", "mime_type": "audio/mpeg"}},
+            ds, tg, tmp_path, now)
+    v = ds.get_safe("2026-09-08", "morning")["video"]
+    assert [p["file_id"] for p in v["audio_parts"]] == ["A1", "A2", "A3"]
+    assert [p["name"] for p in v["audio_parts"]] == ["1.mp3", "2.mp3", "3.mp3"]
+    assert v["status"] == "audio_received"
+    # second and third parts must still find the slot (mp4_path is still None)
+    assert sum("🎧" in m for m in tg.msgs) == 3
+
+
+def test_find_slot_still_accepts_audio_after_first_part_received(tmp_path):
+    ds = _seed(tmp_path, enabled=True, status="audio_received",
+               audio_parts=[{"file_id": "A1", "msg_id": 10, "name": "1.mp3"}])
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    r = render.record_audio(
+        {"message_id": 11, "document": {"file_id": "A2", "file_name": "2.mp3",
+                                        "mime_type": "audio/mpeg"}},
+        ds, tg, tmp_path, now)
+    assert r == "audio_received:2026-09-08:morning"
+
+
+def test_find_slot_rejects_audio_once_already_rendered(tmp_path):
+    """A slot that already produced an mp4 must not silently absorb a later,
+    unrelated audio message -- the user gets the same warning as when
+    nothing is waiting at all."""
+    ds = _seed(tmp_path, enabled=True, status="audio_received", mp4_path="out.mp4")
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    r = render.record_audio({"message_id": 12, "voice": {"file_id": "A2"}},
+                            ds, tg, tmp_path, now)
+    assert r is None
+    assert any("không có video nào đang chờ" in m for m in tg.msgs)
+
+
+def test_render_pending_defers_slot_whose_newest_part_just_arrived(tmp_path, monkeypatch):
+    """A burst of takes sent seconds apart must not have the FIRST one
+    render before the rest land -- render_pending holds the slot for a
+    short grace window after the newest part."""
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    ds = _seed(tmp_path, enabled=True, status="audio_received",
+              script=_mini_script_dict(), audio_file_id="A1",
+              audio_parts=[{"file_id": "A1", "msg_id": 10, "name": "1.mp3",
+                           "received_at": int(now.timestamp()) - 5}])
+    tg = FakeTG()
+    _mock_pipeline(monkeypatch)
+    out = render.render_pending(ds, tg, tmp_path, now)
+    assert out == []
+    assert ds.get_safe("2026-09-08", "morning")["video"]["status"] == "audio_received"
+
+
+def test_render_pending_proceeds_once_grace_period_elapses(tmp_path, monkeypatch):
+    now = datetime(2026, 9, 8, 3, 0, tzinfo=timezone.utc)
+    ds = _seed(tmp_path, enabled=True, status="audio_received",
+              script=_mini_script_dict(), audio_file_id="A1",
+              audio_parts=[{"file_id": "A1", "msg_id": 10, "name": "1.mp3",
+                           "received_at": int(now.timestamp()) - render._AUDIO_GRACE_SECONDS - 1}])
+    tg = FakeTG()
+    _mock_pipeline(monkeypatch)
+    out = render.render_pending(ds, tg, tmp_path, now)
+    assert out == [f"rendered:2026-09-08:morning"]
+
+
+def test_fetch_voice_downloads_single_part_directly(tmp_path):
+    v = {"audio_file_id": "A1", "audio_parts": [{"file_id": "A1"}]}
+    tg = FakeTG()
+    got = render._fetch_voice(v, tg, tmp_path / "video")
+    assert got == tmp_path / "video" / "public" / "voice_in"
+
+
+def test_fetch_voice_concatenates_multiple_parts_in_order(tmp_path, monkeypatch):
+    v = {"audio_file_id": "A3",
+         "audio_parts": [{"file_id": "A2", "name": "2.mp3"},
+                         {"file_id": "A3", "name": "3.mp3"},
+                         {"file_id": "A1", "name": "1.mp3"}]}
+    tg = FakeTG()
+    downloaded_order = []
+    orig_download = tg.download_file
+    def tracking_download(fid, dest):
+        downloaded_order.append(fid)
+        return orig_download(fid, dest)
+    tg.download_file = tracking_download
+
+    calls = []
+    def fake_run(cmd, **kw):
+        calls.append(cmd)
+        # normalize calls write the target wav; concat call writes the joined file
+        out_path = Path(cmd[-1])
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(b"audio")
+        return subprocess.CompletedProcess(cmd, 0, "", "")
+    monkeypatch.setattr(render.subprocess, "run", fake_run)
+
+    video_dir = tmp_path / "video"
+    got = render._fetch_voice(v, tg, video_dir)
+    assert downloaded_order == ["A1", "A2", "A3"]   # sorted by filename, not dict order
+    assert got == video_dir / "public" / "voice_in_joined"
+    assert got.exists()
+    concat_call = calls[-1]
+    assert "-f" in concat_call and "concat" in concat_call
+
+
+def test_fetch_voice_raises_when_normalize_fails(tmp_path, monkeypatch):
+    v = {"audio_parts": [{"file_id": "A1", "name": "1.mp3"},
+                         {"file_id": "A2", "name": "2.mp3"}]}
+    tg = FakeTG()
+    monkeypatch.setattr(render.subprocess, "run",
+                        lambda cmd, **kw: subprocess.CompletedProcess(cmd, 1, "", "boom"))
+    from pipeline.video import AlignError
+    with pytest.raises(AlignError, match="normalize"):
+        render._fetch_voice(v, tg, tmp_path / "video")
