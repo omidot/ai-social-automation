@@ -18,6 +18,7 @@ from . import variants as _variants
 from . import codegen as _codegen
 from . import align as _align
 from . import transcribe as _transcribe
+from . import logos as _logos
 
 log = logging.getLogger("video.build")
 
@@ -119,6 +120,25 @@ def _copy_as_mp3(src: Path, dst: Path, video_dir: Path) -> None:
         raise VideoError(f"ffmpeg mp3 convert failed: {r.stderr[-300:]}")
 
 
+def _write_logos(s, video_dir: Path) -> dict:
+    """Fetch a real logo for every brand the script names, for BrandMark.tsx.
+
+    Always writes src/logos.json (empty when nothing resolves) so the
+    Remotion bundle's import of it never breaks the render, and never
+    raises: a missing logo is a cosmetic loss, not a failed video.
+    """
+    out = video_dir / "src" / "logos.json"
+    found: dict = {}
+    try:
+        text = " ".join(line for c in s.cards for line in c.lines)
+        found = _logos.collect_logos(text, video_dir / "public")
+    except Exception:
+        log.warning("logo collection failed -- rendering without brand marks", exc_info=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(found, ensure_ascii=False, indent=1), encoding="utf-8")
+    return found
+
+
 def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: dict,
           *, voice_wav: Path, render_smoke: bool = False, llm=None, transcribe=None) -> dict:
     cfg = {**_CFG_DEFAULTS, **(cfg or {})}
@@ -152,6 +172,8 @@ def build(root: Path, cand: Candidate, post: PostContent, now: datetime, cfg: di
     except Exception:
         log.warning("word transcription raised -- align.mjs will use its silence heuristic",
                    exc_info=True)
+
+    _write_logos(s, video_dir)
 
     sil_dur = _align.make_silence_txt(voice_mp3, video_dir / "ref" / "silence.txt", video_dir)
     tl_path = _align.run_aligner(video_dir, sil_dur)

@@ -180,3 +180,43 @@ def test_fake_script_includes_chart_and_screenshot_cards():
     assert len(shot_cards) == 1
     assert shot_cards[0]["screenshot_file"] == "smoke-screenshot.png"
     assert shot_cards[0]["screenshot_url"] == "https://github.com/openai/codex"
+
+
+def test_write_logos_always_emits_json_even_when_collection_fails(tmp_path, monkeypatch):
+    """BrandMark.tsx imports src/logos.json unconditionally, so a missing or
+    unwritten file would break the whole Remotion bundle -- a logo outage
+    must cost brand marks, never the video."""
+    from pipeline.video.models import Card, Script, SectionMark
+
+    def boom(*a, **k):
+        raise RuntimeError("network down")
+
+    monkeypatch.setattr(build_video._logos, "collect_logos", boom)
+    s = Script(cards=[Card(lines=["GPT-6 thắng"], variant="stack", anchor="mid",
+                           motion_in="rise", motion_out="up")],
+               sections=[SectionMark(label="A", card_start=0)])
+    vdir = tmp_path / "video"
+    got = build_video._write_logos(s, vdir)
+    assert got == {}
+    assert json.loads((vdir / "src/logos.json").read_text(encoding="utf-8")) == {}
+
+
+def test_write_logos_records_resolved_brands(tmp_path, monkeypatch):
+    from pipeline.video.models import Card, Script, SectionMark
+
+    seen = {}
+
+    def fake_collect(text, public_dir):
+        seen["text"] = text
+        return {"gpt": {"label": "OpenAI", "file": "logos/gpt.png"}}
+
+    monkeypatch.setattr(build_video._logos, "collect_logos", fake_collect)
+    s = Script(cards=[Card(lines=["GPT-6 thắng", "rõ ràng"], variant="stack", anchor="mid",
+                           motion_in="rise", motion_out="up")],
+               sections=[SectionMark(label="A", card_start=0)])
+    vdir = tmp_path / "video"
+    got = build_video._write_logos(s, vdir)
+    assert got["gpt"]["label"] == "OpenAI"
+    assert "GPT-6 thắng" in seen["text"] and "rõ ràng" in seen["text"]
+    assert json.loads((vdir / "src/logos.json").read_text(encoding="utf-8"))["gpt"]["file"] \
+        == "logos/gpt.png"

@@ -5,6 +5,7 @@ import {
 } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { BgVideo, palAt } from './BgVideo';
+import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
@@ -89,6 +90,7 @@ const Stage: React.FC = () => {
       <PalCtx.Provider value={over}>
         <Shots ff={fontFamily} />
         <Chip label={cur.section} key0={chipStart} />
+        <BrandMark card={cur} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>
           <div style={{ height: '100%', width: `${prog * 100}%`, background: over.ink }} />
         </div>

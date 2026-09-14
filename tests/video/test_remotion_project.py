@@ -88,7 +88,15 @@ def test_screenshot_tsx_exists_and_exports_screenshotcard():
     src = (VIDEO / "src/Screenshot.tsx").read_text(encoding="utf-8")
     assert "export const ScreenshotCard" in src
     assert "staticFile" in src
-    assert "card.screenshotUrl" in src
+
+def test_screenshot_card_has_no_fake_browser_chrome_or_source_line():
+    """The reference lets the captured image stand on its own. A mock
+    browser bar, a fake URL field and a printed source line all read as
+    cheap, so none of them may come back."""
+    src = (VIDEO / "src/Screenshot.tsx").read_text(encoding="utf-8")
+    assert "card.screenshotUrl" not in src, "no fake address bar"
+    for dot in ("#ff5f57", "#febc2e", "#28c840"):
+        assert dot not in src, f"traffic-light browser dot left in Screenshot.tsx: {dot}"
 
 def test_kineticshort_renders_screenshot_before_variant_switch():
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
