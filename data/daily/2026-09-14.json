@@ -817,7 +817,7 @@
         }
       },
       "video": {
-        "status": "audio_received",
+        "status": "published",
         "meta": {
           "title": "Obama Cảnh Báo AI: Siết Quản Lý Hay Cản Trở Sáng Tạo?",
           "description": "Cựu Tổng thống Obama lên tiếng yêu cầu phe Dân chủ có kế hoạch siết chặt quản lý AI. Ngay cả các ông lớn như OpenAI hay Anthropic cũng buộc phải chấp nhận các tiêu chuẩn an toàn độc lập. Đã đến lúc người làm công nghệ phải thay đổi tư duy làm sản phẩm. Nhấn theo dõi A Hít Official để cập nhật những góc nhìn sắc bén về AI!",
@@ -1101,17 +1101,36 @@
         "script_msg_id": 251,
         "audio_file_id": "CQACAgUAAxkBAAIBCWqn-26YGT9nN0DGeuUbilcW6EEFAAJuIQACNTdAVcTrhlAdx-DMPQQ",
         "audio_msg_id": 265,
-        "mp4_path": null,
-        "seconds": null,
+        "mp4_path": "output/2026-09-14/2026-09-14-morning-obama-urges-democrats-to-have-a-clear-pl/video/2026-09-14-morning-obama-urges-democrats-to-have-a-clear-pl.mp4",
+        "seconds": 52.7,
         "render_err": null,
-        "started_at": null,
-        "publish_due": null,
+        "started_at": "2026-09-14T20:32:22.081732+00:00",
+        "publish_due": "2026-09-14T20:32:22.081732+00:00",
         "result": {
           "yt": null,
           "fb": null,
           "ig": null,
-          "tiktok": null
-        }
+          "tiktok": null,
+          "youtube": {
+            "id": "Ier1IaSuoK4",
+            "url": "https://youtu.be/Ier1IaSuoK4",
+            "at": "2026-09-14T20:32:22.081732+00:00"
+          },
+          "fb_reel": {
+            "id": "1657565589034026",
+            "url": "https://facebook.com/reel/1657565589034026",
+            "at": "2026-09-14T20:32:22.081732+00:00"
+          },
+          "ig_reel": {
+            "id": "18282107914295008",
+            "url": "https://www.instagram.com/reel/DdSAYt5Epmd/",
+            "at": "2026-09-14T20:32:22.081732+00:00"
+          }
+        },
+        "tg_file_id": "BAACAgUAAxkDAAIBF2qoWkb3s1A3gIdAyEzhXKfsaqX1AALoIQACNTdAVXYjnMm24hCVPQQ",
+        "asset_url": null,
+        "publish_started_at": "2026-09-14T20:32:22.081732+00:00",
+        "published_at": "2026-09-14T20:32:22.081732+00:00"
       }
     },
     "evening": {
