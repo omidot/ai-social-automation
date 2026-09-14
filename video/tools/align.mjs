@@ -61,6 +61,9 @@ for (let ci = 1; ci < CARDS.length; ci++) {
 }
 
 const allWords = units.flatMap((u) => u.words);
+// unit sở hữu từng từ, cùng thứ tự với allWords -- dùng ở bước 4c
+const wordUnit = [];
+units.forEach((u, ui) => u.words.forEach(() => wordUnit.push(ui)));
 const totalWeight = allWords.reduce((a, x) => a + x.weight, 0);
 
 // ---- 4. Gán mốc thời gian cho từng từ trong kịch bản ----
@@ -96,12 +99,13 @@ function alignWords(a, b) {
   return map;
 }
 
-/** Gán start/end từ mốc ASR thật; trả về false nếu tỉ lệ khớp quá thấp
- *  (giọng đọc lệch quá xa kịch bản) để rơi về ước lượng khoảng lặng. */
+/** Gán start/end từ mốc ASR thật; trả về null nếu tỉ lệ khớp quá thấp
+ *  (giọng đọc lệch quá xa kịch bản) để rơi về ước lượng khoảng lặng.
+ *  Khi thành công trả về map để bước 4c thay chữ hiển thị bằng lời nói thật. */
 function assignFromRealWords(words, real) {
   const map = alignWords(words.map((w) => w.w), real.map((w) => w.w));
   const matched = map.filter((x) => x !== null).length;
-  if (words.length === 0 || matched / words.length < 0.4) return false;
+  if (words.length === 0 || matched / words.length < 0.4) return null;
   for (let i = 0; i < words.length; i++) {
     if (map[i] !== null) { words[i].start = real[map[i]].start; words[i].end = real[map[i]].end; }
   }
@@ -119,10 +123,11 @@ function assignFromRealWords(words, real) {
     }
     i = j;
   }
-  return true;
+  return map;
 }
 
-const usedRealWords = realWords ? assignFromRealWords(allWords, realWords) : false;
+const wordMap = realWords ? assignFromRealWords(allWords, realWords) : null;
+const usedRealWords = wordMap !== null;
 
 // ---- 4b. Không có (hoặc không dùng được) mốc thật -> rải từ theo khoảng lặng ----
 if (!usedRealWords) {
@@ -149,26 +154,82 @@ if (!usedRealWords) {
   for (const w of allWords) if (w.start === undefined) { w.start = DURATION - 0.2; w.end = DURATION; }
 }
 
+// ---- 4c. Chữ hiển thị = ĐÚNG LỜI NÓI, không phải chữ trong kịch bản ----
+// Người đọc hiếm khi đọc y nguyên từng chữ kịch bản (đọc diễn giải, thêm/bớt
+// từ, đổi cách nói). Nếu vẫn hiện chữ kịch bản thì dù canh nhịp chuẩn, chữ
+// trên màn hình vẫn không trùng lời nói. Nên ở đây ta thay hẳn chữ hiển thị
+// bằng chuỗi từ ASR, giữ nguyên cách chia card của kịch bản.
+const MAX_LINE_CHARS = 26;   // đủ to để đọc trên điện thoại ở khung dọc 1080
+const LINES_PER_CARD = 3;    // quá số này thì chữ bị co nhỏ, khó đọc
+
+/** Gói chuỗi từ thành các dòng không quá MAX_LINE_CHARS ký tự. */
+function packLines(ws) {
+  const groups = [];
+  let cur = [], len = 0;
+  for (const w of ws) {
+    const add = w.text.length + (cur.length ? 1 : 0);
+    if (cur.length && len + add > MAX_LINE_CHARS) { groups.push(cur); cur = []; len = 0; }
+    cur.push(w); len += add;
+  }
+  if (cur.length) groups.push(cur);
+  return groups.map((g) => ({
+    text: g.map((x) => x.text).join(' '),
+    start: g[0].start, end: g[g.length - 1].end, hidden: false, words: g,
+  }));
+}
+
 // ---- 5. Gộp lên mức dòng rồi mức card ----
 for (const u of units) { u.start = u.words[0].start; u.end = u.words[u.words.length - 1].end; }
-const cards = CARDS.map((lines, ci) => {
-  const mine = units.filter((u) => u.card === ci);
-  return {
-    index: ci,
-    lines: mine.map((u) => ({
-      text: u.text, start: u.start, end: u.end, hidden: u.hidden,
-      // mốc từng TỪ riêng lẻ -- để chữ hiện ra đúng lúc giọng đọc tới, không
-      // phải cả dòng hiện cùng lúc rồi mới tô sáng dòng đang nói.
-      words: u.words.map((w) => ({ text: w.w, start: w.start, end: w.end })),
-    })),
-    start: mine[0].start, end: mine[mine.length - 1].end,
-  };
-});
+
+let cards;
+let srcOf;   // card mới -> dòng LAYOUT/section gốc của kịch bản
+if (usedRealWords) {
+  // Lời nói thật thường nhiều chữ hơn kịch bản (kịch bản là bản rút gọn để
+  // chạy chữ). Nhồi lời nói vào đúng khung card cũ sẽ ra những card cả chục
+  // dòng, chữ co lại không đọc nổi -- nên chia lại card theo chính lời nói,
+  // rồi ánh xạ kiểu dáng của kịch bản lên theo tỉ lệ để giữ mạch thiết kế.
+  const lines = packLines(realWords.map((r) => ({ text: r.w, start: r.start, end: r.end })));
+  const groups = [];
+  for (let i = 0; i < lines.length; i += LINES_PER_CARD) groups.push(lines.slice(i, i + LINES_PER_CARD));
+  cards = groups.map((g, k) => ({
+    index: k, lines: g, start: g[0].start, end: g[g.length - 1].end,
+  }));
+  srcOf = (k) => Math.min(CARDS.length - 1, Math.floor((k * CARDS.length) / cards.length));
+} else {
+  cards = CARDS.map((lines, ci) => {
+    const mine = units.filter((u) => u.card === ci);
+    return {
+      index: ci,
+      lines: mine.map((u) => ({
+        text: u.text, start: u.start, end: u.end, hidden: u.hidden,
+        // mốc từng TỪ riêng lẻ -- để chữ hiện ra đúng lúc giọng đọc tới, không
+        // phải cả dòng hiện cùng lúc rồi mới tô sáng dòng đang nói.
+        words: u.words.map((w) => ({ text: w.w, start: w.start, end: w.end })),
+      })),
+      start: mine[0].start, end: mine[mine.length - 1].end,
+    };
+  });
+  srcOf = (k) => k;
+}
 // card sống tới khi card sau bắt đầu -> không có khoảng trống trắng
 cards.forEach((c, i) => { c.out = i < cards.length - 1 ? cards[i + 1].start : DURATION; });
 
 const sectionFor = (ci) => { let lbl = SECTIONS[0][1]; for (const [at, l] of SECTIONS) if (ci >= at) lbl = l; return lbl; };
-cards.forEach((c) => { c.section = sectionFor(c.index); const [v, a, n, mi, mo, ch, sf, su] = LAYOUT[c.index]; c.variant = v; c.anchor = a; c.motion = mi; c.exit = mo; if (n) c.num = n; if (ch) c.chart = ch; if (sf) c.screenshotFile = sf; if (su) c.screenshotUrl = su; });
+// biểu đồ / ảnh chụp chỉ gắn vào card ĐẦU TIÊN ánh xạ về dòng LAYOUT đó,
+// nếu không sẽ bị lặp lại trên nhiều card liền nhau.
+const usedSrc = new Set();
+cards.forEach((c) => {
+  const si = srcOf(c.index);
+  const first = !usedSrc.has(si);
+  usedSrc.add(si);
+  c.section = sectionFor(si);
+  const [v, a, n, mi, mo, ch, sf, su] = LAYOUT[si];
+  c.variant = v; c.anchor = a; c.motion = mi; c.exit = mo;
+  if (n && first) c.num = n;
+  if (ch && first) c.chart = ch;
+  if (sf && first) c.screenshotFile = sf;
+  if (su && first) c.screenshotUrl = su;
+});
 
 const out = { fps: FPS, duration: DURATION, durationInFrames: Math.ceil(DURATION * FPS) + 18, cards };
 fs.writeFileSync('src/timeline.json', JSON.stringify(out, null, 1));
