@@ -40,6 +40,29 @@ def _meta():
     return Meta.from_env()
 
 
+def _enrich_with_related_sources(cand, pool: list, max_n: int = 5) -> None:
+    """Attach and fetch up to ``max_n`` other outlets covering the same
+    subject as ``cand``, in place.
+
+    ``cand.also_reported_by`` (from ``collect._collapse_similar``) only
+    catches near-duplicate HEADLINES -- different outlets phrase the same
+    story differently often enough that two clearly-related articles never
+    clear that similarity bar, leaving a script grounded in one source even
+    when several exist in the collected pool. ``collect.related_candidates``
+    catches those by shared proper-noun/model-name tokens instead.
+    """
+    related = collect.related_candidates(cand, pool, max_n=max_n)
+    seen_urls = {x["url"] for x in cand.also_reported_by} | {cand.url}
+    for r in related:
+        if r.url in seen_urls:
+            continue
+        name = r.source.split(":", 1)[1] if ":" in r.source else r.source
+        cand.also_reported_by.append({"name": name, "url": r.url})
+        seen_urls.add(r.url)
+    cand.also_reported_by = cand.also_reported_by[:max_n]
+    collect.ensure_multi_source_text(cand, max_extra=max_n)
+
+
 def raw_base_url(settings: dict, rel_path: str) -> str:
     return f"{settings['images']['raw_base']}/{rel_path}".replace("\\", "/")
 
@@ -88,14 +111,14 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
             if not score.has_body(c):
                 collect.ensure_fulltext(c)
         picked = [(sc, c) for sc, c in picked if score.has_body(c)]
-        for _sc, c in picked:
-            collect.ensure_multi_source_text(c)
         if os.environ.get("ARTICLE_DEBUG") == "1":
             log.info("picked_after_has_body=%d", len(picked))
     except collect.CollectError as e:
         log.warning("collect failed (%s) — using the topic bank", e)
+        cands = []
     except Exception as e:  # noqa: BLE001 - a broken source must not sink the run
         log.warning("collect raised %s: %s — using the topic bank", type(e).__name__, e)
+        cands = []
 
     article: ArticleContent | None = None
     news_title = ""
@@ -103,6 +126,10 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     attempted: list[str] = []
     for sc, cand in picked:
         attempted.append(cand.url_hash)
+        # Enrich only the candidate actually being attempted, not every
+        # shortlisted one -- most never get used, so fetching their related
+        # sources too would be pure waste.
+        _enrich_with_related_sources(cand, cands)
         try:
             article = write.write_share(cand, voice, sibling_angle, generate=generate)
         except write.WriteError as e:
@@ -252,10 +279,9 @@ def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> d
         if not score.has_body(c):
             collect.ensure_fulltext(c)
     picked = [(sc, c) for sc, c in picked if score.has_body(c)]
-    for _sc, c in picked:
-        collect.ensure_multi_source_text(c)
 
     for _sc, cand in picked:
+        _enrich_with_related_sources(cand, cands)
         try:
             article = write.write_share(cand, voice, "", generate=generate)
         except write.WriteError as e:

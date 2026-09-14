@@ -1,5 +1,5 @@
 from __future__ import annotations
-import logging, os, time
+import logging, os, re, time
 from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -100,6 +100,58 @@ def _collapse_similar(cands: list[Candidate]) -> list[Candidate]:
         ][:5]
         out.append(rep)
     return out
+
+
+_STOP_TOKENS = {
+    "the", "a", "an", "is", "are", "for", "with", "and", "or", "to", "of", "in", "on",
+    "at", "this", "that", "new", "how", "why", "what", "its", "vs", "ai", "llm",
+    "ra", "mắt", "vừa", "mới", "sẽ", "và", "cho", "của", "với", "là", "một", "về",
+}
+
+
+def _significant_tokens(title: str) -> set[str]:
+    """Proper-noun-ish tokens (capitalized words, model/version numbers) from a
+    title, lowercased for matching. Skips short/stopword tokens so generic
+    words like "AI" or "mới" don't fabricate a match between unrelated
+    stories."""
+    out: set[str] = set()
+    for tok in re.findall(r"[A-Za-zÀ-ỹ0-9][A-Za-zÀ-ỹ0-9.\-]*", title or ""):
+        if len(tok) < 3:
+            continue
+        low = tok.lower()
+        if low in _STOP_TOKENS:
+            continue
+        if tok[0].isupper() or any(ch.isdigit() for ch in tok):
+            out.add(low)
+    return out
+
+
+def related_candidates(cand: Candidate, pool: list[Candidate], max_n: int = 5) -> list[Candidate]:
+    """Other candidates in ``pool`` covering the same subject as ``cand``, by
+    shared proper-noun/model-name tokens in the title -- NOT the strict
+    near-duplicate-title match ``_collapse_similar`` uses.
+
+    That stricter match is what ``also_reported_by``/``source_count`` are
+    built on, and it is why a story can still end up with only one source
+    attached: different outlets phrase the same story differently enough
+    that their titles never clear the 0.72 similarity bar, even though both
+    are plainly about "Perplexity" and "Astra". This is a best-effort
+    enrichment pass, not a selection gate -- it returns fewer than max_n
+    (even zero) when the pool genuinely has nothing else on the subject,
+    rather than manufacturing sources that were never collected.
+    """
+    base = _significant_tokens(cand.title)
+    if not base:
+        return []
+    scored: list[tuple[int, Candidate]] = []
+    for other in pool:
+        if other.url == cand.url:
+            continue
+        overlap = base & _significant_tokens(other.title)
+        if overlap:
+            scored.append((len(overlap), other))
+    scored.sort(key=lambda t: t[0], reverse=True)
+    return [c for _, c in scored[:max_n]]
 
 
 def ensure_multi_source_text(c: Candidate, max_extra: int = 2) -> None:

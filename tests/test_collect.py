@@ -317,3 +317,63 @@ def test_ensure_fulltext_skips_google_news_interstitial(monkeypatch):
     collect.ensure_fulltext(c)
     assert c.full_text == ""
     assert called == []
+
+
+def test_related_candidates_finds_shared_proper_nouns_despite_different_titles():
+    """The exact incident this exists for: an OpenAI blog post titled
+    "Perplexity improving accuracy with Astra" and a TechCrunch piece titled
+    "TechCrunch: Astra powers Perplexity's new search mode" are plainly the
+    same subject, but their titles score well under _collapse_similar's
+    0.72 near-duplicate threshold -- they never cluster, so
+    also_reported_by stays empty even though a second real source exists
+    in the very same collected pool."""
+    from pipeline.collect import related_candidates
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    primary = Candidate(url="https://openai.com/index/perplexity-improving-accuracy-with-astra",
+                        title="Perplexity improving accuracy with Astra",
+                        source="rss:OpenAI Blog", published_at=now)
+    other = Candidate(url="https://techcrunch.com/astra-perplexity",
+                      title="TechCrunch: Astra powers Perplexity's new search mode",
+                      source="rss:TechCrunch AI", published_at=now)
+    unrelated = Candidate(url="https://a.com/nvidia", title="Nvidia reveals Rubin GPU",
+                          source="rss:A", published_at=now)
+    from difflib import SequenceMatcher
+    assert SequenceMatcher(None, primary.title.lower(), other.title.lower()).ratio() < 0.72
+
+    got = related_candidates(primary, [primary, other, unrelated])
+    assert got == [other]
+
+
+def test_related_candidates_returns_empty_without_a_real_match():
+    """Best-effort: when nothing else in the pool actually covers the
+    subject, this must return nothing rather than grabbing an unrelated
+    story just to pad the count."""
+    from pipeline.collect import related_candidates
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    primary = Candidate(url="https://a.com/x", title="Perplexity improving accuracy with Astra",
+                        source="rss:A", published_at=now)
+    unrelated = Candidate(url="https://a.com/y", title="Nvidia reveals Rubin GPU",
+                          source="rss:B", published_at=now)
+    assert related_candidates(primary, [primary, unrelated]) == []
+
+
+def test_related_candidates_caps_at_max_n_and_ranks_by_overlap():
+    from pipeline.collect import related_candidates
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    primary = Candidate(url="https://a.com/x", title="Astra and Perplexity ship GPT-6 update",
+                        source="rss:A", published_at=now)
+    best = Candidate(url="https://a.com/1", title="GPT-6 Astra Perplexity report",
+                     source="rss:B", published_at=now)   # 3 shared tokens
+    ok = Candidate(url="https://a.com/2", title="Perplexity earnings today",
+                   source="rss:C", published_at=now)     # 1 shared token
+    weak1 = Candidate(url="https://a.com/3", title="Nvidia earnings beat estimates",
+                      source="rss:D", published_at=now)
+    weak2 = Candidate(url="https://a.com/4", title="Meta funding announced", source="rss:E",
+                      published_at=now)
+    weak3 = Candidate(url="https://a.com/5", title="Samsung partners with retailer",
+                      source="rss:F", published_at=now)
+    got = related_candidates(primary, [primary, weak1, ok, weak2, best, weak3], max_n=2)
+    assert got == [best, ok]

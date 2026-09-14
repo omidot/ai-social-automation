@@ -677,3 +677,37 @@ def test_draft_fresh_video_passes_extra_sources(wired, monkeypatch):
     now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
     article_run.draft_fresh_video(root, now, tg=FakeTG())
     assert seen["extra_sources"] == [{"name": "TechCrunch", "url": "https://techcrunch.com/y"}]
+
+
+def test_draft_video_pulls_related_sources_with_different_titles(wired, monkeypatch):
+    """The exact user-reported incident: an OpenAI blog post about
+    "Perplexity improving accuracy with Astra" was the only source in a
+    script even though a TechCrunch piece on the same story existed in the
+    collected pool -- their titles just never near-duplicate-matched."""
+    from pipeline.models import Candidate
+    root, _ = wired
+    _enable_video(root)
+    primary = Candidate(url="https://openai.com/index/perplexity-improving-accuracy-with-astra",
+                        title="OpenAI: Perplexity improving accuracy with Astra",
+                        source="rss:OpenAI Blog",
+                        published_at=datetime(2026, 9, 6, tzinfo=timezone.utc),
+                        summary="s", full_text="Nội dung gốc từ OpenAI." + "x" * 400)
+    other = Candidate(url="https://techcrunch.com/astra-perplexity",
+                      title="TechCrunch: OpenAI's Astra powers Perplexity search",
+                      source="rss:TechCrunch AI",
+                      published_at=datetime(2026, 9, 6, tzinfo=timezone.utc))
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [primary, other])
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda c, voice, sibling_angle="", generate=None: _art(c.title))
+    monkeypatch.setattr(article_run.collect, "_extract",
+                        lambda url: ("Nội dung từ TechCrunch, số liệu khác." + "y" * 400, None))
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    article_run.draft("morning", root, now, tg=FakeTG(), meta=object())
+    assert seen["extra_sources"] == [{"name": "TechCrunch AI", "url": other.url}]
+    assert "[Nguồn 1 — rss:OpenAI Blog]" in seen["body_text"]
+    assert "[Nguồn 2 — TechCrunch AI]" in seen["body_text"]
+    assert "Nội dung từ TechCrunch" in seen["body_text"]
