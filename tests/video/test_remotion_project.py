@@ -143,7 +143,23 @@ def test_kineticshort_renders_screenshot_before_variant_switch():
     assert "ScreenshotCard" in src
     assert "card.screenshotFile" in src
 
-def test_kineticshort_drops_cutouts_and_sfx():
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "Cutouts" not in src
-    assert "Sfx" not in src
+def test_legacy_decoration_layers_are_gone():
+    """Cutouts (paper-cutout icons), Sfx (sound cues) and Shots (a
+    hardcoded screenshot stamped with a source line) all predate the
+    reference-matched design. Shots in particular was still printing
+    'CLAUDE.COM/PRODUCT/CLAUDE-CODE' over a capture after the source line
+    was removed from ScreenshotCard, so the files are deleted outright
+    rather than merely unmounted."""
+    for gone in ("Cutouts.tsx", "Sfx.tsx", "Shots.tsx"):
+        assert not (VIDEO / "src" / gone).exists(), f"{gone} should be deleted"
+    for src_name in ("KineticShort.tsx", "layouts.tsx"):
+        src = (VIDEO / "src" / src_name).read_text(encoding="utf-8")
+        for dead in ("Cutouts", "Sfx", "Shots", "shotPushAt"):
+            assert dead not in src, f"{dead} still referenced in {src_name}"
+
+def test_subtitle_uses_theme_ink_not_hardcoded_white():
+    """An invert card lays a light panel over the whole frame; a hardcoded
+    white subtitle then reads white-on-white."""
+    src = (VIDEO / "src/Subtitle.tsx").read_text(encoding="utf-8")
+    assert "'#FFFFFF'" not in src
+    assert "pal.ink" in src

@@ -9,7 +9,6 @@ import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
-import { Shots } from './Shots';
 import { Stack, Hero, Invert, Mark, Stair, Numeral, Strike, shown, type Card } from './layouts';
 import { Subtitle } from './Subtitle';
 import { T } from './theme';
@@ -104,7 +103,6 @@ const Stage: React.FC = () => {
     <>
       {visible.map((c) => <CardView key={c.index} card={c} />)}
       <PalCtx.Provider value={over}>
-        <Shots ff={fontFamily} />
         <Chip label={cur.section} key0={chipStart} />
         <Counter index={cur.index} total={cards.length} />
         <BrandMark card={cur} />

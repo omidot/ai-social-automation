@@ -43,11 +43,13 @@ export const Subtitle: React.FC<{ ff: string }> = ({ ff }) => {
     }}>
       <div style={{
         fontFamily: ff, fontWeight: '800', fontSize: 58, lineHeight: 1.25,
-        textAlign: 'center', textShadow: '0 3px 18px rgba(0,0,0,0.85)',
+        textAlign: 'center', textShadow: pal.shadow,
         letterSpacing: '-0.01em',
       }}>
         {group.map((w, i) => (
-          <span key={from + i} style={{ color: from + i === cur ? pal.accent : '#FFFFFF' }}>
+          // pal.ink, không phải trắng cứng: thẻ "invert" phủ tấm sáng lên
+          // toàn khung, chữ trắng trên đó là trắng trên trắng.
+          <span key={from + i} style={{ color: from + i === cur ? pal.accent : pal.ink }}>
             {w.text}{i < group.length - 1 ? ' ' : ''}
           </span>
         ))}

@@ -4,7 +4,6 @@ import { fitText } from '@remotion/layout-utils';
 import { SelectionBox } from './SelectionBox';
 import { useMotion, type Motion, type Exit } from './anim';
 import { usePal } from './palette';
-import { shotPushAt } from './Shots';
 import { T } from './theme';
 
 export type Word = { text: string; start: number; end: number };
@@ -33,11 +32,8 @@ export const anchorStyle = (a: string, push = 0): React.CSSProperties =>
       : { justifyContent: 'center', transform: `translateY(${-46 + push * 150}px)` };
 
 export const Frame: React.FC<{ card: Card; align: 'flex-start' | 'center' | 'flex-end'; children: React.ReactNode }> = ({ card, align, children }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const push = shotPushAt(frame / fps);
   return (
-    <AbsoluteFill style={{ paddingLeft: T.PAD, paddingRight: T.PAD, alignItems: align, ...anchorStyle(card.anchor, push) }}>
+    <AbsoluteFill style={{ paddingLeft: T.PAD, paddingRight: T.PAD, alignItems: align, ...anchorStyle(card.anchor) }}>
       {children}
     </AbsoluteFill>
   );
