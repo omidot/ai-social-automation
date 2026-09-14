@@ -238,13 +238,15 @@ export const Numeral: React.FC<P> = ({ card, ff, leaving }) => {
   const spin = interpolate(b.s, [0, 1], [-14, 0]);
   return (
     <Frame card={card} align="flex-start">
-      <div style={{
-        width: 168, height: 168, background: 'rgba(0,0,0,0.35)', border: `4px solid ${pal.accent}`, borderRadius: 22,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginBottom: 30, opacity: b.opacity, transform: `${b.transform} rotate(${spin}deg)`, filter: b.filter,
-      }}>
-        <span style={{ fontFamily: ff, fontWeight: '900', fontSize: 104, color: pal.accent, lineHeight: 1 }}>{card.num}</span>
-      </div>
+      {card.num === undefined || card.num === null ? null : (
+        <div style={{
+          width: 168, height: 168, background: 'rgba(0,0,0,0.35)', border: `4px solid ${pal.accent}`, borderRadius: 22,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          marginBottom: 30, opacity: b.opacity, transform: `${b.transform} rotate(${spin}deg)`, filter: b.filter,
+        }}>
+          <span style={{ fontFamily: ff, fontWeight: '900', fontSize: 104, color: pal.accent, lineHeight: 1 }}>{card.num}</span>
+        </div>
+      )}
       {ls.map((l, i) => {
         const w = i === n - 1 ? '900' : '700';
         const size = fit(l.text, ff, w, i === n - 1 ? 100 : 68);

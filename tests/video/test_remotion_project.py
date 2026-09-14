@@ -157,3 +157,27 @@ def test_brand_mark_is_large_enough_to_read():
     size; the reference shows the brand mark far larger."""
     src = (VIDEO / "src/BrandMark.tsx").read_text(encoding="utf-8")
     assert "width: 92, height: 92" in src
+
+def test_versus_card_shows_both_brand_logos():
+    """When the narration says two brands "fight" ("GPT-6 Astra dau Claude
+    Fable"), words alone undersell it -- the viewer has to see the two
+    logos facing off, as the reference does with its model tiles."""
+    assert (VIDEO / "src/Versus.tsx").is_file()
+    src = (VIDEO / "src/Versus.tsx").read_text(encoding="utf-8")
+    assert "export const versusOf" in src
+    assert "export const VersusMark" in src
+    assert "'dau'" in src, "the Vietnamese 'dau' (versus) must trigger it"
+    assert "brandsOf" in src, "both brands come from the shared registry"
+
+def test_versus_card_moves_text_clear_of_the_logos():
+    """The tiles occupy the upper half, so the card's own text is anchored
+    low on those cards instead of overlapping them."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "anchor: 'low' as const, num: undefined" in src
+    assert "<VersusMark card={cur} ff={fontFamily} />" in src
+
+def test_numeral_badge_hidden_when_there_is_no_number():
+    """Suppressing card.num on a versus card left the badge's empty red
+    outline floating beside the logos -- the frame must go with it."""
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "card.num === undefined || card.num === null ? null : (" in src

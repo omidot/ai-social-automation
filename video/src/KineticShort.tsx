@@ -8,6 +8,7 @@ import { BgVideo, palAt } from './BgVideo';
 import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
+import { VersusMark, versusOf } from './Versus';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { Stack, Hero, Invert, Mark, Stair, Numeral, Strike, shown, type Card } from './layouts';
 import { T } from './theme';
@@ -29,7 +30,14 @@ const CardView: React.FC<{ card: Card }> = ({ card }) => {
   let activeIdx = 0;
   shown(card).forEach((l, i) => { if (t >= l.start - 0.02) activeIdx = i; });
 
-  const p = { card, ff: fontFamily, leaving, activeIdx };
+  // Cảnh "đấu" chiếm nửa trên khung cho hai ô logo -- chữ phải tụt xuống,
+  // không thì đè lên nhau.
+  // num bị bỏ: con số đó chỉ là mảnh của tên model ("GPT-6" -> 6), dán
+  // nó lên huy hiệu cạnh hai ô logo là vô nghĩa.
+  const shifted = versusOf(card)
+    ? { ...card, anchor: 'low' as const, num: undefined }
+    : card;
+  const p = { card: shifted, ff: fontFamily, leaving, activeIdx };
   if (card.chart) return <ChartCard {...p} />;
   if (card.screenshotFile) return <ScreenshotCard {...p} />;
   switch (card.variant) {
@@ -104,7 +112,9 @@ const Stage: React.FC = () => {
       <PalCtx.Provider value={over}>
         <Chip label={cur.section} key0={chipStart} />
         <Counter index={cur.index} total={cards.length} />
-        <BrandMark card={cur} />
+        {versusOf(cur)
+          ? <VersusMark card={cur} ff={fontFamily} />
+          : <BrandMark card={cur} />}
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>
           <div style={{ height: '100%', width: `${prog * 100}%`, background: over.ink }} />
         </div>

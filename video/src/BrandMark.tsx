@@ -24,6 +24,18 @@ export const brandOf = (card: Card): Brand | null => {
   return null;
 };
 
+/** Mọi hãng được nhắc trong thẻ, theo thứ tự nói, không lặp. */
+export const brandsOf = (card: Card): Brand[] => {
+  const out: Brand[] = [];
+  for (const l of card.lines) {
+    for (const w of l.words ?? []) {
+      const b = REGISTRY[norm(w.text)];
+      if (b && !out.some((x) => x.label === b.label)) out.push(b);
+    }
+  }
+  return out;
+};
+
 /** Logo hãng ở góc phải trên, đổi theo hãng đang được nhắc. */
 export const BrandMark: React.FC<{ card: Card }> = ({ card }) => {
   const frame = useCurrentFrame();
