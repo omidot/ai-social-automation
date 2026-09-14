@@ -342,6 +342,359 @@
         },
         "tg_file_id": "BAACAgUAAxkDAAPyaqdNseb_WFKJ7WhqyMswBJMMXEEAAhUfAAItvjhVcsDCnBycy4k9BA"
       }
+    },
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Obama urges Democrats to have a ‘clear plan’ for AI safeguards",
+      "style": "navy-split",
+      "topic_key": "obama-urges-democrats-to-have-a-clear-plan-for-ai-",
+      "text_fb": "Đa số mọi người vẫn nghĩ AI là chuyện riêng của giới lập trình viên và các tập đoàn công nghệ. Đó là một sai lầm lớn.\n\nKhi những nhân vật chính trị hàng đầu như cựu Tổng thống Obama hay Donald Trump đồng loạt lên tiếng về hành lang pháp lý cho AI, thông điệp đã quá rõ ràng: AI không còn là một công cụ phần mềm đơn thuần, nó là vận mệnh và quyền lực quốc gia.\n\nTheo The New York Times, ông Obama vừa lên tiếng cảnh báo AI đang phát triển quá nhanh trong tay các công ty tư nhân và yêu cầu phải có kế hoạch kiểm soát công khai ngay lập tức. Cùng lúc đó, chính các lãnh đạo như Sam Altman của OpenAI hay Dario Amodei của Anthropic cũng buộc phải chấp nhận tiêu chuẩn an toàn chung và cho phép bên độc lập đánh giá model của mình.\n\nĐiều này dạy mình một bài học: thời kỳ phát triển AI tự do bất chấp hậu quả sắp kết thúc. Nếu bạn đang dùng AI để làm sản phẩm hay vận hành doanh nghiệp, cái thực sự quan trọng lúc này không chỉ là model nào mạnh nhất, mà là hệ thống của bạn có an toàn và tuân thủ pháp lý hay không.\n\nBạn nghĩ sự can thiệp của chính phủ sẽ bảo vệ chúng ta hay sẽ làm cản trở sự sáng tạo của AI?\n\nNguồn: TechCrunch AI",
+      "text_ig": "AI không còn là chuyện riêng của giới công nghệ. Khi giới chính trị và các CEO bắt đầu siết hành lang pháp lý, thời kỳ AI phát triển tự do hoang dã đã kết thúc. Bạn đã sẵn sàng thích nghi?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AITrends",
+        "#AISafety",
+        "#AIEthics",
+        "#OpenAI",
+        "#Anthropic",
+        "#CongNgheAI",
+        "#KienThucAI",
+        "#ChinhSachAI",
+        "#SuThatAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-14/morning/01.jpg",
+        "assets/posts/2026-09-14/morning/02.jpg",
+        "assets/posts/2026-09-14/morning/03.jpg",
+        "assets/posts/2026-09-14/morning/04.jpg",
+        "assets/posts/2026-09-14/morning/05.jpg",
+        "assets/posts/2026-09-14/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/morning/06.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/13/obama-urges-democrats-to-have-a-clear-plan-for-ai-safeguards/"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122099975001476035",
+      "ig_due": "2026-09-14T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122099975001476035",
+          "url": "https://facebook.com/1381130541740424_122099975001476035",
+          "scheduled": true
+        },
+        "ig": null
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "meta": {
+          "title": "Obama Cảnh Báo AI: Siết Quản Lý Hay Cản Trở Sáng Tạo?",
+          "description": "Cựu Tổng thống Obama lên tiếng yêu cầu phe Dân chủ có kế hoạch siết chặt quản lý AI. Ngay cả các ông lớn như OpenAI hay Anthropic cũng buộc phải chấp nhận các tiêu chuẩn an toàn độc lập. Đã đến lúc người làm công nghệ phải thay đổi tư duy làm sản phẩm. Nhấn theo dõi A Hít Official để cập nhật những góc nhìn sắc bén về AI!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#CongNgheAI",
+            "#ObamaAI",
+            "#PhapLyAI",
+            "#OpenAI",
+            "#SamAltman",
+            "#Anthropic",
+            "#TinTucAI",
+            "#GocNhinAI",
+            "#KienThucAI"
+          ],
+          "keywords": [
+            "A Hit Official",
+            "Obama AI",
+            "pháp lý AI",
+            "OpenAI Sam Altman",
+            "Anthropic Dario Amodei",
+            "an toàn AI",
+            "công nghệ AI",
+            "quản lý AI"
+          ],
+          "tiktok_caption": "Obama kêu gọi siết chặt AI. Kỷ nguyên phát triển tự do đã kết thúc! #AHitOfficial #Obama #CongNgheAI #PhapLyAI"
+        },
+        "spoken_text": "Obama vừa yêu cầu phe Dân chủ kiểm soát AI ngay.\nĐa số mọi người đang hiểu sai chỗ này.\nAI không còn là phần mềm đơn thuần. Nó là vận mệnh quốc gia.\nTheo TechCrunch, ông Obama cảnh báo: AI phát triển quá nhanh ở các công ty tư nhân.\nKể cả Sam Altman của OpenAI, hay Dario Amodei của Anthropic...\ncũng phải cho bên độc lập đánh giá mô hình AI.\nĐộc lập nghĩa là chuyên gia bên ngoài vào kiểm tra lỗ hổng.\nĐây là bài học dạy cho mình: Kỷ nguyên AI tự do chính thức khép lại!\nNếu bạn đang làm sản phẩm công nghệ, hoặc kinh doanh bằng AI...\nCái thực sự quan trọng không chỉ là mô hình nào mạnh nhất.\nMà là hệ thống của bạn có an toàn và tuân thủ pháp lý.\nTạo ra AI mạnh mà phạm luật, bạn sẽ bị văng khỏi cuộc chơi!\nSiết chặt quản lý sẽ bảo vệ chúng ta hay cản trở sáng tạo?\nBình luận góc nhìn của bạn bên dưới!",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Obama vừa yêu cầu",
+                "phe Dân chủ",
+                "kiểm soát AI ngay."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đa số mọi người",
+                "đang hiểu sai chỗ này."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI không còn là",
+                "phần mềm đơn thuần.",
+                "Nó là vận mệnh quốc gia."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Theo TechCrunch,",
+                "ông Obama cảnh báo:",
+                "AI phát triển quá nhanh",
+                "ở các công ty tư nhân."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Obama AI safeguards TechCrunch"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kể cả Sam Altman",
+                "của OpenAI,",
+                "hay Dario Amodei",
+                "của Anthropic..."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "~cũng",
+                "phải cho bên độc lập",
+                "đánh giá mô hình AI."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Độc lập nghĩa là",
+                "chuyên gia bên ngoài",
+                "vào kiểm tra lỗ hổng."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là bài học",
+                "dạy cho mình:",
+                "Kỷ nguyên AI tự do",
+                "chính thức khép lại!"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm",
+                "sản phẩm công nghệ,",
+                "hoặc kinh doanh bằng AI..."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cái thực sự quan trọng",
+                "không chỉ là",
+                "mô hình nào mạnh nhất."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mà là hệ thống",
+                "của bạn",
+                "có an toàn",
+                "và tuân thủ pháp lý."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tạo ra AI mạnh",
+                "mà phạm luật,",
+                "bạn sẽ bị văng",
+                "khỏi cuộc chơi!"
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Siết chặt quản lý",
+                "sẽ bảo vệ chúng ta",
+                "hay cản trở sáng tạo?"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bình luận góc nhìn",
+                "của bạn bên dưới!"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "CẢNH BÁO TỪ BẠCH ỐC",
+              "card_start": 0
+            },
+            {
+              "label": "SỰ THẬT TẠI CÁC TRÙM AI",
+              "card_start": 4
+            },
+            {
+              "label": "ẢNH HƯỞNG TỚI BẠN",
+              "card_start": 8
+            },
+            {
+              "label": "GÓC TRANH LUẬN",
+              "card_start": 12
+            }
+          ]
+        },
+        "script_path": "output/2026-09-14/2026-09-14-morning-obama-urges-democrats-to-have-a-clear-pl/video/script.json",
+        "script_msg_id": 251,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
