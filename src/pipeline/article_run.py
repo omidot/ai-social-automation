@@ -193,11 +193,20 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
     # the schedule call and never revisits video — so this is the one chance
     # to draft the video. A video failure must never break the article flow.
     if (settings.get("video") or {}).get("enabled"):
+        # Ground the video script in the actual collected article when this
+        # is a real news story (`cand` is the candidate that produced it) --
+        # the FB caption alone is too short to supply the concrete specifics
+        # the script prompt now demands, and filling that gap from a caption
+        # means the model invents the missing detail. The curated-topic-bank
+        # fallback has no external article to fall back to, so it keeps the
+        # caption; it is not presented as sourced from anywhere.
+        video_body = (cand.full_text or cand.summary or article.caption_fb) \
+            if is_news else article.caption_fb
         try:
             _video_draft.draft(
                 slot, root, title=title,
                 source_url=(state_sources[0]["url"] if state_sources else ""),
-                body_text=article.caption_fb, caption_fb=article.caption_fb,
+                body_text=video_body, caption_fb=article.caption_fb,
                 angle=angle, now=now, generate=generate, tg=tg)
         except Exception as e:  # noqa: BLE001 - video is secondary; the article flow must continue
             log.warning("video draft_script failed: %s", e)
@@ -247,9 +256,14 @@ def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> d
         except write.WriteError as e:
             log.warning("fresh-video: write_share rejected %r: %s", cand.title, e)
             continue
+        # Ground the video script in the actual collected article, not the
+        # short FB caption derived from it -- a caption has too little real
+        # detail for a 380-620 word script demanding concrete specifics, so
+        # the writer was filling the gap by inventing them.
         return _video_draft.draft(
             TEST_SLOT, root, title=cand.title, source_url=cand.url,
-            body_text=article.caption_fb, caption_fb=article.caption_fb,
+            body_text=cand.full_text or cand.summary or article.caption_fb,
+            caption_fb=article.caption_fb,
             angle=article.angle, now=now, generate=generate, tg=tg)
     raise SystemExit("no fresh real-news candidate available for a test video")
 

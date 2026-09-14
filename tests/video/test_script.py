@@ -349,3 +349,14 @@ def test_absurdly_long_script_is_still_rejected():
         script.generate(_cand(), _post(), VOICE,
                         {"target_seconds": 150, "words_min": 380, "words_max": 490},
                         llm=llm)
+
+
+def test_prompt_forbids_fabricating_facts():
+    """A real incident: a script reported a fabricated OpenAI IPO
+    cancellation and an invented breach of "RubyGems" by an escaped AI
+    agent, with no way to trace either claim back to a real source. The
+    'concrete, shocking' retention rules can only be satisfied honestly if
+    the model is also told never to invent the concreteness itself."""
+    sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
+    assert "KHÔNG ĐƯỢC BỊA" in sysp
+    assert "bài gốc" in sysp.lower()

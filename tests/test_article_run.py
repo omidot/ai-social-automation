@@ -375,6 +375,14 @@ def test_draft_fresh_video_uses_unused_real_candidate(wired, monkeypatch):
     assert seen["slot"] == "test"
     assert seen["title"] == cand.title
     assert seen["source_url"] == cand.url
+    # The video script must be grounded in the real collected article, not
+    # the short FB caption derived from it -- a caption has too little real
+    # detail for the script's concrete-specifics requirement, and filling
+    # the gap from a caption alone means the model invents the missing
+    # detail. A real incident produced a video reporting a fabricated
+    # OpenAI IPO cancellation and an invented breach of "RubyGems" with no
+    # way to trace it back to any source.
+    assert seen["body_text"] == cand.full_text
     # a fresh test draft must never touch either real daily slot
     ds = DailyState(root / "data")
     assert ds.get_safe("2026-09-06", "morning") is None
@@ -451,6 +459,28 @@ def test_draft_triggers_video_when_enabled(wired, monkeypatch):
     assert out["status"] == "scheduled"
     assert seen["slot"] == "morning"
     assert "title" in seen and "caption_fb" in seen
+
+
+def test_draft_video_from_news_uses_full_article_not_caption(wired, monkeypatch):
+    """The topic-bank fallback has no external article to ground in, so it
+    legitimately uses the caption -- but a real news story must pass the
+    full collected article as the video script's source material, not the
+    short FB caption, or the writer fills the gap by inventing detail."""
+    root, _ = wired
+    _enable_video(root)
+    cand = _news_cand()
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda c, voice, sibling_angle="", generate=None: _art(c.title))
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=FakeTG(), meta=object())
+    assert out["status"] == "scheduled"
+    assert seen["body_text"] == cand.full_text
+    assert seen["source_url"] == cand.url
 
 
 def test_draft_video_failure_does_not_break_article(wired, monkeypatch):

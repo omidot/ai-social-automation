@@ -63,7 +63,8 @@ def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
     _script.write_script_json(s, out_dir)
 
     spoken = s.spoken_text
-    msg = (f"🎬 Kịch bản video {slot} ({date})\n\n{spoken}\n\n"
+    src_line = f"🔗 Nguồn: {source_url}\n\n" if source_url else ""
+    msg = (f"🎬 Kịch bản video {slot} ({date})\n\n{src_line}{spoken}\n\n"
            f"▶️ Thu âm đọc đúng đoạn trên (~{cfg.get('target_seconds', 40)}s), "
            "gửi file audio lại cho bot.")
     script_msg_id = None
@@ -77,6 +78,7 @@ def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
     ds = DailyState(root / "data")
     video = {
         "status": "awaiting_audio",
+        "source_url": source_url or None,
         "meta": meta.to_dict(),
         "spoken_text": spoken,
         "script": s.to_dict(),

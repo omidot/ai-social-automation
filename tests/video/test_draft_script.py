@@ -57,6 +57,25 @@ def test_draft_writes_video_record_and_sends_script(tmp_path):
     assert saved["video"]["status"] == "awaiting_audio"
     assert (root / "video" / "tools" / "cards.mjs").exists()
     assert any("Kịch bản video morning" in m for m in tg.msgs)
+    # The user has no way to check where a script came from without this --
+    # neither the persisted record nor the Telegram message carried a source
+    # link before, which is exactly what made a fabricated draft impossible
+    # to catch.
+    assert v["source_url"] == "https://openai.com/x"
+    assert saved["video"]["source_url"] == "https://openai.com/x"
+    assert any("https://openai.com/x" in m for m in tg.msgs)
+
+
+def test_draft_omits_source_line_when_no_url(tmp_path):
+    root = _wire(tmp_path)
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 0, 5, tzinfo=timezone.utc)
+    v = draft_script.draft("morning", root, title="Chủ đề tự đề xuất",
+                           source_url="", body_text="Bài gốc dài",
+                           caption_fb="Caption.", angle="chia sẻ", now=now,
+                           generate=_fake_gen_ok, tg=tg)
+    assert v["source_url"] is None
+    assert not any("🔗 Nguồn" in m for m in tg.msgs)
 
 
 def test_draft_gen_failure_warns_no_state(tmp_path):
