@@ -36,8 +36,8 @@ images:
 video:
   enabled: true
   target_seconds: 150
-  words_min: 390
-  words_max: 490
+  words_min: 380
+  words_max: 620
   render_composition: CodexShort
   channel_footer: "— A Hít Official · AI & năng suất mỗi ngày"
   publish:

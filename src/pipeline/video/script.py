@@ -1,5 +1,6 @@
 from __future__ import annotations
 import json
+import logging
 import math
 import re
 from pathlib import Path
@@ -10,7 +11,16 @@ from ..write import _IMAN_VOICE
 from . import VideoScriptError
 from .models import Script
 
-_NUDGE = 15  # allow spoken/pacing slack around the displayed-word band
+# Slack around the displayed-word band. Sized against the 150s target: a
+# fixed 15 words made sense for a 60s script but is punishing on a band
+# four times wider -- a real draft was thrown away for overshooting by 4.
+log = logging.getLogger("video.script")
+
+_NUDGE = 40
+# Past the nudge the script is off-length but still perfectly renderable.
+# Discarding it loses the whole draft -- and the user's turn -- over pacing,
+# so the final attempt keeps it as long as the length is not absurd.
+_SALVAGE_LO, _SALVAGE_HI = 0.6, 1.6
 
 
 def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
@@ -202,6 +212,10 @@ def generate(cand: Candidate, post: PostContent, voice: dict, cfg: dict, llm=Non
         if wmin - _NUDGE <= wc <= wmax + _NUDGE:
             return s
         if attempt == 2:
+            if wmin * _SALVAGE_LO <= wc <= wmax * _SALVAGE_HI:
+                log.warning("word count %d outside %d-%d -- keeping the draft anyway",
+                            wc, wmin, wmax)
+                return s
             raise VideoScriptError(f"word count {wc} outside {wmin}-{wmax} after retry")
         user = (user + f"\n\n[SỬA] Bản vừa rồi có {wc} từ hiển thị. "
                 f"Viết lại cho đủ {wmin}-{wmax} từ, giữ nguyên cấu trúc JSON.")
@@ -241,6 +255,10 @@ def generate_from_article(title: str, source_url: str, body_text: str,
         if wmin - _NUDGE <= wc <= wmax + _NUDGE:
             return s, meta
         if attempt == 2:
+            if wmin * _SALVAGE_LO <= wc <= wmax * _SALVAGE_HI:
+                log.warning("word count %d outside %d-%d -- keeping the draft anyway",
+                            wc, wmin, wmax)
+                return s, meta
             raise VideoScriptError(f"word count {wc} outside {wmin}-{wmax} after retry")
         user = (user + f"\n\n[SỬA] Bản vừa rồi có {wc} từ hiển thị. "
                 f"Viết lại cho đủ {wmin}-{wmax} từ, giữ nguyên cấu trúc JSON kể cả 'publish'.")

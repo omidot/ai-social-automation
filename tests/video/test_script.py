@@ -306,3 +306,46 @@ def test_gauge_needs_a_score_and_a_ceiling():
                                        "items": [{"label": "Điểm", "value": 98.6}]}})
     with pytest.raises(VideoScriptError, match="items"):
         script._validate(bad, CFG)
+
+
+def _reply_with_word_count(target_words):
+    """A valid script whose displayed-word count lands near `target_words`."""
+    # 40 cards is the card-count ceiling, so length is varied per card
+    # instead -- otherwise an over-long script trips card count first and
+    # never reaches the word-count path under test.
+    n = 40
+    per = max(4, round(target_words / n))
+    line = " ".join(["từ"] * per)
+    cards = [{"lines": [line], "variant": "stack", "anchor": "mid",
+              "motion_in": "rise", "motion_out": "up"} for _ in range(n)]
+    return json.dumps({
+        "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
+        "cards": cards,
+    }, ensure_ascii=False)
+
+
+def test_slightly_overlong_script_is_kept_not_discarded():
+    """A real draft was thrown away for running 509 words against a 490 cap,
+    losing the whole script -- and the user's turn -- over pacing. An
+    off-length but renderable script is now kept after the retry."""
+    over = _reply_with_word_count(560)
+    calls = []
+    def llm(system, user, provider="auto"):
+        calls.append(user); return over
+    s = script.generate(_cand(), _post(), VOICE,
+                        {"target_seconds": 150, "words_min": 380, "words_max": 490},
+                        llm=llm)
+    assert len(calls) == 2, "it still retries once before settling"
+    assert s.word_count > 490
+
+
+def test_absurdly_long_script_is_still_rejected():
+    """Salvage has a ceiling: a script twice the intended length would blow
+    the video's runtime, so that one still fails loudly."""
+    huge = _reply_with_word_count(1400)
+    def llm(system, user, provider="auto"):
+        return huge
+    with pytest.raises(VideoScriptError, match="word count"):
+        script.generate(_cand(), _post(), VOICE,
+                        {"target_seconds": 150, "words_min": 380, "words_max": 490},
+                        llm=llm)
