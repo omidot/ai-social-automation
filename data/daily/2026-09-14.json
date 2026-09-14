@@ -3,7 +3,7 @@
   "posts": {
     "test": {
       "video": {
-        "status": "audio_received",
+        "status": "rendered",
         "meta": {
           "title": "GPT-6 Astra vs Claude Fable 5.1: Sự Thật Benchmark Bị Giấu?",
           "description": "Nhiều người nghĩ cuộc đua AI đã kết thúc khi OpenAI tung ra GPT-6 Astra. Tuy nhiên, bảng xếp hạng kiểm tra độc lập từ Artificial Analysis lại cho thấy câu chuyện hoàn toàn khác. Việc chọn mô hình chuẩn xác cho từng tác vụ mới là chìa khóa tiết kiệm chi phí tối đa. Nhấn đăng ký kênh A Hít Official để cập nhật góc nhìn AI thực chiến mỗi ngày!",
@@ -329,10 +329,10 @@
         "script_msg_id": 237,
         "audio_file_id": "CQACAgUAAxkBAAPsaqdBz9awhtRXHDvdPeGWnVnRmzoAAu4eAAItvjhV4GBeyCQc_U49BA",
         "audio_msg_id": 236,
-        "mp4_path": null,
+        "mp4_path": "output/2026-09-14/2026-09-14-test-gpt-6-astra-vs-claude-fable-5-1-the-benc/video/2026-09-14-test-gpt-6-astra-vs-claude-fable-5-1-the-benc.mp4",
         "seconds": 62.2,
         "render_err": null,
-        "started_at": "2026-09-14T01:24:46.344848+00:00",
+        "started_at": "2026-09-14T02:27:57.038783+00:00",
         "publish_due": "2026-09-14T04:30:00+00:00",
         "result": {
           "yt": null,
@@ -340,7 +340,7 @@
           "ig": null,
           "tiktok": null
         },
-        "tg_file_id": "BAACAgUAAxkDAAPyaqdNseb_WFKJ7WhqyMswBJMMXEEAAhUfAAItvjhVcsDCnBycy4k9BA"
+        "tg_file_id": "BAACAgUAAxkDAAP8aqdcMZOyayp1BGd-AoZfNbYu6Z8AAkAfAAItvjhVSQIhvvoLL0o9BA"
       }
     },
     "morning": {
