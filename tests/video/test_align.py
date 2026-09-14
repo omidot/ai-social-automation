@@ -72,11 +72,10 @@ def test_run_aligner_uses_real_words_when_present(stage):
     assert [w["text"] for w in flat] == [w["w"] for w in words]
     assert [w["start"] for w in flat] == [pytest.approx(w["start"], abs=1e-6) for w in words]
 
-def test_displayed_text_follows_the_voice_not_the_script(stage):
-    """The narrator rarely reads the script verbatim -- they paraphrase, add
-    and drop words. Showing script text then means the words on screen do
-    not match the words being spoken no matter how good the timing is, so
-    the displayed text must be rebuilt from what was ACTUALLY said."""
+def test_subtitle_track_is_the_spoken_words_verbatim(stage):
+    """The narrator paraphrases: they add words, swap words, drop words. The
+    subtitle layer is the one that must follow the voice exactly, so it
+    carries the transcript verbatim rather than the scripted wording."""
     dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
                                  video_dir=VIDEO)
     # Script says "một hai ba" / "bốn năm sáu" / "bảy tám chín" (see `stage`),
@@ -95,39 +94,37 @@ def test_displayed_text_follows_the_voice_not_the_script(stage):
     (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
     tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
 
-    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert shown == [s["w"] for s in spoken], "on-screen words must be the spoken words"
-    # The improvised word must carry its own real timestamp, not a guess.
-    added = [w for w in shown if w == "nghìn"]
-    assert added, "a word the speaker added must still be shown"
-    flat = [w for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert flat[2]["start"] == pytest.approx(0.50, abs=1e-6)
-    # Cards are re-cut from the speech itself, so no card can grow past the
-    # readable line budget no matter how much more was said than scripted.
-    assert all(len(c["lines"]) <= 3 for c in tl["cards"])
-    assert all(len(l["text"]) <= 26 for c in tl["cards"] for l in c["lines"])
-    # The script's design still drives styling, mapped on proportionally.
-    assert all(c["variant"] for c in tl["cards"])
+    assert [w["text"] for w in tl["subtitle"]] == [s["w"] for s in spoken]
+    assert [w["start"] for w in tl["subtitle"]] ==         [pytest.approx(s["start"], abs=1e-6) for s in spoken]
+    # The slide layer keeps the scripted wording -- it is a designed headline.
+    assert "ba" in " ".join(l["text"] for c in tl["cards"] for l in c["lines"])
 
 
-def test_long_speech_never_overflows_a_card(stage):
-    """A real recording carries far more words than the (deliberately terse)
-    kinetic script -- 502 vs 166 in the incident that prompted this. Packing
-    that into the script's own card slots produced a 21-line card whose text
-    shrank to unreadable, so cards must be re-cut from the speech itself."""
+def test_no_subtitle_when_real_timing_is_unavailable(stage):
+    """Without a usable transcript the words on screen would be guesses, not
+    what was said -- showing nothing beats showing wrong captions."""
     dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
                                  video_dir=VIDEO)
-    # 120 spoken words against a 9-word script.
+    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
+    assert tl["subtitle"] == []
+
+
+def test_long_speech_does_not_bloat_the_slide_layer(stage):
+    """A real recording carries far more words than the (deliberately terse)
+    kinetic script -- 502 vs 166 in the incident that prompted this. Routing
+    the narration into the slides produced a 21-line card shrunk to
+    unreadable, so the slides stay scripted and the speech goes to the
+    subtitle."""
+    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
+                                 video_dir=VIDEO)
     spoken = [{"w": f"từ{i}", "start": i * 0.04, "end": i * 0.04 + 0.03} for i in range(120)]
     (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
     tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
 
+    assert len(tl["cards"]) == 3, "slides stay one-per-scripted-card"
     assert all(len(c["lines"]) <= 3 for c in tl["cards"])
-    assert all(len(l["text"]) <= 26 for c in tl["cards"] for l in c["lines"])
-    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert shown == [s["w"] for s in spoken], "no spoken word may be dropped"
-    # Every card still gets a real layout row mapped from the script.
-    assert all(c["variant"] and c["section"] for c in tl["cards"])
+    assert len(tl["subtitle"]) == 120, "every spoken word still reaches the subtitle"
+
 
 def test_run_aligner_falls_back_when_words_dont_match(stage):
     """words.json ASR gibberish that shares nothing with the script -> the

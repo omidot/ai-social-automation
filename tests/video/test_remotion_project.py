@@ -56,21 +56,38 @@ def test_layouts_numeral_badge_uses_accent_border():
     src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
     assert "border: `4px solid ${pal.accent}`" in src
 
-def test_layouts_reveal_words_on_their_own_timestamp_not_whole_line():
-    """Every text-rendering layout must show words as spoken, not the whole
-    line at once (the earlier design showed a full line then only
-    highlighted the active one -- future not-yet-spoken words were already
-    visible, which read as "text and voice in two different places")."""
-    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
-    assert "export const WordFade" in src
-    assert "{l.text}</span>" not in src, "a layout still renders a whole line at once, bypassing WordFade"
-    assert src.count("<WordFade line={l} />") == 6  # Stack, Invert, Mark, Stair, Numeral, Strike
-    # Hero already split per-word; it must key off each word's REAL timestamp too.
-    assert "Math.max(w.start, card.start)" in src
-
 def test_align_mjs_emits_per_word_timestamps():
     src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
     assert "words: u.words.map" in src
+
+def test_subtitle_layer_exists_and_is_mounted():
+    """The reference splits the frame in two: a designed slide that holds
+    still, and a subtitle at the bottom that tracks the voice word by word.
+    Only the subtitle may chase individual words."""
+    assert (VIDEO / "src/Subtitle.tsx").is_file()
+    sub = (VIDEO / "src/Subtitle.tsx").read_text(encoding="utf-8")
+    assert "export const Subtitle" in sub
+    assert "pal.accent" in sub, "the word being spoken must be highlighted"
+    short = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "<Subtitle ff={fontFamily} />" in short
+
+def test_accent_line_is_measured_in_the_case_it_is_drawn_in():
+    """Stack's accent line is uppercased at paint time. Measuring the
+    lower-case string and then uppercasing it made the widest lines run off
+    the right edge of the 1080px frame."""
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "role === 'accent' ? l.text.toUpperCase() : l.text" in src
+
+def test_slide_layer_does_not_chase_individual_words():
+    """Packing the full narration into the slide produced 20-line cards with
+    unreadably shrunken text -- spoken words belong to the subtitle, so the
+    slide reveals its scripted lines one line at a time instead."""
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert "WordFade" not in src
+
+def test_align_mjs_emits_the_spoken_subtitle_track():
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "cards, subtitle" in src
 
 def test_chart_tsx_exists_and_exports_chartcard():
     assert (VIDEO / "src/Chart.tsx").is_file()

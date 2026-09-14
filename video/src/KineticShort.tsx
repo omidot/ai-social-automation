@@ -11,6 +11,7 @@ import { ScreenshotCard } from './Screenshot';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { Shots } from './Shots';
 import { Stack, Hero, Invert, Mark, Stair, Numeral, Strike, shown, type Card } from './layouts';
+import { Subtitle } from './Subtitle';
 import { T } from './theme';
 import timeline from './timeline.json';
 
@@ -91,6 +92,7 @@ const Stage: React.FC = () => {
         <Shots ff={fontFamily} />
         <Chip label={cur.section} key0={chipStart} />
         <BrandMark card={cur} />
+        <Subtitle ff={fontFamily} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>
           <div style={{ height: '100%', width: `${prog * 100}%`, background: over.ink }} />
         </div>
