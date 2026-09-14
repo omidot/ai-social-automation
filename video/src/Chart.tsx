@@ -1,127 +1,112 @@
 import React from 'react';
-import { interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
+import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { usePal } from './palette';
-import { useMotion } from './anim';
-import { Frame, shown, type P } from './layouts';
+import { Frame, type P } from './layouts';
 import { T } from './theme';
 
 const W = 1080 - T.PAD * 2;
 
 type ChartItem = { label?: string; value: number };
 
-const LineChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; accent: string; ink: string }> = ({ items, unit, reveal, accent, ink }) => {
-  if (items.length === 0) return null;
-  const w = W, h = 420;
-  const values = items.map((i) => i.value);
-  const max = Math.max(...values);
-  const min = Math.min(0, ...values);
-  const span = max - min || 1;
-  const denom = items.length > 1 ? items.length - 1 : 1;
-  const pts = items.map((it, i) => {
-    const x = (i / denom) * (w - 40) + 20;
-    const y = h - 30 - ((it.value - min) / span) * (h - 60);
-    return [x, y] as const;
-  });
-  const path = pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x},${y}`).join(' ');
-  const last = pts[pts.length - 1];
+/** Hàng nào cũng hiện sau hàng trước một nhịp, cách nhau tối đa ngần này. */
+const STEP = 0.55;
+/** Phần thời lượng thẻ dành cho việc hiện dần các hàng. */
+const BUILD = 0.6;
+
+const fmt = (v: number, unit: string) => {
+  const n = Number.isInteger(v) ? String(v) : String(v);
+  return unit ? (unit.length <= 2 ? `${unit}${n}` : `${n} ${unit}`) : n;
+};
+
+/**
+ * Một hàng: nhãn trái + số phải, dưới là thanh bo tròn chạy từ trái sang.
+ * Hàng đã đi qua thì chìm xuống xám, chỉ hàng mới nhất sáng trắng -- mắt
+ * luôn bị kéo về con số đang được nói tới.
+ */
+const Row: React.FC<{
+  item: ChartItem; max: number; unit: string; ff: string;
+  at: number; active: boolean; ink: string; accent: string;
+}> = ({ item, max, unit, ff, at, active, ink, accent }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const local = frame - at * fps;
+  const s = spring({ frame: local, fps, config: { damping: 20, stiffness: 150, mass: 0.8 } });
+  const grow = interpolate(s, [0, 1], [0, 1]);
+  const pct = max > 0 ? Math.max(0.02, item.value / max) : 0;
+  const dim = !active;
+
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
-      <line x1={20} y1={h - 30} x2={w - 20} y2={h - 30} stroke={ink} strokeOpacity={0.35} strokeWidth={2} />
-      <path d={path} fill="none" stroke={accent} strokeWidth={7}
-           strokeDasharray={2000} strokeDashoffset={2000 - 2000 * reveal} />
-      {reveal > 0.92 ? (
-        <>
-          <circle cx={last[0]} cy={last[1]} r={9} fill={accent} />
-          <text x={last[0] - 10} y={last[1] - 20} fill={accent} fontWeight={900} fontSize={40} textAnchor="end">
-            {items[items.length - 1].value}{unit}
-          </text>
-        </>
-      ) : null}
-    </svg>
+    <div style={{
+      marginBottom: 34,
+      opacity: interpolate(s, [0, 1], [0, 1]),
+      transform: `translateY(${interpolate(s, [0, 1], [18, 0])}px)`,
+    }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+        marginBottom: 14, fontFamily: ff,
+      }}>
+        <span style={{ fontWeight: '800', fontSize: 40, color: dim ? '#8A8A88' : ink }}>
+          {item.label ?? ''}
+        </span>
+        <span style={{ fontWeight: '900', fontSize: 44, color: dim ? '#8A8A88' : (active ? accent : ink) }}>
+          {fmt(item.value, unit)}
+        </span>
+      </div>
+      <div style={{
+        height: 56, borderRadius: 28, width: '100%',
+        background: 'rgba(255,255,255,0.045)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          height: '100%', borderRadius: 28,
+          width: `${pct * grow * 100}%`,
+          background: dim
+            ? 'linear-gradient(90deg, #6E6E6C 0%, #8A8A88 100%)'
+            : `linear-gradient(90deg, ${accent} 0%, #FF8A6B 100%)`,
+        }} />
+      </div>
+    </div>
   );
 };
 
-const BarChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; accent: string; ink: string }> = ({ items, unit, reveal, accent, ink }) => {
-  if (items.length === 0) return null;
-  const w = W, h = 420, barW = 220, gap = 90;
-  const max = Math.max(...items.map((i) => i.value)) || 1;
-  const totalW = items.length * barW + (items.length - 1) * gap;
-  const startX = (w - totalW) / 2;
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
-      {items.map((it, i) => {
-        const bh = (it.value / max) * (h - 90) * reveal;
-        const x = startX + i * (barW + gap);
-        const y = h - 40 - bh;
-        const isAccent = i === items.length - 1;
-        const color = isAccent ? accent : ink;
-        return (
-          <g key={i}>
-            <rect x={x} y={y} width={barW} height={bh} rx={14} fill={color} fillOpacity={isAccent ? 1 : 0.4} />
-            <text x={x + barW / 2} y={y - 18} fill={color} fontWeight={900} fontSize={40} textAnchor="middle">
-              {it.value}{unit}
-            </text>
-            {it.label ? (
-              <text x={x + barW / 2} y={h - 12} fill={ink} fontWeight={700} fontSize={26} textAnchor="middle" opacity={0.8}>
-                {it.label}
-              </text>
-            ) : null}
-          </g>
-        );
-      })}
-    </svg>
-  );
-};
-
-const HBarChart: React.FC<{ items: ChartItem[]; unit: string; reveal: number; accent: string; ink: string }> = ({ items, unit, reveal, accent, ink }) => {
-  if (items.length === 0) return null;
-  const w = W, rowH = 96;
-  const max = Math.max(...items.map((i) => i.value)) || 1;
-  return (
-    <svg width={w} height={items.length * rowH} viewBox={`0 0 ${w} ${items.length * rowH}`}>
-      {items.map((it, i) => {
-        const fillW = (it.value / max) * w * reveal;
-        const y = i * rowH;
-        const isAccent = i === 0;
-        const color = isAccent ? accent : ink;
-        return (
-          <g key={i}>
-            <text x={0} y={y + 22} fill={ink} fontWeight={700} fontSize={28}>{it.label ?? ''}</text>
-            <rect x={0} y={y + 32} width={w} height={36} rx={10} fill={ink} fillOpacity={0.15} />
-            <rect x={0} y={y + 32} width={fillW} height={36} rx={10} fill={color} fillOpacity={isAccent ? 1 : 0.55} />
-            <text x={Math.max(fillW - 10, 40)} y={y + 57} fill="#fff" fontWeight={900} fontSize={26} textAnchor="end">
-              {it.value}{unit}
-            </text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-};
-
-export const ChartCard: React.FC<P> = ({ card, ff, leaving }) => {
+/**
+ * Biểu đồ dạng HÀNG NGANG, không phải đồ thị vẽ trục. Mọi kiểu (line/bar/
+ * hbar) đều đổ về một cách trình bày: đọc được trên điện thoại ở khung dọc,
+ * và hợp với nhịp nói -- mỗi hàng rơi vào đúng lúc con số đó được nhắc.
+ */
+export const ChartCard: React.FC<P> = ({ card, ff }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
-  const ls = shown(card);
   const chart = card.chart!;
-  const a = useMotion(frame, fps, card.start, leaving, T.EXIT, card.motion, card.exit);
-  const reveal = interpolate(frame, [card.start * fps + 6, card.start * fps + 36], [0, 1],
-                             { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const unit = chart.unit ?? '';
+  const items = chart.items ?? [];
+  if (items.length === 0) return null;
+
+  const t = frame / fps;
+  const max = Math.max(...items.map((i) => i.value), 0);
+  const span = Math.max(0.3, (card.out - card.start) * BUILD);
+  const step = Math.min(STEP, span / items.length);
+  const at = (i: number) => card.start + i * step;
+
+  // hàng "đang nói tới" = hàng cuối cùng đã hiện
+  let active = 0;
+  items.forEach((_, i) => { if (t >= at(i)) active = i; });
+
+  const title = card.lines.find((l) => !l.hidden)?.text ?? '';
+
   return (
     <Frame card={card} align="center">
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',
-                    opacity: a.opacity, transform: a.transform, filter: a.filter }}>
-        {chart.kind === 'line' ? <LineChart items={chart.items} unit={unit} reveal={reveal} accent={pal.accent} ink={pal.ink} /> : null}
-        {chart.kind === 'bar' ? <BarChart items={chart.items} unit={unit} reveal={reveal} accent={pal.accent} ink={pal.ink} /> : null}
-        {chart.kind === 'hbar' ? <HBarChart items={chart.items} unit={unit} reveal={reveal} accent={pal.accent} ink={pal.ink} /> : null}
-        {ls.map((l, i) => (
-          <span key={i} style={{
-            fontFamily: ff, fontWeight: '800', fontSize: 56, lineHeight: 1.2, color: pal.ink,
-            textShadow: pal.shadow, marginTop: 20, textAlign: 'center', whiteSpace: 'pre-wrap',
-            textTransform: 'uppercase',
-          }}>{l.text}</span>
+      <div style={{ width: W }}>
+        {title ? (
+          <div style={{
+            fontFamily: ff, fontWeight: '800', fontSize: 46, color: pal.ink,
+            textAlign: 'center', marginBottom: 44, textShadow: pal.shadow,
+          }}>{title}</div>
+        ) : null}
+        {items.map((it, i) => (
+          <Row key={i} item={it} max={max} unit={chart.unit ?? ''} ff={ff}
+               at={at(i)} active={i === active} ink={pal.ink} accent={pal.accent} />
         ))}
       </div>
     </Frame>

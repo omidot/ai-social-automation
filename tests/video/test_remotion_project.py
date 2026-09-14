@@ -93,7 +93,30 @@ def test_chart_tsx_exists_and_exports_chartcard():
     assert (VIDEO / "src/Chart.tsx").is_file()
     src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
     assert "export const ChartCard" in src
-    assert "'line'" in src and "'bar'" in src and "'hbar'" in src
+
+def test_chart_is_rows_not_plotted_axes():
+    """The reference never plots axes -- it lists rows (label left, value
+    right, a rounded bar beneath) that land one at a time as each number is
+    spoken. Plotted SVG charts read as tiny and generic on a 1080x1920
+    phone frame."""
+    src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
+    assert "<svg" not in src, "axes-style plotting should be gone"
+    assert "borderRadius: 28" in src, "bars are fully rounded rails"
+    assert "const Row" in src
+
+def test_frame_chrome_matches_the_reference():
+    """Reference chrome: slide counter top-left, brand logo top-right."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const Counter" in src
+    assert "<Counter index={cur.index} total={cards.length} />" in src
+    assert "<BrandMark card={cur} />" in src
+
+def test_chart_dims_rows_already_passed():
+    """Only the row being talked about stays bright; earlier rows sink to
+    grey so the eye tracks the number currently being said."""
+    src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
+    assert "const dim = !active" in src
+    assert "#8A8A88" in src
 
 def test_kineticshort_renders_chart_before_variant_switch():
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")

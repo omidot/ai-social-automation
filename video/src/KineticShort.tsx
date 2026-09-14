@@ -69,6 +69,21 @@ const Chip: React.FC<{ label: string; key0: number }> = ({ label, key0 }) => {
   );
 };
 
+/** Số thẻ ở góc trái trên -- cho người xem biết đang ở đâu trong mạch bài. */
+const Counter: React.FC<{ index: number; total: number }> = ({ index, total }) => {
+  const pal = usePal();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return (
+    <div style={{
+      position: 'absolute', top: 138, left: 56,
+      fontFamily, fontWeight: '700', fontSize: 24, letterSpacing: '0.22em',
+      color: pal.ink, opacity: 0.45,
+    }}>
+      {pad(index + 1)} / {pad(total)}
+    </div>
+  );
+};
+
 const Stage: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -91,6 +106,7 @@ const Stage: React.FC = () => {
       <PalCtx.Provider value={over}>
         <Shots ff={fontFamily} />
         <Chip label={cur.section} key0={chipStart} />
+        <Counter index={cur.index} total={cards.length} />
         <BrandMark card={cur} />
         <Subtitle ff={fontFamily} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>
