@@ -5,13 +5,20 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+env:
+  # 'small' is markedly more accurate on Vietnamese than 'base'; keep it
+  # unless CI time forces a trade-off.
+  WHISPER_MODEL_SIZE: small
 concurrency:
   group: pipeline-state
   cancel-in-progress: false
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    # 25 was not enough once whisper (model download + transcription) joined
+    # the render: the job was killed mid-run, which also skipped the
+    # always()-guarded state commit, so the slot silently stayed queued.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -62,7 +69,21 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/huggingface
-          key: whisper-model-${{ runner.os }}
+          key: whisper-model-${{ runner.os }}-${{ env.WHISPER_MODEL_SIZE }}
+      # Fetched in its own step so the cache is populated (and saved) even if
+      # a later step is slow -- a download folded into the render step is lost
+      # whenever the job is killed before finishing.
+      - name: Prefetch Whisper model (optional)
+        if: steps.g.outputs.go == '1'
+        continue-on-error: true
+        timeout-minutes: 10
+        run: |
+          python -c "
+          from faster_whisper import WhisperModel
+          import os
+          WhisperModel(os.environ['WHISPER_MODEL_SIZE'], device='cpu', compute_type='int8')
+          print('whisper model ready')
+          "
       - name: Render + publish
         if: steps.g.outputs.go == '1'
         env:
