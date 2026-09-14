@@ -3,7 +3,7 @@
   "posts": {
     "test": {
       "video": {
-        "status": "rendered",
+        "status": "audio_received",
         "meta": {
           "title": "GPT-6 Astra vs Claude Fable 5.1: Sự Thật Benchmark Bị Giấu?",
           "description": "Nhiều người nghĩ cuộc đua AI đã kết thúc khi OpenAI tung ra GPT-6 Astra. Tuy nhiên, bảng xếp hạng kiểm tra độc lập từ Artificial Analysis lại cho thấy câu chuyện hoàn toàn khác. Việc chọn mô hình chuẩn xác cho từng tác vụ mới là chìa khóa tiết kiệm chi phí tối đa. Nhấn đăng ký kênh A Hít Official để cập nhật góc nhìn AI thực chiến mỗi ngày!",
