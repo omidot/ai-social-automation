@@ -199,6 +199,33 @@ def test_versus_tiles_mark_winner_and_loser():
     assert "👑" in src
     assert "grayscale(1)" in src
 
+def test_narration_variants_show_only_the_active_line():
+    """Regression: up to 3 lines of a card used to stack on screen at once
+    (~15-20 words), which the reference never does -- it shows one short
+    caption at a time. After cards are re-cut from real speech, even the
+    rare hero/invert emphasis cards can end up with several lines, so all
+    seven variants render only the line whose real timestamp is currently
+    active, hiding the rest."""
+    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
+    assert src.count("if (i !== activeIdx) return null;") == 7
+
+def test_narration_cards_anchor_to_the_bottom_like_a_caption():
+    """The reference's spoken caption always sits near the bottom of the
+    frame, never mid-screen. Hero/invert stay wherever variants.py put them
+    (rare hook/closer moments); every other card is forced to anchor 'low'."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "isEmphasis ? card : { ...card, anchor: 'low' as const }" in src
+
+def test_screenshot_is_full_bleed_not_a_floating_card():
+    """The reference lets a real screenshot fill the whole vertical frame
+    with a dark top/bottom vignette for legibility, not a rounded card
+    floating with a drop shadow in the middle of the background."""
+    src = (VIDEO / "src/Screenshot.tsx").read_text(encoding="utf-8")
+    assert "borderRadius: 16" not in src
+    assert "boxShadow" not in src
+    assert "objectFit: 'cover'" in src
+    assert "linear-gradient" in src
+
 def test_gauge_and_chip_elements_exist():
     """Two more of the reference's illustration types: a gauge with an
     arrow parked at the score reached ("98.6 / 100"), and name chips for

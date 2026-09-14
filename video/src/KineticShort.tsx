@@ -34,9 +34,14 @@ const CardView: React.FC<{ card: Card }> = ({ card }) => {
   // không thì đè lên nhau.
   // num bị bỏ: con số đó chỉ là mảnh của tên model ("GPT-6" -> 6), dán
   // nó lên huy hiệu cạnh hai ô logo là vô nghĩa.
+  // Thẻ kể chuyện thường (không phải hero/invert -- hai biến thể dành riêng
+  // cho khoảnh khắc mở/chốt) luôn neo xuống đáy khung như phụ đề thật của
+  // bản tham chiếu, bất kể variants.py gán anchor gì -- không còn trôi nổi
+  // giữa khung.
+  const isEmphasis = card.variant === 'hero' || card.variant === 'invert';
   const shifted = versusOf(card)
     ? { ...card, anchor: 'low' as const, num: undefined }
-    : card;
+    : isEmphasis ? card : { ...card, anchor: 'low' as const };
   const p = { card: shifted, ff: fontFamily, leaving, activeIdx };
   if (card.chart) return <ChartCard {...p} />;
   if (card.screenshotFile) return <ScreenshotCard {...p} />;
@@ -58,15 +63,13 @@ const Chip: React.FC<{ label: string; key0: number }> = ({ label, key0 }) => {
   const pal = usePal();
   const s = spring({ frame: frame - key0, fps, config: { damping: 15, stiffness: 220, mass: 0.6 } });
   return (
-    <div style={{ position: 'absolute', top: 128, left: 0, right: 0, display: 'flex', justifyContent: 'center' }}>
+    <div style={{ position: 'absolute', top: 132, left: 0, right: 0, display: 'flex', justifyContent: 'center', padding: '0 96px' }}>
       <div
         style={{
-          fontFamily, fontWeight: '800', fontSize: 27, letterSpacing: '0.22em', color: pal.ink,
-          border: `2.5px solid ${pal.ink}`, borderRadius: 999, padding: '13px 30px 12px',
-          background: pal.dark ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.40)',
-          textTransform: 'uppercase', textShadow: pal.shadow,
-          opacity: interpolate(s, [0, 1], [0, 1]),
-          transform: `translateY(${interpolate(s, [0, 1], [-16, 0])}px) scale(${interpolate(s, [0, 1], [0.9, 1])})`,
+          fontFamily, fontWeight: '800', fontSize: 30, letterSpacing: '0.04em', color: pal.ink,
+          textAlign: 'center', textTransform: 'uppercase', textShadow: pal.shadow,
+          opacity: interpolate(s, [0, 1], [0, 0.92]),
+          transform: `translateY(${interpolate(s, [0, 1], [-12, 0])}px)`,
         }}
       >
         {label}

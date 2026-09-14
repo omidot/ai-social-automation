@@ -1,30 +1,26 @@
 import React from 'react';
-import { Img, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { useMotion } from './anim';
-import { Frame, type P } from './layouts';
+import { type P } from './layouts';
 import { T } from './theme';
 
-const FRAME_W = 1080 - T.PAD * 2;
-
 /**
- * Ảnh chụp đặt trần: bo góc nhẹ, không khung trình duyệt giả, không thanh
- * địa chỉ, không dòng ghi nguồn -- bản tham chiếu để ảnh nói chuyện một
- * mình, mấy thứ trang trí đó chỉ làm khung hình rẻ tiền đi. Chữ của thẻ
- * chạy ở phụ đề dưới cùng như mọi thẻ khác, không in đè lên ảnh.
+ * Ảnh chụp TRÀN VIỀN, không bo góc, không nổi giữa khung như một tấm thẻ --
+ * bản tham chiếu luôn cho ảnh chiếm trọn khung dọc, chỉ làm tối dần hai mép
+ * trên/dưới (vignette) để chữ header/phụ đề còn đọc được đè lên trên. Không
+ * khung trình duyệt giả, không thanh địa chỉ, không dòng ghi nguồn.
  */
 export const ScreenshotCard: React.FC<P> = ({ card, leaving }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const a = useMotion(frame, fps, card.start, leaving, T.EXIT, card.motion, card.exit);
   return (
-    <Frame card={card} align="center">
-      <div style={{
-        width: FRAME_W, borderRadius: 16, overflow: 'hidden',
-        boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
-        opacity: a.opacity, transform: a.transform, filter: a.filter,
-      }}>
-        <Img src={staticFile(card.screenshotFile!)} style={{ width: '100%', display: 'block' }} />
-      </div>
-    </Frame>
+    <AbsoluteFill style={{ opacity: a.opacity, transform: a.transform, filter: a.filter }}>
+      <Img src={staticFile(card.screenshotFile!)}
+           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+      <AbsoluteFill style={{
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.05) 22%, rgba(0,0,0,0.05) 66%, rgba(0,0,0,0.78) 100%)',
+      }} />
+    </AbsoluteFill>
   );
 };

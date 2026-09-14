@@ -75,6 +75,7 @@ export const Stack: React.FC<P & { mirror?: boolean }> = ({ card, ff, leaving, a
   return (
     <Frame card={card} align={mirror ? 'flex-end' : 'flex-start'}>
       {ls.map((l, i) => {
+        if (i !== activeIdx) return null;   // chỉ dòng đang nói mới hiện -- như phụ đề, không dồn cả thẻ
         const role = i === n - 1 ? 'accent' : n === 3 && i === 0 ? 'small' : 'big';
         const w = T.WEIGHT[role];
         // Đo trên đúng chuỗi sẽ được vẽ: dòng nhấn viết hoa rộng hơn chữ
@@ -102,7 +103,7 @@ export const Stack: React.FC<P & { mirror?: boolean }> = ({ card, ff, leaving, a
 };
 
 /* ---------- 2. HERO — chữ khổng lồ, chuyển động lan theo TỪNG TỪ ---------- */
-export const Hero: React.FC<P> = ({ card, ff, leaving }) => {
+export const Hero: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -111,6 +112,7 @@ export const Hero: React.FC<P> = ({ card, ff, leaving }) => {
   return (
     <Frame card={card} align="center">
       {ls.map((l, i) => {
+        if (i !== activeIdx) return null;   // sau khi lời nói thật cắt thẻ nhỏ lại, một thẻ "hero" vẫn có thể có vài dòng -- chỉ dòng đang nói mới hiện
         const words = l.words && l.words.length > 0 ? l.words : l.text.split(' ').map((wd) => ({ text: wd, start: l.start, end: l.end }));
         return (
           <div key={i} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 22px', margin: '4px 0' }}>
@@ -132,7 +134,7 @@ export const Hero: React.FC<P> = ({ card, ff, leaving }) => {
 };
 
 /* ---------- 3. INVERT — tấm phủ toàn khung, ĐẢO NGƯỢC hẳn nền đang dùng ---------- */
-export const Invert: React.FC<P> = ({ card, ff, leaving }) => {
+export const Invert: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -145,6 +147,7 @@ export const Invert: React.FC<P> = ({ card, ff, leaving }) => {
       <AbsoluteFill style={{ background: pal.panel, clipPath: `inset(${interpolate(p, [0, 1], [100, 0])}% 0 0 0)`, opacity: 1 - outP * 0.9 }} />
       <Frame card={card} align="flex-start">
         {ls.map((l, i) => {
+          if (i !== activeIdx) return null;   // thẻ đóng thường bị cắt thành nhiều thẻ nhỏ -- chỉ dòng đang nói mới hiện, không dồn cả bảng
           const size = fit(l.text, ff, '900', 132);
           const a = useMotion(frame, fps, Math.max(l.start, card.start), leaving, T.EXIT, card.motion, card.exit);
           return (
@@ -162,7 +165,7 @@ export const Invert: React.FC<P> = ({ card, ff, leaving }) => {
 };
 
 /* ---------- 4. MARK — thanh quét ngang, chữ đảo màu ---------- */
-export const Mark: React.FC<P> = ({ card, ff, leaving }) => {
+export const Mark: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -172,6 +175,7 @@ export const Mark: React.FC<P> = ({ card, ff, leaving }) => {
   return (
     <Frame card={card} align="flex-start">
       {ls.map((l, i) => {
+        if (i !== activeIdx) return null;
         const last = i === n - 1;
         const w = last ? '900' : n === 3 && i === 0 ? '700' : '800';
         const size = fit(l.text, ff, w, last ? 104 : 72, MAXW - 44);
@@ -207,6 +211,7 @@ export const Stair: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
   return (
     <Frame card={card} align="flex-start">
       {ls.map((l, i) => {
+        if (i !== activeIdx) return null;
         const w = i === n - 1 ? '900' : '800';
         const size = fit(l.text, ff, w, i === n - 1 ? 108 : 84, MAXW - i * 72);
         const a = useMotion(frame, fps, Math.max(l.start, card.start), leaving, T.EXIT, card.motion, card.exit);
@@ -228,7 +233,7 @@ export const Stair: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
 };
 
 /* ---------- 6. NUMERAL — huy hiệu số cho 6 tính năng ---------- */
-export const Numeral: React.FC<P> = ({ card, ff, leaving }) => {
+export const Numeral: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -248,6 +253,7 @@ export const Numeral: React.FC<P> = ({ card, ff, leaving }) => {
         </div>
       )}
       {ls.map((l, i) => {
+        if (i !== activeIdx) return null;
         const w = i === n - 1 ? '900' : '700';
         const size = fit(l.text, ff, w, i === n - 1 ? 100 : 68);
         const a = useMotion(frame, fps, Math.max(l.start, card.start), leaving, T.EXIT, card.motion, card.exit, 3);
@@ -264,7 +270,7 @@ export const Numeral: React.FC<P> = ({ card, ff, leaving }) => {
 };
 
 /* ---------- 7. STRIKE — gạch ngang dòng phủ định ---------- */
-export const Strike: React.FC<P> = ({ card, ff, leaving }) => {
+export const Strike: React.FC<P> = ({ card, ff, leaving, activeIdx }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -273,6 +279,7 @@ export const Strike: React.FC<P> = ({ card, ff, leaving }) => {
   return (
     <Frame card={card} align="flex-start">
       {ls.map((l, i) => {
+        if (i !== activeIdx) return null;
         const w = i === n - 1 ? '900' : '800';
         const size = fit(l.text, ff, w, i === n - 1 ? 106 : 82);
         const base = Math.max(l.start, card.start);
