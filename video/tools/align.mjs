@@ -154,6 +154,66 @@ if (!usedRealWords) {
   for (const w of allWords) if (w.start === undefined) { w.start = DURATION - 0.2; w.end = DURATION; }
 }
 
+// ---- 4c. Sửa tên thương hiệu bị nghe nhầm ----
+// Nhận diện giọng nói bóp méo tên riêng: "Fable" ra "Facebook"/"Faber",
+// "Claude" ra "Cloud". Chữ sai đó lên thẳng màn hình là sai luôn thương hiệu.
+// KHÔNG dựa vào căn chỉnh với kịch bản: đo thực tế cho thấy nó nối "Fable"
+// sang "vi", "nắm", "đừng" -- lạc hoàn toàn, vì lời đọc khác kịch bản nhiều.
+// Thay vào đó so từng từ nghe được với chính danh sách thương hiệu, và chỉ
+// đổi khi rất giống (cùng chữ cái đầu, đủ dài, sai lệch ít).
+const LEV_MAX_RATIO = 0.65;   // "faber"->"fable" 0.40, "facebook"->"fable" 0.63
+
+function lev(a, b) {
+  const m = a.length, n = b.length;
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const cur = [i];
+    for (let j = 1; j <= n; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
+                        prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    prev = cur;
+  }
+  return prev[n];
+}
+
+let BRAND_KEYS = [];
+try {
+  BRAND_KEYS = Object.keys(JSON.parse(fs.readFileSync('src/logos.json', 'utf8')));
+} catch { /* chưa có logo -> không sửa gì */ }
+
+// Cách viết chuẩn lấy từ chính kịch bản ("fable" -> "Fable"), để giữ đúng
+// kiểu viết hoa của tác giả thay vì bịa ra.
+const CANON = new Map();
+for (const sw of allWords) {
+  const k = norm(sw.w);
+  if (BRAND_KEYS.includes(k) && !CANON.has(k)) {
+    CANON.set(k, sw.w.replace(/[.,:;!?]+$/, ''));
+  }
+}
+
+const spokenWords = realWords
+  ? realWords.map((r) => ({ w: r.w, start: r.start, end: r.end }))
+  : [];
+if (usedRealWords && CANON.size > 0) {
+  const fixes = [];
+  for (const sp of spokenWords) {
+    const got = norm(sp.w);
+    if (got.length < 4 || CANON.has(got)) continue;   // đã đúng thì thôi
+    let best = null, bestRatio = 1;
+    for (const [key, canon] of CANON) {
+      if (key[0] !== got[0]) continue;
+      const ratio = lev(got, key) / Math.max(got.length, key.length);
+      if (ratio < bestRatio) { bestRatio = ratio; best = canon; }
+    }
+    if (best && bestRatio <= LEV_MAX_RATIO) {
+      fixes.push(`${sp.w} -> ${best}`);
+      sp.w = best;
+    }
+  }
+  if (fixes.length) console.log(`sửa tên thương hiệu: ${fixes.join(', ')}`);
+}
+
 const MAX_LINE_CHARS = 26;   // đủ to để đọc trên điện thoại ở khung dọc 1080
 const LINES_PER_CARD = 3;    // quá số này thì chữ bị co nhỏ, khó đọc
 
@@ -186,7 +246,7 @@ if (usedRealWords) {
   // Nhồi lời nói vào đúng khung card của kịch bản thì card phình tới cả
   // chục dòng, nên card được chia lại theo chính lời nói, còn kiểu dáng
   // của kịch bản ánh xạ lên theo tỉ lệ để giữ mạch thiết kế.
-  const lines = packLines(realWords.map((r) => ({ text: r.w, start: r.start, end: r.end })));
+  const lines = packLines(spokenWords.map((r) => ({ text: r.w, start: r.start, end: r.end })));
   const groups = [];
   for (let i = 0; i < lines.length; i += LINES_PER_CARD) groups.push(lines.slice(i, i + LINES_PER_CARD));
   cards = groups.map((g, k) => ({

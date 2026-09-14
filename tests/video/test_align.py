@@ -131,3 +131,87 @@ def test_long_speech_never_overflows_a_slide(stage):
     shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
     assert shown == [s["w"] for s in spoken], "no spoken word may be dropped"
     assert all(c["variant"] and c["section"] for c in tl["cards"])
+
+
+def test_misheard_brand_names_are_corrected_from_the_script(stage):
+    """Speech recognition mangles brand names -- the narrator said "Fable"
+    and it came back "Facebook", putting the wrong company on screen. The
+    word keeps its (correct) timestamp but borrows the script's spelling.
+
+    Matching is done straight against the logo registry, not via the
+    script alignment: measured on the real recording, the aligner paired
+    "Fable" with "vi", "nam" and "dung" -- far too loose to trust."""
+    (stage / "tools/cards.mjs").write_text(
+        'export const CARDS = [["Fable thắng rồi"]];\n'
+        'export const SECTIONS = [[0,"A"]];\n', encoding="utf-8")
+    (stage / "tools/variants.mjs").write_text(
+        'export const LAYOUT = [["stack","mid",null,"rise","up"]];\n', encoding="utf-8")
+    (stage / "src").mkdir(exist_ok=True)
+    (stage / "src/logos.json").write_text(
+        json.dumps({"fable": {"label": "Anthropic", "file": "logos/fable.png"}}),
+        encoding="utf-8")
+    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
+                                 video_dir=VIDEO)
+    spoken = [
+        {"w": "Facebook", "start": 0.10, "end": 0.40},   # misheard "Fable"
+        {"w": "thắng", "start": 0.40, "end": 0.70},
+        {"w": "nhé", "start": 0.70, "end": 0.90},        # said instead of "rồi"
+    ]
+    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
+    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
+
+    flat = [w for c in tl["cards"] for l in c["lines"] for w in l["words"]]
+    assert [w["text"] for w in flat] == ["Fable", "thắng", "nhé"]
+    assert flat[0]["start"] == pytest.approx(0.10, abs=1e-6), "timing untouched"
+
+
+def test_unrelated_words_are_never_rewritten_to_a_brand(stage):
+    """Guard on the rule above: a stray alignment must not let a brand name
+    overwrite a word that merely happens to line up with it."""
+    (stage / "tools/cards.mjs").write_text(
+        'export const CARDS = [["Fable thắng rồi"]];\n'
+        'export const SECTIONS = [[0,"A"]];\n', encoding="utf-8")
+    (stage / "tools/variants.mjs").write_text(
+        'export const LAYOUT = [["stack","mid",null,"rise","up"]];\n', encoding="utf-8")
+    (stage / "src").mkdir(exist_ok=True)
+    (stage / "src/logos.json").write_text(
+        json.dumps({"fable": {"label": "Anthropic", "file": "logos/fable.png"}}),
+        encoding="utf-8")
+    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
+                                 video_dir=VIDEO)
+    spoken = [
+        {"w": "Đừng", "start": 0.10, "end": 0.40},   # nothing like "Fable"
+        {"w": "thắng", "start": 0.40, "end": 0.70},
+        {"w": "rồi", "start": 0.70, "end": 0.90},
+    ]
+    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
+    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
+
+    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
+    assert shown[0] == "Đừng", "a different word must survive untouched"
+
+
+def test_brand_correction_is_reported_and_bounded(stage):
+    """Only close misspellings of a registered brand are rewritten. A word
+    that merely starts with the same letter must survive as spoken."""
+    (stage / "tools/cards.mjs").write_text(
+        'export const CARDS = [["Claude thắng rồi"]];\n'
+        'export const SECTIONS = [[0,"A"]];\n', encoding="utf-8")
+    (stage / "tools/variants.mjs").write_text(
+        'export const LAYOUT = [["stack","mid",null,"rise","up"]];\n', encoding="utf-8")
+    (stage / "src").mkdir(exist_ok=True)
+    (stage / "src/logos.json").write_text(
+        json.dumps({"claude": {"label": "Anthropic", "file": "logos/claude.png"}}),
+        encoding="utf-8")
+    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
+                                 video_dir=VIDEO)
+    spoken = [
+        {"w": "Cloud", "start": 0.10, "end": 0.40},    # misheard "Claude"
+        {"w": "chuyện", "start": 0.40, "end": 0.70},   # same initial, unrelated
+        {"w": "rồi", "start": 0.70, "end": 0.90},
+    ]
+    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
+    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
+
+    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
+    assert shown == ["Claude", "chuyện", "rồi"]
