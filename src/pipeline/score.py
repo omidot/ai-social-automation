@@ -117,8 +117,24 @@ def score_candidate(c: Candidate, now: datetime, cohort: list[Candidate],
                  + _keyword_fit(c, keywords) + _source_spread(c) + _source_tier(c), 2)
 
 
+def is_corroborated(c: Candidate) -> bool:
+    """True iff the story clears the minimum trust bar to draft anything
+    from: reported by >=2 independent sources (``source_count``, set by
+    ``collect._collapse_similar`` from title-similarity clustering across
+    every RSS/Reddit/HN feed), or it comes straight from the subject
+    company's own blog (Tier 1), which needs no second source to be real.
+
+    A single low-tier source is exactly the gap that let a fabricated story
+    (invented OpenAI IPO cancellation, invented RubyGems breach) through
+    uncontested -- corroboration is a precondition to be a candidate at
+    all, not just a scoring bonus a strong candidate could do without.
+    """
+    return c.source_count >= 2 or _source_tier(c) >= 15.0
+
+
 def pick(cands: list[Candidate], min_score: float, now: datetime,
          keywords: list[str]) -> tuple[Candidate | None, float]:
+    cands = [c for c in cands if is_corroborated(c)]
     if not cands:
         return None, 0.0
     scored = [(score_candidate(c, now, cands, keywords), c) for c in cands]
@@ -130,6 +146,7 @@ def pick(cands: list[Candidate], min_score: float, now: datetime,
 
 
 def pick_n(cands, n, min_score, now, keywords, exclude_titles=()):
+    cands = [c for c in cands if is_corroborated(c)]
     scored = [(score_candidate(c, now, cands, keywords), c) for c in cands]
     scored.sort(key=lambda t: t[0], reverse=True)
     if _DEBUG():

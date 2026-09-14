@@ -11,7 +11,7 @@ KW = ["AI", "mô hình", "OpenAI"]
 
 def test_pick_n_debug_logs_component_breakdown(monkeypatch, caplog):
     monkeypatch.setenv("ARTICLE_DEBUG", "1")
-    cand = _c("OpenAI ships GPT-6", hint=0)
+    cand = _c("OpenAI ships GPT-6", hint=0, sc=2)
     with caplog.at_level(logging.INFO, logger="score"):
         pick_n([cand], 1, min_score=1000, now=datetime(2026, 9, 5, 8, tzinfo=timezone.utc),
               keywords=["AI", "GPT"])
@@ -23,17 +23,18 @@ def test_pick_n_debug_logs_component_breakdown(monkeypatch, caplog):
 
 def test_pick_n_debug_silent_by_default(monkeypatch, caplog):
     monkeypatch.delenv("ARTICLE_DEBUG", raising=False)
-    cand = _c("OpenAI ships GPT-6", hint=0)
+    cand = _c("OpenAI ships GPT-6", hint=0, sc=2)
     with caplog.at_level(logging.INFO, logger="score"):
         pick_n([cand], 1, min_score=1000, now=datetime(2026, 9, 5, 8, tzinfo=timezone.utc),
               keywords=["AI", "GPT"])
     assert not any("recency=" in m for m in caplog.messages)
 
 
-def mk(title, hours_old, hint, url="https://a.com/x", src="hn", summary=""):
+def mk(title, hours_old, hint, url="https://a.com/x", src="hn", summary="", source_count=1):
     return Candidate(url=url, title=title, source=src,
                      published_at=NOW - timedelta(hours=hours_old),
-                     raw_score_hint=hint, summary=summary or title)
+                     raw_score_hint=hint, summary=summary or title,
+                     source_count=source_count)
 
 
 def test_recency_component_decays():
@@ -71,8 +72,8 @@ def test_pick_respects_threshold():
 
 
 def test_pick_returns_top():
-    cands = [mk("AI nhạt", 40, 5, url="https://a/1"),
-             mk("OpenAI ra mô hình AI cực mạnh", 1, 900, url="https://a/2")]
+    cands = [mk("AI nhạt", 40, 5, url="https://a/1", source_count=2),
+             mk("OpenAI ra mô hình AI cực mạnh", 1, 900, url="https://a/2", source_count=2)]
     best, sc = score.pick(cands, min_score=45, now=NOW, keywords=KW)
     assert best.url == "https://a/2" and sc >= 45
 
@@ -117,8 +118,8 @@ def test_is_ai_relevant_word_boundary():
 def test_pick_n_skips_non_ai():
     # non-AI story is the freshest (max recency) but must be skipped for the
     # lower-scoring, older AI story.
-    non_ai = mk("Bác sĩ đỡ đẻ trên máy bay", 0, 0, url="https://a/plane")
-    ai = mk("AI tạo video từ giọng nói", 30, 0, url="https://a/ai")
+    non_ai = mk("Bác sĩ đỡ đẻ trên máy bay", 0, 0, url="https://a/plane", source_count=2)
+    ai = mk("AI tạo video từ giọng nói", 30, 0, url="https://a/ai", source_count=2)
     picked = pick_n([non_ai, ai], 2, min_score=10, now=NOW,
                     keywords=["AI", "trí tuệ nhân tạo"])
     assert [c.url for _, c in picked] == ["https://a/ai"]
@@ -166,3 +167,29 @@ def test_pick_n_respects_exclude_titles():
                     exclude_titles=["OpenAI ships GPT-6 today"])
     assert len(picked) == 1
     assert "Nvidia" in picked[0][1].title
+
+
+def test_is_corroborated_requires_two_sources_or_tier1():
+    assert score.is_corroborated(mk("x", 0, 0, source_count=1, src="hn")) is False
+    assert score.is_corroborated(mk("x", 0, 0, source_count=2, src="hn")) is True
+    assert score.is_corroborated(mk("x", 0, 0, source_count=1, src="rss:OpenAI Blog")) is True
+
+
+def test_pick_n_drops_single_source_low_tier_story():
+    """A single Reddit/HN post with nothing else corroborating it must never
+    reach the writer -- this is the exact gap that let a fabricated OpenAI
+    IPO story and an invented RubyGems breach through uncontested."""
+    now = datetime(2026, 9, 5, 8, tzinfo=timezone.utc)
+    lone = mk("AI làm điều gây sốc", 0, 500, url="https://reddit/x", src="hn", source_count=1)
+    picked = pick_n([lone], 1, min_score=1, now=now, keywords=["AI"])
+    assert picked == []
+
+
+def test_pick_n_keeps_single_source_tier1_story():
+    """A company's own blog needs no corroborating second source -- it IS
+    the primary source."""
+    now = datetime(2026, 9, 5, 8, tzinfo=timezone.utc)
+    official = mk("OpenAI ships new AI model", 0, 0, url="https://openai.com/x",
+                  src="rss:OpenAI Blog", source_count=1)
+    picked = pick_n([official], 1, min_score=1, now=now, keywords=["AI"])
+    assert len(picked) == 1
