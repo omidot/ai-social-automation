@@ -1,51 +1,23 @@
 import React from 'react';
-import { AbsoluteFill, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
-import { LIGHT, DARK, type Pal } from './palette';
+import { AbsoluteFill } from 'remotion';
+import { DARK, type Pal } from './palette';
 
-/** Nền video — hai đoạn nối tiếp, chuyển cảnh mềm ở giây 30. */
-export const BG = [
-  { from: 0.0, file: 'bg1.mp4', pal: DARK, rate: 1 },
-  { from: 30.0, file: 'bg2.mp4', pal: DARK, rate: 1 },
-];
+/**
+ * Nền tĩnh phẳng (không video): màu tối trơn + vân chéo mờ + một chút ánh
+ * sáng góc trên phải — đúng phong cách tham chiếu (ainius.net), thay cho
+ * video nền chuyển động trước đây.
+ */
+export const palAt = (_t: number): Pal => DARK;
 
-const FADE = 14; // số frame chuyển cảnh giữa hai nền
+const HATCH =
+  'repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 26px), ' +
+  'repeating-linear-gradient(-45deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 26px)';
 
-export const palAt = (t: number): Pal => {
-  let p = BG[0].pal;
-  for (const b of BG) if (t >= b.from) p = b.pal;
-  return p;
-};
+const GLOW = 'radial-gradient(60% 40% at 82% 8%, rgba(255,145,95,0.12) 0%, rgba(255,145,95,0) 60%)';
 
-export const BgVideo: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const t = frame / fps;
-
-  let idx = 0;
-  BG.forEach((b, i) => { if (t >= b.from) idx = i; });
-  const cur = BG[idx];
-  const prev = idx > 0 ? BG[idx - 1] : null;
-  const into = frame - cur.from * fps;
-  const mix = interpolate(into, [0, FADE], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-
-  const layer = (b: typeof BG[number], opacity: number, key: string) => (
-    <AbsoluteFill key={key} style={{ opacity }}>
-      <OffthreadVideo
-        src={staticFile(b.file)}
-        muted
-        loop
-        playbackRate={b.rate}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-      />
-    </AbsoluteFill>
-  );
-
-  return (
-    <AbsoluteFill>
-      {prev && mix < 1 ? layer(prev, 1, 'prev') : null}
-      {layer(cur, mix, 'cur')}
-      {/* lớp phủ — thứ duy nhất bảo đảm chữ luôn đọc được trên nền video động */}
-      <AbsoluteFill style={{ background: cur.pal.scrim }} />
-    </AbsoluteFill>
-  );
-};
+export const BgVideo: React.FC = () => (
+  <AbsoluteFill style={{ background: '#0A0A0A' }}>
+    <AbsoluteFill style={{ background: HATCH }} />
+    <AbsoluteFill style={{ background: GLOW }} />
+  </AbsoluteFill>
+);

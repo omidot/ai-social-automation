@@ -70,7 +70,7 @@ Workflow `refresh-token` chạy mùng 1 hàng tháng, tạo token mới và nh�
   (`align.mjs`) → `npx remotion render CodexShort` → gửi MP4 lên Telegram →
   `video.status = "rendered"` + nút `🗑 Gỡ`. Render lỗi → slot quay lại `awaiting_audio`,
   gửi lại audio để thử.
-- Nền video: hai đoạn nối tiếp `video/public/bg1.mp4` (0-30s) → `bg2.mp4` (30s+), đặt một lần trong `BgVideo.BG`.
+- Nền: tĩnh phẳng (không video) — màu tối + vân chéo mờ, định nghĩa trong `video/src/BgVideo.tsx`.
 - Tắt cả nhánh video: `config/settings.yaml` → `video.enabled: false`.
 
 ## Đăng video (Phase 2C)

@@ -15,20 +15,17 @@ def test_project_present():
 def test_composition_id_is_codexshort():
     assert "CodexShort" in (VIDEO / "src/Root.tsx").read_text(encoding="utf-8")
 
-def test_two_segment_background():
-    """Two background videos in sequence (bg1 0-30s, bg2 30s+), replacing the
-    single-fixed-background design from Task 2 (p2b)."""
-    assert (VIDEO / "public/bg1.mp4").is_file(), \
-        "video/public/bg1.mp4 must be committed (first background segment)"
-    assert (VIDEO / "public/bg2.mp4").is_file(), \
-        "video/public/bg2.mp4 must be committed (second background segment)"
-    assert not (VIDEO / "public/bg.mp4").exists(), \
-        "stale single-background bg.mp4 should be removed"
+def test_static_background_no_video():
+    """Background is a flat static backdrop (matches the ainius.net-style
+    reference), not moving video footage -- replaces the two-segment
+    bg1/bg2 video design."""
+    for stale in ("public/bg.mp4", "public/bg1.mp4", "public/bg2.mp4"):
+        assert not (VIDEO / stale).exists(), f"stale background video should be removed: {stale}"
     src = (VIDEO / "src/BgVideo.tsx").read_text(encoding="utf-8")
-    assert "'bg1.mp4'" in src and "'bg2.mp4'" in src, \
-        "BgVideo.BG must reference both bg1.mp4 and bg2.mp4"
-    for old in ("bg-topo.mp4", "bg-navy.mp4", "bg-purple.mp4", "bg-red.mp4", "bg-grid.mp4"):
-        assert old not in src, f"stale per-chapter pool reference left in BgVideo.tsx: {old}"
+    assert "OffthreadVideo" not in src and "staticFile" not in src, \
+        "BgVideo must no longer render video footage"
+    for old in (".mp4", "bg-topo", "bg-navy", "bg-purple", "bg-red", "bg-grid"):
+        assert old not in src, f"stale video-background reference left in BgVideo.tsx: {old}"
 
 def test_align_mjs_threads_chart_and_screenshot_file():
     src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
