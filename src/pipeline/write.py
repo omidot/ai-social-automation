@@ -246,7 +246,8 @@ def _normalise_bullets(raw) -> list[str]:
 
 # Iman-Gadzhi-style voice, described in Vietnamese.
 _IMAN_VOICE = (
-    "GIỌNG VĂN (bắt buộc): Câu ngắn, dứt khoát. Nhịp mạnh. Ít từ thừa, cắt sạch chữ đệm. "
+    "GIỌNG VĂN (bắt buộc, phong cách Iman Gadzhi): Câu ngắn, dứt khoát. Nhịp mạnh. Ít từ "
+    "thừa, cắt sạch chữ đệm. "
     "Có chính kiến rõ: dám nói \"đa số mọi người hiểu sai chỗ này\", "
     "\"cái thực sự quan trọng là...\". "
     "Mỗi ý là MỘT bài học hoặc nguyên tắc rút ra, KHÔNG phải tóm tắt tin — "
@@ -256,7 +257,25 @@ _IMAN_VOICE = (
     "Mở đầu bằng MỘT câu tuyên bố mạnh hoặc một sự thật ngược đời — "
     "KHÔNG mở bằng \"Công ty X vừa công bố...\". "
     "Kết bằng một câu chốt sắc + một câu hỏi mời tranh luận. "
-    "TUYỆT ĐỐI KHÔNG chèn URL/đường link. Chỉ nhắc tên nguồn dạng chữ (vd: \"theo VnExpress\")."
+    "TUYỆT ĐỐI KHÔNG chèn URL/đường link. Chỉ nhắc tên nguồn dạng chữ (vd: \"theo VnExpress\"). "
+    "\n\nSÁU YẾU TỐ CỐT LÕI của giọng Iman Gadzhi — mọi bài phải chạm đủ cả sáu, không phải "
+    "chỉ đưa tin:\n"
+    "1. CẢM XÚC: viết để người đọc THẤY gì đó (sốc, tức, tò mò, hy vọng), không chỉ biết "
+    "thông tin. Chọn từ có sức nặng cảm xúc thay vì trung tính.\n"
+    "2. CÂU CHUYỆN: dựng thành một mạch có mở đầu — biến cố — bài học, không phải liệt kê "
+    "sự kiện rời rạc. Người đọc phải cảm giác đang theo dõi một câu chuyện, không phải đọc "
+    "bản tin.\n"
+    "3. SỰ KẾT NỐI: nói thẳng vào hoàn cảnh của người đọc, không nói về \"thị trường\" hay "
+    "\"ngành\" một cách xa cách. Dùng \"bạn\" xuyên suốt, gắn bài học vào tình huống cụ thể "
+    "họ có thể đang gặp.\n"
+    "4. CÁ TÍNH RIÊNG: có góc nhìn RÕ RÀNG của người viết, dám khác số đông, không trung lập "
+    "an toàn. Một bài không có ai phản đối là một bài nhạt.\n"
+    "5. NIỀM TIN: phát biểu một niềm tin/nguyên tắc mà người viết thực sự đứng sau, không "
+    "chỉ tường thuật \"có người nói rằng\". Nói bằng giọng của người ĐANG TIN điều đó, không "
+    "phải người đang trích dẫn.\n"
+    "6. TƯƠNG PHẢN ĐỐI NGHỊCH: đặt hai thái cực cạnh nhau để tạo độ căng — số đông nghĩ A "
+    "nhưng sự thật là B; trước kia thế này, giờ ngược lại; người thắng làm X trong khi người "
+    "thua vẫn làm Y. Tương phản là thứ giữ chân người đọc, không phải chi tiết phụ."
 )
 
 

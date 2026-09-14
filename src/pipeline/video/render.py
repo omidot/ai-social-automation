@@ -13,6 +13,7 @@ from . import AlignError
 from . import align as _align
 from . import codegen as _codegen
 from . import screenshot as _screenshot
+from . import script as _script
 from ..publish import slot_unix
 
 log = logging.getLogger("video.render")
@@ -236,8 +237,12 @@ def render_pending(ds, tg, root: Path, now: datetime, *, limit: int = 1) -> list
                                       "tg_file_id": tg_file_id,
                                       "seconds": round(seconds, 1), "render_err": None,
                                       "publish_due": due.isoformat()})
-            target = cfg.get("target_seconds", 40)
-            if not (target * 0.6 <= seconds <= target * 1.4):
+            # Length is flexible per script now (2-5 min, driven by how much
+            # real content it has), so "off" means off THIS script's own
+            # word count, not a fixed config target that no longer matches
+            # most drafts.
+            expected = s.word_count / _script.WORDS_PER_MINUTE * 60
+            if not (expected * 0.6 <= seconds <= expected * 1.4):
                 tg.send_message(f"⚠️ Timeline lệch ({seconds:.0f}s), xem kỹ trước khi đăng.")
             out.append(f"rendered:{date}:{slot}")
         except Exception as e:  # noqa: BLE001 - any failure => slot back to awaiting_audio (C2/C3)

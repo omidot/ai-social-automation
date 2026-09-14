@@ -360,3 +360,25 @@ def test_prompt_forbids_fabricating_facts():
     sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
     assert "KHÔNG ĐƯỢC BỊA" in sysp
     assert "bài gốc" in sysp.lower()
+
+
+def test_prompt_states_flexible_length_not_fixed_target():
+    """Length must follow how much real content the source has (2-5 min),
+    not a single fixed-seconds target -- a fixed target either pads a thin
+    story or cuts a rich one."""
+    sysp, _ = script.build_prompt(_cand(), _post(), VOICE,
+                                  {"target_seconds": 210, "words_min": 400, "words_max": 1050})
+    assert "ĐỘ DÀI LINH HOẠT" in sysp
+    assert "2-5 phút" in sysp or ("2" in sysp and "5 phút" in sysp)
+    assert "giây cho kênh" not in sysp  # the old fixed-seconds phrasing is gone
+
+
+def test_prompt_pushes_varied_data_across_multiple_sources():
+    """When the source text carries multiple labeled sources ([Nguồn 1],
+    [Nguồn 2], ...), the writer must be told to pull DIFFERENT real numbers
+    from each into the charts, not just lean on one source and ignore the
+    rest -- otherwise multi-source grounding buys corroboration but not the
+    varied report elements it was meant to enable."""
+    sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
+    assert "[Nguồn 1]" in sysp and "[Nguồn 2]" in sysp
+    assert "SỐ LIỆU RIÊNG" in sysp

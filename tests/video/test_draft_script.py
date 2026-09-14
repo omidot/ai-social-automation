@@ -130,3 +130,24 @@ def test_draft_skipped_when_video_disabled(tmp_path):
                              generate=lambda *a, **k: calls.append(1) or "{}", tg=FakeTG())
     assert out == {"skipped": True}
     assert calls == []
+
+
+def test_draft_lists_every_corroborating_source(tmp_path):
+    root = _wire(tmp_path)
+    tg = FakeTG()
+    now = datetime(2026, 9, 8, 0, 5, tzinfo=timezone.utc)
+    v = draft_script.draft(
+        "morning", root, title="OpenAI ra mắt mô hình video",
+        source_url="https://openai.com/x", body_text="Bài gốc dài",
+        caption_fb="Caption.", angle="chia sẻ", now=now,
+        generate=_fake_gen_ok, tg=tg,
+        extra_sources=[{"name": "TechCrunch", "url": "https://techcrunch.com/y"},
+                       {"name": "The Verge", "url": "https://theverge.com/z"}])
+    assert v["extra_sources"] == [{"name": "TechCrunch", "url": "https://techcrunch.com/y"},
+                                  {"name": "The Verge", "url": "https://theverge.com/z"}]
+    saved = DailyState(root / "data").get_safe("2026-09-08", "morning")["video"]
+    assert saved["extra_sources"] == v["extra_sources"]
+    msg = next(m for m in tg.msgs if "Kịch bản video morning" in m)
+    assert "https://openai.com/x" in msg
+    assert "https://techcrunch.com/y" in msg
+    assert "https://theverge.com/z" in msg

@@ -179,6 +179,59 @@ def test_collapse_similar_merges_and_counts():
     assert len(out) == 2
     merged = [x for x in out if "OpenAI" in x.title][0]
     assert merged.source_count == 2
+    # The representative must remember the OTHER outlet too, by name and
+    # URL -- this is what lets the writer pull distinct numbers from more
+    # than one source and lets the user see every source that fed a script,
+    # not just the one it happened to be filed under.
+    assert merged.also_reported_by == [{"name": "B", "url": "https://b.com/y"}]
+
+
+def test_ensure_multi_source_text_merges_labeled_excerpts(monkeypatch):
+    from pipeline.collect import ensure_multi_source_text
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    c = Candidate(url="https://a.com/x", title="OpenAI launches GPT-6", source="rss:A",
+                 published_at=now, full_text="Bài gốc nguồn A.",
+                 also_reported_by=[{"name": "B", "url": "https://b.com/y"}])
+
+    def fake_extract(url):
+        assert url == "https://b.com/y"
+        return "Bài gốc nguồn B, có số liệu khác.", None
+
+    monkeypatch.setattr("pipeline.collect._extract", fake_extract)
+    ensure_multi_source_text(c)
+    assert "[Nguồn 1 — rss:A]" in c.full_text
+    assert "Bài gốc nguồn A." in c.full_text
+    assert "[Nguồn 2 — B]" in c.full_text
+    assert "Bài gốc nguồn B, có số liệu khác." in c.full_text
+
+
+def test_ensure_multi_source_text_skips_a_failed_extra_source(monkeypatch):
+    """One unreachable extra source must not cost the primary article --
+    only the working sources are appended."""
+    from pipeline.collect import ensure_multi_source_text
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    c = Candidate(url="https://a.com/x", title="t", source="rss:A", published_at=now,
+                 full_text="Bài gốc nguồn A.",
+                 also_reported_by=[{"name": "B", "url": "https://b.com/y"}])
+
+    def boom(url):
+        raise RuntimeError("network down")
+
+    monkeypatch.setattr("pipeline.collect._extract", boom)
+    ensure_multi_source_text(c)
+    assert c.full_text == "Bài gốc nguồn A."
+
+
+def test_ensure_multi_source_text_noop_without_extra_sources():
+    from pipeline.collect import ensure_multi_source_text
+    from pipeline.models import Candidate
+    now = datetime(2026, 9, 5, tzinfo=timezone.utc)
+    c = Candidate(url="https://a.com/x", title="t", source="rss:A", published_at=now,
+                 full_text="Bài gốc nguồn A.")
+    ensure_multi_source_text(c)
+    assert c.full_text == "Bài gốc nguồn A."
 
 
 def _rss_response(entries_xml: str) -> str:

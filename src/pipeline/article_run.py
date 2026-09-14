@@ -88,6 +88,8 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
             if not score.has_body(c):
                 collect.ensure_fulltext(c)
         picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+        for _sc, c in picked:
+            collect.ensure_multi_source_text(c)
         if os.environ.get("ARTICLE_DEBUG") == "1":
             log.info("picked_after_has_body=%d", len(picked))
     except collect.CollectError as e:
@@ -108,7 +110,7 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
             continue
         news_title = cand.title
         src = cand.source.split(":", 1)[1] if ":" in cand.source else cand.source
-        news_sources = [{"name": src, "url": cand.url}]
+        news_sources = [{"name": src, "url": cand.url}] + cand.also_reported_by
         break
 
     if attempted:
@@ -207,7 +209,8 @@ def draft(slot: str, root: Path, now: datetime, *, generate=None, tg=None, meta=
                 slot, root, title=title,
                 source_url=(state_sources[0]["url"] if state_sources else ""),
                 body_text=video_body, caption_fb=article.caption_fb,
-                angle=angle, now=now, generate=generate, tg=tg)
+                angle=angle, now=now, generate=generate, tg=tg,
+                extra_sources=state_sources[1:])
         except Exception as e:  # noqa: BLE001 - video is secondary; the article flow must continue
             log.warning("video draft_script failed: %s", e)
             try:
@@ -249,6 +252,8 @@ def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> d
         if not score.has_body(c):
             collect.ensure_fulltext(c)
     picked = [(sc, c) for sc, c in picked if score.has_body(c)]
+    for _sc, c in picked:
+        collect.ensure_multi_source_text(c)
 
     for _sc, cand in picked:
         try:
@@ -264,7 +269,8 @@ def draft_fresh_video(root: Path, now: datetime, *, generate=None, tg=None) -> d
             TEST_SLOT, root, title=cand.title, source_url=cand.url,
             body_text=cand.full_text or cand.summary or article.caption_fb,
             caption_fb=article.caption_fb,
-            angle=article.angle, now=now, generate=generate, tg=tg)
+            angle=article.angle, now=now, generate=generate, tg=tg,
+            extra_sources=cand.also_reported_by)
     raise SystemExit("no fresh real-news candidate available for a test video")
 
 

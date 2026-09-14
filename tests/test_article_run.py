@@ -643,3 +643,37 @@ def test_evening_gets_morning_angle_as_sibling_hint(wired, monkeypatch):
     now = datetime(2026, 9, 6, 10, 5, tzinfo=timezone.utc)
     article_run.draft("evening", root, now, tg=tg, meta=object())
     assert captured["sibling_angle"] == "tin-nong"
+
+
+def test_draft_video_from_news_passes_extra_sources(wired, monkeypatch):
+    root, _ = wired
+    _enable_video(root)
+    cand = _news_cand()
+    cand.also_reported_by = [{"name": "TechCrunch", "url": "https://techcrunch.com/y"}]
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda c, voice, sibling_angle="", generate=None: _art(c.title))
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    out = article_run.draft("morning", root, now, tg=FakeTG(), meta=object())
+    assert out["status"] == "scheduled"
+    assert seen["extra_sources"] == [{"name": "TechCrunch", "url": "https://techcrunch.com/y"}]
+
+
+def test_draft_fresh_video_passes_extra_sources(wired, monkeypatch):
+    root, _ = wired
+    cand = _news_cand()
+    cand.also_reported_by = [{"name": "TechCrunch", "url": "https://techcrunch.com/y"}]
+    monkeypatch.setattr(article_run.collect, "collect", lambda *a, **k: [cand])
+    monkeypatch.setattr(article_run.write, "write_share",
+                        lambda c, voice, sibling_angle="", generate=None: _art(c.title))
+    seen = {}
+    monkeypatch.setattr(article_run._video_draft, "draft",
+                        lambda slot, r, **k: seen.update(slot=slot, **k)
+                        or {"status": "awaiting_audio"})
+    now = datetime(2026, 9, 6, 0, 5, tzinfo=timezone.utc)
+    article_run.draft_fresh_video(root, now, tg=FakeTG())
+    assert seen["extra_sources"] == [{"name": "TechCrunch", "url": "https://techcrunch.com/y"}]

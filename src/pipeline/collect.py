@@ -94,8 +94,42 @@ def _collapse_similar(cands: list[Candidate]) -> list[Candidate]:
                 rep.full_text = m.full_text
             if not rep.top_image and m.top_image:
                 rep.top_image = m.top_image
+        rep.also_reported_by = [
+            {"name": m.source.split(":", 1)[1] if ":" in m.source else m.source, "url": m.url}
+            for m in g if m is not rep and m.url != rep.url
+        ][:5]
         out.append(rep)
     return out
+
+
+def ensure_multi_source_text(c: Candidate, max_extra: int = 2) -> None:
+    """Enrich ``c.full_text`` with excerpts from up to ``max_extra`` other
+    outlets that reported the same story (``c.also_reported_by``), each
+    labeled by source name.
+
+    A video/article grounded in one outlet only has one outlet's numbers to
+    draw from; this gives the writer real, distinct figures and quotes from
+    several corroborating sources to build a richer script and varied chart
+    data from, instead of one thin article stretched to fill the runtime.
+    Best-effort: an extra source that fails to fetch is skipped, never
+    raised -- this must never cost the primary article.
+    """
+    if not c.also_reported_by or not c.full_text:
+        return
+    parts = [f"[Nguồn 1 — {c.source}]\n{c.full_text}"]
+    for i, other in enumerate(c.also_reported_by[:max_extra], start=2):
+        url = other.get("url", "")
+        if not url or _is_google_news_url(url):
+            continue
+        try:
+            text, _img = _extract(url)
+        except Exception as e:  # noqa: BLE001
+            log.warning("extract extra source %s failed: %s", url, e)
+            continue
+        if text:
+            parts.append(f"[Nguồn {i} — {other.get('name', '')}]\n{text}")
+    if len(parts) > 1:
+        c.full_text = "\n\n".join(parts)
 
 
 def from_rss(feeds: list[dict], now: datetime) -> list[Candidate]:

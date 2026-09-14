@@ -251,6 +251,16 @@ def test_build_take_prompt_uses_iman_voice_and_angle():
     assert "chia sẻ" in sysp or "chính kiến" in sysp
 
 
+def test_iman_voice_names_all_six_core_factors():
+    """The tone request is not just "punchy short sentences" -- it names six
+    specific factors (emotion, story, connection, personal character,
+    conviction, contrast) that a generic "confident voice" instruction does
+    not reliably produce on its own."""
+    for factor in ("CẢM XÚC", "CÂU CHUYỆN", "SỰ KẾT NỐI", "CÁ TÍNH RIÊNG",
+                   "NIỀM TIN", "TƯƠNG PHẢN"):
+        assert factor in write._IMAN_VOICE
+
+
 def test_write_take_builds_storyboard_arc():
     art = write.write_take(
         "5 công cụ AI viết content", "quan-diem", "vì hầu hết dùng sai cách",

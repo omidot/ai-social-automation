@@ -28,7 +28,8 @@ def _make_id(slot: str, title: str, now: datetime) -> str:
 
 
 def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
-          caption_fb: str, angle: str, now: datetime, generate=None, tg=None) -> dict:
+          caption_fb: str, angle: str, now: datetime, generate=None, tg=None,
+          extra_sources: list[dict] = ()) -> dict:
     root = Path(root)
     cfg = (yaml.safe_load((root / "config/settings.yaml").read_text(encoding="utf-8"))
            or {}).get("video") or {}
@@ -63,9 +64,16 @@ def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
     _script.write_script_json(s, out_dir)
 
     spoken = s.spoken_text
-    src_line = f"🔗 Nguồn: {source_url}\n\n" if source_url else ""
+    src_lines = [f"🔗 Nguồn: {source_url}"] if source_url else []
+    src_lines += [f"   + {x.get('name', '')}: {x['url']}"
+                 for x in extra_sources if x.get("url")]
+    src_line = ("\n".join(src_lines) + "\n\n") if src_lines else ""
+    # Length is flexible per script now (2-5 min), so the recording-time hint
+    # must reflect THIS script's real word count, not a fixed config number
+    # that no longer matches most drafts.
+    est_seconds = round(s.word_count / _script.WORDS_PER_MINUTE * 60)
     msg = (f"🎬 Kịch bản video {slot} ({date})\n\n{src_line}{spoken}\n\n"
-           f"▶️ Thu âm đọc đúng đoạn trên (~{cfg.get('target_seconds', 40)}s), "
+           f"▶️ Thu âm đọc đúng đoạn trên (~{est_seconds}s), "
            "gửi file audio lại cho bot.")
     script_msg_id = None
     if tg is not None:
@@ -79,6 +87,7 @@ def draft(slot: str, root: Path, *, title: str, source_url: str, body_text: str,
     video = {
         "status": "awaiting_audio",
         "source_url": source_url or None,
+        "extra_sources": list(extra_sources) or None,
         "meta": meta.to_dict(),
         "spoken_text": spoken,
         "script": s.to_dict(),
@@ -113,7 +122,7 @@ def redraft(slot: str, date: str, root: Path) -> dict:
         source_url=(sources[0]["url"] if sources else ""),
         body_text=existing.get("text_fb", ""), caption_fb=existing.get("text_fb", ""),
         angle=existing.get("angle", ""), now=datetime.now(timezone.utc),
-        tg=Telegram())
+        tg=Telegram(), extra_sources=sources[1:])
 
 
 def main() -> None:

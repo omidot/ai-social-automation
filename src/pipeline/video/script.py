@@ -11,10 +11,16 @@ from ..write import _IMAN_VOICE
 from . import VideoScriptError
 from .models import Script
 
-# Slack around the displayed-word band. Sized against the 150s target: a
-# fixed 15 words made sense for a 60s script but is punishing on a band
-# four times wider -- a real draft was thrown away for overshooting by 4.
+# Slack around the displayed-word band. Length is intentionally flexible
+# (2-5 minutes, driven by how much real content the source has), so this
+# only catches the model landing just outside its own chosen range.
 log = logging.getLogger("video.script")
+
+# Measured on real recordings in this style (211 words/62.85s, 502 words/
+# 136.75s): ~200-220 words per minute. Used only to translate the word-count
+# band into an approximate minute range for prompts and sanity checks --
+# actual pacing always comes from the real per-word timestamps at render time.
+WORDS_PER_MINUTE = 210
 
 _NUDGE = 40
 # Past the nudge the script is off-length but still perfectly renderable.
@@ -26,20 +32,25 @@ _SALVAGE_LO, _SALVAGE_HI = 0.6, 1.6
 def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
                  *, with_meta: bool = False) -> tuple[str, str]:
     wmin, wmax = cfg["words_min"], cfg["words_max"]
+    lo_min, hi_min = wmin / WORDS_PER_MINUTE, wmax / WORDS_PER_MINUTE
     shape = ("{sections:[{label,card_start}], "
              "cards:[{lines,variant,anchor,motion_in,motion_out,num?,chart?,screenshot?}]"
              + (", publish:{title,description,hashtags,keywords,tiktok_caption}}"
                 if with_meta else "}"))
     system = (
-        f"Bạn viết kịch bản video dọc ~{cfg['target_seconds']} giây cho kênh "
-        f"\"{voice.get('ten_kenh', '')}\" về AI, phong cách kinetic typography. "
+        f"Bạn viết kịch bản video dọc cho kênh \"{voice.get('ten_kenh', '')}\" về AI, "
+        "phong cách kinetic typography. ĐỘ DÀI LINH HOẠT theo lượng thông tin thật có, "
+        f"khoảng {lo_min:.0f}-{hi_min:.0f} phút — đừng độn chữ cho đủ dài nếu bài gốc mỏng, "
+        "cũng đừng cắt bớt nội dung thật nếu bài gốc có nhiều số liệu/câu chuyện đáng kể. "
         f"{_IMAN_VOICE} "
         f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
         f"Góc bài: {post.angle}. Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. "
         f"CHỈ trả về một object JSON: {shape}. "
         f"Tổng số TỪ HIỂN THỊ trên màn hình từ {wmin} đến {wmax} (không tính dòng bắt đầu bằng '~'). "
-        "28-40 card; 5-7 section; sections[0].card_start=0; card_start tăng dần. "
+        "Số card tỉ lệ với độ dài thật viết ra (khoảng 15-17 từ/card); với "
+        f"{wmin}-{wmax} từ rơi vào khoảng 22-70 card. 5-7 section; "
+        "sections[0].card_start=0; card_start tăng dần. "
         "Mỗi 'line' <= 7 từ. "
         "\n\nGIỮ CHÂN NGƯỜI XEM — đây là yêu cầu quan trọng nhất, quan trọng hơn "
         "đưa tin đầy đủ. Video bị lướt qua là video vứt đi. Bắt buộc:\n"
@@ -97,8 +108,14 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         "'screenshot': {query} — chỉ thêm khi bài nhắc tới một sản phẩm/repo/trang web CỤ THỂ "
         "có thể tìm bằng Google (vd query='GitHub OpenAI Codex'), query tối đa 100 ký tự. "
         "QUAN TRỌNG: video toàn chữ rất chán. Hễ card nào có từ 2 con số trở lên đáng so "
-        "sánh thì PHẢI gắn 'chart'. Nhắm ít nhất 3-4 card có chart hoặc screenshot trong "
-        "mỗi kịch bản; chỉ bỏ qua khi bài thật sự không có số liệu hay sản phẩm cụ thể nào."
+        "sánh thì PHẢI gắn 'chart'. Nhắm ít nhất 4-8 card có chart hoặc screenshot trong "
+        "mỗi kịch bản (tỉ lệ theo độ dài — bài càng dài càng cần nhiều); chỉ bỏ qua khi bài "
+        "thật sự không có số liệu hay sản phẩm cụ thể nào. "
+        "Khi bài gốc bên dưới có NHIỀU NGUỒN (đánh dấu [Nguồn 1], [Nguồn 2]...): mỗi nguồn "
+        "thường có SỐ LIỆU RIÊNG, không trùng nhau — ưu tiên dựng chart từ những số liệu "
+        "khác nhau đó (vd nguồn A cho giá, nguồn B cho tốc độ, nguồn C cho thị phần) thay vì "
+        "chỉ lấy số ở một nguồn rồi bỏ qua các nguồn còn lại. Càng nhiều loại số liệu thật "
+        "khác nhau, report càng đa dạng."
     )
     if with_meta:
         system += (
@@ -121,8 +138,8 @@ def _validate(data: dict, cfg: dict) -> Script:
     if not isinstance(data, dict) or "cards" not in data or "sections" not in data:
         raise VideoScriptError("missing 'cards'/'sections'")
     cards, sections = data["cards"], data["sections"]
-    if not (18 <= len(cards) <= 48):
-        raise VideoScriptError(f"card count {len(cards)} out of 18..48")
+    if not (18 <= len(cards) <= 80):
+        raise VideoScriptError(f"card count {len(cards)} out of 18..80")
     if not (2 <= len(sections) <= 6):
         raise VideoScriptError(f"section count {len(sections)} out of 2..6")
     try:

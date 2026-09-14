@@ -1,6 +1,6 @@
 from __future__ import annotations
 import hashlib, re
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from datetime import datetime, timezone
 
 
@@ -22,6 +22,12 @@ class Candidate:
     full_text: str = ""
     top_image: str | None = None
     source_count: int = 1
+    # Other outlets that reported the same story (set by
+    # collect._collapse_similar's title-similarity clustering), as
+    # [{"name": ..., "url": ...}] -- lets the writer pull real, distinct
+    # numbers/quotes from several corroborating sources into one script
+    # instead of just the single representative article.
+    also_reported_by: list[dict] = field(default_factory=list)
 
     @property
     def url_hash(self) -> str:
