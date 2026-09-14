@@ -22,11 +22,11 @@ from . import logos as _logos
 
 log = logging.getLogger("video.build")
 
-_CFG_DEFAULTS = {"enabled": False, "target_seconds": 40, "words_min": 110,
-                 "words_max": 140}
+_CFG_DEFAULTS = {"enabled": False, "target_seconds": 150, "words_min": 230,
+                 "words_max": 300}
 
 # Canned script for --fake-llm: lets the CLI / CI smoke run the full chain with
-# no LLM credentials. ~166 displayed Vietnamese words, 19 cards, 3 sections --
+# no LLM credentials. ~296 displayed Vietnamese words, 30 cards, 3 sections --
 # must stay inside config/settings.yaml's video.words_min/words_max band (the
 # fake LLM always returns this same script, so it can never self-correct via
 # the retry-and-nudge loop like a real one would).
@@ -79,6 +79,28 @@ _FAKE_SCRIPT_JSON = json.dumps({
          "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "down"},
         {"lines": ["Chỉ là", "bạn đã bắt đầu chưa?"],
          "variant": "invert", "anchor": "mid", "motion_in": "fall", "motion_out": "wipeOut"},
+        {"lines": ["Nhưng con số đầu tiên", "mới là thứ khiến người ta chú ý."],
+         "variant": "stack", "anchor": "mid", "motion_in": "wipe", "motion_out": "up"},
+        {"lines": ["Bản trước đó", "mất gần hai tiếng cho mỗi lượt chạy."],
+         "variant": "right", "anchor": "top", "motion_in": "slideR", "motion_out": "down"},
+        {"lines": ["Bản mới rút xuống", "chưa tới bốn phút là xong."],
+         "variant": "mark", "anchor": "mid", "motion_in": "slam", "motion_out": "shrink"},
+        {"lines": ["Đội kiểm định độc lập", "đã chạy lại toàn bộ bài đo."],
+         "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "dissolve"},
+        {"lines": ["Và họ ra", "một bảng điểm khác hẳn công bố ban đầu."],
+         "variant": "stair", "anchor": "mid", "motion_in": "fall", "motion_out": "up"},
+        {"lines": ["Điều đó nghĩa là", "bảng xếp hạng chỉ kể được nửa câu chuyện."],
+         "variant": "invert", "anchor": "mid", "motion_in": "pop", "motion_out": "wipeOut"},
+        {"lines": ["Người dùng thật", "lại quan tâm tới thứ hoàn toàn khác."],
+         "variant": "stack", "anchor": "top", "motion_in": "slideL", "motion_out": "down"},
+        {"lines": ["Tốc độ phản hồi", "quan trọng hơn vài điểm chênh lệch."],
+         "variant": "mark", "anchor": "mid", "motion_in": "wipe", "motion_out": "shrink"},
+        {"lines": ["Và giá mỗi tác vụ", "mới là thứ quyết định bạn chọn cái nào."],
+         "variant": "stair", "anchor": "mid", "motion_in": "rise", "motion_out": "up"},
+        {"lines": ["Giờ hãy quay lại", "con số mình nói ở đầu video này."],
+         "variant": "hero", "anchor": "mid", "motion_in": "slam", "motion_out": "dissolve"},
+        {"lines": ["Bạn sẽ thấy", "nó vốn đã hé lộ toàn bộ câu chuyện."],
+         "variant": "stack", "anchor": "mid", "motion_in": "fall", "motion_out": "up"},
     ],
 }, ensure_ascii=False)
 

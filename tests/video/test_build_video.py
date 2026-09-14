@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 FX = Path(__file__).resolve().parents[1] / "fixtures" / "video"
 VOICE_FX = FX / "voice_fixture.wav"
 NOW = datetime(2026, 9, 3, 1, 0, tzinfo=timezone.utc)
-CFG = {"enabled": True, "target_seconds": 40, "words_min": 110, "words_max": 140,
+CFG = {"enabled": True, "target_seconds": 150, "words_min": 230, "words_max": 300,
        "render_composition": "CodexShort"}
 
 pytestmark = pytest.mark.needs_node  # align.mjs + ffmpeg-static
@@ -51,7 +51,7 @@ def test_build_writes_all_artefacts(tmp_path, monkeypatch):
     assert (repo / "video/src/timeline.json").exists()
     vdir = repo / "output/2026-09-03" / man["id"] / "video"
     assert (vdir / "script.json").exists() and (vdir / "timeline.json").exists()
-    assert man["word_count"] >= 95 and man["cards"] == 14
+    assert man["word_count"] >= 230 and man["cards"] == 30
     assert man["audio_source"] == "user-audio"
 
 
@@ -106,7 +106,7 @@ def test_build_survives_transcribe_exception(tmp_path, monkeypatch):
     cand, post = _story()
     man = build_video.build(repo, cand, post, NOW, CFG, voice_wav=VOICE_FX,
                             llm=lambda s, u, **k: raw, transcribe=boom)
-    assert man["cards"] == 14  # build completes on the silence-heuristic fallback
+    assert man["cards"] == 30  # build completes on the silence-heuristic fallback
 
 
 def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
@@ -123,8 +123,8 @@ def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
     (repo / "config").mkdir()
     (repo / "config/voice.yaml").write_text("giong: x\n", encoding="utf-8")
     (repo / "config/settings.yaml").write_text(
-        "video:\n  enabled: false\n  target_seconds: 60\n  words_min: 165\n"
-        "  words_max: 210\n  render_composition: CodexShort\n", encoding="utf-8")
+        "video:\n  enabled: false\n  target_seconds: 150\n  words_min: 230\n"
+        "  words_max: 300\n  render_composition: CodexShort\n", encoding="utf-8")
 
     monkeypatch.setattr(build_video, "_copy_as_mp3",
                         lambda s, d, v: shutil.copy(s, d))
@@ -145,7 +145,7 @@ def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
     man = json.loads(manifests[0].read_text(encoding="utf-8"))
     assert "skipped" not in man
     assert man["audio_source"] == "user-audio"
-    assert man["cards"] == 19
+    assert man["cards"] == 30
 
 
 def test_main_requires_voice(capsys):

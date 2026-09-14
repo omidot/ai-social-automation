@@ -7,7 +7,7 @@ from pipeline.video import script, VideoScriptError
 from pipeline.video.models import Script, VideoMeta
 
 FX = Path(__file__).resolve().parents[1] / "fixtures" / "video"
-CFG = {"target_seconds": 40, "words_min": 110, "words_max": 140}
+CFG = {"target_seconds": 150, "words_min": 230, "words_max": 300}
 VOICE = {"xung_ho": {"nguoi_noi": "mình", "nguoi_nghe": "bạn"}, "giong": "thân thiện",
          "cam_ky": ["không giật tít sai"], "ten_kenh": "A Hít Official"}
 
@@ -25,7 +25,7 @@ def _post():
 
 def test_build_prompt_carries_constraints():
     sysp, usr = script.build_prompt(_cand(), _post(), VOICE, CFG)
-    assert "110" in sysp and "140" in sysp
+    assert "230" in sysp and "300" in sysp
     assert "A Hít Official" in sysp
     assert "OpenAI ra model nhanh gấp đôi" in usr
 
@@ -33,7 +33,7 @@ def test_generate_parses_valid_response():
     raw = (FX / "raw_script.json").read_text(encoding="utf-8")
     s = script.generate(_cand(), _post(), VOICE, CFG, llm=lambda sy, u, **k: raw)
     assert isinstance(s, Script)
-    assert len(s.cards) == 14 and len(s.sections) == 4
+    assert len(s.cards) == 30 and len(s.sections) == 4
     assert s.sections[0].card_start == 0
     assert s.cards[10].num == 10
 
@@ -48,7 +48,7 @@ def test_generate_retries_on_short_script():
     assert len(calls) == 2
     assert "từ" in calls[1].lower()   # corrective feedback mentions word count
     assert "[SỬA]" in calls[1]        # corrective marker present
-    assert 95 <= s.word_count <= 155
+    assert 230 <= s.word_count <= 300
 
 def test_generate_raises_after_second_bad():
     short = (FX / "raw_script_short.json").read_text(encoding="utf-8")
@@ -124,12 +124,13 @@ def test_validate_meta_rejects(mutate):
 
 _VOICE = {"ten_kenh": "A Hít Official", "giong": "gãy gọn",
           "xung_ho": {"nguoi_noi": "mình", "nguoi_nghe": "bạn"}, "cam_ky": []}
-_CFG = {"target_seconds": 40, "words_min": 110, "words_max": 140}
+_CFG = {"target_seconds": 150, "words_min": 230, "words_max": 300}
 
 
 def _fake_full_reply():
-    cards = [{"lines": [f"Dòng số {i}", "thêm vài từ nữa cho đủ"], "variant": "stack",
-              "anchor": "mid", "motion_in": "rise", "motion_out": "up"} for i in range(12)]
+    cards = [{"lines": [f"Dòng số {i}", "thêm vài từ nữa cho đủ dài", "và thêm chút"],
+              "variant": "stack", "anchor": "mid", "motion_in": "rise",
+              "motion_out": "up"} for i in range(20)]
     return json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
         "cards": cards,
@@ -192,7 +193,7 @@ def test_generate_from_article_retries_on_word_band():
     short = json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 3}],
         "cards": [{"lines": ["ngắn"], "variant": "stack", "anchor": "mid",
-                   "motion_in": "rise", "motion_out": "up"} for _ in range(10)],
+                   "motion_in": "rise", "motion_out": "up"} for _ in range(20)],
         "publish": dict(_GOOD_META),
     }, ensure_ascii=False)
     calls = []
@@ -211,9 +212,9 @@ def _base_card():
     return {"lines": ["x"], "variant": "stack", "anchor": "mid",
             "motion_in": "rise", "motion_out": "up"}
 
-def _script_with_card(extra_card_fields, n_extra_cards=8):
-    # _validate() requires 8 <= len(cards) <= 20 -- 8 is the floor, so this
-    # default must stay at 8 (not 7) or every test below would fail on the
+def _script_with_card(extra_card_fields, n_extra_cards=20):
+    # _validate() requires 18 <= len(cards) <= 48 -- 18 is the floor, so this
+    # default must stay above 18 or every test below would fail on the
     # card-count check before ever reaching the chart/screenshot validation
     # this helper exists to exercise.
     cards = [_base_card() for _ in range(n_extra_cards)]

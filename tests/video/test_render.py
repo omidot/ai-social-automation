@@ -73,7 +73,7 @@ class FakeTG:
 
 def _seed(root, slot="morning", date="2026-09-08", *, enabled=True, **extra):
     (root / "config").mkdir(exist_ok=True)
-    _yaml = "video:\n  render_composition: CodexShort\n  target_seconds: 40\n"
+    _yaml = "video:\n  render_composition: CodexShort\n  target_seconds: 150\n"
     if enabled:
         _yaml += "  enabled: true\n"
     (root / "config" / "settings.yaml").write_text(_yaml, encoding="utf-8")
@@ -413,8 +413,9 @@ def test_render_pending_undo_mid_render_drops_result(tmp_path, monkeypatch):
 def _seam_llm(system, user, provider="auto"):
     """Fake LLM for draft_script: valid script+meta JSON, cards carry SEAMTOKENZZ."""
     import json
-    cards = [{"lines": ["Cau SEAMTOKENZZ", "vai tu nua cho du chu"], "variant": "stack",
-              "anchor": "mid", "motion_in": "rise", "motion_out": "up"} for _ in range(12)]
+    cards = [{"lines": ["Cau SEAMTOKENZZ", "vai tu nua cho du chu dai hon", "va them chut nua day"],
+              "variant": "stack", "anchor": "mid", "motion_in": "rise",
+              "motion_out": "up"} for _ in range(20)]
     return json.dumps({
         "sections": [{"label": "MO", "card_start": 0}, {"label": "GIUA", "card_start": 6}],
         "cards": cards,
@@ -430,8 +431,8 @@ def _seam_llm(system, user, provider="auto"):
 def test_draft_to_render_seam_regenerates_from_persisted_script(tmp_path, monkeypatch):
     (tmp_path / "config").mkdir()
     (tmp_path / "config" / "settings.yaml").write_text(
-        "video:\n  enabled: true\n  target_seconds: 40\n  words_min: 110\n"
-        "  words_max: 140\n  render_composition: CodexShort\n", encoding="utf-8")
+        "video:\n  enabled: true\n  target_seconds: 150\n  words_min: 230\n"
+        "  words_max: 300\n  render_composition: CodexShort\n", encoding="utf-8")
     (tmp_path / "config" / "voice.yaml").write_text(
         "ten_kenh: A Hit\ngiong: vui\nxung_ho: {nguoi_noi: minh, nguoi_nghe: ban}\ncam_ky: []\n",
         encoding="utf-8")

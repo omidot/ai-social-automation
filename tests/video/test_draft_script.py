@@ -15,8 +15,8 @@ class FakeTG:
 def _wire(tmp_path):
     (tmp_path / "config").mkdir()
     (tmp_path / "config" / "settings.yaml").write_text(
-        "video:\n  enabled: true\n  target_seconds: 40\n  words_min: 110\n"
-        "  words_max: 140\n  render_composition: CodexShort\n", encoding="utf-8")
+        "video:\n  enabled: true\n  target_seconds: 150\n  words_min: 230\n"
+        "  words_max: 300\n  render_composition: CodexShort\n", encoding="utf-8")
     (tmp_path / "config" / "voice.yaml").write_text(
         "ten_kenh: A Hít\ngiong: vui\nxung_ho: {nguoi_noi: mình, nguoi_nghe: bạn}\ncam_ky: []\n",
         encoding="utf-8")
@@ -26,8 +26,9 @@ def _wire(tmp_path):
 
 def _fake_gen_ok(system, user, provider="auto"):
     import json
-    cards = [{"lines": [f"Câu {i}", "vài từ nữa cho đủ chữ"], "variant": "stack",
-              "anchor": "mid", "motion_in": "rise", "motion_out": "up"} for i in range(12)]
+    cards = [{"lines": [f"Câu {i}", "vài từ nữa cho đủ chữ dài hơn", "và thêm chút"],
+              "variant": "stack", "anchor": "mid", "motion_in": "rise",
+              "motion_out": "up"} for i in range(20)]
     return json.dumps({
         "sections": [{"label": "MỞ", "card_start": 0}, {"label": "GIỮA", "card_start": 6}],
         "cards": cards,

@@ -29,9 +29,27 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         f"Góc bài: {post.angle}. Điều cấm kỵ: {', '.join(voice.get('cam_ky', []))}. "
         f"CHỈ trả về một object JSON: {shape}. "
         f"Tổng số TỪ HIỂN THỊ trên màn hình từ {wmin} đến {wmax} (không tính dòng bắt đầu bằng '~'). "
-        "12-18 card; 3-5 section; sections[0].card_start=0; card_start tăng dần. "
-        "Card 0 là HOOK (0-3s). Card cuối là câu chốt mạnh. Mỗi 'line' <= 7 từ. "
-        "Thêm line '~cái' hoặc '~thì' khi cần nhịp đọc (được đọc, không hiện). "
+        "28-40 card; 5-7 section; sections[0].card_start=0; card_start tăng dần. "
+        "Mỗi 'line' <= 7 từ. "
+        "\n\nGIỮ CHÂN NGƯỜI XEM — đây là yêu cầu quan trọng nhất, quan trọng hơn "
+        "đưa tin đầy đủ. Video bị lướt qua là video vứt đi. Bắt buộc:\n"
+        "1. HOOK (card 0-1, 3 giây đầu): mở bằng CON SỐ hoặc sự kiện gây sốc cụ thể, "
+        "không mở bằng câu dẫn chung chung. SAI: 'AI đang thay đổi thế giới'. "
+        "ĐÚNG: 'Một con AI vừa làm xong việc 90 năm của nhà toán học trong 3 ngày'.\n"
+        "2. VÒNG LẶP MỞ: ngay trong 10 giây đầu phải hứa một điều chỉ tiết lộ ở cuối "
+        "(vd 'thứ kỳ lạ nhất nằm ở dòng cuối cùng'), rồi PHẢI trả lời đúng lời hứa đó "
+        "ở card gần cuối. Không hứa rồi bỏ lửng.\n"
+        "3. TRẢ THƯỞNG LIÊN TỤC: cứ khoảng 4-6 card phải có một điểm bất ngờ mới — con "
+        "số lệch hẳn dự đoán, một so sánh đắt, hoặc một sự thật ngược đời. Không để "
+        "người xem đi quá 15 giây mà không nhận được gì mới.\n"
+        "4. CỤ THỂ, KHÔNG CHUNG CHUNG: mọi câu phải có tên riêng, con số, mốc thời gian "
+        "hoặc hệ quả đo được. Cấm những câu ai viết cũng được như 'công nghệ phát triển "
+        "nhanh', 'điều này rất quan trọng', 'tương lai sẽ khác'.\n"
+        "5. ĐỔI NHỊP: xen câu rất ngắn (2-3 từ) giữa các câu dài để phá đều đều. Dùng "
+        "câu hỏi trực diện với người xem ở giữa bài, không dồn hết xuống cuối.\n"
+        "6. CHỐT ĐỂ XEM LẠI: card cuối phải gọi lại chi tiết đã nêu ở hook, khiến người "
+        "xem muốn tua lại đầu để kiểm chứng. Kết bằng câu hỏi buộc phải chọn phe "
+        "(vd 'bạn chọn tốc độ hay chính xác?'), không phải câu hỏi mơ hồ.\n\n"
         "variant ∈ stack|right|hero|invert|mark|stair|numeral|strike; "
         "anchor ∈ top|mid|low; motion_in ∈ rise|fall|slideR|slideL|wipe|pop|slam; "
         "motion_out ∈ up|down|dissolve|shrink|wipeOut. "
@@ -87,8 +105,8 @@ def _validate(data: dict, cfg: dict) -> Script:
     if not isinstance(data, dict) or "cards" not in data or "sections" not in data:
         raise VideoScriptError("missing 'cards'/'sections'")
     cards, sections = data["cards"], data["sections"]
-    if not (8 <= len(cards) <= 20):
-        raise VideoScriptError(f"card count {len(cards)} out of 8..20")
+    if not (18 <= len(cards) <= 48):
+        raise VideoScriptError(f"card count {len(cards)} out of 18..48")
     if not (2 <= len(sections) <= 6):
         raise VideoScriptError(f"section count {len(sections)} out of 2..6")
     try:
