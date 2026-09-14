@@ -22,11 +22,11 @@ from . import logos as _logos
 
 log = logging.getLogger("video.build")
 
-_CFG_DEFAULTS = {"enabled": False, "target_seconds": 150, "words_min": 230,
-                 "words_max": 300}
+_CFG_DEFAULTS = {"enabled": False, "target_seconds": 210, "words_min": 400,
+                 "words_max": 1050}
 
 # Canned script for --fake-llm: lets the CLI / CI smoke run the full chain with
-# no LLM credentials. ~296 displayed Vietnamese words, 30 cards, 3 sections --
+# no LLM credentials. ~384 displayed Vietnamese words, 38 cards, 3 sections --
 # must stay inside config/settings.yaml's video.words_min/words_max band (the
 # fake LLM always returns this same script, so it can never self-correct via
 # the retry-and-nudge loop like a real one would).
@@ -101,6 +101,22 @@ _FAKE_SCRIPT_JSON = json.dumps({
          "variant": "hero", "anchor": "mid", "motion_in": "slam", "motion_out": "dissolve"},
         {"lines": ["Bạn sẽ thấy", "nó vốn đã hé lộ toàn bộ câu chuyện."],
          "variant": "stack", "anchor": "mid", "motion_in": "fall", "motion_out": "up"},
+        {"lines": ["Cạnh tranh giờ", "không còn nằm ở điểm benchmark nữa."],
+         "variant": "mark", "anchor": "mid", "motion_in": "wipe", "motion_out": "shrink"},
+        {"lines": ["Nó nằm ở chi phí", "cho từng tác vụ thực tế."],
+         "variant": "stack", "anchor": "top", "motion_in": "rise", "motion_out": "down"},
+        {"lines": ["Đội ngũ phát triển", "đã âm thầm đổi hướng."],
+         "variant": "right", "anchor": "mid", "motion_in": "slideR", "motion_out": "dissolve"},
+        {"lines": ["Thay vì chạy đua điểm số,", "họ tối ưu tốc độ phản hồi."],
+         "variant": "invert", "anchor": "mid", "motion_in": "pop", "motion_out": "wipeOut"},
+        {"lines": ["Đây là thứ", "người dùng thật sự cảm nhận được."],
+         "variant": "stair", "anchor": "mid", "motion_in": "fall", "motion_out": "up"},
+        {"lines": ["Không phải một con số", "trên trang so sánh mô hình."],
+         "variant": "stack", "anchor": "mid", "motion_in": "wipe", "motion_out": "down"},
+        {"lines": ["Nhiều đội kỹ thuật khác", "cũng đang âm thầm làm vậy."],
+         "variant": "mark", "anchor": "top", "motion_in": "slam", "motion_out": "shrink"},
+        {"lines": ["Họ không công bố rầm rộ.", "Họ chỉ lặng lẽ đổi hạ tầng."],
+         "variant": "stack", "anchor": "mid", "motion_in": "rise", "motion_out": "up"},
     ],
 }, ensure_ascii=False)
 

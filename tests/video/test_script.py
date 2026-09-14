@@ -351,6 +351,22 @@ def test_absurdly_long_script_is_still_rejected():
                         llm=llm)
 
 
+def test_undershoot_is_never_salvaged():
+    """Real incident: a draft came back at 315 words against a 400 floor and
+    was silently kept via the (then-symmetric) salvage tolerance, shipping a
+    video well under the user's explicit "at least 2 minutes" floor. The
+    floor is a hard requirement, not a target to lean below -- salvage must
+    only ever rescue an OVERSHOOT, never an undershoot, so this now fails
+    loudly instead of slipping through."""
+    short = _reply_with_word_count(315)
+    def llm(system, user, provider="auto"):
+        return short
+    with pytest.raises(VideoScriptError, match="word count"):
+        script.generate(_cand(), _post(), VOICE,
+                        {"target_seconds": 210, "words_min": 400, "words_max": 1050},
+                        llm=llm)
+
+
 def test_prompt_forbids_fabricating_facts():
     """A real incident: a script reported a fabricated OpenAI IPO
     cancellation and an invented breach of "RubyGems" by an escaped AI
@@ -363,14 +379,18 @@ def test_prompt_forbids_fabricating_facts():
 
 
 def test_prompt_states_flexible_length_not_fixed_target():
-    """Length must follow how much real content the source has (2-5 min),
-    not a single fixed-seconds target -- a fixed target either pads a thin
-    story or cuts a rich one."""
+    """Length follows how much real content the source has, up to a 5-minute
+    ceiling -- not a single fixed-seconds target that either pads a thin
+    story or cuts a rich one. The floor is explicitly non-negotiable: an
+    earlier looser phrasing ("don't pad a thin source") gave the model an
+    excuse to undershoot, which is exactly what happened on a real draft
+    (315 words against a 400 floor, salvaged through silently)."""
     sysp, _ = script.build_prompt(_cand(), _post(), VOICE,
                                   {"target_seconds": 210, "words_min": 400, "words_max": 1050})
-    assert "ĐỘ DÀI LINH HOẠT" in sysp
-    assert "2-5 phút" in sysp or ("2" in sysp and "5 phút" in sysp)
+    assert "SÀN BẮT BUỘC" in sysp
+    assert "2 phút" in sysp and "5 phút" in sysp
     assert "giây cho kênh" not in sysp  # the old fixed-seconds phrasing is gone
+    assert "đừng độn chữ cho đủ dài nếu bài gốc mỏng" not in sysp
 
 
 def test_prompt_pushes_varied_data_across_multiple_sources():

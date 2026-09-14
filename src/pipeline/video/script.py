@@ -23,10 +23,14 @@ log = logging.getLogger("video.script")
 WORDS_PER_MINUTE = 210
 
 _NUDGE = 40
-# Past the nudge the script is off-length but still perfectly renderable.
-# Discarding it loses the whole draft -- and the user's turn -- over pacing,
-# so the final attempt keeps it as long as the length is not absurd.
-_SALVAGE_LO, _SALVAGE_HI = 0.6, 1.6
+# Past the nudge on the LONG side, the script is off-length but still
+# perfectly renderable -- discarding it loses the whole draft over pacing,
+# so the final attempt keeps it as long as it's not absurdly long. This is
+# deliberately asymmetric: the floor (wmin) is a hard requirement the user
+# set explicitly ("at least 2 minutes"), not a target to lean below when
+# convenient, so undershooting it is never salvaged, only retried then
+# failed loudly.
+_SALVAGE_HI = 1.6
 
 
 def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
@@ -39,9 +43,13 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
                 if with_meta else "}"))
     system = (
         f"Bạn viết kịch bản video dọc cho kênh \"{voice.get('ten_kenh', '')}\" về AI, "
-        "phong cách kinetic typography. ĐỘ DÀI LINH HOẠT theo lượng thông tin thật có, "
-        f"khoảng {lo_min:.0f}-{hi_min:.0f} phút — đừng độn chữ cho đủ dài nếu bài gốc mỏng, "
-        "cũng đừng cắt bớt nội dung thật nếu bài gốc có nhiều số liệu/câu chuyện đáng kể. "
+        f"phong cách kinetic typography. ĐỘ DÀI: {lo_min:.0f} phút là SÀN BẮT BUỘC, không "
+        f"phải gợi ý — mọi bản dưới {lo_min:.0f} phút đều bị coi là chưa đạt. Trần "
+        f"{hi_min:.0f} phút. Bài gốc bên dưới có thể có NHIỀU NGUỒN ([Nguồn 1], [Nguồn 2]...) "
+        "— dùng hết các góc mà từng nguồn cung cấp (bối cảnh, phản ứng, số liệu, hệ quả) để "
+        f"đủ chiều dài, tuyệt đối không lặp lại cùng một ý để độn cho đủ {lo_min:.0f} phút. "
+        "Nếu chỉ có một nguồn mỏng, khai thác sâu mọi chi tiết THẬT nó có (bối cảnh, ai liên "
+        "quan, vì sao xảy ra lúc này, ảnh hưởng gì) thay vì dừng sớm. "
         f"{_IMAN_VOICE} "
         f"Xưng \"{voice['xung_ho']['nguoi_noi']}\", "
         f"gọi khán giả \"{voice['xung_ho']['nguoi_nghe']}\". "
@@ -235,7 +243,11 @@ def generate(cand: Candidate, post: PostContent, voice: dict, cfg: dict, llm=Non
         if wmin - _NUDGE <= wc <= wmax + _NUDGE:
             return s
         if attempt == 2:
-            if wmin * _SALVAGE_LO <= wc <= wmax * _SALVAGE_HI:
+            # Only overshoot gets salvaged. wmin is a hard floor the user set
+            # explicitly ("at least 2 minutes"), not a target to lean below
+            # when convenient -- undershooting it must fail loudly, never
+            # slip through silently.
+            if wc > wmax and wc <= wmax * _SALVAGE_HI:
                 log.warning("word count %d outside %d-%d -- keeping the draft anyway",
                             wc, wmin, wmax)
                 return s
@@ -278,7 +290,8 @@ def generate_from_article(title: str, source_url: str, body_text: str,
         if wmin - _NUDGE <= wc <= wmax + _NUDGE:
             return s, meta
         if attempt == 2:
-            if wmin * _SALVAGE_LO <= wc <= wmax * _SALVAGE_HI:
+            # Only overshoot gets salvaged -- see the comment in generate().
+            if wc > wmax and wc <= wmax * _SALVAGE_HI:
                 log.warning("word count %d outside %d-%d -- keeping the draft anyway",
                             wc, wmin, wmax)
                 return s, meta
