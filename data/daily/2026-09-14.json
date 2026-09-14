@@ -817,7 +817,7 @@
         }
       },
       "video": {
-        "status": "audio_received",
+        "status": "published",
         "meta": {
           "title": "Obama Cảnh Báo AI: Siết Quản Lý Hay Cản Trở Sáng Tạo?",
           "description": "Cựu Tổng thống Obama lên tiếng yêu cầu phe Dân chủ có kế hoạch siết chặt quản lý AI. Ngay cả các ông lớn như OpenAI hay Anthropic cũng buộc phải chấp nhận các tiêu chuẩn an toàn độc lập. Đã đến lúc người làm công nghệ phải thay đổi tư duy làm sản phẩm. Nhấn theo dõi A Hít Official để cập nhật những góc nhìn sắc bén về AI!",
@@ -1101,16 +1101,112 @@
         "script_msg_id": 251,
         "audio_file_id": "CQACAgUAAxkBAAIBCWqn-26YGT9nN0DGeuUbilcW6EEFAAJuIQACNTdAVcTrhlAdx-DMPQQ",
         "audio_msg_id": 265,
-        "mp4_path": null,
-        "seconds": null,
+        "mp4_path": "output/2026-09-14/2026-09-14-morning-obama-urges-democrats-to-have-a-clear-pl/video/2026-09-14-morning-obama-urges-democrats-to-have-a-clear-pl.mp4",
+        "seconds": 52.7,
         "render_err": null,
-        "started_at": null,
-        "publish_due": null,
+        "started_at": "2026-09-14T20:32:22.081732+00:00",
+        "publish_due": "2026-09-14T20:32:22.081732+00:00",
         "result": {
           "yt": null,
           "fb": null,
           "ig": null,
-          "tiktok": null
+          "tiktok": null,
+          "youtube": {
+            "id": "Ier1IaSuoK4",
+            "url": "https://youtu.be/Ier1IaSuoK4",
+            "at": "2026-09-14T20:32:22.081732+00:00"
+          },
+          "fb_reel": {
+            "id": "1657565589034026",
+            "url": "https://facebook.com/reel/1657565589034026",
+            "at": "2026-09-14T20:32:22.081732+00:00"
+          },
+          "ig_reel": {
+            "id": "18282107914295008",
+            "url": "https://www.instagram.com/reel/DdSAYt5Epmd/",
+            "at": "2026-09-14T20:32:22.081732+00:00"
+          }
+        },
+        "tg_file_id": "BAACAgUAAxkDAAIBF2qoWkb3s1A3gIdAyEzhXKfsaqX1AALoIQACNTdAVXYjnMm24hCVPQQ",
+        "asset_url": null,
+        "publish_started_at": "2026-09-14T20:32:22.081732+00:00",
+        "published_at": "2026-09-14T20:32:22.081732+00:00"
+      }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Perplexity Portable Computer Is Now Available on Windows, Powered by NVIDIA RTX",
+      "style": "warm-split",
+      "topic_key": "perplexity-portable-computer-is-now-available-on-w",
+      "text_fb": "Thời đại gửi mọi dữ liệu riêng tư lên máy chủ đám mây để nhờ AI xử lý sắp kết thúc. Đa số mọi người vẫn nghĩ AI phải nằm trên mây thì mới thông minh. Đó là cách hiểu sai lầm và cực kỳ nguy hiểm cho bảo mật dữ liệu doanh nghiệp.\n\nPerplexity vừa hợp tác cùng NVIDIA mang ứng dụng Portable Computer lên hệ điều hành Windows cho các dòng card RTX có từ 24GB VRAM. Điều này có nghĩa là gì? Bạn có thể thả toàn bộ báo cáo tài chính hai năm qua, quét mã nguồn trên GitHub, hoặc phân tích file dữ liệu khách hàng mà không một byte thông tin nào rời khỏi máy tính của bạn. Mô hình như Qwen 3.8 27B được tối ưu hóa sẵn để chạy mượt mà ngay trên card màn hình local mà không tốn credit cloud. Chỉ khi gặp tác vụ cực khó, agent mới xin phép bạn để gửi dữ liệu lên mây.\n\nCái thực sự quan trọng ở đây không phải là một tính năng phần mềm mới. Đây là cú dịch chuyển chiến lược từ Cloud sang Local. Người thắng trong kỷ nguyên tới là người biết tự chủ dữ liệu và sở hữu năng lực tính toán tại chỗ. Nếu công việc của bạn liên quan đến thông tin nhạy cảm, việc tiếp tục phụ thuộc hoàn toàn vào cloud là một rủi ro quá lớn.\n\nBạn đã chuẩn bị phần cứng để đón đầu làn sóng Local AI này chưa?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Thời của Cloud AI sắp hết. Perplexity và NVIDIA vừa đưa AI Agent về chạy trực tiếp trên GPU máy tính cá nhân. Bảo mật tuyệt đối, không tốn credit, tự chủ dữ liệu. Bạn đã sẵn sàng nâng cấp phần cứng cho Local AI chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#LocalAI",
+        "#NVIDIA",
+        "#Perplexity",
+        "#RTX",
+        "#AIAgent",
+        "#TechTrends",
+        "#DataPrivacy"
+      ],
+      "images": [
+        "assets/posts/2026-09-14/evening/01.jpg",
+        "assets/posts/2026-09-14/evening/02.jpg",
+        "assets/posts/2026-09-14/evening/03.jpg",
+        "assets/posts/2026-09-14/evening/04.jpg",
+        "assets/posts/2026-09-14/evening/05.jpg",
+        "assets/posts/2026-09-14/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-14/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/local-ai-perplexity-windows-pcs/"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMiugJBVV95cUxOTExpN2RwblRJUHlTbmlmMTJDcmRZUUZLS0Nud1pLMmg0NWY4Mi1waUxjLTVVTF9qZGczVWRjX1hMTVNqU2I3ekZXcmtfcVoxTnZ4SmRxYzc1TDFhSWdGMzI0WFRrVVNvVnQwQUZfNHFXWlIwZnRhcWdBeFViUmU1Tm4wUURQbjg3LVpSS1c4Y1plYUNOUFNteUE2R2NtSHFHajJZWUo3aVhfeUZjUHpyNkxUbTZ0N09LYURuRDF6SWNpR2I1ajRiOGptcHRNYXgxZXJkdi1vQm5MNG15NDlwWDZhQ1BoMHhmOHI4YWNoWG1uOVJIX0FZUFZsVlNLQTVacHg1VEp5UnVmNUZOcHRNcERHRk52SlF6VDhpejJ6MEpobzFpWDRxV2ZUbDJRSTQ2anU3dHJYMDVvZw?oc=5"
+        },
+        {
+          "name": "marketscreener.com",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQm01ODMzVGphRVRYV1FnTS1MNjNqTmxvWWNEWmFEUlNRVjdORHZZU0JBWTZZWDkxa2Q1RnZRbktmWlhubjFZX0JuZzdJT2xvSGxfWjJ4enFFSzZhZUQ5WV9aZmtPM1dESXgwOER4Z3VSdi1Zc19uMEo0VGU4Yy00NU93NGtIT05zS2g3dFVlLUpqdThMR3lIVm1CalYybEh4MU9EUDdLQV9kMWZWRDl3X3dEcjNEeTRtNTF4Tl9lOWVDTklT?oc=5"
+        },
+        {
+          "name": "247wallst.com",
+          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQM1M2THVBN0IxTUo5NE1TRHc2MG9XbUVPRVhTemh6ZnVyMHVRTHhxR3dJQ09JWjBURUIwZ1dRU1lDWjhCclJfU3NsQzVrNHFWWmtKRXd4LTJwbXZJQmdQdEZIMG1FZF83WFFRa1d5MXFTc1g3M0xFaU5nX0hraHhhZ0lSbUhGNld3SGczV2ZhWFI1LVJaVTVZS1VVZUd4MkdQS0JmdEFLOXVJc25yWmpQYklVMlFxUWMyVVZlM2s0QUZFenpVOU9ZeUstdE9uRXhiTEd5ZURVbU1rUTRjbzJZZWJCLU01a21lWURB?oc=5"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQYVB5TUc4VTc5MGdNMjVWcVYxUUszYjdXU3hrVnZXbVRCRm40Z3JBX3BhTElKaXVFQmU4SW82WWRwLVdxcGFTVVhPclllM25kSzR0MWdqUmU5YjQydl9MZDhLZ1MzQmF0b01UY3MxaWx0VkxOMjJUQzhmbHJPQjQzdXJMWkJ2OGs5R0ZQc2FjeVpEdjZkM2VqMC1aeGhXSm8?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2253025/what-is-msi-mode-windows-pc-speed-up-gpu/"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122100447879476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122100447879476035",
+          "url": "https://facebook.com/1381130541740424_122100447879476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AqGvM-6wcwwJVMyTkrvjNy5"
         }
       }
     }
