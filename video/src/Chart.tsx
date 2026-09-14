@@ -105,6 +105,88 @@ const StatRow: React.FC<{
 };
 
 /**
+ * THANH ĐO có mũi tên: một điểm số trên thang cố định (vd 98.6 / 100).
+ * Mũi tên chạy tới đúng vị trí đạt được -- nhìn ra ngay "gần chạm trần".
+ */
+const Gauge: React.FC<{
+  items: ChartItem[]; unit: string; ff: string; at: number; ink: string; accent: string;
+}> = ({ items, unit, ff, at, ink, accent }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const s = spring({ frame: frame - at * fps, fps, config: { damping: 22, stiffness: 120, mass: 1 } });
+  const got = items[0]?.value ?? 0;
+  const max = items[1]?.value || 1;
+  const pct = Math.max(0, Math.min(1, got / max));
+  const run = interpolate(s, [0, 1], [0, pct]);
+  return (
+    <div>
+      <div style={{
+        fontFamily: ff, fontWeight: '900', fontSize: 96, color: accent,
+        textAlign: 'center', lineHeight: 1, marginBottom: 10,
+        opacity: interpolate(s, [0, 1], [0, 1]),
+      }}>
+        {fmt(got, unit)}<span style={{ color: ink, opacity: 0.5, fontSize: 52 }}> / {max}</span>
+      </div>
+      <div style={{
+        fontFamily: ff, fontWeight: '700', fontSize: 32, color: ink, opacity: 0.55,
+        textAlign: 'center', marginBottom: 40, letterSpacing: '0.12em',
+      }}>{(items[0]?.label ?? '').toUpperCase()}</div>
+      <div style={{ position: 'relative', height: 22 }}>
+        <div style={{
+          position: 'absolute', inset: 0, borderRadius: 11,
+          background: 'rgba(255,255,255,0.07)',
+        }} />
+        <div style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: 11,
+          width: `${run * 100}%`,
+          background: `linear-gradient(90deg, rgba(255,77,46,0.35) 0%, ${accent} 100%)`,
+        }} />
+        {/* mũi tên đứng ngay mốc đạt được */}
+        <div style={{
+          position: 'absolute', top: -16, left: `${run * 100}%`, transform: 'translateX(-50%)',
+          width: 0, height: 0,
+          borderLeft: '18px solid transparent', borderRight: '18px solid transparent',
+          borderTop: `26px solid ${accent}`,
+        }} />
+      </div>
+    </div>
+  );
+};
+
+/**
+ * CHIP tên: vài cái tên mới nằm cạnh nhau, mỗi cái một thẻ bo tròn viền
+ * nhấn. Dùng khi bài điểm tên sản phẩm/tính năng, nơi con số không có ý
+ * nghĩa gì để mà vẽ.
+ */
+const Chips: React.FC<{
+  items: ChartItem[]; ff: string; at: (i: number) => number; active: number;
+  ink: string; accent: string;
+}> = ({ items, ff, at, active, ink, accent }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 26 }}>
+      {items.map((it, i) => {
+        const s = spring({ frame: frame - at(i) * fps, fps, config: { damping: 17, stiffness: 180, mass: 0.7 } });
+        const on = i === active;
+        return (
+          <div key={i} style={{
+            padding: '26px 44px', borderRadius: 999,
+            border: `3px solid ${on ? accent : 'rgba(255,255,255,0.18)'}`,
+            background: on ? 'rgba(255,77,46,0.14)' : 'rgba(255,255,255,0.04)',
+            fontFamily: ff, fontWeight: '900', fontSize: 52,
+            color: on ? accent : ink,
+            letterSpacing: '0.02em', whiteSpace: 'nowrap',
+            opacity: interpolate(s, [0, 1], [0, 1]),
+            transform: `translateY(${interpolate(s, [0, 1], [20, 0])}px) scale(${interpolate(s, [0, 1], [0.85, 1])})`,
+          }}>{it.label ?? ''}</div>
+        );
+      })}
+    </div>
+  );
+};
+
+/**
  * Biểu đồ dạng HÀNG NGANG, không phải đồ thị vẽ trục. Mọi kiểu (line/bar/
  * hbar) đều đổ về một cách trình bày: đọc được trên điện thoại ở khung dọc,
  * và hợp với nhịp nói -- mỗi hàng rơi vào đúng lúc con số đó được nhắc.
@@ -138,7 +220,13 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
             textAlign: 'center', marginBottom: 44, textShadow: pal.shadow,
           }}>{title}</div>
         ) : null}
-        {items.map((it, i) =>
+        {chart.kind === 'gauge' ? (
+          <Gauge items={items} unit={chart.unit ?? ''} ff={ff} at={at(0)}
+                 ink={pal.ink} accent={pal.accent} />
+        ) : chart.kind === 'chips' ? (
+          <Chips items={items} ff={ff} at={at} active={active}
+                 ink={pal.ink} accent={pal.accent} />
+        ) : items.map((it, i) =>
           chart.kind === 'stat' ? (
             <StatRow key={i} item={it} unit={chart.unit ?? ''} ff={ff}
                      at={at(i)} active={i === active} ink={pal.ink} accent={pal.accent} />

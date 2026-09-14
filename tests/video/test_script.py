@@ -278,3 +278,30 @@ def test_build_prompt_mentions_chart_and_screenshot():
 def test_build_prompt_shape_hint_includes_chart_and_screenshot():
     sysp, _ = script.build_prompt(_cand(), _post(), VOICE, CFG)
     assert "chart?" in sysp and "screenshot?" in sysp
+
+
+def test_chips_cards_need_labels_not_numbers():
+    """Chips are names, so demanding a numeric value would force the writer
+    to invent meaningless figures -- labels are what get validated."""
+    ok = _script_with_card({"chart": {"kind": "chips",
+                                      "items": [{"label": "Flare"}, {"label": "Sunburst"}]}})
+    out = script._validate(ok, CFG)
+    assert out.cards[3].chart.kind == "chips"
+
+    bad = _script_with_card({"chart": {"kind": "chips",
+                                       "items": [{"label": ""}, {"label": "Sunburst"}]}})
+    with pytest.raises(VideoScriptError, match="label"):
+        script._validate(bad, CFG)
+
+
+def test_gauge_needs_a_score_and_a_ceiling():
+    ok = _script_with_card({"chart": {"kind": "gauge",
+                                      "items": [{"label": "Điểm", "value": 98.6},
+                                                {"label": "Tối đa", "value": 100}]}})
+    out = script._validate(ok, CFG)
+    assert out.cards[3].chart.kind == "gauge"
+
+    bad = _script_with_card({"chart": {"kind": "gauge",
+                                       "items": [{"label": "Điểm", "value": 98.6}]}})
+    with pytest.raises(VideoScriptError, match="items"):
+        script._validate(bad, CFG)

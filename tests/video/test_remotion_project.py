@@ -198,3 +198,12 @@ def test_versus_tiles_mark_winner_and_loser():
     assert "verdict === 'lose'" in src and "verdict === 'win'" in src
     assert "👑" in src
     assert "grayscale(1)" in src
+
+def test_gauge_and_chip_elements_exist():
+    """Two more of the reference's illustration types: a gauge with an
+    arrow parked at the score reached ("98.6 / 100"), and name chips for
+    when a card lists new products rather than figures."""
+    src = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
+    assert "const Gauge" in src and "const Chips" in src
+    assert "chart.kind === 'gauge'" in src and "chart.kind === 'chips'" in src
+    assert "borderTop: `26px solid ${accent}`" in src, "gauge needs its arrow"

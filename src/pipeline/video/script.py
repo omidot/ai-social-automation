@@ -56,6 +56,10 @@ def build_prompt(cand: Candidate, post: PostContent, voice: dict, cfg: dict,
         "{label,value}; dùng cho thông số rời rạc như giá, dung lượng, tốc độ. "
         "kind='bar' cần ĐÚNG 2 items {label,value} để so kè hai bên; 'hbar' cần 2-4 items "
         "{label,value}; 'line' cần >=3 items dạng {value} cho xu hướng theo thời gian. "
+        "kind='gauge' là thanh đo có mũi tên, ĐÚNG 2 items {label,value}: item đầu là điểm "
+        "đạt được, item sau là mốc tối đa (vd điểm 98.6 trên thang 100). "
+        "kind='chips' là các thẻ tên nằm cạnh nhau, 2-4 items dạng {label} (KHÔNG cần value) "
+        "— dùng khi bài kể tên vài sản phẩm/tính năng mới cùng lúc. "
         "'screenshot': {query} — chỉ thêm khi bài nhắc tới một sản phẩm/repo/trang web CỤ THỂ "
         "có thể tìm bằng Google (vd query='GitHub OpenAI Codex'), query tối đa 100 ký tự. "
         "QUAN TRỌNG: video toàn chữ rất chán. Hễ card nào có từ 2 con số trở lên đáng so "
@@ -91,7 +95,10 @@ def _validate(data: dict, cfg: dict) -> Script:
         s = Script.from_dict(data)
     except (KeyError, TypeError) as e:
         raise VideoScriptError(f"bad card/section fields: {e}") from e
-    _CHART_ITEM_BOUNDS = {"line": (3, None), "bar": (2, 2), "hbar": (2, 4), "stat": (2, 4)}
+    _CHART_ITEM_BOUNDS = {"line": (3, None), "bar": (2, 2), "hbar": (2, 4), "stat": (2, 4),
+                          "gauge": (2, 2), "chips": (2, 4)}
+    # chips chỉ là các nhãn tên -- ép tác giả bịa ra một con số cho chúng là vô nghĩa
+    _NO_VALUE_KINDS = {"chips"}
     for i, c in enumerate(s.cards):
         set_fields = [name for name, val in (("num", c.num), ("chart", c.chart),
                                              ("screenshot", c.screenshot)) if val is not None]
@@ -105,10 +112,15 @@ def _validate(data: dict, cfg: dict) -> Script:
             if n_items < lo or (hi is not None and n_items > hi):
                 raise VideoScriptError(
                     f"card {i}: chart '{c.chart.kind}' có {n_items} items, cần {lo}..{hi or 'nhiều hơn'}")
-            for item in c.chart.items:
-                v = item.get("value")
-                if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v):
-                    raise VideoScriptError(f"card {i}: chart item thiếu 'value' dạng số: {item}")
+            if c.chart.kind in _NO_VALUE_KINDS:
+                for item in c.chart.items:
+                    if not str(item.get("label") or "").strip():
+                        raise VideoScriptError(f"card {i}: chart '{c.chart.kind}' item thiếu 'label': {item}")
+            else:
+                for item in c.chart.items:
+                    v = item.get("value")
+                    if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v):
+                        raise VideoScriptError(f"card {i}: chart item thiếu 'value' dạng số: {item}")
         if c.screenshot is not None:
             q = c.screenshot.query
             if not isinstance(q, str) or not q.strip():
