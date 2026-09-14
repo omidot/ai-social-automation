@@ -3,7 +3,7 @@
   "posts": {
     "test": {
       "video": {
-        "status": "awaiting_audio",
+        "status": "audio_received",
         "meta": {
           "title": "Perplexity Giao Trọn Hệ Thống Cho GPT-6 Astra Tự Vận Hành!",
           "description": "Đa số mọi người vẫn nghĩ AI chỉ dùng để gõ code nhanh hơn vài giây, nhưng Perplexity vừa chứng minh điều ngược lại. Họ giao toàn bộ hệ thống cho GPT-6 Astra tự sửa code, kiểm thử và vận hành sản phẩm. Tuy nhiên, chi phí suy luận và hạn ngạch mới của OpenAI là điều bạn bắt buộc phải biết trước khi nâng cấp. Bấm đăng ký kênh A Hít Official để cập nhật góc nhìn AI thực chiến nhất!",
@@ -726,8 +726,8 @@
         },
         "script_path": "output/2026-09-14/2026-09-14-test-perplexity-trusts-gpt-6-astra-with-end-t/video/script.json",
         "script_msg_id": 263,
-        "audio_file_id": null,
-        "audio_msg_id": null,
+        "audio_file_id": "CQACAgUAAxkBAAIBCGqn-26tabG1ncc3oy_M97ExjbS5AAJvIQACNTdAVZqPHyvKZogIPQQ",
+        "audio_msg_id": 264,
         "mp4_path": null,
         "seconds": null,
         "render_err": null,
@@ -816,7 +816,7 @@
         }
       },
       "video": {
-        "status": "awaiting_audio",
+        "status": "audio_received",
         "meta": {
           "title": "Obama Cảnh Báo AI: Siết Quản Lý Hay Cản Trở Sáng Tạo?",
           "description": "Cựu Tổng thống Obama lên tiếng yêu cầu phe Dân chủ có kế hoạch siết chặt quản lý AI. Ngay cả các ông lớn như OpenAI hay Anthropic cũng buộc phải chấp nhận các tiêu chuẩn an toàn độc lập. Đã đến lúc người làm công nghệ phải thay đổi tư duy làm sản phẩm. Nhấn theo dõi A Hít Official để cập nhật những góc nhìn sắc bén về AI!",
@@ -1098,8 +1098,8 @@
         },
         "script_path": "output/2026-09-14/2026-09-14-morning-obama-urges-democrats-to-have-a-clear-pl/video/script.json",
         "script_msg_id": 251,
-        "audio_file_id": null,
-        "audio_msg_id": null,
+        "audio_file_id": "CQACAgUAAxkBAAIBCWqn-26YGT9nN0DGeuUbilcW6EEFAAJuIQACNTdAVcTrhlAdx-DMPQQ",
+        "audio_msg_id": 265,
         "mp4_path": null,
         "seconds": null,
         "render_err": null,
