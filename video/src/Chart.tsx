@@ -217,6 +217,15 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
   // bản tham chiếu ("Giá đầu ra mỗi 1 triệu token", "Có gì cho bạn").
   // KHÔNG lặp lại lời thoại: lời thoại đã chạy ở caption dưới đáy.
   const panelTitle = chart.title ?? '';
+
+  // Mỗi hàng bật lên -- và con số chạy -- đúng quãng giọng đọc nói con số
+  // đó. Không có mốc thật (biểu đồ do kịch bản gắn tay) thì rơi về cách
+  // rải đều cũ, vẫn chạy được nhưng không khớp từng chữ.
+  const spokenAt = (it: any, fallback: number, i: number) =>
+    typeof it.at === 'number' ? it.at : fallback + i * 0.5;
+  const rollFor = (it: any) =>
+    typeof it.at === 'number' && typeof it.numEnd === 'number'
+      ? Math.max(0.25, it.numEnd - it.at) : 0.55;
   const base2 = card.visualAt ?? card.start;
 
   if (chart.kind === 'stat' || chart.kind === 'steps') {
@@ -230,7 +239,9 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
                        ff={ff} at={base2 * fps} delay={i * 7} />
             ) : (
               <StatBox key={i} label={String(it.label ?? '')} value={it.value}
-                       unit={chart.unit ?? ''} ff={ff} at={base2 * fps} delay={i * 7} />
+                       unit={chart.unit ?? ''} ff={ff}
+                       at={spokenAt(it, base2, i) * fps} delay={0}
+                       runFor={rollFor(it) * fps} />
             ))}
         </div>
       </Frame>
@@ -245,8 +256,9 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
           {panelTitle ? <PanelTitle text={panelTitle} ff={ff} at={base2 * fps} /> : null}
           {items.slice(0, 4).map((it, i) => (
             <BarRow key={i} label={String(it.label ?? '')} value={it.value} max={mx}
-                    unit={chart.unit ?? ''} ff={ff} at={base2 * fps} delay={i * 8}
-                    hot={i === active} />
+                    unit={chart.unit ?? ''} ff={ff}
+                    at={spokenAt(it, base2, i) * fps} delay={0}
+                    runFor={rollFor(it) * fps} hot={i === active} />
           ))}
         </div>
       </Frame>

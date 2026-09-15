@@ -65,6 +65,30 @@ export const Box: React.FC<{
   );
 };
 
+/**
+ * SỐ ĐANG CHẠY rồi dừng đúng con số thật.
+ *
+ * Yêu cầu trực tiếp: khi giọng đọc nói tới một con số thì con số trên màn
+ * phải chạy lên rồi dừng lại đúng nó. Điểm mấu chốt là DỪNG ĐÚNG LÚC NÓI
+ * XONG, nên thời lượng chạy không đặt cứng mà nhận từ ngoài vào (`runFor`)
+ * theo đúng độ dài lời nói của con số đó.
+ *
+ * Số thập phân giữ nguyên số chữ số sau dấu phẩy trong suốt lúc chạy, nếu
+ * không thì "0.60" nhảy loạn giữa "0" và "0.6" trông như lỗi.
+ */
+const Rolling: React.FC<{ value: number; unit: string; at: number; runFor: number }> =
+({ value, unit, at, runFor }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const p = interpolate(frame - at, [0, Math.max(1, runFor)], [0, 1],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // chậm dần về cuối -> cảm giác "hãm lại rồi đứng yên"
+  const eased = 1 - Math.pow(1 - p, 3);
+  const dec = String(value).includes('.') ? String(value).split('.')[1].length : 0;
+  const shown = p >= 1 ? value : Number((value * eased).toFixed(dec));
+  return <>{fmtVal(shown, unit)}</>;
+};
+
 const fmtVal = (v: number, unit: string) => {
   const n = Number.isInteger(v) ? v.toLocaleString('en-US') : String(v);
   if (!unit) return n;
@@ -76,7 +100,8 @@ const fmtVal = (v: number, unit: string) => {
 /** Hàng SỐ LIỆU: nhãn nhỏ trái, con số to phải. Bản mẫu dùng cho giá/thông số. */
 export const StatBox: React.FC<{
   label: string; value: number; unit: string; ff: string; at: number; delay: number;
-}> = ({ label, value, unit, ff, at, delay }) => {
+  runFor?: number;
+}> = ({ label, value, unit, ff, at, delay, runFor }) => {
   const pal = usePal();
   return (
     <Box at={at} delay={delay}>
@@ -87,7 +112,7 @@ export const StatBox: React.FC<{
       <span style={{
         fontFamily: ff, fontWeight: '800', fontSize: 62, lineHeight: 1, color: pal.ink,
         letterSpacing: '-0.02em',
-      }}>{fmtVal(value, unit)}</span>
+      }}><Rolling value={value} unit={unit} at={at + delay} runFor={runFor ?? 18} /></span>
     </Box>
   );
 };
@@ -126,8 +151,8 @@ export const StepBox: React.FC<{
  */
 export const BarRow: React.FC<{
   label: string; value: number; max: number; unit: string; ff: string;
-  at: number; delay: number; hot: boolean;
-}> = ({ label, value, max, unit, ff, at, delay, hot }) => {
+  at: number; delay: number; hot: boolean; runFor?: number;
+}> = ({ label, value, max, unit, ff, at, delay, hot, runFor }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -149,7 +174,7 @@ export const BarRow: React.FC<{
         <span style={{
           fontFamily: ff, fontWeight: '800', fontSize: 34,
           color: hot ? pal.ink : pal.ink, opacity: hot ? 1 : 0.5,
-        }}>{fmtVal(value, unit)}</span>
+        }}><Rolling value={value} unit={unit} at={at + delay} runFor={runFor ?? 16} /></span>
       </div>
       <div style={{
         height: 42, borderRadius: 21, background: 'rgba(255,255,255,0.05)',

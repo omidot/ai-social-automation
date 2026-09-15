@@ -8,7 +8,7 @@ import { BgVideo, palAt } from './BgVideo';
 import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
-import { HookScreen, StatementScreen, ShotScreen, CardsScreen } from './Screens';
+import { HookScreen, StatementScreen, ShotScreen, CardsScreen, PersonScreen } from './Screens';
 import { ElementView } from './Elements';
 import { VersusMark, versusOf } from './Versus';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
@@ -43,6 +43,10 @@ const CardView: React.FC<{ card: Card }> = ({ card }) => {
       return <StatementScreen eyebrow={sc.eyebrow} lead={sc.lead ?? ''}
                               highlight={sc.highlight ?? ''}
                               ff={fontFamily} at={at} />;
+    case 'person':
+      return <PersonScreen file={sc.file!} name={sc.name ?? ''} role={sc.role}
+                           quote={sc.quote ?? ''} credit={sc.credit}
+                           ff={fontFamily} at={at} />;
     case 'cards':
       return <CardsScreen title={sc.eyebrow ?? ''} items={sc.items ?? []}
                           ff={fontFamily} at={at} />;

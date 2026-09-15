@@ -287,12 +287,46 @@ def test_every_chapter_gets_a_screen():
     assert "if (ci === 0) {" in src
 
 
-def test_long_chapters_are_split_so_the_frame_never_freezes():
-    """Chương dài 28 giây mà giữ nguyên một màn thì người xem đứng hình.
-    Bản mẫu đổi màn khoảng 16 giây một lần."""
-    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
-    assert "const SPLIT_AFTER = 20;" in src
-    assert "secondaryScreen" in src
+def test_screens_are_timed_to_when_their_content_is_spoken():
+    """Yêu cầu trực tiếp: "nói tới đâu hiện tới đó, không hiện trước".
+
+    Cách cũ gán mỗi chương một màn rồi bật từ đầu chương -- đo thật: bộ thẻ
+    liệt kê bật ở giây 12.2 trong khi người đọc nói câu đó ở giây 7. Giờ mỗi
+    màn tự khai giờ nó được nói ra và cả bộ được sắp theo giờ."""
+    src = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "export function buildTimeline" in src
+    assert "export function findSpokenTime" in src
+    # khớp phải liền mạch: bản đầu cho nhảy tuỳ ý nên mọi màn đều trả về giây 0.46
+    assert "const SKIP = 3;" in src
+    assert "flat[i].n !== want[0]" in src, "phải bắt đầu đúng từ đầu cụm"
+
+
+def test_numbers_roll_and_land_on_the_spoken_moment():
+    """Yêu cầu trực tiếp: số chạy rồi dừng đúng con số, khớp giọng nói.
+    Biểu đồ do kịch bản gắn tay không có mốc thời gian, nên giờ đọc của
+    từng con số được dò ngược từ chính bản ghi lời nói."""
+    src = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "export function timeChartItems" in src
+    panel = (VIDEO / "src/Panel.tsx").read_text(encoding="utf-8")
+    assert "const Rolling" in panel
+    assert "runFor" in panel, "thời lượng chạy nhận từ ngoài, không đặt cứng"
+    chart = (VIDEO / "src/Chart.tsx").read_text(encoding="utf-8")
+    assert "const rollFor" in chart and "const spokenAt" in chart
+
+
+def test_person_screen_cuts_out_and_enters_diagonally():
+    """Yêu cầu trực tiếp: nhân vật tách nền, viền trắng, hiện chéo từ góc
+    phải, kèm text kiểu người đó đang nói."""
+    src = (VIDEO / "src/Screens.tsx").read_text(encoding="utf-8")
+    assert "export const PersonScreen" in src
+    assert "vào chéo" in src
+    port = (ROOT / "src/pipeline/video/portrait.py").read_text(encoding="utf-8")
+    assert "def find_person_names" in port
+    assert "from rembg import remove" in port
+    assert "def _outline" in port, "viền trắng quanh hình đã tách"
+    # ảnh người thật -> chỉ lấy từ nguồn có giấy phép rõ ràng, luôn ghi công
+    assert "wikipedia_image" in port
+    assert "credit" in port
 
 
 def test_cardview_only_draws_screens_and_caption_is_separate():

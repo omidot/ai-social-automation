@@ -9,3 +9,6 @@ google-genai==2.22.0
 python-dateutil==2.9.0.post0
 faster-whisper==1.2.1
 pytest==9.1.1
+# Tách nền ảnh nhân vật (video/portrait.py). Kéo theo onnxruntime + một model
+# ~1GB tải về lần đầu, nên chỉ nạp khi thật sự dựng màn nhân vật.
+rembg==2.0.84

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import { CARDS, SECTIONS } from './cards.mjs';
 import { LAYOUT } from './variants.mjs';
 import { chartsFromSpeech } from './autoviz.mjs';
-import { assignScreens, secondaryScreen } from './screens.mjs';
+import { buildTimeline } from './screens.mjs';
 import { pickElementKind } from './elementpick.mjs';
 import { cardsFromText } from './listcards.mjs';
 
@@ -361,9 +361,10 @@ const HOLD = 14;
   let SHOTS = [];
   try { SHOTS = JSON.parse(fs.readFileSync('ref/shots.json', 'utf8')); } catch { /* không có ảnh nguồn */ }
 
-  const screens = assignScreens(chapters, {
+  const timeline = buildTimeline(chapters, {
     brands: BRANDS,
     shots: SHOTS,
+    duration: DURATION,
     elementOf: pickElementKind,
     listOf: cardsFromText,
     fallbackList: cardsFromText(CARDS.flat()
@@ -371,26 +372,17 @@ const HOLD = 14;
     // chữ trên màn hình lấy từ KỊCH BẢN, không lấy chữ nhận diện được
     scriptLines: (si) => (CARDS[si] || []).map((r) => (r.startsWith('~') ? r.slice(1) : r)),
   });
-  const SPLIT_AFTER = 20;   // giây
-  chapters.forEach((ch, ci) => {
-    const sc = screens.get(ci);
-    if (!sc) return;
-    for (const c of ch.cards) c.screen = sc;
 
-    // Chương dài -> nửa sau đổi sang màn khác, tránh đứng hình nửa phút.
-    if (ch.end - ch.start > SPLIT_AFTER) {
-      const sec = secondaryScreen(ch, sc, {
-        shots: SHOTS, listOf: cardsFromText,
-        scriptLines: (si) => (CARDS[si] || []).map((r) => (r.startsWith('~') ? r.slice(1) : r)),
-      });
-      if (sec) {
-        const half = Math.floor(ch.cards.length / 2);
-        for (let k = half; k < ch.cards.length; k++) ch.cards[k].screen = sec;
-      }
-    }
-  });
-  console.log(`màn hình: ${chapters.length} chương -> `
-    + chapters.map((_, i) => (screens.get(i) || {}).kind).join(', '));
+  // Thẻ nhận màn hình đang có hiệu lực tại giây của nó -> màn chỉ xuất hiện
+  // khi câu sinh ra nó ĐÃ được nói, và giữ nguyên cho tới màn kế tiếp.
+  let ti = -1;
+  for (const c of cards) {
+    while (ti + 1 < timeline.length && timeline[ti + 1].at <= c.start + 0.01) ti++;
+    if (ti >= 0) c.screen = timeline[ti].screen;
+  }
+
+  console.log(`màn hình: ${timeline.length} màn -> `
+    + timeline.map((x) => `${x.screen.kind}@${x.at.toFixed(0)}s`).join(', '));
 }
 
 // Phụ đề = nguyên văn lời nói. Chỉ có khi nhận diện giọng nói dùng được --

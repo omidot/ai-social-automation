@@ -368,3 +368,81 @@ const CardRow: React.FC<{
     </div>
   );
 };
+
+/* ================= 5. PERSON — nhân vật phát biểu ================= */
+
+/**
+ * Nhân vật đã tách nền (viền trắng nướng sẵn trong file PNG) trượt vào theo
+ * đường CHÉO TỪ GÓC PHẢI DƯỚI, kèm khối trích dẫn bên trái như thể người đó
+ * đang nói. Dòng ghi nguồn ảnh nằm dưới cùng.
+ *
+ * Ảnh là ảnh người thật, lấy từ nguồn có giấy phép rõ ràng (Wikimedia) và
+ * luôn kèm ghi công -- không đi vơ ảnh ở nguồn không rõ bản quyền.
+ */
+export const PersonScreen: React.FC<{
+  file: string; name: string; role?: string; quote: string; credit?: string;
+  ff: string; at: number;
+}> = ({ file, name, role, quote, credit, ff, at }) => {
+  const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
+  const p = spring({ frame: frame - at, fps,
+                     config: { damping: 24, stiffness: 120, mass: 1.1 } });
+  const q = useIn(at, 14, fps);
+  const c = useIn(at, 22, fps);
+
+  // vào chéo: từ ngoài mép phải dưới tiến về chỗ đứng
+  const dx = interpolate(p, [0, 1], [520, 0]);
+  const dy = interpolate(p, [0, 1], [420, 0]);
+
+  return (
+    <AbsoluteFill>
+      <div style={{
+        position: 'absolute', right: -40, bottom: 210,
+        transform: `translate(${dx}px, ${dy}px)`,
+        opacity: interpolate(p, [0, 0.25], [0, 1], { extrapolateRight: 'clamp' }),
+        filter: 'drop-shadow(0 26px 60px rgba(0,0,0,0.75))',
+      }}>
+        <Img src={staticFile(file)} style={{ height: 980, width: 'auto', display: 'block' }} />
+      </div>
+
+      {/* khối trích dẫn: dấu nháy lớn + câu nói + tên và chức danh */}
+      <div style={{
+        position: 'absolute', left: REF.PAD, top: 300, width: 560,
+        opacity: q.o, transform: `translateY(${q.y}px)`,
+      }}>
+        <div style={{
+          fontFamily: ff, fontWeight: '900', fontSize: 92, color: REF.accent,
+          lineHeight: 0.7, marginBottom: 10,
+        }}>&ldquo;</div>
+        <div style={{
+          fontFamily: ff, fontWeight: '800', fontSize: 44, lineHeight: 1.3,
+          color: REF.ink, letterSpacing: '-0.01em',
+          textShadow: '0 4px 26px rgba(0,0,0,0.9)',
+        }}>{quote}</div>
+        <div style={{
+          marginTop: 22, paddingTop: 18, borderTop: `2px solid ${REF.accent}`,
+          display: 'inline-block',
+        }}>
+          <div style={{
+            fontFamily: ff, fontWeight: '800', fontSize: 34, color: REF.ink,
+          }}>{name}</div>
+          {role ? (
+            <div style={{
+              marginTop: 4, fontFamily: ff, fontWeight: '600', fontSize: 25,
+              color: REF.dim,
+            }}>{role}</div>
+          ) : null}
+        </div>
+      </div>
+
+      {credit ? (
+        <div style={{
+          position: 'absolute', left: REF.PAD, bottom: 56,
+          fontFamily: ff, fontWeight: '600', fontSize: 20, letterSpacing: '0.1em',
+          color: REF.faint, textTransform: 'uppercase',
+          opacity: c.o,
+        }}>ảnh: {credit}</div>
+      ) : null}
+    </AbsoluteFill>
+  );
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, continueRender, delayRender, interpolate, useCurrentFrame } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
-import { HookScreen, StatementScreen, REF } from './Screens';
+import { HookScreen, StatementScreen, PersonScreen, REF } from './Screens';
 import { PanelTitle, StatBox, StepBox, BarRow } from './Panel';
 import { PalCtx, DARK } from './palette';
 
@@ -156,6 +156,18 @@ export const ScreenPreview: React.FC = () => {
             </AbsoluteFill>
             <Caption words={['tham', 'số,', 'nhưng']} hot={0} />
             <Chrome chapter={2} total={9} />
+          </>
+        ) : seg === 4 ? (
+          <>
+            <PersonScreen
+              file="portraits/altman.png"
+              name="Sam Altman"
+              role="CEO OpenAI"
+              quote="Họ kiểm tra AI ít hơn hẳn so với các thế hệ trước."
+              credit="Wikipedia · Sam Altman"
+              ff={fontFamily} at={at} />
+            <Caption words={['ít', 'hơn', 'hẳn']} hot={0} />
+            <Chrome chapter={3} total={9} />
           </>
         ) : (
           <>

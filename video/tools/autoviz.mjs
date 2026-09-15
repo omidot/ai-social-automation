@@ -117,7 +117,10 @@ export function factOf(sentence) {
   return {
     label, value: pick.value, unit: pick.unit,
     start: sentence[0].start,
+    // Giờ CHÍNH CON SỐ được đọc -- số trên màn chạy đúng quãng này rồi
+    // dừng, nên nó hãm lại đúng lúc người đọc nói xong con số.
     at: sentence[pick.i].start,
+    numEnd: sentence[pick.i].end,
     end: sentence[sentence.length - 1].end,
   };
 }
@@ -174,7 +177,8 @@ export function chartsFromSpeech(words) {
       // Nhiều mốc cùng đơn vị -> so kè trực tiếp bằng thanh ngang.
       charts.push({
         kind: 'hbar',
-        items: group.map((g) => ({ label: g.label, value: g.value })),
+        items: group.map((g) => ({ label: g.label, value: g.value,
+                                   at: g.at, numEnd: g.numEnd })),
         unit: group[0].unit,
         title: introOf(group[0].si),
         start: group[0].at,
@@ -185,7 +189,8 @@ export function chartsFromSpeech(words) {
       // Một con số đứng lẻ -> khối số liệu, vẫn hơn khung trống.
       charts.push({
         kind: 'stat',
-        items: [{ label: group[0].label, value: group[0].value }],
+        items: [{ label: group[0].label, value: group[0].value,
+                  at: group[0].at, numEnd: group[0].numEnd }],
         unit: group[0].unit,
         title: introOf(group[0].si),
         start: group[0].at,
