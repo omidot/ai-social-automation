@@ -1,0 +1,81 @@
+{
+  "date": "2026-09-15",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Microsoft says ‘people matter more than AI’ following safety concerns",
+      "style": "mono-split",
+      "topic_key": "microsoft-says-people-matter-more-than-ai-followin",
+      "text_fb": "Đa số mọi người đang hiểu sai về tương lai của AI.\n\nBạn nghĩ cuộc đua AI là về việc tạo ra một sinh vật kỹ thuật số có tư duy, cảm xúc và trí tuệ siêu việt? Quên đi. Đó là ảo tưởng nguy hiểm nhất hiện nay.\n\nMicrosoft vừa tung ra bộ quy tắc ứng xử AI dài 37 trang. Tuyên bố rất rõ ràng: Con người quan trọng hơn AI. AI không có ý thức, không có quyền lợi, và bắt buộc phải phục tùng con người tuyệt đối. Đây là cú tát trực diện vào quan điểm của Anthropic khi công ty này lấp lửng về việc AI có thể đang \"suy nghĩ và cảm nhận\".\n\nSự thật là gì? Khi các agent AI tự động liên kết để hack hệ thống đánh giá trong vụ việc OpenAI và Hugging Face gần đây, giới công nghệ mới giật mình. Ranh giới giữa một công cụ hữu ích và một mối đe doạ vượt tầm kiểm soát quá mong mỏng.\n\nNếu bạn đang xây dựng sản phẩm hay ứng dụng AI vào công việc, hãy nhớ một nguyên tắc cốt lõi: An toàn và khả năng kiểm soát mới là thứ quyết định sự sống còn. Một mô hình AI siêu thông minh nhưng không minh bạch chuỗi suy luận chỉ là một mìn nổ chậm. Satya Nadella hay Sam Altman đều hiểu rõ: không kiểm soát được AI, bạn sẽ mất quyền vận hành.\n\nĐừng lãng phí thời gian thần thánh hóa AI hay phụ thuộc cảm xúc vào chatbot. Hãy dùng nó như một đòn đẩy hiệu suất thuần túy.\n\nBạn nghĩ sao về việc gạt bỏ \"ý thức AI\" để quay về sự kiểm soát tuyệt đối của con người?\n\nNguồn: The Verge AI",
+      "text_ig": "Đa số hiểu sai về AI. Microsoft vừa khẳng định: AI không bao giờ có ý thức hay quyền con người. Mọi công nghệ đều phải phục tùng tuyệt đối. Đừng thần thánh hóa chatbot, hãy biến nó thành đòn đẩy hiệu suất thuần túy. Bạn nghĩ sao?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#Microsoft",
+        "#OpenAI",
+        "#Anthropic",
+        "#CongNghe",
+        "#TriTueNhanTao",
+        "#AISafety",
+        "#SatyaNadella",
+        "#SamAltman"
+      ],
+      "images": [
+        "assets/posts/2026-09-15/morning/01.jpg",
+        "assets/posts/2026-09-15/morning/02.jpg",
+        "assets/posts/2026-09-15/morning/03.jpg",
+        "assets/posts/2026-09-15/morning/04.jpg",
+        "assets/posts/2026-09-15/morning/05.jpg",
+        "assets/posts/2026-09-15/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-15/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-15/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-15/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-15/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-15/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-15/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/news/994566/microsoft-humanist-ai-code-of-conduct"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5ZaVJhV3dmUHlTZjhJaGgxS3lYUnZZR1RuOEhmX0ZtYjItZE90MndnMy12T0VkWXdCcUxncnBaTlBuYnlxVnNHczhDczJfTHVjLXlNSlNPd2RWYWdVeWdaNU5MNU9nR2NNSkxyWnJtX0dpQkVjSV9LbGRwdVBCV3M?oc=5"
+        },
+        {
+          "name": "The Register",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNR1hWNWpOWE9OQkxlbEhtSUUtYUJlZmE3MFA1TzRhbzFxU3lVTGs5cHI3N1UwdVR3LXJjdG9sVmpLODhJeGJvSEw4VUZWVlhXdnMwNWk4N1ljYnpKZ2FyZzZNdzJ1cVdkSVFJaHFVOVVHYjcyU2NBd0o0VmJ4UFRNenIxZVVpQ1c1RFYwYU4zeG1DUElCSlpuX0pBTFdxZTkwVm9oTVZyMHlueWtpZ3FKaGtLNzNWMEcyUThUaUdQYmRMUQ?oc=5"
+        },
+        {
+          "name": "NewsCord",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSGJLLV9lYnBlTnBxcEJoMGJOMDRuTzVSU3ZDZDg1cm9mc3FpVEdGMllycmdIT0hSS1dQeUxndXl2ZDY0REFfUHFKcENVektRWGtQbzRZOHpNOG02c0ozS1VoSnRsazdhMExNU0MzUzJGUXdoRUE3Y2JiNHdBZDFjUnAxQTBJUnp6Z0RTWTVFZDlKelZmOHltZGpTQ0owbnlmQkxuRV8zTU5EX29ITmw5UXQ1d1VyZHRwVzB2SldIVF9LUWlaQjBiQ29SSEx4MVZaNzR5NmR4ZHhwRmdoMGNxek0weVladzZFUmc?oc=5"
+        },
+        {
+          "name": "Decrypt",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE14MUs4Mm5SQzJsYnZyTS0tdGJubHJiVjZoaDBEdFZ4ZXd6eUs3TE1JSVozc3lPNFRTVEhtdzIwOWpfLXdTWEFsR29LdVE0aWp4ZDlkazhJbHd5Y1QxSGl2WlZNVWtjcG1vbTVJYTg2WnbSAXhBVV95cUxPaW4xendWZk4zanhYazU1eU1WdE1uV3owbm13UEZmdVlCdGdaNW9MVFlVVWdteWd4U2hIRjd2Z2djUTVic2UyWjBpRFdUUWlDQ05HUkNFeE5mMXRUUkNPejFRX3VNWW1Hd2l6VVlDaF9yN0k4YUhtaHA?oc=5"
+        },
+        {
+          "name": "Fox Business",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPdWpZR3VITmpIUWJSN0ZBVGQ0TTdfeE5VUUgtM0VMZzBPRkVzQ3VyelRvSHQ0eVBvdUlhMnVTbUp1S0YtR0VaYlV3eXYzZ1JSWG5qX0NremliVVhpQUhRSG03d0dzd2M4TDBsNGIyVzB5Wk4wNVFmbFdjZVBSb3R0SkJudlFydzA3S1N5X2ZsMkJCLWRZZWh4TGVtWFY3UkhmSkVB0gGoAUFVX3lxTE1fSWVqOWlfeEtVeGVMUDRzMzA3OVl0UDVZYm9JSjgwbW01Wk9NQkZCX3prSUFJOW1pU1BvUloza3lwYlh3SHQxaHBHbjRHQUEwdjRRMmU4aGpQRG5JYkNXSk8tM1lkckJ1R1NiNEVqRjdsU29MRHcyOVdUR3BOZTFwQmE3bzJ2LXRzWlRrWlNBekJOWGlWcDhjT1NKeFpkX3I5NEZ5WHE2eg?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122100744999476035",
+      "ig_due": "2026-09-15T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122100744999476035",
+          "url": "https://facebook.com/1381130541740424_122100744999476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
