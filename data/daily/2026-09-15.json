@@ -2,7 +2,7 @@
   "date": "2026-09-15",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Microsoft says ‘people matter more than AI’ following safety concerns",
       "style": "mono-split",
@@ -74,7 +74,10 @@
           "url": "https://facebook.com/1381130541740424_122100744999476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18078652448355449"
+        }
       }
     }
   }
