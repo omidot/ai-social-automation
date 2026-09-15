@@ -61,6 +61,49 @@ _WIKI = "https://en.wikipedia.org/w/api.php"
 _UA = "AHitOfficial/1.0 (https://github.com/omidot/ai-social-automation)"
 
 
+def local_portrait(name: str, folder: Path) -> dict | None:
+    """Ảnh do NGƯỜI DÙNG tự đặt sẵn, ưu tiên trên mọi nguồn tự tìm.
+
+    Với người không đủ nổi tiếng để có trang Wikipedia, không nguồn tự động
+    nào cho ra ảnh ĐÚNG người -- và lấy nhầm ảnh một người trùng tên là sai
+    nghiêm trọng hơn hẳn việc không có ảnh. Đường thoát là đặt tay một file
+    vào thư mục portraits, tên file theo tên nhân vật.
+    """
+    folder = Path(folder)
+    if not folder.is_dir():
+        return None
+    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+    for ext in (".png", ".jpg", ".jpeg", ".webp"):
+        for cand in (folder / f"{slug}{ext}", folder / f"{name}{ext}"):
+            if cand.is_file():
+                return {"path": cand, "credit": "ảnh do kênh cung cấp"}
+    return None
+
+
+def _verify(title: str, name: str, context: str, timeout: int = 15) -> bool:
+    """Trang Wikipedia tìm được có ĐÚNG là người đang nói tới không.
+
+    Trùng tên là chuyện thường ("Johnny Ho" trên Wikidata là một nhà nghiên
+    cứu và một nghệ sĩ saxophone, không phải người đồng sáng lập Perplexity).
+    Nếu bài có nêu bối cảnh (tên công ty), bối cảnh đó phải xuất hiện trong
+    phần tóm tắt của trang thì mới nhận.
+    """
+    if not context:
+        return True
+    try:
+        r = httpx.get(_WIKI, params={
+            "action": "query", "format": "json", "prop": "extracts",
+            "exintro": 1, "explaintext": 1, "titles": title, "redirects": 1,
+        }, timeout=timeout, headers={"User-Agent": _UA})
+        pages = ((r.json() or {}).get("query") or {}).get("pages") or {}
+        for pg in pages.values():
+            if context.lower() in (pg.get("extract") or "").lower():
+                return True
+    except Exception as e:  # noqa: BLE001
+        log.warning("portrait: không kiểm chứng được %r (%s)", title, e)
+    return False
+
+
 def wikipedia_image(name: str, timeout: int = 15) -> tuple[str, str] | None:
     """Ảnh chân dung trên Wikipedia, kèm tên trang để ghi nguồn.
 
@@ -145,7 +188,21 @@ def fetch(name: str, out_path: Path, *, api_key: str = "", cx: str = "",
     query = f"{name} {extra_terms}".strip()
     credit = ""
     try:
+        # 1. Ảnh đặt tay -- chắc chắn đúng người, nên đứng trước mọi nguồn tự tìm.
+        local = local_portrait(name, out_path.parent)
+        if local:
+            raw = local["path"].read_bytes()
+            cut = _cutout(raw)
+            _outline(cut).save(out_path, format="PNG")
+            log.info("portrait: %s <- ảnh đặt tay %s", name, local["path"].name)
+            return {"file": out_path.name, "name": name,
+                    "source": str(local["path"]), "credit": local["credit"]}
+
         hit = wikipedia_image(name)
+        if hit and not _verify(hit[0], name, extra_terms):
+            log.warning("portrait: %r trên Wikipedia là người khác (%s), bỏ",
+                        name, hit[0])
+            hit = None
         if hit:
             credit, url = f"Wikipedia · {hit[0]}", hit[1]
         elif api_key and cx:

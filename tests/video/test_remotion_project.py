@@ -370,3 +370,25 @@ def test_auto_loop_diagram_connects_and_labels_its_nodes():
     assert "const AutoLoop" in src
     assert "<line x1={CX} y1={CY}" in src, "đường kẻ nối lõi ra chấm"
     assert "chú thích cho từng chấm" in src
+
+
+def test_portrait_refuses_a_same_name_stranger():
+    """Đo thật: bài nhắc "Johnny Ho, đồng sáng lập Perplexity", nhưng trên
+    Wikidata "Johnny Ho" là một nhà nghiên cứu và một nghệ sĩ saxophone --
+    người khác hoàn toàn. Dán mặt nhầm một người THẬT lên video còn tệ hơn
+    hẳn là không có ảnh, nên khi bài có nêu bối cảnh thì bối cảnh đó phải
+    xuất hiện trong phần tóm tắt của trang mới được nhận."""
+    src = (ROOT / "src/pipeline/video/portrait.py").read_text(encoding="utf-8")
+    assert "def _verify" in src
+    assert "if hit and not _verify(hit[0], name, extra_terms):" in src
+
+
+def test_portrait_prefers_a_hand_placed_file():
+    """Người không đủ nổi tiếng thì không nguồn tự động nào có ảnh đúng.
+    Đường thoát: đặt tay một file vào thư mục portraits, và nó phải được
+    ưu tiên trên mọi nguồn tự tìm."""
+    src = (ROOT / "src/pipeline/video/portrait.py").read_text(encoding="utf-8")
+    assert "def local_portrait" in src
+    assert "local = local_portrait(name, out_path.parent)" in src
+    # phải đứng TRƯỚC nhánh Wikipedia
+    assert src.index("local_portrait(name, out_path.parent)") < src.index("hit = wikipedia_image(name)")
