@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import { CARDS, SECTIONS } from './cards.mjs';
 import { LAYOUT } from './variants.mjs';
 import { chartsFromSpeech } from './autoviz.mjs';
+import { assignScreens, secondaryScreen } from './screens.mjs';
+import { pickElementKind } from './elementpick.mjs';
+import { cardsFromText } from './listcards.mjs';
 
 const FPS = 30;
 const DURATION = Number(process.argv[2] ?? 136.803265);
@@ -334,6 +337,60 @@ const HOLD = 14;
       c.visualAt = src.visualAt ?? src.start;
     }
   }
+}
+
+// ---- 5d. Gán MỖI CHƯƠNG một màn hình ----
+// Video mẫu chia bài thành chương ("01 / 09") và mỗi chương có đúng một
+// màn hình chiếm khung, đứng yên suốt chương, lời thoại chạy dưới đáy.
+// Không chương nào được để trống -- đó chính là chỗ bản trước hỏng.
+{
+  const chapters = [];
+  for (const c of cards) {
+    const last = chapters[chapters.length - 1];
+    if (!last || last.label !== c.section) {
+      chapters.push({ label: c.section, cards: [c], start: c.start, end: c.out });
+    } else {
+      last.cards.push(c); last.end = c.out;
+    }
+  }
+  let BRANDS = {};
+  try { BRANDS = JSON.parse(fs.readFileSync('src/logos.json', 'utf8')); } catch { /* chưa có logo */ }
+
+  // Ảnh trang nguồn THẬT do phía Python chụp trước (sourceshot.py), đã lọc
+  // bỏ trang chặn bot / trang trắng. Không có file -> video vẫn dựng bình thường.
+  let SHOTS = [];
+  try { SHOTS = JSON.parse(fs.readFileSync('ref/shots.json', 'utf8')); } catch { /* không có ảnh nguồn */ }
+
+  const screens = assignScreens(chapters, {
+    brands: BRANDS,
+    shots: SHOTS,
+    elementOf: pickElementKind,
+    listOf: cardsFromText,
+    fallbackList: cardsFromText(CARDS.flat()
+      .map((r) => (r.startsWith('~') ? r.slice(1) : r)).join(' ')),
+    // chữ trên màn hình lấy từ KỊCH BẢN, không lấy chữ nhận diện được
+    scriptLines: (si) => (CARDS[si] || []).map((r) => (r.startsWith('~') ? r.slice(1) : r)),
+  });
+  const SPLIT_AFTER = 20;   // giây
+  chapters.forEach((ch, ci) => {
+    const sc = screens.get(ci);
+    if (!sc) return;
+    for (const c of ch.cards) c.screen = sc;
+
+    // Chương dài -> nửa sau đổi sang màn khác, tránh đứng hình nửa phút.
+    if (ch.end - ch.start > SPLIT_AFTER) {
+      const sec = secondaryScreen(ch, sc, {
+        shots: SHOTS, listOf: cardsFromText,
+        scriptLines: (si) => (CARDS[si] || []).map((r) => (r.startsWith('~') ? r.slice(1) : r)),
+      });
+      if (sec) {
+        const half = Math.floor(ch.cards.length / 2);
+        for (let k = half; k < ch.cards.length; k++) ch.cards[k].screen = sec;
+      }
+    }
+  });
+  console.log(`màn hình: ${chapters.length} chương -> `
+    + chapters.map((_, i) => (screens.get(i) || {}).kind).join(', '));
 }
 
 // Phụ đề = nguyên văn lời nói. Chỉ có khi nhận diện giọng nói dùng được --

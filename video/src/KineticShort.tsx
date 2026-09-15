@@ -8,6 +8,8 @@ import { BgVideo, palAt } from './BgVideo';
 import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
+import { HookScreen, StatementScreen, ShotScreen, CardsScreen } from './Screens';
+import { ElementView } from './Elements';
 import { VersusMark, versusOf } from './Versus';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { shown, type Card } from './layouts';
@@ -22,24 +24,40 @@ const fontHandle = delayRender('be-vietnam-pro');
 waitUntilDone().then(() => continueRender(fontHandle));
 
 const CardView: React.FC<{ card: Card }> = ({ card }) => {
-  const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const t = frame / fps;
-  const leaving = frame - (card.out * fps - T.EXIT);
+  const sc = card.screen;
+  if (!sc) return null;
+  const at = (sc.at ?? card.start) * fps;
 
-  let activeIdx = 0;
-  shown(card).forEach((l, i) => { if (t >= l.start - 0.02) activeIdx = i; });
-  const p = { card, ff: fontFamily, leaving, activeIdx };
-
-  // Thẻ chỉ còn dựng HÌNH. Lời thoại do <Caption> vẽ một chỗ duy nhất ở
-  // đáy khung cho MỌI thẻ -- bản tham chiếu làm đúng như vậy: một dòng
-  // ngắn căn giữa, không có lớp chữ thứ hai nào khác. Trước đây mỗi biến
-  // thể tự vẽ chữ của nó ở một vị trí riêng, nên chữ nhảy lung tung và
-  // chồng lên hình.
-  if (card.chart) return <ChartCard {...p} />;
-  if (card.screenshotFile) return <ScreenshotCard {...p} />;
-  return null;
+  // Mỗi chương một màn hình chiếm khung, đứng yên suốt chương -- đúng như
+  // video mẫu. Lời thoại do <Caption> vẽ riêng ở đáy khung.
+  switch (sc.kind) {
+    case 'shot':
+      return <ShotScreen file={sc.file!} at={at} title={sc.eyebrow}
+                         sourceUrl={sc.sourceUrl} ff={fontFamily} />;
+    case 'hook':
+      return <HookScreen eyebrow={sc.eyebrow ?? ''} title={sc.title ?? ''}
+                         subtitle={sc.subtitle} tiles={sc.tiles ?? []}
+                         ff={fontFamily} at={at} />;
+    case 'statement':
+      return <StatementScreen eyebrow={sc.eyebrow} lead={sc.lead ?? ''}
+                              highlight={sc.highlight ?? ''}
+                              ff={fontFamily} at={at} />;
+    case 'cards':
+      return <CardsScreen title={sc.eyebrow ?? ''} items={sc.items ?? []}
+                          ff={fontFamily} at={at} />;
+    case 'element':
+      return <ElementView at={at} ff={fontFamily}
+                          pick={{ kind: sc.element!,
+                                  nodes: (sc.items ?? []).map((i) => i.label) }} />;
+    case 'panel':
+      return <ChartCard card={{ ...card, chart: sc.chart, visualAt: sc.at, anchor: 'mid' }}
+                        ff={fontFamily} leaving={0} activeIdx={0} />;
+    default:
+      return null;
+  }
 };
+
 
 /**
  * CAPTION -- lớp chữ DUY NHẤT của video, dựng theo đúng bản tham chiếu.
@@ -92,30 +110,11 @@ const Caption: React.FC<{ card: Card; activeIdx: number }> = ({ card, activeIdx 
 };
 
 /**
- * Chấm sáng "hiện diện": khi thẻ KHÔNG có biểu đồ/ảnh/đấu, giữa khung
- * trống đen -- đúng cái người dùng chụp màn hình phàn nàn. Bản tham chiếu
- * luôn có một điểm sáng nhỏ đập nhịp ở đó. Không dựng được minh hoạ riêng
- * theo từng chủ đề (không có dữ liệu để vẽ), nhưng một chấm sáng thở đều
- * vẫn hơn khung đen trơn.
+ * Hình minh hoạ cho thẻ KHÔNG có biểu đồ/ảnh chụp. Chọn theo chính câu
+ * đang được nói (xem Elements.tsx). Trước đây chỗ này là một chấm sáng --
+ * nó chẳng minh hoạ gì, chỉ lấp cho đỡ trống, và đó đúng là chỗ làm ẩu.
+ * Không câu từ nào khớp thì KHÔNG vẽ gì: thà trống còn hơn hình sai nội dung.
  */
-const Presence: React.FC = () => {
-  const frame = useCurrentFrame();
-  const pal = usePal();
-  const beat = 0.5 + 0.5 * Math.sin(frame / 26);
-  return (
-    <div style={{
-      position: 'absolute', left: 0, right: 0, top: '52%',
-      display: 'flex', justifyContent: 'center', pointerEvents: 'none',
-    }}>
-      <div style={{
-        width: 96, height: 96, borderRadius: '50%',
-        background: pal.dark ? '#F4F3F1' : '#0B0B0B',
-        boxShadow: `0 0 ${46 + beat * 34}px ${14 + beat * 8}px ${pal.accent}45`,
-        opacity: 0.88, transform: `scale(${1 + beat * 0.07})`,
-      }} />
-    </div>
-  );
-};
 
 /**
  * Đếm CHƯƠNG ở góc trái trên. Bản tham chiếu ghi "01 / 09" -- chín chương
@@ -182,20 +181,14 @@ const Stage: React.FC = () => {
   const over = inverted ? (pal.dark ? LIGHT : DARK) : pal;
 
 
-  // Thẻ có HÌNH không tự vẽ lời nói -> cần lớp caption riêng ở đáy.
-  const hasVisual = Boolean(cur.chart) || Boolean(cur.screenshotFile);
   let capIdx = 0;
   shown(cur).forEach((l, i) => { if (frame / fps >= l.start - 0.02) capIdx = i; });
 
-  // Giữa khung trống đen khi thẻ chẳng có hình gì -- chấm sáng lấp chỗ đó.
-  const bare = !hasVisual && !versusOf(cur)
-    && cur.variant !== 'hero' && cur.variant !== 'invert';
 
   return (
     <>
       {visible.map((c) => <CardView key={c.index} card={c} />)}
       <PalCtx.Provider value={over}>
-        {bare ? <Presence /> : null}
         <Caption card={cur} activeIdx={capIdx} />
         <Counter index={chapIdx} total={chapters.length} />
         <ChapterRail index={chapIdx} total={chapters.length} />

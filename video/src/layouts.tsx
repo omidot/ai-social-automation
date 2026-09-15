@@ -26,6 +26,23 @@ export type Card = {
    *  đứng nguyên cả đoạn nên hiệu ứng phải tính từ đây, không phải từ
    *  card.start của từng card nhỏ (nếu không hình sẽ dựng lại liên tục). */
   visualAt?: number;
+  /** Màn hình của CHƯƠNG chứa thẻ này (do tools/screens.mjs gán). Mỗi
+   *  chương một màn hình chiếm khung, đứng yên suốt chương -- như video mẫu. */
+  screen?: {
+    kind: 'hook' | 'panel' | 'shot' | 'statement' | 'element' | 'cards';
+    items?: { label: string; note?: string }[];
+    element?: string;
+    sourceUrl?: string;
+    at?: number;
+    eyebrow?: string;
+    title?: string;
+    subtitle?: string;
+    lead?: string;
+    highlight?: string;
+    file?: string;
+    tiles?: { label: string; note?: string; file?: string; verdict?: 'win' | 'lose' }[];
+    chart?: Card['chart'];
+  };
 };
 export type P = { card: Card; ff: string; leaving: number; activeIdx: number };
 

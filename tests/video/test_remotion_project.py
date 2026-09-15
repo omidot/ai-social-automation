@@ -102,10 +102,6 @@ def test_chart_dims_rows_already_passed():
     assert "const dim = !active" in src
     assert "#8A8A88" in src
 
-def test_kineticshort_renders_chart_before_variant_switch():
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "ChartCard" in src
-    assert "card.chart" in src
 
 def test_screenshot_tsx_exists_and_exports_screenshotcard():
     assert (VIDEO / "src/Screenshot.tsx").is_file()
@@ -122,10 +118,6 @@ def test_screenshot_card_has_no_fake_browser_chrome_or_source_line():
     for dot in ("#ff5f57", "#febc2e", "#28c840"):
         assert dot not in src, f"traffic-light browser dot left in Screenshot.tsx: {dot}"
 
-def test_kineticshort_renders_screenshot_before_variant_switch():
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "ScreenshotCard" in src
-    assert "card.screenshotFile" in src
 
 def test_legacy_decoration_layers_are_gone():
     """Cutouts (paper-cutout icons), Sfx (sound cues) and Shots (a
@@ -223,13 +215,6 @@ def test_visuals_persist_across_the_whole_script_card():
         assert "card.visualAt ?? card.start" in (VIDEO / comp).read_text(encoding="utf-8"), comp
 
 
-def test_bare_narration_cards_get_a_presence_dot():
-    """Cards with no chart/screenshot/versus still left the middle of the
-    frame dead black. A breathing glow dot is not a hand-drawn per-topic
-    illustration, but it beats an empty frame."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "const Presence" in src
-    assert "bare ? <Presence /> : null" in src
 
 def test_gauge_and_chip_elements_exist():
     """Two more of the reference's illustration types: a gauge with an
@@ -242,19 +227,6 @@ def test_gauge_and_chip_elements_exist():
 
 
 # ---------- Thiết kế hiện tại: chỉ MỘT lớp chữ, phần còn lại là HÌNH ----------
-
-def test_caption_is_the_only_text_layer():
-    """Người dùng yêu cầu dứt khoát: không tiêu đề, chỉ một dòng ngắn chạy
-    theo giọng. Trước đây mỗi biến thể tự vẽ chữ ở một chỗ riêng cộng thêm
-    lớp tiêu đề, nên chữ nhảy lung tung và chồng lên hình."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "const Caption" in src
-    assert "<Caption card={cur} activeIdx={capIdx} />" in src
-    assert "Headline" not in src, "người dùng đã yêu cầu bỏ tiêu đề"
-    # CardView chỉ còn dựng hình
-    assert "if (card.chart) return <ChartCard" in src
-    assert "if (card.screenshotFile) return <ScreenshotCard" in src
-    assert "return null;" in src
 
 
 def test_caption_highlights_the_word_being_spoken():
@@ -298,3 +270,69 @@ def test_duplicate_charts_are_suppressed():
     src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
     assert "const valueKey" in src
     assert "if (dup) continue;" in src
+
+
+# ---------- Kiến trúc hiện tại: mỗi CHƯƠNG một màn hình chiếm khung ----------
+
+def test_every_chapter_gets_a_screen():
+    """Điểm sai gốc của các bản trước: nền đen + chữ chạy là mặc định, hình
+    chỉ thỉnh thoảng mới chèn, nên phần lớn thời lượng màn hình trống. Video
+    mẫu chia bài thành chương và MỖI CHƯƠNG có đúng một màn hình chiếm khung
+    đứng yên suốt chương đó."""
+    src = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "export function assignScreens" in src
+    for kind in ("'hook'", "'panel'", "'shot'", "'statement'", "'cards'", "'element'"):
+        assert kind in src, kind
+    # chương mở đầu luôn là hook, không được để bảng biểu chiếm chỗ
+    assert "if (ci === 0) {" in src
+
+
+def test_long_chapters_are_split_so_the_frame_never_freezes():
+    """Chương dài 28 giây mà giữ nguyên một màn thì người xem đứng hình.
+    Bản mẫu đổi màn khoảng 16 giây một lần."""
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "const SPLIT_AFTER = 20;" in src
+    assert "secondaryScreen" in src
+
+
+def test_cardview_only_draws_screens_and_caption_is_separate():
+    """Chỉ MỘT lớp chữ: caption dưới đáy. Thẻ chỉ dựng hình."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const sc = card.screen;" in src
+    assert "const Caption" in src
+    assert "<Caption card={cur} activeIdx={capIdx} />" in src
+    assert "Headline" not in src, "người dùng đã yêu cầu bỏ tiêu đề"
+
+
+def test_source_screenshots_reject_bot_walls():
+    """Đo thật trên 4 nguồn của một bài: openai.com dựng Cloudflare
+    'Verify you are human', engadget.com trả 403. Không vượt các chặn đó --
+    nhưng BẮT BUỘC phải loại ảnh hỏng, vì một khung 'Verify you are human'
+    lọt vào video đã xuất bản còn tệ hơn là không có ảnh nào."""
+    src = (ROOT / "src/pipeline/video/sourceshot.py").read_text(encoding="utf-8")
+    assert "verify you are human" in src
+    assert "403 error" in src
+    assert "_is_mostly_blank" in src
+    # dải cookie bị ẩn bằng CSS, không bấm nút "Đồng ý" thay người dùng
+    assert "_HIDE_CSS" in src
+    assert "click" not in src.lower().split("_HIDE_CSS")[0].split("def capture")[-1]
+
+
+def test_list_cards_come_from_real_enumerations_only():
+    """Thẻ nhỏ cắt nguyên văn từ câu liệt kê trong lời nói. Chỉ nhận khi các
+    vế THỰC SỰ song song (cùng từ mở đầu) -- nếu không thì câu nào có dấu
+    phẩy cũng bị xé thành thẻ vô nghĩa."""
+    src = (VIDEO / "tools/listcards.mjs").read_text(encoding="utf-8")
+    assert "export function listItemsOf" in src
+    assert "topCount < 2" in src, "phải có ít nhất hai vế song song"
+    assert "MAX_ITEMS" in src
+
+
+def test_auto_loop_diagram_connects_and_labels_its_nodes():
+    """Yêu cầu trực tiếp: sơ đồ tự vận hành phải có ĐƯỜNG KẺ NỐI lõi ra các
+    chấm và CHÚ THÍCH từng chấm -- bản trước chỉ có mấy chấm trôi lơ lửng,
+    nhìn thì có hình nhưng không hiểu đang nói gì."""
+    src = (VIDEO / "src/Elements.tsx").read_text(encoding="utf-8")
+    assert "const AutoLoop" in src
+    assert "<line x1={CX} y1={CY}" in src, "đường kẻ nối lõi ra chấm"
+    assert "chú thích cho từng chấm" in src

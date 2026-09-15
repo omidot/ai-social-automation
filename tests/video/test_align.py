@@ -17,8 +17,10 @@ def stage(tmp_path):
     (d / "src").mkdir()
     (d / "ref").mkdir()
     shutil.copy(VIDEO / "tools/align.mjs", d / "tools/align.mjs")
-    # align.mjs imports autoviz.mjs (biểu đồ dựng từ chính lời nói)
-    shutil.copy(VIDEO / "tools/autoviz.mjs", d / "tools/autoviz.mjs")
+    # align.mjs nhập các module cùng thư mục tools/ -- thiếu cái nào
+    # là node không nạp được và cả bộ test căn chữ sụp theo.
+    for helper in ("autoviz.mjs", "screens.mjs", "elementpick.mjs", "listcards.mjs"):
+        shutil.copy(VIDEO / "tools" / helper, d / "tools" / helper)
     # 3 cards so align maps onto the 3 speech bursts of the fixture
     (d / "tools/cards.mjs").write_text(
         'export const CARDS = [["một hai ba"],["bốn năm sáu"],["bảy tám chín"]];\n'
