@@ -31,6 +31,7 @@ def test_build_writes_all_artefacts(tmp_path, monkeypatch):
         (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
     import shutil
     shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copy(ROOT / "video/tools/autoviz.mjs", repo / "video/tools/autoviz.mjs")
     shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
                     repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
     # user audio replaces TTS: copy the fixture straight to voice.mp3
@@ -62,6 +63,7 @@ def test_build_calls_transcribe_before_aligning(tmp_path, monkeypatch):
         (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
     import shutil
     shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copy(ROOT / "video/tools/autoviz.mjs", repo / "video/tools/autoviz.mjs")
     shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
                     repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
     monkeypatch.setattr(build_video, "_copy_as_mp3",
@@ -91,6 +93,7 @@ def test_build_survives_transcribe_exception(tmp_path, monkeypatch):
         (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
     import shutil
     shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copy(ROOT / "video/tools/autoviz.mjs", repo / "video/tools/autoviz.mjs")
     shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
                     repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
     monkeypatch.setattr(build_video, "_copy_as_mp3",
@@ -118,6 +121,7 @@ def test_main_writes_manifest(tmp_path, monkeypatch, capsys):
         (repo / "video" / sub).mkdir(parents=True, exist_ok=True)
     import shutil
     shutil.copy(ROOT / "video/tools/align.mjs", repo / "video/tools/align.mjs")
+    shutil.copy(ROOT / "video/tools/autoviz.mjs", repo / "video/tools/autoviz.mjs")
     shutil.copytree(ROOT / "video/node_modules/ffmpeg-static",
                     repo / "video/node_modules/ffmpeg-static", dirs_exist_ok=True)
     (repo / "config").mkdir()

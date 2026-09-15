@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import { CARDS, SECTIONS } from './cards.mjs';
 import { LAYOUT } from './variants.mjs';
+import { chartsFromSpeech } from './autoviz.mjs';
 
 const FPS = 30;
 const DURATION = Number(process.argv[2] ?? 136.803265);
@@ -154,68 +155,18 @@ if (!usedRealWords) {
   for (const w of allWords) if (w.start === undefined) { w.start = DURATION - 0.2; w.end = DURATION; }
 }
 
-// ---- 4c. Sửa tên thương hiệu bị nghe nhầm ----
-// Nhận diện giọng nói bóp méo tên riêng: "Fable" ra "Facebook"/"Faber",
-// "Claude" ra "Cloud". Chữ sai đó lên thẳng màn hình là sai luôn thương hiệu.
-// KHÔNG dựa vào căn chỉnh với kịch bản: đo thực tế cho thấy nó nối "Fable"
-// sang "vi", "nắm", "đừng" -- lạc hoàn toàn, vì lời đọc khác kịch bản nhiều.
-// Thay vào đó so từng từ nghe được với chính danh sách thương hiệu, và chỉ
-// đổi khi rất giống (cùng chữ cái đầu, đủ dài, sai lệch ít).
-const LEV_MAX_RATIO = 0.65;   // "faber"->"fable" 0.40, "facebook"->"fable" 0.63
+// ---- 4c. (đã gỡ) Sửa tên thương hiệu bị nghe nhầm ----
+// Trước đây màn hình hiện thẳng chữ NHẬN DIỆN được, nên tên riêng bị máy
+// nghe sai ("Fable" -> "Facebook", "Claude" -> "Cloud") lên hình là sai
+// luôn thương hiệu, phải có một lớp dò tìm và sửa lại bằng khoảng cách
+// Levenshtein. Giờ màn hình hiện chữ của KỊCH BẢN (xem bước 5), nên mọi
+// tên riêng vốn đã đúng chính tả từ đầu -- cả lớp sửa đó thành thừa và
+// được gỡ bỏ thay vì để lại làm chỗ sinh lỗi.
 
-function lev(a, b) {
-  const m = a.length, n = b.length;
-  let prev = Array.from({ length: n + 1 }, (_, j) => j);
-  for (let i = 1; i <= m; i++) {
-    const cur = [i];
-    for (let j = 1; j <= n; j++) {
-      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
-                        prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
-    }
-    prev = cur;
-  }
-  return prev[n];
-}
-
-let BRAND_KEYS = [];
-try {
-  BRAND_KEYS = Object.keys(JSON.parse(fs.readFileSync('src/logos.json', 'utf8')));
-} catch { /* chưa có logo -> không sửa gì */ }
-
-// Cách viết chuẩn lấy từ chính kịch bản ("fable" -> "Fable"), để giữ đúng
-// kiểu viết hoa của tác giả thay vì bịa ra.
-const CANON = new Map();
-for (const sw of allWords) {
-  const k = norm(sw.w);
-  if (BRAND_KEYS.includes(k) && !CANON.has(k)) {
-    CANON.set(k, sw.w.replace(/[.,:;!?]+$/, ''));
-  }
-}
-
-const spokenWords = realWords
-  ? realWords.map((r) => ({ w: r.w, start: r.start, end: r.end }))
-  : [];
-if (usedRealWords && CANON.size > 0) {
-  const fixes = [];
-  for (const sp of spokenWords) {
-    const got = norm(sp.w);
-    if (got.length < 4 || CANON.has(got)) continue;   // đã đúng thì thôi
-    let best = null, bestRatio = 1;
-    for (const [key, canon] of CANON) {
-      if (key[0] !== got[0]) continue;
-      const ratio = lev(got, key) / Math.max(got.length, key.length);
-      if (ratio < bestRatio) { bestRatio = ratio; best = canon; }
-    }
-    if (best && bestRatio <= LEV_MAX_RATIO) {
-      fixes.push(`${sp.w} -> ${best}`);
-      sp.w = best;
-    }
-  }
-  if (fixes.length) console.log(`sửa tên thương hiệu: ${fixes.join(', ')}`);
-}
-
-const MAX_LINE_CHARS = 26;   // đủ to để đọc trên điện thoại ở khung dọc 1080
-const LINES_PER_CARD = 3;    // quá số này thì chữ bị co nhỏ, khó đọc
+// Bản tham chiếu chỉ để 2-4 từ dưới đáy mỗi lúc ("phục vụ được nhiều,",
+// "ở giờ thấp điểm."). Dài hơn là mắt phải đọc thay vì nghe.
+const MAX_LINE_CHARS = 22;
+const LINES_PER_CARD = 1;    // một dòng một lúc, đúng như bản tham chiếu
 
 /** Gói chuỗi từ thành các dòng không quá MAX_LINE_CHARS ký tự. */
 function packLines(ws) {
@@ -230,6 +181,7 @@ function packLines(ws) {
   return groups.map((g) => ({
     text: g.map((x) => x.text).join(' '),
     start: g[0].start, end: g[g.length - 1].end, hidden: false, words: g,
+    src: g[0].src,
   }));
 }
 
@@ -239,20 +191,34 @@ for (const u of units) { u.start = u.words[0].start; u.end = u.words[u.words.len
 let cards;
 let srcOf;   // card mới -> dòng LAYOUT/section gốc của kịch bản
 if (usedRealWords) {
-  // Chữ trên màn hình phải là ĐÚNG LỜI NÓI. Kịch bản là bản rút gọn và
-  // người đọc gần như không bao giờ đọc y nguyên -- giữ chữ kịch bản thì
-  // slide chạy trước hoặc sau tiếng nói cả chục giây (đo được: giây 20.1
-  // hiện "USD cho một tác vụ" trong khi giọng còn ở "vượt xa 40%").
-  // Nhồi lời nói vào đúng khung card của kịch bản thì card phình tới cả
-  // chục dòng, nên card được chia lại theo chính lời nói, còn kiểu dáng
-  // của kịch bản ánh xạ lên theo tỉ lệ để giữ mạch thiết kế.
-  const lines = packLines(spokenWords.map((r) => ({ text: r.w, start: r.start, end: r.end })));
+  // CHỮ lấy từ KỊCH BẢN, GIỜ lấy từ GIỌNG NÓI THẬT.
+  //
+  // Hiển thị thẳng chữ nhận diện được thì đúng giờ nhưng sai chính tả:
+  // máy nghe "Perplexity" ra "Proplexity", "GPT-6" ra "GP6", "giỏi hơn"
+  // ra "rõi hơn" -- chữ sai chính tả đập vào mặt người xem suốt video.
+  // Ngược lại, lấy chữ kịch bản rồi tự đoán giờ thì chữ chạy lệch tiếng
+  // nói cả chục giây.
+  //
+  // Bước 4 đã căn từng từ kịch bản vào đúng mốc giờ của từ tương ứng
+  // trong giọng đọc, nên ở đây dùng được cả hai: chữ chuẩn của kịch bản,
+  // đặt đúng giây nó được nói ra.
+  const visible = [];
+  allWords.forEach((w, i) => {
+    const u = units[wordUnit[i]];
+    if (u.hidden) return;                     // dòng "~" chỉ giữ chỗ tính giờ
+    visible.push({ text: w.w, start: w.start, end: w.end, src: u.card });
+  });
+  const lines = packLines(visible);
   const groups = [];
   for (let i = 0; i < lines.length; i += LINES_PER_CARD) groups.push(lines.slice(i, i + LINES_PER_CARD));
   cards = groups.map((g, k) => ({
     index: k, lines: g, start: g[0].start, end: g[g.length - 1].end,
+    src: g[0].src,
   }));
-  srcOf = (k) => Math.min(CARDS.length - 1, Math.floor((k * CARDS.length) / cards.length));
+  // Ánh xạ CHÍNH XÁC về card kịch bản gốc (qua unit sở hữu từ đầu dòng),
+  // không phải chia đều theo tỉ lệ như trước -- nhờ vậy biểu đồ/ảnh gắn
+  // đúng đoạn nội dung của nó.
+  srcOf = (k) => Math.min(CARDS.length - 1, cards[k].src ?? 0);
 } else {
   cards = CARDS.map((lines, ci) => {
     const mine = units.filter((u) => u.card === ci);
@@ -300,6 +266,75 @@ cards.forEach((c) => {
     .filter(Boolean);
   c.headlineAt = si;
 });
+
+// ---- 5b. Biểu đồ dựng TỪ CHÍNH LỜI NÓI ----
+// Chờ mô hình viết kịch bản gắn thẻ 'chart' là không ăn thua: đo thật chỉ
+// 1 biểu đồ trên 38 card, trong khi giọng đọc đọc ra đầy số liệu ("Gói Plus
+// 45 tin, Gói Pro 100 đô 225 tin, Gói Pro 200 đô 900 tin") mà màn hình để
+// trống. autoviz đọc thẳng bản ghi lời nói và dựng biểu đồ đúng giây con số
+// được nói ra. Số liệu cắt từ lời nói nên không có chuyện bịa.
+let autoCharts = [];
+if (usedRealWords) {
+  try {
+    // Dùng chữ KỊCH BẢN (đã mang mốc giờ thật) chứ không dùng chữ nhận
+    // diện: nhãn biểu đồ cũng phải đúng chính tả như caption.
+    autoCharts = chartsFromSpeech(
+      allWords.map((w) => ({ w: w.w, start: w.start, end: w.end })));
+    // Kịch bản đôi khi đã tự gắn biểu đồ cho chính những con số đó. Dựng
+    // thêm một cái nữa là cùng một bảng số hiện hai lần cách nhau vài giây
+    // (đo thật: 90.7s và 94.3s cùng là 45/225/900). Giữ bản của KỊCH BẢN
+    // vì nó có nhãn do người viết đặt, bỏ bản tự dựng trùng nó.
+    const valueKey = (items) => items.map((i) => i.value).sort((a, b) => a - b).join('|');
+    const scripted = cards
+      .filter((c) => c.chart && c.chart.items && c.chart.items.length)
+      .map((c) => ({ key: valueKey(c.chart.items), at: c.visualAt ?? c.start }));
+    const DUP_WINDOW = 20;   // giây
+
+    for (const ac of autoCharts) {
+      const key = valueKey(ac.items);
+      const dup = scripted.some((s) => s.key === key && Math.abs(s.at - ac.start) <= DUP_WINDOW);
+      if (dup) continue;
+      for (const c of cards) {
+        // phủ lên mọi card nằm trong khoảng con số đang được nói
+        if (c.out <= ac.start || c.start >= ac.end) continue;
+        if (c.screenshotFile) continue;        // ảnh chụp đã chiếm cả khung
+        if (c.chart) continue;                 // kịch bản đã có hình cho đoạn này
+        c.chart = { kind: ac.kind, items: ac.items, unit: ac.unit, title: ac.title };
+        c.visualAt = ac.start;
+        c.num = undefined;
+      }
+    }
+  } catch (e) {
+    console.log(`autoviz lỗi, bỏ qua: ${e.message}`);
+  }
+}
+
+// ---- 5c. Giữ hình trên màn hình cho tới khi có hình khác ----
+// Bản tham chiếu để một tấm số liệu đứng yên cả chục giây trong khi caption
+// chạy bên dưới. Nếu chỉ hiện đúng khoảng câu nói chứa con số thì hình loé
+// vài giây rồi cả đoạn sau lại là khung trống (đo thật: 5% thời lượng có
+// hình). Mỗi hình được kéo dài tới khi hình KHÁC bắt đầu, tối đa HOLD giây.
+const HOLD = 14;
+{
+  const sig = (c) => (c.screenshotFile ? `s:${c.screenshotFile}`
+    : c.chart ? `c:${JSON.stringify(c.chart)}` : '');
+  for (let i = 0; i < cards.length; i++) {
+    const src = cards[i];
+    if (!src.chart && !src.screenshotFile) continue;
+    const mine = sig(src);
+    const until = (src.visualAt ?? src.start) + HOLD;
+    for (let j = i + 1; j < cards.length; j++) {
+      const c = cards[j];
+      if (sig(c) === mine) continue;            // vẫn cùng một hình -> bỏ qua
+      if (c.chart || c.screenshotFile) break;   // đã có hình khác -> dừng
+      if (c.start >= until) break;              // quá lâu -> thôi, tránh hình chết
+      c.chart = src.chart;
+      c.screenshotFile = src.screenshotFile;
+      c.screenshotUrl = src.screenshotUrl;
+      c.visualAt = src.visualAt ?? src.start;
+    }
+  }
+}
 
 // Phụ đề = nguyên văn lời nói. Chỉ có khi nhận diện giọng nói dùng được --
 // đoán theo khoảng lặng thì chữ sẽ không phải lời thật, thà không hiện.

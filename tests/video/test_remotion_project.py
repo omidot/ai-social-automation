@@ -83,11 +83,17 @@ def test_chart_is_rows_not_plotted_axes():
     assert "const Row" in src
 
 def test_frame_chrome_matches_the_reference():
-    """Reference chrome: slide counter top-left, brand logo top-right."""
+    """Reference chrome: a CHAPTER counter top-left ("03 / 09"), the brand
+    logo top-right, and a segmented chapter rail down the left edge. The
+    counter deliberately counts chapters, not caption lines -- counting
+    lines produced "76 / 132", a number that scrolls past meaninglessly.
+    There is no centre title: the reference has nothing at top-centre."""
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
     assert "const Counter" in src
-    assert "<Counter index={cur.index} total={cards.length} />" in src
+    assert "<Counter index={chapIdx} total={chapters.length} />" in src
+    assert "const ChapterRail" in src
     assert "<BrandMark card={cur} />" in src
+    assert "<Chip" not in src, "no centre label in the reference"
 
 def test_chart_dims_rows_already_passed():
     """Only the row being talked about stays bright; earlier rows sink to
@@ -135,15 +141,6 @@ def test_legacy_decoration_layers_are_gone():
         for dead in ("Cutouts", "Sfx", "Shots", "shotPushAt"):
             assert dead not in src, f"{dead} still referenced in {src_name}"
 
-def test_slide_text_is_revealed_word_by_word():
-    """Measured regression: with scripted wording on the slides, the text ran
-    up to ten seconds ahead of the voice (20.1s showed "USD cho mot tac vu"
-    while the narrator was still on "vuot xa 40%"). Slides carry the spoken
-    words again, each appearing on its own timestamp."""
-    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
-    assert "export const WordFade" in src
-    assert src.count("<WordFade line={l} />") == 6
-    assert "{l.text}</span>" not in src
 
 def test_no_separate_subtitle_layer():
     """With the spoken words back on the slides, a subtitle would print the
@@ -169,12 +166,6 @@ def test_versus_card_shows_both_brand_logos():
     assert "'dau'" in src, "the Vietnamese 'dau' (versus) must trigger it"
     assert "brandsOf" in src, "both brands come from the shared registry"
 
-def test_versus_card_moves_text_clear_of_the_logos():
-    """The tiles occupy the upper half, so the card's own text is anchored
-    low on those cards instead of overlapping them."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "anchor: 'low' as const, num: undefined" in src
-    assert "<VersusMark card={cur} ff={fontFamily} />" in src
 
 def test_numeral_badge_hidden_when_there_is_no_number():
     """Suppressing card.num on a versus card left the badge's empty red
@@ -199,22 +190,6 @@ def test_versus_tiles_mark_winner_and_loser():
     assert "👑" in src
     assert "grayscale(1)" in src
 
-def test_narration_variants_show_only_the_active_line():
-    """Regression: up to 3 lines of a card used to stack on screen at once
-    (~15-20 words), which the reference never does -- it shows one short
-    caption at a time. After cards are re-cut from real speech, even the
-    rare hero/invert emphasis cards can end up with several lines, so all
-    seven variants render only the line whose real timestamp is currently
-    active, hiding the rest."""
-    src = (VIDEO / "src/layouts.tsx").read_text(encoding="utf-8")
-    assert src.count("if (i !== activeIdx) return null;") == 7
-
-def test_narration_cards_anchor_to_the_bottom_like_a_caption():
-    """The reference's spoken caption always sits near the bottom of the
-    frame, never mid-screen. Hero/invert stay wherever variants.py put them
-    (rare hook/closer moments); every other card is forced to anchor 'low'."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "isEmphasis ? card : { ...card, anchor: 'low' as const }" in src
 
 def test_screenshot_is_full_bleed_not_a_floating_card():
     """The reference lets a real screenshot fill the whole vertical frame
@@ -226,41 +201,13 @@ def test_screenshot_is_full_bleed_not_a_floating_card():
     assert "objectFit: 'cover'" in src
     assert "linear-gradient" in src
 
-def test_headline_layer_carries_the_scripted_text():
-    """The reference frames have TWO text layers: a big scripted headline
-    up top that holds still for seconds (topic of the moment, last line in
-    an accent-filled box), and a small spoken caption at the bottom that
-    tracks the voice. Dropping the headline left a dead-black middle of
-    frame, which the user reported with a screenshot."""
-    assert (VIDEO / "src/Headline.tsx").is_file()
-    src = (VIDEO / "src/Headline.tsx").read_text(encoding="utf-8")
-    assert "export const Headline" in src
-    assert "card.headline" in src
-    ks = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "<Headline card={cur} ff={fontFamily} at={headStart} />" in ks
 
-def test_headline_holds_still_across_caption_cards():
-    """A headline that re-animated on every caption card would flicker
-    several times a second. It keys off the first card sharing the same
-    source script card, so it animates once and then holds."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "cards.find((c) => c.headlineAt === cur.headlineAt)" in src
 
 def test_align_emits_headline_from_the_script_card():
     src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
     assert "c.headline = CARDS[si]" in src
     assert "c.headlineAt = si" in src
 
-def test_headline_layer_fills_the_frame_on_every_card():
-    """The user's screenshot showed a near-empty black frame: one short
-    caption at the bottom and nothing else. The reference always carries a
-    big static headline (the SCRIPT's wording, not the running speech) in
-    the upper third. It renders on every card except screenshot/versus
-    cards, which already own the whole frame."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "import { Headline }" in src
-    assert "const showHead = !cur.screenshotFile && !versusOf(cur);" in src
-    assert (VIDEO / "src/Headline.tsx").is_file()
 
 def test_visuals_persist_across_the_whole_script_card():
     """Measured: charts attached only to the FIRST re-cut card of a script
@@ -275,12 +222,6 @@ def test_visuals_persist_across_the_whole_script_card():
     for comp in ("src/Chart.tsx", "src/Screenshot.tsx"):
         assert "card.visualAt ?? card.start" in (VIDEO / comp).read_text(encoding="utf-8"), comp
 
-def test_chart_cards_still_show_the_spoken_caption():
-    """Chart/screenshot cards drew no spoken words at all, so the viewer
-    lost the thread whenever a visual was on screen."""
-    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "const Caption" in src
-    assert "hasVisual ? <Caption card={cur} activeIdx={capIdx} /> : null" in src
 
 def test_bare_narration_cards_get_a_presence_dot():
     """Cards with no chart/screenshot/versus still left the middle of the
@@ -298,3 +239,62 @@ def test_gauge_and_chip_elements_exist():
     assert "const Gauge" in src and "const Chips" in src
     assert "chart.kind === 'gauge'" in src and "chart.kind === 'chips'" in src
     assert "borderTop: `26px solid ${accent}`" in src, "gauge needs its arrow"
+
+
+# ---------- Thiết kế hiện tại: chỉ MỘT lớp chữ, phần còn lại là HÌNH ----------
+
+def test_caption_is_the_only_text_layer():
+    """Người dùng yêu cầu dứt khoát: không tiêu đề, chỉ một dòng ngắn chạy
+    theo giọng. Trước đây mỗi biến thể tự vẽ chữ ở một chỗ riêng cộng thêm
+    lớp tiêu đề, nên chữ nhảy lung tung và chồng lên hình."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const Caption" in src
+    assert "<Caption card={cur} activeIdx={capIdx} />" in src
+    assert "Headline" not in src, "người dùng đã yêu cầu bỏ tiêu đề"
+    # CardView chỉ còn dựng hình
+    assert "if (card.chart) return <ChartCard" in src
+    assert "if (card.screenshotFile) return <ScreenshotCard" in src
+    assert "return null;" in src
+
+
+def test_caption_highlights_the_word_being_spoken():
+    """Bản tham chiếu tô màu nhấn đúng từ đang được đọc -- vừa đẹp vừa là
+    bằng chứng nhìn thấy được rằng chữ khớp tiếng."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const on = t >= w.start - 0.02 && t < w.end + 0.06;" in src
+    assert "color: on ? pal.accent : pal.ink" in src
+
+
+def test_caption_only_appears_once_its_first_word_is_spoken():
+    """Chống tái phát lỗi 'text đi trước nói sau'."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "interpolate(t - line.start, [0, 0.14], [0, 1]," in src
+
+
+def test_panel_elements_match_the_reference_shapes():
+    """Bản tham chiếu dựng mọi đoạn bằng HỘP BO TRÒN nền mờ: nhãn nhỏ +
+    số to, hoặc số thứ tự + tiêu đề + mô tả, hoặc nhãn/giá trị nằm trên
+    một thanh chạy hết ngang."""
+    assert (VIDEO / "src/Panel.tsx").is_file()
+    src = (VIDEO / "src/Panel.tsx").read_text(encoding="utf-8")
+    for comp in ("PanelTitle", "StatBox", "StepBox", "BarRow"):
+        assert "export const %s" % comp in src, comp
+    assert "borderRadius: 22" in src, "hộp bo tròn"
+    assert "rgba(255,255,255,0.045)" in src, "nền mờ nhạt"
+
+
+def test_visuals_hold_on_screen_instead_of_flashing():
+    """Đo thật: hình chỉ hiện đúng khoảng câu chứa con số -> loé vài giây
+    rồi cả đoạn sau trống (5% thời lượng có hình). Bản tham chiếu để một
+    tấm số liệu đứng yên cả chục giây trong khi caption chạy bên dưới."""
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "const HOLD = 14;" in src
+    assert "if (c.chart || c.screenshotFile) break;" in src
+
+
+def test_duplicate_charts_are_suppressed():
+    """Kịch bản và autoviz có thể dựng cùng một bảng số, hiện hai lần cách
+    nhau vài giây (đo thật: 90.7s và 94.3s cùng là 45/225/900)."""
+    src = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "const valueKey" in src
+    assert "if (dup) continue;" in src

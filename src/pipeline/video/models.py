@@ -73,13 +73,19 @@ class ChartSpec:
     kind: str
     items: list[dict]
     unit: str = ""
+    # Nhãn ngắn nói khối số liệu này đo cái gì ("Giá đầu ra mỗi 1 triệu
+    # token"). Bản tham chiếu luôn có dòng này phía trên các hộp số. Đây
+    # KHÔNG phải câu thoại -- lời thoại chạy riêng ở caption dưới đáy.
+    title: str = ""
 
     def to_dict(self) -> dict:
-        return {"kind": self.kind, "items": [dict(i) for i in self.items], "unit": self.unit}
+        return {"kind": self.kind, "items": [dict(i) for i in self.items],
+                "unit": self.unit, "title": self.title}
 
     @classmethod
     def from_dict(cls, d: dict) -> "ChartSpec":
-        return cls(kind=d["kind"], items=[dict(i) for i in d["items"]], unit=d.get("unit", ""))
+        return cls(kind=d["kind"], items=[dict(i) for i in d["items"]],
+                   unit=d.get("unit", ""), title=d.get("title", ""))
 
 
 @dataclass

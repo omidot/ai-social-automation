@@ -2,6 +2,7 @@ import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { usePal } from './palette';
 import { Frame, type P } from './layouts';
+import { PanelTitle, StatBox, StepBox, BarRow } from './Panel';
 import { T } from './theme';
 
 const W = 1080 - T.PAD * 2;
@@ -212,12 +213,50 @@ export const ChartCard: React.FC<P> = ({ card, ff }) => {
   let active = 0;
   items.forEach((_, i) => { if (t >= at(i)) active = i; });
 
-  // Không in tiêu đề ở đây nữa: lớp Headline phía trên đã nói CHỦ ĐỀ bằng
-  // chữ kịch bản, còn caption dưới đáy chạy theo lời nói. In thêm ở giữa
-  // là chữ chồng chữ ba lần trên cùng một khung.
+  // Nhãn ngắn cho biết khối số liệu đang đo cái gì -- vai trò đúng như
+  // bản tham chiếu ("Giá đầu ra mỗi 1 triệu token", "Có gì cho bạn").
+  // KHÔNG lặp lại lời thoại: lời thoại đã chạy ở caption dưới đáy.
+  const panelTitle = chart.title ?? '';
+  const base2 = card.visualAt ?? card.start;
+
+  if (chart.kind === 'stat' || chart.kind === 'steps') {
+    return (
+      <Frame card={{ ...card, anchor: 'mid' }} align="center">
+        <div style={{ width: W }}>
+          {panelTitle ? <PanelTitle text={panelTitle} ff={ff} at={base2 * fps} /> : null}
+          {items.slice(0, 4).map((it, i) =>
+            chart.kind === 'steps' ? (
+              <StepBox key={i} n={i + 1} title={String(it.label ?? '')} note={it.note}
+                       ff={ff} at={base2 * fps} delay={i * 7} />
+            ) : (
+              <StatBox key={i} label={String(it.label ?? '')} value={it.value}
+                       unit={chart.unit ?? ''} ff={ff} at={base2 * fps} delay={i * 7} />
+            ))}
+        </div>
+      </Frame>
+    );
+  }
+
+  if (chart.kind === 'bar' || chart.kind === 'hbar') {
+    const mx = Math.max(...items.map((i) => i.value), 0);
+    return (
+      <Frame card={{ ...card, anchor: 'mid' }} align="center">
+        <div style={{ width: W }}>
+          {panelTitle ? <PanelTitle text={panelTitle} ff={ff} at={base2 * fps} /> : null}
+          {items.slice(0, 4).map((it, i) => (
+            <BarRow key={i} label={String(it.label ?? '')} value={it.value} max={mx}
+                    unit={chart.unit ?? ''} ff={ff} at={base2 * fps} delay={i * 8}
+                    hot={i === active} />
+          ))}
+        </div>
+      </Frame>
+    );
+  }
+
   return (
     <Frame card={card} align="center">
       <div style={{ width: W }}>
+        {panelTitle ? <PanelTitle text={panelTitle} ff={ff} at={base2 * fps} /> : null}
         {chart.kind === 'gauge' ? (
           <Gauge items={items} unit={chart.unit ?? ''} ff={ff} at={at(0)}
                  ink={pal.ink} accent={pal.accent} />

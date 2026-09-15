@@ -7,11 +7,10 @@ import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { BgVideo, palAt } from './BgVideo';
 import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
-import { Headline } from './Headline';
 import { ScreenshotCard } from './Screenshot';
 import { VersusMark, versusOf } from './Versus';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
-import { Stack, Hero, Invert, Mark, Stair, Numeral, Strike, shown, WordFade, type Card } from './layouts';
+import { shown, type Card } from './layouts';
 import { T } from './theme';
 import timeline from './timeline.json';
 
@@ -30,80 +29,64 @@ const CardView: React.FC<{ card: Card }> = ({ card }) => {
 
   let activeIdx = 0;
   shown(card).forEach((l, i) => { if (t >= l.start - 0.02) activeIdx = i; });
+  const p = { card, ff: fontFamily, leaving, activeIdx };
 
-  // Cảnh "đấu" chiếm nửa trên khung cho hai ô logo -- chữ phải tụt xuống,
-  // không thì đè lên nhau.
-  // num bị bỏ: con số đó chỉ là mảnh của tên model ("GPT-6" -> 6), dán
-  // nó lên huy hiệu cạnh hai ô logo là vô nghĩa.
-  // Thẻ kể chuyện thường (không phải hero/invert -- hai biến thể dành riêng
-  // cho khoảnh khắc mở/chốt) luôn neo xuống đáy khung như phụ đề thật của
-  // bản tham chiếu, bất kể variants.py gán anchor gì -- không còn trôi nổi
-  // giữa khung.
-  // Thẻ có HÌNH (biểu đồ/ảnh chụp) giữ nguyên vị trí giữa khung cho hình;
-  // caption lời nói được vẽ riêng ở đáy bởi <Caption>.
-  if (card.chart) return <ChartCard card={{ ...card, anchor: 'mid' }} ff={fontFamily} leaving={leaving} activeIdx={activeIdx} />;
-  if (card.screenshotFile) return <ScreenshotCard card={card} ff={fontFamily} leaving={leaving} activeIdx={activeIdx} />;
-
-  const isEmphasis = card.variant === 'hero' || card.variant === 'invert';
-  const shifted = versusOf(card)
-    ? { ...card, anchor: 'low' as const, num: undefined }
-    : isEmphasis ? card : { ...card, anchor: 'low' as const };
-  const p = { card: shifted, ff: fontFamily, leaving, activeIdx };
-  switch (card.variant) {
-    case 'hero': return <Hero {...p} />;
-    case 'invert': return <Invert {...p} />;
-    case 'mark': return <Mark {...p} />;
-    case 'stair': return <Stair {...p} />;
-    case 'numeral': return <Numeral {...p} />;
-    case 'strike': return <Strike {...p} />;
-    case 'right': return <Stack {...p} mirror />;
-    default: return <Stack {...p} />;
-  }
-};
-
-const Chip: React.FC<{ label: string; key0: number }> = ({ label, key0 }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const pal = usePal();
-  const s = spring({ frame: frame - key0, fps, config: { damping: 15, stiffness: 220, mass: 0.6 } });
-  return (
-    <div style={{ position: 'absolute', top: 132, left: 0, right: 0, display: 'flex', justifyContent: 'center', padding: '0 96px' }}>
-      <div
-        style={{
-          fontFamily, fontWeight: '800', fontSize: 30, letterSpacing: '0.04em', color: pal.ink,
-          textAlign: 'center', textTransform: 'uppercase', textShadow: pal.shadow,
-          opacity: interpolate(s, [0, 1], [0, 0.92]),
-          transform: `translateY(${interpolate(s, [0, 1], [-12, 0])}px)`,
-        }}
-      >
-        {label}
-      </div>
-    </div>
-  );
+  // Thẻ chỉ còn dựng HÌNH. Lời thoại do <Caption> vẽ một chỗ duy nhất ở
+  // đáy khung cho MỌI thẻ -- bản tham chiếu làm đúng như vậy: một dòng
+  // ngắn căn giữa, không có lớp chữ thứ hai nào khác. Trước đây mỗi biến
+  // thể tự vẽ chữ của nó ở một vị trí riêng, nên chữ nhảy lung tung và
+  // chồng lên hình.
+  if (card.chart) return <ChartCard {...p} />;
+  if (card.screenshotFile) return <ScreenshotCard {...p} />;
+  return null;
 };
 
 /**
- * Caption lời nói ở ĐÁY khung, dành cho thẻ mà phần giữa đã bị HÌNH chiếm
- * (biểu đồ, ảnh chụp). Các biến thể chữ tự vẽ caption của mình, nên lớp
- * này chỉ bù cho thẻ có hình -- trước đây thẻ có hình không hiện lời nói
- * nào, người xem mất mạch giữa chừng.
+ * CAPTION -- lớp chữ DUY NHẤT của video, dựng theo đúng bản tham chiếu.
+ *
+ * Bản mẫu chỉ có một dòng ngắn (2-4 từ) căn giữa ở khoảng 72% chiều cao,
+ * cả dòng hiện cùng lúc, và TỪ ĐANG ĐƯỢC NÓI được tô màu nhấn. Người dùng
+ * nói rõ: không tiêu đề, chữ khớp từng tiếng, không quá nhanh không quá
+ * chậm. Dòng chỉ bật lên khi từ đầu tiên của nó thật sự được nói, nên chữ
+ * không bao giờ chạy trước tiếng.
+ *
+ * Chữ lấy từ KỊCH BẢN (đúng chính tả), mốc giờ lấy từ giọng đọc thật --
+ * xem phần căn chỉnh trong tools/align.mjs.
  */
 const Caption: React.FC<{ card: Card; activeIdx: number }> = ({ card, activeIdx }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
   const pal = usePal();
   const ls = shown(card);
   const line = ls[activeIdx];
   if (!line) return null;
+  const t = frame / fps;
+  const words = line.words && line.words.length > 0
+    ? line.words : [{ text: line.text, start: line.start, end: line.end }];
+  const appear = interpolate(t - line.start, [0, 0.14], [0, 1],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <div style={{
-      position: 'absolute', left: 0, right: 0, bottom: 236,
-      display: 'flex', justifyContent: 'center', padding: '0 84px',
+      position: 'absolute', left: 0, right: 0, top: '70%',
+      display: 'flex', justifyContent: 'center', padding: '0 76px',
       pointerEvents: 'none',
     }}>
       <span style={{
-        fontFamily, fontWeight: '800', fontSize: 56, lineHeight: 1.16,
-        color: pal.ink, textAlign: 'center', letterSpacing: '-0.01em',
-        textShadow: '0 4px 28px rgba(0,0,0,0.9)',
-      }}><WordFade line={line} /></span>
+        fontFamily, fontWeight: '800', fontSize: 62, lineHeight: 1.18,
+        textAlign: 'center', letterSpacing: '-0.015em',
+        textShadow: '0 4px 30px rgba(0,0,0,0.92)',
+        opacity: appear,
+        transform: `translateY(${interpolate(appear, [0, 1], [10, 0])}px)`,
+      }}>
+        {words.map((w, i) => {
+          const on = t >= w.start - 0.02 && t < w.end + 0.06;
+          return (
+            <span key={i} style={{ color: on ? pal.accent : pal.ink }}>
+              {w.text}{i < words.length - 1 ? ' ' : ''}
+            </span>
+          );
+        })}
+      </span>
     </div>
   );
 };
@@ -134,17 +117,46 @@ const Presence: React.FC = () => {
   );
 };
 
-/** Số thẻ ở góc trái trên -- cho người xem biết đang ở đâu trong mạch bài. */
+/**
+ * Đếm CHƯƠNG ở góc trái trên. Bản tham chiếu ghi "01 / 09" -- chín chương
+ * của bài, không phải số dòng phụ đề. Đếm theo dòng caption thì ra
+ * "76 / 132", một con số chạy loạn chẳng nói lên điều gì.
+ */
 const Counter: React.FC<{ index: number; total: number }> = ({ index, total }) => {
   const pal = usePal();
   const pad = (n: number) => String(n).padStart(2, '0');
   return (
     <div style={{
-      position: 'absolute', top: 138, left: 56,
-      fontFamily, fontWeight: '700', fontSize: 24, letterSpacing: '0.22em',
-      color: pal.ink, opacity: 0.45,
+      position: 'absolute', top: 128, left: 60,
+      fontFamily, fontWeight: '700', fontSize: 23, letterSpacing: '0.22em',
+      color: pal.ink, opacity: 0.4,
     }}>
       {pad(index + 1)} / {pad(total)}
+    </div>
+  );
+};
+
+/**
+ * Vạch CHƯƠNG dọc mép trái: mỗi chương một đoạn, chương đang chạy sáng màu
+ * nhấn, các chương khác mờ. Bản tham chiếu có đúng dải vạch này chạy suốt
+ * mép trái khung -- nó cho biết bài dài bao nhiêu và đang ở đâu mà không
+ * tốn một chữ nào.
+ */
+const ChapterRail: React.FC<{ index: number; total: number }> = ({ index, total }) => {
+  const pal = usePal();
+  if (total <= 1) return null;
+  return (
+    <div style={{
+      position: 'absolute', left: 0, top: '16%', bottom: '16%', width: 5,
+      display: 'flex', flexDirection: 'column', gap: 10, pointerEvents: 'none',
+    }}>
+      {Array.from({ length: total }, (_, i) => (
+        <div key={i} style={{
+          flex: 1, borderRadius: 3,
+          background: i === index ? pal.accent : 'rgba(255,255,255,0.10)',
+          opacity: i === index ? 0.95 : 1,
+        }} />
+      ))}
     </div>
   );
 };
@@ -157,7 +169,11 @@ const Stage: React.FC = () => {
 
   const visible = cards.filter((c) => frame >= c.start * fps - 2 && frame < c.out * fps + 1);
   const cur = cards.filter((c) => frame >= c.start * fps).slice(-1)[0] ?? cards[0];
-  const chipStart = cards.find((c) => c.section === cur.section)!.start * fps;
+  // Danh sách chương theo đúng thứ tự xuất hiện -> "03 / 09" như bản mẫu.
+  const chapters: string[] = [];
+  for (const c of cards) if (chapters[chapters.length - 1] !== c.section) chapters.push(c.section);
+  const chapIdx = Math.max(0, chapters.lastIndexOf(cur.section));
+
   const prog = interpolate(frame, [0, timeline.duration * fps], [0, 1], { extrapolateRight: 'clamp' });
 
   // Khi card "invert" phủ tấm lên toàn khung, nền hiệu dụng bị ĐẢO —
@@ -165,14 +181,6 @@ const Stage: React.FC = () => {
   const inverted = cur.variant === 'invert' && frame >= cur.start * fps + 7;
   const over = inverted ? (pal.dark ? LIGHT : DARK) : pal;
 
-  // Tiêu đề chỉ đổi khi sang card KỊCH BẢN khác, không đổi theo từng thẻ
-  // caption -- nên nó đứng yên nhiều giây như bản tham chiếu.
-  const headStart = (cards.find((c) => c.headlineAt === cur.headlineAt) ?? cur).start * fps;
-  // Ảnh chụp/versus chiếm hết khung; tiêu đề in đè lên sẽ rối. Thẻ 'invert'
-  // thì VẪN cần tiêu đề -- bỏ nó ra làm thẻ chốt thành khung trắng trơn chỉ
-  // có một cụm chữ xám (đo thật trên bản render), đúng kiểu "đen/trắng thui"
-  // mà người dùng phàn nàn. Màu đã tự đảo theo PalCtx bên dưới.
-  const showHead = !cur.screenshotFile && !versusOf(cur);
 
   // Thẻ có HÌNH không tự vẽ lời nói -> cần lớp caption riêng ở đáy.
   const hasVisual = Boolean(cur.chart) || Boolean(cur.screenshotFile);
@@ -188,10 +196,9 @@ const Stage: React.FC = () => {
       {visible.map((c) => <CardView key={c.index} card={c} />)}
       <PalCtx.Provider value={over}>
         {bare ? <Presence /> : null}
-        {hasVisual ? <Caption card={cur} activeIdx={capIdx} /> : null}
-        {showHead ? <Headline card={cur} ff={fontFamily} at={headStart} /> : null}
-        <Chip label={cur.section} key0={chipStart} />
-        <Counter index={cur.index} total={cards.length} />
+        <Caption card={cur} activeIdx={capIdx} />
+        <Counter index={chapIdx} total={chapters.length} />
+        <ChapterRail index={chapIdx} total={chapters.length} />
         {versusOf(cur)
           ? <VersusMark card={cur} ff={fontFamily} />
           : <BrandMark card={cur} />}

@@ -11,7 +11,13 @@ export type Line = { text: string; start: number; end: number; hidden?: boolean;
 export type Card = {
   index: number; lines: Line[]; start: number; end: number; out: number; section: string;
   variant: string; anchor: 'top' | 'mid' | 'low'; num?: number; motion: Motion; exit: Exit;
-  chart?: { kind: 'line' | 'bar' | 'hbar'; items: { label?: string; value: number }[]; unit?: string };
+  chart?: {
+    kind: 'line' | 'bar' | 'hbar' | 'stat' | 'gauge' | 'chips' | 'steps';
+    items: { label?: string; value: number; note?: string }[];
+    unit?: string;
+    /** Nhãn ngắn nói khối số liệu đang đo gì -- KHÔNG lặp lời thoại. */
+    title?: string;
+  };
   screenshotFile?: string;
   screenshotUrl?: string;
   headline?: string[];

@@ -17,6 +17,8 @@ def stage(tmp_path):
     (d / "src").mkdir()
     (d / "ref").mkdir()
     shutil.copy(VIDEO / "tools/align.mjs", d / "tools/align.mjs")
+    # align.mjs imports autoviz.mjs (biểu đồ dựng từ chính lời nói)
+    shutil.copy(VIDEO / "tools/autoviz.mjs", d / "tools/autoviz.mjs")
     # 3 cards so align maps onto the 3 speech bursts of the fixture
     (d / "tools/cards.mjs").write_text(
         'export const CARDS = [["một hai ba"],["bốn năm sáu"],["bảy tám chín"]];\n'
@@ -87,20 +89,30 @@ def test_run_aligner_falls_back_when_words_dont_match(stage):
     assert starts == sorted(starts)
 
 
-def test_slides_carry_the_spoken_words_not_the_script(stage):
-    """The narrator paraphrases: they add words, swap words, drop words.
-    Keeping the scripted wording on screen put the text up to ten seconds
-    out of step with the voice, so the slides are rebuilt from what was
-    actually said."""
+NL = chr(10)
+JS_FABLE = ('export const CARDS = [["Fable thắng rồi"]];' + NL
+            + 'export const SECTIONS = [[0,"A"]];' + NL)
+JS_LAYOUT1 = 'export const LAYOUT = [["stack","mid",null,"rise","up"]];' + NL
+
+
+def test_slides_carry_the_SCRIPTED_words_timed_to_the_voice(stage):
+    """Chữ lấy từ KỊCH BẢN, giờ lấy từ GIỌNG NÓI.
+
+    Hai lần trước đều hỏng ở một trong hai nửa. Hiện chữ kịch bản rồi tự
+    đoán giờ -> chữ chạy trước tiếng cả chục giây. Hiện thẳng chữ nhận
+    diện được -> đúng giờ nhưng SAI CHÍNH TẢ ngay trên màn hình (máy nghe
+    "Perplexity" ra "Proplexity", "GPT-6" ra "GP6").
+
+    Căn chỉnh quy hoạch động ghép từng từ kịch bản vào mốc giờ của từ
+    tương ứng trong giọng đọc, nên lấy được cả hai nửa đúng."""
     dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
                                  video_dir=VIDEO)
-    # Script says "một hai ba" / "bốn năm sáu" / "bảy tám chín" (see `stage`).
     spoken = [
-        {"w": "một", "start": 0.10, "end": 0.30},
+        {"w": "mọt", "start": 0.10, "end": 0.30},       # nghe sai "một"
         {"w": "hai", "start": 0.30, "end": 0.50},
-        {"w": "nghìn", "start": 0.50, "end": 0.70},      # added, not in script
+        {"w": "ba", "start": 0.50, "end": 0.70},
         {"w": "bốn", "start": 1.00, "end": 1.20},
-        {"w": "lăm", "start": 1.20, "end": 1.40},        # said instead of "năm"
+        {"w": "lăm", "start": 1.20, "end": 1.40},       # nghe sai "năm"
         {"w": "sáu", "start": 1.40, "end": 1.60},
         {"w": "bảy", "start": 2.00, "end": 2.20},
         {"w": "tám", "start": 2.20, "end": 2.40},
@@ -110,108 +122,52 @@ def test_slides_carry_the_spoken_words_not_the_script(stage):
     tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
 
     flat = [w for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert [w["text"] for w in flat] == [s["w"] for s in spoken]
-    # Each word keeps its own real timestamp, so nothing can appear early.
-    assert [w["start"] for w in flat] ==         [pytest.approx(s["start"], abs=1e-6) for s in spoken]
+    # CHÍNH TẢ của kịch bản thắng: "một"/"năm", không phải "mọt"/"lăm"
+    assert [w["text"] for w in flat] == ["một", "hai", "ba", "bốn", "năm", "sáu",
+                                         "bảy", "tám", "chín"]
+    # GIỜ của giọng đọc thắng: từng từ giữ đúng mốc thật của nó
+    assert [w["start"] for w in flat] == [
+        pytest.approx(x["start"], abs=1e-6) for x in spoken]
 
 
-def test_long_speech_never_overflows_a_slide(stage):
-    """A real recording carries far more words than the (deliberately terse)
-    kinetic script -- 502 vs 166 in the incident that prompted this. Packing
-    it into the script's own card slots gave a 21-line card shrunk to
-    unreadable, so slides are re-cut from the speech."""
+def test_brand_names_are_right_because_the_script_supplies_them(stage):
+    """Từng phải có hẳn một lớp dò Levenshtein để sửa tên riêng bị nghe
+    nhầm ("Fable" -> "Facebook"), và chính lớp đó đã có lần sửa nhầm chữ
+    "Đừng" thành "Fable". Lấy chữ từ kịch bản thì vấn đề biến mất từ gốc,
+    nên lớp sửa đã được gỡ -- test này giữ cho nó không quay lại."""
+    (stage / "tools/cards.mjs").write_text(JS_FABLE, encoding="utf-8")
+    (stage / "tools/variants.mjs").write_text(JS_LAYOUT1, encoding="utf-8")
     dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
                                  video_dir=VIDEO)
-    spoken = [{"w": f"từ{i}", "start": i * 0.04, "end": i * 0.04 + 0.03} for i in range(120)]
+    spoken = [
+        {"w": "Facebook", "start": 0.10, "end": 0.40},   # nghe nhầm "Fable"
+        {"w": "thắng", "start": 0.40, "end": 0.70},
+        {"w": "nhé", "start": 0.70, "end": 0.90},        # đọc khác kịch bản
+    ]
     (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
     tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
 
-    assert all(len(c["lines"]) <= 3 for c in tl["cards"])
-    assert all(len(l["text"]) <= 26 for c in tl["cards"] for l in c["lines"])
     shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert shown == [s["w"] for s in spoken], "no spoken word may be dropped"
+    assert shown == ["Fable", "thắng", "rồi"]
+    assert "function lev(" not in (VIDEO / "tools/align.mjs").read_text(encoding="utf-8"),         "lớp sửa tên thương hiệu đã thừa -- đừng để nó quay lại"
+
+
+def test_caption_lines_stay_short_enough_to_read(stage):
+    """Bản tham chiếu chỉ để 2-4 từ dưới đáy mỗi lúc. Dài hơn là người xem
+    phải ĐỌC thay vì NGHE, và chữ co nhỏ tới mức khó nhìn trên điện thoại."""
+    long_script = " ".join("từ%d" % i for i in range(120))
+    (stage / "tools/cards.mjs").write_text(
+        'export const CARDS = [["%s"]];%sexport const SECTIONS = [[0,"A"]];%s'
+        % (long_script, NL, NL), encoding="utf-8")
+    (stage / "tools/variants.mjs").write_text(JS_LAYOUT1, encoding="utf-8")
+    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
+                                 video_dir=VIDEO)
+    spoken = [{"w": "từ%d" % i, "start": i * 0.04, "end": i * 0.04 + 0.03} for i in range(120)]
+    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
+    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
+
+    assert all(len(c["lines"]) == 1 for c in tl["cards"]), "một dòng một lúc"
+    assert all(len(l["text"]) <= 22 for c in tl["cards"] for l in c["lines"])
+    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
+    assert shown == ["từ%d" % i for i in range(120)], "không được rơi mất chữ nào"
     assert all(c["variant"] and c["section"] for c in tl["cards"])
-
-
-def test_misheard_brand_names_are_corrected_from_the_script(stage):
-    """Speech recognition mangles brand names -- the narrator said "Fable"
-    and it came back "Facebook", putting the wrong company on screen. The
-    word keeps its (correct) timestamp but borrows the script's spelling.
-
-    Matching is done straight against the logo registry, not via the
-    script alignment: measured on the real recording, the aligner paired
-    "Fable" with "vi", "nam" and "dung" -- far too loose to trust."""
-    (stage / "tools/cards.mjs").write_text(
-        'export const CARDS = [["Fable thắng rồi"]];\n'
-        'export const SECTIONS = [[0,"A"]];\n', encoding="utf-8")
-    (stage / "tools/variants.mjs").write_text(
-        'export const LAYOUT = [["stack","mid",null,"rise","up"]];\n', encoding="utf-8")
-    (stage / "src").mkdir(exist_ok=True)
-    (stage / "src/logos.json").write_text(
-        json.dumps({"fable": {"label": "Anthropic", "file": "logos/fable.png"}}),
-        encoding="utf-8")
-    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
-                                 video_dir=VIDEO)
-    spoken = [
-        {"w": "Facebook", "start": 0.10, "end": 0.40},   # misheard "Fable"
-        {"w": "thắng", "start": 0.40, "end": 0.70},
-        {"w": "nhé", "start": 0.70, "end": 0.90},        # said instead of "rồi"
-    ]
-    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
-    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
-
-    flat = [w for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert [w["text"] for w in flat] == ["Fable", "thắng", "nhé"]
-    assert flat[0]["start"] == pytest.approx(0.10, abs=1e-6), "timing untouched"
-
-
-def test_unrelated_words_are_never_rewritten_to_a_brand(stage):
-    """Guard on the rule above: a stray alignment must not let a brand name
-    overwrite a word that merely happens to line up with it."""
-    (stage / "tools/cards.mjs").write_text(
-        'export const CARDS = [["Fable thắng rồi"]];\n'
-        'export const SECTIONS = [[0,"A"]];\n', encoding="utf-8")
-    (stage / "tools/variants.mjs").write_text(
-        'export const LAYOUT = [["stack","mid",null,"rise","up"]];\n', encoding="utf-8")
-    (stage / "src").mkdir(exist_ok=True)
-    (stage / "src/logos.json").write_text(
-        json.dumps({"fable": {"label": "Anthropic", "file": "logos/fable.png"}}),
-        encoding="utf-8")
-    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
-                                 video_dir=VIDEO)
-    spoken = [
-        {"w": "Đừng", "start": 0.10, "end": 0.40},   # nothing like "Fable"
-        {"w": "thắng", "start": 0.40, "end": 0.70},
-        {"w": "rồi", "start": 0.70, "end": 0.90},
-    ]
-    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
-    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
-
-    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert shown[0] == "Đừng", "a different word must survive untouched"
-
-
-def test_brand_correction_is_reported_and_bounded(stage):
-    """Only close misspellings of a registered brand are rewritten. A word
-    that merely starts with the same letter must survive as spoken."""
-    (stage / "tools/cards.mjs").write_text(
-        'export const CARDS = [["Claude thắng rồi"]];\n'
-        'export const SECTIONS = [[0,"A"]];\n', encoding="utf-8")
-    (stage / "tools/variants.mjs").write_text(
-        'export const LAYOUT = [["stack","mid",null,"rise","up"]];\n', encoding="utf-8")
-    (stage / "src").mkdir(exist_ok=True)
-    (stage / "src/logos.json").write_text(
-        json.dumps({"claude": {"label": "Anthropic", "file": "logos/claude.png"}}),
-        encoding="utf-8")
-    dur = align.make_silence_txt(FX / "voice_fixture.wav", stage / "ref/silence.txt",
-                                 video_dir=VIDEO)
-    spoken = [
-        {"w": "Cloud", "start": 0.10, "end": 0.40},    # misheard "Claude"
-        {"w": "chuyện", "start": 0.40, "end": 0.70},   # same initial, unrelated
-        {"w": "rồi", "start": 0.70, "end": 0.90},
-    ]
-    (stage / "ref/words.json").write_text(json.dumps(spoken, ensure_ascii=False), encoding="utf-8")
-    tl = json.loads(align.run_aligner(stage, dur).read_text(encoding="utf-8"))
-
-    shown = [w["text"] for c in tl["cards"] for l in c["lines"] for w in l["words"]]
-    assert shown == ["Claude", "chuyện", "rồi"]
