@@ -1,1 +1,22 @@
-{}
+{
+ "perplexity": {
+  "label": "Perplexity",
+  "file": "logos/perplexity.png"
+ },
+ "gpt": {
+  "label": "OpenAI",
+  "file": "logos/gpt.png"
+ },
+ "openai": {
+  "label": "OpenAI",
+  "file": "logos/openai.png"
+ },
+ "chatgpt": {
+  "label": "OpenAI",
+  "file": "logos/chatgpt.png"
+ },
+ "codex": {
+  "label": "OpenAI",
+  "file": "logos/codex.png"
+ }
+}

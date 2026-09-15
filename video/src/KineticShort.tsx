@@ -5,12 +5,12 @@ import {
 } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { BgVideo, palAt } from './BgVideo';
-import { BrandMark } from './BrandMark';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
-import { HookScreen, StatementScreen, ShotScreen, CardsScreen, PersonScreen } from './Screens';
+import { HookScreen, StatementScreen, ShotScreen, CardsScreen, BrandScreen } from './Screens';
 import { ElementView } from './Elements';
-import { VersusMark, versusOf } from './Versus';
+import { EditorialPerson } from './Editorial';
+import { loadFont as loadSerif } from '@remotion/google-fonts/PlayfairDisplay';
 import { PalCtx, usePal, LIGHT, DARK } from './palette';
 import { shown, type Card } from './layouts';
 import { T } from './theme';
@@ -20,48 +20,82 @@ const { fontFamily, waitUntilDone } = loadFont('normal', {
   weights: ['500', '700', '800', '900'],
   subsets: ['latin', 'vietnamese'],
 });
+const serif = loadSerif('normal', { weights: ['700', '900'], subsets: ['latin', 'vietnamese'] });
+const serifHandle = delayRender('playfair');
+serif.waitUntilDone().then(() => continueRender(serifHandle));
+
 const fontHandle = delayRender('be-vietnam-pro');
 waitUntilDone().then(() => continueRender(fontHandle));
 
-const CardView: React.FC<{ card: Card }> = ({ card }) => {
-  const { fps } = useVideoConfig();
-  const sc = card.screen;
-  if (!sc) return null;
-  const at = (sc.at ?? card.start) * fps;
+type Screen = NonNullable<Card['screen']> & { until?: number };
 
-  // Mỗi chương một màn hình chiếm khung, đứng yên suốt chương -- đúng như
-  // video mẫu. Lời thoại do <Caption> vẽ riêng ở đáy khung.
+/**
+ * Vẽ ĐÚNG MỘT màn hình tại mỗi thời điểm, kèm vào/ra mờ dần.
+ *
+ * Trước đây màn hình gắn vào từng thẻ caption và mỗi thẻ tự vẽ lại nó. Vì
+ * nhiều thẻ cùng hiện một lúc, cùng một màn bị dựng chồng nhiều lần với mốc
+ * giờ khác nhau -> hiệu ứng chạy lại liên tục, nhìn ra đúng cái "nhấp nháy
+ * miết" người dùng chỉ ra. Giờ màn hình là một dòng thời gian riêng và chỗ
+ * này chọn ra một cái duy nhất.
+ */
+const ScreenView: React.FC<{ sc: Screen }> = ({ sc }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const at = (sc.at ?? 0) * fps;
+
+  // Vào mờ dần, ra mờ dần -- người dùng yêu cầu rõ: hình xuất hiện và biến
+  // mất phải có chuyển, không bật/tắt phựt.
+  const IN = 9, OUT = 11;
+  const endF = (sc.until ?? 1e9) * fps;
+  const fade = Math.min(
+    interpolate(frame - at, [0, IN], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+    interpolate(endF - frame, [0, OUT], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+  );
+  if (fade <= 0) return null;
+
+  let inner: React.ReactNode = null;
   switch (sc.kind) {
     case 'shot':
-      return <ShotScreen file={sc.file!} at={at} title={sc.eyebrow}
-                         sourceUrl={sc.sourceUrl} ff={fontFamily} />;
+      inner = <ShotScreen file={sc.file!} at={at} title={sc.eyebrow}
+                          sourceUrl={sc.sourceUrl} ff={fontFamily} />; break;
     case 'hook':
-      return <HookScreen eyebrow={sc.eyebrow ?? ''} title={sc.title ?? ''}
-                         subtitle={sc.subtitle} tiles={sc.tiles ?? []}
-                         ff={fontFamily} at={at} />;
+      inner = <HookScreen eyebrow={sc.eyebrow ?? ''} title={sc.title ?? ''}
+                          subtitle={sc.subtitle} tiles={sc.tiles ?? []}
+                          ff={fontFamily} at={at} />; break;
     case 'statement':
-      return <StatementScreen eyebrow={sc.eyebrow} lead={sc.lead ?? ''}
-                              highlight={sc.highlight ?? ''}
-                              ff={fontFamily} at={at} />;
+      inner = <StatementScreen eyebrow={sc.eyebrow} lead={sc.lead ?? ''}
+                               highlight={sc.highlight ?? ''}
+                               ff={fontFamily} at={at} />; break;
     case 'person':
-      return <PersonScreen file={sc.file!} name={sc.name ?? ''} role={sc.role}
-                           quote={sc.quote ?? ''} credit={sc.credit}
-                           ff={fontFamily} at={at} />;
+      inner = <EditorialPerson
+                variant={sc.variant as never}
+                date={sc.date} headline={sc.headline ?? sc.name ?? ''}
+                standfirst={sc.standfirst} masthead={sc.masthead}
+                name={sc.name} role={sc.role}
+                cutFile={sc.file!} credit={sc.credit}
+                serif={serif.fontFamily} sans={fontFamily} at={at} />; break;
+    case 'brand':
+    case 'brandpair':
+      inner = <BrandScreen tiles={sc.tiles ?? []} eyebrow={sc.eyebrow}
+                           ff={fontFamily} at={at} />; break;
     case 'cards':
-      return <CardsScreen title={sc.eyebrow ?? ''} items={sc.items ?? []}
-                          ff={fontFamily} at={at} />;
+      inner = <CardsScreen title={sc.eyebrow ?? ''} items={sc.items ?? []}
+                           ff={fontFamily} at={at} />; break;
     case 'element':
-      return <ElementView at={at} ff={fontFamily}
+      inner = <ElementView at={at} ff={fontFamily}
                           pick={{ kind: sc.element!,
-                                  nodes: (sc.items ?? []).map((i) => i.label) }} />;
+                                  nodes: (sc.items ?? []).map((i) => i.label) }} />; break;
     case 'panel':
-      return <ChartCard card={{ ...card, chart: sc.chart, visualAt: sc.at, anchor: 'mid' }}
-                        ff={fontFamily} leaving={0} activeIdx={0} />;
+      inner = <ChartCard ff={fontFamily} leaving={0} activeIdx={0}
+                card={{ chart: sc.chart, visualAt: sc.at, anchor: 'mid',
+                        start: sc.at ?? 0, out: sc.until ?? 0,
+                        lines: [], index: 0, end: 0, section: '',
+                        variant: 'stack', motion: 'rise', exit: 'up' } as Card} />; break;
     default:
       return null;
   }
+  return <AbsoluteFill style={{ opacity: fade }}>{inner}</AbsoluteFill>;
 };
-
 
 /**
  * CAPTION -- lớp chữ DUY NHẤT của video, dựng theo đúng bản tham chiếu.
@@ -170,7 +204,6 @@ const Stage: React.FC = () => {
   const pal = usePal();
   const cards = timeline.cards as Card[];
 
-  const visible = cards.filter((c) => frame >= c.start * fps - 2 && frame < c.out * fps + 1);
   const cur = cards.filter((c) => frame >= c.start * fps).slice(-1)[0] ?? cards[0];
   // Danh sách chương theo đúng thứ tự xuất hiện -> "03 / 09" như bản mẫu.
   const chapters: string[] = [];
@@ -179,10 +212,12 @@ const Stage: React.FC = () => {
 
   const prog = interpolate(frame, [0, timeline.duration * fps], [0, 1], { extrapolateRight: 'clamp' });
 
-  // Khi card "invert" phủ tấm lên toàn khung, nền hiệu dụng bị ĐẢO —
-  // chip, ảnh chụp, icon và thanh tiến độ phải đảo màu theo, nếu không sẽ trắng trên trắng.
-  const inverted = cur.variant === 'invert' && frame >= cur.start * fps + 7;
-  const over = inverted ? (pal.dark ? LIGHT : DARK) : pal;
+  // Màn báo giấy có nền SÁNG -> caption trắng và khung viền phải đảo sang
+  // mực đen, nếu không chữ trắng nằm trên giấy trắng là mất hút.
+  const screensAll = ((timeline as { screens?: Screen[] }).screens ?? []);
+  const curScreen = screensAll.filter((x) => frame / fps >= (x.at ?? 0)).slice(-1)[0];
+  const onPaper = curScreen?.kind === 'person';
+  const over = onPaper ? LIGHT : pal;
 
 
   let capIdx = 0;
@@ -191,14 +226,16 @@ const Stage: React.FC = () => {
 
   return (
     <>
-      {visible.map((c) => <CardView key={c.index} card={c} />)}
+      {(() => {
+        const screens = ((timeline as { screens?: Screen[] }).screens ?? []);
+        const t = frame / fps;
+        const sc = screens.filter((x) => t >= (x.at ?? 0)).slice(-1)[0];
+        return sc ? <ScreenView sc={sc} /> : null;
+      })()}
       <PalCtx.Provider value={over}>
         <Caption card={cur} activeIdx={capIdx} />
         <Counter index={chapIdx} total={chapters.length} />
         <ChapterRail index={chapIdx} total={chapters.length} />
-        {versusOf(cur)
-          ? <VersusMark card={cur} ff={fontFamily} />
-          : <BrandMark card={cur} />}
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>
           <div style={{ height: '100%', width: `${prog * 100}%`, background: over.ink }} />
         </div>

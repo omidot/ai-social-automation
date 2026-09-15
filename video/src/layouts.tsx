@@ -34,6 +34,11 @@ export type Card = {
     role?: string;
     quote?: string;
     credit?: string;
+    variant?: string;
+    date?: string;
+    headline?: string;
+    standfirst?: string;
+    masthead?: string;
     items?: { label: string; note?: string }[];
     element?: string;
     sourceUrl?: string;

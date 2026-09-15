@@ -2,6 +2,8 @@ import React from 'react';
 import { AbsoluteFill, continueRender, delayRender, interpolate, useCurrentFrame } from 'remotion';
 import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { HookScreen, StatementScreen, PersonScreen, REF } from './Screens';
+import { EditorialPerson, PAPER } from './Editorial';
+import { loadFont as loadSerif } from '@remotion/google-fonts/PlayfairDisplay';
 import { PanelTitle, StatBox, StepBox, BarRow } from './Panel';
 import { PalCtx, DARK } from './palette';
 
@@ -9,6 +11,10 @@ const { fontFamily, waitUntilDone } = loadFont('normal', {
   weights: ['500', '600', '700', '800', '900'],
   subsets: ['latin', 'vietnamese'],
 });
+const serif = loadSerif('normal', { weights: ['700', '900'], subsets: ['latin', 'vietnamese'] });
+const hS = delayRender('preview-serif');
+serif.waitUntilDone().then(() => continueRender(hS));
+
 const h = delayRender('preview-font');
 waitUntilDone().then(() => continueRender(h));
 
@@ -157,6 +163,47 @@ export const ScreenPreview: React.FC = () => {
             <Caption words={['tham', 'số,', 'nhưng']} hot={0} />
             <Chrome chapter={2} total={9} />
           </>
+        ) : seg === 5 ? (
+          <EditorialPerson
+            date="15 tháng 9, 2026"
+            headline="Perplexity giao **toàn bộ hệ thống** cho AI tự vận hành"
+            standfirst="Đội ngũ không còn ngồi gõ từng dòng code — họ giao trọn quyền sửa phần mềm, viết báo cáo và giám sát production."
+            masthead="OpenAI Blog"
+            cutFile="portraits/johnny-ho-cut-red.png"
+            credit="kênh cung cấp"
+            serif={serif.fontFamily} sans={fontFamily} at={at} />
+        ) : seg === 6 ? (
+          <EditorialPerson
+            date="11 tháng 9, 2026"
+            headline="OpenAI siết **hạn ngạch** gói Pro vì nhu cầu Astra"
+            standfirst="Gói Pro 200 đô chỉ còn 200 tin mỗi tuần, mức siết chặt nhất kể từ khi Astra mở bán."
+            masthead="TechCrunch"
+            cutFile="portraits/sam-altman-cut-red.png"
+            variant="stamp"
+            credit="kênh cung cấp"
+            serif={serif.fontFamily} sans={fontFamily} at={at} />
+        ) : seg === 7 ? (
+          <EditorialPerson
+            date="10 tháng 9, 2026"
+            headline="Công cụ tìm kiếm **thông minh hơn** sau mỗi lượt AI viết code"
+            standfirst="Mỗi khi mô hình giỏi viết code hơn, sản phẩm tìm kiếm lại nhích lên một bậc."
+            masthead="OpenAI Blog"
+            cutFile="portraits/aravind-srinivas-cut-red.png"
+            variant="bleed"
+            credit="kênh cung cấp"
+            serif={serif.fontFamily} sans={fontFamily} at={at} />
+        ) : seg === 8 ? (
+          <EditorialPerson
+            date="10 tháng 9, 2026"
+            headline="Họ kiểm tra AI ít hơn hẳn so với các thế hệ trước."
+            standfirst="Mỗi khi mô hình giỏi viết code hơn, sản phẩm tìm kiếm lại nhích lên một bậc."
+            masthead="OpenAI Blog"
+            cutFile="portraits/johnny-ho-cut-red.png"
+            variant="quote"
+            name="Johnny Ho"
+            role="Đồng sáng lập Perplexity"
+            credit="kênh cung cấp"
+            serif={serif.fontFamily} sans={fontFamily} at={at} />
         ) : seg === 4 ? (
           <>
             <PersonScreen

@@ -1,503 +1,10899 @@
 {
  "fps": 30,
- "duration": 40.08,
- "durationInFrames": 1221,
+ "duration": 162.02,
+ "screens": [
+  {
+   "kind": "hook",
+   "at": 0,
+   "eyebrow": "Cú Sốc Tự Động Hoá",
+   "title": "Perplexity vừa giao toàn bộ hệ thống",
+   "subtitle": "cho GPT-6 Astra tự vận hành.",
+   "tiles": [
+    {
+     "label": "Perplexity",
+     "file": "logos/perplexity.png",
+     "verdict": "win"
+    },
+    {
+     "label": "OpenAI",
+     "file": "logos/openai.png",
+     "verdict": "lose"
+    }
+   ],
+   "until": 7.34
+  },
+  {
+   "kind": "cards",
+   "items": [
+    {
+     "label": "Tự sửa phần mềm"
+    },
+    {
+     "label": "Tự viết báo cáo"
+    },
+    {
+     "label": "Tự giám sát production"
+    }
+   ],
+   "eyebrow": "Cú Sốc Tự Động Hoá",
+   "at": 7.34,
+   "until": 19.74
+  },
+  {
+   "kind": "brand",
+   "at": 19.74,
+   "eyebrow": "Cú Sốc Tự Động Hoá",
+   "tiles": [
+    {
+     "label": "OpenAI",
+     "file": "logos/openai.png"
+    }
+   ],
+   "until": 34.72
+  },
+  {
+   "kind": "brandpair",
+   "at": 34.72,
+   "eyebrow": "Sự Thật Về Perplexity",
+   "tiles": [
+    {
+     "label": "OpenAI",
+     "file": "logos/openai.png"
+    },
+    {
+     "label": "Perplexity",
+     "file": "logos/perplexity.png"
+    }
+   ],
+   "until": 43.7
+  },
+  {
+   "kind": "shot",
+   "file": "shots/src2.png",
+   "sourceUrl": "https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/",
+   "eyebrow": "Sự Thật Về Perplexity",
+   "at": 43.7,
+   "until": 52.68
+  },
+  {
+   "kind": "person",
+   "at": 52.68,
+   "variant": "stamp",
+   "file": "portraits/johnny-ho-cut-red.png",
+   "name": "Johnny Ho",
+   "role": "Đồng sáng lập Perplexity",
+   "credit": "ảnh do kênh cung cấp",
+   "date": "15 tháng 9, 2026",
+   "headline": "Họ kiểm tra AI ít hơn hẳn so với các thế hệ trước.",
+   "standfirst": "Mỗi khi mô hình giỏi viết code hơn, công cụ tìm kiếm lại thông minh hơn một bậc.",
+   "masthead": "OpenAI Blog",
+   "until": 68.62
+  },
+  {
+   "kind": "brand",
+   "at": 68.62,
+   "eyebrow": "Bước Nhảy Của Johnny Ho",
+   "tiles": [
+    {
+     "label": "OpenAI",
+     "file": "logos/openai.png"
+    }
+   ],
+   "until": 80.64
+  },
+  {
+   "kind": "brand",
+   "at": 80.64,
+   "eyebrow": "Cái Giá Của Sự Thông Minh",
+   "tiles": [
+    {
+     "label": "OpenAI",
+     "file": "logos/codex.png"
+    }
+   ],
+   "until": 90.7
+  },
+  {
+   "kind": "panel",
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45,
+      "at": 95.1,
+      "numEnd": 95.56
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225,
+      "at": 98.62,
+      "numEnd": 99.62
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900,
+      "at": 101.74,
+      "numEnd": 102
+     }
+    ],
+    "unit": "tin",
+    "title": "Cái Giá Của Sự Thông Minh"
+   },
+   "at": 90.7,
+   "until": 103.2
+  },
+  {
+   "kind": "panel",
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50,
+      "at": 106.62,
+      "numEnd": 106.88
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200,
+      "at": 108.04,
+      "numEnd": 108.3
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": "Cái Giá Của Sự Thông Minh"
+   },
+   "at": 103.2,
+   "until": 110.74
+  },
+  {
+   "kind": "panel",
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": "Cái Giá Của Sự Thông Minh"
+   },
+   "at": 110.74,
+   "until": 127.32
+  },
+  {
+   "kind": "brand",
+   "at": 127.32,
+   "eyebrow": "Bài Toán Chi Phí Chi Tiết",
+   "tiles": [
+    {
+     "label": "OpenAI",
+     "file": "logos/openai.png"
+    }
+   ],
+   "until": 141.92
+  },
+  {
+   "kind": "brand",
+   "at": 141.92,
+   "eyebrow": "Lựa Chọn Của Bạn",
+   "tiles": [
+    {
+     "label": "Perplexity",
+     "file": "logos/perplexity.png"
+    }
+   ],
+   "until": 151.97
+  },
+  {
+   "kind": "shot",
+   "file": "shots/src1.png",
+   "sourceUrl": "https://openai.com/index/cognition-devin-testing-with-astra",
+   "eyebrow": "Lựa Chọn Của Bạn",
+   "at": 151.97,
+   "until": 162.02
+  }
+ ],
+ "durationInFrames": 4879,
  "cards": [
   {
    "index": 0,
    "lines": [
     {
-     "text": "Với",
-     "start": 0.218917,
-     "end": 0.412862364516129,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 0.412862364516129,
-     "end": 0.6068077290322581,
-     "hidden": true
-    },
-    {
-     "text": "sự phát triển không ngừng của AI ngày nay,",
-     "start": 0.6068077290322581,
-     "end": 2.9279951075268817,
-     "hidden": false
+     "text": "Perplexity vừa giao",
+     "start": 0.46,
+     "end": 1.3,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Perplexity",
+       "start": 0.46,
+       "end": 0.86,
+       "src": 0
+      },
+      {
+       "text": "vừa",
+       "start": 0.86,
+       "end": 1.1,
+       "src": 0
+      },
+      {
+       "text": "giao",
+       "start": 1.1,
+       "end": 1.3,
+       "src": 0
+      }
+     ],
+     "src": 0
     }
    ],
-   "start": 0.218917,
-   "end": 2.9279951075268817,
-   "out": 2.9279951075268817,
-   "section": "AI THAY BẠN NGHĨ",
-   "variant": "stack",
+   "start": 0.46,
+   "end": 1.3,
+   "src": 0,
+   "out": 1.3,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "numeral",
    "anchor": "mid",
-   "motion": "rise",
-   "exit": "up"
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 0.46,
+   "num": 6,
+   "headline": [
+    "Perplexity vừa giao toàn bộ hệ thống",
+    "cho GPT-6 Astra tự vận hành."
+   ],
+   "headlineAt": 0
   },
   {
    "index": 1,
    "lines": [
     {
-     "text": "sẽ là một",
-     "start": 2.9279951075268817,
-     "end": 3.6659907824143065,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 3.6659907824143065,
-     "end": 3.857868032786885,
-     "hidden": true
-    },
-    {
-     "text": "việc rất là khó khăn",
-     "start": 3.857868032786885,
-     "end": 4.905578733233979,
-     "hidden": false
+     "text": "toàn bộ hệ thống cho",
+     "start": 1.3,
+     "end": 2.32,
+     "hidden": false,
+     "words": [
+      {
+       "text": "toàn",
+       "start": 1.3,
+       "end": 1.56,
+       "src": 0
+      },
+      {
+       "text": "bộ",
+       "start": 1.56,
+       "end": 1.76,
+       "src": 0
+      },
+      {
+       "text": "hệ",
+       "start": 1.76,
+       "end": 1.9,
+       "src": 0
+      },
+      {
+       "text": "thống",
+       "start": 1.9,
+       "end": 2.1,
+       "src": 0
+      },
+      {
+       "text": "cho",
+       "start": 2.1,
+       "end": 2.32,
+       "src": 0
+      }
+     ],
+     "src": 0
     }
    ],
-   "start": 2.9279951075268817,
-   "end": 4.905578733233979,
-   "out": 4.905578733233979,
-   "section": "AI THAY BẠN NGHĨ",
-   "variant": "stack",
-   "anchor": "top",
-   "motion": "fall",
-   "exit": "down"
+   "start": 1.3,
+   "end": 2.32,
+   "src": 0,
+   "out": 2.32,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 0.46,
+   "num": 6,
+   "headline": [
+    "Perplexity vừa giao toàn bộ hệ thống",
+    "cho GPT-6 Astra tự vận hành."
+   ],
+   "headlineAt": 0
   },
   {
    "index": 2,
    "lines": [
     {
-     "text": "cho một người bình thường muốn làm kinh doanh.",
-     "start": 4.905578733233979,
-     "end": 7.40912,
-     "hidden": false
+     "text": "GPT-6 Astra tự vận",
+     "start": 2.32,
+     "end": 3.86,
+     "hidden": false,
+     "words": [
+      {
+       "text": "GPT-6",
+       "start": 2.32,
+       "end": 2.96,
+       "src": 0
+      },
+      {
+       "text": "Astra",
+       "start": 2.96,
+       "end": 3.32,
+       "src": 0
+      },
+      {
+       "text": "tự",
+       "start": 3.32,
+       "end": 3.66,
+       "src": 0
+      },
+      {
+       "text": "vận",
+       "start": 3.66,
+       "end": 3.86,
+       "src": 0
+      }
+     ],
+     "src": 0
     }
    ],
-   "start": 4.905578733233979,
-   "end": 7.40912,
-   "out": 7.88333,
-   "section": "AI THAY BẠN NGHĨ",
-   "variant": "right",
-   "anchor": "low",
-   "motion": "slideR",
-   "exit": "dissolve"
+   "start": 2.32,
+   "end": 3.86,
+   "src": 0,
+   "out": 3.86,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 0.46,
+   "num": 6,
+   "headline": [
+    "Perplexity vừa giao toàn bộ hệ thống",
+    "cho GPT-6 Astra tự vận hành."
+   ],
+   "headlineAt": 0
   },
   {
    "index": 3,
    "lines": [
     {
-     "text": "Bây giờ muốn suy nghĩ,",
-     "start": 7.88333,
-     "end": 9.152,
-     "hidden": false
-    },
-    {
-     "text": "AI nó cũng có thể",
-     "start": 9.51421,
-     "end": 10.402270663716815,
-     "hidden": false
-    },
-    {
-     "text": "suy nghĩ cho các bạn.",
-     "start": 10.402270663716815,
-     "end": 11.5415,
-     "hidden": false
+     "text": "hành. Họ không dùng",
+     "start": 3.86,
+     "end": 4.8,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hành.",
+       "start": 3.86,
+       "end": 4.1,
+       "src": 0
+      },
+      {
+       "text": "Họ",
+       "start": 4.3,
+       "end": 4.38,
+       "src": 1
+      },
+      {
+       "text": "không",
+       "start": 4.38,
+       "end": 4.58,
+       "src": 1
+      },
+      {
+       "text": "dùng",
+       "start": 4.58,
+       "end": 4.8,
+       "src": 1
+      }
+     ],
+     "src": 0
     }
    ],
-   "start": 7.88333,
-   "end": 11.5415,
-   "out": 11.8484,
-   "section": "AI THAY BẠN NGHĨ",
-   "variant": "mark",
+   "start": 3.86,
+   "end": 4.8,
+   "src": 0,
+   "out": 4.8,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "numeral",
    "anchor": "mid",
-   "motion": "wipe",
-   "exit": "up"
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 0.46,
+   "num": 6,
+   "headline": [
+    "Perplexity vừa giao toàn bộ hệ thống",
+    "cho GPT-6 Astra tự vận hành."
+   ],
+   "headlineAt": 0
   },
   {
    "index": 4,
    "lines": [
     {
-     "text": "Làm sao để thực hiện",
-     "start": 11.8484,
-     "end": 12.797770854271356,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 12.797770854271356,
-     "end": 12.971638190954774,
-     "hidden": true
-    },
-    {
-     "text": "ý tưởng kinh doanh,",
-     "start": 12.971638190954774,
-     "end": 14.0452,
-     "hidden": false
+     "text": "AI để gõ thuê từng",
+     "start": 4.8,
+     "end": 6.16,
+     "hidden": false,
+     "words": [
+      {
+       "text": "AI",
+       "start": 4.8,
+       "end": 5.06,
+       "src": 1
+      },
+      {
+       "text": "để",
+       "start": 5.06,
+       "end": 5.32,
+       "src": 1
+      },
+      {
+       "text": "gõ",
+       "start": 5.32,
+       "end": 5.54,
+       "src": 1
+      },
+      {
+       "text": "thuê",
+       "start": 5.54,
+       "end": 5.84,
+       "src": 1
+      },
+      {
+       "text": "từng",
+       "start": 5.84,
+       "end": 6.16,
+       "src": 1
+      }
+     ],
+     "src": 1
     }
    ],
-   "start": 11.8484,
-   "end": 14.0452,
-   "out": 14.2819,
-   "section": "AI THAY BẠN NGHĨ",
-   "variant": "stair",
+   "start": 4.8,
+   "end": 6.16,
+   "src": 1,
+   "out": 6.16,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "mark",
    "anchor": "mid",
-   "motion": "slideL",
-   "exit": "shrink"
+   "motion": "rise",
+   "exit": "up",
+   "visualAt": 4.8,
+   "headline": [
+    "Họ không dùng AI",
+    "để gõ thuê từng dòng code."
+   ],
+   "headlineAt": 1
   },
   {
    "index": 5,
    "lines": [
     {
-     "text": "AI nó cũng có thể",
-     "start": 14.2819,
-     "end": 15.42959741935484,
-     "hidden": false
-    },
-    {
-     "text": "thực hiện cho các bạn.",
-     "start": 15.42959741935484,
-     "end": 17.098687593283582,
-     "hidden": false
+     "text": "dòng code. Astra tự",
+     "start": 6.16,
+     "end": 7.6,
+     "hidden": false,
+     "words": [
+      {
+       "text": "dòng",
+       "start": 6.16,
+       "end": 6.36,
+       "src": 1
+      },
+      {
+       "text": "code.",
+       "start": 6.36,
+       "end": 6.64,
+       "src": 1
+      },
+      {
+       "text": "Astra",
+       "start": 6.94,
+       "end": 7.34,
+       "src": 2
+      },
+      {
+       "text": "tự",
+       "start": 7.34,
+       "end": 7.6,
+       "src": 2
+      }
+     ],
+     "src": 1
     }
    ],
-   "start": 14.2819,
-   "end": 17.098687593283582,
-   "out": 17.098687593283582,
-   "section": "AI THAY BẠN NGHĨ",
+   "start": 6.16,
+   "end": 7.6,
+   "src": 1,
+   "out": 7.6,
+   "section": "Cú Sốc Tự Động Hoá",
    "variant": "mark",
    "anchor": "mid",
-   "motion": "wipe",
-   "exit": "wipeOut"
+   "motion": "rise",
+   "exit": "up",
+   "visualAt": 4.8,
+   "headline": [
+    "Họ không dùng AI",
+    "để gõ thuê từng dòng code."
+   ],
+   "headlineAt": 1
   },
   {
    "index": 6,
    "lines": [
     {
-     "text": "Và sau khi thực hiện",
-     "start": 17.098687593283582,
-     "end": 18.131698414179105,
-     "hidden": false
-    },
-    {
-     "text": "ý tưởng kinh doanh đó,",
-     "start": 18.131698414179105,
-     "end": 19.44998838619403,
-     "hidden": false
+     "text": "sửa phần mềm, tự viết",
+     "start": 7.6,
+     "end": 8.84,
+     "hidden": false,
+     "words": [
+      {
+       "text": "sửa",
+       "start": 7.6,
+       "end": 7.94,
+       "src": 2
+      },
+      {
+       "text": "phần",
+       "start": 7.94,
+       "end": 8.08,
+       "src": 2
+      },
+      {
+       "text": "mềm,",
+       "start": 8.08,
+       "end": 8.46,
+       "src": 2
+      },
+      {
+       "text": "tự",
+       "start": 8.58,
+       "end": 8.66,
+       "src": 2
+      },
+      {
+       "text": "viết",
+       "start": 8.66,
+       "end": 8.84,
+       "src": 2
+      }
+     ],
+     "src": 2
     }
    ],
-   "start": 17.098687593283582,
-   "end": 19.44998838619403,
-   "out": 19.44998838619403,
-   "section": "AI THAY BẠN NGHĨ",
-   "variant": "right",
+   "start": 7.6,
+   "end": 8.84,
+   "src": 2,
+   "out": 8.84,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "stack",
    "anchor": "top",
-   "motion": "slideR",
-   "exit": "shrink"
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 7.6,
+   "headline": [
+    "Astra tự sửa phần mềm,",
+    "tự viết báo cáo,",
+    "và tự giám sát production."
+   ],
+   "headlineAt": 2
   },
   {
    "index": 7,
    "lines": [
     {
-     "text": "bạn có thể vào",
-     "start": 19.44998838619403,
-     "end": 20.16769067164179,
-     "hidden": false
-    },
-    {
-     "text": "Claude Code",
-     "start": 20.16769067164179,
-     "end": 20.79830774253731,
-     "hidden": false
-    },
-    {
-     "text": "schedule những",
-     "start": 20.79830774253731,
-     "end": 21.618109934701494,
-     "hidden": true
-    },
-    {
-     "text": "cái",
-     "start": 21.618109934701494,
-     "end": 21.807295055970148,
-     "hidden": true
+     "text": "báo cáo, và tự giám",
+     "start": 8.84,
+     "end": 9.94,
+     "hidden": false,
+     "words": [
+      {
+       "text": "báo",
+       "start": 8.84,
+       "end": 9,
+       "src": 2
+      },
+      {
+       "text": "cáo,",
+       "start": 9,
+       "end": 9.3,
+       "src": 2
+      },
+      {
+       "text": "và",
+       "start": 9.3,
+       "end": 9.5,
+       "src": 2
+      },
+      {
+       "text": "tự",
+       "start": 9.5,
+       "end": 9.72,
+       "src": 2
+      },
+      {
+       "text": "giám",
+       "start": 9.72,
+       "end": 9.94,
+       "src": 2
+      }
+     ],
+     "src": 2
     }
    ],
-   "start": 19.44998838619403,
-   "end": 21.807295055970148,
-   "out": 21.807295055970148,
-   "section": "CLAUDE CODE SCHEDULE ADS",
-   "variant": "hero",
-   "anchor": "mid",
-   "motion": "pop",
-   "exit": "dissolve"
+   "start": 8.84,
+   "end": 9.94,
+   "src": 2,
+   "out": 9.94,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 7.6,
+   "headline": [
+    "Astra tự sửa phần mềm,",
+    "tự viết báo cáo,",
+    "và tự giám sát production."
+   ],
+   "headlineAt": 2
   },
   {
    "index": 8,
    "lines": [
     {
-     "text": "đó để mà chạy ads.",
-     "start": 21.807295055970148,
-     "end": 22.8343,
-     "hidden": false
+     "text": "sát production. Nhưng",
+     "start": 9.94,
+     "end": 11.14,
+     "hidden": false,
+     "words": [
+      {
+       "text": "sát",
+       "start": 9.94,
+       "end": 10.16,
+       "src": 2
+      },
+      {
+       "text": "production.",
+       "start": 10.16,
+       "end": 10.72,
+       "src": 2
+      },
+      {
+       "text": "Nhưng",
+       "start": 10.98,
+       "end": 11.14,
+       "src": 3
+      }
+     ],
+     "src": 2
     }
    ],
-   "start": 21.807295055970148,
-   "end": 22.8343,
-   "out": 23.089,
-   "section": "CLAUDE CODE SCHEDULE ADS",
+   "start": 9.94,
+   "end": 11.14,
+   "src": 2,
+   "out": 11.14,
+   "section": "Cú Sốc Tự Động Hoá",
    "variant": "stack",
-   "anchor": "mid",
+   "anchor": "top",
    "motion": "slideL",
-   "exit": "up"
+   "exit": "down",
+   "visualAt": 7.6,
+   "headline": [
+    "Astra tự sửa phần mềm,",
+    "tự viết báo cáo,",
+    "và tự giám sát production."
+   ],
+   "headlineAt": 2
   },
   {
    "index": 9,
    "lines": [
     {
-     "text": "Và trong khi",
-     "start": 23.089,
-     "end": 23.768729613733903,
-     "hidden": false
-    },
-    {
-     "text": "bạn đang ngủ,",
-     "start": 23.768729613733903,
-     "end": 24.56382618025751,
-     "hidden": false
-    },
-    {
-     "text": "có",
-     "start": 24.56382618025751,
-     "end": 24.719727467811158,
-     "hidden": true
+     "text": "đa số mọi người vẫn",
+     "start": 11.14,
+     "end": 12.16,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đa",
+       "start": 11.14,
+       "end": 11.36,
+       "src": 3
+      },
+      {
+       "text": "số",
+       "start": 11.36,
+       "end": 11.54,
+       "src": 3
+      },
+      {
+       "text": "mọi",
+       "start": 11.54,
+       "end": 11.74,
+       "src": 3
+      },
+      {
+       "text": "người",
+       "start": 11.74,
+       "end": 11.98,
+       "src": 3
+      },
+      {
+       "text": "vẫn",
+       "start": 11.98,
+       "end": 12.16,
+       "src": 3
+      }
+     ],
+     "src": 3
     }
    ],
-   "start": 23.089,
-   "end": 24.719727467811158,
-   "out": 24.719727467811158,
-   "section": "TRONG KHI BẠN NGỦ",
-   "variant": "mark",
+   "start": 11.14,
+   "end": 12.16,
+   "src": 3,
+   "out": 12.16,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "invert",
    "anchor": "mid",
-   "motion": "fall",
-   "exit": "wipeOut"
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 11.14,
+   "headline": [
+    "Nhưng đa số mọi người",
+    "vẫn đang hiểu sai hoàn toàn",
+    "về bản chất làn sóng này."
+   ],
+   "headlineAt": 3
   },
   {
    "index": 10,
    "lines": [
     {
-     "text": "hàng ngàn,",
-     "start": 24.719727467811158,
-     "end": 25.3838669527897,
-     "hidden": false
-    },
-    {
-     "text": "hàng ngàn,",
-     "start": 25.3838669527897,
-     "end": 26.04800643776824,
-     "hidden": false
-    },
-    {
-     "text": "hàng chục ngàn",
-     "start": 26.04800643776824,
-     "end": 26.833748927038627,
-     "hidden": false
-    },
-    {
-     "text": "robot ở bên China",
-     "start": 26.833748927038627,
-     "end": 27.840871244635192,
-     "hidden": false
+     "text": "đang hiểu sai hoàn",
+     "start": 12.16,
+     "end": 13.04,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đang",
+       "start": 12.16,
+       "end": 12.34,
+       "src": 3
+      },
+      {
+       "text": "hiểu",
+       "start": 12.34,
+       "end": 12.58,
+       "src": 3
+      },
+      {
+       "text": "sai",
+       "start": 12.58,
+       "end": 12.78,
+       "src": 3
+      },
+      {
+       "text": "hoàn",
+       "start": 12.78,
+       "end": 13.04,
+       "src": 3
+      }
+     ],
+     "src": 3
     }
    ],
-   "start": 24.719727467811158,
-   "end": 27.840871244635192,
-   "out": 27.840871244635192,
-   "section": "TRONG KHI BẠN NGỦ",
-   "variant": "stair",
+   "start": 12.16,
+   "end": 13.04,
+   "src": 3,
+   "out": 13.04,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "invert",
    "anchor": "mid",
-   "motion": "slam",
-   "exit": "shrink"
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 11.14,
+   "headline": [
+    "Nhưng đa số mọi người",
+    "vẫn đang hiểu sai hoàn toàn",
+    "về bản chất làn sóng này."
+   ],
+   "headlineAt": 3
   },
   {
    "index": 11,
    "lines": [
     {
-     "text": "tung ra hàng triệu",
-     "start": 27.840871244635192,
-     "end": 28.84799356223176,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 28.84799356223176,
-     "end": 29.044429184549355,
-     "hidden": true
-    },
-    {
-     "text": "video quảng cáo",
-     "start": 29.044429184549355,
-     "end": 29.895650214592273,
-     "hidden": false
-    },
-    {
-     "text": "sản phẩm đó.",
-     "start": 29.895650214592273,
-     "end": 30.931415664845172,
-     "hidden": false
+     "text": "toàn về bản chất làn",
+     "start": 13.04,
+     "end": 14.14,
+     "hidden": false,
+     "words": [
+      {
+       "text": "toàn",
+       "start": 13.04,
+       "end": 13.32,
+       "src": 3
+      },
+      {
+       "text": "về",
+       "start": 13.32,
+       "end": 13.56,
+       "src": 3
+      },
+      {
+       "text": "bản",
+       "start": 13.56,
+       "end": 13.78,
+       "src": 3
+      },
+      {
+       "text": "chất",
+       "start": 13.78,
+       "end": 13.98,
+       "src": 3
+      },
+      {
+       "text": "làn",
+       "start": 13.98,
+       "end": 14.14,
+       "src": 3
+      }
+     ],
+     "src": 3
     }
    ],
-   "start": 27.840871244635192,
-   "end": 30.931415664845172,
-   "out": 30.931415664845172,
-   "section": "TRONG KHI BẠN NGỦ",
-   "variant": "stack",
-   "anchor": "top",
-   "motion": "rise",
-   "exit": "down"
+   "start": 13.04,
+   "end": 14.14,
+   "src": 3,
+   "out": 14.14,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 11.14,
+   "headline": [
+    "Nhưng đa số mọi người",
+    "vẫn đang hiểu sai hoàn toàn",
+    "về bản chất làn sóng này."
+   ],
+   "headlineAt": 3
   },
   {
    "index": 12,
    "lines": [
     {
-     "text": "Bạn không thể nào",
-     "start": 30.931415664845172,
-     "end": 31.838531511839708,
-     "hidden": false
-    },
-    {
-     "text": "bạn đăng từng",
-     "start": 31.838531511839708,
-     "end": 32.55126539162113,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 32.55126539162113,
-     "end": 32.74564735883424,
-     "hidden": true
-    },
-    {
-     "text": "video mà bạn cạnh tranh nổi",
-     "start": 32.74564735883424,
-     "end": 34.1957985428051,
-     "hidden": false
+     "text": "sóng này. Thứ kỳ lạ",
+     "start": 14.14,
+     "end": 15.4,
+     "hidden": false,
+     "words": [
+      {
+       "text": "sóng",
+       "start": 14.14,
+       "end": 14.38,
+       "src": 3
+      },
+      {
+       "text": "này.",
+       "start": 14.38,
+       "end": 14.54,
+       "src": 3
+      },
+      {
+       "text": "Thứ",
+       "start": 14.9,
+       "end": 15.06,
+       "src": 4
+      },
+      {
+       "text": "kỳ",
+       "start": 15.06,
+       "end": 15.22,
+       "src": 4
+      },
+      {
+       "text": "lạ",
+       "start": 15.22,
+       "end": 15.4,
+       "src": 4
+      }
+     ],
+     "src": 3
     }
    ],
-   "start": 30.931415664845172,
-   "end": 34.1957985428051,
-   "out": 34.1957985428051,
-   "section": "TRONG KHI BẠN NGỦ",
-   "variant": "right",
+   "start": 14.14,
+   "end": 15.4,
+   "src": 3,
+   "out": 15.4,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "invert",
    "anchor": "mid",
-   "motion": "slideR",
-   "exit": "shrink"
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 11.14,
+   "headline": [
+    "Nhưng đa số mọi người",
+    "vẫn đang hiểu sai hoàn toàn",
+    "về bản chất làn sóng này."
+   ],
+   "headlineAt": 3
   },
   {
    "index": 13,
    "lines": [
     {
-     "text": "với những",
-     "start": 34.1957985428051,
-     "end": 34.71415045537341,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 34.71415045537341,
-     "end": 34.90853242258652,
-     "hidden": true
-    },
-    {
-     "text": "con robot đó.",
-     "start": 34.90853242258652,
-     "end": 35.72,
-     "hidden": false
+     "text": "nhất không nằm ở khả",
+     "start": 15.4,
+     "end": 16.24,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nhất",
+       "start": 15.4,
+       "end": 15.58,
+       "src": 4
+      },
+      {
+       "text": "không",
+       "start": 15.58,
+       "end": 15.8,
+       "src": 4
+      },
+      {
+       "text": "nằm",
+       "start": 15.8,
+       "end": 16,
+       "src": 4
+      },
+      {
+       "text": "ở",
+       "start": 16,
+       "end": 16.12,
+       "src": 4
+      },
+      {
+       "text": "khả",
+       "start": 16.12,
+       "end": 16.24,
+       "src": 4
+      }
+     ],
+     "src": 4
     }
    ],
-   "start": 34.1957985428051,
-   "end": 35.72,
-   "out": 35.9513,
-   "section": "TRONG KHI BẠN NGỦ",
-   "variant": "mark",
+   "start": 15.4,
+   "end": 16.24,
+   "src": 4,
+   "out": 16.24,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "right",
    "anchor": "mid",
-   "motion": "wipe",
-   "exit": "up"
+   "motion": "fall",
+   "exit": "wipeOut",
+   "visualAt": 15.4,
+   "headline": [
+    "Thứ kỳ lạ nhất không nằm ở",
+    "khả năng sinh code của AI."
+   ],
+   "headlineAt": 4
   },
   {
    "index": 14,
    "lines": [
     {
-     "text": "Những",
-     "start": 35.9513,
-     "end": 36.29873765796125,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 36.29873765796125,
-     "end": 36.507200252737995,
-     "hidden": true
-    },
-    {
-     "text": "con robot đó",
-     "start": 36.507200252737995,
-     "end": 37.22854700926706,
-     "hidden": false
-    },
-    {
-     "text": "nó được tạo ra",
-     "start": 37.22854700926706,
-     "end": 38.04585273799495,
-     "hidden": false
-    },
-    {
-     "text": "bởi",
-     "start": 38.04585273799495,
-     "end": 38.2543153327717,
-     "hidden": true
+     "text": "năng sinh code của",
+     "start": 16.24,
+     "end": 17.04,
+     "hidden": false,
+     "words": [
+      {
+       "text": "năng",
+       "start": 16.24,
+       "end": 16.38,
+       "src": 4
+      },
+      {
+       "text": "sinh",
+       "start": 16.38,
+       "end": 16.7,
+       "src": 4
+      },
+      {
+       "text": "code",
+       "start": 16.7,
+       "end": 16.88,
+       "src": 4
+      },
+      {
+       "text": "của",
+       "start": 16.88,
+       "end": 17.04,
+       "src": 4
+      }
+     ],
+     "src": 4
     }
    ],
-   "start": 35.9513,
-   "end": 38.2543153327717,
-   "out": 38.2543153327717,
-   "section": "SỰ THẬT",
-   "variant": "invert",
+   "start": 16.24,
+   "end": 17.04,
+   "src": 4,
+   "out": 17.04,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "right",
    "anchor": "mid",
-   "motion": "pop",
-   "exit": "wipeOut"
+   "motion": "fall",
+   "exit": "wipeOut",
+   "visualAt": 15.4,
+   "headline": [
+    "Thứ kỳ lạ nhất không nằm ở",
+    "khả năng sinh code của AI."
+   ],
+   "headlineAt": 4
   },
   {
    "index": 15,
    "lines": [
     {
-     "text": "những",
-     "start": 38.2543153327717,
-     "end": 38.60175299073294,
-     "hidden": false
-    },
-    {
-     "text": "cái",
-     "start": 38.60175299073294,
-     "end": 38.81021558550969,
-     "hidden": true
-    },
-    {
-     "text": "công ty lớn hơn bạn",
-     "start": 38.81021558550969,
-     "end": 39.879,
-     "hidden": false
+     "text": "AI. Nó nằm ở một con",
+     "start": 17.04,
+     "end": 18.44,
+     "hidden": false,
+     "words": [
+      {
+       "text": "AI.",
+       "start": 17.04,
+       "end": 17.3,
+       "src": 4
+      },
+      {
+       "text": "Nó",
+       "start": 17.74,
+       "end": 17.84,
+       "src": 5
+      },
+      {
+       "text": "nằm",
+       "start": 17.84,
+       "end": 18.12,
+       "src": 5
+      },
+      {
+       "text": "ở",
+       "start": 18.12,
+       "end": 18.16,
+       "src": 5
+      },
+      {
+       "text": "một",
+       "start": 18.16,
+       "end": 18.3,
+       "src": 5
+      },
+      {
+       "text": "con",
+       "start": 18.3,
+       "end": 18.44,
+       "src": 5
+      }
+     ],
+     "src": 4
     }
    ],
-   "start": 38.2543153327717,
-   "end": 39.879,
-   "out": 40.08,
-   "section": "SỰ THẬT",
-   "variant": "invert",
+   "start": 17.04,
+   "end": 18.44,
+   "src": 4,
+   "out": 18.44,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "right",
    "anchor": "mid",
    "motion": "fall",
-   "exit": "wipeOut"
+   "exit": "wipeOut",
+   "visualAt": 15.4,
+   "headline": [
+    "Thứ kỳ lạ nhất không nằm ở",
+    "khả năng sinh code của AI."
+   ],
+   "headlineAt": 4
+  },
+  {
+   "index": 16,
+   "lines": [
+    {
+     "text": "số hạn ngạch bí mật",
+     "start": 18.44,
+     "end": 19.44,
+     "hidden": false,
+     "words": [
+      {
+       "text": "số",
+       "start": 18.44,
+       "end": 18.62,
+       "src": 5
+      },
+      {
+       "text": "hạn",
+       "start": 18.62,
+       "end": 18.82,
+       "src": 5
+      },
+      {
+       "text": "ngạch",
+       "start": 18.82,
+       "end": 19.06,
+       "src": 5
+      },
+      {
+       "text": "bí",
+       "start": 19.06,
+       "end": 19.24,
+       "src": 5
+      },
+      {
+       "text": "mật",
+       "start": 19.24,
+       "end": 19.44,
+       "src": 5
+      }
+     ],
+     "src": 5
+    }
+   ],
+   "start": 18.44,
+   "end": 19.44,
+   "src": 5,
+   "out": 19.44,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "strike",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 18.44,
+   "headline": [
+    "Nó nằm ở một con số hạn ngạch",
+    "bí mật mà OpenAI vừa áp đặt,",
+    "mình sẽ tiết lộ ở cuối video."
+   ],
+   "headlineAt": 5
+  },
+  {
+   "index": 17,
+   "lines": [
+    {
+     "text": "mà OpenAI vừa áp đặt,",
+     "start": 19.44,
+     "end": 21.26,
+     "hidden": false,
+     "words": [
+      {
+       "text": "mà",
+       "start": 19.44,
+       "end": 19.74,
+       "src": 5
+      },
+      {
+       "text": "OpenAI",
+       "start": 19.74,
+       "end": 20.5,
+       "src": 5
+      },
+      {
+       "text": "vừa",
+       "start": 20.5,
+       "end": 20.88,
+       "src": 5
+      },
+      {
+       "text": "áp",
+       "start": 20.88,
+       "end": 21.08,
+       "src": 5
+      },
+      {
+       "text": "đặt,",
+       "start": 21.08,
+       "end": 21.26,
+       "src": 5
+      }
+     ],
+     "src": 5
+    }
+   ],
+   "start": 19.44,
+   "end": 21.26,
+   "src": 5,
+   "out": 21.44,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "strike",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 18.44,
+   "headline": [
+    "Nó nằm ở một con số hạn ngạch",
+    "bí mật mà OpenAI vừa áp đặt,",
+    "mình sẽ tiết lộ ở cuối video."
+   ],
+   "headlineAt": 5
+  },
+  {
+   "index": 18,
+   "lines": [
+    {
+     "text": "mình sẽ tiết lộ ở",
+     "start": 21.44,
+     "end": 22.2,
+     "hidden": false,
+     "words": [
+      {
+       "text": "mình",
+       "start": 21.44,
+       "end": 21.5,
+       "src": 5
+      },
+      {
+       "text": "sẽ",
+       "start": 21.5,
+       "end": 21.68,
+       "src": 5
+      },
+      {
+       "text": "tiết",
+       "start": 21.68,
+       "end": 21.86,
+       "src": 5
+      },
+      {
+       "text": "lộ",
+       "start": 21.86,
+       "end": 22.04,
+       "src": 5
+      },
+      {
+       "text": "ở",
+       "start": 22.04,
+       "end": 22.2,
+       "src": 5
+      }
+     ],
+     "src": 5
+    }
+   ],
+   "start": 21.44,
+   "end": 22.2,
+   "src": 5,
+   "out": 22.2,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "strike",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 18.44,
+   "headline": [
+    "Nó nằm ở một con số hạn ngạch",
+    "bí mật mà OpenAI vừa áp đặt,",
+    "mình sẽ tiết lộ ở cuối video."
+   ],
+   "headlineAt": 5
+  },
+  {
+   "index": 19,
+   "lines": [
+    {
+     "text": "cuối video. Đa số",
+     "start": 22.2,
+     "end": 24.04,
+     "hidden": false,
+     "words": [
+      {
+       "text": "cuối",
+       "start": 22.2,
+       "end": 22.46,
+       "src": 5
+      },
+      {
+       "text": "video.",
+       "start": 22.46,
+       "end": 22.78,
+       "src": 5
+      },
+      {
+       "text": "Đa",
+       "start": 23.8,
+       "end": 23.88,
+       "src": 6
+      },
+      {
+       "text": "số",
+       "start": 23.88,
+       "end": 24.04,
+       "src": 6
+      }
+     ],
+     "src": 5
+    }
+   ],
+   "start": 22.2,
+   "end": 24.04,
+   "src": 5,
+   "out": 24.56,
+   "section": "Cú Sốc Tự Động Hoá",
+   "variant": "strike",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 18.44,
+   "headline": [
+    "Nó nằm ở một con số hạn ngạch",
+    "bí mật mà OpenAI vừa áp đặt,",
+    "mình sẽ tiết lộ ở cuối video."
+   ],
+   "headlineAt": 5
+  },
+  {
+   "index": 20,
+   "lines": [
+    {
+     "text": "nghĩ AI giỏi hơn",
+     "start": 24.56,
+     "end": 25.56,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nghĩ",
+       "start": 24.56,
+       "end": 24.72,
+       "src": 6
+      },
+      {
+       "text": "AI",
+       "start": 24.72,
+       "end": 25.06,
+       "src": 6
+      },
+      {
+       "text": "giỏi",
+       "start": 25.06,
+       "end": 25.36,
+       "src": 6
+      },
+      {
+       "text": "hơn",
+       "start": 25.36,
+       "end": 25.56,
+       "src": 6
+      }
+     ],
+     "src": 6
+    }
+   ],
+   "start": 24.56,
+   "end": 25.56,
+   "src": 6,
+   "out": 25.7,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 24.56,
+   "headline": [
+    "Đa số nghĩ AI giỏi hơn",
+    "nghĩa là gõ code nhanh hơn vài giây."
+   ],
+   "headlineAt": 6
+  },
+  {
+   "index": 21,
+   "lines": [
+    {
+     "text": "nghĩa là gõ code",
+     "start": 25.7,
+     "end": 26.58,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nghĩa",
+       "start": 25.7,
+       "end": 25.9,
+       "src": 6
+      },
+      {
+       "text": "là",
+       "start": 25.9,
+       "end": 25.96,
+       "src": 6
+      },
+      {
+       "text": "gõ",
+       "start": 25.96,
+       "end": 26.22,
+       "src": 6
+      },
+      {
+       "text": "code",
+       "start": 26.22,
+       "end": 26.58,
+       "src": 6
+      }
+     ],
+     "src": 6
+    }
+   ],
+   "start": 25.7,
+   "end": 26.58,
+   "src": 6,
+   "out": 26.58,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 24.56,
+   "headline": [
+    "Đa số nghĩ AI giỏi hơn",
+    "nghĩa là gõ code nhanh hơn vài giây."
+   ],
+   "headlineAt": 6
+  },
+  {
+   "index": 22,
+   "lines": [
+    {
+     "text": "nhanh hơn vài giây.",
+     "start": 26.58,
+     "end": 27.82,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nhanh",
+       "start": 26.58,
+       "end": 26.84,
+       "src": 6
+      },
+      {
+       "text": "hơn",
+       "start": 26.84,
+       "end": 27.02,
+       "src": 6
+      },
+      {
+       "text": "vài",
+       "start": 27.02,
+       "end": 27.28,
+       "src": 6
+      },
+      {
+       "text": "giây.",
+       "start": 27.74,
+       "end": 27.82,
+       "src": 6
+      }
+     ],
+     "src": 6
+    }
+   ],
+   "start": 26.58,
+   "end": 27.82,
+   "src": 6,
+   "out": 27.82,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 24.56,
+   "headline": [
+    "Đa số nghĩ AI giỏi hơn",
+    "nghĩa là gõ code nhanh hơn vài giây."
+   ],
+   "headlineAt": 6
+  },
+  {
+   "index": 23,
+   "lines": [
+    {
+     "text": "Đó là tư duy của",
+     "start": 27.82,
+     "end": 28.68,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Đó",
+       "start": 27.82,
+       "end": 28,
+       "src": 7
+      },
+      {
+       "text": "là",
+       "start": 28,
+       "end": 28.18,
+       "src": 7
+      },
+      {
+       "text": "tư",
+       "start": 28.18,
+       "end": 28.34,
+       "src": 7
+      },
+      {
+       "text": "duy",
+       "start": 28.34,
+       "end": 28.52,
+       "src": 7
+      },
+      {
+       "text": "của",
+       "start": 28.52,
+       "end": 28.68,
+       "src": 7
+      }
+     ],
+     "src": 7
+    }
+   ],
+   "start": 27.82,
+   "end": 28.68,
+   "src": 7,
+   "out": 28.68,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "shrink",
+   "visualAt": 27.82,
+   "headline": [
+    "Đó là tư duy của người thua cuộc."
+   ],
+   "headlineAt": 7
+  },
+  {
+   "index": 24,
+   "lines": [
+    {
+     "text": "người thua cuộc. Cái",
+     "start": 28.68,
+     "end": 29.72,
+     "hidden": false,
+     "words": [
+      {
+       "text": "người",
+       "start": 28.68,
+       "end": 28.86,
+       "src": 7
+      },
+      {
+       "text": "thua",
+       "start": 28.86,
+       "end": 28.91,
+       "src": 7
+      },
+      {
+       "text": "cuộc.",
+       "start": 28.86,
+       "end": 29.16,
+       "src": 7
+      },
+      {
+       "text": "Cái",
+       "start": 29.16,
+       "end": 29.72,
+       "src": 8
+      }
+     ],
+     "src": 7
+    }
+   ],
+   "start": 28.68,
+   "end": 29.72,
+   "src": 7,
+   "out": 29.72,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "shrink",
+   "visualAt": 27.82,
+   "headline": [
+    "Đó là tư duy của người thua cuộc."
+   ],
+   "headlineAt": 7
+  },
+  {
+   "index": 25,
+   "lines": [
+    {
+     "text": "thực sự quan trọng",
+     "start": 29.72,
+     "end": 30.5,
+     "hidden": false,
+     "words": [
+      {
+       "text": "thực",
+       "start": 29.72,
+       "end": 29.86,
+       "src": 8
+      },
+      {
+       "text": "sự",
+       "start": 29.86,
+       "end": 30.04,
+       "src": 8
+      },
+      {
+       "text": "quan",
+       "start": 30.04,
+       "end": 30.24,
+       "src": 8
+      },
+      {
+       "text": "trọng",
+       "start": 30.24,
+       "end": 30.5,
+       "src": 8
+      }
+     ],
+     "src": 8
+    }
+   ],
+   "start": 29.72,
+   "end": 30.5,
+   "src": 8,
+   "out": 30.5,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 29.72,
+   "headline": [
+    "Cái thực sự quan trọng là:",
+    "AI đã chuyển từ người trợ lý",
+    "thành kiến trúc sư tự vận hành."
+   ],
+   "headlineAt": 8
+  },
+  {
+   "index": 26,
+   "lines": [
+    {
+     "text": "là: AI đã chuyển từ",
+     "start": 30.5,
+     "end": 31.9,
+     "hidden": false,
+     "words": [
+      {
+       "text": "là:",
+       "start": 30.5,
+       "end": 30.68,
+       "src": 8
+      },
+      {
+       "text": "AI",
+       "start": 30.68,
+       "end": 31.16,
+       "src": 8
+      },
+      {
+       "text": "đã",
+       "start": 31.16,
+       "end": 31.36,
+       "src": 8
+      },
+      {
+       "text": "chuyển",
+       "start": 31.36,
+       "end": 31.7,
+       "src": 8
+      },
+      {
+       "text": "từ",
+       "start": 31.7,
+       "end": 31.9,
+       "src": 8
+      }
+     ],
+     "src": 8
+    }
+   ],
+   "start": 30.5,
+   "end": 31.9,
+   "src": 8,
+   "out": 31.9,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 29.72,
+   "headline": [
+    "Cái thực sự quan trọng là:",
+    "AI đã chuyển từ người trợ lý",
+    "thành kiến trúc sư tự vận hành."
+   ],
+   "headlineAt": 8
+  },
+  {
+   "index": 27,
+   "lines": [
+    {
+     "text": "người trợ lý thành",
+     "start": 31.9,
+     "end": 32.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "người",
+       "start": 31.9,
+       "end": 32.1,
+       "src": 8
+      },
+      {
+       "text": "trợ",
+       "start": 32.1,
+       "end": 32.34,
+       "src": 8
+      },
+      {
+       "text": "lý",
+       "start": 32.34,
+       "end": 32.54,
+       "src": 8
+      },
+      {
+       "text": "thành",
+       "start": 32.54,
+       "end": 32.74,
+       "src": 8
+      }
+     ],
+     "src": 8
+    }
+   ],
+   "start": 31.9,
+   "end": 32.74,
+   "src": 8,
+   "out": 32.74,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 29.72,
+   "headline": [
+    "Cái thực sự quan trọng là:",
+    "AI đã chuyển từ người trợ lý",
+    "thành kiến trúc sư tự vận hành."
+   ],
+   "headlineAt": 8
+  },
+  {
+   "index": 28,
+   "lines": [
+    {
+     "text": "kiến trúc sư tự vận",
+     "start": 32.74,
+     "end": 33.68,
+     "hidden": false,
+     "words": [
+      {
+       "text": "kiến",
+       "start": 32.74,
+       "end": 32.98,
+       "src": 8
+      },
+      {
+       "text": "trúc",
+       "start": 32.98,
+       "end": 33.1,
+       "src": 8
+      },
+      {
+       "text": "sư",
+       "start": 33.1,
+       "end": 33.28,
+       "src": 8
+      },
+      {
+       "text": "tự",
+       "start": 33.28,
+       "end": 33.5,
+       "src": 8
+      },
+      {
+       "text": "vận",
+       "start": 33.5,
+       "end": 33.68,
+       "src": 8
+      }
+     ],
+     "src": 8
+    }
+   ],
+   "start": 32.74,
+   "end": 33.68,
+   "src": 8,
+   "out": 33.68,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 29.72,
+   "headline": [
+    "Cái thực sự quan trọng là:",
+    "AI đã chuyển từ người trợ lý",
+    "thành kiến trúc sư tự vận hành."
+   ],
+   "headlineAt": 8
+  },
+  {
+   "index": 29,
+   "lines": [
+    {
+     "text": "hành. Theo OpenAI",
+     "start": 33.68,
+     "end": 35.26,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hành.",
+       "start": 33.68,
+       "end": 33.86,
+       "src": 8
+      },
+      {
+       "text": "Theo",
+       "start": 34.48,
+       "end": 34.72,
+       "src": 9
+      },
+      {
+       "text": "OpenAI",
+       "start": 34.72,
+       "end": 35.26,
+       "src": 9
+      }
+     ],
+     "src": 8
+    }
+   ],
+   "start": 33.68,
+   "end": 35.26,
+   "src": 8,
+   "out": 35.26,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 29.72,
+   "headline": [
+    "Cái thực sự quan trọng là:",
+    "AI đã chuyển từ người trợ lý",
+    "thành kiến trúc sư tự vận hành."
+   ],
+   "headlineAt": 8
+  },
+  {
+   "index": 30,
+   "lines": [
+    {
+     "text": "Blog, Johnny Ho, đồng",
+     "start": 35.26,
+     "end": 36.52,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Blog,",
+       "start": 35.26,
+       "end": 35.54,
+       "src": 9
+      },
+      {
+       "text": "Johnny",
+       "start": 35.54,
+       "end": 35.88,
+       "src": 9
+      },
+      {
+       "text": "Ho,",
+       "start": 35.88,
+       "end": 36.18,
+       "src": 9
+      },
+      {
+       "text": "đồng",
+       "start": 36.4,
+       "end": 36.52,
+       "src": 9
+      }
+     ],
+     "src": 9
+    }
+   ],
+   "start": 35.26,
+   "end": 36.52,
+   "src": 9,
+   "out": 36.52,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 35.26,
+   "headline": [
+    "Theo OpenAI Blog,",
+    "Johnny Ho, đồng sáng lập Perplexity,",
+    "đã nhận ra sự thật này."
+   ],
+   "headlineAt": 9
+  },
+  {
+   "index": 31,
+   "lines": [
+    {
+     "text": "sáng lập Perplexity,",
+     "start": 36.52,
+     "end": 37.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "sáng",
+       "start": 36.52,
+       "end": 36.76,
+       "src": 9
+      },
+      {
+       "text": "lập",
+       "start": 36.76,
+       "end": 36.96,
+       "src": 9
+      },
+      {
+       "text": "Perplexity,",
+       "start": 36.96,
+       "end": 37.74,
+       "src": 9
+      }
+     ],
+     "src": 9
+    }
+   ],
+   "start": 36.52,
+   "end": 37.74,
+   "src": 9,
+   "out": 37.74,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 35.26,
+   "headline": [
+    "Theo OpenAI Blog,",
+    "Johnny Ho, đồng sáng lập Perplexity,",
+    "đã nhận ra sự thật này."
+   ],
+   "headlineAt": 9
+  },
+  {
+   "index": 32,
+   "lines": [
+    {
+     "text": "đã nhận ra sự thật",
+     "start": 37.74,
+     "end": 39.18,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đã",
+       "start": 37.74,
+       "end": 38.36,
+       "src": 9
+      },
+      {
+       "text": "nhận",
+       "start": 38.36,
+       "end": 38.62,
+       "src": 9
+      },
+      {
+       "text": "ra",
+       "start": 38.62,
+       "end": 38.86,
+       "src": 9
+      },
+      {
+       "text": "sự",
+       "start": 38.86,
+       "end": 39,
+       "src": 9
+      },
+      {
+       "text": "thật",
+       "start": 39,
+       "end": 39.18,
+       "src": 9
+      }
+     ],
+     "src": 9
+    }
+   ],
+   "start": 37.74,
+   "end": 39.18,
+   "src": 9,
+   "out": 39.18,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 35.26,
+   "headline": [
+    "Theo OpenAI Blog,",
+    "Johnny Ho, đồng sáng lập Perplexity,",
+    "đã nhận ra sự thật này."
+   ],
+   "headlineAt": 9
+  },
+  {
+   "index": 33,
+   "lines": [
+    {
+     "text": "này. Mỗi khi mô hình",
+     "start": 39.18,
+     "end": 40.66,
+     "hidden": false,
+     "words": [
+      {
+       "text": "này.",
+       "start": 39.18,
+       "end": 39.44,
+       "src": 9
+      },
+      {
+       "text": "Mỗi",
+       "start": 39.96,
+       "end": 40.1,
+       "src": 10
+      },
+      {
+       "text": "khi",
+       "start": 40.1,
+       "end": 40.32,
+       "src": 10
+      },
+      {
+       "text": "mô",
+       "start": 40.32,
+       "end": 40.52,
+       "src": 10
+      },
+      {
+       "text": "hình",
+       "start": 40.52,
+       "end": 40.66,
+       "src": 10
+      }
+     ],
+     "src": 9
+    }
+   ],
+   "start": 39.18,
+   "end": 40.66,
+   "src": 9,
+   "out": 40.66,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 35.26,
+   "headline": [
+    "Theo OpenAI Blog,",
+    "Johnny Ho, đồng sáng lập Perplexity,",
+    "đã nhận ra sự thật này."
+   ],
+   "headlineAt": 9
+  },
+  {
+   "index": 34,
+   "lines": [
+    {
+     "text": "giỏi viết code hơn,",
+     "start": 40.66,
+     "end": 41.5,
+     "hidden": false,
+     "words": [
+      {
+       "text": "giỏi",
+       "start": 40.66,
+       "end": 40.94,
+       "src": 10
+      },
+      {
+       "text": "viết",
+       "start": 40.94,
+       "end": 41.12,
+       "src": 10
+      },
+      {
+       "text": "code",
+       "start": 41.12,
+       "end": 41.24,
+       "src": 10
+      },
+      {
+       "text": "hơn,",
+       "start": 41.24,
+       "end": 41.5,
+       "src": 10
+      }
+     ],
+     "src": 10
+    }
+   ],
+   "start": 40.66,
+   "end": 41.5,
+   "src": 10,
+   "out": 41.72,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 40.66,
+   "headline": [
+    "Mỗi khi mô hình giỏi viết code hơn,",
+    "công cụ tìm kiếm Perplexity",
+    "lại thông minh hơn một bậc."
+   ],
+   "headlineAt": 10
+  },
+  {
+   "index": 35,
+   "lines": [
+    {
+     "text": "công cụ tìm kiếm",
+     "start": 41.72,
+     "end": 42.42,
+     "hidden": false,
+     "words": [
+      {
+       "text": "công",
+       "start": 41.72,
+       "end": 41.78,
+       "src": 10
+      },
+      {
+       "text": "cụ",
+       "start": 41.78,
+       "end": 42,
+       "src": 10
+      },
+      {
+       "text": "tìm",
+       "start": 42,
+       "end": 42.22,
+       "src": 10
+      },
+      {
+       "text": "kiếm",
+       "start": 42.22,
+       "end": 42.42,
+       "src": 10
+      }
+     ],
+     "src": 10
+    }
+   ],
+   "start": 41.72,
+   "end": 42.42,
+   "src": 10,
+   "out": 42.42,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 40.66,
+   "headline": [
+    "Mỗi khi mô hình giỏi viết code hơn,",
+    "công cụ tìm kiếm Perplexity",
+    "lại thông minh hơn một bậc."
+   ],
+   "headlineAt": 10
+  },
+  {
+   "index": 36,
+   "lines": [
+    {
+     "text": "Perplexity lại thông",
+     "start": 42.42,
+     "end": 43.8,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Perplexity",
+       "start": 42.42,
+       "end": 43.24,
+       "src": 10
+      },
+      {
+       "text": "lại",
+       "start": 43.24,
+       "end": 43.58,
+       "src": 10
+      },
+      {
+       "text": "thông",
+       "start": 43.58,
+       "end": 43.8,
+       "src": 10
+      }
+     ],
+     "src": 10
+    }
+   ],
+   "start": 42.42,
+   "end": 43.8,
+   "src": 10,
+   "out": 43.8,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 40.66,
+   "headline": [
+    "Mỗi khi mô hình giỏi viết code hơn,",
+    "công cụ tìm kiếm Perplexity",
+    "lại thông minh hơn một bậc."
+   ],
+   "headlineAt": 10
+  },
+  {
+   "index": 37,
+   "lines": [
+    {
+     "text": "minh hơn một bậc.",
+     "start": 43.8,
+     "end": 44.54,
+     "hidden": false,
+     "words": [
+      {
+       "text": "minh",
+       "start": 43.8,
+       "end": 44.06,
+       "src": 10
+      },
+      {
+       "text": "hơn",
+       "start": 44.06,
+       "end": 44.18,
+       "src": 10
+      },
+      {
+       "text": "một",
+       "start": 44.18,
+       "end": 44.36,
+       "src": 10
+      },
+      {
+       "text": "bậc.",
+       "start": 44.36,
+       "end": 44.54,
+       "src": 10
+      }
+     ],
+     "src": 10
+    }
+   ],
+   "start": 43.8,
+   "end": 44.54,
+   "src": 10,
+   "out": 44.86,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 40.66,
+   "headline": [
+    "Mỗi khi mô hình giỏi viết code hơn,",
+    "công cụ tìm kiếm Perplexity",
+    "lại thông minh hơn một bậc."
+   ],
+   "headlineAt": 10
+  },
+  {
+   "index": 38,
+   "lines": [
+    {
+     "text": "Astra tự viết chương",
+     "start": 44.86,
+     "end": 45.96,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Astra",
+       "start": 44.86,
+       "end": 45.2,
+       "src": 11
+      },
+      {
+       "text": "tự",
+       "start": 45.2,
+       "end": 45.54,
+       "src": 11
+      },
+      {
+       "text": "viết",
+       "start": 45.54,
+       "end": 45.8,
+       "src": 11
+      },
+      {
+       "text": "chương",
+       "start": 45.8,
+       "end": 45.96,
+       "src": 11
+      }
+     ],
+     "src": 11
+    }
+   ],
+   "start": 44.86,
+   "end": 45.96,
+   "src": 11,
+   "out": 45.96,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "up",
+   "visualAt": 44.86,
+   "headline": [
+    "Astra tự viết chương trình kiểm thử,",
+    "tự giả lập các API bên ngoài."
+   ],
+   "headlineAt": 11
+  },
+  {
+   "index": 39,
+   "lines": [
+    {
+     "text": "trình kiểm thử, tự",
+     "start": 45.96,
+     "end": 47.08,
+     "hidden": false,
+     "words": [
+      {
+       "text": "trình",
+       "start": 45.96,
+       "end": 46.18,
+       "src": 11
+      },
+      {
+       "text": "kiểm",
+       "start": 46.18,
+       "end": 46.42,
+       "src": 11
+      },
+      {
+       "text": "thử,",
+       "start": 46.42,
+       "end": 46.7,
+       "src": 11
+      },
+      {
+       "text": "tự",
+       "start": 46.94,
+       "end": 47.08,
+       "src": 11
+      }
+     ],
+     "src": 11
+    }
+   ],
+   "start": 45.96,
+   "end": 47.08,
+   "src": 11,
+   "out": 47.08,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "up",
+   "visualAt": 44.86,
+   "headline": [
+    "Astra tự viết chương trình kiểm thử,",
+    "tự giả lập các API bên ngoài."
+   ],
+   "headlineAt": 11
+  },
+  {
+   "index": 40,
+   "lines": [
+    {
+     "text": "giả lập các API bên",
+     "start": 47.08,
+     "end": 48.2,
+     "hidden": false,
+     "words": [
+      {
+       "text": "giả",
+       "start": 47.08,
+       "end": 47.26,
+       "src": 11
+      },
+      {
+       "text": "lập",
+       "start": 47.26,
+       "end": 47.4,
+       "src": 11
+      },
+      {
+       "text": "các",
+       "start": 47.4,
+       "end": 47.58,
+       "src": 11
+      },
+      {
+       "text": "API",
+       "start": 47.58,
+       "end": 47.98,
+       "src": 11
+      },
+      {
+       "text": "bên",
+       "start": 47.98,
+       "end": 48.2,
+       "src": 11
+      }
+     ],
+     "src": 11
+    }
+   ],
+   "start": 47.08,
+   "end": 48.2,
+   "src": 11,
+   "out": 48.2,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "up",
+   "visualAt": 44.86,
+   "headline": [
+    "Astra tự viết chương trình kiểm thử,",
+    "tự giả lập các API bên ngoài."
+   ],
+   "headlineAt": 11
+  },
+  {
+   "index": 41,
+   "lines": [
+    {
+     "text": "ngoài. Nó kiểm tra",
+     "start": 48.2,
+     "end": 49.42,
+     "hidden": false,
+     "words": [
+      {
+       "text": "ngoài.",
+       "start": 48.2,
+       "end": 48.56,
+       "src": 11
+      },
+      {
+       "text": "Nó",
+       "start": 48.86,
+       "end": 49.02,
+       "src": 12
+      },
+      {
+       "text": "kiểm",
+       "start": 49.02,
+       "end": 49.18,
+       "src": 12
+      },
+      {
+       "text": "tra",
+       "start": 49.18,
+       "end": 49.42,
+       "src": 12
+      }
+     ],
+     "src": 11
+    }
+   ],
+   "start": 48.2,
+   "end": 49.42,
+   "src": 11,
+   "out": 49.42,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "right",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "up",
+   "visualAt": 44.86,
+   "headline": [
+    "Astra tự viết chương trình kiểm thử,",
+    "tự giả lập các API bên ngoài."
+   ],
+   "headlineAt": 11
+  },
+  {
+   "index": 42,
+   "lines": [
+    {
+     "text": "quy trình từ đầu đến",
+     "start": 49.42,
+     "end": 50.44,
+     "hidden": false,
+     "words": [
+      {
+       "text": "quy",
+       "start": 49.42,
+       "end": 49.64,
+       "src": 12
+      },
+      {
+       "text": "trình",
+       "start": 49.64,
+       "end": 49.88,
+       "src": 12
+      },
+      {
+       "text": "từ",
+       "start": 49.88,
+       "end": 50.06,
+       "src": 12
+      },
+      {
+       "text": "đầu",
+       "start": 50.06,
+       "end": 50.24,
+       "src": 12
+      },
+      {
+       "text": "đến",
+       "start": 50.24,
+       "end": 50.44,
+       "src": 12
+      }
+     ],
+     "src": 12
+    }
+   ],
+   "start": 49.42,
+   "end": 50.44,
+   "src": 12,
+   "out": 50.44,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 49.42,
+   "headline": [
+    "Nó kiểm tra quy trình từ đầu đến cuối",
+    "mà con người không cần can thiệp."
+   ],
+   "headlineAt": 12
+  },
+  {
+   "index": 43,
+   "lines": [
+    {
+     "text": "cuối mà con người",
+     "start": 50.44,
+     "end": 51.32,
+     "hidden": false,
+     "words": [
+      {
+       "text": "cuối",
+       "start": 50.44,
+       "end": 50.78,
+       "src": 12
+      },
+      {
+       "text": "mà",
+       "start": 50.78,
+       "end": 50.94,
+       "src": 12
+      },
+      {
+       "text": "con",
+       "start": 50.94,
+       "end": 51.04,
+       "src": 12
+      },
+      {
+       "text": "người",
+       "start": 51.04,
+       "end": 51.32,
+       "src": 12
+      }
+     ],
+     "src": 12
+    }
+   ],
+   "start": 50.44,
+   "end": 51.32,
+   "src": 12,
+   "out": 51.32,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 49.42,
+   "headline": [
+    "Nó kiểm tra quy trình từ đầu đến cuối",
+    "mà con người không cần can thiệp."
+   ],
+   "headlineAt": 12
+  },
+  {
+   "index": 44,
+   "lines": [
+    {
+     "text": "không cần can thiệp.",
+     "start": 51.32,
+     "end": 52.28,
+     "hidden": false,
+     "words": [
+      {
+       "text": "không",
+       "start": 51.32,
+       "end": 51.56,
+       "src": 12
+      },
+      {
+       "text": "cần",
+       "start": 51.56,
+       "end": 51.8,
+       "src": 12
+      },
+      {
+       "text": "can",
+       "start": 51.8,
+       "end": 51.98,
+       "src": 12
+      },
+      {
+       "text": "thiệp.",
+       "start": 51.98,
+       "end": 52.28,
+       "src": 12
+      }
+     ],
+     "src": 12
+    }
+   ],
+   "start": 51.32,
+   "end": 52.28,
+   "src": 12,
+   "out": 52.68,
+   "section": "Sự Thật Về Perplexity",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 49.42,
+   "headline": [
+    "Nó kiểm tra quy trình từ đầu đến cuối",
+    "mà con người không cần can thiệp."
+   ],
+   "headlineAt": 12
+  },
+  {
+   "index": 45,
+   "lines": [
+    {
+     "text": "Johnny Ho khẳng định:",
+     "start": 52.68,
+     "end": 53.94,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Johnny",
+       "start": 52.68,
+       "end": 52.96,
+       "src": 13
+      },
+      {
+       "text": "Ho",
+       "start": 52.96,
+       "end": 53.22,
+       "src": 13
+      },
+      {
+       "text": "khẳng",
+       "start": 53.22,
+       "end": 53.42,
+       "src": 13
+      },
+      {
+       "text": "định:",
+       "start": 53.42,
+       "end": 53.94,
+       "src": 13
+      }
+     ],
+     "src": 13
+    }
+   ],
+   "start": 52.68,
+   "end": 53.94,
+   "src": 13,
+   "out": 54.08,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink",
+   "visualAt": 52.68,
+   "headline": [
+    "Johnny Ho khẳng định:",
+    "họ kiểm tra AI ít hơn hẳn",
+    "so với các thế hệ trước."
+   ],
+   "headlineAt": 13
+  },
+  {
+   "index": 46,
+   "lines": [
+    {
+     "text": "họ kiểm tra AI ít hơn",
+     "start": 54.08,
+     "end": 55.24,
+     "hidden": false,
+     "words": [
+      {
+       "text": "họ",
+       "start": 54.08,
+       "end": 54.18,
+       "src": 13
+      },
+      {
+       "text": "kiểm",
+       "start": 54.18,
+       "end": 54.38,
+       "src": 13
+      },
+      {
+       "text": "tra",
+       "start": 54.38,
+       "end": 54.6,
+       "src": 13
+      },
+      {
+       "text": "AI",
+       "start": 54.6,
+       "end": 54.84,
+       "src": 13
+      },
+      {
+       "text": "ít",
+       "start": 54.84,
+       "end": 55.1,
+       "src": 13
+      },
+      {
+       "text": "hơn",
+       "start": 55.1,
+       "end": 55.24,
+       "src": 13
+      }
+     ],
+     "src": 13
+    }
+   ],
+   "start": 54.08,
+   "end": 55.24,
+   "src": 13,
+   "out": 55.24,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink",
+   "visualAt": 52.68,
+   "headline": [
+    "Johnny Ho khẳng định:",
+    "họ kiểm tra AI ít hơn hẳn",
+    "so với các thế hệ trước."
+   ],
+   "headlineAt": 13
+  },
+  {
+   "index": 47,
+   "lines": [
+    {
+     "text": "hẳn so với các thế hệ",
+     "start": 55.24,
+     "end": 56.38,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hẳn",
+       "start": 55.24,
+       "end": 55.54,
+       "src": 13
+      },
+      {
+       "text": "so",
+       "start": 55.54,
+       "end": 55.76,
+       "src": 13
+      },
+      {
+       "text": "với",
+       "start": 55.76,
+       "end": 55.96,
+       "src": 13
+      },
+      {
+       "text": "các",
+       "start": 55.96,
+       "end": 56.1,
+       "src": 13
+      },
+      {
+       "text": "thế",
+       "start": 56.1,
+       "end": 56.3,
+       "src": 13
+      },
+      {
+       "text": "hệ",
+       "start": 56.3,
+       "end": 56.38,
+       "src": 13
+      }
+     ],
+     "src": 13
+    }
+   ],
+   "start": 55.24,
+   "end": 56.38,
+   "src": 13,
+   "out": 56.38,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink",
+   "visualAt": 52.68,
+   "headline": [
+    "Johnny Ho khẳng định:",
+    "họ kiểm tra AI ít hơn hẳn",
+    "so với các thế hệ trước."
+   ],
+   "headlineAt": 13
+  },
+  {
+   "index": 48,
+   "lines": [
+    {
+     "text": "trước. Nếu bạn đang",
+     "start": 56.38,
+     "end": 58.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "trước.",
+       "start": 56.38,
+       "end": 56.62,
+       "src": 13
+      },
+      {
+       "text": "Nếu",
+       "start": 58.02,
+       "end": 58.28,
+       "src": 14
+      },
+      {
+       "text": "bạn",
+       "start": 58.42,
+       "end": 58.58,
+       "src": 14
+      },
+      {
+       "text": "đang",
+       "start": 58.58,
+       "end": 58.74,
+       "src": 14
+      }
+     ],
+     "src": 13
+    }
+   ],
+   "start": 56.38,
+   "end": 58.74,
+   "src": 13,
+   "out": 58.74,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink",
+   "visualAt": 52.68,
+   "headline": [
+    "Johnny Ho khẳng định:",
+    "họ kiểm tra AI ít hơn hẳn",
+    "so với các thế hệ trước."
+   ],
+   "headlineAt": 13
+  },
+  {
+   "index": 49,
+   "lines": [
+    {
+     "text": "làm sản phẩm, bạn",
+     "start": 58.74,
+     "end": 59.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "làm",
+       "start": 58.74,
+       "end": 58.9,
+       "src": 14
+      },
+      {
+       "text": "sản",
+       "start": 58.9,
+       "end": 59.12,
+       "src": 14
+      },
+      {
+       "text": "phẩm,",
+       "start": 59.12,
+       "end": 59.4,
+       "src": 14
+      },
+      {
+       "text": "bạn",
+       "start": 59.6,
+       "end": 59.74,
+       "src": 14
+      }
+     ],
+     "src": 14
+    }
+   ],
+   "start": 58.74,
+   "end": 59.74,
+   "src": 14,
+   "out": 59.74,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 58.74,
+   "headline": [
+    "Nếu bạn đang làm sản phẩm,",
+    "bạn chính là điểm nghẽn",
+    "nếu cứ đòi tự kiểm tra từng dòng."
+   ],
+   "headlineAt": 14
+  },
+  {
+   "index": 50,
+   "lines": [
+    {
+     "text": "chính là điểm nghẽn",
+     "start": 59.74,
+     "end": 60.64,
+     "hidden": false,
+     "words": [
+      {
+       "text": "chính",
+       "start": 59.74,
+       "end": 59.96,
+       "src": 14
+      },
+      {
+       "text": "là",
+       "start": 59.96,
+       "end": 60.12,
+       "src": 14
+      },
+      {
+       "text": "điểm",
+       "start": 60.12,
+       "end": 60.3,
+       "src": 14
+      },
+      {
+       "text": "nghẽn",
+       "start": 60.3,
+       "end": 60.64,
+       "src": 14
+      }
+     ],
+     "src": 14
+    }
+   ],
+   "start": 59.74,
+   "end": 60.64,
+   "src": 14,
+   "out": 60.64,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 58.74,
+   "headline": [
+    "Nếu bạn đang làm sản phẩm,",
+    "bạn chính là điểm nghẽn",
+    "nếu cứ đòi tự kiểm tra từng dòng."
+   ],
+   "headlineAt": 14
+  },
+  {
+   "index": 51,
+   "lines": [
+    {
+     "text": "nếu cứ đòi tự kiểm",
+     "start": 60.64,
+     "end": 61.78,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nếu",
+       "start": 60.64,
+       "end": 60.88,
+       "src": 14
+      },
+      {
+       "text": "cứ",
+       "start": 60.88,
+       "end": 61.06,
+       "src": 14
+      },
+      {
+       "text": "đòi",
+       "start": 61.06,
+       "end": 61.36,
+       "src": 14
+      },
+      {
+       "text": "tự",
+       "start": 61.36,
+       "end": 61.56,
+       "src": 14
+      },
+      {
+       "text": "kiểm",
+       "start": 61.56,
+       "end": 61.78,
+       "src": 14
+      }
+     ],
+     "src": 14
+    }
+   ],
+   "start": 60.64,
+   "end": 61.78,
+   "src": 14,
+   "out": 61.78,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 58.74,
+   "headline": [
+    "Nếu bạn đang làm sản phẩm,",
+    "bạn chính là điểm nghẽn",
+    "nếu cứ đòi tự kiểm tra từng dòng."
+   ],
+   "headlineAt": 14
+  },
+  {
+   "index": 52,
+   "lines": [
+    {
+     "text": "tra từng dòng. Hãy",
+     "start": 61.78,
+     "end": 63.2,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tra",
+       "start": 61.78,
+       "end": 62.02,
+       "src": 14
+      },
+      {
+       "text": "từng",
+       "start": 62.02,
+       "end": 62.22,
+       "src": 14
+      },
+      {
+       "text": "dòng.",
+       "start": 62.22,
+       "end": 62.48,
+       "src": 14
+      },
+      {
+       "text": "Hãy",
+       "start": 63.08,
+       "end": 63.2,
+       "src": 15
+      }
+     ],
+     "src": 14
+    }
+   ],
+   "start": 61.78,
+   "end": 63.2,
+   "src": 14,
+   "out": 63.2,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "invert",
+   "anchor": "top",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 58.74,
+   "headline": [
+    "Nếu bạn đang làm sản phẩm,",
+    "bạn chính là điểm nghẽn",
+    "nếu cứ đòi tự kiểm tra từng dòng."
+   ],
+   "headlineAt": 14
+  },
+  {
+   "index": 53,
+   "lines": [
+    {
+     "text": "nhìn vào sự tương",
+     "start": 63.2,
+     "end": 64,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nhìn",
+       "start": 63.2,
+       "end": 63.44,
+       "src": 15
+      },
+      {
+       "text": "vào",
+       "start": 63.44,
+       "end": 63.58,
+       "src": 15
+      },
+      {
+       "text": "sự",
+       "start": 63.58,
+       "end": 63.76,
+       "src": 15
+      },
+      {
+       "text": "tương",
+       "start": 63.76,
+       "end": 64,
+       "src": 15
+      }
+     ],
+     "src": 15
+    }
+   ],
+   "start": 63.2,
+   "end": 64,
+   "src": 15,
+   "out": 64,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up",
+   "visualAt": 63.2,
+   "headline": [
+    "Hãy nhìn vào sự tương phản này."
+   ],
+   "headlineAt": 15
+  },
+  {
+   "index": 54,
+   "lines": [
+    {
+     "text": "phản này. Người",
+     "start": 64,
+     "end": 64.84,
+     "hidden": false,
+     "words": [
+      {
+       "text": "phản",
+       "start": 64,
+       "end": 64.24,
+       "src": 15
+      },
+      {
+       "text": "này.",
+       "start": 64.24,
+       "end": 64.46,
+       "src": 15
+      },
+      {
+       "text": "Người",
+       "start": 64.74,
+       "end": 64.84,
+       "src": 16
+      }
+     ],
+     "src": 15
+    }
+   ],
+   "start": 64,
+   "end": 64.84,
+   "src": 15,
+   "out": 64.84,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "mark",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "up",
+   "visualAt": 63.2,
+   "headline": [
+    "Hãy nhìn vào sự tương phản này."
+   ],
+   "headlineAt": 15
+  },
+  {
+   "index": 55,
+   "lines": [
+    {
+     "text": "nghiệp dư ngồi prompt",
+     "start": 64.84,
+     "end": 65.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nghiệp",
+       "start": 64.84,
+       "end": 65.06,
+       "src": 16
+      },
+      {
+       "text": "dư",
+       "start": 65.06,
+       "end": 65.26,
+       "src": 16
+      },
+      {
+       "text": "ngồi",
+       "start": 65.26,
+       "end": 65.44,
+       "src": 16
+      },
+      {
+       "text": "prompt",
+       "start": 65.44,
+       "end": 65.74,
+       "src": 16
+      }
+     ],
+     "src": 16
+    }
+   ],
+   "start": 64.84,
+   "end": 65.74,
+   "src": 16,
+   "out": 65.74,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 64.84,
+   "headline": [
+    "Người nghiệp dư ngồi prompt từng câu.",
+    "Đội ngũ hàng đầu giao trọn hệ thống."
+   ],
+   "headlineAt": 16
+  },
+  {
+   "index": 56,
+   "lines": [
+    {
+     "text": "từng câu. Đội ngũ",
+     "start": 65.74,
+     "end": 66.8,
+     "hidden": false,
+     "words": [
+      {
+       "text": "từng",
+       "start": 65.74,
+       "end": 66.06,
+       "src": 16
+      },
+      {
+       "text": "câu.",
+       "start": 66.06,
+       "end": 66.3,
+       "src": 16
+      },
+      {
+       "text": "Đội",
+       "start": 66.3,
+       "end": 66.56,
+       "src": 16
+      },
+      {
+       "text": "ngũ",
+       "start": 66.56,
+       "end": 66.8,
+       "src": 16
+      }
+     ],
+     "src": 16
+    }
+   ],
+   "start": 65.74,
+   "end": 66.8,
+   "src": 16,
+   "out": 66.8,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 64.84,
+   "headline": [
+    "Người nghiệp dư ngồi prompt từng câu.",
+    "Đội ngũ hàng đầu giao trọn hệ thống."
+   ],
+   "headlineAt": 16
+  },
+  {
+   "index": 57,
+   "lines": [
+    {
+     "text": "hàng đầu giao trọn hệ",
+     "start": 66.8,
+     "end": 67.98,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hàng",
+       "start": 66.8,
+       "end": 67.06,
+       "src": 16
+      },
+      {
+       "text": "đầu",
+       "start": 67.06,
+       "end": 67.3,
+       "src": 16
+      },
+      {
+       "text": "giao",
+       "start": 67.3,
+       "end": 67.58,
+       "src": 16
+      },
+      {
+       "text": "trọn",
+       "start": 67.58,
+       "end": 67.82,
+       "src": 16
+      },
+      {
+       "text": "hệ",
+       "start": 67.82,
+       "end": 67.98,
+       "src": 16
+      }
+     ],
+     "src": 16
+    }
+   ],
+   "start": 66.8,
+   "end": 67.98,
+   "src": 16,
+   "out": 67.98,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 64.84,
+   "headline": [
+    "Người nghiệp dư ngồi prompt từng câu.",
+    "Đội ngũ hàng đầu giao trọn hệ thống."
+   ],
+   "headlineAt": 16
+  },
+  {
+   "index": 58,
+   "lines": [
+    {
+     "text": "thống. OpenAI bắt đầu",
+     "start": 67.98,
+     "end": 69.5,
+     "hidden": false,
+     "words": [
+      {
+       "text": "thống.",
+       "start": 67.98,
+       "end": 68.22,
+       "src": 16
+      },
+      {
+       "text": "OpenAI",
+       "start": 68.62,
+       "end": 69.1,
+       "src": 17
+      },
+      {
+       "text": "bắt",
+       "start": 69.1,
+       "end": 69.3,
+       "src": 17
+      },
+      {
+       "text": "đầu",
+       "start": 69.3,
+       "end": 69.5,
+       "src": 17
+      }
+     ],
+     "src": 16
+    }
+   ],
+   "start": 67.98,
+   "end": 69.5,
+   "src": 16,
+   "out": 69.5,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 64.84,
+   "headline": [
+    "Người nghiệp dư ngồi prompt từng câu.",
+    "Đội ngũ hàng đầu giao trọn hệ thống."
+   ],
+   "headlineAt": 16
+  },
+  {
+   "index": 59,
+   "lines": [
+    {
+     "text": "tung ra GPT-6 Astra",
+     "start": 69.5,
+     "end": 70.62,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tung",
+       "start": 69.5,
+       "end": 69.66,
+       "src": 17
+      },
+      {
+       "text": "ra",
+       "start": 69.66,
+       "end": 69.82,
+       "src": 17
+      },
+      {
+       "text": "GPT-6",
+       "start": 69.82,
+       "end": 70.24,
+       "src": 17
+      },
+      {
+       "text": "Astra",
+       "start": 70.24,
+       "end": 70.62,
+       "src": 17
+      }
+     ],
+     "src": 17
+    }
+   ],
+   "start": 69.5,
+   "end": 70.62,
+   "src": 17,
+   "out": 70.62,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 69.5,
+   "num": 6,
+   "headline": [
+    "OpenAI bắt đầu tung ra GPT-6 Astra",
+    "từ ngày 3 tháng 9."
+   ],
+   "headlineAt": 17
+  },
+  {
+   "index": 60,
+   "lines": [
+    {
+     "text": "từ ngày 3 tháng 9.",
+     "start": 70.62,
+     "end": 72,
+     "hidden": false,
+     "words": [
+      {
+       "text": "từ",
+       "start": 70.62,
+       "end": 71.08,
+       "src": 17
+      },
+      {
+       "text": "ngày",
+       "start": 71.08,
+       "end": 71.26,
+       "src": 17
+      },
+      {
+       "text": "3",
+       "start": 71.26,
+       "end": 71.48,
+       "src": 17
+      },
+      {
+       "text": "tháng",
+       "start": 71.48,
+       "end": 71.74,
+       "src": 17
+      },
+      {
+       "text": "9.",
+       "start": 71.74,
+       "end": 72,
+       "src": 17
+      }
+     ],
+     "src": 17
+    }
+   ],
+   "start": 70.62,
+   "end": 72,
+   "src": 17,
+   "out": 72,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 69.5,
+   "num": 6,
+   "headline": [
+    "OpenAI bắt đầu tung ra GPT-6 Astra",
+    "từ ngày 3 tháng 9."
+   ],
+   "headlineAt": 17
+  },
+  {
+   "index": 61,
+   "lines": [
+    {
+     "text": "Nhưng không phải ai",
+     "start": 72,
+     "end": 72.76,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Nhưng",
+       "start": 72,
+       "end": 72.22,
+       "src": 18
+      },
+      {
+       "text": "không",
+       "start": 72.22,
+       "end": 72.4,
+       "src": 18
+      },
+      {
+       "text": "phải",
+       "start": 72.4,
+       "end": 72.58,
+       "src": 18
+      },
+      {
+       "text": "ai",
+       "start": 72.58,
+       "end": 72.76,
+       "src": 18
+      }
+     ],
+     "src": 18
+    }
+   ],
+   "start": 72,
+   "end": 72.76,
+   "src": 18,
+   "out": 72.76,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut",
+   "visualAt": 72,
+   "headline": [
+    "Nhưng không phải ai mở ChatGPT",
+    "cũng thấy nút Astra ngay."
+   ],
+   "headlineAt": 18
+  },
+  {
+   "index": 62,
+   "lines": [
+    {
+     "text": "mở ChatGPT cũng thấy",
+     "start": 72.76,
+     "end": 73.78,
+     "hidden": false,
+     "words": [
+      {
+       "text": "mở",
+       "start": 72.76,
+       "end": 72.98,
+       "src": 18
+      },
+      {
+       "text": "ChatGPT",
+       "start": 73.18,
+       "end": 73.46,
+       "src": 18
+      },
+      {
+       "text": "cũng",
+       "start": 73.46,
+       "end": 73.66,
+       "src": 18
+      },
+      {
+       "text": "thấy",
+       "start": 73.66,
+       "end": 73.78,
+       "src": 18
+      }
+     ],
+     "src": 18
+    }
+   ],
+   "start": 72.76,
+   "end": 73.78,
+   "src": 18,
+   "out": 73.78,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut",
+   "visualAt": 72,
+   "headline": [
+    "Nhưng không phải ai mở ChatGPT",
+    "cũng thấy nút Astra ngay."
+   ],
+   "headlineAt": 18
+  },
+  {
+   "index": 63,
+   "lines": [
+    {
+     "text": "nút Astra ngay. Nó",
+     "start": 73.78,
+     "end": 75.1,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nút",
+       "start": 73.78,
+       "end": 74,
+       "src": 18
+      },
+      {
+       "text": "Astra",
+       "start": 74,
+       "end": 74.28,
+       "src": 18
+      },
+      {
+       "text": "ngay.",
+       "start": 74.28,
+       "end": 74.58,
+       "src": 18
+      },
+      {
+       "text": "Nó",
+       "start": 74.96,
+       "end": 75.1,
+       "src": 19
+      }
+     ],
+     "src": 18
+    }
+   ],
+   "start": 73.78,
+   "end": 75.1,
+   "src": 18,
+   "out": 75.1,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "wipeOut",
+   "visualAt": 72,
+   "headline": [
+    "Nhưng không phải ai mở ChatGPT",
+    "cũng thấy nút Astra ngay."
+   ],
+   "headlineAt": 18
+  },
+  {
+   "index": 64,
+   "lines": [
+    {
+     "text": "nằm dưới tên GPT-6",
+     "start": 75.1,
+     "end": 76.28,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nằm",
+       "start": 75.1,
+       "end": 75.32,
+       "src": 19
+      },
+      {
+       "text": "dưới",
+       "start": 75.32,
+       "end": 75.48,
+       "src": 19
+      },
+      {
+       "text": "tên",
+       "start": 75.48,
+       "end": 75.68,
+       "src": 19
+      },
+      {
+       "text": "GPT-6",
+       "start": 75.68,
+       "end": 76.28,
+       "src": 19
+      }
+     ],
+     "src": 19
+    }
+   ],
+   "start": 75.1,
+   "end": 76.28,
+   "src": 19,
+   "out": 76.28,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 75.1,
+   "headline": [
+    "Nó nằm dưới tên GPT-6 Pro",
+    "cho gói Pro, Business và Enterprise."
+   ],
+   "headlineAt": 19
+  },
+  {
+   "index": 65,
+   "lines": [
+    {
+     "text": "Pro cho gói Pro,",
+     "start": 76.28,
+     "end": 77.38,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Pro",
+       "start": 76.28,
+       "end": 76.62,
+       "src": 19
+      },
+      {
+       "text": "cho",
+       "start": 76.62,
+       "end": 76.86,
+       "src": 19
+      },
+      {
+       "text": "gói",
+       "start": 76.86,
+       "end": 77.06,
+       "src": 19
+      },
+      {
+       "text": "Pro,",
+       "start": 77.06,
+       "end": 77.38,
+       "src": 19
+      }
+     ],
+     "src": 19
+    }
+   ],
+   "start": 76.28,
+   "end": 77.38,
+   "src": 19,
+   "out": 77.6,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 75.1,
+   "headline": [
+    "Nó nằm dưới tên GPT-6 Pro",
+    "cho gói Pro, Business và Enterprise."
+   ],
+   "headlineAt": 19
+  },
+  {
+   "index": 66,
+   "lines": [
+    {
+     "text": "Business và",
+     "start": 77.6,
+     "end": 78.16,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Business",
+       "start": 77.6,
+       "end": 77.82,
+       "src": 19
+      },
+      {
+       "text": "và",
+       "start": 77.82,
+       "end": 78.16,
+       "src": 19
+      }
+     ],
+     "src": 19
+    }
+   ],
+   "start": 77.6,
+   "end": 78.16,
+   "src": 19,
+   "out": 78.16,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 75.1,
+   "headline": [
+    "Nó nằm dưới tên GPT-6 Pro",
+    "cho gói Pro, Business và Enterprise."
+   ],
+   "headlineAt": 19
+  },
+  {
+   "index": 67,
+   "lines": [
+    {
+     "text": "Enterprise. Tài khoản",
+     "start": 78.16,
+     "end": 79.28,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Enterprise.",
+       "start": 78.16,
+       "end": 78.68,
+       "src": 19
+      },
+      {
+       "text": "Tài",
+       "start": 79,
+       "end": 79.08,
+       "src": 20
+      },
+      {
+       "text": "khoản",
+       "start": 79.08,
+       "end": 79.28,
+       "src": 20
+      }
+     ],
+     "src": 19
+    }
+   ],
+   "start": 78.16,
+   "end": 79.28,
+   "src": 19,
+   "out": 79.28,
+   "section": "Bước Nhảy Của Johnny Ho",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 75.1,
+   "headline": [
+    "Nó nằm dưới tên GPT-6 Pro",
+    "cho gói Pro, Business và Enterprise."
+   ],
+   "headlineAt": 19
+  },
+  {
+   "index": 68,
+   "lines": [
+    {
+     "text": "Plus dùng qua Work",
+     "start": 79.28,
+     "end": 80.3,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Plus",
+       "start": 79.28,
+       "end": 79.58,
+       "src": 20
+      },
+      {
+       "text": "dùng",
+       "start": 79.58,
+       "end": 79.86,
+       "src": 20
+      },
+      {
+       "text": "qua",
+       "start": 79.86,
+       "end": 80.04,
+       "src": 20
+      },
+      {
+       "text": "Work",
+       "start": 80.04,
+       "end": 80.3,
+       "src": 20
+      }
+     ],
+     "src": 20
+    }
+   ],
+   "start": 79.28,
+   "end": 80.3,
+   "src": 20,
+   "out": 80.3,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 79.28,
+   "num": 0.153,
+   "headline": [
+    "Tài khoản Plus dùng qua Work hoặc Codex.",
+    "Yêu cầu Codex CLI từ phiên bản:"
+   ],
+   "headlineAt": 20
+  },
+  {
+   "index": 69,
+   "lines": [
+    {
+     "text": "hoặc Codex. Yêu cầu",
+     "start": 80.3,
+     "end": 81.9,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hoặc",
+       "start": 80.3,
+       "end": 80.64,
+       "src": 20
+      },
+      {
+       "text": "Codex.",
+       "start": 80.64,
+       "end": 81.06,
+       "src": 20
+      },
+      {
+       "text": "Yêu",
+       "start": 81.42,
+       "end": 81.64,
+       "src": 20
+      },
+      {
+       "text": "cầu",
+       "start": 81.64,
+       "end": 81.9,
+       "src": 20
+      }
+     ],
+     "src": 20
+    }
+   ],
+   "start": 80.3,
+   "end": 81.9,
+   "src": 20,
+   "out": 81.9,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 79.28,
+   "num": 0.153,
+   "headline": [
+    "Tài khoản Plus dùng qua Work hoặc Codex.",
+    "Yêu cầu Codex CLI từ phiên bản:"
+   ],
+   "headlineAt": 20
+  },
+  {
+   "index": 70,
+   "lines": [
+    {
+     "text": "Codex CLI từ phiên",
+     "start": 81.9,
+     "end": 83.22,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Codex",
+       "start": 81.9,
+       "end": 82.42,
+       "src": 20
+      },
+      {
+       "text": "CLI",
+       "start": 82.42,
+       "end": 82.86,
+       "src": 20
+      },
+      {
+       "text": "từ",
+       "start": 82.86,
+       "end": 82.98,
+       "src": 20
+      },
+      {
+       "text": "phiên",
+       "start": 82.98,
+       "end": 83.22,
+       "src": 20
+      }
+     ],
+     "src": 20
+    }
+   ],
+   "start": 81.9,
+   "end": 83.22,
+   "src": 20,
+   "out": 83.22,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 79.28,
+   "num": 0.153,
+   "headline": [
+    "Tài khoản Plus dùng qua Work hoặc Codex.",
+    "Yêu cầu Codex CLI từ phiên bản:"
+   ],
+   "headlineAt": 20
+  },
+  {
+   "index": 71,
+   "lines": [
+    {
+     "text": "bản: Nhưng đây mới là",
+     "start": 83.22,
+     "end": 84.34,
+     "hidden": false,
+     "words": [
+      {
+       "text": "bản:",
+       "start": 83.22,
+       "end": 83.46,
+       "src": 20
+      },
+      {
+       "text": "Nhưng",
+       "start": 83.46,
+       "end": 83.88,
+       "src": 21
+      },
+      {
+       "text": "đây",
+       "start": 83.88,
+       "end": 84.04,
+       "src": 21
+      },
+      {
+       "text": "mới",
+       "start": 84.04,
+       "end": 84.2,
+       "src": 21
+      },
+      {
+       "text": "là",
+       "start": 84.2,
+       "end": 84.34,
+       "src": 21
+      }
+     ],
+     "src": 20
+    }
+   ],
+   "start": 83.22,
+   "end": 84.34,
+   "src": 20,
+   "out": 84.34,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 79.28,
+   "num": 0.153,
+   "headline": [
+    "Tài khoản Plus dùng qua Work hoặc Codex.",
+    "Yêu cầu Codex CLI từ phiên bản:"
+   ],
+   "headlineAt": 20
+  },
+  {
+   "index": 72,
+   "lines": [
+    {
+     "text": "vấn đề đắt đỏ. GPT-6",
+     "start": 84.34,
+     "end": 86.18,
+     "hidden": false,
+     "words": [
+      {
+       "text": "vấn",
+       "start": 84.34,
+       "end": 84.5,
+       "src": 21
+      },
+      {
+       "text": "đề",
+       "start": 84.5,
+       "end": 84.68,
+       "src": 21
+      },
+      {
+       "text": "đắt",
+       "start": 84.68,
+       "end": 84.88,
+       "src": 21
+      },
+      {
+       "text": "đỏ.",
+       "start": 84.88,
+       "end": 85.14,
+       "src": 21
+      },
+      {
+       "text": "GPT-6",
+       "start": 85.9,
+       "end": 86.18,
+       "src": 22
+      }
+     ],
+     "src": 21
+    }
+   ],
+   "start": 84.34,
+   "end": 86.18,
+   "src": 21,
+   "out": 86.18,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "hero",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "shrink",
+   "visualAt": 84.34,
+   "headline": [
+    "Nhưng đây mới là vấn đề đắt đỏ."
+   ],
+   "headlineAt": 21
+  },
+  {
+   "index": 73,
+   "lines": [
+    {
+     "text": "Astra ngốn hạn ngạch",
+     "start": 86.18,
+     "end": 87.46,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Astra",
+       "start": 86.18,
+       "end": 86.58,
+       "src": 22
+      },
+      {
+       "text": "ngốn",
+       "start": 86.58,
+       "end": 87,
+       "src": 22
+      },
+      {
+       "text": "hạn",
+       "start": 87,
+       "end": 87.18,
+       "src": 22
+      },
+      {
+       "text": "ngạch",
+       "start": 87.18,
+       "end": 87.46,
+       "src": 22
+      }
+     ],
+     "src": 22
+    }
+   ],
+   "start": 86.18,
+   "end": 87.46,
+   "src": 22,
+   "out": 87.46,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 86.18,
+   "num": 6,
+   "headline": [
+    "GPT-6 Astra ngốn hạn ngạch",
+    "nhanh hơn hẳn GPT-5.6 Sol."
+   ],
+   "headlineAt": 22
+  },
+  {
+   "index": 74,
+   "lines": [
+    {
+     "text": "nhanh hơn hẳn GPT-5.6",
+     "start": 87.46,
+     "end": 88.9,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nhanh",
+       "start": 87.46,
+       "end": 87.76,
+       "src": 22
+      },
+      {
+       "text": "hơn",
+       "start": 87.76,
+       "end": 87.92,
+       "src": 22
+      },
+      {
+       "text": "hẳn",
+       "start": 87.92,
+       "end": 88.14,
+       "src": 22
+      },
+      {
+       "text": "GPT-5.6",
+       "start": 88.68,
+       "end": 88.9,
+       "src": 22
+      }
+     ],
+     "src": 22
+    }
+   ],
+   "start": 87.46,
+   "end": 88.9,
+   "src": 22,
+   "out": 88.9,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 86.18,
+   "num": 6,
+   "headline": [
+    "GPT-6 Astra ngốn hạn ngạch",
+    "nhanh hơn hẳn GPT-5.6 Sol."
+   ],
+   "headlineAt": 22
+  },
+  {
+   "index": 75,
+   "lines": [
+    {
+     "text": "Sol. Bảng hạn ngạch",
+     "start": 88.9,
+     "end": 90.7,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Sol.",
+       "start": 88.9,
+       "end": 89.56,
+       "src": 22
+      },
+      {
+       "text": "Bảng",
+       "start": 90.02,
+       "end": 90.32,
+       "src": 23
+      },
+      {
+       "text": "hạn",
+       "start": 90.32,
+       "end": 90.5,
+       "src": 23
+      },
+      {
+       "text": "ngạch",
+       "start": 90.5,
+       "end": 90.7,
+       "src": 23
+      }
+     ],
+     "src": 22
+    }
+   ],
+   "start": 88.9,
+   "end": 90.7,
+   "src": 22,
+   "out": 90.7,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "down",
+   "visualAt": 86.18,
+   "num": 6,
+   "headline": [
+    "GPT-6 Astra ngốn hạn ngạch",
+    "nhanh hơn hẳn GPT-5.6 Sol."
+   ],
+   "headlineAt": 22
+  },
+  {
+   "index": 76,
+   "lines": [
+    {
+     "text": "tin nhắn cục bộ trong",
+     "start": 90.7,
+     "end": 91.7,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tin",
+       "start": 90.7,
+       "end": 90.86,
+       "src": 23
+      },
+      {
+       "text": "nhắn",
+       "start": 90.86,
+       "end": 91.02,
+       "src": 23
+      },
+      {
+       "text": "cục",
+       "start": 91.02,
+       "end": 91.32,
+       "src": 23
+      },
+      {
+       "text": "bộ",
+       "start": 91.32,
+       "end": 91.48,
+       "src": 23
+      },
+      {
+       "text": "trong",
+       "start": 91.48,
+       "end": 91.7,
+       "src": 23
+      }
+     ],
+     "src": 23
+    }
+   ],
+   "start": 90.7,
+   "end": 91.7,
+   "src": 23,
+   "out": 91.7,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 90.7,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   },
+   "headline": [
+    "Bảng hạn ngạch tin nhắn cục bộ",
+    "trong mỗi 5 giờ của các gói:"
+   ],
+   "headlineAt": 23
+  },
+  {
+   "index": 77,
+   "lines": [
+    {
+     "text": "mỗi 5 giờ của các",
+     "start": 91.7,
+     "end": 92.72,
+     "hidden": false,
+     "words": [
+      {
+       "text": "mỗi",
+       "start": 91.7,
+       "end": 91.86,
+       "src": 23
+      },
+      {
+       "text": "5",
+       "start": 91.86,
+       "end": 92.02,
+       "src": 23
+      },
+      {
+       "text": "giờ",
+       "start": 92.02,
+       "end": 92.28,
+       "src": 23
+      },
+      {
+       "text": "của",
+       "start": 92.28,
+       "end": 92.5,
+       "src": 23
+      },
+      {
+       "text": "các",
+       "start": 92.5,
+       "end": 92.72,
+       "src": 23
+      }
+     ],
+     "src": 23
+    }
+   ],
+   "start": 91.7,
+   "end": 92.72,
+   "src": 23,
+   "out": 92.72,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 90.7,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   },
+   "headline": [
+    "Bảng hạn ngạch tin nhắn cục bộ",
+    "trong mỗi 5 giờ của các gói:"
+   ],
+   "headlineAt": 23
+  },
+  {
+   "index": 78,
+   "lines": [
+    {
+     "text": "gói: Gói Plus chỉ",
+     "start": 92.72,
+     "end": 94.3,
+     "hidden": false,
+     "words": [
+      {
+       "text": "gói:",
+       "start": 92.72,
+       "end": 93,
+       "src": 23
+      },
+      {
+       "text": "Gói",
+       "start": 93.64,
+       "end": 93.88,
+       "src": 24
+      },
+      {
+       "text": "Plus",
+       "start": 93.88,
+       "end": 94.08,
+       "src": 24
+      },
+      {
+       "text": "chỉ",
+       "start": 94.08,
+       "end": 94.3,
+       "src": 24
+      }
+     ],
+     "src": 23
+    }
+   ],
+   "start": 92.72,
+   "end": 94.3,
+   "src": 23,
+   "out": 94.3,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "stack",
+   "anchor": "top",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 90.7,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   },
+   "headline": [
+    "Bảng hạn ngạch tin nhắn cục bộ",
+    "trong mỗi 5 giờ của các gói:"
+   ],
+   "headlineAt": 23
+  },
+  {
+   "index": 79,
+   "lines": [
+    {
+     "text": "được từ 5 đến 45 tin.",
+     "start": 94.3,
+     "end": 95.9,
+     "hidden": false,
+     "words": [
+      {
+       "text": "được",
+       "start": 94.3,
+       "end": 94.42,
+       "src": 24
+      },
+      {
+       "text": "từ",
+       "start": 94.42,
+       "end": 94.62,
+       "src": 24
+      },
+      {
+       "text": "5",
+       "start": 94.62,
+       "end": 94.9,
+       "src": 24
+      },
+      {
+       "text": "đến",
+       "start": 94.9,
+       "end": 95.1,
+       "src": 24
+      },
+      {
+       "text": "45",
+       "start": 95.1,
+       "end": 95.56,
+       "src": 24
+      },
+      {
+       "text": "tin.",
+       "start": 95.56,
+       "end": 95.9,
+       "src": 24
+      }
+     ],
+     "src": 24
+    }
+   ],
+   "start": 94.3,
+   "end": 95.9,
+   "src": 24,
+   "out": 96.5,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 90.7,
+   "num": 5,
+   "headline": [
+    "Gói Plus chỉ được từ 5 đến 45 tin.",
+    "Gói Pro 100 đô được 25 đến 225 tin.",
+    "Gói Pro 200 đô nhận 100 đến 900 tin."
+   ],
+   "headlineAt": 24,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   }
+  },
+  {
+   "index": 80,
+   "lines": [
+    {
+     "text": "Gói Pro 100 đô được",
+     "start": 96.5,
+     "end": 97.8,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Gói",
+       "start": 96.5,
+       "end": 96.78,
+       "src": 24
+      },
+      {
+       "text": "Pro",
+       "start": 96.78,
+       "end": 96.96,
+       "src": 24
+      },
+      {
+       "text": "100",
+       "start": 96.96,
+       "end": 97.28,
+       "src": 24
+      },
+      {
+       "text": "đô",
+       "start": 97.28,
+       "end": 97.6,
+       "src": 24
+      },
+      {
+       "text": "được",
+       "start": 97.6,
+       "end": 97.8,
+       "src": 24
+      }
+     ],
+     "src": 24
+    }
+   ],
+   "start": 96.5,
+   "end": 97.8,
+   "src": 24,
+   "out": 97.8,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 90.7,
+   "num": 5,
+   "headline": [
+    "Gói Plus chỉ được từ 5 đến 45 tin.",
+    "Gói Pro 100 đô được 25 đến 225 tin.",
+    "Gói Pro 200 đô nhận 100 đến 900 tin."
+   ],
+   "headlineAt": 24,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   }
+  },
+  {
+   "index": 81,
+   "lines": [
+    {
+     "text": "25 đến 225 tin. Gói",
+     "start": 97.8,
+     "end": 100.42,
+     "hidden": false,
+     "words": [
+      {
+       "text": "25",
+       "start": 97.8,
+       "end": 98.32,
+       "src": 24
+      },
+      {
+       "text": "đến",
+       "start": 98.32,
+       "end": 98.62,
+       "src": 24
+      },
+      {
+       "text": "225",
+       "start": 98.62,
+       "end": 99.62,
+       "src": 24
+      },
+      {
+       "text": "tin.",
+       "start": 99.62,
+       "end": 99.9,
+       "src": 24
+      },
+      {
+       "text": "Gói",
+       "start": 100.32,
+       "end": 100.42,
+       "src": 24
+      }
+     ],
+     "src": 24
+    }
+   ],
+   "start": 97.8,
+   "end": 100.42,
+   "src": 24,
+   "out": 100.42,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 90.7,
+   "num": 5,
+   "headline": [
+    "Gói Plus chỉ được từ 5 đến 45 tin.",
+    "Gói Pro 100 đô được 25 đến 225 tin.",
+    "Gói Pro 200 đô nhận 100 đến 900 tin."
+   ],
+   "headlineAt": 24,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   }
+  },
+  {
+   "index": 82,
+   "lines": [
+    {
+     "text": "Pro 200 đô nhận 100",
+     "start": 100.42,
+     "end": 101.44,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Pro",
+       "start": 100.42,
+       "end": 100.52,
+       "src": 24
+      },
+      {
+       "text": "200",
+       "start": 100.52,
+       "end": 100.7,
+       "src": 24
+      },
+      {
+       "text": "đô",
+       "start": 100.7,
+       "end": 100.96,
+       "src": 24
+      },
+      {
+       "text": "nhận",
+       "start": 100.96,
+       "end": 101.12,
+       "src": 24
+      },
+      {
+       "text": "100",
+       "start": 101.12,
+       "end": 101.44,
+       "src": 24
+      }
+     ],
+     "src": 24
+    }
+   ],
+   "start": 100.42,
+   "end": 101.44,
+   "src": 24,
+   "out": 101.44,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 90.7,
+   "num": 5,
+   "headline": [
+    "Gói Plus chỉ được từ 5 đến 45 tin.",
+    "Gói Pro 100 đô được 25 đến 225 tin.",
+    "Gói Pro 200 đô nhận 100 đến 900 tin."
+   ],
+   "headlineAt": 24,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   }
+  },
+  {
+   "index": 83,
+   "lines": [
+    {
+     "text": "đến 900 tin. Với Chat",
+     "start": 101.44,
+     "end": 103.2,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đến",
+       "start": 101.44,
+       "end": 101.74,
+       "src": 24
+      },
+      {
+       "text": "900",
+       "start": 101.74,
+       "end": 102,
+       "src": 24
+      },
+      {
+       "text": "tin.",
+       "start": 102,
+       "end": 102.46,
+       "src": 24
+      },
+      {
+       "text": "Với",
+       "start": 102.8,
+       "end": 103,
+       "src": 25
+      },
+      {
+       "text": "Chat",
+       "start": 103,
+       "end": 103.2,
+       "src": 25
+      }
+     ],
+     "src": 24
+    }
+   ],
+   "start": 101.44,
+   "end": 103.2,
+   "src": 24,
+   "out": 103.2,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "wipeOut",
+   "visualAt": 90.7,
+   "num": 5,
+   "headline": [
+    "Gói Plus chỉ được từ 5 đến 45 tin.",
+    "Gói Pro 100 đô được 25 đến 225 tin.",
+    "Gói Pro 200 đô nhận 100 đến 900 tin."
+   ],
+   "headlineAt": 24,
+   "chart": {
+    "kind": "hbar",
+    "items": [
+     {
+      "label": "Plus",
+      "value": 45
+     },
+     {
+      "label": "Pro 100 USD",
+      "value": 225
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 900
+     }
+    ],
+    "unit": "tin",
+    "title": ""
+   }
+  },
+  {
+   "index": 84,
+   "lines": [
+    {
+     "text": "hàng tuần, giới hạn",
+     "start": 103.2,
+     "end": 104,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hàng",
+       "start": 103.2,
+       "end": 103.36,
+       "src": 25
+      },
+      {
+       "text": "tuần,",
+       "start": 103.36,
+       "end": 103.6,
+       "src": 25
+      },
+      {
+       "text": "giới",
+       "start": 103.6,
+       "end": 103.82,
+       "src": 25
+      },
+      {
+       "text": "hạn",
+       "start": 103.82,
+       "end": 104,
+       "src": 25
+      }
+     ],
+     "src": 25
+    }
+   ],
+   "start": 103.2,
+   "end": 104,
+   "src": 25,
+   "out": 104,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "up",
+   "visualAt": 103.2,
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": ""
+   },
+   "headline": [
+    "Với Chat hàng tuần,",
+    "giới hạn còn siết chặt hơn."
+   ],
+   "headlineAt": 25
+  },
+  {
+   "index": 85,
+   "lines": [
+    {
+     "text": "còn siết chặt hơn.",
+     "start": 104,
+     "end": 104.92,
+     "hidden": false,
+     "words": [
+      {
+       "text": "còn",
+       "start": 104,
+       "end": 104.2,
+       "src": 25
+      },
+      {
+       "text": "siết",
+       "start": 104.2,
+       "end": 104.48,
+       "src": 25
+      },
+      {
+       "text": "chặt",
+       "start": 104.48,
+       "end": 104.66,
+       "src": 25
+      },
+      {
+       "text": "hơn.",
+       "start": 104.66,
+       "end": 104.92,
+       "src": 25
+      }
+     ],
+     "src": 25
+    }
+   ],
+   "start": 104,
+   "end": 104.92,
+   "src": 25,
+   "out": 105.4,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "up",
+   "visualAt": 103.2,
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": ""
+   },
+   "headline": [
+    "Với Chat hàng tuần,",
+    "giới hạn còn siết chặt hơn."
+   ],
+   "headlineAt": 25
+  },
+  {
+   "index": 86,
+   "lines": [
+    {
+     "text": "Gói 100 đô chỉ có 50",
+     "start": 105.4,
+     "end": 106.88,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Gói",
+       "start": 105.4,
+       "end": 105.66,
+       "src": 26
+      },
+      {
+       "text": "100",
+       "start": 105.66,
+       "end": 105.96,
+       "src": 26
+      },
+      {
+       "text": "đô",
+       "start": 105.96,
+       "end": 106.3,
+       "src": 26
+      },
+      {
+       "text": "chỉ",
+       "start": 106.3,
+       "end": 106.5,
+       "src": 26
+      },
+      {
+       "text": "có",
+       "start": 106.5,
+       "end": 106.62,
+       "src": 26
+      },
+      {
+       "text": "50",
+       "start": 106.62,
+       "end": 106.88,
+       "src": 26
+      }
+     ],
+     "src": 26
+    }
+   ],
+   "start": 105.4,
+   "end": 106.88,
+   "src": 26,
+   "out": 106.88,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 103.2,
+   "num": 100,
+   "headline": [
+    "Gói 100 đô chỉ có 50 tin mỗi tuần.",
+    "Gói 200 đô được 200 tin mỗi tuần."
+   ],
+   "headlineAt": 26,
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": ""
+   }
+  },
+  {
+   "index": 87,
+   "lines": [
+    {
+     "text": "tin mỗi tuần. Gói 200",
+     "start": 106.88,
+     "end": 108.3,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tin",
+       "start": 106.88,
+       "end": 107.08,
+       "src": 26
+      },
+      {
+       "text": "mỗi",
+       "start": 107.08,
+       "end": 107.26,
+       "src": 26
+      },
+      {
+       "text": "tuần.",
+       "start": 107.26,
+       "end": 107.46,
+       "src": 26
+      },
+      {
+       "text": "Gói",
+       "start": 107.8,
+       "end": 108.04,
+       "src": 26
+      },
+      {
+       "text": "200",
+       "start": 108.04,
+       "end": 108.3,
+       "src": 26
+      }
+     ],
+     "src": 26
+    }
+   ],
+   "start": 106.88,
+   "end": 108.3,
+   "src": 26,
+   "out": 108.3,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 103.2,
+   "num": 100,
+   "headline": [
+    "Gói 100 đô chỉ có 50 tin mỗi tuần.",
+    "Gói 200 đô được 200 tin mỗi tuần."
+   ],
+   "headlineAt": 26,
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": ""
+   }
+  },
+  {
+   "index": 88,
+   "lines": [
+    {
+     "text": "đô được 200 tin mỗi",
+     "start": 108.3,
+     "end": 109.64,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đô",
+       "start": 108.3,
+       "end": 108.62,
+       "src": 26
+      },
+      {
+       "text": "được",
+       "start": 108.62,
+       "end": 108.8,
+       "src": 26
+      },
+      {
+       "text": "200",
+       "start": 108.8,
+       "end": 109.16,
+       "src": 26
+      },
+      {
+       "text": "tin",
+       "start": 109.16,
+       "end": 109.46,
+       "src": 26
+      },
+      {
+       "text": "mỗi",
+       "start": 109.46,
+       "end": 109.64,
+       "src": 26
+      }
+     ],
+     "src": 26
+    }
+   ],
+   "start": 108.3,
+   "end": 109.64,
+   "src": 26,
+   "out": 109.64,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 103.2,
+   "num": 100,
+   "headline": [
+    "Gói 100 đô chỉ có 50 tin mỗi tuần.",
+    "Gói 200 đô được 200 tin mỗi tuần."
+   ],
+   "headlineAt": 26,
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": ""
+   }
+  },
+  {
+   "index": 89,
+   "lines": [
+    {
+     "text": "tuần. Nếu dùng qua",
+     "start": 109.64,
+     "end": 110.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tuần.",
+       "start": 109.64,
+       "end": 109.88,
+       "src": 26
+      },
+      {
+       "text": "Nếu",
+       "start": 109.88,
+       "end": 110.38,
+       "src": 27
+      },
+      {
+       "text": "dùng",
+       "start": 110.38,
+       "end": 110.56,
+       "src": 27
+      },
+      {
+       "text": "qua",
+       "start": 110.56,
+       "end": 110.74,
+       "src": 27
+      }
+     ],
+     "src": 26
+    }
+   ],
+   "start": 109.64,
+   "end": 110.74,
+   "src": 26,
+   "out": 110.74,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "top",
+   "motion": "wipe",
+   "exit": "down",
+   "visualAt": 103.2,
+   "num": 100,
+   "headline": [
+    "Gói 100 đô chỉ có 50 tin mỗi tuần.",
+    "Gói 200 đô được 200 tin mỗi tuần."
+   ],
+   "headlineAt": 26,
+   "chart": {
+    "kind": "bar",
+    "items": [
+     {
+      "label": "Pro 100 USD",
+      "value": 50
+     },
+     {
+      "label": "Pro 200 USD",
+      "value": 200
+     }
+    ],
+    "unit": "tin/tuần",
+    "title": ""
+   }
+  },
+  {
+   "index": 90,
+   "lines": [
+    {
+     "text": "API, mức giá tiêu",
+     "start": 110.74,
+     "end": 112.02,
+     "hidden": false,
+     "words": [
+      {
+       "text": "API,",
+       "start": 110.74,
+       "end": 111.02,
+       "src": 27
+      },
+      {
+       "text": "mức",
+       "start": 111.38,
+       "end": 111.5,
+       "src": 27
+      },
+      {
+       "text": "giá",
+       "start": 111.5,
+       "end": 111.74,
+       "src": 27
+      },
+      {
+       "text": "tiêu",
+       "start": 111.74,
+       "end": 112.02,
+       "src": 27
+      }
+     ],
+     "src": 27
+    }
+   ],
+   "start": 110.74,
+   "end": 112.02,
+   "src": 27,
+   "out": 112.02,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink",
+   "visualAt": 110.74,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   },
+   "headline": [
+    "Nếu dùng qua API,",
+    "mức giá tiêu chuẩn là:"
+   ],
+   "headlineAt": 27
+  },
+  {
+   "index": 91,
+   "lines": [
+    {
+     "text": "chuẩn là: Đặc biệt,",
+     "start": 112.02,
+     "end": 113.24,
+     "hidden": false,
+     "words": [
+      {
+       "text": "chuẩn",
+       "start": 112.02,
+       "end": 112.3,
+       "src": 27
+      },
+      {
+       "text": "là:",
+       "start": 112.3,
+       "end": 112.54,
+       "src": 27
+      },
+      {
+       "text": "Đặc",
+       "start": 112.54,
+       "end": 112.96,
+       "src": 28
+      },
+      {
+       "text": "biệt,",
+       "start": 112.96,
+       "end": 113.24,
+       "src": 28
+      }
+     ],
+     "src": 27
+    }
+   ],
+   "start": 112.02,
+   "end": 113.24,
+   "src": 27,
+   "out": 113.48,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "shrink",
+   "visualAt": 110.74,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   },
+   "headline": [
+    "Nếu dùng qua API,",
+    "mức giá tiêu chuẩn là:"
+   ],
+   "headlineAt": 27
+  },
+  {
+   "index": 92,
+   "lines": [
+    {
+     "text": "request vượt quá",
+     "start": 113.48,
+     "end": 114.34,
+     "hidden": false,
+     "words": [
+      {
+       "text": "request",
+       "start": 113.48,
+       "end": 113.92,
+       "src": 28
+      },
+      {
+       "text": "vượt",
+       "start": 113.92,
+       "end": 114.18,
+       "src": 28
+      },
+      {
+       "text": "quá",
+       "start": 114.18,
+       "end": 114.34,
+       "src": 28
+      }
+     ],
+     "src": 28
+    }
+   ],
+   "start": 113.48,
+   "end": 114.34,
+   "src": 28,
+   "out": 115.42,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 110.74,
+   "num": 272000,
+   "headline": [
+    "Đặc biệt, request vượt quá 272.000 token",
+    "sẽ bị tính giá gấp đôi!"
+   ],
+   "headlineAt": 28,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 93,
+   "lines": [
+    {
+     "text": "272.000 token sẽ bị",
+     "start": 115.42,
+     "end": 116.36,
+     "hidden": false,
+     "words": [
+      {
+       "text": "272.000",
+       "start": 115.42,
+       "end": 115.64,
+       "src": 28
+      },
+      {
+       "text": "token",
+       "start": 115.64,
+       "end": 115.9,
+       "src": 28
+      },
+      {
+       "text": "sẽ",
+       "start": 115.9,
+       "end": 116.2,
+       "src": 28
+      },
+      {
+       "text": "bị",
+       "start": 116.2,
+       "end": 116.36,
+       "src": 28
+      }
+     ],
+     "src": 28
+    }
+   ],
+   "start": 115.42,
+   "end": 116.36,
+   "src": 28,
+   "out": 116.36,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 110.74,
+   "num": 272000,
+   "headline": [
+    "Đặc biệt, request vượt quá 272.000 token",
+    "sẽ bị tính giá gấp đôi!"
+   ],
+   "headlineAt": 28,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 94,
+   "lines": [
+    {
+     "text": "tính giá gấp đôi! Đây",
+     "start": 116.36,
+     "end": 117.76,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tính",
+       "start": 116.36,
+       "end": 116.54,
+       "src": 28
+      },
+      {
+       "text": "giá",
+       "start": 116.54,
+       "end": 116.76,
+       "src": 28
+      },
+      {
+       "text": "gấp",
+       "start": 116.76,
+       "end": 116.96,
+       "src": 28
+      },
+      {
+       "text": "đôi!",
+       "start": 116.96,
+       "end": 117.2,
+       "src": 28
+      },
+      {
+       "text": "Đây",
+       "start": 117.56,
+       "end": 117.76,
+       "src": 29
+      }
+     ],
+     "src": 28
+    }
+   ],
+   "start": 116.36,
+   "end": 117.76,
+   "src": 28,
+   "out": 117.76,
+   "section": "Cái Giá Của Sự Thông Minh",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "slam",
+   "exit": "dissolve",
+   "visualAt": 110.74,
+   "num": 272000,
+   "headline": [
+    "Đặc biệt, request vượt quá 272.000 token",
+    "sẽ bị tính giá gấp đôi!"
+   ],
+   "headlineAt": 28,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 95,
+   "lines": [
+    {
+     "text": "chính là bí mật mình",
+     "start": 117.76,
+     "end": 118.68,
+     "hidden": false,
+     "words": [
+      {
+       "text": "chính",
+       "start": 117.76,
+       "end": 117.98,
+       "src": 29
+      },
+      {
+       "text": "là",
+       "start": 117.98,
+       "end": 118.12,
+       "src": 29
+      },
+      {
+       "text": "bí",
+       "start": 118.12,
+       "end": 118.28,
+       "src": 29
+      },
+      {
+       "text": "mật",
+       "start": 118.28,
+       "end": 118.46,
+       "src": 29
+      },
+      {
+       "text": "mình",
+       "start": 118.46,
+       "end": 118.68,
+       "src": 29
+      }
+     ],
+     "src": 29
+    }
+   ],
+   "start": 117.76,
+   "end": 118.68,
+   "src": 29,
+   "out": 118.68,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "hero",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "up",
+   "visualAt": 110.74,
+   "headline": [
+    "Đây chính là bí mật mình đã hứa:"
+   ],
+   "headlineAt": 29,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 96,
+   "lines": [
+    {
+     "text": "đã hứa: AI càng suy",
+     "start": 118.68,
+     "end": 120.34,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đã",
+       "start": 118.68,
+       "end": 118.94,
+       "src": 29
+      },
+      {
+       "text": "hứa:",
+       "start": 118.94,
+       "end": 119.24,
+       "src": 29
+      },
+      {
+       "text": "AI",
+       "start": 119.48,
+       "end": 119.74,
+       "src": 30
+      },
+      {
+       "text": "càng",
+       "start": 119.74,
+       "end": 120.08,
+       "src": 30
+      },
+      {
+       "text": "suy",
+       "start": 120.08,
+       "end": 120.34,
+       "src": 30
+      }
+     ],
+     "src": 29
+    }
+   ],
+   "start": 118.68,
+   "end": 120.34,
+   "src": 29,
+   "out": 120.34,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "hero",
+   "anchor": "top",
+   "motion": "rise",
+   "exit": "up",
+   "visualAt": 110.74,
+   "headline": [
+    "Đây chính là bí mật mình đã hứa:"
+   ],
+   "headlineAt": 29,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 97,
+   "lines": [
+    {
+     "text": "luận sâu, chi phí cạn",
+     "start": 120.34,
+     "end": 121.58,
+     "hidden": false,
+     "words": [
+      {
+       "text": "luận",
+       "start": 120.34,
+       "end": 120.56,
+       "src": 30
+      },
+      {
+       "text": "sâu,",
+       "start": 120.56,
+       "end": 120.84,
+       "src": 30
+      },
+      {
+       "text": "chi",
+       "start": 120.84,
+       "end": 121.08,
+       "src": 30
+      },
+      {
+       "text": "phí",
+       "start": 121.08,
+       "end": 121.28,
+       "src": 30
+      },
+      {
+       "text": "cạn",
+       "start": 121.28,
+       "end": 121.58,
+       "src": 30
+      }
+     ],
+     "src": 30
+    }
+   ],
+   "start": 120.34,
+   "end": 121.58,
+   "src": 30,
+   "out": 121.58,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 110.74,
+   "headline": [
+    "AI càng suy luận sâu,",
+    "chi phí cạn kiệt càng nhanh."
+   ],
+   "headlineAt": 30,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 98,
+   "lines": [
+    {
+     "text": "kiệt càng nhanh. Nếu",
+     "start": 121.58,
+     "end": 122.86,
+     "hidden": false,
+     "words": [
+      {
+       "text": "kiệt",
+       "start": 121.58,
+       "end": 121.86,
+       "src": 30
+      },
+      {
+       "text": "càng",
+       "start": 121.86,
+       "end": 122.04,
+       "src": 30
+      },
+      {
+       "text": "nhanh.",
+       "start": 122.04,
+       "end": 122.32,
+       "src": 30
+      },
+      {
+       "text": "Nếu",
+       "start": 122.64,
+       "end": 122.86,
+       "src": 31
+      }
+     ],
+     "src": 30
+    }
+   ],
+   "start": 121.58,
+   "end": 122.86,
+   "src": 30,
+   "out": 122.86,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "down",
+   "visualAt": 110.74,
+   "headline": [
+    "AI càng suy luận sâu,",
+    "chi phí cạn kiệt càng nhanh."
+   ],
+   "headlineAt": 30,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 99,
+   "lines": [
+    {
+     "text": "bạn không biết tối",
+     "start": 122.86,
+     "end": 123.66,
+     "hidden": false,
+     "words": [
+      {
+       "text": "bạn",
+       "start": 122.86,
+       "end": 123.06,
+       "src": 31
+      },
+      {
+       "text": "không",
+       "start": 123.06,
+       "end": 123.28,
+       "src": 31
+      },
+      {
+       "text": "biết",
+       "start": 123.28,
+       "end": 123.42,
+       "src": 31
+      },
+      {
+       "text": "tối",
+       "start": 123.42,
+       "end": 123.66,
+       "src": 31
+      }
+     ],
+     "src": 31
+    }
+   ],
+   "start": 122.86,
+   "end": 123.66,
+   "src": 31,
+   "out": 123.66,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 110.74,
+   "num": 15,
+   "headline": [
+    "Nếu bạn không biết tối ưu,",
+    "bạn sẽ đốt sạch hạn ngạch trong 15 phút."
+   ],
+   "headlineAt": 31,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 100,
+   "lines": [
+    {
+     "text": "ưu, bạn sẽ đốt sạch",
+     "start": 123.66,
+     "end": 124.92,
+     "hidden": false,
+     "words": [
+      {
+       "text": "ưu,",
+       "start": 123.66,
+       "end": 123.92,
+       "src": 31
+      },
+      {
+       "text": "bạn",
+       "start": 124.14,
+       "end": 124.24,
+       "src": 31
+      },
+      {
+       "text": "sẽ",
+       "start": 124.24,
+       "end": 124.48,
+       "src": 31
+      },
+      {
+       "text": "đốt",
+       "start": 124.48,
+       "end": 124.66,
+       "src": 31
+      },
+      {
+       "text": "sạch",
+       "start": 124.66,
+       "end": 124.92,
+       "src": 31
+      }
+     ],
+     "src": 31
+    }
+   ],
+   "start": 123.66,
+   "end": 124.92,
+   "src": 31,
+   "out": 124.92,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 110.74,
+   "num": 15,
+   "headline": [
+    "Nếu bạn không biết tối ưu,",
+    "bạn sẽ đốt sạch hạn ngạch trong 15 phút."
+   ],
+   "headlineAt": 31,
+   "chart": {
+    "kind": "stat",
+    "items": [
+     {
+      "label": "1M Input Token",
+      "value": 10
+     },
+     {
+      "label": "1M Output Token",
+      "value": 50
+     }
+    ],
+    "unit": "USD",
+    "title": ""
+   }
+  },
+  {
+   "index": 101,
+   "lines": [
+    {
+     "text": "hạn ngạch trong 15",
+     "start": 124.92,
+     "end": 125.92,
+     "hidden": false,
+     "words": [
+      {
+       "text": "hạn",
+       "start": 124.92,
+       "end": 125.1,
+       "src": 31
+      },
+      {
+       "text": "ngạch",
+       "start": 125.1,
+       "end": 125.36,
+       "src": 31
+      },
+      {
+       "text": "trong",
+       "start": 125.36,
+       "end": 125.58,
+       "src": 31
+      },
+      {
+       "text": "15",
+       "start": 125.58,
+       "end": 125.92,
+       "src": 31
+      }
+     ],
+     "src": 31
+    }
+   ],
+   "start": 124.92,
+   "end": 125.92,
+   "src": 31,
+   "out": 125.92,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 122.86,
+   "num": 15,
+   "headline": [
+    "Nếu bạn không biết tối ưu,",
+    "bạn sẽ đốt sạch hạn ngạch trong 15 phút."
+   ],
+   "headlineAt": 31
+  },
+  {
+   "index": 102,
+   "lines": [
+    {
+     "text": "phút. Lời khuyên từ",
+     "start": 125.92,
+     "end": 127.32,
+     "hidden": false,
+     "words": [
+      {
+       "text": "phút.",
+       "start": 125.92,
+       "end": 126.2,
+       "src": 31
+      },
+      {
+       "text": "Lời",
+       "start": 126.52,
+       "end": 126.76,
+       "src": 32
+      },
+      {
+       "text": "khuyên",
+       "start": 126.76,
+       "end": 127.08,
+       "src": 32
+      },
+      {
+       "text": "từ",
+       "start": 127.08,
+       "end": 127.32,
+       "src": 32
+      }
+     ],
+     "src": 31
+    }
+   ],
+   "start": 125.92,
+   "end": 127.32,
+   "src": 31,
+   "out": 127.32,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "numeral",
+   "anchor": "mid",
+   "motion": "pop",
+   "exit": "shrink",
+   "visualAt": 122.86,
+   "num": 15,
+   "headline": [
+    "Nếu bạn không biết tối ưu,",
+    "bạn sẽ đốt sạch hạn ngạch trong 15 phút."
+   ],
+   "headlineAt": 31
+  },
+  {
+   "index": 103,
+   "lines": [
+    {
+     "text": "OpenAI rất rõ ràng:",
+     "start": 127.32,
+     "end": 128.68,
+     "hidden": false,
+     "words": [
+      {
+       "text": "OpenAI",
+       "start": 127.32,
+       "end": 127.94,
+       "src": 32
+      },
+      {
+       "text": "rất",
+       "start": 127.94,
+       "end": 128.22,
+       "src": 32
+      },
+      {
+       "text": "rõ",
+       "start": 128.22,
+       "end": 128.42,
+       "src": 32
+      },
+      {
+       "text": "ràng:",
+       "start": 128.42,
+       "end": 128.68,
+       "src": 32
+      }
+     ],
+     "src": 32
+    }
+   ],
+   "start": 127.32,
+   "end": 128.68,
+   "src": 32,
+   "out": 128.68,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "mark",
+   "anchor": "top",
+   "motion": "fall",
+   "exit": "wipeOut",
+   "visualAt": 127.32,
+   "headline": [
+    "Lời khuyên từ OpenAI rất rõ ràng:"
+   ],
+   "headlineAt": 32
+  },
+  {
+   "index": 104,
+   "lines": [
+    {
+     "text": "Viết prompt tập",
+     "start": 128.68,
+     "end": 129.7,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Viết",
+       "start": 128.68,
+       "end": 129.12,
+       "src": 33
+      },
+      {
+       "text": "prompt",
+       "start": 129.12,
+       "end": 129.46,
+       "src": 33
+      },
+      {
+       "text": "tập",
+       "start": 129.46,
+       "end": 129.7,
+       "src": 33
+      }
+     ],
+     "src": 33
+    }
+   ],
+   "start": 128.68,
+   "end": 129.7,
+   "src": 33,
+   "out": 129.7,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 128.68,
+   "headline": [
+    "Viết prompt tập trung,",
+    "chỉ đính kèm file liên quan,",
+    "quy định rõ định dạng đầu ra."
+   ],
+   "headlineAt": 33
+  },
+  {
+   "index": 105,
+   "lines": [
+    {
+     "text": "trung, chỉ đính kèm",
+     "start": 129.7,
+     "end": 130.68,
+     "hidden": false,
+     "words": [
+      {
+       "text": "trung,",
+       "start": 129.7,
+       "end": 129.96,
+       "src": 33
+      },
+      {
+       "text": "chỉ",
+       "start": 129.96,
+       "end": 130.22,
+       "src": 33
+      },
+      {
+       "text": "đính",
+       "start": 130.22,
+       "end": 130.36,
+       "src": 33
+      },
+      {
+       "text": "kèm",
+       "start": 130.36,
+       "end": 130.68,
+       "src": 33
+      }
+     ],
+     "src": 33
+    }
+   ],
+   "start": 129.7,
+   "end": 130.68,
+   "src": 33,
+   "out": 130.68,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 128.68,
+   "headline": [
+    "Viết prompt tập trung,",
+    "chỉ đính kèm file liên quan,",
+    "quy định rõ định dạng đầu ra."
+   ],
+   "headlineAt": 33
+  },
+  {
+   "index": 106,
+   "lines": [
+    {
+     "text": "file liên quan, quy",
+     "start": 130.68,
+     "end": 131.68,
+     "hidden": false,
+     "words": [
+      {
+       "text": "file",
+       "start": 130.68,
+       "end": 130.88,
+       "src": 33
+      },
+      {
+       "text": "liên",
+       "start": 130.88,
+       "end": 131.1,
+       "src": 33
+      },
+      {
+       "text": "quan,",
+       "start": 131.1,
+       "end": 131.32,
+       "src": 33
+      },
+      {
+       "text": "quy",
+       "start": 131.62,
+       "end": 131.68,
+       "src": 33
+      }
+     ],
+     "src": 33
+    }
+   ],
+   "start": 130.68,
+   "end": 131.68,
+   "src": 33,
+   "out": 131.68,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 128.68,
+   "headline": [
+    "Viết prompt tập trung,",
+    "chỉ đính kèm file liên quan,",
+    "quy định rõ định dạng đầu ra."
+   ],
+   "headlineAt": 33
+  },
+  {
+   "index": 107,
+   "lines": [
+    {
+     "text": "định rõ định dạng đầu",
+     "start": 131.68,
+     "end": 132.82,
+     "hidden": false,
+     "words": [
+      {
+       "text": "định",
+       "start": 131.68,
+       "end": 131.92,
+       "src": 33
+      },
+      {
+       "text": "rõ",
+       "start": 131.92,
+       "end": 132.16,
+       "src": 33
+      },
+      {
+       "text": "định",
+       "start": 132.16,
+       "end": 132.4,
+       "src": 33
+      },
+      {
+       "text": "dạng",
+       "start": 132.4,
+       "end": 132.66,
+       "src": 33
+      },
+      {
+       "text": "đầu",
+       "start": 132.66,
+       "end": 132.82,
+       "src": 33
+      }
+     ],
+     "src": 33
+    }
+   ],
+   "start": 131.68,
+   "end": 132.82,
+   "src": 33,
+   "out": 132.82,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 128.68,
+   "headline": [
+    "Viết prompt tập trung,",
+    "chỉ đính kèm file liên quan,",
+    "quy định rõ định dạng đầu ra."
+   ],
+   "headlineAt": 33
+  },
+  {
+   "index": 108,
+   "lines": [
+    {
+     "text": "ra. Đừng bắt AI phỏng",
+     "start": 132.82,
+     "end": 134.46,
+     "hidden": false,
+     "words": [
+      {
+       "text": "ra.",
+       "start": 132.82,
+       "end": 133.06,
+       "src": 33
+      },
+      {
+       "text": "Đừng",
+       "start": 133.46,
+       "end": 133.6,
+       "src": 34
+      },
+      {
+       "text": "bắt",
+       "start": 133.6,
+       "end": 133.78,
+       "src": 34
+      },
+      {
+       "text": "AI",
+       "start": 133.78,
+       "end": 134.1,
+       "src": 34
+      },
+      {
+       "text": "phỏng",
+       "start": 134.1,
+       "end": 134.46,
+       "src": 34
+      }
+     ],
+     "src": 33
+    }
+   ],
+   "start": 132.82,
+   "end": 134.46,
+   "src": 33,
+   "out": 134.46,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 128.68,
+   "headline": [
+    "Viết prompt tập trung,",
+    "chỉ đính kèm file liên quan,",
+    "quy định rõ định dạng đầu ra."
+   ],
+   "headlineAt": 33
+  },
+  {
+   "index": 109,
+   "lines": [
+    {
+     "text": "đoán vô ích. Bài học",
+     "start": 134.46,
+     "end": 135.8,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đoán",
+       "start": 134.46,
+       "end": 134.62,
+       "src": 34
+      },
+      {
+       "text": "vô",
+       "start": 134.62,
+       "end": 134.8,
+       "src": 34
+      },
+      {
+       "text": "ích.",
+       "start": 134.8,
+       "end": 135.06,
+       "src": 34
+      },
+      {
+       "text": "Bài",
+       "start": 135.48,
+       "end": 135.6,
+       "src": 35
+      },
+      {
+       "text": "học",
+       "start": 135.6,
+       "end": 135.8,
+       "src": 35
+      }
+     ],
+     "src": 34
+    }
+   ],
+   "start": 134.46,
+   "end": 135.8,
+   "src": 34,
+   "out": 135.8,
+   "section": "Bài Toán Chi Phí Chi Tiết",
+   "variant": "stair",
+   "anchor": "mid",
+   "motion": "slideR",
+   "exit": "up",
+   "visualAt": 134.46,
+   "headline": [
+    "Đừng bắt AI phỏng đoán vô ích."
+   ],
+   "headlineAt": 34
+  },
+  {
+   "index": 110,
+   "lines": [
+    {
+     "text": "cốt lõi ở đây là gì?",
+     "start": 135.8,
+     "end": 136.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "cốt",
+       "start": 135.8,
+       "end": 135.96,
+       "src": 35
+      },
+      {
+       "text": "lõi",
+       "start": 135.96,
+       "end": 136.18,
+       "src": 35
+      },
+      {
+       "text": "ở",
+       "start": 136.18,
+       "end": 136.24,
+       "src": 35
+      },
+      {
+       "text": "đây",
+       "start": 136.24,
+       "end": 136.4,
+       "src": 35
+      },
+      {
+       "text": "là",
+       "start": 136.4,
+       "end": 136.56,
+       "src": 35
+      },
+      {
+       "text": "gì?",
+       "start": 136.56,
+       "end": 136.74,
+       "src": 35
+      }
+     ],
+     "src": 35
+    }
+   ],
+   "start": 135.8,
+   "end": 136.74,
+   "src": 35,
+   "out": 136.74,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "hero",
+   "anchor": "top",
+   "motion": "slam",
+   "exit": "down",
+   "visualAt": 135.8,
+   "headline": [
+    "Bài học cốt lõi ở đây là gì?"
+   ],
+   "headlineAt": 35
+  },
+  {
+   "index": 111,
+   "lines": [
+    {
+     "text": "Nếu bạn vẫn xem AI là",
+     "start": 136.74,
+     "end": 138.34,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Nếu",
+       "start": 136.74,
+       "end": 137.28,
+       "src": 36
+      },
+      {
+       "text": "bạn",
+       "start": 137.28,
+       "end": 137.42,
+       "src": 36
+      },
+      {
+       "text": "vẫn",
+       "start": 137.42,
+       "end": 137.58,
+       "src": 36
+      },
+      {
+       "text": "xem",
+       "start": 137.58,
+       "end": 137.78,
+       "src": 36
+      },
+      {
+       "text": "AI",
+       "start": 137.78,
+       "end": 138.06,
+       "src": 36
+      },
+      {
+       "text": "là",
+       "start": 138.06,
+       "end": 138.34,
+       "src": 36
+      }
+     ],
+     "src": 36
+    }
+   ],
+   "start": 136.74,
+   "end": 138.34,
+   "src": 36,
+   "out": 138.34,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "shrink",
+   "visualAt": 136.74,
+   "headline": [
+    "Nếu bạn vẫn xem AI là trợ lý gõ thuê,",
+    "bạn đang lãng phí tài nguyên cực lớn."
+   ],
+   "headlineAt": 36
+  },
+  {
+   "index": 112,
+   "lines": [
+    {
+     "text": "trợ lý gõ thuê, bạn",
+     "start": 138.34,
+     "end": 139.74,
+     "hidden": false,
+     "words": [
+      {
+       "text": "trợ",
+       "start": 138.34,
+       "end": 138.58,
+       "src": 36
+      },
+      {
+       "text": "lý",
+       "start": 138.58,
+       "end": 138.76,
+       "src": 36
+      },
+      {
+       "text": "gõ",
+       "start": 138.76,
+       "end": 138.96,
+       "src": 36
+      },
+      {
+       "text": "thuê,",
+       "start": 138.96,
+       "end": 139.3,
+       "src": 36
+      },
+      {
+       "text": "bạn",
+       "start": 139.64,
+       "end": 139.74,
+       "src": 36
+      }
+     ],
+     "src": 36
+    }
+   ],
+   "start": 138.34,
+   "end": 139.74,
+   "src": 36,
+   "out": 139.74,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "shrink",
+   "visualAt": 136.74,
+   "headline": [
+    "Nếu bạn vẫn xem AI là trợ lý gõ thuê,",
+    "bạn đang lãng phí tài nguyên cực lớn."
+   ],
+   "headlineAt": 36
+  },
+  {
+   "index": 113,
+   "lines": [
+    {
+     "text": "đang lãng phí tài",
+     "start": 139.74,
+     "end": 140.54,
+     "hidden": false,
+     "words": [
+      {
+       "text": "đang",
+       "start": 139.74,
+       "end": 139.92,
+       "src": 36
+      },
+      {
+       "text": "lãng",
+       "start": 139.92,
+       "end": 140.16,
+       "src": 36
+      },
+      {
+       "text": "phí",
+       "start": 140.16,
+       "end": 140.32,
+       "src": 36
+      },
+      {
+       "text": "tài",
+       "start": 140.32,
+       "end": 140.54,
+       "src": 36
+      }
+     ],
+     "src": 36
+    }
+   ],
+   "start": 139.74,
+   "end": 140.54,
+   "src": 36,
+   "out": 140.54,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "shrink",
+   "visualAt": 136.74,
+   "headline": [
+    "Nếu bạn vẫn xem AI là trợ lý gõ thuê,",
+    "bạn đang lãng phí tài nguyên cực lớn."
+   ],
+   "headlineAt": 36
+  },
+  {
+   "index": 114,
+   "lines": [
+    {
+     "text": "nguyên cực lớn.",
+     "start": 140.54,
+     "end": 141.32,
+     "hidden": false,
+     "words": [
+      {
+       "text": "nguyên",
+       "start": 140.54,
+       "end": 140.78,
+       "src": 36
+      },
+      {
+       "text": "cực",
+       "start": 140.78,
+       "end": 141.02,
+       "src": 36
+      },
+      {
+       "text": "lớn.",
+       "start": 141.02,
+       "end": 141.32,
+       "src": 36
+      }
+     ],
+     "src": 36
+    }
+   ],
+   "start": 140.54,
+   "end": 141.32,
+   "src": 36,
+   "out": 141.92,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "rise",
+   "exit": "shrink",
+   "visualAt": 136.74,
+   "headline": [
+    "Nếu bạn vẫn xem AI là trợ lý gõ thuê,",
+    "bạn đang lãng phí tài nguyên cực lớn."
+   ],
+   "headlineAt": 36
+  },
+  {
+   "index": 115,
+   "lines": [
+    {
+     "text": "Perplexity dám giao",
+     "start": 141.92,
+     "end": 142.86,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Perplexity",
+       "start": 141.92,
+       "end": 142.36,
+       "src": 37
+      },
+      {
+       "text": "dám",
+       "start": 142.36,
+       "end": 142.68,
+       "src": 37
+      },
+      {
+       "text": "giao",
+       "start": 142.68,
+       "end": 142.86,
+       "src": 37
+      }
+     ],
+     "src": 37
+    }
+   ],
+   "start": 141.92,
+   "end": 142.86,
+   "src": 37,
+   "out": 142.86,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 141.92,
+   "headline": [
+    "Perplexity dám giao cả hệ thống cho Astra.",
+    "Họ thắng nhờ tốc độ và sự tin tưởng."
+   ],
+   "headlineAt": 37
+  },
+  {
+   "index": 116,
+   "lines": [
+    {
+     "text": "cả hệ thống cho",
+     "start": 142.86,
+     "end": 143.58,
+     "hidden": false,
+     "words": [
+      {
+       "text": "cả",
+       "start": 142.86,
+       "end": 143,
+       "src": 37
+      },
+      {
+       "text": "hệ",
+       "start": 143,
+       "end": 143.14,
+       "src": 37
+      },
+      {
+       "text": "thống",
+       "start": 143.14,
+       "end": 143.38,
+       "src": 37
+      },
+      {
+       "text": "cho",
+       "start": 143.38,
+       "end": 143.58,
+       "src": 37
+      }
+     ],
+     "src": 37
+    }
+   ],
+   "start": 142.86,
+   "end": 143.58,
+   "src": 37,
+   "out": 143.58,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 141.92,
+   "headline": [
+    "Perplexity dám giao cả hệ thống cho Astra.",
+    "Họ thắng nhờ tốc độ và sự tin tưởng."
+   ],
+   "headlineAt": 37
+  },
+  {
+   "index": 117,
+   "lines": [
+    {
+     "text": "Astra. Họ thắng nhờ",
+     "start": 143.58,
+     "end": 144.88,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Astra.",
+       "start": 143.58,
+       "end": 143.92,
+       "src": 37
+      },
+      {
+       "text": "Họ",
+       "start": 144.36,
+       "end": 144.46,
+       "src": 37
+      },
+      {
+       "text": "thắng",
+       "start": 144.46,
+       "end": 144.66,
+       "src": 37
+      },
+      {
+       "text": "nhờ",
+       "start": 144.66,
+       "end": 144.88,
+       "src": 37
+      }
+     ],
+     "src": 37
+    }
+   ],
+   "start": 143.58,
+   "end": 144.88,
+   "src": 37,
+   "out": 144.88,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 141.92,
+   "headline": [
+    "Perplexity dám giao cả hệ thống cho Astra.",
+    "Họ thắng nhờ tốc độ và sự tin tưởng."
+   ],
+   "headlineAt": 37
+  },
+  {
+   "index": 118,
+   "lines": [
+    {
+     "text": "tốc độ và sự tin",
+     "start": 144.88,
+     "end": 145.82,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tốc",
+       "start": 144.88,
+       "end": 145.08,
+       "src": 37
+      },
+      {
+       "text": "độ",
+       "start": 145.08,
+       "end": 145.26,
+       "src": 37
+      },
+      {
+       "text": "và",
+       "start": 145.26,
+       "end": 145.44,
+       "src": 37
+      },
+      {
+       "text": "sự",
+       "start": 145.44,
+       "end": 145.58,
+       "src": 37
+      },
+      {
+       "text": "tin",
+       "start": 145.58,
+       "end": 145.82,
+       "src": 37
+      }
+     ],
+     "src": 37
+    }
+   ],
+   "start": 144.88,
+   "end": 145.82,
+   "src": 37,
+   "out": 145.82,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 141.92,
+   "headline": [
+    "Perplexity dám giao cả hệ thống cho Astra.",
+    "Họ thắng nhờ tốc độ và sự tin tưởng."
+   ],
+   "headlineAt": 37
+  },
+  {
+   "index": 119,
+   "lines": [
+    {
+     "text": "tưởng. Nhớ lại chi",
+     "start": 145.82,
+     "end": 146.78,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tưởng.",
+       "start": 145.82,
+       "end": 146.08,
+       "src": 37
+      },
+      {
+       "text": "Nhớ",
+       "start": 146.34,
+       "end": 146.5,
+       "src": 38
+      },
+      {
+       "text": "lại",
+       "start": 146.5,
+       "end": 146.62,
+       "src": 38
+      },
+      {
+       "text": "chi",
+       "start": 146.62,
+       "end": 146.78,
+       "src": 38
+      }
+     ],
+     "src": 37
+    }
+   ],
+   "start": 145.82,
+   "end": 146.78,
+   "src": 37,
+   "out": 146.78,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "stack",
+   "anchor": "mid",
+   "motion": "slideL",
+   "exit": "dissolve",
+   "visualAt": 141.92,
+   "headline": [
+    "Perplexity dám giao cả hệ thống cho Astra.",
+    "Họ thắng nhờ tốc độ và sự tin tưởng."
+   ],
+   "headlineAt": 37
+  },
+  {
+   "index": 120,
+   "lines": [
+    {
+     "text": "tiết ở đầu video:",
+     "start": 146.78,
+     "end": 147.62,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tiết",
+       "start": 146.78,
+       "end": 147.02,
+       "src": 38
+      },
+      {
+       "text": "ở",
+       "start": 147.02,
+       "end": 147.16,
+       "src": 38
+      },
+      {
+       "text": "đầu",
+       "start": 147.16,
+       "end": 147.3,
+       "src": 38
+      },
+      {
+       "text": "video:",
+       "start": 147.3,
+       "end": 147.62,
+       "src": 38
+      }
+     ],
+     "src": 38
+    }
+   ],
+   "start": 146.78,
+   "end": 147.62,
+   "src": 38,
+   "out": 148.06,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "mark",
+   "anchor": "top",
+   "motion": "pop",
+   "exit": "up",
+   "visualAt": 146.78,
+   "headline": [
+    "Nhớ lại chi tiết ở đầu video:",
+    "Perplexity giao cho Astra tự sửa code và vận hành."
+   ],
+   "headlineAt": 38
+  },
+  {
+   "index": 121,
+   "lines": [
+    {
+     "text": "Perplexity giao cho",
+     "start": 148.06,
+     "end": 149.22,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Perplexity",
+       "start": 148.06,
+       "end": 148.8,
+       "src": 38
+      },
+      {
+       "text": "giao",
+       "start": 148.8,
+       "end": 149.1,
+       "src": 38
+      },
+      {
+       "text": "cho",
+       "start": 149.1,
+       "end": 149.22,
+       "src": 38
+      }
+     ],
+     "src": 38
+    }
+   ],
+   "start": 148.06,
+   "end": 149.22,
+   "src": 38,
+   "out": 149.22,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "mark",
+   "anchor": "top",
+   "motion": "pop",
+   "exit": "up",
+   "visualAt": 146.78,
+   "headline": [
+    "Nhớ lại chi tiết ở đầu video:",
+    "Perplexity giao cho Astra tự sửa code và vận hành."
+   ],
+   "headlineAt": 38
+  },
+  {
+   "index": 122,
+   "lines": [
+    {
+     "text": "Astra tự sửa code và",
+     "start": 149.22,
+     "end": 150.76,
+     "hidden": false,
+     "words": [
+      {
+       "text": "Astra",
+       "start": 149.22,
+       "end": 149.7,
+       "src": 38
+      },
+      {
+       "text": "tự",
+       "start": 149.7,
+       "end": 150.02,
+       "src": 38
+      },
+      {
+       "text": "sửa",
+       "start": 150.02,
+       "end": 150.32,
+       "src": 38
+      },
+      {
+       "text": "code",
+       "start": 150.32,
+       "end": 150.48,
+       "src": 38
+      },
+      {
+       "text": "và",
+       "start": 150.48,
+       "end": 150.76,
+       "src": 38
+      }
+     ],
+     "src": 38
+    }
+   ],
+   "start": 149.22,
+   "end": 150.76,
+   "src": 38,
+   "out": 150.76,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "mark",
+   "anchor": "top",
+   "motion": "pop",
+   "exit": "up",
+   "visualAt": 146.78,
+   "headline": [
+    "Nhớ lại chi tiết ở đầu video:",
+    "Perplexity giao cho Astra tự sửa code và vận hành."
+   ],
+   "headlineAt": 38
+  },
+  {
+   "index": 123,
+   "lines": [
+    {
+     "text": "vận hành. Kỷ nguyên",
+     "start": 150.76,
+     "end": 151.84,
+     "hidden": false,
+     "words": [
+      {
+       "text": "vận",
+       "start": 150.76,
+       "end": 150.98,
+       "src": 38
+      },
+      {
+       "text": "hành.",
+       "start": 150.98,
+       "end": 151.22,
+       "src": 38
+      },
+      {
+       "text": "Kỷ",
+       "start": 151.58,
+       "end": 151.66,
+       "src": 39
+      },
+      {
+       "text": "nguyên",
+       "start": 151.66,
+       "end": 151.84,
+       "src": 39
+      }
+     ],
+     "src": 38
+    }
+   ],
+   "start": 150.76,
+   "end": 151.84,
+   "src": 38,
+   "out": 151.84,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "mark",
+   "anchor": "top",
+   "motion": "pop",
+   "exit": "up",
+   "visualAt": 146.78,
+   "headline": [
+    "Nhớ lại chi tiết ở đầu video:",
+    "Perplexity giao cho Astra tự sửa code và vận hành."
+   ],
+   "headlineAt": 38
+  },
+  {
+   "index": 124,
+   "lines": [
+    {
+     "text": "mới không cần người",
+     "start": 151.84,
+     "end": 152.58,
+     "hidden": false,
+     "words": [
+      {
+       "text": "mới",
+       "start": 151.84,
+       "end": 152,
+       "src": 39
+      },
+      {
+       "text": "không",
+       "start": 152,
+       "end": 152.16,
+       "src": 39
+      },
+      {
+       "text": "cần",
+       "start": 152.16,
+       "end": 152.38,
+       "src": 39
+      },
+      {
+       "text": "người",
+       "start": 152.38,
+       "end": 152.58,
+       "src": 39
+      }
+     ],
+     "src": 39
+    }
+   ],
+   "start": 151.84,
+   "end": 152.58,
+   "src": 39,
+   "out": 152.58,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down",
+   "visualAt": 151.84,
+   "headline": [
+    "Kỷ nguyên mới không cần người sửa lỗi nhỏ.",
+    "Nó cần kiến trúc sư biết trao quyền."
+   ],
+   "headlineAt": 39
+  },
+  {
+   "index": 125,
+   "lines": [
+    {
+     "text": "sửa lỗi nhỏ. Nó cần",
+     "start": 152.58,
+     "end": 154.54,
+     "hidden": false,
+     "words": [
+      {
+       "text": "sửa",
+       "start": 152.58,
+       "end": 152.84,
+       "src": 39
+      },
+      {
+       "text": "lỗi",
+       "start": 152.84,
+       "end": 152.96,
+       "src": 39
+      },
+      {
+       "text": "nhỏ.",
+       "start": 152.96,
+       "end": 153.24,
+       "src": 39
+      },
+      {
+       "text": "Nó",
+       "start": 154.14,
+       "end": 154.32,
+       "src": 39
+      },
+      {
+       "text": "cần",
+       "start": 154.48,
+       "end": 154.54,
+       "src": 39
+      }
+     ],
+     "src": 39
+    }
+   ],
+   "start": 152.58,
+   "end": 154.54,
+   "src": 39,
+   "out": 154.54,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down",
+   "visualAt": 151.84,
+   "headline": [
+    "Kỷ nguyên mới không cần người sửa lỗi nhỏ.",
+    "Nó cần kiến trúc sư biết trao quyền."
+   ],
+   "headlineAt": 39
+  },
+  {
+   "index": 126,
+   "lines": [
+    {
+     "text": "kiến trúc sư biết",
+     "start": 154.54,
+     "end": 155.62,
+     "hidden": false,
+     "words": [
+      {
+       "text": "kiến",
+       "start": 154.54,
+       "end": 154.74,
+       "src": 39
+      },
+      {
+       "text": "trúc",
+       "start": 154.74,
+       "end": 155.02,
+       "src": 39
+      },
+      {
+       "text": "sư",
+       "start": 155.02,
+       "end": 155.3,
+       "src": 39
+      },
+      {
+       "text": "biết",
+       "start": 155.3,
+       "end": 155.62,
+       "src": 39
+      }
+     ],
+     "src": 39
+    }
+   ],
+   "start": 154.54,
+   "end": 155.62,
+   "src": 39,
+   "out": 155.62,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down",
+   "visualAt": 151.84,
+   "headline": [
+    "Kỷ nguyên mới không cần người sửa lỗi nhỏ.",
+    "Nó cần kiến trúc sư biết trao quyền."
+   ],
+   "headlineAt": 39
+  },
+  {
+   "index": 127,
+   "lines": [
+    {
+     "text": "trao quyền. Bạn chọn",
+     "start": 155.62,
+     "end": 156.88,
+     "hidden": false,
+     "words": [
+      {
+       "text": "trao",
+       "start": 155.62,
+       "end": 155.84,
+       "src": 39
+      },
+      {
+       "text": "quyền.",
+       "start": 155.84,
+       "end": 156.44,
+       "src": 39
+      },
+      {
+       "text": "Bạn",
+       "start": 156.44,
+       "end": 156.72,
+       "src": 40
+      },
+      {
+       "text": "chọn",
+       "start": 156.72,
+       "end": 156.88,
+       "src": 40
+      }
+     ],
+     "src": 39
+    }
+   ],
+   "start": 155.62,
+   "end": 156.88,
+   "src": 39,
+   "out": 156.88,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "right",
+   "anchor": "mid",
+   "motion": "fall",
+   "exit": "down",
+   "visualAt": 151.84,
+   "headline": [
+    "Kỷ nguyên mới không cần người sửa lỗi nhỏ.",
+    "Nó cần kiến trúc sư biết trao quyền."
+   ],
+   "headlineAt": 39
+  },
+  {
+   "index": 128,
+   "lines": [
+    {
+     "text": "tin tưởng giao hệ",
+     "start": 156.88,
+     "end": 158.02,
+     "hidden": false,
+     "words": [
+      {
+       "text": "tin",
+       "start": 156.88,
+       "end": 157.24,
+       "src": 40
+      },
+      {
+       "text": "tưởng",
+       "start": 157.24,
+       "end": 157.6,
+       "src": 40
+      },
+      {
+       "text": "giao",
+       "start": 157.6,
+       "end": 157.88,
+       "src": 40
+      },
+      {
+       "text": "hệ",
+       "start": 157.88,
+       "end": 158.02,
+       "src": 40
+      }
+     ],
+     "src": 40
+    }
+   ],
+   "start": 156.88,
+   "end": 158.02,
+   "src": 40,
+   "out": 158.02,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 156.88,
+   "headline": [
+    "Bạn chọn tin tưởng giao hệ thống cho AI,",
+    "hay vẫn muốn ngồi duyệt từng dòng lệnh?"
+   ],
+   "headlineAt": 40
+  },
+  {
+   "index": 129,
+   "lines": [
+    {
+     "text": "thống cho AI, hay vẫn",
+     "start": 158.02,
+     "end": 160.52,
+     "hidden": false,
+     "words": [
+      {
+       "text": "thống",
+       "start": 158.02,
+       "end": 158.22,
+       "src": 40
+      },
+      {
+       "text": "cho",
+       "start": 158.76,
+       "end": 158.92,
+       "src": 40
+      },
+      {
+       "text": "AI,",
+       "start": 158.92,
+       "end": 159.28,
+       "src": 40
+      },
+      {
+       "text": "hay",
+       "start": 160.08,
+       "end": 160.28,
+       "src": 40
+      },
+      {
+       "text": "vẫn",
+       "start": 160.28,
+       "end": 160.52,
+       "src": 40
+      }
+     ],
+     "src": 40
+    }
+   ],
+   "start": 158.02,
+   "end": 160.52,
+   "src": 40,
+   "out": 160.52,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 156.88,
+   "headline": [
+    "Bạn chọn tin tưởng giao hệ thống cho AI,",
+    "hay vẫn muốn ngồi duyệt từng dòng lệnh?"
+   ],
+   "headlineAt": 40
+  },
+  {
+   "index": 130,
+   "lines": [
+    {
+     "text": "muốn ngồi duyệt từng",
+     "start": 160.52,
+     "end": 161.38,
+     "hidden": false,
+     "words": [
+      {
+       "text": "muốn",
+       "start": 160.52,
+       "end": 160.76,
+       "src": 40
+      },
+      {
+       "text": "ngồi",
+       "start": 160.76,
+       "end": 160.98,
+       "src": 40
+      },
+      {
+       "text": "duyệt",
+       "start": 160.98,
+       "end": 161.2,
+       "src": 40
+      },
+      {
+       "text": "từng",
+       "start": 161.2,
+       "end": 161.38,
+       "src": 40
+      }
+     ],
+     "src": 40
+    }
+   ],
+   "start": 160.52,
+   "end": 161.38,
+   "src": 40,
+   "out": 161.38,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 156.88,
+   "headline": [
+    "Bạn chọn tin tưởng giao hệ thống cho AI,",
+    "hay vẫn muốn ngồi duyệt từng dòng lệnh?"
+   ],
+   "headlineAt": 40
+  },
+  {
+   "index": 131,
+   "lines": [
+    {
+     "text": "dòng lệnh?",
+     "start": 161.38,
+     "end": 161.82,
+     "hidden": false,
+     "words": [
+      {
+       "text": "dòng",
+       "start": 161.38,
+       "end": 161.54,
+       "src": 40
+      },
+      {
+       "text": "lệnh?",
+       "start": 161.54,
+       "end": 161.82,
+       "src": 40
+      }
+     ],
+     "src": 40
+    }
+   ],
+   "start": 161.38,
+   "end": 161.82,
+   "src": 40,
+   "out": 162.02,
+   "section": "Lựa Chọn Của Bạn",
+   "variant": "invert",
+   "anchor": "mid",
+   "motion": "wipe",
+   "exit": "dissolve",
+   "visualAt": 156.88,
+   "headline": [
+    "Bạn chọn tin tưởng giao hệ thống cho AI,",
+    "hay vẫn muốn ngồi duyệt từng dòng lệnh?"
+   ],
+   "headlineAt": 40
+  }
+ ],
+ "subtitle": [
+  {
+   "text": "Proplexity",
+   "start": 0.46,
+   "end": 0.86
+  },
+  {
+   "text": "vừa",
+   "start": 0.86,
+   "end": 1.1
+  },
+  {
+   "text": "giao",
+   "start": 1.1,
+   "end": 1.3
+  },
+  {
+   "text": "toàn",
+   "start": 1.3,
+   "end": 1.56
+  },
+  {
+   "text": "bộ",
+   "start": 1.56,
+   "end": 1.76
+  },
+  {
+   "text": "hệ",
+   "start": 1.76,
+   "end": 1.9
+  },
+  {
+   "text": "thống",
+   "start": 1.9,
+   "end": 2.1
+  },
+  {
+   "text": "cho",
+   "start": 2.1,
+   "end": 2.32
+  },
+  {
+   "text": "GPT6",
+   "start": 2.32,
+   "end": 2.96
+  },
+  {
+   "text": "Astra",
+   "start": 2.96,
+   "end": 3.32
+  },
+  {
+   "text": "tự",
+   "start": 3.32,
+   "end": 3.66
+  },
+  {
+   "text": "vận",
+   "start": 3.66,
+   "end": 3.86
+  },
+  {
+   "text": "hành,",
+   "start": 3.86,
+   "end": 4.1
+  },
+  {
+   "text": "họ",
+   "start": 4.3,
+   "end": 4.38
+  },
+  {
+   "text": "không",
+   "start": 4.38,
+   "end": 4.58
+  },
+  {
+   "text": "dùng",
+   "start": 4.58,
+   "end": 4.8
+  },
+  {
+   "text": "AI",
+   "start": 4.8,
+   "end": 5.06
+  },
+  {
+   "text": "để",
+   "start": 5.06,
+   "end": 5.32
+  },
+  {
+   "text": "gõ",
+   "start": 5.32,
+   "end": 5.54
+  },
+  {
+   "text": "thuê",
+   "start": 5.54,
+   "end": 5.84
+  },
+  {
+   "text": "từng",
+   "start": 5.84,
+   "end": 6.16
+  },
+  {
+   "text": "dòng",
+   "start": 6.16,
+   "end": 6.36
+  },
+  {
+   "text": "code.",
+   "start": 6.36,
+   "end": 6.64
+  },
+  {
+   "text": "Astra",
+   "start": 6.94,
+   "end": 7.34
+  },
+  {
+   "text": "tự",
+   "start": 7.34,
+   "end": 7.6
+  },
+  {
+   "text": "sửa",
+   "start": 7.6,
+   "end": 7.94
+  },
+  {
+   "text": "phần",
+   "start": 7.94,
+   "end": 8.08
+  },
+  {
+   "text": "mềm,",
+   "start": 8.08,
+   "end": 8.46
+  },
+  {
+   "text": "tự",
+   "start": 8.58,
+   "end": 8.66
+  },
+  {
+   "text": "viết",
+   "start": 8.66,
+   "end": 8.84
+  },
+  {
+   "text": "báo",
+   "start": 8.84,
+   "end": 9
+  },
+  {
+   "text": "cáo",
+   "start": 9,
+   "end": 9.3
+  },
+  {
+   "text": "và",
+   "start": 9.3,
+   "end": 9.5
+  },
+  {
+   "text": "tự",
+   "start": 9.5,
+   "end": 9.72
+  },
+  {
+   "text": "giám",
+   "start": 9.72,
+   "end": 9.94
+  },
+  {
+   "text": "sát",
+   "start": 9.94,
+   "end": 10.16
+  },
+  {
+   "text": "production,",
+   "start": 10.16,
+   "end": 10.72
+  },
+  {
+   "text": "nhưng",
+   "start": 10.98,
+   "end": 11.14
+  },
+  {
+   "text": "đa",
+   "start": 11.14,
+   "end": 11.36
+  },
+  {
+   "text": "số",
+   "start": 11.36,
+   "end": 11.54
+  },
+  {
+   "text": "mọi",
+   "start": 11.54,
+   "end": 11.74
+  },
+  {
+   "text": "người",
+   "start": 11.74,
+   "end": 11.98
+  },
+  {
+   "text": "vẫn",
+   "start": 11.98,
+   "end": 12.16
+  },
+  {
+   "text": "đang",
+   "start": 12.16,
+   "end": 12.34
+  },
+  {
+   "text": "hiểu",
+   "start": 12.34,
+   "end": 12.58
+  },
+  {
+   "text": "sai",
+   "start": 12.58,
+   "end": 12.78
+  },
+  {
+   "text": "hoàn",
+   "start": 12.78,
+   "end": 13.04
+  },
+  {
+   "text": "toàn",
+   "start": 13.04,
+   "end": 13.32
+  },
+  {
+   "text": "về",
+   "start": 13.32,
+   "end": 13.56
+  },
+  {
+   "text": "bản",
+   "start": 13.56,
+   "end": 13.78
+  },
+  {
+   "text": "chất",
+   "start": 13.78,
+   "end": 13.98
+  },
+  {
+   "text": "lan",
+   "start": 13.98,
+   "end": 14.14
+  },
+  {
+   "text": "sóng",
+   "start": 14.14,
+   "end": 14.38
+  },
+  {
+   "text": "này.",
+   "start": 14.38,
+   "end": 14.54
+  },
+  {
+   "text": "Thứ",
+   "start": 14.9,
+   "end": 15.06
+  },
+  {
+   "text": "kỳ",
+   "start": 15.06,
+   "end": 15.22
+  },
+  {
+   "text": "lạ",
+   "start": 15.22,
+   "end": 15.4
+  },
+  {
+   "text": "nhất",
+   "start": 15.4,
+   "end": 15.58
+  },
+  {
+   "text": "không",
+   "start": 15.58,
+   "end": 15.8
+  },
+  {
+   "text": "nằm",
+   "start": 15.8,
+   "end": 16
+  },
+  {
+   "text": "ở",
+   "start": 16,
+   "end": 16.12
+  },
+  {
+   "text": "khả",
+   "start": 16.12,
+   "end": 16.24
+  },
+  {
+   "text": "năng",
+   "start": 16.24,
+   "end": 16.38
+  },
+  {
+   "text": "sinh",
+   "start": 16.38,
+   "end": 16.7
+  },
+  {
+   "text": "code",
+   "start": 16.7,
+   "end": 16.88
+  },
+  {
+   "text": "của",
+   "start": 16.88,
+   "end": 17.04
+  },
+  {
+   "text": "AI,",
+   "start": 17.04,
+   "end": 17.3
+  },
+  {
+   "text": "nó",
+   "start": 17.74,
+   "end": 17.84
+  },
+  {
+   "text": "nằm",
+   "start": 17.84,
+   "end": 18.12
+  },
+  {
+   "text": "ở",
+   "start": 18.12,
+   "end": 18.16
+  },
+  {
+   "text": "một",
+   "start": 18.16,
+   "end": 18.3
+  },
+  {
+   "text": "con",
+   "start": 18.3,
+   "end": 18.44
+  },
+  {
+   "text": "số",
+   "start": 18.44,
+   "end": 18.62
+  },
+  {
+   "text": "hạn",
+   "start": 18.62,
+   "end": 18.82
+  },
+  {
+   "text": "ngạch",
+   "start": 18.82,
+   "end": 19.06
+  },
+  {
+   "text": "bí",
+   "start": 19.06,
+   "end": 19.24
+  },
+  {
+   "text": "mật",
+   "start": 19.24,
+   "end": 19.44
+  },
+  {
+   "text": "mà",
+   "start": 19.44,
+   "end": 19.74
+  },
+  {
+   "text": "OpenAI",
+   "start": 19.74,
+   "end": 20.5
+  },
+  {
+   "text": "vừa",
+   "start": 20.5,
+   "end": 20.88
+  },
+  {
+   "text": "áp",
+   "start": 20.88,
+   "end": 21.08
+  },
+  {
+   "text": "đặt,",
+   "start": 21.08,
+   "end": 21.26
+  },
+  {
+   "text": "tôi",
+   "start": 21.44,
+   "end": 21.5
+  },
+  {
+   "text": "sẽ",
+   "start": 21.5,
+   "end": 21.68
+  },
+  {
+   "text": "tiết",
+   "start": 21.68,
+   "end": 21.86
+  },
+  {
+   "text": "lộ",
+   "start": 21.86,
+   "end": 22.04
+  },
+  {
+   "text": "ở",
+   "start": 22.04,
+   "end": 22.2
+  },
+  {
+   "text": "cuối",
+   "start": 22.2,
+   "end": 22.46
+  },
+  {
+   "text": "video.",
+   "start": 22.46,
+   "end": 22.78
+  },
+  {
+   "text": "Ok",
+   "start": 23.2,
+   "end": 23.46
+  },
+  {
+   "text": "vậy,",
+   "start": 23.46,
+   "end": 23.66
+  },
+  {
+   "text": "đa",
+   "start": 23.8,
+   "end": 23.88
+  },
+  {
+   "text": "số",
+   "start": 23.88,
+   "end": 24.04
+  },
+  {
+   "text": "chúng",
+   "start": 24.04,
+   "end": 24.22
+  },
+  {
+   "text": "ta",
+   "start": 24.22,
+   "end": 24.4
+  },
+  {
+   "text": "đều",
+   "start": 24.4,
+   "end": 24.56
+  },
+  {
+   "text": "nghĩ",
+   "start": 24.56,
+   "end": 24.72
+  },
+  {
+   "text": "AI",
+   "start": 24.72,
+   "end": 25.06
+  },
+  {
+   "text": "rõi",
+   "start": 25.06,
+   "end": 25.36
+  },
+  {
+   "text": "hơn,",
+   "start": 25.36,
+   "end": 25.56
+  },
+  {
+   "text": "nghĩa",
+   "start": 25.7,
+   "end": 25.9
+  },
+  {
+   "text": "là",
+   "start": 25.9,
+   "end": 25.96
+  },
+  {
+   "text": "gõ",
+   "start": 25.96,
+   "end": 26.22
+  },
+  {
+   "text": "code",
+   "start": 26.22,
+   "end": 26.58
+  },
+  {
+   "text": "nhanh",
+   "start": 26.58,
+   "end": 26.84
+  },
+  {
+   "text": "hơn",
+   "start": 26.84,
+   "end": 27.02
+  },
+  {
+   "text": "vài",
+   "start": 27.02,
+   "end": 27.28
+  },
+  {
+   "text": "dây,",
+   "start": 27.28,
+   "end": 27.5
+  },
+  {
+   "text": "và",
+   "start": 27.74,
+   "end": 27.82
+  },
+  {
+   "text": "đó",
+   "start": 27.82,
+   "end": 28
+  },
+  {
+   "text": "là",
+   "start": 28,
+   "end": 28.18
+  },
+  {
+   "text": "tư",
+   "start": 28.18,
+   "end": 28.34
+  },
+  {
+   "text": "duy",
+   "start": 28.34,
+   "end": 28.52
+  },
+  {
+   "text": "của",
+   "start": 28.52,
+   "end": 28.68
+  },
+  {
+   "text": "người",
+   "start": 28.68,
+   "end": 28.86
+  },
+  {
+   "text": "thuộc.",
+   "start": 28.86,
+   "end": 29.16
+  },
+  {
+   "text": "Cái",
+   "start": 29.16,
+   "end": 29.72
+  },
+  {
+   "text": "thực",
+   "start": 29.72,
+   "end": 29.86
+  },
+  {
+   "text": "sự",
+   "start": 29.86,
+   "end": 30.04
+  },
+  {
+   "text": "quan",
+   "start": 30.04,
+   "end": 30.24
+  },
+  {
+   "text": "trọng",
+   "start": 30.24,
+   "end": 30.5
+  },
+  {
+   "text": "là",
+   "start": 30.5,
+   "end": 30.68
+  },
+  {
+   "text": "AI",
+   "start": 30.68,
+   "end": 31.16
+  },
+  {
+   "text": "đã",
+   "start": 31.16,
+   "end": 31.36
+  },
+  {
+   "text": "chuyển",
+   "start": 31.36,
+   "end": 31.7
+  },
+  {
+   "text": "từ",
+   "start": 31.7,
+   "end": 31.9
+  },
+  {
+   "text": "người",
+   "start": 31.9,
+   "end": 32.1
+  },
+  {
+   "text": "trợ",
+   "start": 32.1,
+   "end": 32.34
+  },
+  {
+   "text": "lý",
+   "start": 32.34,
+   "end": 32.54
+  },
+  {
+   "text": "thành",
+   "start": 32.54,
+   "end": 32.74
+  },
+  {
+   "text": "kiến",
+   "start": 32.74,
+   "end": 32.98
+  },
+  {
+   "text": "trúc",
+   "start": 32.98,
+   "end": 33.1
+  },
+  {
+   "text": "sư",
+   "start": 33.1,
+   "end": 33.28
+  },
+  {
+   "text": "tự",
+   "start": 33.28,
+   "end": 33.5
+  },
+  {
+   "text": "vận",
+   "start": 33.5,
+   "end": 33.68
+  },
+  {
+   "text": "hành.",
+   "start": 33.68,
+   "end": 33.86
+  },
+  {
+   "text": "Theo",
+   "start": 34.48,
+   "end": 34.72
+  },
+  {
+   "text": "OpenAI",
+   "start": 34.72,
+   "end": 35.26
+  },
+  {
+   "text": "Block",
+   "start": 35.26,
+   "end": 35.54
+  },
+  {
+   "text": "Johnny",
+   "start": 35.54,
+   "end": 35.88
+  },
+  {
+   "text": "Ho,",
+   "start": 35.88,
+   "end": 36.18
+  },
+  {
+   "text": "đồng",
+   "start": 36.4,
+   "end": 36.52
+  },
+  {
+   "text": "sáng",
+   "start": 36.52,
+   "end": 36.76
+  },
+  {
+   "text": "lập",
+   "start": 36.76,
+   "end": 36.96
+  },
+  {
+   "text": "Perplexity",
+   "start": 36.96,
+   "end": 37.74
+  },
+  {
+   "text": "đã",
+   "start": 37.74,
+   "end": 38.36
+  },
+  {
+   "text": "nhận",
+   "start": 38.36,
+   "end": 38.62
+  },
+  {
+   "text": "ra",
+   "start": 38.62,
+   "end": 38.86
+  },
+  {
+   "text": "sự",
+   "start": 38.86,
+   "end": 39
+  },
+  {
+   "text": "thật",
+   "start": 39,
+   "end": 39.18
+  },
+  {
+   "text": "này.",
+   "start": 39.18,
+   "end": 39.44
+  },
+  {
+   "text": "Mỗi",
+   "start": 39.96,
+   "end": 40.1
+  },
+  {
+   "text": "khi",
+   "start": 40.1,
+   "end": 40.32
+  },
+  {
+   "text": "mô",
+   "start": 40.32,
+   "end": 40.52
+  },
+  {
+   "text": "hình",
+   "start": 40.52,
+   "end": 40.66
+  },
+  {
+   "text": "giỏi",
+   "start": 40.66,
+   "end": 40.94
+  },
+  {
+   "text": "viết",
+   "start": 40.94,
+   "end": 41.12
+  },
+  {
+   "text": "cốt",
+   "start": 41.12,
+   "end": 41.24
+  },
+  {
+   "text": "hơn,",
+   "start": 41.24,
+   "end": 41.5
+  },
+  {
+   "text": "công",
+   "start": 41.72,
+   "end": 41.78
+  },
+  {
+   "text": "cụ",
+   "start": 41.78,
+   "end": 42
+  },
+  {
+   "text": "tìm",
+   "start": 42,
+   "end": 42.22
+  },
+  {
+   "text": "kiếm",
+   "start": 42.22,
+   "end": 42.42
+  },
+  {
+   "text": "Perplexity",
+   "start": 42.42,
+   "end": 43.24
+  },
+  {
+   "text": "lại",
+   "start": 43.24,
+   "end": 43.58
+  },
+  {
+   "text": "thông",
+   "start": 43.58,
+   "end": 43.8
+  },
+  {
+   "text": "minh",
+   "start": 43.8,
+   "end": 44.06
+  },
+  {
+   "text": "hơn",
+   "start": 44.06,
+   "end": 44.18
+  },
+  {
+   "text": "một",
+   "start": 44.18,
+   "end": 44.36
+  },
+  {
+   "text": "bậc.",
+   "start": 44.36,
+   "end": 44.54
+  },
+  {
+   "text": "Astra",
+   "start": 44.86,
+   "end": 45.2
+  },
+  {
+   "text": "tự",
+   "start": 45.2,
+   "end": 45.54
+  },
+  {
+   "text": "viết",
+   "start": 45.54,
+   "end": 45.8
+  },
+  {
+   "text": "chương",
+   "start": 45.8,
+   "end": 45.96
+  },
+  {
+   "text": "trình",
+   "start": 45.96,
+   "end": 46.18
+  },
+  {
+   "text": "kiểm",
+   "start": 46.18,
+   "end": 46.42
+  },
+  {
+   "text": "thử,",
+   "start": 46.42,
+   "end": 46.7
+  },
+  {
+   "text": "tự",
+   "start": 46.94,
+   "end": 47.08
+  },
+  {
+   "text": "giả",
+   "start": 47.08,
+   "end": 47.26
+  },
+  {
+   "text": "lập",
+   "start": 47.26,
+   "end": 47.4
+  },
+  {
+   "text": "các",
+   "start": 47.4,
+   "end": 47.58
+  },
+  {
+   "text": "API",
+   "start": 47.58,
+   "end": 47.98
+  },
+  {
+   "text": "bên",
+   "start": 47.98,
+   "end": 48.2
+  },
+  {
+   "text": "ngoài.",
+   "start": 48.2,
+   "end": 48.56
+  },
+  {
+   "text": "Nó",
+   "start": 48.86,
+   "end": 49.02
+  },
+  {
+   "text": "kiểm",
+   "start": 49.02,
+   "end": 49.18
+  },
+  {
+   "text": "tra",
+   "start": 49.18,
+   "end": 49.42
+  },
+  {
+   "text": "quy",
+   "start": 49.42,
+   "end": 49.64
+  },
+  {
+   "text": "trình",
+   "start": 49.64,
+   "end": 49.88
+  },
+  {
+   "text": "từ",
+   "start": 49.88,
+   "end": 50.06
+  },
+  {
+   "text": "đầu",
+   "start": 50.06,
+   "end": 50.24
+  },
+  {
+   "text": "đến",
+   "start": 50.24,
+   "end": 50.44
+  },
+  {
+   "text": "cuối",
+   "start": 50.44,
+   "end": 50.78
+  },
+  {
+   "text": "mà",
+   "start": 50.78,
+   "end": 50.94
+  },
+  {
+   "text": "con",
+   "start": 50.94,
+   "end": 51.04
+  },
+  {
+   "text": "người",
+   "start": 51.04,
+   "end": 51.32
+  },
+  {
+   "text": "không",
+   "start": 51.32,
+   "end": 51.56
+  },
+  {
+   "text": "cần",
+   "start": 51.56,
+   "end": 51.8
+  },
+  {
+   "text": "can",
+   "start": 51.8,
+   "end": 51.98
+  },
+  {
+   "text": "thiệp.",
+   "start": 51.98,
+   "end": 52.28
+  },
+  {
+   "text": "Johnny",
+   "start": 52.68,
+   "end": 52.96
+  },
+  {
+   "text": "Ho",
+   "start": 52.96,
+   "end": 53.22
+  },
+  {
+   "text": "khẳng",
+   "start": 53.22,
+   "end": 53.42
+  },
+  {
+   "text": "định,",
+   "start": 53.42,
+   "end": 53.94
+  },
+  {
+   "text": "họ",
+   "start": 54.08,
+   "end": 54.18
+  },
+  {
+   "text": "kiểm",
+   "start": 54.18,
+   "end": 54.38
+  },
+  {
+   "text": "tra",
+   "start": 54.38,
+   "end": 54.6
+  },
+  {
+   "text": "AI",
+   "start": 54.6,
+   "end": 54.84
+  },
+  {
+   "text": "ít",
+   "start": 54.84,
+   "end": 55.1
+  },
+  {
+   "text": "hơn",
+   "start": 55.1,
+   "end": 55.24
+  },
+  {
+   "text": "hẳn",
+   "start": 55.24,
+   "end": 55.54
+  },
+  {
+   "text": "so",
+   "start": 55.54,
+   "end": 55.76
+  },
+  {
+   "text": "với",
+   "start": 55.76,
+   "end": 55.96
+  },
+  {
+   "text": "các",
+   "start": 55.96,
+   "end": 56.1
+  },
+  {
+   "text": "thế",
+   "start": 56.1,
+   "end": 56.3
+  },
+  {
+   "text": "hệ",
+   "start": 56.3,
+   "end": 56.38
+  },
+  {
+   "text": "trước.",
+   "start": 56.38,
+   "end": 56.62
+  },
+  {
+   "text": "Ok,",
+   "start": 57.1,
+   "end": 57.58
+  },
+  {
+   "text": "vậy",
+   "start": 57.78,
+   "end": 57.8
+  },
+  {
+   "text": "là",
+   "start": 57.8,
+   "end": 58.02
+  },
+  {
+   "text": "nếu",
+   "start": 58.02,
+   "end": 58.28
+  },
+  {
+   "text": "như",
+   "start": 58.28,
+   "end": 58.42
+  },
+  {
+   "text": "bạn",
+   "start": 58.42,
+   "end": 58.58
+  },
+  {
+   "text": "đang",
+   "start": 58.58,
+   "end": 58.74
+  },
+  {
+   "text": "làm",
+   "start": 58.74,
+   "end": 58.9
+  },
+  {
+   "text": "sản",
+   "start": 58.9,
+   "end": 59.12
+  },
+  {
+   "text": "phẩm,",
+   "start": 59.12,
+   "end": 59.4
+  },
+  {
+   "text": "bạn",
+   "start": 59.6,
+   "end": 59.74
+  },
+  {
+   "text": "chính",
+   "start": 59.74,
+   "end": 59.96
+  },
+  {
+   "text": "là",
+   "start": 59.96,
+   "end": 60.12
+  },
+  {
+   "text": "điểm",
+   "start": 60.12,
+   "end": 60.3
+  },
+  {
+   "text": "nghẹn",
+   "start": 60.3,
+   "end": 60.64
+  },
+  {
+   "text": "nếu",
+   "start": 60.64,
+   "end": 60.88
+  },
+  {
+   "text": "cứ",
+   "start": 60.88,
+   "end": 61.06
+  },
+  {
+   "text": "đòi",
+   "start": 61.06,
+   "end": 61.36
+  },
+  {
+   "text": "tự",
+   "start": 61.36,
+   "end": 61.56
+  },
+  {
+   "text": "kiểm",
+   "start": 61.56,
+   "end": 61.78
+  },
+  {
+   "text": "tra",
+   "start": 61.78,
+   "end": 62.02
+  },
+  {
+   "text": "tương",
+   "start": 62.02,
+   "end": 62.22
+  },
+  {
+   "text": "dòng.",
+   "start": 62.22,
+   "end": 62.48
+  },
+  {
+   "text": "Và",
+   "start": 62.84,
+   "end": 63.08
+  },
+  {
+   "text": "hãy",
+   "start": 63.08,
+   "end": 63.2
+  },
+  {
+   "text": "nhìn",
+   "start": 63.2,
+   "end": 63.44
+  },
+  {
+   "text": "vào",
+   "start": 63.44,
+   "end": 63.58
+  },
+  {
+   "text": "sự",
+   "start": 63.58,
+   "end": 63.76
+  },
+  {
+   "text": "tương",
+   "start": 63.76,
+   "end": 64
+  },
+  {
+   "text": "phản",
+   "start": 64,
+   "end": 64.24
+  },
+  {
+   "text": "này,",
+   "start": 64.24,
+   "end": 64.46
+  },
+  {
+   "text": "người",
+   "start": 64.74,
+   "end": 64.84
+  },
+  {
+   "text": "nghiệp",
+   "start": 64.84,
+   "end": 65.06
+  },
+  {
+   "text": "dư",
+   "start": 65.06,
+   "end": 65.26
+  },
+  {
+   "text": "ngồi",
+   "start": 65.26,
+   "end": 65.44
+  },
+  {
+   "text": "prompt",
+   "start": 65.44,
+   "end": 65.74
+  },
+  {
+   "text": "từng",
+   "start": 65.74,
+   "end": 66.06
+  },
+  {
+   "text": "câu",
+   "start": 66.06,
+   "end": 66.3
+  },
+  {
+   "text": "đỡ",
+   "start": 66.3,
+   "end": 66.56
+  },
+  {
+   "text": "ngũ",
+   "start": 66.56,
+   "end": 66.8
+  },
+  {
+   "text": "hàng",
+   "start": 66.8,
+   "end": 67.06
+  },
+  {
+   "text": "đầu",
+   "start": 67.06,
+   "end": 67.3
+  },
+  {
+   "text": "giao",
+   "start": 67.3,
+   "end": 67.58
+  },
+  {
+   "text": "trọn",
+   "start": 67.58,
+   "end": 67.82
+  },
+  {
+   "text": "hệ",
+   "start": 67.82,
+   "end": 67.98
+  },
+  {
+   "text": "thống.",
+   "start": 67.98,
+   "end": 68.22
+  },
+  {
+   "text": "OpenAI",
+   "start": 68.62,
+   "end": 69.1
+  },
+  {
+   "text": "bắt",
+   "start": 69.1,
+   "end": 69.3
+  },
+  {
+   "text": "đầu",
+   "start": 69.3,
+   "end": 69.5
+  },
+  {
+   "text": "tung",
+   "start": 69.5,
+   "end": 69.66
+  },
+  {
+   "text": "ra",
+   "start": 69.66,
+   "end": 69.82
+  },
+  {
+   "text": "GP6",
+   "start": 69.82,
+   "end": 70.24
+  },
+  {
+   "text": "Astra",
+   "start": 70.24,
+   "end": 70.62
+  },
+  {
+   "text": "từ",
+   "start": 70.62,
+   "end": 71.08
+  },
+  {
+   "text": "ngày",
+   "start": 71.08,
+   "end": 71.26
+  },
+  {
+   "text": "3",
+   "start": 71.26,
+   "end": 71.48
+  },
+  {
+   "text": "tháng",
+   "start": 71.48,
+   "end": 71.74
+  },
+  {
+   "text": "9",
+   "start": 71.74,
+   "end": 72
+  },
+  {
+   "text": "nhưng",
+   "start": 72,
+   "end": 72.22
+  },
+  {
+   "text": "không",
+   "start": 72.22,
+   "end": 72.4
+  },
+  {
+   "text": "phải",
+   "start": 72.4,
+   "end": 72.58
+  },
+  {
+   "text": "ai",
+   "start": 72.58,
+   "end": 72.76
+  },
+  {
+   "text": "mở",
+   "start": 72.76,
+   "end": 72.98
+  },
+  {
+   "text": "chết",
+   "start": 72.98,
+   "end": 73.18
+  },
+  {
+   "text": "GP",
+   "start": 73.18,
+   "end": 73.46
+  },
+  {
+   "text": "cũng",
+   "start": 73.46,
+   "end": 73.66
+  },
+  {
+   "text": "thấy",
+   "start": 73.66,
+   "end": 73.78
+  },
+  {
+   "text": "nút",
+   "start": 73.78,
+   "end": 74
+  },
+  {
+   "text": "Astra",
+   "start": 74,
+   "end": 74.28
+  },
+  {
+   "text": "ngay.",
+   "start": 74.28,
+   "end": 74.58
+  },
+  {
+   "text": "Nó",
+   "start": 74.96,
+   "end": 75.1
+  },
+  {
+   "text": "nằm",
+   "start": 75.1,
+   "end": 75.32
+  },
+  {
+   "text": "giới",
+   "start": 75.32,
+   "end": 75.48
+  },
+  {
+   "text": "tên",
+   "start": 75.48,
+   "end": 75.68
+  },
+  {
+   "text": "GPT6",
+   "start": 75.68,
+   "end": 76.28
+  },
+  {
+   "text": "Pro",
+   "start": 76.28,
+   "end": 76.62
+  },
+  {
+   "text": "cho",
+   "start": 76.62,
+   "end": 76.86
+  },
+  {
+   "text": "gói",
+   "start": 76.86,
+   "end": 77.06
+  },
+  {
+   "text": "Pro,",
+   "start": 77.06,
+   "end": 77.38
+  },
+  {
+   "text": "Business",
+   "start": 77.6,
+   "end": 77.82
+  },
+  {
+   "text": "và",
+   "start": 77.82,
+   "end": 78.16
+  },
+  {
+   "text": "Enterprise,",
+   "start": 78.16,
+   "end": 78.68
+  },
+  {
+   "text": "tài",
+   "start": 79,
+   "end": 79.08
+  },
+  {
+   "text": "khoản",
+   "start": 79.08,
+   "end": 79.28
+  },
+  {
+   "text": "Plus",
+   "start": 79.28,
+   "end": 79.58
+  },
+  {
+   "text": "dùng",
+   "start": 79.58,
+   "end": 79.86
+  },
+  {
+   "text": "qua",
+   "start": 79.86,
+   "end": 80.04
+  },
+  {
+   "text": "Work",
+   "start": 80.04,
+   "end": 80.3
+  },
+  {
+   "text": "hoặc",
+   "start": 80.3,
+   "end": 80.64
+  },
+  {
+   "text": "Codex,",
+   "start": 80.64,
+   "end": 81.06
+  },
+  {
+   "text": "yêu",
+   "start": 81.42,
+   "end": 81.64
+  },
+  {
+   "text": "cầu",
+   "start": 81.64,
+   "end": 81.9
+  },
+  {
+   "text": "Codex",
+   "start": 81.9,
+   "end": 82.42
+  },
+  {
+   "text": "CLI",
+   "start": 82.42,
+   "end": 82.86
+  },
+  {
+   "text": "từ",
+   "start": 82.86,
+   "end": 82.98
+  },
+  {
+   "text": "phiên",
+   "start": 82.98,
+   "end": 83.22
+  },
+  {
+   "text": "bản.",
+   "start": 83.22,
+   "end": 83.46
+  },
+  {
+   "text": "nhưng",
+   "start": 83.46,
+   "end": 83.88
+  },
+  {
+   "text": "đây",
+   "start": 83.88,
+   "end": 84.04
+  },
+  {
+   "text": "mới",
+   "start": 84.04,
+   "end": 84.2
+  },
+  {
+   "text": "là",
+   "start": 84.2,
+   "end": 84.34
+  },
+  {
+   "text": "vấn",
+   "start": 84.34,
+   "end": 84.5
+  },
+  {
+   "text": "đề",
+   "start": 84.5,
+   "end": 84.68
+  },
+  {
+   "text": "đắt",
+   "start": 84.68,
+   "end": 84.88
+  },
+  {
+   "text": "đỏ.",
+   "start": 84.88,
+   "end": 85.14
+  },
+  {
+   "text": "GPT",
+   "start": 85.44,
+   "end": 85.9
+  },
+  {
+   "text": "-6",
+   "start": 85.9,
+   "end": 86.18
+  },
+  {
+   "text": "Astra",
+   "start": 86.18,
+   "end": 86.58
+  },
+  {
+   "text": "nguồn",
+   "start": 86.58,
+   "end": 87
+  },
+  {
+   "text": "hạn",
+   "start": 87,
+   "end": 87.18
+  },
+  {
+   "text": "ngạch",
+   "start": 87.18,
+   "end": 87.46
+  },
+  {
+   "text": "nhanh",
+   "start": 87.46,
+   "end": 87.76
+  },
+  {
+   "text": "hơn",
+   "start": 87.76,
+   "end": 87.92
+  },
+  {
+   "text": "hẳn",
+   "start": 87.92,
+   "end": 88.14
+  },
+  {
+   "text": "GPT",
+   "start": 88.14,
+   "end": 88.68
+  },
+  {
+   "text": "-5",
+   "start": 88.68,
+   "end": 88.9
+  },
+  {
+   "text": "6x.",
+   "start": 88.9,
+   "end": 89.56
+  },
+  {
+   "text": "Bán",
+   "start": 90.02,
+   "end": 90.32
+  },
+  {
+   "text": "hạn",
+   "start": 90.32,
+   "end": 90.5
+  },
+  {
+   "text": "ngạch",
+   "start": 90.5,
+   "end": 90.7
+  },
+  {
+   "text": "tin",
+   "start": 90.7,
+   "end": 90.86
+  },
+  {
+   "text": "nhắn",
+   "start": 90.86,
+   "end": 91.02
+  },
+  {
+   "text": "cục",
+   "start": 91.02,
+   "end": 91.32
+  },
+  {
+   "text": "bộ",
+   "start": 91.32,
+   "end": 91.48
+  },
+  {
+   "text": "trong",
+   "start": 91.48,
+   "end": 91.7
+  },
+  {
+   "text": "mỗi",
+   "start": 91.7,
+   "end": 91.86
+  },
+  {
+   "text": "năm",
+   "start": 91.86,
+   "end": 92.02
+  },
+  {
+   "text": "giờ",
+   "start": 92.02,
+   "end": 92.28
+  },
+  {
+   "text": "của",
+   "start": 92.28,
+   "end": 92.5
+  },
+  {
+   "text": "các",
+   "start": 92.5,
+   "end": 92.72
+  },
+  {
+   "text": "gói.",
+   "start": 92.72,
+   "end": 93
+  },
+  {
+   "text": "Gói",
+   "start": 93.64,
+   "end": 93.88
+  },
+  {
+   "text": "Plus",
+   "start": 93.88,
+   "end": 94.08
+  },
+  {
+   "text": "chỉ",
+   "start": 94.08,
+   "end": 94.3
+  },
+  {
+   "text": "được",
+   "start": 94.3,
+   "end": 94.42
+  },
+  {
+   "text": "từ",
+   "start": 94.42,
+   "end": 94.62
+  },
+  {
+   "text": "5",
+   "start": 94.62,
+   "end": 94.9
+  },
+  {
+   "text": "đến",
+   "start": 94.9,
+   "end": 95.1
+  },
+  {
+   "text": "45",
+   "start": 95.1,
+   "end": 95.56
+  },
+  {
+   "text": "tin.",
+   "start": 95.56,
+   "end": 95.9
+  },
+  {
+   "text": "Gói",
+   "start": 96.5,
+   "end": 96.78
+  },
+  {
+   "text": "Pro",
+   "start": 96.78,
+   "end": 96.96
+  },
+  {
+   "text": "100",
+   "start": 96.96,
+   "end": 97.28
+  },
+  {
+   "text": "đô",
+   "start": 97.28,
+   "end": 97.6
+  },
+  {
+   "text": "được",
+   "start": 97.6,
+   "end": 97.8
+  },
+  {
+   "text": "25",
+   "start": 97.8,
+   "end": 98.32
+  },
+  {
+   "text": "đến",
+   "start": 98.32,
+   "end": 98.62
+  },
+  {
+   "text": "225",
+   "start": 98.62,
+   "end": 99.62
+  },
+  {
+   "text": "tin.",
+   "start": 99.62,
+   "end": 99.9
+  },
+  {
+   "text": "Gói",
+   "start": 100.32,
+   "end": 100.42
+  },
+  {
+   "text": "Pro",
+   "start": 100.42,
+   "end": 100.52
+  },
+  {
+   "text": "200",
+   "start": 100.52,
+   "end": 100.7
+  },
+  {
+   "text": "đô",
+   "start": 100.7,
+   "end": 100.96
+  },
+  {
+   "text": "nhận",
+   "start": 100.96,
+   "end": 101.12
+  },
+  {
+   "text": "100",
+   "start": 101.12,
+   "end": 101.44
+  },
+  {
+   "text": "đến",
+   "start": 101.44,
+   "end": 101.74
+  },
+  {
+   "text": "900",
+   "start": 101.74,
+   "end": 102
+  },
+  {
+   "text": "tin.",
+   "start": 102,
+   "end": 102.46
+  },
+  {
+   "text": "Với",
+   "start": 102.8,
+   "end": 103
+  },
+  {
+   "text": "chất",
+   "start": 103,
+   "end": 103.2
+  },
+  {
+   "text": "hàng",
+   "start": 103.2,
+   "end": 103.36
+  },
+  {
+   "text": "tuần",
+   "start": 103.36,
+   "end": 103.6
+  },
+  {
+   "text": "dưới",
+   "start": 103.6,
+   "end": 103.82
+  },
+  {
+   "text": "hạn",
+   "start": 103.82,
+   "end": 104
+  },
+  {
+   "text": "còn",
+   "start": 104,
+   "end": 104.2
+  },
+  {
+   "text": "xít",
+   "start": 104.2,
+   "end": 104.48
+  },
+  {
+   "text": "chặt",
+   "start": 104.48,
+   "end": 104.66
+  },
+  {
+   "text": "hơn.",
+   "start": 104.66,
+   "end": 104.92
+  },
+  {
+   "text": "Gói",
+   "start": 105.4,
+   "end": 105.66
+  },
+  {
+   "text": "100",
+   "start": 105.66,
+   "end": 105.96
+  },
+  {
+   "text": "đô",
+   "start": 105.96,
+   "end": 106.3
+  },
+  {
+   "text": "chỉ",
+   "start": 106.3,
+   "end": 106.5
+  },
+  {
+   "text": "có",
+   "start": 106.5,
+   "end": 106.62
+  },
+  {
+   "text": "50",
+   "start": 106.62,
+   "end": 106.88
+  },
+  {
+   "text": "tin",
+   "start": 106.88,
+   "end": 107.08
+  },
+  {
+   "text": "mỗi",
+   "start": 107.08,
+   "end": 107.26
+  },
+  {
+   "text": "tuần.",
+   "start": 107.26,
+   "end": 107.46
+  },
+  {
+   "text": "Gói",
+   "start": 107.8,
+   "end": 108.04
+  },
+  {
+   "text": "200",
+   "start": 108.04,
+   "end": 108.3
+  },
+  {
+   "text": "đô",
+   "start": 108.3,
+   "end": 108.62
+  },
+  {
+   "text": "được",
+   "start": 108.62,
+   "end": 108.8
+  },
+  {
+   "text": "200",
+   "start": 108.8,
+   "end": 109.16
+  },
+  {
+   "text": "tin",
+   "start": 109.16,
+   "end": 109.46
+  },
+  {
+   "text": "mỗi",
+   "start": 109.46,
+   "end": 109.64
+  },
+  {
+   "text": "tuần.",
+   "start": 109.64,
+   "end": 109.88
+  },
+  {
+   "text": "Nếu",
+   "start": 109.88,
+   "end": 110.38
+  },
+  {
+   "text": "dùng",
+   "start": 110.38,
+   "end": 110.56
+  },
+  {
+   "text": "qua",
+   "start": 110.56,
+   "end": 110.74
+  },
+  {
+   "text": "API,",
+   "start": 110.74,
+   "end": 111.02
+  },
+  {
+   "text": "mức",
+   "start": 111.38,
+   "end": 111.5
+  },
+  {
+   "text": "giá",
+   "start": 111.5,
+   "end": 111.74
+  },
+  {
+   "text": "tiêu",
+   "start": 111.74,
+   "end": 112.02
+  },
+  {
+   "text": "chuẩn",
+   "start": 112.02,
+   "end": 112.3
+  },
+  {
+   "text": "là",
+   "start": 112.3,
+   "end": 112.54
+  },
+  {
+   "text": "đặc",
+   "start": 112.54,
+   "end": 112.96
+  },
+  {
+   "text": "biệt,",
+   "start": 112.96,
+   "end": 113.24
+  },
+  {
+   "text": "Request",
+   "start": 113.48,
+   "end": 113.92
+  },
+  {
+   "text": "vượt",
+   "start": 113.92,
+   "end": 114.18
+  },
+  {
+   "text": "quá",
+   "start": 114.18,
+   "end": 114.34
+  },
+  {
+   "text": "272",
+   "start": 114.34,
+   "end": 115.42
+  },
+  {
+   "text": ".000",
+   "start": 115.42,
+   "end": 115.64
+  },
+  {
+   "text": "token",
+   "start": 115.64,
+   "end": 115.9
+  },
+  {
+   "text": "sẽ",
+   "start": 115.9,
+   "end": 116.2
+  },
+  {
+   "text": "bị",
+   "start": 116.2,
+   "end": 116.36
+  },
+  {
+   "text": "tính",
+   "start": 116.36,
+   "end": 116.54
+  },
+  {
+   "text": "giá",
+   "start": 116.54,
+   "end": 116.76
+  },
+  {
+   "text": "gấp",
+   "start": 116.76,
+   "end": 116.96
+  },
+  {
+   "text": "đôi.",
+   "start": 116.96,
+   "end": 117.2
+  },
+  {
+   "text": "Đây",
+   "start": 117.56,
+   "end": 117.76
+  },
+  {
+   "text": "chính",
+   "start": 117.76,
+   "end": 117.98
+  },
+  {
+   "text": "là",
+   "start": 117.98,
+   "end": 118.12
+  },
+  {
+   "text": "bí",
+   "start": 118.12,
+   "end": 118.28
+  },
+  {
+   "text": "mật",
+   "start": 118.28,
+   "end": 118.46
+  },
+  {
+   "text": "mình",
+   "start": 118.46,
+   "end": 118.68
+  },
+  {
+   "text": "đã",
+   "start": 118.68,
+   "end": 118.94
+  },
+  {
+   "text": "hứa.",
+   "start": 118.94,
+   "end": 119.24
+  },
+  {
+   "text": "AI",
+   "start": 119.48,
+   "end": 119.74
+  },
+  {
+   "text": "càng",
+   "start": 119.74,
+   "end": 120.08
+  },
+  {
+   "text": "suy",
+   "start": 120.08,
+   "end": 120.34
+  },
+  {
+   "text": "luận",
+   "start": 120.34,
+   "end": 120.56
+  },
+  {
+   "text": "sâu",
+   "start": 120.56,
+   "end": 120.84
+  },
+  {
+   "text": "chi",
+   "start": 120.84,
+   "end": 121.08
+  },
+  {
+   "text": "phí",
+   "start": 121.08,
+   "end": 121.28
+  },
+  {
+   "text": "cạn",
+   "start": 121.28,
+   "end": 121.58
+  },
+  {
+   "text": "kịt",
+   "start": 121.58,
+   "end": 121.86
+  },
+  {
+   "text": "càng",
+   "start": 121.86,
+   "end": 122.04
+  },
+  {
+   "text": "nhanh.",
+   "start": 122.04,
+   "end": 122.32
+  },
+  {
+   "text": "Nếu",
+   "start": 122.64,
+   "end": 122.86
+  },
+  {
+   "text": "bạn",
+   "start": 122.86,
+   "end": 123.06
+  },
+  {
+   "text": "không",
+   "start": 123.06,
+   "end": 123.28
+  },
+  {
+   "text": "biết",
+   "start": 123.28,
+   "end": 123.42
+  },
+  {
+   "text": "tối",
+   "start": 123.42,
+   "end": 123.66
+  },
+  {
+   "text": "yêu,",
+   "start": 123.66,
+   "end": 123.92
+  },
+  {
+   "text": "bạn",
+   "start": 124.14,
+   "end": 124.24
+  },
+  {
+   "text": "sẽ",
+   "start": 124.24,
+   "end": 124.48
+  },
+  {
+   "text": "đốt",
+   "start": 124.48,
+   "end": 124.66
+  },
+  {
+   "text": "sạch",
+   "start": 124.66,
+   "end": 124.92
+  },
+  {
+   "text": "hạn",
+   "start": 124.92,
+   "end": 125.1
+  },
+  {
+   "text": "ngạch",
+   "start": 125.1,
+   "end": 125.36
+  },
+  {
+   "text": "trong",
+   "start": 125.36,
+   "end": 125.58
+  },
+  {
+   "text": "15",
+   "start": 125.58,
+   "end": 125.92
+  },
+  {
+   "text": "phút.",
+   "start": 125.92,
+   "end": 126.2
+  },
+  {
+   "text": "Lời",
+   "start": 126.52,
+   "end": 126.76
+  },
+  {
+   "text": "khuyên",
+   "start": 126.76,
+   "end": 127.08
+  },
+  {
+   "text": "từ",
+   "start": 127.08,
+   "end": 127.32
+  },
+  {
+   "text": "OpenAI",
+   "start": 127.32,
+   "end": 127.94
+  },
+  {
+   "text": "rất",
+   "start": 127.94,
+   "end": 128.22
+  },
+  {
+   "text": "rõ",
+   "start": 128.22,
+   "end": 128.42
+  },
+  {
+   "text": "ràng.",
+   "start": 128.42,
+   "end": 128.68
+  },
+  {
+   "text": "Vidprom",
+   "start": 129.12,
+   "end": 129.46
+  },
+  {
+   "text": "tập",
+   "start": 129.46,
+   "end": 129.7
+  },
+  {
+   "text": "trung",
+   "start": 129.7,
+   "end": 129.96
+  },
+  {
+   "text": "chỉ",
+   "start": 129.96,
+   "end": 130.22
+  },
+  {
+   "text": "đến",
+   "start": 130.22,
+   "end": 130.36
+  },
+  {
+   "text": "kèm",
+   "start": 130.36,
+   "end": 130.68
+  },
+  {
+   "text": "file",
+   "start": 130.68,
+   "end": 130.88
+  },
+  {
+   "text": "liên",
+   "start": 130.88,
+   "end": 131.1
+  },
+  {
+   "text": "quan,",
+   "start": 131.1,
+   "end": 131.32
+  },
+  {
+   "text": "quy",
+   "start": 131.62,
+   "end": 131.68
+  },
+  {
+   "text": "định",
+   "start": 131.68,
+   "end": 131.92
+  },
+  {
+   "text": "rõ",
+   "start": 131.92,
+   "end": 132.16
+  },
+  {
+   "text": "định",
+   "start": 132.16,
+   "end": 132.4
+  },
+  {
+   "text": "dạng",
+   "start": 132.4,
+   "end": 132.66
+  },
+  {
+   "text": "đầu",
+   "start": 132.66,
+   "end": 132.82
+  },
+  {
+   "text": "ra.",
+   "start": 132.82,
+   "end": 133.06
+  },
+  {
+   "text": "Đừng",
+   "start": 133.46,
+   "end": 133.6
+  },
+  {
+   "text": "bắt",
+   "start": 133.6,
+   "end": 133.78
+  },
+  {
+   "text": "AI",
+   "start": 133.78,
+   "end": 134.1
+  },
+  {
+   "text": "phỏng",
+   "start": 134.1,
+   "end": 134.46
+  },
+  {
+   "text": "đoán",
+   "start": 134.46,
+   "end": 134.62
+  },
+  {
+   "text": "vô",
+   "start": 134.62,
+   "end": 134.8
+  },
+  {
+   "text": "ích.",
+   "start": 134.8,
+   "end": 135.06
+  },
+  {
+   "text": "Bài",
+   "start": 135.48,
+   "end": 135.6
+  },
+  {
+   "text": "học",
+   "start": 135.6,
+   "end": 135.8
+  },
+  {
+   "text": "cốt",
+   "start": 135.8,
+   "end": 135.96
+  },
+  {
+   "text": "lõi",
+   "start": 135.96,
+   "end": 136.18
+  },
+  {
+   "text": "ở",
+   "start": 136.18,
+   "end": 136.24
+  },
+  {
+   "text": "đây",
+   "start": 136.24,
+   "end": 136.4
+  },
+  {
+   "text": "là",
+   "start": 136.4,
+   "end": 136.56
+  },
+  {
+   "text": "gì?",
+   "start": 136.56,
+   "end": 136.74
+  },
+  {
+   "text": "Nếu",
+   "start": 136.74,
+   "end": 137.28
+  },
+  {
+   "text": "bạn",
+   "start": 137.28,
+   "end": 137.42
+  },
+  {
+   "text": "vẫn",
+   "start": 137.42,
+   "end": 137.58
+  },
+  {
+   "text": "xem",
+   "start": 137.58,
+   "end": 137.78
+  },
+  {
+   "text": "AI",
+   "start": 137.78,
+   "end": 138.06
+  },
+  {
+   "text": "là",
+   "start": 138.06,
+   "end": 138.34
+  },
+  {
+   "text": "trợ",
+   "start": 138.34,
+   "end": 138.58
+  },
+  {
+   "text": "lý",
+   "start": 138.58,
+   "end": 138.76
+  },
+  {
+   "text": "gõ",
+   "start": 138.76,
+   "end": 138.96
+  },
+  {
+   "text": "thuê,",
+   "start": 138.96,
+   "end": 139.3
+  },
+  {
+   "text": "bạn",
+   "start": 139.64,
+   "end": 139.74
+  },
+  {
+   "text": "đang",
+   "start": 139.74,
+   "end": 139.92
+  },
+  {
+   "text": "lãng",
+   "start": 139.92,
+   "end": 140.16
+  },
+  {
+   "text": "phí",
+   "start": 140.16,
+   "end": 140.32
+  },
+  {
+   "text": "tài",
+   "start": 140.32,
+   "end": 140.54
+  },
+  {
+   "text": "nguyên",
+   "start": 140.54,
+   "end": 140.78
+  },
+  {
+   "text": "cực",
+   "start": 140.78,
+   "end": 141.02
+  },
+  {
+   "text": "lớn.",
+   "start": 141.02,
+   "end": 141.32
+  },
+  {
+   "text": "Peplexity",
+   "start": 141.92,
+   "end": 142.36
+  },
+  {
+   "text": "dám",
+   "start": 142.36,
+   "end": 142.68
+  },
+  {
+   "text": "giao",
+   "start": 142.68,
+   "end": 142.86
+  },
+  {
+   "text": "cả",
+   "start": 142.86,
+   "end": 143
+  },
+  {
+   "text": "hệ",
+   "start": 143,
+   "end": 143.14
+  },
+  {
+   "text": "thống",
+   "start": 143.14,
+   "end": 143.38
+  },
+  {
+   "text": "cho",
+   "start": 143.38,
+   "end": 143.58
+  },
+  {
+   "text": "Astra,",
+   "start": 143.58,
+   "end": 143.92
+  },
+  {
+   "text": "họ",
+   "start": 144.36,
+   "end": 144.46
+  },
+  {
+   "text": "thắng",
+   "start": 144.46,
+   "end": 144.66
+  },
+  {
+   "text": "nhờ",
+   "start": 144.66,
+   "end": 144.88
+  },
+  {
+   "text": "tốc",
+   "start": 144.88,
+   "end": 145.08
+  },
+  {
+   "text": "độ",
+   "start": 145.08,
+   "end": 145.26
+  },
+  {
+   "text": "và",
+   "start": 145.26,
+   "end": 145.44
+  },
+  {
+   "text": "sự",
+   "start": 145.44,
+   "end": 145.58
+  },
+  {
+   "text": "tin",
+   "start": 145.58,
+   "end": 145.82
+  },
+  {
+   "text": "tưởng.",
+   "start": 145.82,
+   "end": 146.08
+  },
+  {
+   "text": "Nhớ",
+   "start": 146.34,
+   "end": 146.5
+  },
+  {
+   "text": "lại",
+   "start": 146.5,
+   "end": 146.62
+  },
+  {
+   "text": "chi",
+   "start": 146.62,
+   "end": 146.78
+  },
+  {
+   "text": "tiết",
+   "start": 146.78,
+   "end": 147.02
+  },
+  {
+   "text": "ở",
+   "start": 147.02,
+   "end": 147.16
+  },
+  {
+   "text": "đầu",
+   "start": 147.16,
+   "end": 147.3
+  },
+  {
+   "text": "video,",
+   "start": 147.3,
+   "end": 147.62
+  },
+  {
+   "text": "Peplexity",
+   "start": 148.06,
+   "end": 148.8
+  },
+  {
+   "text": "giao",
+   "start": 148.8,
+   "end": 149.1
+  },
+  {
+   "text": "cho",
+   "start": 149.1,
+   "end": 149.22
+  },
+  {
+   "text": "Astra",
+   "start": 149.22,
+   "end": 149.7
+  },
+  {
+   "text": "tự",
+   "start": 149.7,
+   "end": 150.02
+  },
+  {
+   "text": "sửa",
+   "start": 150.02,
+   "end": 150.32
+  },
+  {
+   "text": "code",
+   "start": 150.32,
+   "end": 150.48
+  },
+  {
+   "text": "và",
+   "start": 150.48,
+   "end": 150.76
+  },
+  {
+   "text": "vận",
+   "start": 150.76,
+   "end": 150.98
+  },
+  {
+   "text": "hành.",
+   "start": 150.98,
+   "end": 151.22
+  },
+  {
+   "text": "Kỷ",
+   "start": 151.58,
+   "end": 151.66
+  },
+  {
+   "text": "nguyên",
+   "start": 151.66,
+   "end": 151.84
+  },
+  {
+   "text": "mới",
+   "start": 151.84,
+   "end": 152
+  },
+  {
+   "text": "không",
+   "start": 152,
+   "end": 152.16
+  },
+  {
+   "text": "cần",
+   "start": 152.16,
+   "end": 152.38
+  },
+  {
+   "text": "người",
+   "start": 152.38,
+   "end": 152.58
+  },
+  {
+   "text": "sửa",
+   "start": 152.58,
+   "end": 152.84
+  },
+  {
+   "text": "lỗi",
+   "start": 152.84,
+   "end": 152.96
+  },
+  {
+   "text": "nhỏ.",
+   "start": 152.96,
+   "end": 153.24
+  },
+  {
+   "text": "Và",
+   "start": 153.62,
+   "end": 153.76
+  },
+  {
+   "text": "tôi",
+   "start": 153.76,
+   "end": 154
+  },
+  {
+   "text": "là",
+   "start": 154,
+   "end": 154.14
+  },
+  {
+   "text": "Hit,",
+   "start": 154.14,
+   "end": 154.32
+  },
+  {
+   "text": "tôi",
+   "start": 154.48,
+   "end": 154.54
+  },
+  {
+   "text": "chia",
+   "start": 154.54,
+   "end": 154.74
+  },
+  {
+   "text": "sẻ",
+   "start": 154.74,
+   "end": 155.02
+  },
+  {
+   "text": "về",
+   "start": 155.02,
+   "end": 155.3
+  },
+  {
+   "text": "cách",
+   "start": 155.3,
+   "end": 155.62
+  },
+  {
+   "text": "thức",
+   "start": 155.62,
+   "end": 155.84
+  },
+  {
+   "text": "automation",
+   "start": 155.84,
+   "end": 156.44
+  },
+  {
+   "text": "cho",
+   "start": 156.44,
+   "end": 156.72
+  },
+  {
+   "text": "nhân",
+   "start": 156.72,
+   "end": 156.88
+  },
+  {
+   "text": "nghiệp",
+   "start": 156.88,
+   "end": 157.24
+  },
+  {
+   "text": "và",
+   "start": 157.24,
+   "end": 157.6
+  },
+  {
+   "text": "xây",
+   "start": 157.6,
+   "end": 157.88
+  },
+  {
+   "text": "hệ",
+   "start": 157.88,
+   "end": 158.02
+  },
+  {
+   "text": "thống",
+   "start": 158.02,
+   "end": 158.22
+  },
+  {
+   "text": "kiếm",
+   "start": 158.22,
+   "end": 158.5
+  },
+  {
+   "text": "tiền",
+   "start": 158.5,
+   "end": 158.76
+  },
+  {
+   "text": "từ",
+   "start": 158.76,
+   "end": 158.92
+  },
+  {
+   "text": "AI",
+   "start": 158.92,
+   "end": 159.28
+  },
+  {
+   "text": "bằng",
+   "start": 159.28,
+   "end": 159.56
+  },
+  {
+   "text": "cách",
+   "start": 159.56,
+   "end": 159.74
+  },
+  {
+   "text": "tạo",
+   "start": 159.74,
+   "end": 160.08
+  },
+  {
+   "text": "ra",
+   "start": 160.08,
+   "end": 160.28
+  },
+  {
+   "text": "sản",
+   "start": 160.28,
+   "end": 160.52
+  },
+  {
+   "text": "phẩm",
+   "start": 160.52,
+   "end": 160.76
+  },
+  {
+   "text": "số",
+   "start": 160.76,
+   "end": 160.98
+  },
+  {
+   "text": "để",
+   "start": 160.98,
+   "end": 161.2
+  },
+  {
+   "text": "thương",
+   "start": 161.2,
+   "end": 161.38
+  },
+  {
+   "text": "mại",
+   "start": 161.38,
+   "end": 161.54
+  },
+  {
+   "text": "hóa.",
+   "start": 161.54,
+   "end": 161.82
   }
  ]
 }

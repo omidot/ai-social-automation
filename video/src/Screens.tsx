@@ -446,3 +446,74 @@ export const PersonScreen: React.FC<{
     </AbsoluteFill>
   );
 };
+
+/* ================= 6. BRAND — logo hãng giữa khung ================= */
+
+/**
+ * Nói tới hãng nào thì hiện LOGO HÃNG ĐÓ GIỮA KHUNG, to và có tên.
+ *
+ * Trước đây logo chỉ là một ô nhỏ nép góc phải trên, gần như không ai thấy.
+ * Người dùng chỉ rõ: nhắc "GPT-6 Astra" hay "Claude Fable 5" thì phải hiện
+ * đúng logo hai bên ở GIỮA kèm chú thích, không phải một chấm bé ở góc.
+ *
+ * Một hãng -> một ô. Hai hãng nhắc sát nhau -> hai ô đối nhau, có dấu "&"
+ * ở giữa.
+ */
+export const BrandScreen: React.FC<{
+  tiles: { label: string; file?: string }[]; eyebrow?: string;
+  ff: string; at: number;
+}> = ({ tiles, eyebrow, ff, at }) => {
+  const { fps } = useVideoConfig();
+  const pair = tiles.length >= 2;
+  const mid = useIn(at, 10, fps);
+  return (
+    <AbsoluteFill style={{
+      alignItems: 'center', justifyContent: 'center', paddingBottom: 420,
+    }}>
+      {eyebrow ? <Eyebrow text={eyebrow} ff={ff} at={at} /> : null}
+      <div style={{ display: 'flex', alignItems: 'center', gap: pair ? 54 : 0 }}>
+        {tiles.slice(0, 2).map((t, i) => (
+          <BrandTile key={i} tile={t} ff={ff} at={at + i * 7} big={!pair} />
+        ))}
+        {pair ? (
+          <span style={{
+            position: 'absolute', left: 0, right: 0, textAlign: 'center',
+            fontFamily: ff, fontWeight: '900', fontSize: 54, color: REF.accent,
+            marginBottom: 78, pointerEvents: 'none',
+            opacity: mid.o, transform: `scale(${0.6 + mid.o * 0.4})`,
+          }}>&amp;</span>
+        ) : null}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const BrandTile: React.FC<{
+  tile: { label: string; file?: string }; ff: string; at: number; big: boolean;
+}> = ({ tile, ff, at, big }) => {
+  const { fps } = useVideoConfig();
+  const a = useIn(at, 0, fps);
+  const size = big ? 300 : 230;
+  return (
+    <div style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24,
+      opacity: a.o, transform: `translateY(${a.y}px) scale(${0.82 + a.o * 0.18})`,
+    }}>
+      <div style={{
+        width: size, height: size, borderRadius: 42,
+        background: '#FFFFFF', border: `2px solid ${REF.boxLine}`,
+        boxShadow: '0 28px 70px rgba(0,0,0,0.6)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        {tile.file ? (
+          <Img src={staticFile(tile.file)}
+               style={{ width: '62%', height: '62%', objectFit: 'contain' }} />
+        ) : null}
+      </div>
+      <span style={{
+        fontFamily: ff, fontWeight: '800', fontSize: big ? 44 : 36,
+        color: REF.ink, letterSpacing: '0.02em', textAlign: 'center',
+      }}>{tile.label}</span>
+    </div>
+  );
+};

@@ -21,3 +21,17 @@ assets/voice/sample.txt
 scratchpad/
 .superpowers/brainstorm/
 video/public/logos/
+
+# Ảnh nhân vật đã xử lý (tách nền + viền) -- sinh ra từ ảnh gốc mỗi lần dựng
+video/public/portraits/*-cut*.png
+# Ảnh nhân vật GỐC do người dùng bỏ vào -- là tài sản của kênh, không đẩy lên
+video/public/portraits/*.jpg
+video/public/portraits/*.jpeg
+video/public/portraits/*.png
+!video/public/portraits/README.md
+# Ảnh trang nguồn chụp lại mỗi lần dựng
+video/public/shots/src*.png
+video/public/voice_in_joined
+video/public/voice_parts/
+video/ref/people.json
+video/ref/shots.json

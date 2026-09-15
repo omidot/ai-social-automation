@@ -1,21 +1,44 @@
-// DỰ ÁN: ADS-BOT SHORT — 16 card, khớp 1-1 với CARDS
-// [variant, anchor, num, motionVào, motionRa]
-// Quy tắc: hai card liền nhau KHÔNG dùng chung motionVào.
+// FILE TỰ SINH — đừng sửa tay. Nguồn: src/pipeline/video/codegen.py
 export const LAYOUT = [
-  ['stack',  'mid', null, 'rise',   'up'],        //  0 Với / sự phát triển AI
-  ['stack',  'top', null, 'fall',   'down'],      //  1 việc rất khó khăn
-  ['right',  'low', null, 'slideR', 'dissolve'],  //  2 người bình thường muốn KD
-  ['mark',   'mid', null, 'wipe',   'up'],        //  3 ★ AI nghĩ hộ bạn
-  ['stair',  'mid', null, 'slideL', 'shrink'],    //  4 làm sao thực hiện ý tưởng
-  ['mark',   'mid', null, 'wipe',   'wipeOut'],   //  5 ★ AI thực hiện hộ bạn
-  ['right',  'top', null, 'slideR', 'shrink'],    //  6 sau khi thực hiện ý tưởng đó
-  ['hero',   'mid', null, 'pop',    'dissolve'],  //  7 ★★ vào Claude Code (ảnh chụp)
-  ['stack',  'mid', null, 'slideL', 'up'],        //  8 schedule chạy ads
-  ['mark',   'mid', null, 'fall',   'wipeOut'],   //  9 ★ trong khi bạn ngủ — twist mở
-  ['stair',  'mid', null, 'slam',   'shrink'],    // 10 ★ hàng ngàn... robot TQ — escalation
-  ['stack',  'top', null, 'rise',   'down'],      // 11 triệu video quảng cáo
-  ['right',  'mid', null, 'slideR', 'shrink'],    // 12 không thể đăng từng video
-  ['mark',   'mid', null, 'wipe',   'up'],        // 13 ★ cạnh tranh nổi với robot
-  ['invert', 'mid', null, 'pop',    'wipeOut'],   // 14 ★★ được tạo ra bởi
-  ['invert', 'mid', null, 'fall',   'wipeOut'],   // 15 ★★ công ty lớn hơn bạn — chốt
+  ["numeral", "mid", 6, "slam", "dissolve", null, null, null],
+  ["mark", "mid", null, "rise", "up", null, null, null],
+  ["stack", "top", null, "slideL", "down", null, null, null],
+  ["invert", "mid", null, "pop", "shrink", null, null, null],
+  ["right", "mid", null, "fall", "wipeOut", null, null, null],
+  ["strike", "top", null, "wipe", "dissolve", null, null, null],
+  ["stair", "mid", null, "slideR", "up", null, null, null],
+  ["hero", "mid", null, "slam", "shrink", null, null, null],
+  ["invert", "top", null, "rise", "down", null, null, null],
+  ["stack", "mid", null, "slideL", "dissolve", null, null, null],
+  ["mark", "mid", null, "pop", "wipeOut", null, null, null],
+  ["right", "top", null, "fall", "up", null, null, null],
+  ["stair", "mid", null, "wipe", "down", null, null, null],
+  ["hero", "mid", null, "slideR", "shrink", null, null, null],
+  ["invert", "top", null, "slam", "dissolve", null, null, null],
+  ["mark", "mid", null, "rise", "up", null, null, null],
+  ["stack", "mid", null, "slideL", "down", null, null, null],
+  ["numeral", "top", 6, "pop", "shrink", null, null, null],
+  ["right", "mid", null, "fall", "wipeOut", null, null, null],
+  ["stair", "mid", null, "wipe", "dissolve", null, null, null],
+  ["numeral", "top", 0.153, "slideR", "up", null, null, null],
+  ["hero", "mid", null, "slam", "shrink", null, null, null],
+  ["numeral", "mid", 6, "rise", "down", null, null, null],
+  ["stack", "top", null, "slideL", "dissolve", {"kind": "hbar", "items": [{"label": "Plus", "value": 45}, {"label": "Pro 100 USD", "value": 225}, {"label": "Pro 200 USD", "value": 900}], "unit": "tin", "title": ""}, null, null],
+  ["numeral", "mid", 5, "pop", "wipeOut", null, null, null],
+  ["stair", "mid", null, "fall", "up", {"kind": "bar", "items": [{"label": "Pro 100 USD", "value": 50}, {"label": "Pro 200 USD", "value": 200}], "unit": "tin/tuần", "title": ""}, null, null],
+  ["numeral", "top", 100, "wipe", "down", null, null, null],
+  ["numeral", "mid", null, "slideR", "shrink", {"kind": "stat", "items": [{"label": "1M Input Token", "value": 10}, {"label": "1M Output Token", "value": 50}], "unit": "USD", "title": ""}, null, null],
+  ["numeral", "mid", 272000, "slam", "dissolve", null, null, null],
+  ["hero", "top", null, "rise", "up", null, null, null],
+  ["invert", "mid", null, "slideL", "down", null, null, null],
+  ["numeral", "mid", 15, "pop", "shrink", null, null, null],
+  ["mark", "top", null, "fall", "wipeOut", null, null, null],
+  ["right", "mid", null, "wipe", "dissolve", null, null, null],
+  ["stair", "mid", null, "slideR", "up", null, null, null],
+  ["hero", "top", null, "slam", "down", null, null, null],
+  ["invert", "mid", null, "rise", "shrink", null, null, null],
+  ["stack", "mid", null, "slideL", "dissolve", null, null, null],
+  ["mark", "top", null, "pop", "up", null, null, null],
+  ["right", "mid", null, "fall", "down", null, null, null],
+  ["invert", "mid", null, "wipe", "dissolve", null, null, null],
 ];

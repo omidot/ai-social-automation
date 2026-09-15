@@ -72,11 +72,18 @@ def local_portrait(name: str, folder: Path) -> dict | None:
     folder = Path(folder)
     if not folder.is_dir():
         return None
-    slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-    for ext in (".png", ".jpg", ".jpeg", ".webp"):
-        for cand in (folder / f"{slug}{ext}", folder / f"{name}{ext}"):
-            if cand.is_file():
-                return {"path": cand, "credit": "ảnh do kênh cung cấp"}
+    # So khớp KHÔNG phân biệt hoa thường và không phụ thuộc dấu phân cách:
+    # người dùng đặt tên file theo thói quen của họ ("Sam-Altman.jpg",
+    # "johnny ho.png"), bắt họ nhớ đúng một dạng là chắc chắn hỏng.
+    def key(x: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "", x.lower())
+
+    want = key(name)
+    for cand in sorted(folder.iterdir()):
+        if cand.suffix.lower() not in (".png", ".jpg", ".jpeg", ".webp"):
+            continue
+        if key(cand.stem) == want:
+            return {"path": cand, "credit": "ảnh do kênh cung cấp"}
     return None
 
 
@@ -158,21 +165,67 @@ def _cutout(raw: bytes) -> "object":
     return cut
 
 
-def _outline(im: "object", px: int = _OUTLINE_PX) -> "object":
-    """Viền trắng quanh hình đã tách, để nó bật lên trên nền tối."""
+def _bust(im: "object", keep: float = 0.86) -> "object":
+    """Cắt còn ĐẦU VÀ VAI, bỏ phần thân dài phía dưới.
+
+    Ảnh chân dung thường có một mảng áo phẳng lớn ở dưới. Để nguyên thì nó
+    thành một khối đặc chiếm gần nửa khung, và khi viền chạy quanh, mảng đó
+    biến thành một hình chữ nhật thừa nằm chình ình ở đáy -- đúng chỗ người
+    dùng chỉ ra. Cắt còn đầu và vai thì hình gọn, giống cách bản mẫu dùng.
+
+    Cắt sâu quá lại hỏng kiểu khác: ở mức 0.62 nhát cắt rơi đúng cằm, chỉ
+    còn mỗi cái đầu trôi nổi. 0.86 giữ được đầu và vai, phần thân dài mới
+    là phần bị bỏ.
+    """
+    h = int(im.height * keep)
+    return im.crop((0, 0, im.width, max(1, h)))
+
+
+def _outline(im: "object", px: int = _OUTLINE_PX,
+             color: tuple[int, int, int] = (255, 255, 255)) -> "object":
+    """Viền màu quanh hình đã tách.
+
+    Từng thử vẽ viền này bằng drop-shadow chồng lớp lúc dựng hình cho linh
+    hoạt màu, nhưng 16 lớp drop-shadow trên ảnh cao 1100px khiến Chromium
+    treo hẳn -- một khung hình tĩnh chạy quá 10 phút không xong. Nướng sẵn
+    ở đây tốn một phép lọc ảnh duy nhất và dựng hình lại nhanh như thường.
+    """
     from PIL import Image, ImageFilter
 
+    # Chừa lề ba phía; cạnh DƯỚI không chừa, để viền chạy thẳng ra khỏi mép
+    # thay vì khép kín thành một khung bao quanh mảng áo.
     pad = px * 2
-    base = Image.new("RGBA", (im.width + pad * 2, im.height + pad * 2), (0, 0, 0, 0))
+    base = Image.new("RGBA", (im.width + pad * 2, im.height + pad), (0, 0, 0, 0))
     base.paste(im, (pad, pad), im)
 
     alpha = base.split()[3]
     # Nở vùng đặc rồi tô trắng -> thành viền bao quanh.
     grown = alpha.filter(ImageFilter.MaxFilter(px * 2 + 1))
-    ring = Image.new("RGBA", base.size, (255, 255, 255, 255))
+    ring = Image.new("RGBA", base.size, (*color, 255))
     ring.putalpha(grown)
     ring.alpha_composite(base)
     return ring
+
+
+def _save_variants(cut: "object", out_path: Path) -> None:
+    """Các bản dựng sẵn cho từng tông màn hình.
+
+    Bản "-red" phải ĐEN TRẮNG SẴN chứ không để lúc dựng hình mới phủ bộ lọc
+    grayscale: bộ lọc đó ăn cả viền, biến viền đỏ thành xám (đo thật trên
+    khung dựng thử). Chuyển người sang đen trắng trước rồi mới viền thì viền
+    giữ đúng màu và không cần bộ lọc nào lúc dựng.
+    """
+    from PIL import ImageOps
+
+    cut = _bust(cut)
+    _outline(cut, color=(255, 255, 255)).save(
+        out_path.with_name(out_path.stem + "-white.png"), format="PNG")
+
+    grey = ImageOps.grayscale(cut.convert("RGB")).convert("RGBA")
+    grey = ImageOps.autocontrast(grey.convert("L"), cutoff=1).convert("RGBA")
+    grey.putalpha(cut.split()[3])
+    _outline(grey, color=(200, 50, 43)).save(
+        out_path.with_name(out_path.stem + "-red.png"), format="PNG")
 
 
 def fetch(name: str, out_path: Path, *, api_key: str = "", cx: str = "",
@@ -193,7 +246,8 @@ def fetch(name: str, out_path: Path, *, api_key: str = "", cx: str = "",
         if local:
             raw = local["path"].read_bytes()
             cut = _cutout(raw)
-            _outline(cut).save(out_path, format="PNG")
+            cut.save(out_path, format="PNG")
+            _save_variants(cut, out_path)
             log.info("portrait: %s <- ảnh đặt tay %s", name, local["path"].name)
             return {"file": out_path.name, "name": name,
                     "source": str(local["path"]), "credit": local["credit"]}
@@ -218,7 +272,16 @@ def fetch(name: str, out_path: Path, *, api_key: str = "", cx: str = "",
         cut = _cutout(r.content)
         if cut.width < 120 or cut.height < 160:
             raise PortraitError("hình tách ra quá nhỏ, có lẽ tách hỏng")
-        _outline(cut).save(out_path, format="PNG")
+        # Khung dựng cao 1920; hình người chiếm ~900px. Ảnh gốc thấp hơn
+        # ngần này là phóng to lên sẽ thấy rõ vỡ nét.
+        if cut.height < 700:
+            log.warning("portrait: %r chỉ cao %dpx -- phóng lên khung dọc sẽ "
+                        "mờ, nên dùng ảnh cao từ 900px trở lên", name, cut.height)
+        # Lưu bản CẮT TRẦN, không nướng viền vào file: viền được vẽ lúc dựng
+        # hình nên đổi màu (trắng cho nền tối, đỏ/vàng cho nền giấy) mà không
+        # phải tạo lại ảnh, và một file dùng được cho mọi tông màn hình.
+        cut.save(out_path, format="PNG")
+        _save_variants(cut, out_path)
     except Exception as e:  # noqa: BLE001 -- một tấm ảnh hỏng không được làm sập bản dựng
         log.warning("portrait: bỏ %r (%s)", name, e)
         return None

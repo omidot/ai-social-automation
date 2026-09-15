@@ -272,7 +272,12 @@ export function findSpokenTime(cards, phrase) {
  */
 export function buildTimeline(chapters, opts) {
   const { brands = {}, scriptLines = () => [], shots = [], elementOf = () => null,
-          listOf = () => null, fallbackList = null, duration = 0 } = opts || {};
+          listOf = () => null, fallbackList = null, duration = 0,
+          people = [] } = opts || {};
+  // Kiểu chữ xoay vòng: hai màn nhân vật liền nhau mà cùng khuôn thì tới màn
+  // thứ hai người xem đã thấy lặp.
+  const ED_VARIANTS = ['masthead', 'stamp', 'bleed', 'quote'];
+  let edAt = 0;
   const MK = new RegExp('[̀-ͯ]', 'g');
   const norm = (s) => String(s).toLowerCase().replace(/đ/g, 'd').normalize('NFD')
     .replace(MK, '').replace(/[^a-z0-9]/g, '');
@@ -301,6 +306,63 @@ export function buildTimeline(chapters, opts) {
           label: b.label, file: b.file,
           verdict: found.length >= 2 ? (i === 0 ? 'win' : 'lose') : undefined,
         })),
+      } });
+    }
+
+    // LOGO HÃNG: nói tới hãng nào thì hiện logo hãng đó GIỮA KHUNG, kèm
+    // tên. Hai hãng trong cùng một câu -> dựng cặp đối đầu. Đây là chỗ lấp
+    // những quãng dài chỉ có chữ chạy mà màn hình đứng im.
+    {
+      const flat = [];
+      for (const c of cards) {
+        for (const l of c.lines || []) {
+          for (const w of l.words || []) flat.push({ t: w.start, b: brands[norm(w.text)], raw: w.text });
+        }
+      }
+      const PAIR_GAP = 3.0;     // hai hãng cách nhau ngần này thì coi là một cặp
+      const SAME_GAP = 12;      // cùng một hãng nhắc lại quá gần thì bỏ
+      const lastSeen = new Map();
+      for (let i = 0; i < flat.length; i++) {
+        const a = flat[i];
+        if (!a.b) continue;
+        // hãng thứ hai xuất hiện ngay sau -> cặp đối đầu
+        let pair = null;
+        for (let j = i + 1; j < flat.length && flat[j].t - a.t <= PAIR_GAP; j++) {
+          if (flat[j].b && flat[j].b.label !== a.b.label) { pair = flat[j]; break; }
+        }
+        const key = pair ? `${a.b.label}|${pair.b.label}` : a.b.label;
+        if (lastSeen.has(key) && a.t - lastSeen.get(key) < SAME_GAP) continue;
+        lastSeen.set(key, a.t);
+        if (pair) {
+          lastSeen.set(pair.b.label, pair.t);
+          out.push({ at: a.t, screen: {
+            kind: 'brandpair', at: a.t, eyebrow: ch.label || '',
+            tiles: [{ label: a.b.label, file: a.b.file },
+                    { label: pair.b.label, file: pair.b.file }],
+          } });
+          i = flat.indexOf(pair);
+        } else {
+          out.push({ at: a.t, screen: {
+            kind: 'brand', at: a.t, eyebrow: ch.label || '',
+            tiles: [{ label: a.b.label, file: a.b.file }],
+          } });
+        }
+      }
+    }
+
+    // NHÂN VẬT: màn báo giấy, bật đúng lúc tên người được nói ra.
+    for (const pr of people) {
+      const t = findSpokenTime(cards, pr.name);
+      if (t === null) continue;
+      const variant = ED_VARIANTS[edAt++ % ED_VARIANTS.length];
+      out.push({ at: t, screen: {
+        kind: 'person', at: t, variant,
+        file: pr.file, name: pr.name, role: pr.role || '',
+        credit: pr.credit || '',
+        date: pr.date || '',
+        headline: pr.headline || '',
+        standfirst: pr.standfirst || '',
+        masthead: pr.masthead || '',
       } });
     }
 
@@ -352,7 +414,7 @@ export function buildTimeline(chapters, opts) {
   out.sort((a, b) => a.at - b.at);
 
   // Hai màn sát nhau quá thì chớp nhoáng, người xem chưa kịp nhìn.
-  const MIN_GAP = 5;
+  const MIN_GAP = 3.2;
   const kept = [];
   for (const x of out) {
     if (kept.length && x.at - kept[kept.length - 1].at < MIN_GAP) continue;

@@ -339,7 +339,9 @@ const HOLD = 14;
   }
 }
 
-// ---- 5d. Gán MỖI CHƯƠNG một màn hình ----
+let SCREENS = [];
+
+// ---- 5d. Dòng thời gian MÀN HÌNH ----
 // Video mẫu chia bài thành chương ("01 / 09") và mỗi chương có đúng một
 // màn hình chiếm khung, đứng yên suốt chương, lời thoại chạy dưới đáy.
 // Không chương nào được để trống -- đó chính là chỗ bản trước hỏng.
@@ -360,11 +362,15 @@ const HOLD = 14;
   // bỏ trang chặn bot / trang trắng. Không có file -> video vẫn dựng bình thường.
   let SHOTS = [];
   try { SHOTS = JSON.parse(fs.readFileSync('ref/shots.json', 'utf8')); } catch { /* không có ảnh nguồn */ }
+  // Nhân vật do phía Python chuẩn bị (portrait.py): đã tách nền, viền sẵn.
+  let PEOPLE = [];
+  try { PEOPLE = JSON.parse(fs.readFileSync('ref/people.json', 'utf8')); } catch { /* bài không có nhân vật */ }
 
   const timeline = buildTimeline(chapters, {
     brands: BRANDS,
     shots: SHOTS,
     duration: DURATION,
+    people: PEOPLE,
     elementOf: pickElementKind,
     listOf: cardsFromText,
     fallbackList: cardsFromText(CARDS.flat()
@@ -373,13 +379,15 @@ const HOLD = 14;
     scriptLines: (si) => (CARDS[si] || []).map((r) => (r.startsWith('~') ? r.slice(1) : r)),
   });
 
-  // Thẻ nhận màn hình đang có hiệu lực tại giây của nó -> màn chỉ xuất hiện
-  // khi câu sinh ra nó ĐÃ được nói, và giữ nguyên cho tới màn kế tiếp.
-  let ti = -1;
-  for (const c of cards) {
-    while (ti + 1 < timeline.length && timeline[ti + 1].at <= c.start + 0.01) ti++;
-    if (ti >= 0) c.screen = timeline[ti].screen;
-  }
+  // Màn hình KHÔNG gắn vào thẻ nữa. Gắn vào thẻ thì mỗi thẻ caption tự vẽ
+  // lại nó, mà nhiều thẻ cùng hiện một lúc -> hình bị dựng chồng và hiệu ứng
+  // chạy lại liên tục, nhìn ra đúng cái "nhấp nháy miết". Giờ nó là một dòng
+  // thời gian riêng, phần dựng hình đọc và vẽ ĐÚNG MỘT màn tại mỗi thời điểm.
+  SCREENS = timeline.map((x, i) => ({
+    ...x.screen,
+    at: x.at,
+    until: i + 1 < timeline.length ? timeline[i + 1].at : DURATION,
+  }));
 
   console.log(`màn hình: ${timeline.length} màn -> `
     + timeline.map((x) => `${x.screen.kind}@${x.at.toFixed(0)}s`).join(', '));
@@ -392,7 +400,7 @@ const subtitle = usedRealWords
   : [];
 
 const out = {
-  fps: FPS, duration: DURATION,
+  fps: FPS, duration: DURATION, screens: SCREENS,
   durationInFrames: Math.ceil(DURATION * FPS) + 18,
   cards, subtitle,
 };

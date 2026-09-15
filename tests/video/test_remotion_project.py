@@ -92,8 +92,11 @@ def test_frame_chrome_matches_the_reference():
     assert "const Counter" in src
     assert "<Counter index={chapIdx} total={chapters.length} />" in src
     assert "const ChapterRail" in src
-    assert "<BrandMark card={cur} />" in src
     assert "<Chip" not in src, "no centre label in the reference"
+    # Logo hãng KHÔNG còn nép góc phải trên: người dùng chỉ rõ nó quá nhỏ,
+    # không ai thấy. Giờ nhắc tới hãng nào thì logo hãng đó hiện GIỮA KHUNG.
+    assert "BrandMark" not in src
+    assert "BrandScreen" in src
 
 def test_chart_dims_rows_already_passed():
     """Only the row being talked about stays bright; earlier rows sink to
@@ -329,13 +332,37 @@ def test_person_screen_cuts_out_and_enters_diagonally():
     assert "credit" in port
 
 
-def test_cardview_only_draws_screens_and_caption_is_separate():
-    """Chỉ MỘT lớp chữ: caption dưới đáy. Thẻ chỉ dựng hình."""
+def test_exactly_one_screen_is_drawn_at_a_time():
+    """Nguyên nhân THẬT của cái "nhấp nháy miết": màn hình từng được gắn vào
+    mỗi thẻ caption, mà nhiều thẻ cùng hiện một lúc -- cùng một màn bị dựng
+    chồng nhiều lần với mốc giờ khác nhau nên hiệu ứng chạy lại liên tục.
+    Giờ màn hình là một dòng thời gian riêng ở mức gốc của timeline, và chỗ
+    dựng hình chọn ra ĐÚNG MỘT cái."""
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
-    assert "const sc = card.screen;" in src
+    assert "const ScreenView" in src
+    assert "screens.filter((x) => t >= (x.at ?? 0)).slice(-1)[0]" in src
+    assert "visible.map" not in src, "không được vẽ lại màn theo từng thẻ nữa"
+    align = (VIDEO / "tools/align.mjs").read_text(encoding="utf-8")
+    assert "screens: SCREENS" in align
     assert "const Caption" in src
-    assert "<Caption card={cur} activeIdx={capIdx} />" in src
     assert "Headline" not in src, "người dùng đã yêu cầu bỏ tiêu đề"
+
+
+def test_screens_fade_in_and_out():
+    """Yêu cầu trực tiếp: hình xuất hiện và biến mất phải có chuyển, không
+    bật/tắt phựt."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "const IN = 9, OUT = 11;" in src
+    assert "if (fade <= 0) return null;" in src
+
+
+def test_brands_get_a_centred_screen_when_named():
+    """Người dùng chỉ rõ: nhắc "GPT-6 Astra" hay "Claude Fable 5" thì hiện
+    đúng logo hai bên ở GIỮA kèm chú thích, không phải một ô bé nép góc."""
+    src = (VIDEO / "src/Screens.tsx").read_text(encoding="utf-8")
+    assert "export const BrandScreen" in src
+    tools = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "kind: 'brandpair'" in tools and "kind: 'brand'" in tools
 
 
 def test_source_screenshots_reject_bot_walls():
@@ -392,3 +419,34 @@ def test_portrait_prefers_a_hand_placed_file():
     assert "local = local_portrait(name, out_path.parent)" in src
     # phải đứng TRƯỚC nhánh Wikipedia
     assert src.index("local_portrait(name, out_path.parent)") < src.index("hit = wikipedia_image(name)")
+
+
+def test_editorial_person_has_several_typographic_looks():
+    """Ba ảnh mẫu người dùng gửi mỗi cái một kiểu chữ: khối báo đầy đủ, tít
+    khổng lồ tràn mép, và khối đỏ đóng dấu. Dùng chung một khuôn cho mọi màn
+    nhân vật thì tới màn thứ hai người xem đã thấy lặp."""
+    src = (VIDEO / "src/Editorial.tsx").read_text(encoding="utf-8")
+    assert "export type EdVariant" in src
+    for v in ("'masthead'", "'bleed'", "'stamp'", "'quote'"):
+        assert v in src, v
+    # bút dạ vàng, chip ngày đỏ, nền giấy -- các dấu hiệu của phong cách này
+    assert "marker:" in src and "PaperBg" in src
+    tools = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "ED_VARIANTS" in tools, "kiểu chữ phải xoay vòng giữa các màn"
+
+
+def test_person_screens_fire_when_the_name_is_spoken():
+    """Màn nhân vật bật đúng lúc tên người được nói, không phải đầu chương."""
+    src = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "const t = findSpokenTime(cards, pr.name);" in src
+    assert "if (t === null) continue;" in src, "không tìm thấy tên thì bỏ, không đoán"
+
+
+def test_bust_crop_removes_the_leftover_block():
+    """Ảnh chân dung để nguyên thân dài thì mảng áo phẳng thành một khối đặc
+    ở đáy khung, và viền chạy quanh biến nó thành hình chữ nhật thừa -- đúng
+    chỗ người dùng chỉ ra. Cắt còn đầu và vai, cạnh dưới để hở."""
+    src = (ROOT / "src/pipeline/video/portrait.py").read_text(encoding="utf-8")
+    assert "def _bust" in src
+    assert "keep: float = 0.86" in src, "0.62 cắt đúng cằm, chỉ còn cái đầu trôi nổi"
+    assert "im.height + pad)" in src, "cạnh dưới không chừa lề -> viền chạy ra khỏi mép"
