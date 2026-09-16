@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-16",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
+      "style": "white-magazine",
+      "topic_key": "introducing-gemini-3-8-live-and-3-8-live-extended-",
+      "text_fb": "Đa số mọi người đang hiểu sai về cách tương tác với AI. Bạn vẫn cặm cụi ngồi gõ từng dòng prompt dài dòng mỗi ngày? Bạn nghĩ đó là cách làm việc thông minh? Rất tiếc, bạn đã chậm chân.\n\nGoogle DeepMind vừa tung ra Gemini 3.8 Live và 3.8 Live Extended Thinking, lập tức chiếm vị trí số 1 trên bảng xếp hạng Speech to Speech của Artificial Analysis với 82.6 điểm. Đây không phải là Siri hay Google Assistant đọc kịch bản vô hồn mà bạn từng biết. Nó vừa nói vừa suy nghĩ thời gian thực. Trong khi chạy các tác vụ API phức tạp phía sau, nó vẫn tiếp tục trò chuyện, tự động tường thuật tiến độ và chuyển đổi linh hoạt giữa 97 ngôn ngữ khác nhau mà không hề bị ngắt quãng.\n\nSố liệu không biết nói dối. Nó đạt 68.6% trên benchmark τ-Voice về khả năng hoàn tất tác vụ phức tạp. Điều này nghĩa là gì? Nghĩa là kỷ nguyên của việc gõ bàn phím để ra lệnh cho máy tính đang dần khép lại. Tương lai thuộc về những hệ thống Voice Agent có khả năng đa nhiệm và tư duy phản xạ tức thì.\n\nNgười thua cuộc sẽ tiếp tục coi đây là tính năng giải trí nhảm nhí. Người chiến thắng sẽ tận dụng Gemini Live API qua các nền tảng như Vercel hay LangChain để tự động hóa toàn bộ quy trình vận hành ngay từ bây giờ. Sự thật phũ phàng là: nếu công việc của bạn phụ thuộc vào tốc độ nhập liệu, AI giọng nói sẽ thay thế bạn nhanh hơn bạn tưởng.\n\nBạn sẽ tiếp tục cặm cụi gõ bàn phím, hay bắt đầu điều khiển AI bằng giọng nói ngay hôm nay?\n\nNguồn: Google DeepMind",
+      "text_ig": "Đa số vẫn cặm cụi gõ prompt trong khi AI đã biết vừa nói vừa suy nghĩ thời gian thực. Gemini 3.8 Live Extended Thinking vừa lập đỉnh 82.6 điểm thoại. Tốc độ gõ phím của bạn đã chính thức lỗi thời. Bạn chọn thay đổi hay bị bỏ lại?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#Gemini38Live",
+        "#GoogleDeepMind",
+        "#VoiceAI",
+        "#TechTrends",
+        "#AIResearch",
+        "#FutureOfWork",
+        "#GenerativeAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-16/morning/01.jpg",
+        "assets/posts/2026-09-16/morning/02.jpg",
+        "assets/posts/2026-09-16/morning/03.jpg",
+        "assets/posts/2026-09-16/morning/04.jpg",
+        "assets/posts/2026-09-16/morning/05.jpg",
+        "assets/posts/2026-09-16/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Google DeepMind",
+          "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/"
+        },
+        {
+          "name": "blog.google",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNZTNBTjVVXzE2ZXpJdkoxcHo2cTNVVG1pZEs0dXhMU0d4dnNzcU5iZWppYkJMeVpCeWZVQ3dKSzVzZXNoeTltY3RJaXJtckQ2LXZnWlpGQ1V4Yi1HZUdjdFdPMUFua18weUpTazgweFp5YnlVTjB2RVJiTnVFMllTUThtQVlrT3liYnd1dmhfUGxiRHZOb3pub1dGR3pXbk9UMnZzV1hZdF96UUVLcTdWanZVc2YtaGtkZXNzY1ZCQQ?oc=5"
+        },
+        {
+          "name": "hn",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/"
+        },
+        {
+          "name": "tech-insider.org",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE4wUEcxTS1ScFp2OTBVTngyeElKcUROa0RHVjlNXzltcE9salpMa2FKNklwcUkwUUdENURaR0NIamdYNWdFVmpkOTNXTEJJZXBBUmw0T3g3ZUVhbksyaWh1TWIxRnhwMjc2Q0FySmljYkhCV3dtSnVRU2M2RQ?oc=5"
+        },
+        {
+          "name": "Politico",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPd0tEVW16UTJGYURuZ0diWk5sSEItMHk3S2NIYWoyUXI2NmZkdGNuTlNzcDR0M3R4cjRNVU9KWnVnRmxDRVZpeVl4djB6XzY1bVFFZG9YXzJmWTAxemo5R0JIN1VwRl9leWlLTXZ4bW5WQlVHS2dmQzR1NXI4cklnRmhnbEJUdEZDMm4zSlhFTnUxZw?oc=5"
+        },
+        {
+          "name": "hn",
+          "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122101673157476035",
+      "ig_due": "2026-09-16T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122101673157476035",
+          "url": "https://facebook.com/1381130541740424_122101673157476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
