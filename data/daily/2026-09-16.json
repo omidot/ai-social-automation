@@ -2,7 +2,7 @@
   "date": "2026-09-16",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
       "style": "white-magazine",
@@ -73,7 +73,10 @@
           "url": "https://facebook.com/1381130541740424_122101673157476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18112817779994501"
+        }
       },
       "ig_attempts": 1
     },
