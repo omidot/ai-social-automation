@@ -29,7 +29,8 @@ export type Card = {
   /** Màn hình của CHƯƠNG chứa thẻ này (do tools/screens.mjs gán). Mỗi
    *  chương một màn hình chiếm khung, đứng yên suốt chương -- như video mẫu. */
   screen?: {
-    kind: 'hook' | 'panel' | 'shot' | 'statement' | 'element' | 'cards' | 'person';
+    kind: 'hook' | 'panel' | 'shot' | 'statement' | 'element' | 'cards' | 'person'
+      | 'brand' | 'brandpair' | 'brandcards';
     name?: string;
     role?: string;
     quote?: string;

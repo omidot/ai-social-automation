@@ -40,13 +40,24 @@
    "until": 19.74
   },
   {
-   "kind": "brand",
+   "kind": "brandcards",
    "at": 19.74,
    "eyebrow": "Cú Sốc Tự Động Hoá",
    "tiles": [
     {
      "label": "OpenAI",
      "file": "logos/openai.png"
+    }
+   ],
+   "items": [
+    {
+     "label": "Tự sửa phần mềm"
+    },
+    {
+     "label": "Tự viết báo cáo"
+    },
+    {
+     "label": "Tự giám sát production"
     }
    ],
    "until": 34.72

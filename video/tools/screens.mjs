@@ -258,6 +258,20 @@ export function findSpokenTime(cards, phrase) {
   return bestHits >= need ? best : null;
 }
 
+/** Mọi lần một cụm từ được nói, không chỉ lần đầu. */
+export function findAllSpokenTimes(cards, phrase, minGap = 6) {
+  const out = [];
+  const seen = new Set();
+  for (const c of cards) {
+    const t = findSpokenTime([c], phrase);
+    if (t === null) continue;
+    if (out.length && t - out[out.length - 1] < minGap) continue;
+    if (seen.has(t)) continue;
+    seen.add(t); out.push(t);
+  }
+  return out;
+}
+
 /**
  * Dựng DÒNG THỜI GIAN MÀN HÌNH theo MỐC NỘI DUNG, không theo khung chương.
  *
@@ -320,7 +334,7 @@ export function buildTimeline(chapters, opts) {
         }
       }
       const PAIR_GAP = 3.0;     // hai hãng cách nhau ngần này thì coi là một cặp
-      const SAME_GAP = 12;      // cùng một hãng nhắc lại quá gần thì bỏ
+      const SAME_GAP = 8;      // cùng một hãng nhắc lại quá gần thì bỏ
       const lastSeen = new Map();
       for (let i = 0; i < flat.length; i++) {
         const a = flat[i];
@@ -342,28 +356,33 @@ export function buildTimeline(chapters, opts) {
           } });
           i = flat.indexOf(pair);
         } else {
-          out.push({ at: a.t, screen: {
-            kind: 'brand', at: a.t, eyebrow: ch.label || '',
-            tiles: [{ label: a.b.label, file: a.b.file }],
-          } });
+          // Có câu liệt kê ngay sau tên hãng -> logo dẫn đầu, card nhỏ rơi
+          // xuống từng cái một. Đây là dạng người dùng mô tả đích danh.
+          const near = listOf(chText.join(' '));
+          out.push({ at: a.t, screen: near
+            ? { kind: 'brandcards', at: a.t, eyebrow: ch.label || '',
+                tiles: [{ label: a.b.label, file: a.b.file }], items: near }
+            : { kind: 'brand', at: a.t, eyebrow: ch.label || '',
+                tiles: [{ label: a.b.label, file: a.b.file }] } });
         }
       }
     }
 
     // NHÂN VẬT: màn báo giấy, bật đúng lúc tên người được nói ra.
     for (const pr of people) {
-      const t = findSpokenTime(cards, pr.name);
-      if (t === null) continue;
-      const variant = ED_VARIANTS[edAt++ % ED_VARIANTS.length];
-      out.push({ at: t, screen: {
-        kind: 'person', at: t, variant,
-        file: pr.file, name: pr.name, role: pr.role || '',
-        credit: pr.credit || '',
-        date: pr.date || '',
-        headline: pr.headline || '',
-        standfirst: pr.standfirst || '',
-        masthead: pr.masthead || '',
-      } });
+      // Bật ở MỌI lần tên được nhắc trong chương, không chỉ lần đầu --
+      // người dùng nói rõ: cứ nói "Johnny Ho" là ảnh Johnny Ho phải lên.
+      const hits = findAllSpokenTimes(cards, pr.name);
+      for (const t of hits) {
+        const variant = ED_VARIANTS[edAt++ % ED_VARIANTS.length];
+        out.push({ at: t, screen: {
+          kind: 'person', at: t, variant,
+          file: pr.file, name: pr.name, role: pr.role || '',
+          credit: pr.credit || '', date: pr.date || '',
+          headline: pr.headline || '', standfirst: pr.standfirst || '',
+          masthead: pr.masthead || '',
+        } });
+      }
     }
 
     // Bảng số: bật đúng giây con số đầu tiên của nó được đọc.
@@ -414,7 +433,7 @@ export function buildTimeline(chapters, opts) {
   out.sort((a, b) => a.at - b.at);
 
   // Hai màn sát nhau quá thì chớp nhoáng, người xem chưa kịp nhìn.
-  const MIN_GAP = 3.2;
+  const MIN_GAP = 2.4;
   const kept = [];
   for (const x of out) {
     if (kept.length && x.at - kept[kept.length - 1].at < MIN_GAP) continue;

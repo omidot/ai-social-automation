@@ -517,3 +517,83 @@ const BrandTile: React.FC<{
     </div>
   );
 };
+
+/* ============ 7. BRANDCARDS — logo + card nhỏ hiện lần lượt ============ */
+
+/**
+ * Logo hãng bên trên, rồi các CARD NHỎ rơi xuống TỪNG CÁI MỘT bên dưới.
+ *
+ * Người dùng mô tả đúng dạng này: "nói tới OpenAI tung ra GPT-6 Astra thì
+ * logo OpenAI và chữ tiêu đề dưới là card nhỏ từng cái một hiện lên". Khác
+ * với CardsScreen ở chỗ có logo dẫn đầu, và mỗi card vào lệch nhau rõ rệt
+ * để mắt bắt được từng cái chứ không thấy cả cụm bật lên một lúc.
+ */
+export const BrandCardsScreen: React.FC<{
+  tile: { label: string; file?: string };
+  items: { label: string; note?: string }[];
+  ff: string; at: number;
+}> = ({ tile, items, ff, at }) => {
+  const { fps } = useVideoConfig();
+  const a = useIn(at, 0, fps);
+  return (
+    <AbsoluteFill style={{
+      alignItems: 'center', justifyContent: 'center',
+      paddingLeft: REF.PAD, paddingRight: REF.PAD, paddingBottom: 430,
+    }}>
+      <div style={{
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16,
+        marginBottom: 34,
+        opacity: a.o, transform: `translateY(${a.y}px) scale(${0.85 + a.o * 0.15})`,
+      }}>
+        <div style={{
+          width: 170, height: 170, borderRadius: 34, background: '#FFFFFF',
+          boxShadow: '0 22px 60px rgba(0,0,0,0.55)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          {tile.file ? (
+            <Img src={staticFile(tile.file)}
+                 style={{ width: '62%', height: '62%', objectFit: 'contain' }} />
+          ) : null}
+        </div>
+        <span style={{
+          fontFamily: ff, fontWeight: '800', fontSize: 34, color: REF.ink,
+          letterSpacing: '0.02em',
+        }}>{tile.label}</span>
+      </div>
+
+      <div style={{ width: 1080 - REF.PAD * 2 }}>
+        {items.slice(0, 4).map((it, i) => (
+          <StepIn key={i} item={it} ff={ff} at={at + 12 + i * 11} />
+        ))}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/** Một card nhỏ trượt vào từ trái, lệch nhịp với các card khác. */
+const StepIn: React.FC<{
+  item: { label: string; note?: string }; ff: string; at: number;
+}> = ({ item, ff, at }) => {
+  const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
+  const s = spring({ frame: frame - at, fps,
+                     config: { damping: 20, stiffness: 165, mass: 0.75 } });
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 20,
+      padding: '24px 30px', marginBottom: 16, borderRadius: 20,
+      background: REF.box, border: `1px solid ${REF.boxLine}`,
+      opacity: interpolate(s, [0, 1], [0, 1]),
+      transform: `translateX(${interpolate(s, [0, 1], [-46, 0])}px)`,
+    }}>
+      <span style={{
+        width: 12, height: 12, flex: '0 0 12px', borderRadius: '50%',
+        background: REF.accent,
+      }} />
+      <span style={{
+        fontFamily: ff, fontWeight: '800', fontSize: 34, color: REF.ink,
+        lineHeight: 1.25,
+      }}>{item.label}</span>
+    </div>
+  );
+};

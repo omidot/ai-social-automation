@@ -7,7 +7,8 @@ import { loadFont } from '@remotion/google-fonts/BeVietnamPro';
 import { BgVideo, palAt } from './BgVideo';
 import { ChartCard } from './Chart';
 import { ScreenshotCard } from './Screenshot';
-import { HookScreen, StatementScreen, ShotScreen, CardsScreen, BrandScreen } from './Screens';
+import { HookScreen, StatementScreen, ShotScreen, CardsScreen, BrandScreen,
+         BrandCardsScreen } from './Screens';
 import { ElementView } from './Elements';
 import { EditorialPerson } from './Editorial';
 import { loadFont as loadSerif } from '@remotion/google-fonts/PlayfairDisplay';
@@ -74,6 +75,9 @@ const ScreenView: React.FC<{ sc: Screen }> = ({ sc }) => {
                 name={sc.name} role={sc.role}
                 cutFile={sc.file!} credit={sc.credit}
                 serif={serif.fontFamily} sans={fontFamily} at={at} />; break;
+    case 'brandcards':
+      inner = <BrandCardsScreen tile={(sc.tiles ?? [])[0] ?? { label: '' }}
+                                items={sc.items ?? []} ff={fontFamily} at={at} />; break;
     case 'brand':
     case 'brandpair':
       inner = <BrandScreen tiles={sc.tiles ?? []} eyebrow={sc.eyebrow}
@@ -109,7 +113,8 @@ const ScreenView: React.FC<{ sc: Screen }> = ({ sc }) => {
  * Chữ lấy từ KỊCH BẢN (đúng chính tả), mốc giờ lấy từ giọng đọc thật --
  * xem phần căn chỉnh trong tools/align.mjs.
  */
-const Caption: React.FC<{ card: Card; activeIdx: number }> = ({ card, activeIdx }) => {
+const Caption: React.FC<{ card: Card; activeIdx: number; asideOf?: boolean }> =
+({ card, activeIdx, asideOf }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pal = usePal();
@@ -123,14 +128,18 @@ const Caption: React.FC<{ card: Card; activeIdx: number }> = ({ card, activeIdx 
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <div style={{
-      position: 'absolute', left: 0, right: 0, top: '70%',
-      display: 'flex', justifyContent: 'center', padding: '0 76px',
+      position: 'absolute',
+      // Màn nhân vật: người chiếm nửa phải khung, nên caption dạt hẳn sang
+      // TRÁI và hẹp lại. Để giữa như cũ là chữ nằm đè lên mặt người.
+      left: 0, right: asideOf ? '48%' : 0, top: asideOf ? '58%' : '70%',
+      display: 'flex', justifyContent: 'center',
+      padding: asideOf ? '0 20px 0 70px' : '0 76px',
       pointerEvents: 'none',
     }}>
       <span style={{
-        fontFamily, fontWeight: '800', fontSize: 62, lineHeight: 1.18,
-        textAlign: 'center', letterSpacing: '-0.015em',
-        textShadow: '0 4px 30px rgba(0,0,0,0.92)',
+        fontFamily, fontWeight: '800', fontSize: asideOf ? 46 : 62, lineHeight: 1.2,
+        textAlign: asideOf ? 'left' : 'center', letterSpacing: '-0.015em',
+        textShadow: asideOf ? 'none' : '0 4px 30px rgba(0,0,0,0.92)',
         opacity: appear,
         transform: `translateY(${interpolate(appear, [0, 1], [10, 0])}px)`,
       }}>
@@ -233,7 +242,7 @@ const Stage: React.FC = () => {
         return sc ? <ScreenView sc={sc} /> : null;
       })()}
       <PalCtx.Provider value={over}>
-        <Caption card={cur} activeIdx={capIdx} />
+        <Caption card={cur} activeIdx={capIdx} asideOf={onPaper} />
         <Counter index={chapIdx} total={chapters.length} />
         <ChapterRail index={chapIdx} total={chapters.length} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>

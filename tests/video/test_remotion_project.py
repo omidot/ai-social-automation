@@ -435,11 +435,32 @@ def test_editorial_person_has_several_typographic_looks():
     assert "ED_VARIANTS" in tools, "kiểu chữ phải xoay vòng giữa các màn"
 
 
-def test_person_screens_fire_when_the_name_is_spoken():
-    """Màn nhân vật bật đúng lúc tên người được nói, không phải đầu chương."""
+def test_person_screens_fire_on_every_mention_of_the_name():
+    """Người dùng nói rõ: cứ nhắc "Johnny Ho" là ảnh Johnny Ho phải lên --
+    không chỉ lần đầu trong chương. Màn nhân vật giờ bật ở MỌI lần tên được
+    nói ra."""
     src = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
-    assert "const t = findSpokenTime(cards, pr.name);" in src
-    assert "if (t === null) continue;" in src, "không tìm thấy tên thì bỏ, không đoán"
+    assert "export function findAllSpokenTimes" in src
+    assert "const hits = findAllSpokenTimes(cards, pr.name);" in src
+
+
+def test_caption_moves_aside_on_person_screens():
+    """Người chiếm nửa phải khung; caption căn giữa như thường sẽ nằm đè lên
+    mặt -- đúng chỗ người dùng chỉ ra trên khung hình."""
+    src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
+    assert "asideOf" in src
+    assert "right: asideOf ? '48%' : 0" in src
+    assert "<Caption card={cur} activeIdx={capIdx} asideOf={onPaper} />" in src
+
+
+def test_brand_plus_stepping_cards_screen_exists():
+    """Dạng người dùng mô tả đích danh: "logo OpenAI và chữ tiêu đề dưới là
+    card nhỏ từng cái một hiện lên"."""
+    src = (VIDEO / "src/Screens.tsx").read_text(encoding="utf-8")
+    assert "export const BrandCardsScreen" in src
+    assert "const StepIn" in src, "mỗi card vào lệch nhịp, không bật cả cụm"
+    tools = (VIDEO / "tools/screens.mjs").read_text(encoding="utf-8")
+    assert "kind: 'brandcards'" in tools
 
 
 def test_bust_crop_removes_the_leftover_block():
