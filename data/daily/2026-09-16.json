@@ -76,6 +76,84 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Emerald AI, Google and NVIDIA Launch Alliance to Advance Flexible AI Data Centers",
+      "style": "navy-magazine",
+      "topic_key": "emerald-ai-google-and-nvidia-launch-alliance-to-ad",
+      "text_fb": "Đa số mọi người hiểu sai chỗ này: Họ nghĩ cuộc đua AI nằm ở việc ai có mô hình lớn hơn hay nhiều GPU hơn. Nhưng sự thật phũ phàng là: nguồn điện mới là nút thắt chí mạng.\n\nBạn có thể bỏ ra hàng triệu đô mua chip NVIDIA đắt đỏ, nhưng nếu lưới điện không thể cấp tải, hệ thống của bạn hoàn toàn vô dụng. Lưới điện truyền thống vốn được xây cho nhu cầu tĩnh, không đáp ứng kịp tốc độ bùng nổ của các siêu trung tâm dữ liệu AI.\n\nĐó là lý do Emerald AI, Google và NVIDIA vừa bắt tay thành lập Liên minh Quản lý Năng lượng AI (AEMA). Bài học rút ra ở đây không phải là một bản tin thời sự. Đây là một nguyên tắc vận hành: Hạ tầng thông minh quan trọng hơn việc tăng công suất thô.\n\nThay vì bắt lưới điện chịu tải cố định, AEMA biến trung tâm dữ liệu thành một tài nguyên có thể điều tiết linh hoạt. Hệ thống AI sẽ tự động giảm tải, xả pin hoặc chuyển dịch khối lượng tính toán khi lưới điện căng thẳng. Nhờ vậy, thời gian duyệt đấu nối được rút ngắn, chi phí giảm xuống và độ ổn định tăng lên.\n\nNếu bạn đang làm sản phẩm công nghệ hay xây dựng hạ tầng, hãy nhớ: Bất kỳ quy trình nào không có tính linh hoạt sẽ sớm bị nghiền nát bởi chi phí vận hành. Người thắng cuộc không phải là người mua nhiều chip nhất, mà là người tối ưu được từng Watt điện hiệu quả nhất.\n\nBạn đánh giá thế nào về bước đi này của NVIDIA và Google?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Đa số nghĩ AI tắc ở chip. Họ sai rồi. Điện mới là nút thắt thực sự. NVIDIA, Google và Emerald AI vừa lập liên minh AEMA để biến trung tâm dữ liệu AI thành nguồn điện linh hoạt. Người chiến thắng cuộc đua AI là người làm chủ được hạ tầng năng lượng.",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#Google",
+        "#AIInfrastructure",
+        "#EnergyManagement",
+        "#AEMA",
+        "#DataCenter",
+        "#TechTrends",
+        "#AIFuture",
+        "#AIEnergy"
+      ],
+      "images": [
+        "assets/posts/2026-09-16/evening/01.jpg",
+        "assets/posts/2026-09-16/evening/02.jpg",
+        "assets/posts/2026-09-16/evening/03.jpg",
+        "assets/posts/2026-09-16/evening/04.jpg",
+        "assets/posts/2026-09-16/evening/05.jpg",
+        "assets/posts/2026-09-16/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-16/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/ai-energy-management-alliance/"
+        },
+        {
+          "name": "nguoiquansat.vn",
+          "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNR2I5ekpRai0taDBuQW1WZW9vLUloUFFCNzFiRUxiRElmVUdMZTliMUlTYzdZSzZ0eFg2SmdkejU4VUhZTkR5d1hIbkkzSlRrdkJwNGxmRzFYNUl5TjJNbHAyWFdWYzNqN3VISHhIN00wbDVROEh1S1RYeUwyamtURjJHak5jSnowZEJLVnJZY1A3NkJobHZfRGl4ZGt4WXNGMkFaRnFSZUZhSHZUYVJGOGd3SV9rRGJ6NlZpdEREYzkzU2R0Y1VHeUdGVEhqcmJxRmZ4dE1iUlZDdFFPcHZXb1V4YTdIYkFQb3NhazlYRGM2N29PZzFBb0tBY1h6aEU5d1piRnpNa3N1enpkb2c?oc=5"
+        },
+        {
+          "name": "IonQ",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPSGl5bXNIU3FULU4ySU1Na3dsSlZIeWxrRVhIUGxDNGJJSWs1NzZLU2hKcHF6RC1EelRkUlFrSmxXQjcwd3RrVktpT2pjb3U3Q2pOUWw3VnMxR081UlZyRVVNb2wxWTFBVDhhWV9rUFE1OWR5TlpXLWRhMzVJS2t6RTZhc0NCUFJ5Z2NqZUFDX05iMFJNemxWeHpOTFJQMWhSN2F6Y0l6REpHZi1qbkF0UTJQNmdfVmc3SHBIWUUwcEtjYzdXRXk0c0tYVlQ5cjFvd0FwQg?oc=5"
+        },
+        {
+          "name": "PR Newswire",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQZ0tFbmFnazNnZTd4NUItZUhhYm1vaUJ2YVY2bUFDQnlsSWdNd0YyRkNtNjRMN0pvM2Y3NU12UXRBSG1XY1JadExDcUdGa09ncnlqclhnYUlpa2Y3dUMxWjhtSERyNmw3M2xRYkROQmxoanNoN2hoNXVKMTd0WnI3MkNnNjdIenREQkJKanhLMVBUMy1DTzZmVzFFU3FDSGZ6cE1fMTJ6MTkwRzR2NGR3WmtpN3RsUVI2NnpuX2hwdFo3dnhuTlpSc2FFa1A2XzVnR3lrYw?oc=5"
+        },
+        {
+          "name": "HackerNoon",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQbEN5eDh4REdLY3VIUzF3T191VXpRTjhBNUxtYnZIaTZ5OG5fNU5vOWFNYnU3WEZLNnF3SXFWMDE5SUtNa3RFWkVSUDlRUVVodlZpamdjOHVsSWZ4ZzZxM1ZwXzFfTWlubmFaUXhGUGRRNGRoNmRocmZaTHRNNnY3eWI3VmNjSWFIZzFWMUp4VmRJZkk3c2kteUpTV3JCZTdCUnpIeGFNTEFtQlhVVUxTYjRSQVF3LUJNbWg2OA?oc=5"
+        },
+        {
+          "name": "marketscreener.com",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxORlZJSmVCUmVDVmJBZVpMR2pQTHp6ZC1sX2RSQWw3Ul9INHhxRnl5UjJTSzN6d0RlRGZ3OXpxVkc0THdWRVNJWDM0d3BtTk5ZQ3RJMWlkendsRmVoQnhON1pkUklWQnBqQUZ1ZDJuOVozNEtPMG03TUx0dVc4QTZYdTFsQkVQcXFPQnNTTENfdnN1a3BQQnNsYW9lTGVPQTFxRmFyQWpEdExkRWgtU1VBVk5pWkU5QQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122102128107476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122102128107476035",
+          "url": "https://facebook.com/1381130541740424_122102128107476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=Ab6Tqff5zZ8_TdEm90vBMFh"
+        }
+      }
     }
   }
 }
