@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-17",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Helping older adults use AI in everyday life",
+      "style": "warm-magazine",
+      "topic_key": "helping-older-adults-use-ai-in-everyday-life",
+      "text_fb": "Đa số mọi người hiểu sai chỗ này. Bạn nghĩ AI là cuộc chơi riêng của giới trẻ, của dân lập trình hay mấy kẻ làm nội dung? Bạn nhầm rồi.\n\nTrong khi người trẻ mải tranh cãi xem ChatGPT có cướp mất việc làm hay không, một cuộc dịch chuyển âm thầm đang diễn ra. Theo dữ liệu từ OpenAI, tỷ lệ người dùng từ 55 tuổi trở lên tại Mỹ đã tăng từ 6% lên gần 10% chỉ trong một năm. Họ không dùng AI để tỏ ra nguy hiểm. Họ dùng ChatGPT để giải thích những tờ hóa đơn rắc rối, lên kế hoạch du lịch và giữ kết nối với người thân.\n\nĐặc biệt hơn, OpenAI vừa hợp tác với OATS để mang các lớp học AI miễn phí tới 1.000 người lớn tuổi tại 10 thành phố lớn ở Mỹ. Mục tiêu không chỉ là dạy công nghệ, mà là biến AI thành tấm khiên chống lừa đảo trực tuyến. Hàng chục triệu lần mỗi tuần, người ta dùng ChatGPT để kiểm tra các email và tin nhắn nghi vấn. Một người 60 tuổi đang dùng AI để bảo vệ tài sản của họ mỗi ngày.\n\nCái thực sự quan trọng ở đây không phải là thuật ngữ hàn lâm. Cái quan trọng là tư duy thực chiến. Người thắng là người biết dùng công cụ để giải quyết nỗi đau thực tế. Nếu bạn vẫn đang đứng ngoài cuộc và coi AI là chuyện xa vời, bạn đang tự tụt hậu so với cả thế hệ cha anh mình.\n\nBạn đã từng dùng AI để giải quyết một rắc rối thực tế nào trong tuần này chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Đa số mọi người nghĩ AI chỉ dành cho giới trẻ. Bạn nhầm rồi. Tỷ lệ người dùng 55+ trên ChatGPT đã tăng lên 10%. Họ dùng AI đọc hóa đơn và chống lừa đảo. Nếu bạn chưa biết dùng AI vào việc thực tế, bạn đang tụt hậu. Bạn nghĩ sao?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#OpenAI",
+        "#ChatGPT",
+        "#CongNgheAI",
+        "#TriTueNhanTao",
+        "#HocAI",
+        "#KyNangSo",
+        "#XuHuongCongNghe",
+        "#AnNinhMang",
+        "#TuDuyAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-17/morning/01.jpg",
+        "assets/posts/2026-09-17/morning/02.jpg",
+        "assets/posts/2026-09-17/morning/03.jpg",
+        "assets/posts/2026-09-17/morning/04.jpg",
+        "assets/posts/2026-09-17/morning/05.jpg",
+        "assets/posts/2026-09-17/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-17/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-17/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-17/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-17/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-17/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-17/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122102562873476035",
+      "ig_due": "2026-09-17T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122102562873476035",
+          "url": "https://facebook.com/1381130541740424_122102562873476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
