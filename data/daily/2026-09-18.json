@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-18",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Học thêm 10 công cụ AI nữa không làm bạn giỏi hơn",
+      "style": "white-ticket",
+      "topic_key": "hoc-them-10-cong-cu-ai-nua-khong-lam-ban-gioi-hon",
+      "text_fb": "Sưu tầm công cụ AI là căn bệnh mới của giới làm việc hiện đại. Số đông ngoài kia đang phát cuồng mỗi khi có một AI mới xuất hiện. Họ bấm lưu, họ Bookmark hàng trăm bài viết hướng dẫn, họ tải đủ loại ứng dụng về máy. Nhưng nhìn lại kết quả cuối cùng: công việc của bạn có nhanh hơn gấp đôi không? Thu nhập của bạn có tăng lên không?\n\nCâu trả lời đa số là không. Bạn đang rơi vào bẫy của sự bận rộn giả tạo.\n\nHọc thêm 10 công cụ AI nữa không làm bạn giỏi hơn. Nó chỉ khiến bạn xao lãng. Cái thực sự quan trọng không phải là bạn biết bao nhiêu app, mà là bạn giải quyết được bài toán gì. Đa số mọi người hiểu sai chỗ này: họ nghĩ công cụ tạo ra khác biệt, nhưng sự thật là quy trình mới quyết định chiến thắng. Người giỏi thật sự chỉ dùng một đến hai AI cốt lõi, nhưng họ đóng gói nó thành quy trình tự động hóa hoàn chỉnh. Họ tạo ra kết quả thực tế, trong khi bạn vẫn đang bận thử nghiệm ứng dụng mới.\n\nNếu bạn đang dành 2 tiếng mỗi ngày chỉ để dùng thử các công cụ AI mới, hãy dừng lại ngay. Hãy chọn đúng một công cụ cơ bản nhất, tập trung đào sâu và giải quyết một nỗi đau cụ thể trong công việc của bạn hôm nay. Đừng trở thành kẻ thu gom rác kỹ thuật số.\n\nBạn đang thực sự làm chủ một công cụ AI hay chỉ đang sưu tầm chúng?",
+      "text_ig": "Sưu tầm công cụ AI không giúp bạn giỏi hơn, nó chỉ tạo cảm giác bận rộn giả tạo. Người thắng không sở hữu nhiều app nhất, họ sở hữu quy trình tối ưu nhất. Dừng lưu bài, bắt đầu làm thật. Bạn đang dùng mấy AI mỗi ngày?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#TuDuyAI",
+        "#KyNangAI",
+        "#HieuSuatLamViec",
+        "#ToiUuQuyTrinh",
+        "#XuhuongAI",
+        "#PhatTrienBanThan"
+      ],
+      "images": [
+        "assets/posts/2026-09-18/morning/01.jpg",
+        "assets/posts/2026-09-18/morning/02.jpg",
+        "assets/posts/2026-09-18/morning/03.jpg",
+        "assets/posts/2026-09-18/morning/04.jpg",
+        "assets/posts/2026-09-18/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-18/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-18/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-18/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-18/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-18/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122103523971476035",
+      "ig_due": "2026-09-18T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122103523971476035",
+          "url": "https://facebook.com/1381130541740424_122103523971476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
