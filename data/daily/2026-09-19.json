@@ -1,0 +1,82 @@
+{
+  "date": "2026-09-19",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Microsoft exec called AI scraping 'the largest theft of labor in human history'",
+      "style": "navy-ticket",
+      "topic_key": "microsoft-exec-called-ai-scraping-the-largest-thef",
+      "text_fb": "Đa số mọi người nghĩ AI thông minh là nhờ thuật toán siêu việt. Nhưng sự thật nghiệt gã hơn nhiều.\n\nTheo tài liệu tòa án vừa được công bố từ vụ kiện giữa New York Times với OpenAI và Microsoft, một lãnh đạo cấp cao của Microsoft từng thừa nhận trong memo nội bộ: việc cào dữ liệu huấn luyện AI chính là \"vụ trộm lao động lớn nhất trong lịch sử loài người\".\n\nĐó không phải lời chỉ trích từ đối thủ. Đó là phát ngôn của Brent Hecht, Giám đốc Khoa học Ứng dụng tại Microsoft.\n\nThống kê nội bộ của Microsoft cho thấy Copilot đã khiến lượng người dùng bấm vào bài viết của New York Times giảm tới 93% so với tìm kiếm Bing truyền thống. AI lấy thông tin, trả lời trực tiếp cho người dùng và triệt tiêu nguồn truy cập của nhà xuất bản. Chính Microsoft gọi đây là một \"vòng xoáy hủy diệt\".\n\nChưa dừng lại ở đó, tài liệu còn tiết lộ nhân viên OpenAI đã cố tình tìm thủ thuật vượt rào trả phí (paywall) và chủ động xóa thông báo bản quyền trước khi đưa dữ liệu vào mô hình. Lãnh đạo cấp cao của họ chỉ đáp lại ngắn gọn: \"À hay đấy\".\n\nSự thật là: AI không tự nhiên giỏi lên. Nó đang tiêu thụ chất xám của hàng triệu người sáng tạo nội dung mà không trả một đồng chi phí nào.\n\nNếu bạn đang tạo nội dung hay viết lách, bài học rất rõ ràng. Hoặc bạn làm chủ công cụ để bảo vệ giá trị bản thân, hoặc công sức của bạn sẽ biến thành nhiên liệu miễn phí cho kẻ khác làm giàu.\n\nBạn nghĩ đây là sự đánh đổi cần thiết cho tiến bộ công nghệ hay là hành vi vi phạm bản quyền trắng trợn?\n\nNguồn: hn",
+      "text_ig": "Sếp Microsoft từng gọi cào dữ liệu AI là \"vụ trộm lao động lớn nhất lịch sử\". AI không tự nhiên thông minh, nó sống nhờ chất xám bị lấy miễn phí. Bạn nghĩ đây là tiến bộ hay xâm phạm?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#OpenAI",
+        "#Microsoft",
+        "#ChatGPT",
+        "#Copilot",
+        "#BanQuyenAI",
+        "#TechNews",
+        "#PhanTichAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-19/morning/01.jpg",
+        "assets/posts/2026-09-19/morning/02.jpg",
+        "assets/posts/2026-09-19/morning/03.jpg",
+        "assets/posts/2026-09-19/morning/04.jpg",
+        "assets/posts/2026-09-19/morning/05.jpg",
+        "assets/posts/2026-09-19/morning/06.jpg",
+        "assets/posts/2026-09-19/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "hn",
+          "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2262055/microsoft-openai-internet-scraping-largest-theft-of-labor/"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/997633/openai-microsoft-chatgpt-ai-new-york-times-doom-loop-theft-google-zero"
+        },
+        {
+          "name": "Stocktwits",
+          "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNYUJ5ekNyYi1OeHFMcE4tVkVpZmstNkp1a0ZPWUdocGg1UG5WcWZnQ0FVX0FrNmE5M3hvRUxVWkpmZTMxRkFoWXFqTjhQT2NJZl9maExDYUFlUWI2b3czQ0FvY2toNVdCU2MwSmx4UURXOFk1M2Q4WmZNOTNDeVBCVzlLVVR3bkJUakVaa0NmS21Jal9DNVdUbmhWY0VpSzF3YXdOc3BTajlQMFNzMmozcWtBLUxNbmlGaU5lM2c1dW45ZXZQVGlaTW9Fa2ZqSjhpTWNYaGFQU1RibER6NlpFTFQzdHd3aFFvM1A2dVVpQkpnZHpMV0I5cS1GQ2NUQQ?oc=5"
+        },
+        {
+          "name": "CNBC",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxObnh4czlpREt3SjNqZkhVb01vQVVJVTBiYlRhVlJ0Z0xiRnF4YnoyOU5YWXdDa05NS051aFFOS2E3ZmlxWDNpTHVoRjN2Mm5IYmVtQVM0ekpDT0UxR0Vjb0dLNHVWMnRlU1RhWlRxeWx2ZTNRYTFCTTNtLWdFMzJTRnFMc2VsQTZwV29iSkctZ3R2Smx4bnFkWjVWeUVNOVFCbHFtQtIBqgFBVV95cUxQVjZvU293cGh2VURVdGV6eUUyTlEwbWI3QzFESFFwajZHSnpuQktpaTZWSHU3ZFhsMWxFUmdrYVJmN0lOWnd4d1A5Qjd3eFkxWnk4ZkZQRVVhaF9WN3BtVzlETE12a0VuM0dYU1lSSW00UW1JNlNFMVc0VURJd18yMjZueDlrM2xmWlk1Qk1aSHp6SXRmS3dmTXJreWJRUVlfcExPUmZzLVIzZw?oc=5"
+        },
+        {
+          "name": "hn",
+          "url": "https://arstechnica.com/tech-policy/2026/09/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history/"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122104538913476035",
+      "ig_due": "2026-09-19T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122104538913476035",
+          "url": "https://facebook.com/1381130541740424_122104538913476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
