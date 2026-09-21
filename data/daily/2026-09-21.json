@@ -73,6 +73,59 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Khi ai cũng có cùng công cụ AI, thứ gì trở nên đắt giá",
+      "style": "navy-centered",
+      "topic_key": "khi-ai-cung-co-cung-cong-cu-ai-thu-gi-tro-nen-at-g",
+      "text_fb": "Có một sự thật khó chịu mà ít ai chịu thừa nhận: công cụ AI xịn nhất bây giờ không còn là bí mật của riêng ai. Vài năm trước, chỉ cần biết dùng một công cụ AI là bạn đã đứng trên số đông. Giờ thì sao? Đứa em học cấp ba cạnh nhà bạn cũng mở được đúng công cụ đó, cùng lúc, gần như miễn phí. Cái vé vào cửa mà ngày xưa được xem là lợi thế, giờ ai cũng cầm trong tay. Vậy nếu công cụ không còn là thứ phân biệt được ai giỏi ai kém, thì cái gì mới đắt giá?\n\nMình tin là gu thẩm mỹ, tốc độ ra quyết định, và câu chuyện thật của riêng bạn. Hai người dùng cùng một công cụ, một người cho ra sản phẩm nhạt như nước ốc, người kia cho ra thứ khiến người xem dừng tay lướt. Khác biệt không nằm ở nút bấm họ nhấn, mà nằm ở việc họ biết chọn gì, bỏ gì, và vì sao lại chọn vậy. Người làm nội dung giỏi không nhanh hơn vì gõ phím lẹ, mà vì họ đã quyết trong đầu trước khi chạm vào công cụ: nói gì, cho ai, chốt câu nào. Còn người chưa rõ mình muốn nói gì thì có công cụ xịn cỡ nào cũng ngồi nhìn màn hình trắng.\n\nĐa số mọi người đang hiểu sai chỗ này. Họ nghĩ cứ sưu tầm thêm công cụ mới là sẽ giỏi hơn. Nhưng công cụ chỉ khuếch đại thứ đã có sẵn trong đầu bạn, nó không tạo ra thứ đó. Nếu bạn đang chạy theo hết app này đến app khác mà vẫn thấy mình giậm chân tại chỗ, vấn đề chưa chắc nằm ở công cụ. Bạn đang tập trung vào công cụ, hay đang tập trung vào gu và tư duy của chính mình?",
+      "text_ig": "Ai cũng có cùng công cụ AI. Vậy thứ gì còn đắt giá? Gu thẩm mỹ, tốc độ quyết định, và câu chuyện thật của riêng bạn, những thứ máy không copy được. Ngừng sưu tầm công cụ, bắt đầu luyện tư duy. Bạn đang đầu tư vào cái nào?",
+      "hashtags": [
+        "#AI",
+        "#TriTueNhanTao",
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#XuHuongAI",
+        "#KyNangSo",
+        "#ChuyenDoiSo",
+        "#TuDuySangTao",
+        "#CongCuAI",
+        "#HocAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-21/evening/01.jpg",
+        "assets/posts/2026-09-21/evening/02.jpg",
+        "assets/posts/2026-09-21/evening/03.jpg",
+        "assets/posts/2026-09-21/evening/04.jpg",
+        "assets/posts/2026-09-21/evening/05.jpg",
+        "assets/posts/2026-09-21/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122107648023476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122107648023476035",
+          "url": "https://facebook.com/1381130541740424_122107648023476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AAAYW3B8OpfK6hMMXsPcoZ5"
+        }
+      }
     }
   }
 }
