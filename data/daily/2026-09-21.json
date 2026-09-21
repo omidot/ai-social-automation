@@ -71,7 +71,8 @@
           "scheduled": true
         },
         "ig": null
-      }
+      },
+      "ig_attempts": 1
     }
   }
 }
