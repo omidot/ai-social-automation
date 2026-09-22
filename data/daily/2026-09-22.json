@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-22",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Advisory Group on Mathematics and Artificial Intelligence",
+      "style": "warm-centered",
+      "topic_key": "advisory-group-on-mathematics-and-artificial-intel",
+      "text_fb": "Đa số mọi người đang hiểu sai về AI. Bạn nghĩ ChatGPT sinh ra chỉ để viết văn bản hay tạo ảnh hư cấu? Đã đến lúc nhìn thẳng vào thực tế.\n\nMới đây OpenAI công bố mô hình nội bộ mới của họ đã tự giải quyết xong bài toán Thiên niên kỷ Navier-Stokes cùng hơn 100 bài toán mở tồn tại hàng thế kỷ trong toán học. Tốc độ này làm chính các nhà toán học hàng đầu kinh ngạc. Đến mức một nhóm chuyên gia phải gửi thư cảnh báo về nguy cơ AI làm đảo lộn nền tảng khoa học. Đáp lại, OpenAI phải lập tức thành lập Hội đồng Cố vấn Toán học độc lập với sự tham gia của những huyền thoại như Edward Witten hay Timothy Gowers để định hướng lại cách phát triển.\n\nĐiều này dạy mình một nguyên tắc quan trọng: nếu đỉnh cao tư duy logic và lý thuyết của nhân loại còn đang bị AI chinh phục với tốc độ chóng mặt, thì những công việc tư duy lối mòn của bạn hoàn toàn không có vùng an toàn.\n\nNgười thất bại sẽ tiếp tục phủ nhận hoặc hoảng loạn. Người chiến thắng sẽ hiểu rằng khi AI đảm nhận việc giải đề, giá trị thực sự của con người dịch chuyển sang khả năng đặt câu hỏi, định hình bài toán và khai thác kết quả.\n\nĐừng cố cạnh tranh với AI về sức mạnh tính toán hay xử lý. Hãy học cách đứng trên vai nó để giải quyết những bài toán lớn hơn trong sự nghiệp của bạn.\n\nBạn đang dùng AI để làm việc thông minh hơn hay vẫn đứng ngoài nhìn cuộc chơi thay đổi?\n\nNguồn: OpenAI Blog",
+      "text_ig": "AI vừa giải hơn 100 bài toán thiên niên kỷ. Đừng dùng AI như công cụ gõ văn bản thông thường. Đã đến lúc nâng cấp tư duy đặt câu hỏi trước khi kỹ năng của bạn trở nên lỗi thời. Bạn đã sẵn sàng thay đổi chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#OpenAI",
+        "#ToanHocAI",
+        "#CongNgheMoi",
+        "#TuDuyAI",
+        "#HocAI",
+        "#TriTueNhanTao",
+        "#TuongLaiCongViec"
+      ],
+      "images": [
+        "assets/posts/2026-09-22/morning/01.jpg",
+        "assets/posts/2026-09-22/morning/02.jpg",
+        "assets/posts/2026-09-22/morning/03.jpg",
+        "assets/posts/2026-09-22/morning/04.jpg",
+        "assets/posts/2026-09-22/morning/05.jpg",
+        "assets/posts/2026-09-22/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-22/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-22/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-22/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-22/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-22/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-22/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/advisory-group-on-mathematics-and-ai"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE50TVpFbHFkWkJyVkNRV1l3T0VTb3V4YmFhOWZsd19nNEYwV0ZsVURHeElOMG8zYVNRc0NEYUxMYkNua3ozeXBGTTdoRlY5amo1b3dIU3o3TkxUQ0VHRnZ1STYta0FkM3NxZ0dob2Npdw?oc=5"
+        },
+        {
+          "name": "Bioengineer.org",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQeEJzTFM3MXVCak5FUURRQkw3VDhIckNDSTRJUkVuT1VPZkNWM2w0dTZOQWpoVkhoNmxRV1UzZVBkZ2F3bTZqWk80a3NMZ3NUOFdYX3QxTkFxdXVNaUZhckhtYnV4Ykt0SEZhc2JDN1p5cnJSaDE5STVUZ0xiSllNeEFfUldXVDY1d1NlTWpWTUZWVDg?oc=5"
+        },
+        {
+          "name": "insurancenewsnet.com",
+          "url": "https://news.google.com/rss/articles/CBMi1gJBVV95cUxPRWNYNTQzSVhfaERxQkFLc2RRbnJCRXF3eU5tUUR2bmJUZ1V6eEtVdVcyekFBb0ZDc2JUSEtBVWx4SzVUbnMyZW5OTm51NFpTalcyRWEtTWRWSTlreVZJcGVPNkhZdFRwN1lzQ3B6bnY2QncycVFkUzlxNi1LNEtVSWFIZDc2V2NBcHdaU25saGNqWlRhZGJRZGFrNVlZd1o3OG1FVko2WDFGaEJEaVd2NU43T1dNOGFmZ3J2SDFVelUyRzlrenZNNVcxN1c2d3BCT1FLWWtKU29YYTFaNTNNUDRoTjI1TEh0aWRWeGg0b0VGQk0taWNSbVgzY01PaGx4Y015S1BzY3Y3d2dWaFVjNHh5MG5UdDV2dFNpSmlldlh3SC0wc0FGYWtLdi00TlBneXVKN3RXS1ZrdFdlaTdOenRxMWtSTlhfYmluZk5Jbkh0c3hoTWc?oc=5"
+        },
+        {
+          "name": "Cureus",
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOdUI3NXpZa0RVYlBEWmZXZzVxbUc5WnFzZmhuay05cVpQa1BiTzJiMUtHR1hxdWF3bVBsaDlCX2Y2ZUtGSnR1RTNaX3ljWW96bTB4N0ppMGZGWFBSMFBlOTVsTm5rTHV0Mmk4ZG5wYzNISV9YZnRkdTEtU1JUU2RLOGN6RHR2QlVWYUJwRWV4OHF2cmdKd3ZfV05tQVE2WVNhdzVYT3RtS2JfRjVnZ0ZxN2hHTWJ3SEt5Tnc2ZFlLa2RLejd1X0ZDV0p5QUwtbl9Sb2QwLVhRVlNNdnBaUzZRUTVhWS1tdnExaTdvendYdVhwWmJtVWc?oc=5"
+        },
+        {
+          "name": "The Globe and Mail",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQY1BQbGlfNmRaVU5zZUFhTzBTSGxtM1RsUWkwWktEbVJIYjB4eTRGTktTRFdFbE54SDgtR0xzQUNfdnVCNjdLbmxfRGFYbEp0dTlYWmxwUnAzeE9Kc0pmTkNZTE5nS3VTQ0lYTFhzYk9tRmlRY0JEZGxscmJYeDhfdWJhN1YzMkxVNzBjb2Y1c3hURDNtRTBCX2pYSVNtWnBkMXFDX3pVNU92aE1fMUZlOWxQOXIxYlA4MUIxOFNYcldIM1ZQaHJ6bFZVbU5fLWZlY3hxbWYzQTVxeFU?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122108086017476035",
+      "ig_due": "2026-09-22T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122108086017476035",
+          "url": "https://facebook.com/1381130541740424_122108086017476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
