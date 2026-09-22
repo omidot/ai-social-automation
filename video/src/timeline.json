@@ -76,14 +76,6 @@
      "file": "logos/perplexity.png"
     }
    ],
-   "until": 43.7
-  },
-  {
-   "kind": "shot",
-   "file": "shots/src2.png",
-   "sourceUrl": "https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/",
-   "eyebrow": "Sự Thật Về Perplexity",
-   "at": 43.7,
    "until": 52.68
   },
   {
@@ -224,8 +216,8 @@
   },
   {
    "kind": "shot",
-   "file": "shots/src1.png",
-   "sourceUrl": "https://openai.com/index/cognition-devin-testing-with-astra",
+   "file": "shots/src2.png",
+   "sourceUrl": "https://techcrunch.com/2026/09/10/openai-puts-pro-subscriptions-on-hold-due-to-astra-demand/",
    "eyebrow": "Lựa Chọn Của Bạn",
    "at": 151.97,
    "until": 162.02

@@ -36,13 +36,33 @@ _BLOCKED_MARKERS = (
 # Ẩn dải đồng ý cookie / quảng cáo bằng CSS thay vì bấm nút: bấm "Đồng ý" là
 # thay mặt người dùng chấp nhận điều khoản, không được phép. Ẩn đi thì chỉ
 # ảnh hưởng tới ảnh chụp, không gửi đồng ý nào cho trang.
+#
+# Đo thật trên một bản dựng: ảnh chụp techcrunch.com lọt vào video với một
+# dải quảng cáo sự kiện màu tím ("Disrupt ticket savings...") và một khối
+# "Advertisement" xám trống ngay giữa khung -- cả hai đều không khớp các mẫu
+# cookie/consent/advert phía trên vì đó là banner sự kiện và khung quảng cáo
+# hiển thị (display ad), không phải quảng cáo lập trình (programmatic ad).
+# Thêm các mẫu chung cho thanh thông báo toàn trang / banner khuyến mãi /
+# thanh điều hướng dính đầu trang.
 _HIDE_CSS = """
   [id*="cookie" i], [class*="cookie" i], [id*="consent" i], [class*="consent" i],
   [id*="gdpr" i], [class*="gdpr" i], [aria-label*="cookie" i],
   [class*="newsletter" i], [class*="paywall" i], [id*="onetrust" i],
-  [class*="advert" i], [id*="advert" i], ins.adsbygoogle, iframe[src*="ads"]
+  [class*="advert" i], [id*="advert" i], ins.adsbygoogle, iframe[src*="ads"],
+  header, nav, [role="banner"], [role="navigation"],
+  [class*="banner" i], [id*="banner" i],
+  [class*="sitewide" i], [id*="sitewide" i],
+  [class*="announcement" i], [id*="announcement" i],
+  [class*="promo-bar" i], [class*="promobar" i], [class*="site-notice" i],
+  [class*="sticky-header" i], [class*="ad-slot" i], [id*="ad-slot" i],
+  [class*="dfp" i], [id*="dfp" i], [data-ad], [id^="google_ads_iframe"]
   { display: none !important; visibility: hidden !important; }
 """
+
+# Nhãn văn bản của các khối quảng cáo hiển thị (không phải quảng cáo lập
+# trình nên không có class/id rõ ràng) -- chỉ khớp được bằng nội dung chữ,
+# CSS không làm được việc này nên xử lý riêng bằng JS.
+_AD_LABELS = ("advertisement", "sponsored content", "sponsored", "quảng cáo")
 
 
 def _looks_blocked(text: str) -> str | None:
@@ -64,6 +84,47 @@ def _is_mostly_blank(dest: Path) -> bool:
         a = np.asarray(im.convert("L").resize((160, 100)), dtype=float)
     # Độ lệch chuẩn thấp nghĩa là cả khung gần như đồng màu.
     return float(a.std()) < 12.0
+
+
+def _hide_ad_labels(page) -> None:
+    """Ẩn các khối quảng cáo hiển thị chỉ nhận ra được qua CHỮ ("Advertisement").
+
+    Chỉ khớp phần tử lá có chữ NGẮN và TRÙNG KHỚP gần như toàn bộ -- tránh ẩn
+    nhầm một đoạn văn thật chỉ vì trong câu có từ "sponsored".
+    """
+    page.evaluate("""(labels) => {
+        const els = document.querySelectorAll('body *');
+        for (const el of els) {
+            if (el.children.length > 0) continue;
+            const text = (el.innerText || '').trim().toLowerCase();
+            if (text.length > 0 && text.length < 40 && labels.includes(text)) {
+                let target = el;
+                // Ẩn cả khung bọc ngoài (thường là ô trống rỗng chứa mỗi
+                // nhãn này) nếu nó nhỏ, không phải cả một vùng lớn của trang.
+                const parent = el.parentElement;
+                if (parent && parent.getBoundingClientRect().height < 400) target = parent;
+                target.style.setProperty('display', 'none', 'important');
+            }
+        }
+    }""", list(_AD_LABELS))
+
+
+def _scroll_to_article(page) -> None:
+    """Cuộn xuống ĐẦU BÀI THẬT trước khi chụp.
+
+    Mặc định chụp ở đầu trang -- đúng chỗ đặt thanh điều hướng, banner sự
+    kiện, và ô quảng cáo lớn nhất trên hầu hết các trang tin. Cuộn heading
+    hoặc khối bài viết đầu tiên vào khung nhìn thì ảnh chụp được mới là nội
+    dung bài, không phải phần khung trang.
+    """
+    page.evaluate("""() => {
+        const el = document.querySelector('article h1, article, h1, main');
+        if (el) el.scrollIntoView({ block: 'start' });
+    }""")
+    page.wait_for_timeout(300)
+    # Cuộn ngược lên một chút: scrollIntoView đặt heading sát mép trên cùng,
+    # chừa vài chục pixel để không cắt mất dòng đầu.
+    page.evaluate("window.scrollBy(0, -60)")
 
 
 def capture(url: str, dest: Path, *, timeout_ms: int = 25000) -> None:
@@ -103,6 +164,14 @@ def capture(url: str, dest: Path, *, timeout_ms: int = 25000) -> None:
             try:
                 page.add_style_tag(content=_HIDE_CSS)
             except Exception:  # noqa: BLE001 -- ẩn được thì tốt, không thì thôi
+                pass
+            try:
+                _hide_ad_labels(page)
+            except Exception:  # noqa: BLE001
+                pass
+            try:
+                _scroll_to_article(page)
+            except Exception:  # noqa: BLE001 -- không cuộn được thì chụp nguyên đầu trang
                 pass
             page.wait_for_timeout(400)
             page.screenshot(path=str(dest))
