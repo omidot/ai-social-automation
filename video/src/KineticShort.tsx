@@ -131,13 +131,22 @@ const Caption: React.FC<{ card: Card; activeIdx: number; asideOf?: boolean }> =
       position: 'absolute',
       // Màn nhân vật: người chiếm nửa phải khung, nên caption dạt hẳn sang
       // TRÁI và hẹp lại. Để giữa như cũ là chữ nằm đè lên mặt người.
-      left: 0, right: asideOf ? '48%' : 0, top: asideOf ? '58%' : '70%',
-      display: 'flex', justifyContent: 'center',
+      // right lớn hơn = khung chữ HẸP hơn (chừa nhiều đất cho người bên
+      // phải). Lần trước để 42% tức khung RỘNG hơn 48% -- ngược ý định,
+      // nên chữ vẫn chạm tóc. 56% mới thực sự siết khung về còn 44% khung.
+      left: 0, right: asideOf ? '56%' : 0, top: asideOf ? '50%' : '70%',
+      display: 'flex', justifyContent: asideOf ? 'flex-start' : 'center',
       padding: asideOf ? '0 20px 0 70px' : '0 76px',
       pointerEvents: 'none',
     }}>
       <span style={{
-        fontFamily, fontWeight: '800', fontSize: asideOf ? 46 : 62, lineHeight: 1.2,
+        // Bên trong flex item, chiều rộng mặc định co theo NỘI DUNG KHÔNG
+        // XUỐNG DÒNG (min-width: auto của flexbox) chứ không co theo khung
+        // cha -- đo thật: câu dài tràn hẳn qua nửa phải, đè lên mặt người
+        // dù container đã bị chặn ở right:48%. minWidth:0 tắt hành vi đó
+        // để chữ xuống dòng đúng bên trong khung.
+        minWidth: 0, maxWidth: '100%',
+        fontFamily, fontWeight: '800', fontSize: asideOf ? 38 : 62, lineHeight: 1.24,
         textAlign: asideOf ? 'left' : 'center', letterSpacing: '-0.015em',
         textShadow: asideOf ? 'none' : '0 4px 30px rgba(0,0,0,0.92)',
         opacity: appear,
@@ -214,10 +223,14 @@ const Stage: React.FC = () => {
   const cards = timeline.cards as Card[];
 
   const cur = cards.filter((c) => frame >= c.start * fps).slice(-1)[0] ?? cards[0];
-  // Danh sách chương theo đúng thứ tự xuất hiện -> "03 / 09" như bản mẫu.
-  const chapters: string[] = [];
-  for (const c of cards) if (chapters[chapters.length - 1] !== c.section) chapters.push(c.section);
-  const chapIdx = Math.max(0, chapters.lastIndexOf(cur.section));
+  // Đếm theo chính DÒNG THỜI GIAN MÀN HÌNH -- trước đây đếm theo section
+  // kịch bản (cố định 6), nên chip góc trên vẫn ghi "0X / 06" suốt video dù
+  // bên dưới đã đổi màn 14 lần. Bộ đếm dựng ra để nói "còn bao nhiêu nữa",
+  // đếm sai số thì đúng là còn cái cảm giác "6 slide" mà người dùng thấy.
+  const screensAll0 = ((timeline as { screens?: Screen[] }).screens ?? []);
+  const t0 = frame / fps;
+  const chapIdx = Math.max(0, screensAll0.filter((x) => t0 >= (x.at ?? 0)).length - 1);
+  const chapTotal = screensAll0.length || 1;
 
   const prog = interpolate(frame, [0, timeline.duration * fps], [0, 1], { extrapolateRight: 'clamp' });
 
@@ -243,8 +256,8 @@ const Stage: React.FC = () => {
       })()}
       <PalCtx.Provider value={over}>
         <Caption card={cur} activeIdx={capIdx} asideOf={onPaper} />
-        <Counter index={chapIdx} total={chapters.length} />
-        <ChapterRail index={chapIdx} total={chapters.length} />
+        <Counter index={chapIdx} total={chapTotal} />
+        <ChapterRail index={chapIdx} total={chapTotal} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: over.dark ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.14)' }}>
           <div style={{ height: '100%', width: `${prog * 100}%`, background: over.ink }} />
         </div>

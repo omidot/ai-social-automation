@@ -35,3 +35,6 @@ video/public/voice_in_joined
 video/public/voice_parts/
 video/ref/people.json
 video/ref/shots.json
+# Audio thu thật của kênh -- KHÔNG commit. Từng bị lỡ commit rồi checkout
+# nhầm về bản placeholder 3 giây, khiến video render ra câm sau giây thứ 3.
+video/public/voice.mp3

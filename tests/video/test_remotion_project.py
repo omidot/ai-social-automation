@@ -90,8 +90,12 @@ def test_frame_chrome_matches_the_reference():
     There is no centre title: the reference has nothing at top-centre."""
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
     assert "const Counter" in src
-    assert "<Counter index={chapIdx} total={chapters.length} />" in src
+    assert "<Counter index={chapIdx} total={chapTotal} />" in src
     assert "const ChapterRail" in src
+    # Bộ đếm phải đếm theo DÒNG THỜI GIAN MÀN HÌNH, không phải section kịch
+    # bản cố định: đếm section khiến chip ghi "0X / 06" suốt video dù bên
+    # dưới đã đổi màn 14 lần -- đúng cái tạo cảm giác "vẫn còn 6 slide".
+    assert "screensAll0.filter((x) => t0 >= (x.at ?? 0)).length" in src
     assert "<Chip" not in src, "no centre label in the reference"
     # Logo hãng KHÔNG còn nép góc phải trên: người dùng chỉ rõ nó quá nhỏ,
     # không ai thấy. Giờ nhắc tới hãng nào thì logo hãng đó hiện GIỮA KHUNG.
@@ -449,7 +453,7 @@ def test_caption_moves_aside_on_person_screens():
     mặt -- đúng chỗ người dùng chỉ ra trên khung hình."""
     src = (VIDEO / "src/KineticShort.tsx").read_text(encoding="utf-8")
     assert "asideOf" in src
-    assert "right: asideOf ? '48%' : 0" in src
+    assert "right: asideOf ? '56%' : 0" in src
     assert "<Caption card={cur} activeIdx={capIdx} asideOf={onPaper} />" in src
 
 
