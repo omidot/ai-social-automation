@@ -1,0 +1,158 @@
+{
+  "date": "2026-09-19",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Microsoft exec called AI scraping 'the largest theft of labor in human history'",
+      "style": "navy-ticket",
+      "topic_key": "microsoft-exec-called-ai-scraping-the-largest-thef",
+      "text_fb": "Đa số mọi người nghĩ AI thông minh là nhờ thuật toán siêu việt. Nhưng sự thật nghiệt gã hơn nhiều.\n\nTheo tài liệu tòa án vừa được công bố từ vụ kiện giữa New York Times với OpenAI và Microsoft, một lãnh đạo cấp cao của Microsoft từng thừa nhận trong memo nội bộ: việc cào dữ liệu huấn luyện AI chính là \"vụ trộm lao động lớn nhất trong lịch sử loài người\".\n\nĐó không phải lời chỉ trích từ đối thủ. Đó là phát ngôn của Brent Hecht, Giám đốc Khoa học Ứng dụng tại Microsoft.\n\nThống kê nội bộ của Microsoft cho thấy Copilot đã khiến lượng người dùng bấm vào bài viết của New York Times giảm tới 93% so với tìm kiếm Bing truyền thống. AI lấy thông tin, trả lời trực tiếp cho người dùng và triệt tiêu nguồn truy cập của nhà xuất bản. Chính Microsoft gọi đây là một \"vòng xoáy hủy diệt\".\n\nChưa dừng lại ở đó, tài liệu còn tiết lộ nhân viên OpenAI đã cố tình tìm thủ thuật vượt rào trả phí (paywall) và chủ động xóa thông báo bản quyền trước khi đưa dữ liệu vào mô hình. Lãnh đạo cấp cao của họ chỉ đáp lại ngắn gọn: \"À hay đấy\".\n\nSự thật là: AI không tự nhiên giỏi lên. Nó đang tiêu thụ chất xám của hàng triệu người sáng tạo nội dung mà không trả một đồng chi phí nào.\n\nNếu bạn đang tạo nội dung hay viết lách, bài học rất rõ ràng. Hoặc bạn làm chủ công cụ để bảo vệ giá trị bản thân, hoặc công sức của bạn sẽ biến thành nhiên liệu miễn phí cho kẻ khác làm giàu.\n\nBạn nghĩ đây là sự đánh đổi cần thiết cho tiến bộ công nghệ hay là hành vi vi phạm bản quyền trắng trợn?\n\nNguồn: hn",
+      "text_ig": "Sếp Microsoft từng gọi cào dữ liệu AI là \"vụ trộm lao động lớn nhất lịch sử\". AI không tự nhiên thông minh, nó sống nhờ chất xám bị lấy miễn phí. Bạn nghĩ đây là tiến bộ hay xâm phạm?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#OpenAI",
+        "#Microsoft",
+        "#ChatGPT",
+        "#Copilot",
+        "#BanQuyenAI",
+        "#TechNews",
+        "#PhanTichAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-19/morning/01.jpg",
+        "assets/posts/2026-09-19/morning/02.jpg",
+        "assets/posts/2026-09-19/morning/03.jpg",
+        "assets/posts/2026-09-19/morning/04.jpg",
+        "assets/posts/2026-09-19/morning/05.jpg",
+        "assets/posts/2026-09-19/morning/06.jpg",
+        "assets/posts/2026-09-19/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "hn",
+          "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2262055/microsoft-openai-internet-scraping-largest-theft-of-labor/"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/997633/openai-microsoft-chatgpt-ai-new-york-times-doom-loop-theft-google-zero"
+        },
+        {
+          "name": "Stocktwits",
+          "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNYUJ5ekNyYi1OeHFMcE4tVkVpZmstNkp1a0ZPWUdocGg1UG5WcWZnQ0FVX0FrNmE5M3hvRUxVWkpmZTMxRkFoWXFqTjhQT2NJZl9maExDYUFlUWI2b3czQ0FvY2toNVdCU2MwSmx4UURXOFk1M2Q4WmZNOTNDeVBCVzlLVVR3bkJUakVaa0NmS21Jal9DNVdUbmhWY0VpSzF3YXdOc3BTajlQMFNzMmozcWtBLUxNbmlGaU5lM2c1dW45ZXZQVGlaTW9Fa2ZqSjhpTWNYaGFQU1RibER6NlpFTFQzdHd3aFFvM1A2dVVpQkpnZHpMV0I5cS1GQ2NUQQ?oc=5"
+        },
+        {
+          "name": "CNBC",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxObnh4czlpREt3SjNqZkhVb01vQVVJVTBiYlRhVlJ0Z0xiRnF4YnoyOU5YWXdDa05NS051aFFOS2E3ZmlxWDNpTHVoRjN2Mm5IYmVtQVM0ekpDT0UxR0Vjb0dLNHVWMnRlU1RhWlRxeWx2ZTNRYTFCTTNtLWdFMzJTRnFMc2VsQTZwV29iSkctZ3R2Smx4bnFkWjVWeUVNOVFCbHFtQtIBqgFBVV95cUxQVjZvU293cGh2VURVdGV6eUUyTlEwbWI3QzFESFFwajZHSnpuQktpaTZWSHU3ZFhsMWxFUmdrYVJmN0lOWnd4d1A5Qjd3eFkxWnk4ZkZQRVVhaF9WN3BtVzlETE12a0VuM0dYU1lSSW00UW1JNlNFMVc0VURJd18yMjZueDlrM2xmWlk1Qk1aSHp6SXRmS3dmTXJreWJRUVlfcExPUmZzLVIzZw?oc=5"
+        },
+        {
+          "name": "hn",
+          "url": "https://arstechnica.com/tech-policy/2026/09/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history/"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122104538913476035",
+      "ig_due": "2026-09-19T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122104538913476035",
+          "url": "https://facebook.com/1381130541740424_122104538913476035",
+          "scheduled": true
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media_publish -> 400: (9007/2207027) Media ID is not available | type=OAuthException fbtrace_id=AAu_5ROzRoHECn-UrfKNJYF",
+          "attempts": 3
+        }
+      },
+      "ig_attempts": 3
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Vals, backed by Andreessen Horowitz, is looking to become the gold standard for AI benchmarking",
+      "style": "warm-ticket",
+      "topic_key": "vals-backed-by-andreessen-horowitz-is-looking-to-b",
+      "text_fb": "Đa số mọi người đang bị dắt mũi bởi các điểm số AI hào nhoáng. Các hãng công nghệ trưng ra hàng loạt bảng xếp hạng để chứng minh mô hình của họ bá chủ. Nhưng sự thật là gì? Đó chỉ là chiêu trò PR. Họ cho AI học thuộc lòng bộ đề thi công khai từ trước. Khi ra chiến trường thực tế, mô hình lập tức lộ nguyên hình.\n\nMột cú dịch chuyển lớn đang diễn ra. Startup Vals vừa gọi thành công 40 triệu USD từ quỹ Andreessen Horowitz, với doanh thu tăng 8 lần chỉ trong một năm. Lý do rất đơn giản: các doanh nghiệp lớn đã chán ngấy những lời hứa cuội. Họ cần một bên thứ ba giấu kín đề thi, đem AI vào kiểm tra thực chiến trong luật, tài chính, lập trình và an ninh mạng để xem nó có thực sự làm được việc hay không.\n\nNếu bạn đang chọn công cụ AI cho doanh nghiệp hay công việc cá nhân dựa trên các con số quảng cáo, bạn đang mạo hiểm. Điểm trắc nghiệm cao không đồng nghĩa với hiệu suất làm việc tốt. Kỷ nguyên của những điểm số ảo đã kết thúc. Người thắng cuộc trong giai đoạn tới là người biết tự test AI bằng chính dữ liệu công việc thực tế của mình.\n\nBạn vẫn tin vào các bảng xếp hạng AI công bố hay tự mình kiểm chứng?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Điểm số AI hào nhoáng chỉ là chiêu trò PR. Các tập đoàn đang gian lận bằng cách cho AI học thuộc đề. Startup Vals vừa gọi 40 triệu USD để chấm dứt thời kỳ này bằng kiểm tra thực chiến. Bạn chọn AI dựa trên quảng cáo hay năng lực thật?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#AIBenchmark",
+        "#Vals",
+        "#AndreessenHorowitz",
+        "#CongNgheAI",
+        "#XuHuongAI",
+        "#DauTuCongNghe",
+        "#KiemThuAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-19/evening/01.jpg",
+        "assets/posts/2026-09-19/evening/02.jpg",
+        "assets/posts/2026-09-19/evening/03.jpg",
+        "assets/posts/2026-09-19/evening/04.jpg",
+        "assets/posts/2026-09-19/evening/05.jpg",
+        "assets/posts/2026-09-19/evening/06.jpg",
+        "assets/posts/2026-09-19/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-19/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/19/vals-backed-by-andreessen-horowitz-is-looking-to-become-the-gold-standard-for-ai-benchmarking/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNbGJ4Rm1xU3l0ZmZpa1BiN21DekVIQWlBaHVLbG9vX2JPRENVRHduNHVNSFpLb0VTR1ZkUkJMdVlmZlFxUWpVM3c1MTFkSDBSWTFWMHE0a1U3dFBGb3plU0QtREZmXzVtUGV3MVVxYXgzLXlJWHpBN2dqNy01R2VONWFQV3dFQ1ZrRm5nTVZXZmN6OG53bUF2d2VFd0lVcDlTaHIwT2Vra0dyNV9xaFJtczBEeDBkNi12TXRKNGVHRVJKRUY3SDhv?oc=5"
+        },
+        {
+          "name": "UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQ2k4NTZ2WDE1akVNTWI0Y2hLNDNYWFQ5N1drXzE4M2tfMkVPZVRUdTZ5OUlMbm1RVF9md09adG5YOXZ5YXNRUGFfRUJRLVZSaW9oXzV2WnhEUnFJTVo2MlBPUzZ2QmdQYzBFTTAyQU5NOGxZbEI4MXEzclJMLXFPRkRyY0ZCS3FmRXFZQXRMQ3pPMFNZMGJR?oc=5"
+        },
+        {
+          "name": "Межа. Новини України.",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE41aHhheTk5LXBQX2ZEekVTRjFWRWxkazZVRi1WWGxNUjJfcHZSQjdzNlhIREg0VkFXWWVrU1lwLUxsRjdFempzd1ZETjBJNktoWDdnOW13TEk3S2V4d2oxNVF3?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122105083935476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122105083935476035",
+          "url": "https://facebook.com/1381130541740424_122105083935476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AR0e6yMzPSS8SZe7g1ZjL6h"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "date": "2026-09-21",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "World model companies are keeping a lot of secrets",
+      "style": "white-centered",
+      "topic_key": "world-model-companies-are-keeping-a-lot-of-secrets",
+      "text_fb": "Đa số mọi người tin rằng trong cuộc đua AI, ai ra mắt sản phẩm nhanh hơn sẽ thắng. Bạn mở mạng ra mỗi ngày và thấy OpenAI hay Anthropic tung ra tính năng mới. Nhưng có một góc tối trong giới AI đang chơi một trò chơi hoàn toàn khác.\n\nĐó là mảng World Model (mô hình thế giới), nơi quy tụ những bộ óc hàng đầu như Yann LeCun với AMI Labs hay Fei-Fei Li với World Labs. Họ huy động hàng trăm triệu đô la, nhưng lại xếp hạng bét về việc vội vã kiếm tiền. Tại hội thảo All In, khi được hỏi về thương mại hóa, Michael Rabbat - Phó chủ tịch AMI Labs - thẳng thừng từ chối chia sẻ. Ngay cả Alex de Vigan, CEO của Physicl - công ty cung cấp dữ liệu cho họ - cũng phải thốt lên rằng mình hoàn toàn bị giữ trong bóng tối.\n\nTại sao họ phải giấu kỹ đến vậy?\n\nBởi vì họ hiểu quy luật Khu Rừng Đen. Trí tuệ không gian có tiềm năng khổng lồ, từ robot hình người, xe tự lái đến dựng phim 3D. Nếu AMI Labs công bố họ sắp làm một sản phẩm cụ thể, hàng loạt phòng lab khác cùng các gã khổng lồ như OpenAI hay Anthropic sẽ lập tức dồn nguồn lực đè bẹp họ. Khi bạn cất tiếng hát trong rừng tối, đối thủ sẽ tìm ra bạn trước khi bạn kịp lớn.\n\nBài học rút ra rất rõ ràng: Nếu bạn đang gầy dựng dự án riêng, việc khoe khoang sớm khi chưa có hào sâu phòng thủ chỉ khiến bạn thành mục tiêu bị tiêu diệt. Tiền đầu tư cho phép bạn đi ngầm dưới radar. Hãy im lặng xây dựng năng lực cốt lõi cho đến khi đối thủ không thể đuổi kịp.\n\nBạn đang chọn công khai mọi bước đi hay âm thầm tích lũy sức mạnh trong góc tối?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Đa số nghĩ đua AI là phải tung sản phẩm liên tục. Nhưng các công ty World Model như AMI Labs lại chọn giấu bài tuyệt đối. Đây là chiến lược Khu Rừng Đen: im lặng để sinh tồn trước các gã khổng lồ. Bạn đang chọn khoe khoang hay âm thầm tích lũy?",
+      "hashtags": [
+        "#AI",
+        "#WorldModel",
+        "#AMILabs",
+        "#WorldLabs",
+        "#YannLeCun",
+        "#FeiFeiLi",
+        "#OpenAI",
+        "#Anthropic",
+        "#ChienLuoc",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-09-21/morning/01.jpg",
+        "assets/posts/2026-09-21/morning/02.jpg",
+        "assets/posts/2026-09-21/morning/03.jpg",
+        "assets/posts/2026-09-21/morning/04.jpg",
+        "assets/posts/2026-09-21/morning/05.jpg",
+        "assets/posts/2026-09-21/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/20/world-model-companies-are-keeping-a-lot-of-secrets/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbFhYcDZOSmF6eU8xTmkwVi1MdFdMWHZ0T2xrSmI5UWR5TUxtZ3lLWXJ4Z2JVYnhiMEtIbGdOd2dTdHA2VURhUUR1S3kyLWJmejltUXUwN1ctNER2eUlOU0ExaFdJZFV4X1R1TkY3cV9TM1lwNi1VZzZXcDlOQ1dzX2c5R2Fndlc3amxIUnp3?oc=5"
+        },
+        {
+          "name": "The Tech Buzz",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPckczSExxcGhnUkgwYXVVR29YTXRiX0RkX3UxQ0RzZzNpY0o3bTc4eHhyRGFPcEU0Y2JDTmNFSkhjc2ctYkR0UVQyVE85YmtiaXFrZzBNTkVLUVVvSVcxVllaR1J4VWo4QVppV0JKS0VxQzhCc1haZUtEcFlEc0psYjdVdEpQOC1Ld0xUag?oc=5"
+        },
+        {
+          "name": "Межа. Новини України.",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBYdGRiOXMyX2ZhWVE2eU5Hd1p0V1E2akkzM2NQdGxGdzlLSzRCQ3NrcVgyRGE5bTFqMTNSdWZENmRGaU5xZVB5clE1VmxGN25SZGhScC1PV2hwdnRBSnJqbw?oc=5"
+        },
+        {
+          "name": "The Tech Buzz",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONDg2b1RZYTdaT250VTdhbVpabWtxWmFHRHlDemtIUlRZTVpJbklSZ25lRl8yMVN2dkxWNU5CU3hkR0JyS1o3NlIyYlZzSzBfOUxUMi12cG1KYzdjZUpFYnBaSE0za1A1Y3VMdGtMWlRCcU9ud19xSnl5cUZnT3BJSFBzSzFiWE1XbG5VZVZnVVlFQQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122106929793476035",
+      "ig_due": "2026-09-21T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122106929793476035",
+          "url": "https://facebook.com/1381130541740424_122106929793476035",
+          "scheduled": true
+        },
+        "ig": null
+      },
+      "ig_attempts": 2
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Khi ai cũng có cùng công cụ AI, thứ gì trở nên đắt giá",
+      "style": "navy-centered",
+      "topic_key": "khi-ai-cung-co-cung-cong-cu-ai-thu-gi-tro-nen-at-g",
+      "text_fb": "Có một sự thật khó chịu mà ít ai chịu thừa nhận: công cụ AI xịn nhất bây giờ không còn là bí mật của riêng ai. Vài năm trước, chỉ cần biết dùng một công cụ AI là bạn đã đứng trên số đông. Giờ thì sao? Đứa em học cấp ba cạnh nhà bạn cũng mở được đúng công cụ đó, cùng lúc, gần như miễn phí. Cái vé vào cửa mà ngày xưa được xem là lợi thế, giờ ai cũng cầm trong tay. Vậy nếu công cụ không còn là thứ phân biệt được ai giỏi ai kém, thì cái gì mới đắt giá?\n\nMình tin là gu thẩm mỹ, tốc độ ra quyết định, và câu chuyện thật của riêng bạn. Hai người dùng cùng một công cụ, một người cho ra sản phẩm nhạt như nước ốc, người kia cho ra thứ khiến người xem dừng tay lướt. Khác biệt không nằm ở nút bấm họ nhấn, mà nằm ở việc họ biết chọn gì, bỏ gì, và vì sao lại chọn vậy. Người làm nội dung giỏi không nhanh hơn vì gõ phím lẹ, mà vì họ đã quyết trong đầu trước khi chạm vào công cụ: nói gì, cho ai, chốt câu nào. Còn người chưa rõ mình muốn nói gì thì có công cụ xịn cỡ nào cũng ngồi nhìn màn hình trắng.\n\nĐa số mọi người đang hiểu sai chỗ này. Họ nghĩ cứ sưu tầm thêm công cụ mới là sẽ giỏi hơn. Nhưng công cụ chỉ khuếch đại thứ đã có sẵn trong đầu bạn, nó không tạo ra thứ đó. Nếu bạn đang chạy theo hết app này đến app khác mà vẫn thấy mình giậm chân tại chỗ, vấn đề chưa chắc nằm ở công cụ. Bạn đang tập trung vào công cụ, hay đang tập trung vào gu và tư duy của chính mình?",
+      "text_ig": "Ai cũng có cùng công cụ AI. Vậy thứ gì còn đắt giá? Gu thẩm mỹ, tốc độ quyết định, và câu chuyện thật của riêng bạn, những thứ máy không copy được. Ngừng sưu tầm công cụ, bắt đầu luyện tư duy. Bạn đang đầu tư vào cái nào?",
+      "hashtags": [
+        "#AI",
+        "#TriTueNhanTao",
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#XuHuongAI",
+        "#KyNangSo",
+        "#ChuyenDoiSo",
+        "#TuDuySangTao",
+        "#CongCuAI",
+        "#HocAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-21/evening/01.jpg",
+        "assets/posts/2026-09-21/evening/02.jpg",
+        "assets/posts/2026-09-21/evening/03.jpg",
+        "assets/posts/2026-09-21/evening/04.jpg",
+        "assets/posts/2026-09-21/evening/05.jpg",
+        "assets/posts/2026-09-21/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-21/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122107648023476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122107648023476035",
+          "url": "https://facebook.com/1381130541740424_122107648023476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AAAYW3B8OpfK6hMMXsPcoZ5"
+        }
+      }
+    }
+  }
+}

@@ -1,20 +1,20 @@
 {
-  "last": "mono-split",
+  "last": "navy-centered",
   "recent": [
+    "navy-centered",
+    "white-centered",
+    "mono-ticket",
+    "warm-ticket",
+    "navy-ticket",
+    "white-ticket",
+    "mono-magazine",
+    "warm-magazine",
+    "navy-magazine",
+    "white-magazine",
     "mono-split",
     "warm-split",
     "navy-split",
     "white-split",
-    "mono-bar",
-    "warm-bar",
-    "navy-bar",
-    "white-bar",
-    "mono-rail",
-    "warm-rail",
-    "navy-rail",
-    "white-rail",
-    "mono-centered",
-    "warm-centered",
-    "navy-centered"
+    "mono-bar"
   ]
 }
