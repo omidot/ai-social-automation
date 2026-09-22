@@ -80,47 +80,46 @@
     "evening": {
       "video": {
         "status": "awaiting_audio",
-        "source_url": "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
+        "source_url": "https://snorkel.ai/leaderboard/terminal-bench-4-0/",
         "extra_sources": null,
         "meta": {
-          "title": "2 người, 1 GPU: Claude tự tối ưu 30 mô hình sinh học",
-          "description": "Anthropic vừa để Claude tự tối ưu hơn 30 mô hình sinh học mã nguồn mở, nhanh gấp 4 lần, và cắt chi phí thiết kế protein từ 10.000 đô xuống còn 150 đô. Đứng sau toàn bộ việc này chỉ có 2 nhân viên kỹ thuật, chưa từng viết một dòng kernel engineering nào trước đó. Đây là bằng chứng rõ nhất cho việc AI đang xoá khoảng cách giữa chuyên gia và người mới. Theo dõi kênh để không bỏ lỡ những case study AI thật, có số liệu thật.",
+          "title": "GPT-6 Astra hơn Claude Fable 5.1 đúng 0,3% — có ý nghĩa gì?",
+          "description": "GPT-6 Astra vừa vượt Claude Fable 5.1 trên Terminal-Bench 4.0, bài test AI tự thao tác terminal thật để làm việc lập trình thật. Nhưng khoảng cách chỉ 0,3 điểm phần trăm — nhỏ hơn hẳn sai số đo được của cả hai model. Video này giải thích vì sao con số leaderboard không phải thứ bạn nên dựa vào để chọn công cụ code, và điều gì thực sự đáng nhìn thay vào đó. Theo dõi kênh để không bị cuốn theo mọi con số giật tít.",
           "hashtags": [
             "#AHitOfficial",
             "#AI",
-            "#Anthropic",
-            "#Claude",
-            "#SinhHocAI",
-            "#ProteinDesign",
-            "#CongNgheAI",
-            "#TriTueNhanTao",
-            "#KhoaHocAI",
+            "#ClaudeCode",
+            "#Codex",
+            "#GPT6Astra",
+            "#ClaudeFable",
+            "#AICoding",
+            "#LapTrinhAI",
+            "#CongCuAI",
             "#AInews"
           ],
           "keywords": [
-            "Claude Anthropic",
-            "biomolecular modeling AI",
-            "FlashPairformer",
-            "Adaptyv Bio protein design",
-            "AI tối ưu mô hình sinh học",
-            "Claude Science",
-            "protein design competition"
+            "Terminal-Bench 4.0",
+            "GPT-6 Astra vs Claude Fable 5.1",
+            "Claude Code vs Codex",
+            "AI coding agent benchmark",
+            "so sanh AI lap trinh",
+            "leaderboard AI 2026"
           ],
-          "tiktok_caption": "Claude tự tối ưu 30 mô hình sinh học, giảm chi phí thiết kế protein 100 lần #AI #Claude #Anthropic #KhoaHocAI #AInews"
+          "tiktok_caption": "GPT-6 Astra hơn Claude Fable 5.1 đúng 0,3% — nhưng sai số đo còn lớn hơn thế #AI #ClaudeCode #Codex #LapTrinhAI #AInews"
         },
-        "spoken_text": "Một mục tiêu thiết kế protein từng tốn 10.000 đô la.\nGiờ chỉ còn 150 đô.\nKhông phải nhờ siêu máy tính mới.\nMà nhờ chính Claude tự tối ưu công cụ sinh học.\nĐiều kỳ lạ nhất nằm ở cuối video này.\nNgười đứng sau sẽ khiến bạn sốc.\nAnthropic vừa tối ưu hơn 30 mô hình sinh học mã nguồn mở.\nViệc này chỉ mất chưa đầy 4 tuần.\nTốc độ trung bình tăng gấp 4 lần.\nCác nhóm mô hình được tối ưu:\nTừ gập protein, sinh cấu trúc, đến giải mã toàn bộ hệ gen.\nKể cả mô hình chuyên phát hiện ảo giác của AI.\nClaude tự viết ra một kernel mới tên FlashPairformer.\nRiêng khối FlashPairformer:\nMột GPU H200 duy nhất giờ xử lý hệ hơn 10.000 token.\nCó hệ được suy luận tới 70.000 token trên cùng một GPU.\nĐó là kích thước của một virion capsid thật.\nSo kích thước hai cấu trúc:\nKhông ai phải viết lại một dòng kernel CUDA nào.\nMột chiến dịch thiết kế protein cũ tốn 10.000 đô, 2.500 giờ GPU.\nĐó từng là mức giá chuẩn của cả ngành công nghệ sinh học.\nSo sánh chi phí một mục tiêu:\nCách mới chỉ cần một GPU H200, 24 giờ.\nToàn bộ chỉ mất 24 giờ đồng hồ, một GPU.\nSố giờ GPU cần dùng:\nPrompt cũ dài 16.000 từ.\nPrompt mới chỉ còn 1.100 từ.\nĐã thử trên 16 mục tiêu, ba mô hình Claude khác nhau.\nQuy mô thử nghiệm thực tế:\nĐây không phải một lần may mắn.\nAnthropic bắt tay Adaptyv Bio mở một giải thiết kế protein.\nAdaptyv Bio vận hành phòng thí nghiệm tự động hoá hoàn toàn.\nTiền thưởng và tín dụng:\nHơn 5.000 thiết kế sẽ được kiểm chứng ở phòng thí nghiệm thật.\nNăm bài toán khó nhất ngành thiết kế protein hiện nay.\nTừ độ nhạy pH đến thụ thể GPCR khó trị.\nCòn có cross-reactivity nhiều loài, và độ đặc hiệu peptide MHC.\nNăm bài toán trong giải đấu:\nTwist Bioscience cấp ADN miễn phí cho mọi người tham gia.\nKhông tốn một đồng nào để bước vào cuộc chơi này.\nGiờ là lúc trả lời câu hỏi mở đầu video.\nChỉ 2 nhân viên kỹ thuật của Anthropic giám sát toàn bộ.\nCả hai chưa từng viết một dòng kernel engineering nào trước đó.\nKhông phải đội ngũ hàng trăm người. Chỉ hai con người, và Claude.\nĐây là tư duy của người thắng cuộc.\nBạn không cần là chuyên gia để tạo ra kết quả chuyên gia.\nSinh học từng là sân chơi riêng của tiến sĩ nhiều năm kinh nghiệm.\nCái bạn cần là biết giao đúng việc cho AI.\nBạn sẽ tự làm mọi thứ, hay học cách giao việc cho AI?",
+        "spoken_text": "GPT-6 Astra chỉ hơn Claude Fable 5.1 đúng 0,3 điểm phần trăm.\nChưa đầy 1 phần 300 của phép đo.\nNhưng sai số đo được còn LỚN HƠN khoảng cách đó.\nVậy con số này có ý nghĩa gì với bạn?\nCâu trả lời thật sự nằm ở cuối video này.\nTerminal-Bench là bài test AI tự thao tác cửa sổ dòng lệnh thật.\nKhông phải trả lời trắc nghiệm. Mà TỰ LÀM việc lập trình thật.\nPhiên bản 4.0 có 66 bài test.\nMỗi AI được tối đa 8 tiếng để hoàn thành một bài.\nQuy mô bài test thật:\nĐây chính là công cụ bạn có thể đang dùng để code.\n3 mô hình dẫn đầu bảng xếp hạng:\nĐiểm số thật của từng model:\nGPT-6 Astra đạt 58,2%.\nClaude Fable 5.1 đạt 57,9%.\nGiờ nhìn vào sai số đo được.\nBiên độ dao động mỗi lần đo lại:\nNghĩa là chạy lại phép đo, thứ hạng có thể đảo ngược.\nĐây không phải một chiến thắng rõ ràng.\nĐây là một cú hoà, được viết ra như một chiến thắng.\nVề mặt thống kê, đây là đồng hạng #1:\nĐa số bài viết công nghệ chỉ đăng con số 58,2% rồi thôi.\nKhông ai nhắc tới sai số.\nĐó là cách một bản tin khiến bạn hiểu sai hoàn toàn.\nBản 3.0 trước đó có 74 bài.\nBản 4.0 giờ chỉ còn 66 bài.\nSo bài test hai phiên bản:\nNhững gì đã thay đổi:\n8 bài bị loại vì AI nào cũng làm được, hết tác dụng phân loại.\n20 bài được chỉnh sửa lại cho khó và chính xác hơn.\n0 bài mới được thêm vào.\nNghĩa là 58,2% này đến từ một bài test khó hơn, không dễ hơn.\nChiến thắng sít sao trên đề khó đáng tin hơn chiến thắng dễ trên đề dễ.\nGiờ quay lại câu hỏi đầu video.\nCon số 0,3% không nói bạn nên chọn AI nào.\nNgười thua trong chuyện này là ai còn chọn AI theo mỗi con số leaderboard.\nNgười thắng chọn AI khớp với quy trình họ đang làm.\nClaude Code và Codex mạnh yếu khác nhau ở từng việc cụ thể.\nKhông có một AI thắng tuyệt đối trên mọi tác vụ lập trình.\nBạn chọn công cụ vì nó hợp cách bạn làm việc.\nHay vì một con số bạn còn chưa biết cách đọc?",
         "script": {
           "cards": [
             {
               "lines": [
-                "Một mục tiêu thiết kế protein",
-                "từng tốn 10.000 đô la."
+                "GPT-6 Astra chỉ hơn Claude Fable 5.1",
+                "đúng 0,3 điểm phần trăm."
               ],
               "variant": "numeral",
               "anchor": "mid",
               "motion_in": "slam",
               "motion_out": "dissolve",
-              "num": 10000,
+              "num": 6,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -128,13 +127,13 @@
             },
             {
               "lines": [
-                "Giờ chỉ còn 150 đô."
+                "Chưa đầy 1 phần 300 của phép đo."
               ],
               "variant": "numeral",
               "anchor": "mid",
               "motion_in": "rise",
               "motion_out": "down",
-              "num": 150,
+              "num": 0.3,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -142,7 +141,8 @@
             },
             {
               "lines": [
-                "Không phải nhờ siêu máy tính mới."
+                "Nhưng sai số đo được",
+                "còn LỚN HƠN khoảng cách đó."
               ],
               "variant": "mark",
               "anchor": "top",
@@ -156,10 +156,10 @@
             },
             {
               "lines": [
-                "Mà nhờ chính Claude",
-                "tự tối ưu công cụ sinh học."
+                "Vậy con số này",
+                "có ý nghĩa gì với bạn?"
               ],
-              "variant": "stack",
+              "variant": "right",
               "anchor": "mid",
               "motion_in": "wipe",
               "motion_out": "dissolve",
@@ -171,22 +171,7 @@
             },
             {
               "lines": [
-                "Điều kỳ lạ nhất",
-                "nằm ở cuối video này."
-              ],
-              "variant": "right",
-              "anchor": "top",
-              "motion_in": "slideR",
-              "motion_out": "up",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Người đứng sau sẽ khiến bạn sốc."
+                "Câu trả lời thật sự nằm ở cuối video này."
               ],
               "variant": "invert",
               "anchor": "low",
@@ -200,14 +185,14 @@
             },
             {
               "lines": [
-                "Anthropic vừa tối ưu hơn 30",
-                "mô hình sinh học mã nguồn mở."
+                "Terminal-Bench là bài test",
+                "AI tự thao tác cửa sổ dòng lệnh thật."
               ],
-              "variant": "numeral",
+              "variant": "stack",
               "anchor": "top",
               "motion_in": "slideL",
               "motion_out": "dissolve",
-              "num": 30,
+              "num": null,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -215,13 +200,28 @@
             },
             {
               "lines": [
-                "Việc này chỉ mất chưa đầy 4 tuần."
+                "Không phải trả lời trắc nghiệm.",
+                "Mà TỰ LÀM việc lập trình thật."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Phiên bản 4.0 có 66 bài test."
               ],
               "variant": "numeral",
               "anchor": "mid",
               "motion_in": "pop",
               "motion_out": "down",
-              "num": 4,
+              "num": 66,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -229,13 +229,14 @@
             },
             {
               "lines": [
-                "Tốc độ trung bình tăng gấp 4 lần."
+                "Mỗi AI được tối đa 8 tiếng",
+                "để hoàn thành một bài."
               ],
               "variant": "numeral",
-              "anchor": "mid",
+              "anchor": "top",
               "motion_in": "wipe",
               "motion_out": "shrink",
-              "num": 4,
+              "num": 8,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -243,27 +244,67 @@
             },
             {
               "lines": [
-                "Các nhóm mô hình được tối ưu:"
+                "Quy mô bài test thật:"
               ],
               "variant": "stack",
               "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Tổng số bài test",
+                    "value": 66
+                  },
+                  {
+                    "label": "Giờ tối đa mỗi bài",
+                    "value": 8
+                  }
+                ],
+                "unit": "",
+                "title": "Quy mô Terminal-Bench 4.0"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây chính là công cụ",
+                "bạn có thể đang dùng để code."
+              ],
+              "variant": "right",
+              "anchor": "low",
               "motion_in": "rise",
               "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "3 mô hình dẫn đầu bảng xếp hạng:"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
               "num": null,
               "chart": {
                 "kind": "chips",
                 "items": [
                   {
-                    "label": "Dự đoán cấu trúc"
+                    "label": "GPT-6 Astra"
                   },
                   {
-                    "label": "Sinh cấu trúc"
+                    "label": "Claude Fable 5.1"
                   },
                   {
-                    "label": "Gập ngược trình tự"
-                  },
-                  {
-                    "label": "Hệ gen"
+                    "label": "Claude Opus 5"
                   }
                 ],
                 "unit": "",
@@ -275,144 +316,30 @@
             },
             {
               "lines": [
-                "Từ gập protein, sinh cấu trúc,",
-                "đến giải mã toàn bộ hệ gen."
-              ],
-              "variant": "mark",
-              "anchor": "mid",
-              "motion_in": "fall",
-              "motion_out": "wipeOut",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Kể cả mô hình chuyên",
-                "phát hiện ảo giác của AI."
-              ],
-              "variant": "stair",
-              "anchor": "top",
-              "motion_in": "pop",
-              "motion_out": "up",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Claude tự viết ra",
-                "một kernel mới tên FlashPairformer."
-              ],
-              "variant": "right",
-              "anchor": "mid",
-              "motion_in": "wipe",
-              "motion_out": "dissolve",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Riêng khối FlashPairformer:"
+                "Điểm số thật của từng model:"
               ],
               "variant": "stack",
               "anchor": "top",
               "motion_in": "slideL",
               "motion_out": "down",
-              "num": null,
-              "chart": {
-                "kind": "stat",
-                "items": [
-                  {
-                    "label": "Tăng tốc attention",
-                    "value": 2.9
-                  },
-                  {
-                    "label": "Tăng tốc nhân ma trận",
-                    "value": 3.2
-                  }
-                ],
-                "unit": "lần",
-                "title": "Tốc độ FlashPairformer"
-              },
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Một GPU H200 duy nhất",
-                "giờ xử lý hệ hơn 10.000 token."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "fall",
-              "motion_out": "up",
-              "num": 200,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Có hệ được suy luận tới",
-                "70.000 token trên cùng một GPU."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "slam",
-              "motion_out": "wipeOut",
-              "num": 70000,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Đó là kích thước của",
-                "một virion capsid thật."
-              ],
-              "variant": "mark",
-              "anchor": "top",
-              "motion_in": "wipe",
-              "motion_out": "down",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "So kích thước hai cấu trúc:"
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "dissolve",
               "num": null,
               "chart": {
                 "kind": "hbar",
                 "items": [
                   {
-                    "label": "Ribosome vi khuẩn 70S",
-                    "value": 10000
+                    "label": "GPT-6 Astra (Codex)",
+                    "value": 58.2
                   },
                   {
-                    "label": "Virion capsid",
-                    "value": 70000
+                    "label": "Fable 5.1 (Claude Code)",
+                    "value": 57.9
+                  },
+                  {
+                    "label": "Opus 5 (Claude Code)",
+                    "value": 53.9
                   }
                 ],
-                "unit": "token",
+                "unit": "%",
                 "title": ""
               },
               "screenshot": null,
@@ -421,12 +348,39 @@
             },
             {
               "lines": [
-                "Không ai phải viết lại",
-                "một dòng kernel CUDA nào."
+                "GPT-6 Astra đạt 58,2%."
               ],
-              "variant": "hero",
-              "anchor": "low",
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": 58.2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Claude Fable 5.1 đạt 57,9%."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
               "motion_in": "pop",
+              "motion_out": "up",
+              "num": 57.9,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giờ nhìn vào sai số đo được."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
               "motion_out": "shrink",
               "num": null,
               "chart": null,
@@ -436,14 +390,42 @@
             },
             {
               "lines": [
-                "Một chiến dịch thiết kế protein cũ",
-                "tốn 10.000 đô, 2.500 giờ GPU."
+                "Biên độ dao động mỗi lần đo lại:"
               ],
-              "variant": "numeral",
-              "anchor": "top",
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Sai số Astra",
+                    "value": 2.8
+                  },
+                  {
+                    "label": "Sai số Fable 5.1",
+                    "value": 3.8
+                  }
+                ],
+                "unit": "điểm %",
+                "title": "Biên độ sai số mỗi model"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nghĩa là chạy lại phép đo,",
+                "thứ hạng có thể đảo ngược."
+              ],
+              "variant": "right",
+              "anchor": "mid",
               "motion_in": "rise",
-              "motion_out": "down",
-              "num": 10000,
+              "motion_out": "wipeOut",
+              "num": null,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -451,114 +433,28 @@
             },
             {
               "lines": [
-                "Đó từng là mức giá",
-                "chuẩn của cả ngành công nghệ sinh học."
+                "Đây không phải một chiến thắng rõ ràng."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là một cú hoà,",
+                "được viết ra như một chiến thắng."
               ],
               "variant": "invert",
               "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "wipeOut",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "So sánh chi phí một mục tiêu:"
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "wipe",
-              "motion_out": "wipeOut",
-              "num": null,
-              "chart": {
-                "kind": "bar",
-                "items": [
-                  {
-                    "label": "Cách cũ (H100)",
-                    "value": 10000
-                  },
-                  {
-                    "label": "Cách mới (H200)",
-                    "value": 150
-                  }
-                ],
-                "unit": "USD",
-                "title": ""
-              },
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Cách mới chỉ cần",
-                "một GPU H200, 24 giờ."
-              ],
-              "variant": "numeral",
-              "anchor": "top",
-              "motion_in": "slideR",
-              "motion_out": "dissolve",
-              "num": 200,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Toàn bộ chỉ mất",
-                "24 giờ đồng hồ, một GPU."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "wipe",
-              "motion_out": "shrink",
-              "num": 24,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Số giờ GPU cần dùng:"
-              ],
-              "variant": "stack",
-              "anchor": "top",
               "motion_in": "fall",
-              "motion_out": "up",
+              "motion_out": "dissolve",
               "num": null,
-              "chart": {
-                "kind": "stat",
-                "items": [
-                  {
-                    "label": "GPU H100 (cũ)",
-                    "value": 2500
-                  },
-                  {
-                    "label": "GPU H200 (mới)",
-                    "value": 24
-                  }
-                ],
-                "unit": "giờ",
-                "title": "Giờ GPU mỗi mục tiêu"
-              },
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Prompt cũ dài 16.000 từ."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "slam",
-              "motion_out": "shrink",
-              "num": 16000,
               "chart": null,
               "screenshot": null,
               "screenshot_file": null,
@@ -566,216 +462,21 @@
             },
             {
               "lines": [
-                "Prompt mới chỉ còn 1.100 từ."
+                "Về mặt thống kê, đây là đồng hạng #1:"
               ],
-              "variant": "numeral",
+              "variant": "stack",
               "anchor": "mid",
               "motion_in": "pop",
-              "motion_out": "down",
-              "num": 1100,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Đã thử trên 16 mục tiêu,",
-                "ba mô hình Claude khác nhau."
-              ],
-              "variant": "numeral",
-              "anchor": "top",
-              "motion_in": "wipe",
-              "motion_out": "dissolve",
-              "num": 16,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Quy mô thử nghiệm thực tế:"
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "slam",
-              "motion_out": "down",
-              "num": null,
-              "chart": {
-                "kind": "stat",
-                "items": [
-                  {
-                    "label": "Mục tiêu protein",
-                    "value": 16
-                  },
-                  {
-                    "label": "Mô hình Claude",
-                    "value": 3
-                  }
-                ],
-                "unit": "",
-                "title": "Phạm vi kiểm chứng"
-              },
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Đây không phải một lần may mắn."
-              ],
-              "variant": "hero",
-              "anchor": "mid",
-              "motion_in": "rise",
-              "motion_out": "wipeOut",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Anthropic bắt tay Adaptyv Bio",
-                "mở một giải thiết kế protein."
-              ],
-              "variant": "stack",
-              "anchor": "top",
-              "motion_in": "slideL",
-              "motion_out": "down",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Adaptyv Bio vận hành",
-                "phòng thí nghiệm tự động hoá hoàn toàn."
-              ],
-              "variant": "right",
-              "anchor": "top",
-              "motion_in": "fall",
-              "motion_out": "down",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Tiền thưởng và tín dụng:"
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "wipe",
-              "motion_out": "dissolve",
-              "num": null,
-              "chart": {
-                "kind": "stat",
-                "items": [
-                  {
-                    "label": "Tín dụng Claude",
-                    "value": 1000
-                  },
-                  {
-                    "label": "Tín dụng Modal",
-                    "value": 250
-                  }
-                ],
-                "unit": "nghìn USD",
-                "title": "Ngân sách giải đấu"
-              },
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Hơn 5.000 thiết kế",
-                "sẽ được kiểm chứng ở phòng thí nghiệm thật."
-              ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "slam",
               "motion_out": "up",
-              "num": 5000,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Năm bài toán khó nhất",
-                "ngành thiết kế protein hiện nay."
-              ],
-              "variant": "mark",
-              "anchor": "top",
-              "motion_in": "rise",
-              "motion_out": "shrink",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Từ độ nhạy pH",
-                "đến thụ thể GPCR khó trị."
-              ],
-              "variant": "stair",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "dissolve",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Còn có cross-reactivity nhiều loài,",
-                "và độ đặc hiệu peptide MHC."
-              ],
-              "variant": "mark",
-              "anchor": "top",
-              "motion_in": "wipe",
-              "motion_out": "up",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Năm bài toán trong giải đấu:"
-              ],
-              "variant": "stack",
-              "anchor": "mid",
-              "motion_in": "slideL",
-              "motion_out": "down",
               "num": null,
               "chart": {
                 "kind": "chips",
                 "items": [
                   {
-                    "label": "Đa loài (cross-reactivity)"
+                    "label": "GPT-6 Astra"
                   },
                   {
-                    "label": "Độ nhạy pH"
-                  },
-                  {
-                    "label": "Đặc hiệu peptide-MHC"
-                  },
-                  {
-                    "label": "Thụ thể GPCR"
+                    "label": "Claude Fable 5.1"
                   }
                 ],
                 "unit": "",
@@ -787,10 +488,39 @@
             },
             {
               "lines": [
-                "Twist Bioscience cấp ADN miễn phí",
-                "cho mọi người tham gia."
+                "Đa số bài viết công nghệ",
+                "chỉ đăng con số 58,2% rồi thôi."
               ],
-              "variant": "invert",
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": 582,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không ai nhắc tới sai số."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là cách một bản tin",
+                "khiến bạn hiểu sai hoàn toàn."
+              ],
+              "variant": "right",
               "anchor": "low",
               "motion_in": "rise",
               "motion_out": "dissolve",
@@ -802,12 +532,155 @@
             },
             {
               "lines": [
-                "Không tốn một đồng nào",
-                "để bước vào cuộc chơi này."
+                "Bản 3.0 trước đó có 74 bài."
               ],
-              "variant": "strike",
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": 74,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bản 4.0 giờ chỉ còn 66 bài."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": 66,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "So bài test hai phiên bản:"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Bản 3.0",
+                    "value": 74
+                  },
+                  {
+                    "label": "Bản 4.0",
+                    "value": 66
+                  }
+                ],
+                "unit": "bài",
+                "title": "Số bài test qua các bản"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Những gì đã thay đổi:"
+              ],
+              "variant": "stack",
               "anchor": "mid",
               "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Bài sửa lại",
+                    "value": 20
+                  },
+                  {
+                    "label": "Bài bị loại",
+                    "value": 8
+                  }
+                ],
+                "unit": "bài",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "8 bài bị loại vì",
+                "AI nào cũng làm được, hết tác dụng phân loại."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": 8,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "20 bài được chỉnh sửa lại",
+                "cho khó và chính xác hơn."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "0 bài mới được thêm vào."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": 0,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nghĩa là 58,2% này",
+                "đến từ một bài test khó hơn, không dễ hơn."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": 582,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chiến thắng sít sao trên đề khó",
+                "đáng tin hơn chiến thắng dễ trên đề dễ."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "rise",
               "motion_out": "wipeOut",
               "num": null,
               "chart": null,
@@ -817,12 +690,56 @@
             },
             {
               "lines": [
-                "Giờ là lúc trả lời",
-                "câu hỏi mở đầu video."
+                "Giờ quay lại câu hỏi đầu video."
               ],
-              "variant": "hero",
+              "variant": "mark",
               "anchor": "top",
               "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Con số 0,3% không nói bạn",
+                "nên chọn AI nào."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": 3,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người thua trong chuyện này",
+                "là ai còn chọn AI theo mỗi con số leaderboard."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người thắng chọn AI",
+                "khớp với quy trình họ đang làm."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "pop",
               "motion_out": "shrink",
               "num": null,
               "chart": null,
@@ -832,54 +749,10 @@
             },
             {
               "lines": [
-                "Chỉ 2 nhân viên kỹ thuật",
-                "của Anthropic giám sát toàn bộ."
+                "Claude Code và Codex",
+                "mạnh yếu khác nhau ở từng việc cụ thể."
               ],
-              "variant": "numeral",
-              "anchor": "mid",
-              "motion_in": "rise",
-              "motion_out": "dissolve",
-              "num": 2,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Cả hai chưa từng viết",
-                "một dòng kernel engineering nào trước đó."
-              ],
-              "variant": "mark",
-              "anchor": "mid",
-              "motion_in": "pop",
-              "motion_out": "up",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Không phải đội ngũ hàng trăm người.",
-                "Chỉ hai con người, và Claude."
-              ],
-              "variant": "right",
-              "anchor": "top",
-              "motion_in": "wipe",
-              "motion_out": "down",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Đây là tư duy của người thắng cuộc."
-              ],
-              "variant": "invert",
+              "variant": "stack",
               "anchor": "mid",
               "motion_in": "slideL",
               "motion_out": "dissolve",
@@ -891,11 +764,11 @@
             },
             {
               "lines": [
-                "Bạn không cần là chuyên gia",
-                "để tạo ra kết quả chuyên gia."
+                "Không có một AI thắng tuyệt đối",
+                "trên mọi tác vụ lập trình."
               ],
-              "variant": "stack",
-              "anchor": "top",
+              "variant": "mark",
+              "anchor": "low",
               "motion_in": "rise",
               "motion_out": "up",
               "num": null,
@@ -906,28 +779,13 @@
             },
             {
               "lines": [
-                "Sinh học từng là sân chơi",
-                "riêng của tiến sĩ nhiều năm kinh nghiệm."
-              ],
-              "variant": "mark",
-              "anchor": "mid",
-              "motion_in": "fall",
-              "motion_out": "dissolve",
-              "num": null,
-              "chart": null,
-              "screenshot": null,
-              "screenshot_file": null,
-              "screenshot_url": null
-            },
-            {
-              "lines": [
-                "Cái bạn cần là biết",
-                "giao đúng việc cho AI."
+                "Bạn chọn công cụ vì",
+                "nó hợp cách bạn làm việc."
               ],
               "variant": "right",
-              "anchor": "low",
+              "anchor": "mid",
               "motion_in": "wipe",
-              "motion_out": "shrink",
+              "motion_out": "down",
               "num": null,
               "chart": null,
               "screenshot": null,
@@ -936,11 +794,11 @@
             },
             {
               "lines": [
-                "Bạn sẽ tự làm mọi thứ,",
-                "hay học cách giao việc cho AI?"
+                "Hay vì một con số",
+                "bạn còn chưa biết cách đọc?"
               ],
               "variant": "invert",
-              "anchor": "mid",
+              "anchor": "top",
               "motion_in": "slam",
               "motion_out": "wipeOut",
               "num": null,
@@ -952,29 +810,29 @@
           ],
           "sections": [
             {
-              "label": "Cái Giá Bất Ngờ",
+              "label": "Khoảng Cách Nhỏ Hơn Sai Số",
               "card_start": 0
             },
             {
-              "label": "36 Gói Tối Ưu, Một GPU",
-              "card_start": 6
+              "label": "Terminal-Bench Là Gì",
+              "card_start": 5
             },
             {
-              "label": "Giảm Chi Phí 100 Lần",
-              "card_start": 19
+              "label": "Sai Số Lớn Hơn Khoảng Cách",
+              "card_start": 15
             },
             {
-              "label": "Giải Đấu Thiết Kế Protein",
-              "card_start": 30
+              "label": "Bài Test Đã Khó Hơn",
+              "card_start": 23
             },
             {
-              "label": "Bí Mật Đằng Sau",
-              "card_start": 40
+              "label": "Chọn AI Đừng Nhìn Bảng Xếp Hạng",
+              "card_start": 31
             }
           ]
         },
-        "script_path": "output/2026-09-22/2026-09-22-evening-how-claude-is-uplifting-biomolecular-mod/video/script.json",
-        "script_msg_id": 395,
+        "script_path": "output/2026-09-22/2026-09-22-evening-claude-code-and-codex-share-1-on-termina/video/script.json",
+        "script_msg_id": 397,
         "audio_file_id": null,
         "audio_msg_id": null,
         "mp4_path": null,
