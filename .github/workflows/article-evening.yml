@@ -2,6 +2,12 @@ name: article-evening
 on:
   schedule:
     - cron: '0 10 * * *'   # 17:00 ICT
+    - cron: '45 10 * * *'  # 17:45 ICT catch-up -- GitHub occasionally drops a
+                            # scheduled run under load with no failed run logged
+                            # anywhere (verified 2026-09-22: zero runs of this
+                            # workflow that day). The "already drafted" guard
+                            # below makes a second firing a safe no-op on a
+                            # normal day.
   workflow_dispatch:
 permissions:
   contents: write
@@ -25,7 +31,20 @@ jobs:
           pip install -e .
           python -m playwright install --with-deps chromium
           npm install -g @anthropic-ai/claude-code
+      - name: Skip if evening is already drafted
+        id: check
+        run: |
+          SKIP=$(python -c "
+          import json
+          from pathlib import Path
+          f = Path('data/daily/$(date -u +%F).json')
+          d = json.loads(f.read_text(encoding='utf-8')) if f.exists() else {}
+          print(str(bool((d.get('posts') or {}).get('evening'))).lower())
+          ")
+          echo "evening already drafted: $SKIP"
+          echo "skip=$SKIP" >> "$GITHUB_OUTPUT"
       - name: Draft evening article
+        if: steps.check.outputs.skip != 'true'
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
