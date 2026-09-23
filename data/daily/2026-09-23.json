@@ -76,6 +76,89 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "At AI Day Singapore, NVIDIA and Partners Showcase AI Advancements Across Southeast Asia",
+      "style": "white-rail",
+      "topic_key": "at-ai-day-singapore-nvidia-and-partners-showcase-a",
+      "text_fb": "Mình vừa đọc qua sự kiện AI Day Singapore của NVIDIA, và có một chi tiết làm mình dừng lại rất lâu.\n\nKhông phải chip mới, không phải benchmark khủng. Mà là chuyện: các nước Đông Nam Á đang tự làm chủ AI của mình, thay vì đi thuê.\n\nNemotron, dòng mô hình mở của NVIDIA, đang được cả khu vực xé nhỏ ra để may lại theo số đo riêng. Viettel AI ở Việt Nam tinh chỉnh Nemotron 3 Super cho tiếng Việt và leo lên hạng cao nhất trên benchmark VMLU. Thái Lan biến Nemotron 3 Nano thành OpenThai 2.0 Legal, chạy chatbot pháp lý Thanoy, đã phục vụ khoảng 43.000 người dùng. Singapore dùng Nemotron cho an toàn công cộng, cho video search, cho cả bảo trì tàu biển. Ngay cả Brunei, một nước nhỏ, cũng dùng AI để nâng năng suất ngành thực phẩm.\n\nĐa số mọi người vẫn nghĩ làm AI nghĩa là gọi API của một hãng lớn ở Mỹ, trả tiền theo token, chấp nhận mô hình hiểu tiếng Việt nửa vời. Nhưng câu chuyện này cho thấy điều ngược lại đang xảy ra. Mô hình mở cho phép một công ty viễn thông Việt Nam, một startup luật ở Thái, hay một công ty nhỏ ở Brunei, tự nắn mô hình theo đúng ngôn ngữ, luật lệ, văn hóa của họ.\n\nNếu bạn đang xây sản phẩm AI, đây là lúc đặt lại câu hỏi. Không phải \"model nào rẻ nhất\", mà là \"ai đang thực sự kiểm soát dữ liệu và ngôn ngữ trong sản phẩm của mình\". Cuộc chơi không còn nằm ở chỗ ai gọi API khéo hơn. Nó nằm ở chỗ ai dám tự làm chủ mô hình của chính mình.\n\nBạn đang thuê AI, hay đang xây AI của riêng mình?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "AI mở đang để cả Đông Nam Á tự may mô hình theo số đo riêng — Việt Nam, Thái Lan, Singapore đều làm chủ AI của mình, không đi thuê nữa. Bạn đang thuê AI, hay đang xây AI của riêng mình?",
+      "hashtags": [
+        "#AIHitOfficial",
+        "#NVIDIA",
+        "#Nemotron",
+        "#AITiengViet",
+        "#TriTueNhanTao",
+        "#CongNgheAI",
+        "#AIDongNamA",
+        "#ViettelAI",
+        "#AIMoHinhMo",
+        "#AIVietNam",
+        "#CongNgheVietNam",
+        "#SEALION",
+        "#AIChinhPhu"
+      ],
+      "images": [
+        "assets/posts/2026-09-23/evening/01.jpg",
+        "assets/posts/2026-09-23/evening/02.jpg",
+        "assets/posts/2026-09-23/evening/03.jpg",
+        "assets/posts/2026-09-23/evening/04.jpg",
+        "assets/posts/2026-09-23/evening/05.jpg",
+        "assets/posts/2026-09-23/evening/06.jpg",
+        "assets/posts/2026-09-23/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/ai-day-singapore/"
+        },
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/grab-openai-ai-skills-southeast-asia"
+        },
+        {
+          "name": "Benzinga",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNSjY0SVVmTHhVaWVSYmZjSVlaVDNBbEt4dFdENUJ6MFJMZlpXSm9oU2diR2xtWkdzRUt4cHNzMjlhaWhIdlZ2Z01TLS1NZzBnMHp2d0I3bkRCbVg0S052SjRUaUF4UHRYdkx4STgzMlR3akZFbFU5V2I1ZXNxbWlNWFdSUk5HZ2ljVkppcjlUQlZaUkxNYnJhWjVmU1ZVQjJhUm13ZUMxdjhVQjZCdHlB?oc=5"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPVThYWEhLM2FoaGdsWklCd0dLdHNWMHNRYkM0Q19BaTVUMUFpUGs1QVRtV29uNXBFNjhfM3JnSEJhNFVYQUl3WlozelkyaEl4R0xOY1Z3OWU1MW12dWhJdG9VTUdHRVMzLWc5elJRSXJwbHhJbDkzRmRLbk5nUTdMdGNHNWEtVkRwSl9KUl9Nd055MUVmT3MybzJ0MTlyaWxYNWdYY05VN1pRQ19zRWRGbVpqVTZpQXppcEE?oc=5"
+        },
+        {
+          "name": "Futurism",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQaU85Y2dRMGQwZE1TM2ZMa1dCeWRHVVRzTk1LZEFEWklqbVBfU1RHSFNJY0RRd1RPV1FrcC1hRlZpam9MZnE5LXgzTWc1VFNRUXZ4WlZQX01yS3ZvV2hGc1FCRVg0bGJaTDFYNG9pNHdkanc1MTd0dTlKTFd2cG5lQ0E0LTFQcllQMjJmeWg5bWMwOHdIdEE?oc=5"
+        },
+        {
+          "name": "vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPdUhCOE14MVBycTRQTGZYdmhUdUF6ZWJHcHdsMl9hLWJKZjhUcUtkY1F2UGFrVG9MWXkyck1KdnB6WDJnSnctaEpHWmJqTXAtMC1Bb3VaOFU0eWxSa0gxZGstMExDU2ZZZGpOS0JKbU5wamdjSUc3a3dQNEstOTA5SmlkWFUwVGloYWR0amd6dDVYOGFCZ2lz?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122109617715476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122109617715476035",
+          "url": "https://facebook.com/1381130541740424_122109617715476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=A5lW0vosyObjDvCDSVV5dez"
+        }
+      }
     }
   }
 }
