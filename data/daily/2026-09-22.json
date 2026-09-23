@@ -73,9 +73,13 @@
           "url": "https://facebook.com/1381130541740424_122108086017476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media_publish -> 400: (9007/2207027) Media ID is not available | type=OAuthException fbtrace_id=ARoc-TZUM_18lKsu7Mexet6",
+          "attempts": 3
+        }
       },
-      "ig_attempts": 2
+      "ig_attempts": 3
     },
     "evening": {
       "video": {
