@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-23",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Trump says the US is officially renaming AI to ‘super intelligence’",
+      "style": "mono-centered",
+      "topic_key": "trump-says-the-us-is-officially-renaming-ai-to-sup",
+      "text_fb": "Đổi tên một công cụ không làm cho bạn sử dụng nó giỏi hơn.\n\nĐa số mọi người đang bị cuốn vào những tranh cãi bề nổi. Khi chính phủ Mỹ tuyên bố tại Đại hội đồng Liên Hợp Quốc rằng sẽ chính thức gọi AI là “Super Intelligence” vì cho rằng từ “nhân tạo” nghe giả tạo, đám đông lại bắt đầu bàn tán. Nhưng đây là sự thật: nhãn mác truyền thông không tự động tạo ra năng lực cạnh tranh cho bạn.\n\nCái thực sự quan trọng là năng lực thực thi. Dù công nghệ này được gọi là AI, SI hay bất kỳ thuật ngữ hoa mỹ nào khác, nó vẫn đang âm thầm tái định hình toàn bộ nền kinh tế với quy mô lớn hơn cả Cách mạng Công nghiệp. Trong khi các chính trị gia tranh luận về vị thế dẫn đầu và cách quản lý, người thua cuộc là những kẻ chỉ đứng ngoài tranh cãi xem tên nào nghe kêu hơn.\n\nNếu bạn đang làm việc trong bất kỳ ngành nghề nào, lời khuyên của mình là hãy phớt lờ những chiêu bài truyền thông. Đừng quan tâm từ ngữ nào đang là mốt. Người thắng cuộc trong kỷ nguyên này là người biết lấy công nghệ ra làm công cụ tạo ra đầu ra cụ thể, tối ưu hóa quy trình và tiết kiệm thời gian mỗi ngày.\n\nSự khác biệt giữa người thắng và kẻ thua là hành động thực tế. Bạn chuẩn bị làm gì để không bị bỏ lại phía sau?\n\nBạn nghĩ việc đổi tên này là bước ngoặt chiến lược hay chỉ là chiêu trò truyền thông?\n\nNguồn: The Verge AI",
+      "text_ig": "Đổi tên AI thành Siêu Trí Tuệ không giúp bạn làm việc giỏi hơn. Nhãn mác chỉ là truyền thông, năng lực thực thi mới quyết định tất cả. Đừng tranh cãi về thuật ngữ, hãy tập trung tạo ra giá trị thật. Bạn nghĩ đây là chiến lược hay chiêu trò?",
+      "hashtags": [
+        "#AI",
+        "#SuperIntelligence",
+        "#AHitOfficial",
+        "#CongNghe",
+        "#TuDuyCongNghe",
+        "#KinhDoanh",
+        "#BanChatAI",
+        "#ThoiDaiAI",
+        "#TuDuyThucChien"
+      ],
+      "images": [
+        "assets/posts/2026-09-23/morning/01.jpg",
+        "assets/posts/2026-09-23/morning/02.jpg",
+        "assets/posts/2026-09-23/morning/03.jpg",
+        "assets/posts/2026-09-23/morning/04.jpg",
+        "assets/posts/2026-09-23/morning/05.jpg",
+        "assets/posts/2026-09-23/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-23/morning/06.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/998816/donald-trump-ai-super-intelligence"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQaUFoY2g1bnk4RHRWblhvbHhlUUlRaWtyV2x0cHZocHJ3Y2hKSlY3UTlVaFdFdTNUQkRERGRZTzh3SHdDSzhUd2tkemlTc1pGY0NkNXBJM1QwdkZ0X3hYcGUyN1V1R3puQ01fckkyNlA0Mlh4d05ORW5JY0RrS05rc3plUHZ6WmZrV2RKYjJ4X2xaX05OdFI0OQ?oc=5"
+        },
+        {
+          "name": "Znews",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNNUNiblM3TFZ0TmJYek9NcVlHSjFDRXNEN1hOTnVOOTJzcWp0SWJFZlVMaVRiMDF3N2VkWFZBemhGNzhObnNiN3h6T0dHX1lTa1laVElLN3pPQUtlQUZMcEJDS1d3X3piN0JPVEZlZTdwUzlJbC0yWGdURTRWd3I3RHdabVZJcXFmZXF3dWVjMUNPWGZNRldxa3hn?oc=5"
+        },
+        {
+          "name": "Yahoo News Singapore",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPWTFLUXppTjE2UlhMc2RXNWZsMWRvWGZrX3RXX3EtSDkwR0pWYXRscGhteUJsNlB3cWpHaWVsZzVDM2ZwdmI4ZkNXTjRvUDM3SHJ1M1ZUeUV2WFE4azBRVGI3UjV6ajJ3Y1ItZzVqa0tZenZfaTNZWEFoMDhKLVQ2ck9ldzFwTTBzSnc?oc=5"
+        },
+        {
+          "name": "Nguoi Viet Online",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPZ2Mxd05WVFJ2c3Z0dUJ6bHEtdkh0WnlGNHplNHV0VVdlaG9ERDVXcjZaX0g2ZF9JVUJpWjZrNG0weGZMc21yc1BSZVEwTFhrZDl0aG13dG1yTVFYSXZWZUEydGgwaTBlZVprYU1PS1dKWlk1WENlemxGekJmVmd1dVhtWnBmVEVCRDk1bHEtWkpmNnIzRnpj?oc=5"
+        },
+        {
+          "name": "wbaltv.com",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNa3BGN2dudzhlMzNydDMxcFUtZkJYMHlSWFVjd3BjQ04xV0NiTDZvcjcyTmlKUzRTeEZ5OGdNd2NoMk9vaU12Zkdac1BUdmxENXJydHdaOVJ6QU52R2xQeTQwblozenhLMWtMc3U4ajFpUkp1SmFFXy1oX2ozYWUxVkdKOVFOOVhVdTg0X1NZLTNuek1Xb20tTWd2QkxIRHZ1NktUbS0yYUFVbHJWbnlyM1prdw?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122109210801476035",
+      "ig_due": "2026-09-23T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122109210801476035",
+          "url": "https://facebook.com/1381130541740424_122109210801476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
