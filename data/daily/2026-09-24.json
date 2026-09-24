@@ -1,0 +1,87 @@
+{
+  "date": "2026-09-24",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Ringg’s AI agents resolve up to 65% of customer calls with OpenAI",
+      "style": "navy-rail",
+      "topic_key": "ringgs-ai-agents-resolve-up-to-65-of-customer-call",
+      "text_fb": "Đa số mọi người nghĩ AI mạnh nhất là chọn một model xịn nhất rồi dùng cho mọi việc. Ringg chứng minh điều ngược lại.\n\nCông ty này làm nền tảng chăm sóc khách hàng bằng AI cho các doanh nghiệp lớn ở Ấn Độ. Trước đây, tăng lượng cuộc gọi đồng nghĩa với tăng người, tăng chi phí, tăng rối. Nhân viên phải nhảy qua hàng loạt hệ thống rời rạc chỉ để giúp khách mua một gói bảo hiểm hay đặt một lịch hẹn.\n\nRingg không giải quyết vấn đề bằng cách thêm người. Họ xây một hệ agent chạy trên voice, chat, WhatsApp và web, rồi chia việc cho nhiều model OpenAI khác nhau. GPT-5.6 Luna lo phần thời gian thực, hiểu yêu cầu khách và gọi đúng công cụ. GPT-5.6 Terra xử lý sau cuộc gọi: tóm tắt, phân loại cảm xúc. GPT-5.6 Sol lo việc đánh giá và cải thiện prompt liên tục.\n\nKết quả: hơn 7 triệu cuộc gọi mỗi tháng, tới 65% được agent giải quyết trọn vẹn, chi phí giảm khoảng 90% so với dùng GPT-4.1 cho cùng khối lượng, điểm hài lòng khách hàng trung bình 4.8.\n\nMình thích chi tiết này nhất: họ không tin bất kỳ model nào chỉ vì nó nổi tiếng. Họ tự test Terra với Gemini 2.5 Flash, thấy Terra thắng cả độ chính xác lẫn chi phí, rồi mới chuyển hẳn sang dùng. Đó là kỷ luật thật, không phải niềm tin mù quáng vào một thương hiệu.\n\nNếu bạn đang xây sản phẩm AI mà cứ nhét một model vào mọi tình huống, có lẽ bạn đang làm khó chính mình. Câu hỏi không phải \"model nào mạnh nhất\", mà là \"việc này thực sự cần gì\". Bạn đang thiết kế hệ thống AI của mình theo cách nào?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Ringg không dùng 1 AI, mà 4. Mỗi model một nhiệm vụ: real-time, phân tích, đánh giá. Kết quả: 7 triệu cuộc gọi/tháng, 65% tự giải quyết, chi phí giảm 90%. Bài học: đừng nhét 1 model vào mọi việc. Bạn đang làm vậy không?",
+      "hashtags": [
+        "#AI",
+        "#OpenAI",
+        "#GPT56",
+        "#Ringg",
+        "#ChatbotAI",
+        "#TríTuệNhânTạo",
+        "#AIAgent",
+        "#CustomerService",
+        "#TựĐộngHóa",
+        "#AIVietnam",
+        "#Chatbot",
+        "#CôngNghệAI",
+        "#KinhDoanhAI",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-09-24/morning/01.jpg",
+        "assets/posts/2026-09-24/morning/02.jpg",
+        "assets/posts/2026-09-24/morning/03.jpg",
+        "assets/posts/2026-09-24/morning/04.jpg",
+        "assets/posts/2026-09-24/morning/05.jpg",
+        "assets/posts/2026-09-24/morning/06.jpg",
+        "assets/posts/2026-09-24/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/ringg"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE90S1FDR1RBcUt5a1k5OVFkS1JTeDJ6ZHpRZEhNbTlrVS1FOWJzOFJTRk53aGdXcXZ3LUNCWjhiaEdvRGFjTnc?oc=5"
+        },
+        {
+          "name": "The Register",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdFRBdHNnaVRuSXpBVGNlSFA3dDQ5MkdPQVl3VjFDenhVYS0za1RrR2pGc19HMlFBdDY5dlBEMHM2dlZFT1J6R2JhajRDaTVQTDBMb2ZLa2VhVW9oUUhDWS04eExUN0pXN3Z0anNWcEtBZXlqd1BHd1dSTmY2dEEwOEpJdWNjVzRONjdPZTJOZWpDMXFIcVprVGthbjEtcFFRR0huVFRoVVlYZ1M4QkE?oc=5"
+        },
+        {
+          "name": "UN News",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBqVGZCZ3prNmhaQXp3bkxTeWlRWlpjYUkxV2V0UWJGTy01dTFZQ2NoLXlXQWtVQ3lySFJsZmNuMDRWMWZQbmhfUGpqN3VsbFlPZ1ltNl9HQQ?oc=5"
+        },
+        {
+          "name": "bbc.com",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9kT2t4QWVHS3diRXpOWV90RFhEMTh5SWp0RU9TRFl1dmJENEtZMnJDWXNsdkNpSHd0MDQ5YzhCVDZBUzlrN00wUVY5Q2hMMUpyWlRVcW5NYnJXVDg?oc=5"
+        },
+        {
+          "name": "cio.com",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPc2Q1ZGlWa3A2a1dSanFxUGxwRkh2eEJiNWcyYmFGUFpiZ2RtRDRSbWNzNVo3R0pQVGtDUklSanVNT0pKTGlLcEtpYUYwOEFLcW80eUdFZ01Za09BV29LSzB1c0Z6Q0s2Y3F1Z0dHcURKLTgwckg5VWJJU1hzc2xNQTFBdWNWdUs3elg0RlhFMHZ1TDJIYVh4UkhKbV9CbUxMczhzWHhGTHUxT0xsdHJIU3FzOW5OdndPT2JfWm5HV2hEa19uLUU0?oc=5"
+        }
+      ],
+      "angle": "chuyen-thuc-chien",
+      "fb_post_id": "1381130541740424_122109915495476035",
+      "ig_due": "2026-09-24T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122109915495476035",
+          "url": "https://facebook.com/1381130541740424_122109915495476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
