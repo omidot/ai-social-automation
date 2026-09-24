@@ -83,6 +83,82 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Gemini 4 is almost ready, says new Google DeepMind chief",
+      "style": "warm-rail",
+      "topic_key": "gemini-4-is-almost-ready-says-new-google-deepmind-",
+      "text_fb": "Đa số mọi người đều nghĩ Google đã thua cuộc.\n\nKhi OpenAI ra mắt GPT-6 và Anthropic tung ra series Mythos, Google hoàn toàn im lặng. Bản Gemini 3.5 Pro hứa hẹn vào tháng 6 bị hủy bỏ không một lời giải thích. Giới công nghệ vội vã gạch tên Google khỏi ngôi đầu cuộc đua AI.\n\nNhưng bạn đã quá ngây thơ nếu tin vào bề nổi đó.\n\nTân lãnh đạo Google DeepMind, ông Koray Kavukcuoglu, vừa chính thức lên tiếng. Google không tụt hậu, họ chủ động lùi một bước. Thay vì lao vào cuộc đua đốt tiền tung mô hình gắn mốc 3.5 để lấy tiếng, họ dồn lực phát triển dòng Flash: nhỏ hơn, nhanh hơn và thực tế hơn cho doanh nghiệp.\n\nVà giờ đây, Gemini 4 đã bước vào giai đoạn tinh chỉnh cuối cùng. Nó sẽ xuất hiện sớm hơn rất nhiều so với những gì đối thủ tưởng tượng.\n\nBài học ở đây là gì? Trong công nghệ hay kinh doanh, kẻ thắng cuộc không phải là người hét to nhất trên truyền thông. Kẻ chiến thắng là người làm chủ được hạ tầng, tối ưu được chi phí và tung đòn quyết định đúng thời điểm.\n\nNếu bạn đang làm sản phẩm, hãy ngừng chạy theo những thứ hào nhoáng nhất thời. Hãy hỏi bản thân: công cụ bạn dùng có thực sự mang lại hiệu quả hay chỉ là cái mác hoành tráng?\n\nBạn tin Gemini 4 sẽ lấy lại vị thế cho Google, hay OpenAI đã đi quá xa để có thể bị bắt kịp?\n\nNguồn: The Verge AI",
+      "text_ig": "Đa số nghĩ Google thua cuộc khi hoãn Gemini 3.5 Pro. Nhưng sự thật là họ chủ động lùi bước để chuẩn bị cho Gemini 4. Kẻ thắng cuộc không phải người hét to nhất, mà là người tung đòn đúng lúc. Bạn nghĩ sao?",
+      "hashtags": [
+        "#Gemini4",
+        "#GoogleDeepMind",
+        "#OpenAI",
+        "#GPT6",
+        "#CongNgheAI",
+        "#AHitOfficial",
+        "#KienThucAI",
+        "#TriTueNhanTao"
+      ],
+      "images": [
+        "assets/posts/2026-09-24/evening/01.jpg",
+        "assets/posts/2026-09-24/evening/02.jpg",
+        "assets/posts/2026-09-24/evening/03.jpg",
+        "assets/posts/2026-09-24/evening/04.jpg",
+        "assets/posts/2026-09-24/evening/05.jpg",
+        "assets/posts/2026-09-24/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-24/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/999802/google-deepmind-gemini-4-timeline-koray-kavukcuoglu"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNWjBvcU5MVHoyMUJ4OUYyWkpUdFJMNm1nV0JvbjBQNTJMbFQyUk1QWTdGSVNob1VJdk4tbUNzdmhHVDduQXNubkFYYnBDaFBSanAzN2RzaFdVMmNRUU5aQzdHLU9Ub3JvREFjaXhMcFZPUy1XYVpELXgyVlQyek5nNjhEUEotNVR6ai1DcXZhdy0yZw?oc=5"
+        },
+        {
+          "name": "GuruFocus",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQM3ozWkdSVU1MYVFPUVpnaG5OenZlT2ZDOEJXQUt1ZEVJaG1veGJlTlV0TTMxVElKZjVsNVVUdGc0cGc0YXBXaVRFNU9mQS1ycG1PVGQ3VzBpYjF1ZXZlNUE2czdnQkptY2RMeWpBVFJYMlk2MUF1RFBUYzM5X203eXV5ekNOOGdZODNZNWZKTl93Vk0?oc=5"
+        },
+        {
+          "name": "Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPMDdDc2FsSkJXcU9QbWkwZ09DVkJXMG9uWU9jWVk1R0dnQ1ZMcy11Um15ajd0LXFGMTRwR2hFV1FSb3FfZ0tYcXFjYkJNNTl1M1BVdm9VOHYwMFpSbzVDVDRiYXlCdlFWN0NfTFNnbFFPclFMcXJ2dGpseGVOVEZOYmgyU0draThsRl9sQ3lnaHpmZ3V5RmZCX1NNZGlmUzIwUUFBVFdwMlFqZHQ3dENKeHd4TmtEWklTY1lEeGJ2Qlgydi1ncXNmY1ZyOWprdTdUUkdxUHJB?oc=5"
+        },
+        {
+          "name": "Breakingthenews.net",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNdlJmSEVZWnVrdWNSNHE5UGNKOFRuOGV5SFJRQkZuZHNGOThuU3RMbDFyR3d2dWp0X2RjTVBacTNZSjRSSTlWNFFGTm1MeVB0al9ZVXowUDc2cGthNW9LcjE5d3ltT3NLYlR2ZER4VjVfSlFWU3pXWENTaXVCUVFrREJHcVFVLWZER3RSMl9sbkdkZzBjenNhQmIzZw?oc=5"
+        },
+        {
+          "name": "The Information",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPNXh3OWdvQ3NBQ240aUxVR2NOd0hsMTZITHFpQjFuZlhQMU5ZeWpfaHdNd21lZVlyRzZzcUo5OUhJVEcwVnlFWjkwSENSdkdqb1NMMUFMaWE0a2lwbkw2Z25rMFBUYXZWOTk4VEU0dnRhTWk5YkQ5bkx3VmROWV9pYm5FRVZ0MnlKV0Rqell0LWU?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122110372143476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122110372143476035",
+          "url": "https://facebook.com/1381130541740424_122110372143476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AVG5GtqD5__vybGmHtSZJKa"
+        }
+      }
     }
   }
 }
