@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-25",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "How Open Science Can Help Researchers Prepare for the Next Pandemic",
+      "style": "mono-rail",
+      "topic_key": "how-open-science-can-help-researchers-prepare-for-",
+      "text_fb": "Đa số mọi người hiểu sai về sóng ngầm AI. Bạn nghĩ nó chỉ là Chat GPT, Midjourney hay những công cụ tạo nội dung giải trí? Nhầm toàn tập.\n\nSự thật là những gã khổng lồ như NVIDIA và Google DeepMind đang dùng AI để tái cấu trúc lại nền sinh học toàn cầu. Họ vừa công bố cấu trúc 3D protein của hơn 2.800 loại virus lên cơ sở dữ liệu mở AlphaFold.\n\n30% trong số các tương tác protein đó là tri thức hoàn toàn mới, chưa từng được ghi nhận trong lịch sử y học. Bằng cách kết hợp AlphaFold2 và NVIDIA BioNeMo, công việc tốn hàng năm trời cùng hàng nghìn USD giờ đây rút ngắn xuống còn vài phút.\n\nTheo phân tích từ Center for Global Development, xác suất xảy ra đại dịch lớn tiếp theo trước năm 2050 là 50%. Khác biệt nằm ở chỗ: thay vì chờ thảm họa giáng xuống mới đi tìm câu trả lời, AI giúp con người tích trữ tri thức trước.\n\nBài học rút ra rất rõ ràng. Trong bất kỳ ngành nghề nào, kẻ thụ động đợi sự cố mới phản ứng luôn là kẻ thua cuộc. Người làm chủ cuộc chơi luôn chuẩn bị hạ tầng và vũ khí từ khi sóng yên biển lặng.\n\nNếu công việc của bạn bị ảnh hưởng bởi làn sóng AI, bạn chọn đúc sẵn vũ khí hay đợi sóng xô mới hoảng loạn? Hãy để lại ý kiến bên dưới.\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Đừng tưởng AI chỉ để viết văn hay tạo ảnh. NVIDIA và DeepMind vừa giải mã 2.800 virus bằng AI để chặn đại dịch trước khi nó xảy ra. Khác biệt lớn nhất giữa người thắng và kẻ thua chính là sự chuẩn bị. Bạn đã chuẩn bị gì chưa?",
+      "hashtags": [
+        "#AI",
+        "#NVIDIA",
+        "#DeepMind",
+        "#AlphaFold",
+        "#CongNgheAI",
+        "#AHitOfficial",
+        "#SinhHocAI",
+        "#DoiMoiSangTao",
+        "#TuDuyCongNghe"
+      ],
+      "images": [
+        "assets/posts/2026-09-25/morning/01.jpg",
+        "assets/posts/2026-09-25/morning/02.jpg",
+        "assets/posts/2026-09-25/morning/03.jpg",
+        "assets/posts/2026-09-25/morning/04.jpg",
+        "assets/posts/2026-09-25/morning/05.jpg",
+        "assets/posts/2026-09-25/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-25/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-25/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-25/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-25/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-25/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-25/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/open-protein-dataset/"
+        },
+        {
+          "name": "EnergyNow.com",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOWTA0bXNxOVRkM2NyMTdDRGZ3TjBORTFMSnp1dlBMUEI4TzZEYnpxTF9sNkNkTG5Bd1VNc3pseTIzamtrd25UUGNDZDZnUndQV3pYNnRBTUhDQ2ZfNXZ4LUVNVWl2clhFTzh2OTRtaTA2WTF0RE9HRHl1dUdEVS14VkVzenFMSTh0dFhiVVJqU1U5SUpxN2hackVXSlc2R0FL?oc=5"
+        },
+        {
+          "name": "the wellsville sun",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNTnZsckctazVKcHYtNHRxTmlMT19vcVFjNXpmbkF5VlJ0ZHE5NzYyd0h6a3JkUGRBdHN5SU1ZRVU4ZDBWekNhMHlaOE52TkE4S0dHOHV2dDEtVHFOME1kQjZjS3dqVzBVLTFmSFF3ZHRST1Y1WTVfQ0szZ0dQTFA4ZGNUMmgxaHhMRVRoNHhn?oc=5"
+        },
+        {
+          "name": "OncLive",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOZklWcy16d1lYMTNhcUxSLU9iUXI1NHIyVGVBZjZ2Rlphd3JKN002aklUMExBdlRKVXBka1B5MWNpSGFzVE16cVZPMEIzSHk0dFFYX3pVSU0yUmxGZU5nSTMyc1lHM0RVdmROOXVwWFZZeHlTRXktWmlZaXhndk9QVk9MQVBSMXdXdE5jQ1J4X2R0eGE0VnV2Z0hVX3ExS2JRRzlEMmRZUU00Z2VuYm1iekJBYw?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQUDBkYlVQT1NBc2RWWUd4a0JZTVFiQVo0YkY1ZF8tc3lPd1VpQzRsZ3FKcE5CVXlwMkFKZDhfS2NyaUgzZndXNXl0WklqeVA3akQzSU1sS0dHOS1HTl9kejZacEJ5UkFSLVl2MkxaYnBoM2lzM1hqNTFFMzM3TDZHdjZCSHN3dEozQlV3QXl3S3lDRUEydVNkQnV0bFgwZEx3X3Z3SWxMSTdCZUJBbldFOEwwYU9vVHpn?oc=5"
+        },
+        {
+          "name": "The Times of Israel",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPS2FaVG12Q0g0c3JRSVc1SHVLdWFpMzNLOTR6M1RCNzBGZGViUHRtaXFtdktTWHUweXg5V3pzaEVDQm55THJ1WnFPZ3VHeFJaUXpIblVrM3k5WTQxTndZemlQbzhmZWFPRUROclREWGVlU2YxeUdOUjNvd0dLYmZHZTViQ1pkcTZuYkk0VzBWUWoyTERacm1UU1ZldEdLci1URzl0Y3ZsNzFNUUJWYmc?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122110647471476035",
+      "ig_due": "2026-09-25T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122110647471476035",
+          "url": "https://facebook.com/1381130541740424_122110647471476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
