@@ -1,0 +1,796 @@
+{
+  "date": "2026-09-26",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Đừng vội thay người bằng AI: việc AI vẫn làm tệ hơn bạn",
+      "style": "white-bar",
+      "topic_key": "ung-voi-thay-nguoi-bang-ai-viec-ai-van-lam-te-hon-",
+      "text_fb": "Đa số mọi người đang hiểu sai về làn sóng sa thải trong thời đại AI. Nhiều chủ doanh nghiệp vội vã cắt giảm nhân sự vì tin rằng công nghệ đã đủ giỏi để thay thế con người. Đây là một cú lừa đắt giá.\n\nSự thật là AI xử lý dữ liệu cực nhanh, nhưng nó hoàn toàn mù tịt về ngữ cảnh và cảm xúc con người. Khi bạn đuổi một nhân viên giỏi và thay bằng một công cụ AI, bạn đang đánh đổi sự tinh tế lấy một cỗ máy tạo văn bản vô hồn. Trong thực tế, khi khủng hoảng hay sự cố phát sinh, AI không thể chịu trách nhiệm hay đưa ra phán đoán quyết đoán. Nó chỉ hoạt động dựa trên xác suất từ dữ liệu quá khứ.\n\nKẻ thất bại nhìn AI như một cách cắt giảm chi phí tức thời. Người thắng cuộc nhìn AI như một đòn bẩy để nhân 10 năng suất cho những nhân sự xuất sắc nhất. AI đảm nhận công việc lặp đi lặp lại, còn con người tập trung vào tư duy chiến lược và quản trị trải nghiệm.\n\nNếu bạn đang quản lý một đội ngũ, hãy tỉnh táo. Đừng vội biến doanh nghiệp thành một xưởng sản xuất rác công nghệ chỉ vì chạy theo phong trào. Bạn đang dùng AI để nâng tầm nhân sự hay đang cố cắt giảm họ một cách mù quáng?",
+      "text_ig": "Sa thải nhân sự để thay bằng AI là sai lầm đắt giá. AI giỏi xử lý dữ liệu nhưng hoàn toàn thiếu phán đoán và ngữ cảnh con người. Đừng dùng AI để thay thế, hãy dùng nó làm đòn bẩy nhân 10 năng suất. Bạn đang dùng AI thế nào?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#TriTueNhanTao",
+        "#AIInBusiness",
+        "#TuDuyKinhDoanh",
+        "#LanhDao",
+        "#QuanTriNhanSu",
+        "#CongNgheAI",
+        "#TuDuyChienLuoc",
+        "#AICommunity"
+      ],
+      "images": [
+        "assets/posts/2026-09-26/morning/01.jpg",
+        "assets/posts/2026-09-26/morning/02.jpg",
+        "assets/posts/2026-09-26/morning/03.jpg",
+        "assets/posts/2026-09-26/morning/04.jpg",
+        "assets/posts/2026-09-26/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122111294577476035",
+      "ig_due": "2026-09-26T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122111294577476035",
+          "url": "https://facebook.com/1381130541740424_122111294577476035",
+          "scheduled": true
+        },
+        "ig": null
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": null,
+        "extra_sources": null,
+        "meta": {
+          "title": "Cú Lừa Sa Thải Bằng AI: Vì Sao Kẻ Thất Bại Vội Vã Thay Người?",
+          "description": "Nhiều doanh nghiệp vội vã sa thải nhân sự để thay bằng AI mà không hiểu rằng AI không có tư duy chiến lược và cảm xúc ngữ cảnh. Kẻ thất bại dùng AI để cắt giảm chi phí ngắn hạn, còn người thắng cuộc dùng AI làm đòn bẩy nhân 10 năng suất cho nhân sự xuất sắc. Theo dõi kênh A Hít Official để cập nhật tư duy công nghệ góc nhìn thực tế.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AI",
+            "#TriTueNhanTao",
+            "#TuDuyKinhDoanh",
+            "#QuanTriDoanhNghiep",
+            "#SaThaiAI",
+            "#CongNghe",
+            "#HieuSuat"
+          ],
+          "keywords": [
+            "A Hít Official",
+            "sa thải bằng AI",
+            "AI thay thế con người",
+            "tư duy AI",
+            "quản trị nhân sự AI",
+            "đòn bẩy AI"
+          ],
+          "tiktok_caption": "Sa thải nhân sự để thay bằng AI là cú lừa đắt giá nhất. Bạn dùng AI nâng tầm người giỏi hay cắt giảm mù quáng? #AHitOfficial #AI #TuDuyKinhDoanh"
+        },
+        "spoken_text": "Thay thế con người bằng AI là cú lừa đắt giá\nBạn có đang tin công nghệ đã đủ giỏi để đuổi nhân viên?\nĐa số chủ doanh nghiệp đang hiểu sai hoàn toàn về làn sóng sa thải\nHọ vội vã cắt giảm để tiết kiệm chi phí ngay trước mắt\nNhưng ở cuối video này mình sẽ chỉ ra cái giá thực sự mà họ phải trả\nHãy nhìn vào bản chất chúng ta đang đánh đổi điều gì ở đây?\nNhìn vào thực tế này bạn sẽ thấy ngay sự lệch pha chết người\nSự thật là AI xử lý dữ liệu cực kỳ nhanh chóng\nNhưng nó hoàn toàn mù tịt về ngữ cảnh và cảm xúc con người\nKhi bạn sa thải một nhân viên giỏi và thay bằng AI\nBạn đang đánh đổi sự tinh tế lấy một cỗ máy tạo văn bản vô hồn\nKhi khủng hoảng xảy ra AI không thể chịu trách nhiệm\nNó không có phán đoán quyết đoán lúc nguy cấp hay bất ngờ\nVì sao lại như vậy? Vì AI chỉ hoạt động dựa trên xác suất\nNó lấy dữ liệu quá khứ để dự đoán những gì sẽ diễn ra\nNhưng mọi biến cố mới đều nằm ngoài dữ liệu có sẵn\nSự tinh tế của con người là thứ không thuật toán nào sao chép được\nNên nếu bạn tưởng mình đang cắt giảm chi phí\nThực ra bạn đang tự sát về mặt năng lực cạnh tranh\nĐây là sự khác biệt giữa hai tư duy hoàn toàn đối lập\nKẻ thất bại nhìn AI như công cụ cắt giảm chi phí ngắn hạn\nHọ biến doanh nghiệp thành xưởng sản xuất rác công nghệ chạy theo phong trào\nCòn người thắng cuộc? Họ nhìn AI bằng góc nhìn hoàn toàn khác\nHọ dùng AI làm đòn bẩy để nhân 10 năng suất cho người xuất sắc\nCùng một nhân sự giỏi khi có AI hỗ trợ năng suất vọt lên 10 lần\nAI đảm nhận công việc lặp đi lặp lại nhàn chán nhất\nCòn con người tập trung vào tư duy chiến lược và quản trị trải nghiệm\nĐó mới là cách làm của những người dẫn đầu\nMô hình phân công chuẩn mực nhất hiện nay\nĐây là bài học rút ra cho chính bạn:\nĐừng bao giờ đuổi bộ não chỉ để giữ lại một cỗ máy\nNếu bạn đang quản lý một đội ngũ hay dự án hãy tỉnh táo\nĐừng biến công ty thành xưởng rác công nghệ chỉ vì tâm lý đám đông\nHãy nhìn lại câu hỏi ở đầu video này:\nCái giá đắt nhất chính là đổi sự tinh tế lấy văn bản vô hồn\nBạn dùng AI để nâng tầm nhân sự xuất sắc của mình\nHay đang cố cắt giảm họ một cách mù quáng?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Thay thế con người",
+                "bằng AI",
+                "là cú lừa đắt giá"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn có đang tin",
+                "công nghệ đã đủ giỏi",
+                "để đuổi nhân viên?"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đa số chủ doanh nghiệp",
+                "đang hiểu sai hoàn toàn",
+                "về làn sóng sa thải"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ vội vã cắt giảm",
+                "để tiết kiệm chi phí",
+                "ngay trước mắt"
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng ở cuối video này",
+                "mình sẽ chỉ ra",
+                "cái giá thực sự",
+                "mà họ phải trả"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn vào bản chất",
+                "chúng ta đang đánh đổi",
+                "điều gì ở đây?"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn vào thực tế này",
+                "bạn sẽ thấy ngay",
+                "sự lệch pha chết người"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Tốc độ xử lý",
+                    "value": 100
+                  },
+                  {
+                    "label": "Thấu hiểu ngữ cảnh",
+                    "value": 10
+                  }
+                ],
+                "unit": "",
+                "title": "So sánh năng lực thực tế"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sự thật là",
+                "AI xử lý dữ liệu",
+                "cực kỳ nhanh chóng"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng nó hoàn toàn mù tịt",
+                "về ngữ cảnh",
+                "và cảm xúc con người"
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi bạn sa thải",
+                "một nhân viên giỏi",
+                "và thay bằng AI"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn đang đánh đổi sự tinh tế",
+                "lấy một cỗ máy",
+                "tạo văn bản vô hồn"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi khủng hoảng xảy ra",
+                "AI không thể chịu trách nhiệm"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Nhân sự giỏi",
+                    "value": 90
+                  },
+                  {
+                    "label": "Mô hình AI",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Mức độ chịu trách nhiệm khi khủng hoảng"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó không có phán đoán",
+                "quyết đoán lúc nguy cấp",
+                "hay bất ngờ"
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vì sao lại như vậy?",
+                "Vì AI chỉ hoạt động",
+                "dựa trên xác suất"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó lấy dữ liệu quá khứ",
+                "để dự đoán những gì",
+                "sẽ diễn ra"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng mọi biến cố mới",
+                "đều nằm ngoài dữ liệu",
+                "có sẵn"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Dữ liệu quá khứ",
+                    "value": 100
+                  },
+                  {
+                    "label": "Khả năng ứng biến",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Cơ sở đưa ra quyết định của AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sự tinh tế của con người",
+                "là thứ không thuật toán nào",
+                "sao chép được"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nên nếu bạn tưởng",
+                "mình đang cắt giảm chi phí"
+              ],
+              "variant": "stack",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thực ra bạn đang tự sát",
+                "về mặt năng lực cạnh tranh"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là sự khác biệt",
+                "giữa hai tư duy",
+                "hoàn toàn đối lập"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kẻ thất bại nhìn AI",
+                "như công cụ cắt giảm",
+                "chi phí ngắn hạn"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Cắt giảm ngắn hạn"
+                  },
+                  {
+                    "label": "Đòn bẩy năng suất"
+                  }
+                ],
+                "unit": "",
+                "title": "Hai lối tư duy doanh nghiệp"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ biến doanh nghiệp thành",
+                "xưởng sản xuất rác công nghệ",
+                "chạy theo phong trào"
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Còn người thắng cuộc?",
+                "Họ nhìn AI bằng góc nhìn",
+                "hoàn toàn khác"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ dùng AI làm đòn bẩy",
+                "để nhân 10 năng suất",
+                "cho người xuất sắc"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cùng một nhân sự giỏi",
+                "khi có AI hỗ trợ",
+                "năng suất vọt lên 10 lần"
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Nhân sự truyền thống",
+                    "value": 1
+                  },
+                  {
+                    "label": "Nhân sự dùng AI",
+                    "value": 10
+                  }
+                ],
+                "unit": "",
+                "title": "Hiệu suất nhân sự khi có đòn bẩy AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI đảm nhận công việc",
+                "lặp đi lặp lại",
+                "nhàn chán nhất"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Còn con người tập trung vào",
+                "tư duy chiến lược",
+                "và quản trị trải nghiệm"
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó mới là cách làm",
+                "của những người dẫn đầu"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mô hình phân công",
+                "chuẩn mực nhất hiện nay"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "AI: Tác vụ lặp lại"
+                  },
+                  {
+                    "label": "Người: Tư duy chiến lược"
+                  },
+                  {
+                    "label": "Người: Quản trị trải nghiệm"
+                  }
+                ],
+                "unit": "",
+                "title": "Phân công lao động tối ưu"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là bài học",
+                "rút ra cho chính bạn:"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng bao giờ đuổi bộ não",
+                "chỉ để giữ lại",
+                "một cỗ máy"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang quản lý",
+                "một đội ngũ hay dự án",
+                "hãy tỉnh táo"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng biến công ty thành",
+                "xưởng rác công nghệ",
+                "chỉ vì tâm lý đám đông"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn lại câu hỏi",
+                "ở đầu video này:"
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI productivity leverage enterprise management"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cái giá đắt nhất",
+                "chính là đổi sự tinh tế",
+                "lấy văn bản vô hồn"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn dùng AI để nâng tầm",
+                "nhân sự xuất sắc của mình"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hay đang cố cắt giảm họ",
+                "một cách mù quáng?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cú lừa sa thải AI",
+              "card_start": 0
+            },
+            {
+              "label": "Cỗ máy vô hồn",
+              "card_start": 7
+            },
+            {
+              "label": "Bẫy xác suất quá khứ",
+              "card_start": 13
+            },
+            {
+              "label": "Kẻ thất bại vs Người thắng",
+              "card_start": 19
+            },
+            {
+              "label": "Đòn bẩy nhân 10 năng suất",
+              "card_start": 25
+            },
+            {
+              "label": "Bài học và quyết định",
+              "card_start": 30
+            }
+          ]
+        },
+        "script_path": "output/2026-09-26/2026-09-26-morning-ung-voi-thay-nguoi-bang-ai-viec-ai-van-l/video/script.json",
+        "script_msg_id": 455,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
