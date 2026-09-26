@@ -792,6 +792,870 @@
         }
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Nội dung AI tạo tràn lan — người xem sẽ trả tiền cho cái gì",
+      "style": "navy-bar",
+      "topic_key": "noi-dung-ai-tao-tran-lan-nguoi-xem-se-tra-tien-cho",
+      "text_fb": "Đã đến lúc bạn phải nhìn thẳng vào sự thật cay đắng này: Nội dung do AI tạo ra đang tràn ngập mạng xã hội mỗi ngày. Nó xuất hiện khắp nơi, trơn tru, hoàn hảo nhưng vô hồn và hoàn toàn giống nhau. Đa số mọi người ngoài kia đang hiểu sai nghiêm trọng. Họ tưởng rằng chỉ cần bấm nút cho AI tạo ra hàng trăm bài viết hay video mỗi ngày là sẽ có người móc ví trả tiền.\n\nSự thật hoàn toàn ngược lại. Khi thông tin trở nên quá rẻ mửa và dễ tạo ra, giá trị của nó rơi về mức bằng không. Khán giả hiện tại không thiếu kiến thức, thứ họ thiếu trầm trọng là niềm tin và sự kết nối thực sự.\n\nCái thực sự quan trọng là gì? Người xem sẵn sàng trả tiền cho góc nhìn cá nhân, cho trải nghiệm xương máu và những vết sẹo thực tế—những thứ mà không mô hình ngôn ngữ nào có thể giả mạo được. Số đông ngoài kia vẫn đang tự hào vì tạo ra hàng tá nội dung rác thu về tương tác ảo. Trong khi đó, người chiến thắng nhận ra rằng giá trị nằm ở cá tính riêng và sự trung thực tuyệt đối.\n\nNếu bạn vẫn đang cố dùng AI để sản xuất nội dung công nghiệp hời hợt, bạn đang tự đào hố chôn sự nghiệp của mình. Bạn chọn xây dựng uy tín bằng trải nghiệm thật, hay chấp nhận làm một kẻ bấm nút vô hình?",
+      "text_ig": "Nội dung AI tràn ngập làm giá trị thông tin rơi về mức bằng không. Khán giả không trả tiền cho kiến thức trơn tru, họ trả tiền cho trải nghiệm thật và góc nhìn không thể giả mạo. Bạn chọn khác biệt hay bị hòa tan?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#SangTaoNoiDung",
+        "#XuHuongAI",
+        "#TriTueNhanTao",
+        "#XayDungThuongHieu",
+        "#AIContent",
+        "#TuduyKinhDoanh",
+        "#GocNhinKinhDoanh",
+        "#ContentCreator",
+        "#ChienLuocNoiDung"
+      ],
+      "images": [
+        "assets/posts/2026-09-26/evening/01.jpg",
+        "assets/posts/2026-09-26/evening/02.jpg",
+        "assets/posts/2026-09-26/evening/03.jpg",
+        "assets/posts/2026-09-26/evening/04.jpg",
+        "assets/posts/2026-09-26/evening/05.jpg",
+        "assets/posts/2026-09-26/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-26/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122111603829476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122111603829476035",
+          "url": "https://facebook.com/1381130541740424_122111603829476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AEuPz8xllAj3ZziY1pVvnW7"
+        }
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": null,
+        "extra_sources": null,
+        "meta": {
+          "title": "AI tạo tràn lan: Người xem sẵn sàng trả tiền cho thứ gì?",
+          "description": "Nội dung AI tràn ngập mạng xã hội nhưng hoàn toàn vô hồn và giống nhau. Khi thông tin trở nên quá rẻ, khán giả không thiếu kiến thức mà thiếu niềm tin và sự kết nối thực sự. Người chiến thắng là người biết bán góc nhìn cá nhân và trải nghiệm xương máu. Theo dõi A Hít Official để cập nhật tư duy công nghệ sắc bén mỗi ngày.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AIContent",
+            "#CongNgheAI",
+            "#ThuongHieuCaNhan",
+            "#SangTaoNoiDung",
+            "#KinhDoanhOnline",
+            "#TuduyAI",
+            "#XuHuongAI"
+          ],
+          "keywords": [
+            "A Hít Official",
+            "Nội dung AI",
+            "Tạo nội dung bằng AI",
+            "Thương hiệu cá nhân",
+            "Sáng tạo nội dung 2024",
+            "Trải nghiệm thực tế"
+          ],
+          "tiktok_caption": "Nội dung AI tràn ngập nhưng giá trị bằng 0. Người xem trả tiền cho thứ gì? #AHitOfficial #AI #SangTaoNoiDung #CongNghe"
+        },
+        "spoken_text": "Đã đến lúc bạn phải nhìn thẳng vào sự thật:\nHàng trăm bài viết AI đang tràn ngập màn hình của bạn mỗi ngày.\nNó xuất hiện khắp nơi, trơn tru và hoàn hảo.\nNhưng hoàn toàn vô hồn và hoàn toàn giống nhau.\nĐa số mọi người ngoài kia đang hiểu sai nghiêm trọng.\nHọ tưởng chỉ cần bấm nút cho AI tạo bài viết là sẽ có người móc ví.\nHọ tự hào vì thu về hàng ngàn tương tác ảo.\nSự thật hoàn toàn ngược lại: Bạn đang tự đào hố chôn mình.\nKhi thông tin quá rẻ và quá dễ tạo ra,\nGiá trị của nó lập tức rơi về mức bằng không.\nNội dung AI công nghiệp đang bị người xem ngó lơ.\nKhán giả hiện tại không hề thiếu kiến thức.\nThứ họ thiếu trầm trọng chính là niềm tin.\nVà sự kết nối thực sự giữa con người với nhau.\nĐây là điều tin này dạy cho mình và bạn:\nCái thực sự quan trọng chính là góc nhìn cá nhân.\nNgười xem sẵn sàng trả tiền cho trải nghiệm xương máu.\nCho những vết sẹo thực tế mà bạn đã trải qua.\nNhững thứ đó không mô hình ngôn ngữ nào giả mạo được.\nTrong khi số đông ngoài kia vẫn tự hào vì tạo rác,\nNgười chiến thắng nhận ra giá trị thực sự nằm ở đâu.\nNó nằm ở cá tính riêng và sự trung thực tuyệt đối.\nNếu bạn vẫn đang cố dùng AI để sản xuất hời hợt,\nBạn đang biến mình thành một kẻ vô hình.\nBởi vì bất kỳ ai cũng có thể bấm chiếc nút đó.\nKhán giả không cần bạn để đọc lại câu chữ của AI.\nHọ cần góc nhìn cực kỳ sắc bén của bạn.\nHọ cần những bài học rút ra từ thất bại thật.\nĐó là lý do vì sao uy tín cá nhân là tất cả.\nHãy dùng AI như một trợ lý tăng tốc độ công việc,\nNhưng hãy để cá tính bạn làm linh hồn cho bài viết.\nDù bạn làm sản phẩm AI hay làm người sáng tạo,\nTất cả đều phải trả giá nếu thiếu đi sự trung thực.\nĐừng chạy theo số lượng rác thu về tương tác ảo.\nHãy tập trung xây dựng uy tín lâu dài bằng chất lượng.\nMột câu chuyện xương máu đáng giá hơn hàng ngàn bài AI.\nBây giờ, hãy nhìn lại chính bản thân bạn.\nBạn đang chọn xây uy tín bằng trải nghiệm thật,\nHay chấp nhận làm kẻ bấm nút vô hình?\nBạn chọn số lượng rác hay chọn sự trung thực?\nMột câu chuyện thực tế hay hàng trăm bài trơn tru?\nHãy để lại ý kiến ở phần bình luận phía dưới.\nChia sẻ video này cho người đang dùng AI sai cách.\nĐăng ký kênh A Hít Official để không bỏ lỡ video tiếp.",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Đã đến lúc bạn phải",
+                "nhìn thẳng vào sự thật:"
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hàng trăm bài viết AI",
+                "đang tràn ngập màn hình",
+                "của bạn mỗi ngày."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó xuất hiện khắp nơi,",
+                "trơn tru và hoàn hảo."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng hoàn toàn vô hồn",
+                "và hoàn toàn giống nhau."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI generated social media post spam"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đa số mọi người ngoài kia",
+                "đang hiểu sai nghiêm trọng."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ tưởng chỉ cần bấm nút",
+                "cho AI tạo bài viết",
+                "là sẽ có người móc ví."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ tự hào vì thu về",
+                "hàng ngàn tương tác ảo."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sự thật hoàn toàn ngược lại:",
+                "Bạn đang tự đào hố chôn mình."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Số lượng bài",
+                    "value": 100
+                  },
+                  {
+                    "label": "Giá trị thực",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Giá trị thông tin khi AI bùng nổ"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi thông tin quá rẻ",
+                "và quá dễ tạo ra,"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giá trị của nó lập tức",
+                "rơi về mức bằng không."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": 0,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nội dung AI công nghiệp",
+                "đang bị người xem ngó lơ."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khán giả hiện tại",
+                "không hề thiếu kiến thức."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "ChatGPT text generation screen"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thứ họ thiếu trầm trọng",
+                "chính là niềm tin."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và sự kết nối thực sự",
+                "giữa con người với nhau."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là điều tin này",
+                "dạy cho mình và bạn:"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cái thực sự quan trọng",
+                "chính là góc nhìn cá nhân."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Khán giả thừa: Kiến thức rác"
+                  },
+                  {
+                    "label": "Khán giả thiếu: Niềm tin thật"
+                  }
+                ],
+                "unit": "",
+                "title": "Sự khác biệt cốt lõi"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người xem sẵn sàng trả tiền",
+                "cho trải nghiệm xương máu."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cho những vết sẹo thực tế",
+                "mà bạn đã trải qua."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Những thứ đó không mô hình",
+                "ngôn ngữ nào giả mạo được."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong khi số đông ngoài kia",
+                "vẫn tự hào vì tạo rác,"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Personal branding authentic story content"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người chiến thắng nhận ra",
+                "giá trị thực sự nằm ở đâu."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó nằm ở cá tính riêng",
+                "và sự trung thực tuyệt đối."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn đang cố dùng AI",
+                "để sản xuất hời hợt,"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn đang biến mình",
+                "thành một kẻ vô hình."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Cá tính riêng"
+                  },
+                  {
+                    "label": "Sự trung thực"
+                  },
+                  {
+                    "label": "Trải nghiệm thật"
+                  }
+                ],
+                "unit": "",
+                "title": "Nguyên tắc người chiến thắng"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bởi vì bất kỳ ai",
+                "cũng có thể bấm chiếc nút đó."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khán giả không cần bạn",
+                "để đọc lại câu chữ của AI."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ cần góc nhìn",
+                "cực kỳ sắc bén của bạn."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ cần những bài học",
+                "rút ra từ thất bại thật."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI automation vs human authenticity"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là lý do vì sao",
+                "uy tín cá nhân là tất cả."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy dùng AI như một",
+                "trợ lý tăng tốc độ công việc,"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng hãy để cá tính bạn",
+                "làm linh hồn cho bài viết."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dù bạn làm sản phẩm AI",
+                "hay làm người sáng tạo,"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Nội dung trung thực",
+                    "value": 100
+                  },
+                  {
+                    "label": "Nội dung bấm nút",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Yếu tố giữ chân người xem"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tất cả đều phải trả giá",
+                "nếu thiếu đi sự trung thực."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng chạy theo số lượng",
+                "rác thu về tương tác ảo."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy tập trung xây dựng",
+                "uy tín lâu dài bằng chất lượng."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một câu chuyện xương máu",
+                "đáng giá hơn hàng ngàn bài AI."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Authentic personal storytelling content"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bây giờ, hãy nhìn lại",
+                "chính bản thân bạn."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn đang chọn xây uy tín",
+                "bằng trải nghiệm thật,"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hay chấp nhận làm",
+                "kẻ bấm nút vô hình?"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn số lượng rác",
+                "hay chọn sự trung thực?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Trải nghiệm thật",
+                    "value": 100
+                  },
+                  {
+                    "label": "Kẻ bấm nút vô hình",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Đâu là lựa chọn của bạn?"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một câu chuyện thực tế",
+                "hay hàng trăm bài trơn tru?"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy để lại ý kiến",
+                "ở phần bình luận phía dưới."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chia sẻ video này cho",
+                "người đang dùng AI sai cách."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đăng ký kênh A Hít Official",
+                "để không bỏ lỡ video tiếp."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "SỰ THẬT TÀN NHẪN",
+              "card_start": 0
+            },
+            {
+              "label": "BẢN CHẤT CỦA BÀI VIẾT RÁC",
+              "card_start": 8
+            },
+            {
+              "label": "NGUYÊN TẮC CỦA NGƯỜI THẮNG",
+              "card_start": 15
+            },
+            {
+              "label": "CÁCH DÙNG AI ĐÚNG NGHĨA",
+              "card_start": 28
+            },
+            {
+              "label": "LỰA CHỌN TƯƠNG LAI CỦA BẠN",
+              "card_start": 36
+            }
+          ]
+        },
+        "script_path": "output/2026-09-26/2026-09-26-evening-noi-dung-ai-tao-tran-lan-nguoi-xem-se-tr/video/script.json",
+        "script_msg_id": 465,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
