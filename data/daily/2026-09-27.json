@@ -81,6 +81,65 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Vì sao 'AI viết giúp' đang làm nhiều người viết dở đi",
+      "style": "mono-bar",
+      "topic_key": "vi-sao-ai-viet-giup-ang-lam-nhieu-nguoi-viet-do-i",
+      "text_fb": "Mình sẽ nói thẳng: AI không làm bạn viết dở đi, chính cách bạn dùng AI mới làm điều đó. Đa số người nghĩ dùng AI để viết là một bước tiến, gõ vài dòng yêu cầu, có ngay một bài hoàn chỉnh, tiết kiệm cả tiếng đồng hồ. Nhưng bạn quên mất một điều: viết chưa bao giờ chỉ là tạo ra chữ, viết là quá trình bạn buộc não mình sắp xếp ý, chọn từ, cắt bỏ những câu thừa. Bỏ qua quá trình đó, bạn có bài viết nhưng bộ não tạo ra nó thì không còn là của bạn nữa. Ngôn ngữ giống hệt cơ bắp, bạn không luyện, nó yếu đi âm thầm, không báo trước. Nhiều bạn trẻ mình từng nói chuyện giờ đọc một đoạn văn dài đã thấy mệt, nói gì đến việc tự ngồi viết một bài mạch lạc. Đó không phải vì họ kém, mà vì họ đã để AI làm hộ phần khó nhất suốt quá lâu. Người viết giỏi mình quan sát được lại làm ngược lại hoàn toàn: họ viết nháp bằng chính suy nghĩ của mình trước, dù lộn xộn, dù chưa hay, rồi mới đưa cho AI gọt giũa câu chữ, bắt lỗi logic. Cùng một công cụ, một bên dùng để mài sắc tư duy, một bên dùng để trốn việc phải tư duy. Sự khác biệt nằm ở thứ tự, không nằm ở công cụ. Nếu bạn thực sự muốn AI là trợ thủ chứ không phải cái nạng, hãy đổi thứ tự ngay hôm nay: tự viết trước, để AI sửa sau. Giữ cho não mình vẫn là người quyết định. Bạn đang dùng AI để rèn tư duy, hay đang dùng nó để trốn tránh việc phải tư duy?",
+      "text_ig": "AI không làm bạn viết dở đi, cách bạn dùng nó mới làm điều đó. Viết trước bằng chính đầu mình, để AI sửa sau. Đừng để nó nghĩ hộ bạn. Bạn đang rèn tư duy, hay đang trốn tư duy?",
+      "hashtags": [
+        "#AI",
+        "#ViếtLách",
+        "#TưDuy",
+        "#KỹNăngViết",
+        "#AHitOfficial",
+        "#CôngNghệAI",
+        "#PháttriểnBảnThân",
+        "#NgônNgữ",
+        "#ViếtVănHay",
+        "#HọcCáchViết",
+        "#SửDụngAI",
+        "#TrợLýAI",
+        "#KỹNăngSống",
+        "#TinAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-27/evening/01.jpg",
+        "assets/posts/2026-09-27/evening/02.jpg",
+        "assets/posts/2026-09-27/evening/03.jpg",
+        "assets/posts/2026-09-27/evening/04.jpg",
+        "assets/posts/2026-09-27/evening/05.jpg",
+        "assets/posts/2026-09-27/evening/06.jpg",
+        "assets/posts/2026-09-27/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-27/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122112239493476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122112239493476035",
+          "url": "https://facebook.com/1381130541740424_122112239493476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AkXi9z-0IxpHsq99GS6hexn"
+        }
+      }
     }
   }
 }
