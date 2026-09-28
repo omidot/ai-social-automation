@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-28",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Anthropic’s Dario Amodei gets the SNL treatment",
+      "style": "white-split",
+      "topic_key": "anthropics-dario-amodei-gets-the-snl-treatment",
+      "text_fb": "Sự thật là đa số mọi người đang bị dắt mũi bởi các kịch bản tận thế do truyền thông dựng nên.\n\nVừa qua, chương trình Saturday Night Live của Mỹ đã biến CEO Anthropic thành nhân vật hài kịch. Họ châm biếm hình ảnh một lãnh đạo công nghệ vừa bán sản phẩm AI, vừa van xin công chúng hãy ngăn mình lại vì sản phẩm quá nguy hiểm. Một sự mỉa mai cay đắng nhưng hoàn toàn chính xác.\n\nĐây là điều câu chuyện này dạy cho mình: Nỗi sợ hãi đang bị thương mại hóa. Khi các CEO liên tục cảnh báo về thảm họa nhân loại, họ không chỉ giãi bày mối lo. Đó là chiến thuật PR tinh vi nhằm tạo cảm giác công nghệ của họ quyền năng đến mức vượt tầm kiểm soát.\n\nNhưng cuộc chơi đã thay đổi. Khi sự mâu thuẫn giữa lời nói và hành động trở nên quá kệch kợm, nỗi sợ không còn tạo ra sự tôn sùng. Nó biến thành trò đùa trên sóng truyền hình quốc gia.\n\nNếu bạn đang ứng dụng AI hay làm kinh doanh, đừng mắc sai lầm này. Đừng bán sự sợ hãi hay hứa hẹn viễn tưởng. Người dùng ngày nay rất tỉnh táo. Người thắng cuộc dài hạn là người tạo ra giá trị thực, không phải người diễn kịch giỏi nhất.\n\nBạn nghĩ các CEO AI cảnh báo tận thế là lo lắng thật lòng hay chỉ là chiêu trò PR?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Nỗi sợ AI đã chính thức trở thành trò cười trên truyền hình Mỹ. Đừng để bị dắt mũi bởi chiến thuật PR bằng sự sợ hãi. Hãy tập trung vào giá trị thực tế thay vì drama. Bạn nghĩ các CEO AI lo thật hay chỉ diễn kịch?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#Anthropic",
+        "#DarioAmodei",
+        "#AIReality",
+        "#CongNgheAI",
+        "#TuDuyCongNghe",
+        "#AIStrategy",
+        "#GocNhieuAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-28/morning/01.jpg",
+        "assets/posts/2026-09-28/morning/02.jpg",
+        "assets/posts/2026-09-28/morning/03.jpg",
+        "assets/posts/2026-09-28/morning/04.jpg",
+        "assets/posts/2026-09-28/morning/05.jpg",
+        "assets/posts/2026-09-28/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPVUY1RXhlS1RMdm1HNm1yV2FFMU9nMWNiUThPQ1QyZVZPMXNZVmlxU01SSVJISndvRDJXbkJaZWNlYjZERDdkN2VBVkhxN2toMnhNNno3eEFtYUVmclhCQTZxamFfUEx3MXAwc2k4b2gtVzFlR0dwYTNiLWt3c19odi1HdmtIUThU?oc=5"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOUVEUkVPXzdxVUc2VXA2LW1nS3hRWVM4U3hwWmptYnRQdEZJbWZjeXZEczJ2NFpmWWMyNDNOSHl0Y0thUTFJd05aZTRRTDRqNFUzSTZMNnFYU08yMzh3Q3JMNF80SlVjR0FnRFJfcFRNN0tTdE1kamFYc2xrd0FVWmZObHdDdmFldnU3MmJBaERob045a190QmNkN1JyZXc?oc=5"
+        },
+        {
+          "name": "The Hill",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBoeGZQSGRhSTJSc2paUUkzV2xzU0ZCclJDaVBuZ0hVS0tPWkZram4xc1JQdzltUC1YUE5ZYVFNUU9WWlBwVXZxTXdmc01kcnNOZzFHS1d1R3h6TkhNQ19nVnVsR25aY0ROMjJZNGZnTzZmdERfUG9UeHJwLUNveknSAYQBQVVfeXFMTlhjR01sU1Q5UWs1NDFYdnNGMzQ0SU9uZ0oxZm5nZTN6NU9YOEtUbVRqeFV6Z2VLSXNFTXZndXZfNm4yeEJvaUxROG5VWXprblB6XzhLN3BYdndUMFBXMjZnN1VFUlpPVVhkNm5SLU5Zbk8yc1QyVmduOWt5czIyYlFXZVFD?oc=5"
+        },
+        {
+          "name": "Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNUmJma2NROVpfMWh4ZjRzNk9OUFVUeG5lU3JZVnNaX2Q3Nm80RUUtUl94ZnJ5c28xOW1HRlp1aTQ1SDI3TmxQYjdVTk1RYlNFUzV0VXdCeEtWdVRTeDlTRkNlZVRYdkl4bHFydFpENHNRQTUxTktFRHVsVjFvMkc3VkZwTU44d0dJWXU4d2lhSTQxeXozNzQyeW1BOXNmMld1cmc?oc=5"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQQmNRNTdyaGdENWhHUlEzVFpTVnRndmtXcDBfZlVmTVZpWWF2SEF6M1FwXzBtbFZRdWJWOGNKc2JfYll1aEZxamJYYTJwZ2pXMUZ0NW1wWjEyQXRObnRJa29BbzhrLWxXOTFmSVZlRlkyS1Z3endodzAyYm9Sc0NOYlE5REhwbnZQbERfdWc2Mi1LbWVyaGpiOGtjZ1dVWGQ2cTJib1FVM1ZJYkVZbmRJWA?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122112488835476035",
+      "ig_due": "2026-09-28T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122112488835476035",
+          "url": "https://facebook.com/1381130541740424_122112488835476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
