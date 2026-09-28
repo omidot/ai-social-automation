@@ -75,6 +75,83 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "The Lenfest Institute grows landmark program with expanded OpenAI support",
+      "style": "navy-split",
+      "topic_key": "the-lenfest-institute-grows-landmark-program-with-",
+      "text_fb": "Đa số mọi người ngoài kia đang hiểu sai hoàn toàn về cách áp dụng AI.\n\nHọ nghĩ AI sinh ra để tạo nội dung tự động, viết bài hàng loạt hay thay thế con người. Nhưng cái giá của tư duy hời hợt đó là những sản phẩm vô hồn không ai muốn tiêu thụ.\n\nTheo công bố từ OpenAI, họ vừa gấp đôi khoản hỗ trợ lên mức 10 triệu USD cho Viện Lenfest để đưa kỹ sư AI cắm trực tiếp vào các tòa soạn báo địa phương. Hãy nhìn vào cách họ triển khai. Họ không dùng AI để viết bài thay nhà báo. Tại tờ Philadelphia Inquirer, kỹ sư AI tạo ra công cụ biến công việc tìm kiếm tin tức tốn 15 giờ mỗi tuần thành bản tổng hợp tự động mỗi sáng. Tại Chicago Public Media, AI giúp dịch thuật siêu tốc và khai quật kho lưu trữ âm thanh lịch sử hàng chục năm.\n\nCái thực sự quan trọng ở đây không phải là công nghệ khủng đến đâu. Điều cốt lõi là lòng tin và sự hiểu biết sâu sắc về vận hành. AI chỉ phát huy sức mạnh khi nó giải quyết đúng điểm nghẽn thực tế và nằm trong một hệ quy chuẩn rõ ràng.\n\nNgười thua cuộc sẽ tiếp tục dùng AI làm những việc bề nổi. Người chiến thắng sẽ dùng AI cắm sâu vào quy trình, tự động hóa việc lặp lại và giải phóng năng lực tư duy đỉnh cao.\n\nBạn đang dùng AI để tạo thêm rác, hay để tối ưu cỗ máy của mình?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Đa số đang dùng AI sai cách. OpenAI vừa rót 10 triệu USD không phải để AI viết bài thay con người, mà để cắm kỹ sư vào vận hành thật. Đừng dùng AI hời hợt. Hãy dùng AI giải quyết điểm nghẽn cốt lõi. Bạn đã sẵn sàng thay đổi tư duy?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#OpenAI",
+        "#CongNgheAI",
+        "#TuDuyCongNghe",
+        "#ToiUuVanHanh",
+        "#XuHuongAI",
+        "#TriTueNhanTao",
+        "#ThoiDaiAI",
+        "#UngDungAI"
+      ],
+      "images": [
+        "assets/posts/2026-09-28/evening/01.jpg",
+        "assets/posts/2026-09-28/evening/02.jpg",
+        "assets/posts/2026-09-28/evening/03.jpg",
+        "assets/posts/2026-09-28/evening/04.jpg",
+        "assets/posts/2026-09-28/evening/05.jpg",
+        "assets/posts/2026-09-28/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-28/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/lenfest-ai-collaborative-expansion"
+        },
+        {
+          "name": "Barron's",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPamlueVN5ZWszNkJWSHRQNnI0RWVVZ2RjNlVaYWVLcTFvMFNxNnBodEItUjJYSG1iUmY1MmdTS1hYSVp0TnRXRHg5UFF1VnJUbFZWM2hBV3JGT0JqbndXTnJuMEt4NHF1alQ0b1o1cDJIOGp1dldVcTY4YUwtd1VxYlNfN0JfTHM?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2270988/florida-ag-requests-emergency-order-to-stop-openai-model-development/"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/28/openai-still-doesnt-seem-to-have-a-handle-on-all-of-its-rogue-ai-activity/"
+        },
+        {
+          "name": "csoonline.com",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQV1V0S0NaNlV6cnBPM3VfN0FXRnppbGJlOHZHMHcwY0RHSkdCcVlaLWhPMmVlM1N1ZEhPTlF3VDd1Qld3UkNEU3hYVk1jX0xLdkl2SWJkY0dyeDA3elpxVkVCTVp1T3dEeFVEc2d0Tmdjcm9Wd2VUN2JITmVvWkdtQWZWWmpTQWM0azdPZ2JhU0FoeFNfcjNhQlJoNFNuV1poZW1hbnBxdWxSQTR5MjBDQXVUblZrSGFDMkxub0JxRDFPRkN3WFo4?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1001477/openai-math-advisory-group"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122112857511476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122112857511476035",
+          "url": "https://facebook.com/1381130541740424_122112857511476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=A8Z4X-Es6HKC-nqctOaw8Iu"
+        }
+      }
     }
   }
 }
