@@ -77,6 +77,88 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
+      "style": "mono-split",
+      "topic_key": "nvidia-kumo-tabular-sets-a-new-accuracy-efficiency",
+      "text_fb": "Suốt hai mươi năm nay, machine learning trong doanh nghiệp chạy theo một công thức quen thuộc: có bài toán mới thì gom nhãn, kỹ sư đặc trưng, dò hyperparameter, validate, rồi train ra một model chỉ biết đúng bài toán đó và quên sạch khi xong việc.\n\nMình vừa đọc về Kumo Tabular của NVIDIA và thấy công thức đó sắp bị viết lại. Đây là một mô hình nền tảng mã nguồn mở cho dữ liệu dạng bảng — thứ mà gần như mọi công ty đều có: bảng khách hàng, bảng giao dịch, bảng đơn hàng. Đưa vào một bảng có nhãn, nó dự đoán nhãn của hàng mới ngay trong một lần chạy. Không train, không tinh chỉnh, không tự chọn đặc trưng.\n\nCái làm mình chú ý không phải là con số benchmark — dù nó đang đứng đầu cả bốn bộ benchmark lớn nhất ngành. Cái đáng nói là cách nó học: pretrain hoàn toàn trên dữ liệu nhân tạo, sinh ra từ hàng triệu mô hình nhân quả giả lập, rồi áp dụng kiểu học trong ngữ cảnh — giống hệt cách LLM đọc vài ví dụ trong prompt rồi giải bài toán luôn, không cần cập nhật một trọng số nào.\n\nĐây chính là điều LLM từng làm với văn bản, giờ đang lặp lại với bảng dữ liệu. Nếu bạn đang làm data hay ML trong doanh nghiệp, phần việc tốn thời gian nhất của bạn xưa nay không phải là thuật toán — mà là cái vòng lặp thu nhãn, tune, train lại từ đầu mỗi khi có bài toán mới. Foundation model kiểu này không cướp việc của bạn. Nó cướp cái vòng lặp đó.\n\nKỹ năng tự train model từ số 0 cho từng bài toán sẽ mất giá trị dần, y như viết assembly tay khi thế giới đã có compiler. Bạn còn định tự train lại model cho từng bài toán tới bao giờ?\n\nNguồn: Hugging Face",
+      "text_ig": "Hai mươi năm nay ML doanh nghiệp cứ train lại từ đầu cho mỗi bài toán. NVIDIA Kumo Tabular vừa chứng minh điều đó không còn cần thiết — dự đoán ngay trong một lần chạy, không train, không tune. LLM đã làm điều này với văn bản. Giờ tới lượt bảng dữ liệu. Bạn còn định train lại bao lâu nữa?",
+      "hashtags": [
+        "#AI",
+        "#NVIDIA",
+        "#KumoTabular",
+        "#MachineLearning",
+        "#DataScience",
+        "#FoundationModel",
+        "#InContextLearning",
+        "#TabularData",
+        "#CongNgheAI",
+        "#HocMay",
+        "#AIMoi",
+        "#TriTueNhanTao"
+      ],
+      "images": [
+        "assets/posts/2026-09-29/evening/01.jpg",
+        "assets/posts/2026-09-29/evening/02.jpg",
+        "assets/posts/2026-09-29/evening/03.jpg",
+        "assets/posts/2026-09-29/evening/04.jpg",
+        "assets/posts/2026-09-29/evening/05.jpg",
+        "assets/posts/2026-09-29/evening/06.jpg",
+        "assets/posts/2026-09-29/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/nvidia/kumo-tabular"
+        },
+        {
+          "name": "CPO Magazine",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPclNuQ1loS3B4NTd4SG1kdkxzeXRFWjdUNktkdHgwekpCbHR1NVYxLXZzc2NoOS15WWFCaFFHbDNLZ09YMzJTaFVzc0lKamhWWWVhX2dCSWVwUFowa1liYlVKUHR4TUh0TmNNbHV5bjh4SFp3cjRUX3lTZjJONFk5OG8zMEtaZHdfSk1xSENlZ0d0ZXBPZHpiVWUxZUNyWERaVUM4OHpITDBzRjNSc21r?oc=5"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOVG9nYmYwV1ozWnh3NThUVlVpTEc5QXFqd0dQVGYxdjlLX2ZRcGU3MmZObVA4SDdlUno5WE1QVV8yOXRBb2dRQW84NWxNQW9FS284a1d4bVZlaGRSNW9yTGM3ZTBnNlJ3bWJod3MxTHdJTHVzYTY0UU4zV0NVaFIzY1hPTjktdVBRNE0yc2RsV2E3dWo1LS0tQVNvMmtrU3VoUG9TYVp3ZHhBN204U3VUeEpzVzFKVWlLZWpJQm1wTGU?oc=5"
+        },
+        {
+          "name": "fool.com",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcFgwRGlTX3NLeGJGVUlkSUxMTEQzVWRXN3lOQ1BNakZ1OUZoZTA5X3BHRk95eTRZek1fbktMUXFHRU12Q090SDd2Wklzd0lNZkhWM2ZFYl9zM1B2NmlrUTdteEtvcnd4ZXJlMUZJLUVIRkJ0T0taclJtR19ISWNlQlVuVXBlSmtOZ29HbFpybGl3cVY2bVhsbDZR?oc=5"
+        },
+        {
+          "name": "debuglies.com",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPWEZkMFN1My05QlhWdk1WZWVESEdIYXZUc3hIaldPS1hkRndWb1VuTzNoMUR0Y2xpUVhCbnVubjk5Z1pIUUdublVFZmlGSzNZM3FOS2xmOVhUc3hRampQSG44SW42NzluTWZXLWYzLXY5NWVaTDVXR1R6N19ObGd3c05JWmZZQmo1Z1RpVEE1dGsweUdZUlpsSXRSQ3Y5QVlER1VZTEd2OXVwdGR6REpZb0VnS0U?oc=5"
+        },
+        {
+          "name": "CDO Magazine",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNaFhmWUZqci1RR3RBX001aXRvN1hSTHhqTUd1QXgyM2ItbXU0dGxnUzVIS3R5Ry1KVGRGeUtDMzVBZWNpZm9xVTY3RTJSZlpQRmwzR2xydFJneGFrVnE4eVFUU0ktZ19qeVNLM3JDSFo1WjRBWFFTSzFsaVRYMFplQjZ1c2hhT0RVUWdfaldNZHhka1ZybnNoNVdiNUp3RjR5aEtPNw?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122113360569476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122113360569476035",
+          "url": "https://facebook.com/1381130541740424_122113360569476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=A1F2F_-DMmGBiDwUamWXaZ_"
+        }
+      }
     }
   }
 }
