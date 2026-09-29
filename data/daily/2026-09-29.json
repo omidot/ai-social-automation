@@ -1,0 +1,81 @@
+{
+  "date": "2026-09-29",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Anthropic releases Sonnet 5.5, which it calls a significantly cheaper, faster work partner",
+      "style": "warm-split",
+      "topic_key": "anthropic-releases-sonnet-5-5-which-it-calls-a-sig",
+      "text_fb": "Đa số mọi người đang hiểu sai về cách chọn công cụ AI. Bạn nghĩ mô hình đắt nhất, to nhất mới đem lại kết quả tốt nhất? Đó là tư duy khiến bạn mất tiền vô ích.\n\nSự thật là cuộc đua AI đã bước sang một chương mới. Sự cồng kềnh đang nhường chỗ cho tốc độ và hiệu suất chi phí.\n\nTheo TechCrunch, Anthropic vừa ra mắt Sonnet 5.5. Hãy nhìn vào các con số thực tế: nó nhanh hơn 30% so với bản Sonnet 5 ra mắt ba tháng trước, và tốc độ đốt token giảm mạnh. Nhưng điểm ăn tiền nhất không nằm ở đó.\n\nTrong các bài kiểm tra về lập trình đa agent, Sonnet 5.5 đã đánh bại chính mô hình cao cấp nhất của hãng là Opus 5.5. Lý do rất đơn giản: nó cho phép bạn kích hoạt nhiều agent cùng lúc mà không làm ngân sách vọt lên trần. Thêm vào đó, năng lực an ninh mạng của nó mạnh đến mức Anthropic lần đầu phải đưa rào chắn bảo mật của dòng Opus vào một mô hình tầm trung.\n\nCùng lúc đó, OpenAI tung ra bản nâng cấp cho Sol và Luna, Meta đẩy mạnh AI trên kính thông minh. Tất cả đều hướng về một đáp án.\n\nĐây là bài học mình rút ra: Người chiến thắng không phải người dùng mô hình to nhất, mà là người biết tối ưu chi phí trên từng tác vụ. Nếu bạn đang làm việc thực chiến hàng ngày, hãy dừng việc cúng tiền cho các mô hình cồng kềnh.\n\nBạn chọn tốc độ và sự linh hoạt, hay vẫn bám lấy cái danh xưng flagship đắt đỏ?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Đừng lãng phí tiền cho các mô hình AI siêu to cồng kềnh. Anthropic vừa chứng minh Sonnet 5.5 nhanh hơn 30%, rẻ hơn và vượt mặt Opus 5.5 ở khoản lập trình agent thực chiến. Tốc độ và tối ưu chi phí mới là thứ quyết định chiến thắng. Bạn đã thử chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#Anthropic",
+        "#ClaudeSonnet",
+        "#Sonnet55",
+        "#TriTueNhanTao",
+        "#CongNgheAI",
+        "#AgentAI",
+        "#AIPractical",
+        "#OpenAI",
+        "#CongNgheMoi"
+      ],
+      "images": [
+        "assets/posts/2026-09-29/morning/01.jpg",
+        "assets/posts/2026-09-29/morning/02.jpg",
+        "assets/posts/2026-09-29/morning/03.jpg",
+        "assets/posts/2026-09-29/morning/04.jpg",
+        "assets/posts/2026-09-29/morning/05.jpg",
+        "assets/posts/2026-09-29/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-29/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/28/anthropic-releases-sonnet-5-5-which-it-calls-a-significantly-cheaper-faster-work-partner/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOT2l6M0lzLXZOampyMGFyal9PSk9WSm9TMU1ZSFVDVUgxNjFGV2tnYThqTm05RjRqOGRZaF9IeXBTRlZjNVNZd19fclVvNy1wVGE1bzM1NDl5RnZjWHpTTDBadllvejB2UDcyRWZ1bFdJem5TbnVwbkdJeldwOW5RbzhoUkZwZ2JULXE5Q25xUm9qX0RIakZESWJySThneFVzZTIwOGVUaWhzVS1HbWNjVjBGakhGazJ0a0RvczlZTmw?oc=5"
+        },
+        {
+          "name": "siliconangle.com",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQOEZHRldHN1lwUzlvZDdRV25iQTBKT1BKWEc4LVVrRzIzUHJJTC1XWTBtbi0wQzhzbTVucTlDYkF6aHdtYmtsdDZZSHZjZThtampicFZVNTRBSkJXcmR2aGxCU3JESUZjSkRSWGRxMXRRYlBPVk1zemNMYXRYWElaMThyV3Jia24xNHNvalNQZkRDU2huRWpNUzZSTnFSZlJCVC1Ma0N4cEt5bEgxTFB1TmlPZ1RkUWN1eHNvVUxzT00wWTRMemc?oc=5"
+        },
+        {
+          "name": "Amazon Web Services (AWS)",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPNWJ3ekhzN2tpWXc4b1VNZURYcGR2RWp3ZGRVNzRZY0VDX0wwYmduVHBYZ0swZzFGR1dSN3J1dWlGeWwwUGVMVTE3anpGclN3cjlVenNtalBlVmhYNEVvOF85aVN3NTlSZFNxb1lkcjdlRF9LQ0V2V3VhVjJHeEZtTF9kQk11TXRPcHdj?oc=5"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNUm1rcklHNVRzQnFIS2t3RnNGNDBwU25RUzJIcnFNN0FIbDNOU3VTNEhVVGprOEhNOVZISGVlWHo1NkFZX3doLUNkOU16cmlMdWotdnljUUowc19DcXJXbzFjRTI1QVFKNGtJSWNBMGdUSExIVlB3NmpVZWQ2TnBFNFpjckY1NEhOOS1BMWw1MktacnlrbFpBMDd5X2tZb0xpbVRxRlREYlRGWWE4elFr?oc=5"
+        },
+        {
+          "name": "Báo Tuổi Trẻ",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPcU1Zd09tX3pHeTdILTBDVmpMZ1I5UXJGTTdZY2Y0ZUtZSW9ET05GbDVfWms4dDhDM3FkYkRBYTlzbUxnR0E0b0hkTnZPYS1wQUlVOU02RERUT1BiaURJTjdnd2RPM2RoLVpUbDh4SEk1djhXVHhNOXpxNmU2YmU1S3RXQlo1dDI5Y1JsQTA1U3Npb2s3YkdaOURZYzZXT1E?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122113031991476035",
+      "ig_due": "2026-09-29T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122113031991476035",
+          "url": "https://facebook.com/1381130541740424_122113031991476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
