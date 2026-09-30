@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-30",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Introducing GPT-6.1 Sol",
+      "style": "white-magazine",
+      "topic_key": "introducing-gpt-6-1-sol",
+      "text_fb": "Đa số mọi người vẫn nghĩ mô hình AI càng đắt thì mới càng giỏi. Đó là một tư duy cũ kỹ và khiến bạn mất tiền vô ích.\n\nOpenAI vừa tung ra GPT-6.1 Sol. Bản nâng cấp này đạt sức mạnh tiệm cận dòng cao cấp GPT-6 Astra nhưng với chi phí rẻ hơn tới 80%. Giá token đầu vào dạng bộ nhớ đệm chỉ còn 0,10 USD cho mỗi triệu token, giảm 95% so với giá chuẩn.\n\nCuộc đua AI hiện tại không còn là ai dựng được mô hình to nhất. Cuộc đua thật sự nằm ở việc ai chạy được agent thông minh với chi phí thấp nhất. Khi làm việc với các quy trình phức tạp như lập trình hay phân tích dữ liệu, chi phí chạy agent theo giờ sẽ ăn mòn lợi nhuận của bạn nếu dùng mô hình đắt đỏ.\n\nTrong thử nghiệm khoa học khắt khe, GPT-6.1 Sol chỉ tốn 5,47 USD cho một tác vụ, trong khi các dòng như Opus 5.5 hay Astra tốn hơn 23 USD. Sức mạnh tương đương nhưng chi phí giảm hơn ba phần tư. Bạn tiết kiệm được ngân sách để vận hành liên tục thay vì chỉ chạy thử vài ba lần rồi hết vốn.\n\nNếu bạn đang xây dựng sản phẩm dựa trên AI, hãy ngừng chạy theo những mô hình hào nhoáng giá cao. Hãy tập trung tối ưu chi phí và quy trình. Mô hình rẻ nhưng đủ giỏi mới là thứ giúp bạn đi xa.\n\nBạn đã bắt đầu tối ưu chi phí vận hành agent AI trong công việc của mình chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "AI đắt đỏ không còn là lựa chọn duy nhất. GPT-6.1 Sol chứng minh mô hình giá rẻ bằng một phần năm vẫn có thể gánh vác công việc phức tạp. Tối ưu chi phí mới là chìa khóa giúp bạn chiến thắng trong cuộc đua AI.",
+      "hashtags": [
+        "#AHitOfficial",
+        "#OpenAI",
+        "#GPT61Sol",
+        "#TritueNhanTao",
+        "#AIAgent",
+        "#CongNgheMoi",
+        "#ToiUuChiPhi",
+        "#AI2026"
+      ],
+      "images": [
+        "assets/posts/2026-09-30/morning/01.jpg",
+        "assets/posts/2026-09-30/morning/02.jpg",
+        "assets/posts/2026-09-30/morning/03.jpg",
+        "assets/posts/2026-09-30/morning/04.jpg",
+        "assets/posts/2026-09-30/morning/05.jpg",
+        "assets/posts/2026-09-30/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/"
+        },
+        {
+          "name": "Microsoft",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPbzN5R2VTM0J2X2ttXzNpSE1XRnRpYVlrTE1ScDQtU1EyZ2dpYzNlNk1jUkVBelhpVlkyU0lxaTBaaHo2S0xSUmhIMXJoejVXNzNsel9EdnNNTV80UTBiRmR6U1ZTbGg2azQ2bmpqU0ZCblZfQlVETGp0OF95ZThfYm9WLUV3d3ZvMVA3TF9mOVlmNEQ1dVZsY01GNXBvcnVXamxpLXI2c0ZuZUV0T3JyaG9relV1T2xhOGtVYm4tQ3pzbFk?oc=5"
+        },
+        {
+          "name": "The Hacker News",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNb2phYXJhRmFuMWluT1VWUm5HY3FqNVNIX1BBdnVGWnlrdlNUWTRPZldORmR4Q19XOFZqeDVSMlg1cGwtQklUMGpUdUJXbFQ3bklaVXY0NnE4NTlLOVp5SkpRS29DNDZEd2JLdEVhMHhsTE80Q25adkRiQXVkTkFUbmI2aWo?oc=5"
+        },
+        {
+          "name": "Al Jazeera",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSExJX2RibHFyX3QwWDRia0VQYTFZS0tKTEtBRHF4TUlfSWh5Y0RQb1dheHk5X1BqMG9Za0c1R2NiU2lpSjdiWmNTdzE4cW9KX3pwZWV4N0gwSkNOdk5kb1diR1FWWU9RLVhIejlJQmRwcUdqRHF1a3gtdWZaemd5QmN5VXFmM0tnbFJzbjYzaWlSdGRyS082RkppVGxWNmNOTzh1UGdyWFnSAa4BQVVfeXFMTXB1R2UyUXQ4LVNoOVBpVnBUN29uclZvY0h0Z1RteXVuV2JCZEVwTzVKNUN0NkJ3alFZQ1F5M0REUmNZR05yWE1ZV0NsWkxjUVQ3MVd3dk50R3BJTHlwNVlDVnRrMXhlejJDR3lDazFkTm41QW1hb2JTWEpMVXBYOE83ZmJnSXQtT2poeF9FRGhMWGtzVVd1d1cwTHJxTFIwOTNWbTVWRmh0Q3Iwc2JB?oc=5"
+        },
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/introducing-dots"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122113587039476035",
+      "ig_due": "2026-09-30T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122113587039476035",
+          "url": "https://facebook.com/1381130541740424_122113587039476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
