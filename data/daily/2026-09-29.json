@@ -74,9 +74,13 @@
           "url": "https://facebook.com/1381130541740424_122113031991476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media_publish -> 403: (4/2207051) Application request limit reached | type=OAuthException fbtrace_id=AG64mUp4XPzQ8Jhee5IV1DJ",
+          "attempts": 3
+        }
       },
-      "ig_attempts": 2
+      "ig_attempts": 3
     },
     "evening": {
       "status": "posted",
