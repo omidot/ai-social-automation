@@ -75,6 +75,83 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "From Training to Production, NVIDIA and CoreWeave Close the Loop on Agentic AI",
+      "style": "navy-magazine",
+      "topic_key": "from-training-to-production-nvidia-and-coreweave-c",
+      "text_fb": "Đa số mọi người đang hiểu sai về Agentic AI. Bạn nghĩ rằng chỉ cần vài dòng prompt hay một framework thời thượng là đã có thể tạo ra những AI Agent thay thế con người? Đúng là ảo tưởng.\n\nSự thật là việc tạo ra một demo AI Agent không khó. Nhưng để đưa nó vào vận hành thực tế cho hàng nghìn doanh nghiệp lại là một câu chuyện hoàn toàn khác. Đó là lý do NVIDIA và CoreWeave hợp tác để giải bài toán hạ tầng từ khâu huấn luyện đến triển khai thực tế.\n\nCái thực sự quan trọng hiện nay không phải là bạn có AI thông minh đến đâu trên giấy, mà là hệ thống của bạn có chạy nổi khi quy mô tăng gấp mười lần hay không. Người thua cuộc sẽ tiếp tục theo đuổi những công cụ làm video hay viết prompt hào nhoáng trên mạng mỗi ngày. Người chiến thắng sẽ âm thầm xây dựng hạ tầng, tối ưu chi phí và đưa AI vào sản xuất thực chiến.\n\nBài học rút ra rất rõ ràng: nếu bạn đang xây dựng sản phẩm AI, hãy ngừng dành toàn bộ thời gian cho phần ngọn. Hãy tập trung vào tính ổn định, tốc độ xử lý và khả năng mở rộng. AI Agent chỉ thực sự có giá trị khi nó hoạt động liên tục mà không gặp sự cố trong môi trường doanh nghiệp thực tế.\n\nBạn đang dành bao nhiêu phần trăm thời gian để nghĩ về hạ tầng cho sản phẩm AI của mình?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Đa số mọi người hiểu sai về Agentic AI. Demo đẹp không có nghĩa là vận hành tốt. NVIDIA và CoreWeave vừa chứng minh hạ tầng thực chiến mới là chìa khóa quyết định. Đã đến lúc bạn ngừng tập trung vào phần ngọn và nhìn vào thực tế. Bạn đã sẵn sàng chưa?",
+      "hashtags": [
+        "#AI",
+        "#AgenticAI",
+        "#NVIDIA",
+        "#CoreWeave",
+        "#CloudComputing",
+        "#TechTrends",
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#AITechnology"
+      ],
+      "images": [
+        "assets/posts/2026-09-30/evening/01.jpg",
+        "assets/posts/2026-09-30/evening/02.jpg",
+        "assets/posts/2026-09-30/evening/03.jpg",
+        "assets/posts/2026-09-30/evening/04.jpg",
+        "assets/posts/2026-09-30/evening/05.jpg",
+        "assets/posts/2026-09-30/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-09-30/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/coreweave-agentic-ai-vera-rubin/"
+        },
+        {
+          "name": "Yahoo Finance Australia",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOWnJ0a3FZNkpQMEd4WDYtbzgxOVFtMkZxTUlJWnZIS3d5STFHWC0xaUNQRnhIckwyU2JZTGJVSk9NWWJILWVBQkVfQXJ5TGZ2XzFuU1dmRlcybEZESTI0NG9QdEdyQ2ctbW85LUFEeHVyaGlramRqT0poUkstekZFcElDM1N5eXlOVXQ3eg?oc=5"
+        },
+        {
+          "name": "Variety",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOUnk0dFNfeFVrQXRJbGI2YW9sc0hfR1Njc2RzYl8tRXhMREE4WGhlSlV0S2RxNTdJSU5FVHBabUJXTlUydGNEd3JEX1d4aHhvWTRPRllITE0tZEFGd2M5NlVQUG5aTTFIRHB5akRLeWhKSEVjUVVaWDRLWWF5cVh3SVJDVmdkMDU1UEJKcWU4bDlnMEhyVThOWldCMlZ6Rjl5WTNmdmtaTlRjMERLNGlj?oc=5"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBSVnEtX2xUV3VfaDRUanAyY2Y0Q2o1WEZRM2hTVEFIRDg0SGIxYUtGR1lNbkpRaFgwS0NHSGdvOXNfaUpkMmxCTDZ0dEhuaWRjZkwxejNjTkU4LW9tMlpEUl9rUFF3MmFYZnRJY244UkFzNkZzZmtVcDZpY0JEQQ?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQN0tMbzB5VnM1cFdHSlZqYVNSb3NaemRHRVJaNnVlSVhfNUgtZUhzcGptUlpkQm9tWEdndWJPaHNER1NETy1XM1F5M0lxYzJoUUowYnVMcmVNQ3ZxcExTdlpiZF8zM3EwOGlBdzNGcGlmZnRRYjYzQUJKUVk4aUQxdEMwQVNwdE1LdmYzZm1TOEZtQ0s3THNMcWtZejdDQkU?oc=5"
+        },
+        {
+          "name": "CoreWeave",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNX1lGaFNiOFJpNlJ2SVpUUnl3WDlYVXNxYkdUenR5dTgzXzRnOENtNFZiRVhnWS1rdWZySnRidXFqeTFjTEY4ZGY4MTZnYkoxaWZHcXA0U1JYMWVyRXpjUW9XX2pHVVNLMDhIcXJvOW1TdEhpSWpqQlJuTzZBU01hUURPeWxWUkdiZVU4aVFESnEtazVrcnBEcA?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122113906413476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122113906413476035",
+          "url": "https://facebook.com/1381130541740424_122113906413476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AYbbg66sOKXRnKXHwalyhzE"
+        }
+      }
     }
   }
 }
