@@ -1,0 +1,663 @@
+{
+  "date": "2026-10-01",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Đa số người học prompt sai chỗ — thứ thực sự quyết định kết quả",
+      "style": "warm-magazine",
+      "topic_key": "a-so-nguoi-hoc-prompt-sai-cho-thu-thuc-su-quyet-in",
+      "text_fb": "Mình thấy rất nhiều bạn học AI đang đi sai hướng ngay từ bước đầu tiên. Các bạn lao vào sưu tầm prompt mẫu, lưu cả kho câu lệnh dài dằng dặc, coi đó là bí kíp. Rồi khi output ra tệ, các bạn trách công cụ, trách mô hình, trách mọi thứ trừ chính cách mình đặt vấn đề. Mình nói thẳng: prompt chỉ là cái vỏ. Cái lõi quyết định chất lượng output là tư duy của người gõ ra nó. Một prompt mẫu hay của người khác sinh ra từ vấn đề cụ thể của họ, trong hoàn cảnh cụ thể của họ. Dán nguyên nó vào bài toán của bạn, phần lớn sẽ lệch. Mình từng quan sát hai người dùng cùng một công cụ AI, cùng khả năng, nhưng ra hai kết quả cách nhau một trời một vực. Người thua gõ chung chung rồi chờ máy tự đọc được ý mình. Người thắng dành vài phút suy nghĩ trước: mình đang cần giải quyết chuyện gì, ai sẽ dùng kết quả này, thiếu dữ kiện gì cần nói rõ. Sự khác biệt không nằm ở công cụ họ dùng, nó nằm ở cái đầu đứng sau bàn phím. Nếu bạn đang học AI, đừng phí thời gian thuộc lòng cú pháp hay nhớ hàng trăm prompt có sẵn. Hãy luyện khả năng đặt vấn đề rõ ràng, chẻ nhỏ yêu cầu, nói rõ ràng buộc và mục tiêu. Kỹ năng này không hết hạn khi có mô hình mới ra mắt, vì nó không nằm trong công cụ, nó nằm trong chính bạn. Bạn đang sưu tầm prompt hay đang luyện tư duy?",
+      "text_ig": "Prompt mẫu không cứu được bạn. Thứ quyết định output là cách bạn đặt vấn đề rõ ràng. Ngừng sưu tầm câu lệnh, bắt đầu luyện tư duy. Bạn đang làm cái nào?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#PromptEngineering",
+        "#TuDuyAI",
+        "#HocAI",
+        "#NangSuat",
+        "#CongNgheAI",
+        "#KyNangAI",
+        "#TrinhBayVanDe",
+        "#AIChoNguoiMoi",
+        "#TuDuyPhanBien",
+        "#ThoiDaiAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-01/morning/01.jpg",
+        "assets/posts/2026-10-01/morning/02.jpg",
+        "assets/posts/2026-10-01/morning/03.jpg",
+        "assets/posts/2026-10-01/morning/04.jpg",
+        "assets/posts/2026-10-01/morning/05.jpg",
+        "assets/posts/2026-10-01/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122114146653476035",
+      "ig_due": "2026-10-01T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122114146653476035",
+          "url": "https://facebook.com/1381130541740424_122114146653476035",
+          "scheduled": true
+        },
+        "ig": null
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": null,
+        "extra_sources": null,
+        "meta": {
+          "title": "Đa số người học prompt sai chỗ — thứ thực sự quyết định kết quả",
+          "description": "Sưu tầm hàng trăm prompt mẫu không giúp bạn dùng AI giỏi hơn. Thứ thực sự tạo nên khác biệt chính là tư duy đặt vấn đề và chẻ nhỏ yêu cầu. Theo dõi kênh A Hít Official để cập nhật góc nhìn thực chiến về AI mỗi ngày!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AI",
+            "#PromptEngineering",
+            "#TuDuyAI",
+            "#ChatGPT",
+            "#HocAI",
+            "#CongNghe",
+            "#MeoAI"
+          ],
+          "keywords": [
+            "học prompt ai",
+            "prompt engineering",
+            "tư duy dùng ai",
+            "a hít official",
+            "cách dùng chatgpt hiệu quả"
+          ],
+          "tiktok_caption": "Đừng tốn thời gian sưu tầm prompt mẫu nữa! Bạn đang lưu prompt hay đang luyện tư duy? #AHitOfficial #AI #PromptEngineering #TuDuyAI"
+        },
+        "spoken_text": "90 người dùng AI đang đi sai hướng ngay từ bước đầu tiên.\nBạn thu thập hàng trăm prompt mẫu, lưu kho câu lệnh dài dặc, rồi tưởng đó là bí kíp?\nKhi kết quả output ra cực tệ, bạn trách công cụ không thông minh. Bạn trách mô hình AI dở tệ.\nBạn trách mọi thứ xung quanh, chỉ để bào chữa cho bản thân, trừ cách mình đặt vấn đề.\nLắng nghe thật kỹ điều này: Prompt chỉ là cái vỏ bên ngoài. Tư duy mới là cái lõi.\nNgay trong video này, mình sẽ tiết lộ kỹ năng, giúp bạn làm chủ mọi công cụ.\nVí như hai người dùng công cụ. Họ cùng xài một AI, cùng khả năng năng lực.\nNhưng kết quả thu về lại cách xa một trời một vực.\nNgười thua cuộc gõ chung chung, rồi ngồi chờ máy tự hiểu ý.\nCòn người thắng thì sao? Họ dành vài phút suy nghĩ trước.\nHọ tự làm rõ ba điều: Mục tiêu là gì? Ai là người sử dụng?\nVà còn thiếu dữ kiện gì cần phải nói rõ với máy.\nSự khác biệt không ở công cụ. Nó nằm ở cái đầu bàn phím.\nMột prompt mẫu hay của người khác được tạo ra từ vấn đề của họ. Trong hoàn cảnh cụ thể của họ.\nBê nguyên prompt đó vào bài toán, phần lớn kết quả sẽ lệch.\nGiống như bạn đi mặc lại chiếc áo may riêng cho người khác.\nĐa số mọi người hiểu sai: Lưu kho prompt dài dặc không giúp bạn giỏi hơn.\nĐó chỉ là cách tốn thời gian. Một sự lãng phí vô ích.\nMô hình AI thay đổi liên tục. Prompt mẫu hôm nay sẽ sớm lỗi thời.\nNhưng tư duy đặt vấn đề thì không bao giờ hết hạn.\nĐây là điều thực sự quan trọng: Trả lời cho câu hứa ở đầu video.\nNếu bạn đang học làm AI, đừng phí sức thuộc lòng cú pháp.\nHãy luyện khả năng đặt vấn đề. Chẻ nhỏ từng yêu cầu phức tạp.\nNói rõ ràng buộc và mục tiêu. Đó mới là chìa khóa.\nKỹ năng này bền vững vượt thời gian. Bởi vì nó nằm trong bạn.\nNếu bạn làm sản phẩm AI, hay người dùng công nghệ mỗi ngày...\nThay vì phụ thuộc vào thư viện prompt, hãy làm chủ suy nghĩ của mình.\nGọi lại chi tiết ở đầu video: Sự khác biệt của người thắng cuộc...\nNó chưa bao giờ nằm ở công cụ. Nó nằm ở cách bạn tư duy.\nThực tế là như vậy.\nBạn chọn tiếp tục sưu tầm prompt, hay bắt đầu luyện tập tư duy?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "90 người dùng AI",
+                "đang đi sai hướng",
+                "ngay từ bước đầu tiên."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 90,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn thu thập hàng trăm prompt mẫu,",
+                "lưu kho câu lệnh dài dặc,",
+                "rồi tưởng đó là bí kíp?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Awesome ChatGPT Prompts GitHub repository"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi kết quả output ra cực tệ,",
+                "bạn trách công cụ không thông minh.",
+                "Bạn trách mô hình AI dở tệ."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn trách mọi thứ xung quanh,",
+                "chỉ để bào chữa cho bản thân,",
+                "trừ cách mình đặt vấn đề."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Lắng nghe thật kỹ điều này:",
+                "Prompt chỉ là cái vỏ bên ngoài.",
+                "Tư duy mới là cái lõi."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ngay trong video này,",
+                "mình sẽ tiết lộ kỹ năng,",
+                "giúp bạn làm chủ mọi công cụ."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ví như hai người dùng công cụ.",
+                "Họ cùng xài một AI,",
+                "cùng khả năng năng lực."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng kết quả thu về",
+                "lại cách xa một trời một vực."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Người gõ chung chung",
+                    "value": 15
+                  },
+                  {
+                    "label": "Người có tư duy",
+                    "value": 95
+                  }
+                ],
+                "unit": "",
+                "title": "Chất lượng kết quả AI thu được"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người thua cuộc gõ chung chung,",
+                "rồi ngồi chờ máy tự hiểu ý."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Còn người thắng thì sao?",
+                "Họ dành vài phút suy nghĩ trước."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ tự làm rõ ba điều:",
+                "Mục tiêu là gì?",
+                "Ai là người sử dụng?"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Vấn đề cần giải quyết"
+                  },
+                  {
+                    "label": "Đối tượng sử dụng"
+                  },
+                  {
+                    "label": "Dữ kiện còn thiếu"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và còn thiếu dữ kiện gì",
+                "cần phải nói rõ với máy."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sự khác biệt không ở công cụ.",
+                "Nó nằm ở cái đầu bàn phím."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một prompt mẫu hay của người khác",
+                "được tạo ra từ vấn đề của họ.",
+                "Trong hoàn cảnh cụ thể của họ."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bê nguyên prompt đó vào bài toán,",
+                "phần lớn kết quả sẽ lệch."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Prompt engineering failure copy paste"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giống như bạn đi mặc lại",
+                "chiếc áo may riêng cho người khác."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đa số mọi người hiểu sai:",
+                "Lưu kho prompt dài dặc",
+                "không giúp bạn giỏi hơn."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó chỉ là cách tốn thời gian.",
+                "Một sự lãng phí vô ích."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mô hình AI thay đổi liên tục.",
+                "Prompt mẫu hôm nay sẽ sớm lỗi thời."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng tư duy đặt vấn đề",
+                "thì không bao giờ hết hạn."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Prompt mẫu: Nhanh lỗi thời"
+                  },
+                  {
+                    "label": "Tư duy cốt lõi: Bất tử"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là điều thực sự quan trọng:",
+                "Trả lời cho câu hứa ở đầu video."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang học làm AI,",
+                "đừng phí sức thuộc lòng cú pháp."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy luyện khả năng đặt vấn đề.",
+                "Chẻ nhỏ từng yêu cầu phức tạp."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Chẻ nhỏ yêu cầu"
+                  },
+                  {
+                    "label": "Nói rõ ràng buộc"
+                  },
+                  {
+                    "label": "Xác định mục tiêu"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nói rõ ràng buộc và mục tiêu.",
+                "Đó mới là chìa khóa."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kỹ năng này bền vững vượt thời gian.",
+                "Bởi vì nó nằm trong bạn."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn làm sản phẩm AI,",
+                "hay người dùng công nghệ mỗi ngày..."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thay vì phụ thuộc vào thư viện prompt,",
+                "hãy làm chủ suy nghĩ của mình."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Gọi lại chi tiết ở đầu video:",
+                "Sự khác biệt của người thắng cuộc..."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "How to talk to AI thinking process"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó chưa bao giờ nằm ở công cụ.",
+                "Nó nằm ở cách bạn tư duy."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thực tế là như vậy."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn tiếp tục sưu tầm prompt,",
+                "hay bắt đầu luyện tập tư duy?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Thảm Họa Prompt Mẫu",
+              "card_start": 0
+            },
+            {
+              "label": "Cùng Công Cụ, Hai Số Phận",
+              "card_start": 7
+            },
+            {
+              "label": "Cái Bẫy Của Prompt Co-py",
+              "card_start": 14
+            },
+            {
+              "label": "Kỹ Năng Bất Tử Thời AI",
+              "card_start": 21
+            },
+            {
+              "label": "Lựa Chọn Của Bạn",
+              "card_start": 28
+            }
+          ]
+        },
+        "script_path": "output/2026-10-01/2026-10-01-morning-a-so-nguoi-hoc-prompt-sai-cho-thu-thuc-s/video/script.json",
+        "script_msg_id": 550,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
