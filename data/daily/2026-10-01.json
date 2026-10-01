@@ -659,6 +659,88 @@
         }
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Introducing Olmo-core 3: Open, scalable training infrastructure for large MoEs",
+      "style": "mono-magazine",
+      "topic_key": "introducing-olmo-core-3-open-scalable-training-inf",
+      "text_fb": "Đa số mọi người nghĩ muốn train mô hình AI nghìn tỷ tham số thì phải là Google, Meta, hay OpenAI. Phải có hạ tầng riêng, đội ngũ riêng, tiền riêng mà không ai ngoài cuộc chạm vào được.\n\nAi2 (Allen Institute for AI) vừa chứng minh điều đó không còn đúng. Họ ra mắt Olmo-core 3 - toàn bộ hạ tầng huấn luyện mô hình MoE (mixture-of-experts) mã nguồn mở, đã kiểm chứng ở quy mô hơn 1,2 nghìn tỷ tham số trên 512 GPU. Không phải concept. Không phải demo. Là hạ tầng thật, công khai, ai cũng tải về dùng.\n\nCái khó nhất của MoE không phải là thêm chuyên gia (experts) vào mô hình - cái khó là thêm mà không làm chậm máy. Ai2 tăng số chuyên gia từ 8 lên 128, tổng dung lượng tham số nhảy từ 4,6 tỷ lên 47 tỷ - gấp 10 lần - mà tốc độ huấn luyện chỉ giảm chưa tới 5%. Họ còn đổi cách phân phối mô hình trên GPU, giúp tốc độ xử lý tăng từ 19.400 lên 52.000 token mỗi giây - gấp 2,7 lần so với hệ thống cũ.\n\nPhần mình thích nhất không phải là con số. Là việc tất cả những tối ưu này - cách chia chuyên gia, cách tiết kiệm bộ nhớ bằng định dạng số MXFP8, cách giảm chi phí giao tiếp giữa GPU - đều được công khai. Những thứ trước đây chỉ nằm trong lab đóng kín của các ông lớn.\n\nNếu bạn đang làm nghiên cứu AI hay xây sản phẩm nhỏ, đây không phải tin để đọc rồi lướt qua. Đây là công cụ bạn có thể mở ra, học, và dùng thật. Mở không có nghĩa là yếu - đôi khi mở lại là thứ buộc kẻ đóng kín phải chạy nhanh hơn.\n\nBạn nghĩ hạ tầng mở có thể đấu ngang hàng với các ông lớn đóng kín không?\n\nNguồn: Hugging Face",
+      "text_ig": "Ai2 vừa mở hạ tầng train mô hình MoE nghìn tỷ tham số - thứ trước giờ chỉ Big Tech có. Tăng 128 chuyên gia, tốc độ vẫn giữ, nhanh gấp 2,7 lần hệ thống cũ. Mở không có nghĩa là yếu. Bạn nghĩ mở có thắng được đóng không?",
+      "hashtags": [
+        "#AI",
+        "#TriTueNhanTao",
+        "#Olmo",
+        "#Ai2",
+        "#MoE",
+        "#OpenSource",
+        "#MachineLearning",
+        "#AIVietNam",
+        "#CongNgheAI",
+        "#DeepLearning",
+        "#MoHinhAI",
+        "#AITrends"
+      ],
+      "images": [
+        "assets/posts/2026-10-01/evening/01.jpg",
+        "assets/posts/2026-10-01/evening/02.jpg",
+        "assets/posts/2026-10-01/evening/03.jpg",
+        "assets/posts/2026-10-01/evening/04.jpg",
+        "assets/posts/2026-10-01/evening/05.jpg",
+        "assets/posts/2026-10-01/evening/06.jpg",
+        "assets/posts/2026-10-01/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-01/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/allenai/olmocore3"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMivAJBVV95cUxPOHJvOUFYU1lTVHZXT2tZbkJZVEFFZ2lzeVZMVXMwRVQtNWJwc1VPNS1iVWFDT0lkdmFoQ1N1NVFrbzlaRjNvZG13YU81N0ZTWFZSYWxxd1NSdnh3Vk0wUVBtVVFvWlBhOF9XbTFXN3ZvUjRUR1lQV0ZCSF8ySVNjYlBSdzZ1X1pPNmxDb3FfaVd5dWd6Y0lDX18zT3htbVhhRm8yVjRQSVBVRXhNeWZLUHpoeUFQNzUtN0pxZzhUaDJqOEgzNzlDZzZrTVk2OGFweHN5UzFEbmhsYkpsdTJILWRLbG42Ty1Ic09KR1V4NWlZV210b2ZyajRSZFFJV0tmMVJNeGg1enllTFByNTF0ZlRlYkJRV1lMSWRGS0dfTFAxemxlbnM4b1U5cm5FcEpxQXpUVW4wZW9QSDNQ?oc=5"
+        },
+        {
+          "name": "cnbc.com",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPeS12ckxPWnBLNm1NbGktbXphM0hpTEkwNlNFbzZYU09QR0Q0X2JWNm1URkRtRzY2ZFNOVlZ1OEpPdFBVVnhMY1haNXdlM1VLSm5NdzY0dzAtSjd4aWFUTXhmVWxDZjBnUmViNXlrLS1nZ3QxekJjV3BjQkpwNTdJQm5waFlEazQ4ZEU3MWpJbVJ2bWxvWEltV2EyQ2ZHM3RlNGYxenZ3MzFDemVJTmlUdmtFWnZrLUt1VHZGZXY0Qmdhc1hJbFNKVXRaTdIB0AFBVV95cUxNdUc4NHlzTjdTWUpxUGVDX0dLemRuYmpfWUVEU2J1YmdRSWZmR190SUlZN2ROVVBBTDh6ZklEdUxLYkdTWU5LdzMta3BLN19aNlQ2WkNxNHVDUE13Z0FuU0E3bVZzdUUwcHk4eVJVdnBDbTN5MHBFcWxMekd0VDJONkdILTVRck9FMkkxSU5KRmRFNVhaV3JEMDlRd2h2bjJ2VngyT21meXVxMHJSQVBNLXJyQ1dPaTI5WURsbk5uZzczeUw4cEtuRThUZE0wdlpk?oc=5"
+        },
+        {
+          "name": "Google DeepMind",
+          "url": "https://deepmind.google/blog/introducing-synthid-bio/"
+        },
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/open-tts-leaderboard"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB4SldKWWgzNDExSThTZW9MRTQ5WHE3VFRZMl9oSjIzaVhuZEZaY1ZSUTFxZTJFaFpUanlncTQySUg5SlRGVnNkQXZ0S3IxLWJScXNkLXY2Z3Jzbk5WR0UwSFp0NmUxN3c?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122114463027476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122114463027476035",
+          "url": "https://facebook.com/1381130541740424_122114463027476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AannkAzlXWzexuxr4DKo2GB"
+        }
+      }
     }
   }
 }
