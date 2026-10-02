@@ -51,7 +51,11 @@
           "url": "https://facebook.com/1381130541740424_122114146653476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media_publish -> 403: (4/2207051) Application request limit reached | type=OAuthException fbtrace_id=A9ZHV_xPQahhQu4iPIKnaY4",
+          "attempts": 3
+        }
       },
       "video": {
         "status": "awaiting_audio",
@@ -658,7 +662,7 @@
           "tiktok": null
         }
       },
-      "ig_attempts": 2
+      "ig_attempts": 3
     },
     "evening": {
       "status": "posted",
