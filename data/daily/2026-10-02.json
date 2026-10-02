@@ -78,6 +78,63 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "AI làm được 80% việc — vì sao 20% còn lại mới là nghề của bạn",
+      "style": "navy-ticket",
+      "topic_key": "ai-lam-uoc-80-viec-vi-sao-20-con-lai-moi-la-nghe-c",
+      "text_fb": "AI không cướp việc của bạn. AI chỉ cướp phần việc bạn chưa bao giờ thích làm. Đó là sự thật ít ai chịu nhìn thẳng. Mọi người đang hoảng loạn vì AI viết được nội dung, dựng được video, trả lời được email nhanh hơn con người. Nhưng mình nhìn thấy điều ngược lại: AI chỉ giỏi ở phần lặp lại, phần có công thức, phần mà ai làm cũng ra kết quả giống nhau. Đó là 80% công việc nhàm chán mà suốt nhiều năm bạn vẫn phải gánh chỉ vì không có ai làm thay. Giờ có người làm thay rồi. Vấn đề là bạn có đang bám vào đúng 80% đó để định nghĩa giá trị của mình không. Nếu có, bạn sẽ thấy bị đe dọa. Nếu không, bạn sẽ thấy được giải phóng. 20% còn lại mới là nơi nghề nghiệp thật sự tồn tại. Đó là lúc khách hàng nói một câu mơ hồ và bạn phải đoán ra họ thực sự cần gì. Đó là lúc dữ liệu mâu thuẫn nhau và bạn phải quyết định tin ai. Đó là lúc một sai lầm xảy ra và cần người chịu trách nhiệm, không phải một mô hình xin lỗi bằng văn bản lịch sự. AI không làm được phần này không phải vì nó chưa đủ mạnh, mà vì phần này cần một thứ AI không có: sự đánh đổi có cái giá phải trả. Mình tin thế này: ai càng sợ AI thay thế, càng là người đang sống nhờ vào 80% kia. Ai đang đầu tư vào 20% còn lại, sẽ càng mạnh lên khi AI phổ biến hơn, vì lúc đó phần dễ không còn là lợi thế cạnh tranh, phần khó mới là. Vậy bạn đang dành thời gian cho phần nào trong công việc của mình, 80% dễ hay 20% khó?",
+      "text_ig": "AI làm xong 80% việc của bạn rồi. Phần còn lại — ra quyết định khi dữ liệu mâu thuẫn, chịu trách nhiệm khi sai, hiểu điều khách hàng không nói ra — máy chưa làm được. Đó mới là nghề của bạn. Bạn đang đầu tư vào phần nào, 80% dễ hay 20% khó?",
+      "hashtags": [
+        "#AI",
+        "#TríTuệNhânTạo",
+        "#AHitOfficial",
+        "#CôngViệcTươngLai",
+        "#KỹNăngSố",
+        "#ChuyểnĐổiSố",
+        "#AIvsConNgười",
+        "#PháttriểnBảnThân",
+        "#TưDuyKhácBiệt",
+        "#CôngNghệ",
+        "#SựNghiệp",
+        "#NângCấpBảnThân"
+      ],
+      "images": [
+        "assets/posts/2026-10-02/evening/01.jpg",
+        "assets/posts/2026-10-02/evening/02.jpg",
+        "assets/posts/2026-10-02/evening/03.jpg",
+        "assets/posts/2026-10-02/evening/04.jpg",
+        "assets/posts/2026-10-02/evening/05.jpg",
+        "assets/posts/2026-10-02/evening/06.jpg",
+        "assets/posts/2026-10-02/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122114959749476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122114959749476035",
+          "url": "https://facebook.com/1381130541740424_122114959749476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AFJUd7_3KpgZRVOeWcATJb_"
+        }
+      }
     }
   }
 }
