@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-02",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "How NVIDIA GPUs Help Accelerate OpenAI’s GPT-6 Astra Ultrafast",
+      "style": "white-ticket",
+      "topic_key": "how-nvidia-gpus-help-accelerate-openais-gpt-6-astr",
+      "text_fb": "Đa số mọi người vẫn đang hiểu sai về cuộc đua AI. Họ tưởng rằng kẻ chiến thắng là người sở hữu mô hình nhiều tham số nhất hay thông minh nhất trên lý thuyết. Sự thật là: một mô hình thông minh đến đâu nhưng bắt bạn chờ 10 giây mỗi lượt trả lời cũng sẽ bị đào thải.\n\nBài học vừa đến từ thỏa thuận giữa OpenAI và NVIDIA theo thông tin từ NVIDIA Blog. OpenAI tung ra GPT-6 Astra Ultrafast trên kiến trúc chip NVIDIA Blackwell, đạt tốc độ sinh token nhanh gấp 8 lần bản Astra Standard. Nhưng chi tiết đắt giá nhất không nằm ở con số 8 lần đó. Nó nằm ở cách họ đạt được nó: OpenAI đã dùng chính các mô hình AI nội bộ của mình để tự viết code phần mềm, tối ưu kernel cho chip Blackwell và Rubin.\n\nHãy suy ngẫm về điều này. Con người không còn đủ nhanh để tự tay tối ưu phần cứng cho AI nữa. AI đang tự tối ưu phần cứng để chạy chính nó nhanh hơn. Khi độ trễ giữa các lời gọi công cụ giảm xuống gần bằng 0, các agent AI có thể sửa code, chạy thử và phát hiện lỗi trong chớp mắt.\n\nNếu bạn đang xây dựng sản phẩm hoặc áp dụng AI Agent vào quy trình công việc, đây là lời cảnh báo. Đừng tốn thời gian nhồi nhét thêm tính năng phức tạp nếu vòng lặp phản hồi của bạn quá chậm. Trong kỷ nguyên mới, tốc độ thực thi chính là tính năng quan trọng nhất. Kẻ thắng cuộc không phải là kẻ có AI thông minh nhất trên giấy tờ, mà là kẻ xử lý xong công việc trước khi đối thủ kịp bấm nút gửi prompt.\n\nBạn đang ưu tiên độ thông minh hay tốc độ phản hồi khi ứng dụng AI vào công việc?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Đua AI không còn là đua tham số. OpenAI dùng AI tự viết code tối ưu GPU NVIDIA Blackwell, tăng tốc 8 lần. Tốc độ phản hồi mới là vũ khí sinh tồn. Bạn chọn AI thông minh hay AI siêu nhanh?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#OpenAI",
+        "#NVIDIA",
+        "#Blackwell",
+        "#GPT6",
+        "#AIAgent",
+        "#TechNews",
+        "#ArtificialIntelligence"
+      ],
+      "images": [
+        "assets/posts/2026-10-02/morning/01.jpg",
+        "assets/posts/2026-10-02/morning/02.jpg",
+        "assets/posts/2026-10-02/morning/03.jpg",
+        "assets/posts/2026-10-02/morning/04.jpg",
+        "assets/posts/2026-10-02/morning/05.jpg",
+        "assets/posts/2026-10-02/morning/06.jpg",
+        "assets/posts/2026-10-02/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-02/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast/"
+        },
+        {
+          "name": "vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNYldNaVNJQ2NFNmZEeUoyYkYxZDViSFdBRkphOGNMaE0wUnREZmctaEhEWW1IcnpqaHh3X2VmUUZ5V2hVSDVlRDBEcXFoTDNmUEc0X0RLX3M0a0lnQ3k3TW83aUVzUS01N2x5Nks5LTFuRmxPUnNUT09RUnZpV3NhUXVGSzM1WTFuRWFId2ZMYkk5aDZRUlR2R3RIcHJWSUhLcVQ2SXZfUXo2eVNfN2xrc0xxNA?oc=5"
+        },
+        {
+          "name": "Al Jazeera",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOSExJX2RibHFyX3QwWDRia0VQYTFZS0tKTEtBRHF4TUlfSWh5Y0RQb1dheHk5X1BqMG9Za0c1R2NiU2lpSjdiWmNTdzE4cW9KX3pwZWV4N0gwSkNOdk5kb1diR1FWWU9RLVhIejlJQmRwcUdqRHF1a3gtdWZaemd5QmN5VXFmM0tnbFJzbjYzaWlSdGRyS082RkppVGxWNmNOTzh1UGdyWFnSAa4BQVVfeXFMTXB1R2UyUXQ4LVNoOVBpVnBUN29uclZvY0h0Z1RteXVuV2JCZEVwTzVKNUN0NkJ3alFZQ1F5M0REUmNZR05yWE1ZV0NsWkxjUVQ3MVd3dk50R3BJTHlwNVlDVnRrMXhlejJDR3lDazFkTm41QW1hb2JTWEpMVXBYOE83ZmJnSXQtT2poeF9FRGhMWGtzVVd1d1cwTHJxTFIwOTNWbTVWRmh0Q3Iwc2JB?oc=5"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE44UldTTk4wWS1oa3NoWXZ3RFdSZ3M1Q2lhMFFCa3A2QmMzTjRmYWk5bHp3cVBPUldmdzBDRjNmUVVfNnFycy05YVdTVjU4T1ljYUZxRkJZY2RINVNUV1lxMUdyX3BodGNja09adjlRNTYwelNZUEZWR093?oc=5"
+        },
+        {
+          "name": "The Washington Post",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxONWR3QVJLeUtCbFN2LXkwdkFyYTI2S2dsUUlnOUp4bkhITlpacWZNM2FnQUxOUlZ6Z0l0ek5lc0xqQzNjanNCQ1dOUDViYXZnMDA2dk5hV3FlaUV4RkhudG9NXzY5Q1J0US02LTJFTWV0cXVWX0NyQ2R3SGw4MW5VSVRKLTJPVTB4TVdxc2lCeDJpV1dFd1h1dXAxYk9SdWRoNnpzSy1KLWZZUlJXeFpxRGoxd0ZWdXh0SldlNmVhXzlWdw?oc=5"
+        },
+        {
+          "name": "vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNUHBOUkpJS1dPMFM2eHBaZEhfNUliYXR2ZFk1UlAtMDN5TzVMOWF4aFJ4cDY5M2lfcWl6SFJkOFllU3M5S2M4M1E2ZnNFZ2NzNFl1b2ExV0lfNGFkbEZsWmd4TE9fV21IdmZ2UUhhYzNFSy1iQU1FM3hmekg3WFVHUHFNNkJzU05JYUFBNzF3?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122114663757476035",
+      "ig_due": "2026-10-02T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122114663757476035",
+          "url": "https://facebook.com/1381130541740424_122114663757476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
