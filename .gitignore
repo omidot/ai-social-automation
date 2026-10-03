@@ -38,3 +38,10 @@ video/ref/shots.json
 # Audio thu thật của kênh -- KHÔNG commit. Từng bị lỡ commit rồi checkout
 # nhầm về bản placeholder 3 giây, khiến video render ra câm sau giây thứ 3.
 video/public/voice.mp3
+
+# Video promo: bản thu thật của kênh + ảnh dither sinh ra từ assets/logos.
+# Audio là tài sản của kênh, KHÔNG commit (cùng lý do với voice.mp3 ở trên --
+# đã một lần bị checkout nhầm về bản placeholder khiến video render ra câm).
+# Ảnh dither dựng lại được bằng pipeline.video.dither bất cứ lúc nào.
+video/public/promo/voice.mp3
+video/public/promo/dith/

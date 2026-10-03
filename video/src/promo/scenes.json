@@ -1,0 +1,120 @@
+{
+ "fps": 30,
+ "width": 1080,
+ "height": 1920,
+ "duration": 144.77,
+ "audio": "promo/voice.mp3",
+ "brand": "A HÍT OFFICIAL",
+ "scenes": [
+  {
+   "n": "01",
+   "name": "câu hỏi",
+   "kind": "hook",
+   "at": 0.0,
+   "until": 11.56,
+   "bg": "paper",
+   "eyebrow": "CHÀO CÁC SẾP",
+   "bubble": "psst",
+   "title": "Hãy quên toàn bộ những gì bạn đã biết về AI đi",
+   "accent": ["quên toàn bộ"],
+   "hand": "phe bo vo cong",
+   "titleAt": 4.92,
+   "handAt": 9.44
+  },
+  {
+   "n": "02",
+   "name": "niềm tin sai",
+   "kind": "beliefs",
+   "at": 11.56,
+   "until": 25.8,
+   "bg": "orange",
+   "eyebrow": "NGHE MỖI NGÀY",
+   "cards": [
+    {"text": "Cái này Agent làm được", "at": 20.2, "strikeAt": 23.1},
+    {"text": "Cái kia Agent chịu", "at": 21.9, "strikeAt": 23.9},
+    {"text": "Agent còn nhiều hạn chế lắm", "at": 23.54, "strikeAt": 25.1}
+   ],
+   "verdict": "Không phải vậy.",
+   "verdictAt": 25.1
+  },
+  {
+   "n": "03",
+   "name": "điều quyết định",
+   "kind": "decisive",
+   "at": 25.8,
+   "until": 43.12,
+   "bg": "dark",
+   "eyebrow": "GÓC NHÌN THẬT",
+   "notLine": "Không phải Agent yếu.",
+   "notAt": 25.8,
+   "isLine": "Cái quyết định là bạn vẫn nhìn nó bằng mắt AI chat.",
+   "isAccent": ["mắt AI chat."],
+   "isAt": 31.48,
+   "chips": [
+    {"text": "ChatGPT", "logo": "logos/openai.com.png", "at": 29.6},
+    {"text": "Gemini", "logo": "logos/gemini.google.com.png", "at": 30.4}
+   ],
+   "foot": "Khoảng cách chỉ mỏng đúng như một tờ giấy.",
+   "footAt": 40.86
+  },
+  {
+   "n": "04",
+   "name": "nội dung",
+   "kind": "steps",
+   "at": 43.12,
+   "until": 98.55,
+   "bg": "paper",
+   "eyebrow": "LÀM THỬ NGAY HÔM NAY",
+   "title": "Tải về và giao việc thật cho nó",
+   "accent": ["giao việc thật"],
+   "titleAt": 43.12,
+   "steps": [
+    {"k": "01", "label": "Mở ChatGPT", "note": "góc trên bên trái, chọn Codex",
+     "logo": "logos/openai.com.png", "at": 44.84},
+    {"k": "02", "label": "Mở Claude bản máy tính", "note": "bấm nút Code ở góc trên bên trái",
+     "logo": "logos/anthropic.com.png", "at": 55.91},
+    {"k": "03", "label": "Bài tập 1 — game cờ caro", "note": "gõ đúng một câu, ngồi xem nó tự làm",
+     "at": 73.81},
+    {"k": "04", "label": "Bài tập 2 — phân loại file", "note": "một thư mục bừa, bảo nó sắp theo định dạng",
+     "at": 82.29}
+   ]
+  },
+  {
+   "n": "05",
+   "name": "bằng chứng",
+   "kind": "proof",
+   "at": 98.55,
+   "until": 138.77,
+   "bg": "dark",
+   "eyebrow": "KHÁC BIỆT LỚN NHẤT",
+   "lead": "Agent có năng lực hành động thật",
+   "leadAccent": ["hành động thật"],
+   "leadAt": 101.29,
+   "contrast": {
+    "lose": {"text": "AI chat — viết bài, làm ảnh, lên kế hoạch sơ sài", "at": 105.21},
+    "win": {"text": "Agent — xử lý triệt để cả tác vụ", "at": 110.23}
+   },
+   "counter": {"from": 30, "to": 50, "unit": "người",
+               "label": "Một đội 10 người gánh khối lượng của",
+               "at": 133.13, "landAt": 136.9},
+   "stamp": "Doanh nghiệp siêu nhỏ",
+   "stampAt": 121.17
+  },
+  {
+   "n": "06",
+   "name": "CTA",
+   "kind": "cta",
+   "at": 138.77,
+   "until": 144.77,
+   "bg": "paper",
+   "eyebrow": "SÁNG NAY THỬ LUÔN ĐI",
+   "title": "Thử xong quay lại báo tôi biết",
+   "accent": ["quay lại báo tôi"],
+   "titleAt": 138.77,
+   "cta": "Để lại bình luận",
+   "ctaAt": 143.11,
+   "foot": "link ở bình luận ↓",
+   "winkAt": 143.6
+  }
+ ]
+}

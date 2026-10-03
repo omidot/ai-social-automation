@@ -1,6 +1,7 @@
 import { Composition } from 'remotion';
 import { KineticShort } from './KineticShort';
 import { ScreenPreview } from './ScreenPreview';
+import { Promo, promoConfig } from './promo/Promo';
 import timeline from './timeline.json';
 
 export const RemotionRoot: React.FC = () => (
@@ -23,6 +24,16 @@ export const RemotionRoot: React.FC = () => (
       fps={30}
       width={1080}
       height={1920}
+    />
+    {/* Video promo 9:16 dựng từ ba file thu: linh vật dither, thẻ UI trắng,
+        chữ blur-in. Mốc giờ mọi cảnh bám đúng lời đọc thật. */}
+    <Composition
+      id={promoConfig.id}
+      component={Promo}
+      durationInFrames={promoConfig.durationInFrames}
+      fps={promoConfig.fps}
+      width={promoConfig.width}
+      height={promoConfig.height}
     />
   </>
 );
