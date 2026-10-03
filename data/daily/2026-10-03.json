@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-03",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "A model guide for the GPT-6 family",
+      "style": "warm-ticket",
+      "topic_key": "a-model-guide-for-the-gpt-6-family",
+      "text_fb": "OpenAI vừa ra mắt bộ ba GPT-6 Astra, GPT-6.1 Sol, GPT-6 Luna, và phần thú vị không nằm ở sức mạnh của từng model. Phần thú vị nằm ở việc chính OpenAI phải viết hẳn một hướng dẫn chỉ để dạy người dùng đừng dùng model mạnh nhất cho mọi việc.\n\nMình đọc xong hướng dẫn này và nhận ra một điều: đa số người làm sản phẩm AI đang tiêu tiền sai chỗ. Họ nghĩ mạnh hơn luôn tốt hơn. Nhưng OpenAI nói thẳng: GPT-6 Astra dành cho bài toán khó nhất cần suy luận sâu. GPT-6 Luna dành cho việc lặp lại quy mô lớn như trích xuất dữ liệu hoá đơn hay phân loại yêu cầu. Dùng Astra cho việc của Luna là đang đốt tiền không cần thiết.\n\nCái thứ hai mình để ý: token đã cache rẻ hơn tới 95% so với token mới. Nếu bạn đặt hướng dẫn cố định lên trước, giữ định nghĩa tool nhất quán, bạn tiết kiệm tiền thật mỗi lần gọi lại, không phải lý thuyết suông.\n\nNhưng điều mình tin nhất sau khi đọc xong: sức mạnh thật của một hệ thống AI không nằm ở model bạn chọn. Nó nằm ở việc bạn định nghĩa rõ ràng \"xong\" nghĩa là gì, ai duyệt quyết định nào, và khi nào hệ thống phải dừng lại hỏi bạn. Model chỉ là công cụ. Quy trình mới là thứ quyết định bạn có đốt tiền hay không.\n\nNếu bạn đang build gì đó với AI, câu hỏi không phải \"model nào mạnh nhất\". Câu hỏi là: bạn đã định nghĩa đúng việc cần làm chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "OpenAI ra GPT-6 nhưng bài học không phải 'chọn model mạnh nhất'. Astra cho việc khó, Luna cho việc lặp lại, cache tiết kiệm 95%. Sức mạnh thật nằm ở việc bạn định nghĩa 'xong' là gì. Bạn đang chọn AI theo sức mạnh hay theo đúng việc?",
+      "hashtags": [
+        "#AI",
+        "#GPT6",
+        "#OpenAI",
+        "#AIHitOfficial",
+        "#CongNgheAI",
+        "#TuDongHoaAI",
+        "#PromptEngineering",
+        "#AIChoDoanhNghiep",
+        "#HocAI",
+        "#NangSuat",
+        "#AIAgent",
+        "#CodingAI",
+        "#XuHuongAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-03/morning/01.jpg",
+        "assets/posts/2026-10-03/morning/02.jpg",
+        "assets/posts/2026-10-03/morning/03.jpg",
+        "assets/posts/2026-10-03/morning/04.jpg",
+        "assets/posts/2026-10-03/morning/05.jpg",
+        "assets/posts/2026-10-03/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/practical-guide-building-gpt-6"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNYldNaVNJQ2NFNmZEeUoyYkYxZDViSFdBRkphOGNMaE0wUnREZmctaEhEWW1IcnpqaHh3X2VmUUZ5V2hVSDVlRDBEcXFoTDNmUEc0X0RLX3M0a0lnQ3k3TW83aUVzUS01N2x5Nks5LTFuRmxPUnNUT09RUnZpV3NhUXVGSzM1WTFuRWFId2ZMYkk5aDZRUlR2R3RIcHJWSUhLcVQ2SXZfUXo2eVNfN2xrc0xxNA?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122115169767476035",
+      "ig_due": "2026-10-03T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122115169767476035",
+          "url": "https://facebook.com/1381130541740424_122115169767476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
