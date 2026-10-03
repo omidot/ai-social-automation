@@ -64,6 +64,88 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Chatham scales its capital markets expertise with OpenAI",
+      "style": "mono-ticket",
+      "topic_key": "chatham-scales-its-capital-markets-expertise-with-",
+      "text_fb": "Có một chi tiết trong bản tin mới từ OpenAI mà mình nghĩ ai làm vận hành, tài chính, hay bất kỳ công việc có quy trình lặp lại cũng nên đọc kỹ.\n\nChatham Financial — một công ty tư vấn thị trường vốn — vừa dùng Codex và GPT-5.6 để xây công cụ kiểm tra giao dịch nội bộ. Kết quả: thời gian kiểm tra một giao dịch giảm từ khoảng 30 phút xuống dưới 4 phút. Số liệu này do chính Chatham công bố, và họ đang so sánh kết quả của ứng dụng với các chuyên viên kiểm tra kinh nghiệm trước khi mở rộng automation.\n\nNhưng cái mình thấy đáng nói không phải con số đó. Đáng nói là cách họ nói về lý do. Chatham nói rõ: họ không tiếp cận AI như một cách làm mọi quy trình cũ nhanh hơn. Họ bắt đầu từ kết quả muốn đạt được, xác định chỗ nào cần con người ra quyết định, rồi mới thiết kế cách AI hỗ trợ phần còn lại.\n\nĐa số người mình gặp khi nói về AI trong công việc vẫn hỏi câu sai: \"AI nào giúp mình làm việc X nhanh hơn.\" Câu đúng hơn là: \"Quy trình này có cần tồn tại theo hình dạng cũ không, hay nên thiết kế lại từ đầu, quanh outcome mình thực sự cần.\"\n\nĐó là khác biệt giữa tăng tốc và tái thiết kế. Tăng tốc thì AI làm hộ bước cũ nhanh hơn. Tái thiết kế thì bạn dỡ quy trình ra, giữ lại phần cần con người, để AI làm phần còn lại — tốt hơn vì quy trình được xây lại cho nó, không bị ép vào khuôn cũ.\n\nNếu công việc của bạn có những bước lặp lại — đối chiếu số liệu, soát hợp đồng, tổng hợp báo cáo — câu hỏi đầu tiên không phải về công cụ. Là về quy trình.\n\nBạn đã từng dỡ một quy trình ra để thiết kế lại từ đầu, hay vẫn chỉ đang dán AI vào chỗ cũ?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Chatham Financial dùng Codex + GPT-5.6 kiểm tra giao dịch: 30 phút giờ còn dưới 4. Nhưng bài học không phải tốc độ — là họ thiết kế lại quy trình quanh outcome, không chỉ tăng tốc cái cũ. Quy trình của bạn thì sao?",
+      "hashtags": [
+        "#AI",
+        "#OpenAI",
+        "#Codex",
+        "#GPT56",
+        "#ChathamFinancial",
+        "#TuDongHoa",
+        "#CongNghe",
+        "#TaiChinh",
+        "#NangSuat",
+        "#QuyTrinhLamViec",
+        "#AHitOfficial",
+        "#FinTech"
+      ],
+      "images": [
+        "assets/posts/2026-10-03/evening/01.jpg",
+        "assets/posts/2026-10-03/evening/02.jpg",
+        "assets/posts/2026-10-03/evening/03.jpg",
+        "assets/posts/2026-10-03/evening/04.jpg",
+        "assets/posts/2026-10-03/evening/05.jpg",
+        "assets/posts/2026-10-03/evening/06.jpg",
+        "assets/posts/2026-10-03/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-03/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/chatham-financial"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1004408/openai-safety-quits-sounding-the-alarm"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNbnFud3ZkaFRSOERYZ1pDM0dMZ05tbjhkY3VyZ3VBSndURHVkVDk0dkhrSDFFWmpxeEw4N291eXVLaFJDT28wb2RNY1JlczhhZTJvTHBuYktJYUc1U2lPTGJna2JBUTV0em54M0dBRHNjaDZuckxwTjFKX09lNDJ2ZjN3UkllbUd0bGdKbmh3a2NpcWlIYUo5VWs3S3kyZVl6VWNneERLOXR3MW9YbjJpWFZhUlFEYkNhbzdVMGlXekJkX2U1bUVkQnpzM3dydUFyM1RfSVFxS1c0QXRnckpJc3E5VE9CSjlOSGVJUGcyb2JZM1ZWa0l6dVVxMGVGOGdKTG1V?oc=5"
+        },
+        {
+          "name": "congdankhuyenhoc.vn",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQbXdSOFlacWlvU3owdXo0b09SZ1pJbWNYbmZxdmluaDZFOVpJei1TQ3BNNVJIUm85X2l5N1NlWU5QclhoT2IwX0l5dFAyMWFxUmhiZllFaFRvcVFQVmpCa05YSFpfTl90aWZIT1dxZ2lfWHBwRlFKbE5XMHBhS1J2ZGhhTGlxRzFBS2x2STI1MzFDNnhVSWtWemtUNEN5SHRZclhjdlhrdXN6OWFDdlh4REdaRnhMa1BLQnF5cHZfa1BqZlNOQWRIYnFUMEV0ZkFJZGRQWWJodEpuclZZZ0JGQmdfWGQ?oc=5"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxON2VJN0VCLVdVczNBSVhxSkJUSERLcW5iN0Y4SWk3ZTdWTElrS09XMnF4QVJfR2U4N1hxQnQwekdDcFljWjBJZV80TlJvN2FNNU1Vak1RYWltWXV5TXdiNU1jb1NMWGhzcVo3czl5dURteTEwZVU5VjZKaGJQOWlTaWVuOU5qeUUxcFh0X3dLaGhUeU5sRHZ1anVSVWRETmVHZEtXeFVfUExJZ0xXZDA2WU0xc2dveGtpTDdrN3BuTlh5bkxXLTBIeTkzZXhDUy1peVdINjU2Qm5ZZzJZcWJDZVVPTks4M0hEUjRkaUpNWHFFZ2pKY0VkdkkyeFZQS3EzQ2NUVWEzc0RYMFFyaXNld0hLRlJveGl6ci1NR2FWemdNelVHRXBFYkYyRW5WUDZPSXZNeUhQZ3V5dnIySFVyRHFMR01TcVU?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPM014am94SGVLVUpXOFBRY1BwbWN0cWRiT1B2Z0E0algycHRnRk1TMnhlak9YeW1nVjJ6ZDJqMFdxR2sySlJ6TzlEVnRBeC00QllObDZZeVFORUNmWHdmTTFWZzFCQU94SEgxTG9ybWF4N2xRcWNtd0E0TFhWZjl4MjdTVnYtMGlfZ0M2SThybUk2ZVdicEx4THFjYkMyQQ?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122115478635476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122115478635476035",
+          "url": "https://facebook.com/1381130541740424_122115478635476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AdKLVVR_l6hszl50-vb2mxx"
+        }
+      }
     }
   }
 }
