@@ -350,3 +350,54 @@ def test_write_share_accepts_a_non_launch_source_via_fixture():
 
 def test_storyboard_spec_allows_toolless_slides():
     assert "hook.tools = []" in write._STORYBOARD_SPEC or "BÌNH THƯỜNG" in write._STORYBOARD_SPEC
+
+
+def test_opener_rejects_the_cliches_the_channel_kept_repeating():
+    """Câu mở đầu caption là thứ DUY NHẤT hiện trên bảng tin.
+
+    Đo trên 51 bài thật đã đăng của kênh: 49% mở bằng cùng một nhúm khuôn
+    sáo, riêng "Đa số mọi người..." lặp 22 lần — có 6 bài trong 5 ngày liên
+    tiếp mở gần như y hệt. Nguyên nhân gốc nằm trong chính prompt: nó từng
+    đưa thẳng câu "đa số mọi người hiểu sai chỗ này" làm ví dụ giọng văn, và
+    mô hình chép lại nguyên văn mỗi ngày.
+
+    Bỏ ví dụ khỏi prompt là chưa đủ -- prompt cũ đã ghi rõ "KHÔNG phải tiêu
+    đề mô tả" mà vẫn bị phớt lờ. Nên đây phải là điều kiện ĐẠT/TRƯỢT để vòng
+    thử lại ép mô hình viết khác.
+    """
+    for bad in ("Đa số mọi người đang hiểu sai về Agentic AI.",
+                "Nhiều bạn mất cả buổi tối chỉ để kéo dịch từng khung hình.",
+                "Mọi người vẫn nghĩ mô hình càng đắt càng giỏi.",
+                "Sự thật là ai cũng đang đi sai hướng.",
+                "Mình vừa đọc một tin mà thấy lạnh sống lưng."):
+        with pytest.raises(write.WriteError, match="khuôn sáo"):
+            write._check_opener(bad)
+
+
+def test_opener_accepts_concrete_hooks():
+    """Câu mở có chi tiết thật (tên hãng / con số / mốc thời gian) phải lọt.
+
+    Bộ lọc chặn 73% bài cũ, nên phải chắc nó chặn vì SÁO chứ không phải vì
+    quá tay -- một bộ lọc chặn sạch mọi thứ thì vòng thử lại không bao giờ
+    thoát ra được.
+    """
+    for good in ("Perplexity giao cả hệ thống cho GPT-6 Astra tự vận hành.",
+                 "OpenAI vừa ra mắt GPT-6 Astra từ ngày 3 tháng 9.",
+                 "Một mục tiêu thiết kế protein từng tốn 10.000 đô la.",
+                 "Claude Code và Codex đồng hạng 1 trên Terminal-Bench 4.0."):
+        write._check_opener(good)
+
+
+def test_opener_rejects_a_line_with_nothing_concrete():
+    """Câu mở không con số, không tên riêng, không mốc thời gian = câu rỗng."""
+    with pytest.raises(write.WriteError, match="chi tiết cụ thể"):
+        write._check_opener("công nghệ đang thay đổi rất nhanh và điều đó quan trọng")
+
+
+def test_prompt_no_longer_hands_the_model_the_cliche_to_copy():
+    """Ví dụ trong prompt rất dễ biến thành cái khuôn.
+
+    Giữ câu "đa số mọi người hiểu sai chỗ này" trong prompt thì dù có bộ lọc,
+    mô hình vẫn tốn một lượt sinh hỏng mỗi bài rồi mới bị bắt viết lại.
+    """
+    assert "đa số mọi người hiểu sai chỗ này" not in write._IMAN_VOICE

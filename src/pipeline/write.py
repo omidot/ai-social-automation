@@ -248,14 +248,28 @@ def _normalise_bullets(raw) -> list[str]:
 _IMAN_VOICE = (
     "GIỌNG VĂN (bắt buộc, phong cách Iman Gadzhi): Câu ngắn, dứt khoát. Nhịp mạnh. Ít từ "
     "thừa, cắt sạch chữ đệm. "
-    "Có chính kiến rõ: dám nói \"đa số mọi người hiểu sai chỗ này\", "
-    "\"cái thực sự quan trọng là...\". "
-    "Mỗi ý là MỘT bài học hoặc nguyên tắc rút ra, KHÔNG phải tóm tắt tin — "
-    "kiểu \"đây là điều tin này dạy mình:\". "
+    "Có chính kiến rõ: dám phản bác cách hiểu số đông, dám nói thẳng cái gì mới "
+    "thực sự quyết định. "
+    "Mỗi ý là MỘT bài học hoặc nguyên tắc rút ra, KHÔNG phải tóm tắt tin. "
     "Nói thẳng với người đọc: \"bạn\", \"nếu bạn đang làm X thì...\". "
     "Xưng \"mình\", tự tin, không PR sáo rỗng, không hàn lâm; có thể hơi khiêu khích nhẹ. "
-    "Mở đầu bằng MỘT câu tuyên bố mạnh hoặc một sự thật ngược đời — "
-    "KHÔNG mở bằng \"Công ty X vừa công bố...\". "
+    "\n\nCÂU MỞ ĐẦU — đây là thứ quyết định bài sống hay chết, vì trên bảng tin "
+    "người ta chỉ thấy đúng dòng này. BẮT BUỘC chứa ÍT NHẤT MỘT trong bốn thứ: "
+    "(a) một CON SỐ thật lấy từ bài gốc, (b) một TÊN RIÊNG cụ thể (hãng, sản phẩm, "
+    "người), (c) một MỐC THỜI GIAN, (d) một hệ quả đo được. "
+    "Câu mở không có thứ nào trong bốn cái đó là câu mở hỏng, viết lại. "
+    "\n\nCẤM TUYỆT ĐỐI mở đầu bằng các khuôn sáo sau — đã đo trên 51 bài thật của "
+    "kênh: 49% mở bằng đúng mấy khuôn này, 6 bài trong 5 ngày liên tiếp mở y hệt "
+    "nhau, người theo dõi nhìn hai lần là lướt: "
+    "\"Đa số mọi người...\", \"Nhiều người...\", \"Mọi người...\", \"Ai cũng...\", "
+    "\"Có một...\", \"Sự thật là...\", \"Đã đến lúc...\", \"Mình vừa đọc...\", "
+    "\"Mình sẽ nói thẳng...\", \"Mình thấy rất nhiều bạn...\", "
+    "và mọi biến thể của \"...đang hiểu sai về...\". "
+    "Cũng KHÔNG mở bằng \"Công ty X vừa công bố...\". "
+    "\nSAI:  \"Đa số mọi người đang hiểu sai về Agentic AI.\" "
+    "\nĐÚNG: \"Perplexity giao cả hệ thống cho AI tự sửa code. Không ai duyệt từng dòng.\" "
+    "\nSAI:  \"Đa số mọi người nghĩ mô hình càng đắt càng giỏi.\" "
+    "\nĐÚNG: \"Cùng một giá 10 đô mỗi triệu token, một bên tốn gấp đôi bên kia.\" "
     "Kết bằng một câu chốt sắc + một câu hỏi mời tranh luận. "
     "TUYỆT ĐỐI KHÔNG chèn URL/đường link. Chỉ nhắc tên nguồn dạng chữ (vd: \"theo VnExpress\"). "
     "\n\nSÁU YẾU TỐ CỐT LÕI của giọng Iman Gadzhi — mọi bài phải chạm đủ cả sáu, không phải "
@@ -346,6 +360,68 @@ def build_share_prompt(cand: Candidate, voice: dict, sibling_angle: str = "") ->
 _ITEM_BODY_MIN_WORDS = 25   # "40-70 từ" target; anything under this is a stub
 
 
+# Các khuôn mở đầu đã bị mô hình lặp đến mòn. Đo trên 51 bài thật của kênh:
+# 49% mở bằng một trong số này, riêng "Đa số mọi người..." xuất hiện 6 lần
+# trong 5 ngày liên tiếp. Nguyên nhân gốc: prompt từng ĐƯA THẲNG câu
+# "đa số mọi người hiểu sai chỗ này" làm ví dụ, và mô hình chép nguyên văn.
+# Ví dụ trong prompt rất dễ biến thành cái khuôn, nên bỏ ví dụ thôi chưa đủ --
+# phải chặn ở khâu kiểm tra thì vòng thử lại mới ép mô hình viết khác.
+_BANNED_OPENERS = (
+    # "đa số mọi người" và các biến thể chỉ đổi vài chữ nhưng y hệt về nhịp:
+    # chặn thiếu một biến thể là mô hình lách sang đúng biến thể đó.
+    "đa số mọi người", "đa số", "nhiều người", "nhiều bạn", "mọi người",
+    "số đông", "ai cũng", "có một",
+    "sự thật là", "đã đến lúc", "mình vừa đọc", "mình sẽ nói thẳng",
+    "mình thấy rất nhiều",
+)
+def _has_concrete(line: str) -> bool:
+    """Câu có chi tiết cụ thể không: một CON SỐ, hoặc một TÊN RIÊNG giữa câu.
+
+    Cố ý KHÔNG dùng dải ký tự kiểu ``[A-ZÀ-Ỹ]``: trong Unicode, khoảng À-Ỹ
+    (U+00C0..U+1EF8) chứa lẫn cả chữ thường tiếng Việt (à, đ, ề, ổ...) và
+    khối Ạ-Ỹ còn xen kẽ hoa/thường từng ký tự một. Một dải như vậy khớp luôn
+    cả câu viết thường, khiến bộ lọc tưởng câu nào cũng có tên riêng. Dùng
+    ``str.isupper()`` thì đúng với mọi ký tự.
+    """
+    if any(c.isdigit() for c in line):
+        return True
+    for i, w in enumerate(line.split()):
+        w = w.strip("\"'(),.;:!?")
+        if not w:
+            continue
+        # Chữ hoa nằm GIỮA từ (OpenAI, ChatGPT, iPhone) hoặc từ viết hoa toàn
+        # bộ (AI, GPT) là tên riêng chắc chắn, kể cả khi đứng đầu câu.
+        if any(c.isupper() for c in w[1:]):
+            return True
+        if len(w) >= 2 and w.isupper():
+            return True
+        # Từ viết hoa ở GIỮA câu cũng là tên riêng. Từ ĐẦU câu thì không tính:
+        # câu nào chẳng viết hoa chữ đầu, nên nó không nói lên điều gì.
+        if i > 0 and w[0].isupper():
+            return True
+    return False
+
+
+def _check_opener(caption: str) -> None:
+    """Câu mở đầu caption là thứ DUY NHẤT hiện trên bảng tin -- nó quyết định
+    bài có được đọc hay không. Loại thẳng câu mở sáo rỗng hoặc không có chi
+    tiết cụ thể nào, để vòng thử lại bắt mô hình viết lại."""
+    first = (caption or "").strip().split("\n")[0].strip()
+    if not first:
+        raise WriteError("caption_fb rỗng")
+    low = first.lower()
+    for bad in _BANNED_OPENERS:
+        if low.startswith(bad):
+            raise WriteError(
+                f"câu mở đầu dùng khuôn sáo bị cấm {bad!r}: {first[:70]!r}. "
+                "Viết câu mở khác hẳn, bắt đầu bằng chi tiết cụ thể "
+                "(con số / tên hãng / mốc thời gian) lấy từ bài gốc.")
+    if not _has_concrete(first):
+        raise WriteError(
+            f"câu mở đầu không có chi tiết cụ thể nào: {first[:70]!r}. "
+            "Phải chứa ít nhất một con số, tên riêng, hoặc mốc thời gian thật.")
+
+
 def _validate_share(data: dict) -> list[dict]:
     """Validate one raw ``share`` payload and return the normalised slide list.
 
@@ -430,6 +506,7 @@ def write_share(cand: Candidate, voice: dict, sibling_angle: str = "",
             if angle not in ANGLES:
                 raise WriteError(f"angle không hợp lệ: {angle!r}")
             slides = _validate_share(data)
+            _check_opener(str(data.get("caption_fb", "")))
         except _Decline:  # a legitimate, machine-readable refusal — do NOT retry
             raise
         except (LLMError, WriteError) as e:  # bad model output — retryable
@@ -513,6 +590,7 @@ def write_take(topic: str, angle: str, why: str, voice: dict,
                 raise _Decline(
                     f"chủ đề không viết được: {str(data.get('reason', ''))[:200]}")
             slides = _validate_share(data)
+            _check_opener(str(data.get("caption_fb", "")))
         except _Decline:  # a legitimate, machine-readable refusal — do NOT retry
             raise
         except (LLMError, WriteError) as e:  # bad model output — retryable
