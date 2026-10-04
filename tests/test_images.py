@@ -934,3 +934,30 @@ def test_no_layout_truncates_a_45_word_body(tmp_path, monkeypatch):
         # >3 extra lines of body => a tall diff band + a few thousand changed px
         assert box[3] - box[1] > 130, (st.name, box)
         assert changed > 800, (st.name, changed)
+
+
+def test_hook_decoration_is_visible_on_light_palettes(tmp_path, monkeypatch):
+    """Phần trang trí của slide hook phải NHÌN THẤY ĐƯỢC trên mọi palette.
+
+    Lỗi thật đã đo được: ô icon của slide hook tô cứng màu trắng
+    (255,255,255,200) -- hợp với nền tối nó được dựng cho, nhưng hai palette
+    nền sáng ("ink-on-white" #F4F5F7, "warm-editorial" #F3ECE2) khiến ô trắng
+    tàng hình hoàn toàn. Trên bài thật ngày 2026-09-22 chỉ còn đúng MỘT icon
+    nhỏ trôi nổi trong khoảng 40% khung hình trống phía dưới.
+
+    Test này so màu thân ô với màu nền: chênh lệch quá nhỏ nghĩa là ô đã
+    chìm vào nền và vùng trang trí lại rỗng như cũ.
+    """
+    from pipeline.images import _make_tile, _ICONS, _hex
+
+    for pal_name, pal in styles.PALETTES.items():
+        bg = pal["bg"]
+        tile = _make_tile(140, _ICONS["spark"], "#1F2937", bg=bg)
+        # lấy màu thân ô (tránh vùng pad trong suốt và vùng icon ở giữa)
+        body = tile.convert("RGBA").getpixel((tile.width // 2, 40))
+        # ô kính mờ trên nền tối cố ý để alpha 200, nên ngưỡng là >= chứ không >
+        assert body[3] >= 200, f"{pal_name}: thân ô gần như trong suốt"
+        dist = sum(abs(body[i] - _hex(bg)[i]) for i in range(3))
+        assert dist > 150, (
+            f"{pal_name}: ô icon (RGB {body[:3]}) chìm vào nền {bg} "
+            f"-- chênh lệch chỉ {dist}, vùng trang trí sẽ trông trống trơn")

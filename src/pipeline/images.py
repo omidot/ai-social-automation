@@ -158,23 +158,40 @@ _ICONS: dict = {
 _ICON_ORDER = ["spark", "chip", "bolt", "graph", "globe", "brain", "robot", "chat"]
 
 
-def _make_tile(px: int, icon_fn, colour) -> Image.Image:
-    """A single frosted-glass icon tile as an RGBA image (with transparent pad)."""
+def _make_tile(px: int, icon_fn, colour, bg=None) -> Image.Image:
+    """A single icon tile as an RGBA image (with transparent pad).
+
+    The tile was originally always frosted WHITE, which only reads on the dark
+    hook slide it was built for. Half the palettes are light (``ink-on-white``,
+    ``warm-editorial``), and on those a white tile is invisible against the
+    background -- the hook's whole decoration area collapsed to a few bare
+    icon glyphs floating in an empty lower third. Measured on a real post:
+    one 60px star in 40% of the frame.
+
+    So the tile now takes the slide background and picks a fill that actually
+    contrasts with it: frosted white over dark, inked over light.
+    """
     pad = 26
     S = px + 2 * pad
     tile = Image.new("RGBA", (S, S), (0, 0, 0, 0))
     d = ImageDraw.Draw(tile)
     box = (pad, pad, pad + px, pad + px)
     rad = int(px * 0.22)
-    d.rounded_rectangle(box, radius=rad, fill=(255, 255, 255, 200))
-    d.rounded_rectangle(box, radius=rad, outline=(255, 255, 255, 236), width=2)
+
+    if bg is not None and _luma(bg) > 128:        # nền sáng -> ô mực
+        fill, line = (28, 26, 24, 232), (28, 26, 24, 255)
+    else:                                          # nền tối -> ô kính mờ trắng
+        fill, line = (255, 255, 255, 200), (255, 255, 255, 236)
+    d.rounded_rectangle(box, radius=rad, fill=fill)
+    d.rounded_rectangle(box, radius=rad, outline=line, width=2)
+
     inset = px * 0.26
     icon_fn(d, (pad + inset, pad + inset, pad + px - inset, pad + px - inset), colour)
     return tile
 
 
 def _draw_icon_fan(img: Image.Image, b: dict, n: int = 5,
-                   box: tuple | None = None) -> None:
+                   box: tuple | None = None, bg=None) -> None:
     """Composite a shallow arc of ``n`` frosted-glass icon tiles onto ``img`` in
     place (the hook slide's signature element).
 
@@ -203,7 +220,12 @@ def _draw_icon_fan(img: Image.Image, b: dict, n: int = 5,
         lift = int(30 * (1 - abs(rel) / half)) if half else 30
         cx = centre_x + rel * step
         cy = base_y - lift
-        tile = _make_tile(tile_px, _ICONS[name], b.get("tile_icon", "#1F2937"))
+        # Ô trên nền sáng là ô mực, nên icon bên trong phải đảo thành màu nền
+        # mới đọc được -- giữ nguyên màu icon tối sẽ thành mực trên mực.
+        icon_col = b.get("tile_icon", "#1F2937")
+        if bg is not None and _luma(bg) > 128:
+            icon_col = bg
+        tile = _make_tile(tile_px, _ICONS[name], icon_col, bg=bg)
         rot = tile.rotate(angle, expand=True, resample=Image.BICUBIC)
         ox, oy = cx - rot.width // 2, cy - rot.height // 2
         shadow = Image.new("RGBA", rot.size, (0, 0, 0, 0))
@@ -320,6 +342,18 @@ def _mix(c1, c2, t: float) -> tuple[int, int, int]:
     """Linear blend ``c1`` -> ``c2`` by ``t`` in [0, 1]."""
     a, b = _hex(c1), _hex(c2)
     return tuple(int(round(a[i] + (b[i] - a[i]) * t)) for i in range(3))  # type: ignore[return-value]
+
+
+def _luma(c) -> float:
+    """Độ sáng cảm nhận 0..255 (hệ số ITU-R BT.601).
+
+    Dùng để quyết định vẽ mực hay vẽ trắng lên một nền bất kỳ. Palette của
+    kênh có cả nền sáng lẫn nền tối, nên mọi mảng trang trí phải tự chọn màu
+    theo nền thay vì đóng cứng một màu -- đóng cứng trắng chính là thứ khiến
+    phần trang trí của slide hook tàng hình trên hai palette nền sáng.
+    """
+    r, g, b = _hex(c)
+    return 0.299 * r + 0.587 * g + 0.114 * b
 
 
 # --- textures -------------------------------------------------------------
@@ -533,7 +567,7 @@ def _hook_marks(img: Image.Image, box: tuple, ctx: "RenderCtx", sm) -> None:
     try:
         if _hook_logos(img, box, ctx.palette, sm.tools, ctx.style.logo, ctx.root):
             return
-        _draw_icon_fan(img, ctx.brand, n=3, box=box)
+        _draw_icon_fan(img, ctx.brand, n=3, box=box, bg=ctx.palette["bg"])
     except Exception as e:  # noqa: BLE001
         log.warning("hook marks failed: %s", e)
 
