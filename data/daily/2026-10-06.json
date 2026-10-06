@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-06",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "All the drama around AI&#8217;s takeover of mathematics",
+      "style": "warm-centered",
+      "topic_key": "all-the-drama-around-ai-8217-s-takeover-of-mathema",
+      "text_fb": "Bài toán Navier-Stokes 90 năm tuổi vừa bị OpenAI đánh gục. Theo tin từ The Verge, lẽ ra đây phải là thời khắc lịch sử được cộng đồng khoa học ăn mừng rầm rộ.\n\nNhưng thực tế hoàn toàn ngược lại. Giới toán học đang nổi giận.\n\nSự thật phũ phàng là OpenAI không nhảy vào toán học để cống hiến cho tri thức nhân loại. Họ nhảy vào để giành chiến thắng tuyệt đối. Khi phát hiện các nghiên cứu sinh đang tiến gần đến đáp án bài toán Thiên niên kỷ, gã khổng lồ này lập tức tung lực lượng hớt tay trên ở phút chót. Thậm chí, nhiều chuyên gia như Andreas Thom còn cáo buộc OpenAI âm thầm lấy dữ liệu từ các cuộc trò chuyện riêng tư trên ChatGPT để dạy cho mô hình của họ.\n\nBài học ở đây rất rõ ràng. Các nhà toán học dành cả đời đi tìm sự thật. Còn OpenAI dùng nguồn lực tài chính vô hạn để tìm kiếm vị thế thống trị. Họ sẵn sàng phá vỡ mọi quy chuẩn hàn lâm chỉ để cắm cờ chiến thắng.\n\nNếu bạn đang xây dựng sản phẩm hay phát triển sự nghiệp trong kỷ nguyên AI, hãy nhìn vào thực tế này. Tốc độ và sự tàn nhẫn trong triển khai sẽ luôn đè bẹp những quy tắc truyền thống. Kẻ nắm công nghệ mạnh nhất sẽ đặt ra luật chơi mới.\n\nBạn thấy hành động của OpenAI là bước tiến vĩ đại hay sự tàn phá đạo đức khoa học?\n\nNguồn: The Verge AI",
+      "text_ig": "Bài toán Navier-Stokes 90 năm tuổi vừa bị OpenAI đánh gục nhưng lại hứng bão phẫn nộ từ giới toán học. Tốc độ tàn nhẫn và sự áp đảo công nghệ đang phá vỡ mọi quy chuẩn truyền thống. Bạn ủng hộ hay phản đối cách làm này?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#OpenAI",
+        "#NavierStokes",
+        "#ToanHocAI",
+        "#CongNgheMoi",
+        "#TinTucAI",
+        "#TriTueNhanTao",
+        "#DoiMoiSangTao"
+      ],
+      "images": [
+        "assets/posts/2026-10-06/morning/01.jpg",
+        "assets/posts/2026-10-06/morning/02.jpg",
+        "assets/posts/2026-10-06/morning/03.jpg",
+        "assets/posts/2026-10-06/morning/04.jpg",
+        "assets/posts/2026-10-06/morning/05.jpg",
+        "assets/posts/2026-10-06/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-06/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-06/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-06/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-06/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-06/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-06/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1004933/ai-math-openai-breakthrough-solution"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOXzNEckh1SXVQTGtqbTI4OXRuaHRPc25iV1NtSUxGdUUwZG9oOFM1NzRoNmpzMjRMeFFvRDZHbzVtTW1JWU5UcjZkS0ZiUVphNVdUNW5wbHdxRlkyYjFhQTZnY1BWSE5rWHJ5anNzWnZLZzQyOEpPY3FoWUl3SUY1RFkxSEdZYmsyc3AxZGk1RDljLVJmUlNpdm8taHI?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1005177/google-gemini-call-for-me-expansion-rumors"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/news/1004929/wikipedia-openai-rogue-bots-wikimedia-foundation-outage"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1004827/openai-sam-altman-vanity-fair-interview-pr"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1004811/openai-altman-bad-things-ai-tradeoff"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122116997187476035",
+      "ig_due": "2026-10-06T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122116997187476035",
+          "url": "https://facebook.com/1381130541740424_122116997187476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
