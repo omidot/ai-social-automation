@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-07",
+  "posts": {
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
+      "style": "mono-centered",
+      "topic_key": "one-model-family-two-gold-level-results-fine-tunin",
+      "text_fb": "Nvidia vừa đạt 535.4/600 điểm tại IOI và 30/42 điểm tại IMO với dòng mô hình Nemotron 3. Điểm IOI này vượt xa mức 361.12 để giành huy chương Vàng, thậm chí hạ gục điểm số cao nhất của thí sinh con người là 498.27.\n\nQuan niệm muốn AI giỏi cấp độ Olympic thì phải train một mô hình khổng lồ hoàn toàn mới đã quá cũ kỹ. Nvidia không tốn tiền tạo base model mới cho từng kỳ thi. Họ lấy Nemotron 3 có sẵn và áp dụng một công thức tinh chỉnh chuyên biệt.\n\nCông thức đó không dừng lại ở việc nhồi dữ liệu SFT. Nvidia dùng 414.890 mẫu chứng minh chất lượng cao, kết hợp RL và đặc biệt là hệ thống suy luận lúc chạy. Khi gặp bài toán khó, AI tự tạo đáp án, tự chấm điểm, tìm chỗ hổng logic và viết lại. Thuật toán GenCorrect này biến một mô hình bình thường thành chuyên gia hàng đầu.\n\nBài học cho người làm AI rất rõ ràng. Việc cố gắng chạy đua mua GPU để train mô hình nền tảng khổng lồ là cuộc đua tiêu tiền vô nghĩa. Điều quyết định là dữ liệu chất lượng cao cho ngách cụ thể và một vòng lặp kiểm thử phản biện (test-time compute) chặt chẽ.\n\nMô hình to nhất chưa chắc đã thắng. Mô hình biết tự phản biện và tối ưu mới là kẻ thống trị.\n\nBạn đang chi tiền để train mô hình to hơn, hay đang đầu tư vào vòng lặp suy luận cho AI?\n\nNguồn: Hugging Face",
+      "text_ig": "Nvidia Nemotron đạt 535.4 điểm IOI, đè bẹp kỷ lục con người nhờ kết hợp SFT, RL và suy luận test-time compute. Đừng đu theo mô hình to, hãy tập trung tối ưu quy trình tự sửa sai của AI. Bạn nghĩ sao về hướng đi này?",
+      "hashtags": [
+        "#Nvidia",
+        "#Nemotron",
+        "#AI",
+        "#MachineLearning",
+        "#IMO2026",
+        "#IOI2026",
+        "#FineTuning",
+        "#TestTimeCompute",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-10-07/evening/01.jpg",
+        "assets/posts/2026-10-07/evening/02.jpg",
+        "assets/posts/2026-10-07/evening/03.jpg",
+        "assets/posts/2026-10-07/evening/04.jpg",
+        "assets/posts/2026-10-07/evening/05.jpg",
+        "assets/posts/2026-10-07/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-07/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-07/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-07/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-07/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-07/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-07/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026"
+        },
+        {
+          "name": "WinBuzzer",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPX3hBTXZfTEQzMjZTZkt5M1NLb0YybHM0TGdkUEcxZ0JKNWE0MW1ncmVWLXNpSWYtV05TOHJpSlNSV0FGYXg3cC12RHpWaUxOdHRkalBhN1loVTk3MXJlYWRYTWk4dTU3RU5tYzBwcWJCTGU4WGNDLTZsNmdLTVhydmRuWVhMajBYMmNRYXlFUQ?oc=5"
+        },
+        {
+          "name": "CX Today",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbW1lZjFkZGltT1V2TXdleElJekxiajM2Vk1PQVBILW15MWRSZjYwRmdmTlFKeHdyRzR1Zkt6Q29ScnRrNGMwTlZSMjF3YnJaQkpUTzdmQmFRWlBLOHd3d3k5d2dYTk5aaVVMeWFQYnJENUJXTXBjdV92Mm44TU10RnJvOA?oc=5"
+        },
+        {
+          "name": "GenK.vn",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNd0RSUEt6ZU5pMUVXMm5NZmNWLXhHVWk5cTRvMmZEUnpzc2xjX3BfMFVzbE1PZWtGS1BWLXc2Q0laZU5JQ1pXNzg0TkNscFZNT2tmTkQ5TEVxeXlBZURjM1lKWGlJVWtVTW9KUzczWTQ2WTVuYkVDaUFIbC1jUnhyMFhGaV9mU3BKRHRnZ2RPOV9MVDA1X3dBVXBQTjh1Vmw1V2tXa2ktWDlTNG9qQTVuN1BOV0ZXR0o5NWp1cDVUMnlEdjVBZlJZZFZtZHdab083SlFjaVRB?oc=5"
+        },
+        {
+          "name": "Bioengineer.org",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNNldCTHVaaTR6c0sta1BsSWlmMmRtTmd5ZktXX2VMNUhJSW9za0lPZG5XeWJYUnAwQkQ4MlY1NmRGQ1lGb2ZKSFRVcGRJOU01WXFPUlNuV3ZjOVYzUFNETy1salRkWVFzTGs1U0lFNmtpa2gzNGdHQkxOVGhIa3kzcFdpcElFd2NnTFZCX3Bpb1A1enM4SkRKdzdyaGhOX3hqN3c?oc=5"
+        },
+        {
+          "name": "FF News",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOQUxOWGJJU1Zhem9XLWFwaTdxM3N3b2FhVkxGeVpMOFJFZVVXMlk2YmhZblMwRVc4VDZJeURUZTltazd4bU84c0MzRjEyNzVxc01jTk83Tjh1RlBGWHV1LV9WZ3MtVjBYS24xZHVmZEV0TFBoU2tXZlFvQkFSaGN1cU42cHFOd0JweFR3UWFOeDA5YmR0UjR3Q3hsLWhjYkp1?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122117903985476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122117903985476035",
+          "url": "https://facebook.com/1381130541740424_122117903985476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=ArQndKDPCaE4okYUreXhK5I"
+        }
+      }
+    }
+  }
+}
