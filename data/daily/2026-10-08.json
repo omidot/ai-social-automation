@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-08",
+  "posts": {
+    "morning": {
+      "status": "posted",
+      "format": "share",
+      "title": "OpenAI Says a Secret AI Model Cracked Hundreds of Open Math Problems in One Prompt—Mathematicians Want Receipts",
+      "style": "white-rail",
+      "topic_key": "openai-says-a-secret-ai-model-cracked-hundreds-of-",
+      "text_fb": "OpenAI vừa tuyên bố một mô hình bí mật của họ giải xong hàng trăm bài toán mở chỉ bằng một câu lệnh. Nghe thì có vẻ vĩ đại. Nhưng giới toán học ngay lập tức lên tiếng đòi bằng chứng.\n\nTrong nghiên cứu khoa học, không có chuyện tin vào lời hứa suông. Một tuyên bố không kèm tài liệu kiểm chứng hay công thức chi tiết chỉ là trò truyền thông. Giới toán học thừa hiểu AI rất giỏi tạo ra những câu trả lời trông cực kỳ thuyết phục, nhưng logic bên trong lại sai bét.\n\nSự thật là các công ty AI đang chạy đua tạo ra những con số giật gân để giữ sức nóng. Họ đưa ra benchmark hoành tráng, tuyên bố năng lực vượt trội, nhưng khi áp dụng thực tế thì người dùng lại nhận về vô số lỗi cơ bản.\n\nNếu bạn đang ứng dụng AI vào công việc hằng ngày, đừng để những lời quảng cáo này làm mờ mắt. Đừng bao giờ giao toàn bộ quyết định cho AI rồi mặc định rằng nó luôn đúng. AI chỉ là công cụ hỗ trợ, người chịu trách nhiệm kiểm tra cuối cùng vẫn là bạn. Khi bạn ngừng đặt câu hỏi, bạn sẽ là người gánh hậu quả.\n\nBạn tin đây là bước ngoặt thật sự của OpenAI hay chỉ là chiêu trò tạo sóng?\n\nNguồn: Decrypt News",
+      "text_ig": "OpenAI tuyên bố AI bí mật giải hàng trăm bài toán mở chỉ với 1 prompt, nhưng giới toán học đòi bằng chứng thực tế. Đừng vội tin benchmark trên giấy nếu chưa tự mình kiểm chứng. Bạn nghĩ OpenAI nói thật hay chỉ làm màu?",
+      "hashtags": [
+        "#OpenAI",
+        "#ArtificialIntelligence",
+        "#AI",
+        "#MathAI",
+        "#TechNews",
+        "#AHitOfficial",
+        "#DeepLearning",
+        "#AICommunity"
+      ],
+      "images": [
+        "assets/posts/2026-10-08/morning/01.jpg",
+        "assets/posts/2026-10-08/morning/02.jpg",
+        "assets/posts/2026-10-08/morning/03.jpg",
+        "assets/posts/2026-10-08/morning/04.jpg",
+        "assets/posts/2026-10-08/morning/05.jpg",
+        "assets/posts/2026-10-08/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-08/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-08/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-08/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-08/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-08/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-08/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Decrypt News",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOX0ZBQ0p6Rmg3aXJiV0t6VXNqT3Zrbi1YYUJZX0RFamNUdENSVktzOHVCdzBWWS1XT2lmRVpSX2dRdGZDaU5tV21aR05TWEFlTFJ5QXlvNENmZjVnS3U5MUFxNlVLS0NBdkxsQmZXQkJZN3QteU5kWC1OVU1sNG54NGE0cUtMN3pFcERYWGx2OW1MNUw5?oc=5"
+        },
+        {
+          "name": "Yahoo Tech",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNNldCRGl4OU9YbDY4NVM4NFlZOUYzdDJRSGU5QWI3RzNxd21ZUDgwSFU1VEpjTFA3MjQ5Zi1Rd1N5R194Skk5V0Y5aUp3b0tDQ0d0eTBVMlU3YnNnQVRoSVFxT0RiVjBqOEc1cFRaNkhaVjRYd3ZEeUp6Wko2aTduS3lhR3BQekpaQmo1cjdR?oc=5"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5lVzdtMDhZYkhnM1R0cVJJYW9oN3ZaZEhnNTUzQTVaaGRMTXRfbk05eG4yd19rQnNObVdkMVB4d1pPX1FBc0ZWVVFSQmFMdng1Y1A1UkxlM0ZPNFRpSHJzQ2o4YUFfbW9nRURqRXAzbkNyakY3QW5F?oc=5"
+        },
+        {
+          "name": "Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQeWYzb0FwczUxUUttU1JOT3BSbDJudGsxbUppOFZDMkxMOVlOeHNrVmN3YzZLRWF2TVhzRXdza2RsN2lvUVBJaU02TFFMSmdaS1V4V09yY3B1VnpYeHc0NHhPYTV2d1NJRkQtMDdjdUFYZ3lMcVVfWFpCMkplOVV5MHhmc2c2OTNEemNuX1MzVQ?oc=5"
+        },
+        {
+          "name": "Forbes",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQaDAxaU9qMWVvTUdHdWoydlRJNDAwbUdiaTVZY2pIbXlseUhwTkx4enN5MEVIUTA2VE1UV0RvVVBFN0U0NzFsX044TkRBTzkyQTJsRXNHSTh2Mm1WSVBtV2ZNaWJlUUdqdlFzTVNmb2Z6OXR0Z1R6OVRQWE9vQnU1eWhyc1liVFNwdk1sUi1hbmJaWm5XdFd0ZjY2M1NuemtBMGtlWk5EMkpyYTJjODlvSw?oc=5"
+        },
+        {
+          "name": "CNET",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNWW5hcXdnZFljTUhTNG9MbEI5TXdRNTE3NWctM0RtY1NQeEpPQ3pYUmxZOXE1V2trWEMtZncyNTlmbjl6aXlqVExfZ0hOc0JXY3RvVGtOMkJrWnhYQzczMUpYNXlTZzFmTUJqa29GdGZYSU1zNlhfUlBpN1J4WkJHenp0UjRRVTFucVNOWXd1R0xyMEZYZGZ1UEFVc0pib0E5NmJVbFgxckJFNS1BdUg5MHlR?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122118177567476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122118177567476035",
+          "url": "https://facebook.com/1381130541740424_122118177567476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AoibUuIvjYAWj5cm_CmBmOJ"
+        }
+      }
+    }
+  }
+}
