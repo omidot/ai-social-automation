@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-09",
+  "posts": {
+    "morning": {
+      "status": "posted",
+      "format": "share",
+      "title": "Anthropic bans ‘abusive or cruel behavior’ toward Claude",
+      "style": "navy-rail",
+      "topic_key": "anthropic-bans-abusive-or-cruel-behavior-toward-cl",
+      "text_fb": "Anthropic chính thức cấm người dùng có hành vi xúc phạm hoặc tàn nhẫn liên tục với AI Claude. Nếu bạn nghĩ đây chỉ là một trò đùa hay sự lãng phí tài nguyên, bạn đang bỏ qua một cú dịch chuyển chiến lược.\n\nTrong khi Microsoft và Mustafa Suleyman thẳng thừng bác bỏ khái niệm quyền của AI, Anthropic lại chọn hướng đi hoàn toàn đối lập. Họ chủ động cho phép Claude tự ngắt trò chuyện khi phát hiện người dùng cố tình chửi mắng. Nhưng lý do thực sự không nằm ở sự thương hại dành cho vài dòng mã máy tính.\n\nKhi AI bắt đầu được kết nối với vũ khí tự hành, hệ thống giám sát và phần mềm điều khiển phần cứng, ranh giới giữa thử nghiệm và nguy cơ thực tế bị xóa bỏ. Anthropic siết chặt quy định vì họ phát hiện hàng loạt nỗ lực dùng Claude để phát triển mã điều khiển vũ khí, theo dõi đối thủ chính trị và thao túng bầu cử.\n\nViệc cấm chửi mắng AI trong các trường hợp cực đoan là bước đi đầu tiên để thiết lập rào cản hành vi đối với người dùng. Nếu bạn liên tục vi phạm hoặc cố tình vượt rào kỹ thuật, hệ thống sẽ ngắt kết nối ngay lập tức.\n\nSự thật là: AI không có cảm xúc, nhưng cách bạn tương tác với nó phản ánh kỷ luật công nghệ của chính bạn. Những người lạm dụng công cụ sẽ là những người đầu tiên bị các nền tảng AI gạt ra ngoài cuộc chơi.\n\nBạn nghĩ Anthropic đang nghiêm túc bảo vệ AI hay đây chỉ là chiêu trò truyền thông để kiểm soát người dùng?\n\nNguồn: The Verge AI",
+      "text_ig": "Anthropic chính thức cấm hành vi chửi mắng và lạm dụng Claude. Đây không phải sự thương hại AI, mà là cách họ siết chặt kỷ luật người dùng khi công nghệ bước vào giai đoạn rủi ro cao. Bạn nghĩ đây là bước đi đúng đắn hay quá đà?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#Anthropic",
+        "#ClaudeAI",
+        "#CongNgheAI",
+        "#ThuThuatAI",
+        "#AIWelfare",
+        "#TinTucAI",
+        "#TranhCaiAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-09/morning/01.jpg",
+        "assets/posts/2026-10-09/morning/02.jpg",
+        "assets/posts/2026-10-09/morning/03.jpg",
+        "assets/posts/2026-10-09/morning/04.jpg",
+        "assets/posts/2026-10-09/morning/05.jpg",
+        "assets/posts/2026-10-09/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1008100/anthropic-new-usage-policy-abuse-claude"
+        },
+        {
+          "name": "The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPb2lja2Y3b2J4SGw2TDhuWUNxNmxablZvTlcwSVg4eHhuSUFwNUEzQTd0WFhOTlJMd0F5UHBDSnhxTl9nVXJlNjFrZVBSc1Zic01sZ1RuZ2tTTlQ3RVVLUEw5OFI2NDcwNzNPSVpYTUJmR1pVdmd2NWkyOUtxcTg5bC05ckRhX1pnSVRZdVhLSlQ0ckU?oc=5"
+        },
+        {
+          "name": "VTV.vn",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNT0g1OC1ya3Z5clBIaWlyUEZERHF4STl0cXcwdllQMkFOQkJ2cGlqbWFhbFlPbUp2am93TlBYaDJuZ1NReGpOemlGZTd6eXNpLWFtX2ZBeEcwRkpxc3lLeWFLWTJoRHBwSGJpMzhyZEVaVzhPUUt3S05Qb2REQ0x6UGl1MjVGYm1MVnhiamRRTkpyQjZjZ3lhdFVkcWNNRGY5bk8tazJ3?oc=5"
+        },
+        {
+          "name": "조선일보",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQS3Q0aF82RUNDTi1fblRmSm9la2llU0JDRGJ3UjlxVnNoWUNCcVllTmZ1VkdMYkdjLThoZDQtYnM1Q3N1a3hjNDl3YXRqR1M5WmVmakJOaWRTRk9yYUMwM0tFeHJIQXJCcFVrWlNPQmJWaDNhU3JuY1hoQ2oyT0xaUzRjeGFmY1Bw?oc=5"
+        },
+        {
+          "name": "Quartz",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBxNEdDdXdNZFZiSlZPUUdPRXNtNEVmczRVQzc5NkdQU2h6dW5hLUFLelEwcDVvYlBIdGM5bFlDMUwtdTRxdDQyaEVrWXVOLUpFdklNSjJIWXBMSEpMcE9IbXlROG90bGto?oc=5"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPbENadk1Lcm1iLUZOd0hYSmRZLWJHLTd0YjAwTExuMVozWW9McllnVWJuTHdPY3ZfRWJwVGdzMmpVaHhvODVVMkFMd0U0ejdyRjQxcEJMVzRqcTJqbWVaLXI5QnM1ckRSYmZVYjlBR2NqRTZaaW42QjFZMC00ZmxKOF9Fal9EODV2dEZnb1BPUDBlSFJrRDVtWkNLTWhacE04b3dyemlvckZTR3JmR0xONmxGb19hNU1tWFJMcVlJajNYUQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122118691851476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122118691851476035",
+          "url": "https://facebook.com/1381130541740424_122118691851476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AOVi5Hh1FhLDGAqOXTV2TvG"
+        }
+      }
+    }
+  }
+}
