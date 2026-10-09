@@ -76,6 +76,83 @@
           "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AOVi5Hh1FhLDGAqOXTV2TvG"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Sophos cuts threat investigation time by 96% with OpenAI Daybreak",
+      "style": "warm-rail",
+      "topic_key": "sophos-cuts-threat-investigation-time-by-96-with-o",
+      "text_fb": "38 phút xuống còn 89 giây. Đó là con số thực tế mà Sophos vừa đạt được khi tích hợp hệ thống OpenAI Daybreak vào vận hành bảo mật.\n\nHọ không dùng AI để làm màu hay hỗ trợ gõ văn bản thông thường. Họ giao hẳn 52% ca cảnh báo an ninh mạng cho các AI Agent tự điều tra và xử lý từ đầu đến cuối. Kết quả là thời gian phản hồi sự cố giảm tới 96%.\n\nSự thật là phía tấn công đã dùng mô hình AI để tìm lỗ hổng với tốc độ khủng khiếp. Nếu doanh nghiệp của bạn vẫn phụ thuộc hoàn toàn vào sức người để soi từng dòng dữ liệu thủ công, bạn đã thua ngay từ vạch xuất phát.\n\nSophos chứng minh một tư duy quyết định: AI không thay thế con người, nó giúp quy mô năng lực của bạn tăng gấp mười lần mà không cần tăng gấp đôi quỹ lương. Nhưng điểm mấu chốt là họ cài đặt ranh giới kiểm soát cực kỳ nghiêm ngặt. AI tự do phân tích và đề xuất, nhưng những quyết định nhạy cảm vẫn bắt buộc phải có con người phê duyệt.\n\nTốc độ mà thiếu kiểm soát là thảm họa. Nhưng kiểm soát mà chậm chạp thì là tự sát trong kỷ nguyên AI.\n\nBạn đã có kế hoạch đưa AI Agent vào quy trình vận hành cốt lõi của mình chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Sophos cắt giảm 96% thời gian xử lý sự cố mạng nhờ OpenAI Agent, kéo thời gian từ 38 phút xuống 89 giây. AI hiện tự giải quyết 52% công việc. Bạn đã sẵn sàng giao quy trình cho AI?",
+      "hashtags": [
+        "#AI",
+        "#CyberSecurity",
+        "#OpenAI",
+        "#Sophos",
+        "#AIAgent",
+        "#Automation",
+        "#TechTrends",
+        "#CongNgheAI",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-10-09/evening/01.jpg",
+        "assets/posts/2026-10-09/evening/02.jpg",
+        "assets/posts/2026-10-09/evening/03.jpg",
+        "assets/posts/2026-10-09/evening/04.jpg",
+        "assets/posts/2026-10-09/evening/05.jpg",
+        "assets/posts/2026-10-09/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-09/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/sophos"
+        },
+        {
+          "name": "InfoWorld",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcW50RHhNaW5nS19OTng4YlA3OXBoSDZBcnRGREFUdTZzRXYzek1LSUdsbU0xLUhEOXowSXFBQ05pOWVIcjUxbkp4aFliMFFwS3EzSXpscUV3UjlxdVNFLWtyMmhpcFZ6T1JHdm81ZVZoYkRUaUNwM0ljVndJaGRqY1B5OU5weWtjUGlNNmwxVlR2ZFhiSjkxUDRxNWZCTDhp?oc=5"
+        },
+        {
+          "name": "Futurism",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1lcHAwLTdEamxxdlR6TU8xUTdBZXJEUTZ5WWU1Vzk1alVLMWYwNmJhYk45ODNOSUFVOFhfemFvMXE4TWlmX0Z0aV9nN0Znd2JzUjZlRnlQdkhMNHFpX3c5VVRVUWo0Y0NHUFFRNmhYWDV3UWVRaXgwd2oycWZmUDg?oc=5"
+        },
+        {
+          "name": "Fox Business",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5JamNjclhJNVJSN0FsQlNDMnY5ZFktbTN2LVU0bk9ha2otZU9UVGhVaTM5UG9WWncyZzd0ZExaTDBGWHowaWo4SFZia2N1RTFpYjdBdEZ0ZTI1aFk?oc=5"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOeEpIR05kY3lkMEFVN1pMTDlhdzliSjdDa0RXc0tXdko2dEZtc1pyUnJUSXNsQ0RMU0owU3BOOUFsVHpwMHJkRmowVXNkUWUwbi1NZ0k5N0hWU0lveDNCeVRhV2psZjhhVTlZTWNETlRMbWZxT1BBYnJEWnNERHk4V2ZiX085aTRWaDhTUUVvd2dwNWVzaHVvdV9hblFxN0MzRTZfclNONzZPeFlxQXNPMXFDVlpRX3hWOG5kSzdfM1ZtUlQwaVE?oc=5"
+        },
+        {
+          "name": "Observer",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1IaDZmcWp2UVZ6SUxRXzhsZ3dlTTgwQzF0OGRNcUgtR2Y3RzVMbUN2Vk1fTUJEeUdmbE94bV9XVkxhQVgzS2ZnRVV5ZXhSbDNiTXpfT3NhQUd5NzdrR0FveU9MVzFNZ0hzTFozNmhn?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122118926871476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122118926871476035",
+          "url": "https://facebook.com/1381130541740424_122118926871476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AanVt2cEtAULEtM4xlwCoxE"
+        }
+      }
     }
   }
 }
