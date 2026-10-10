@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-10",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Asana cuts model costs 76x in browser tests with GPT-6.1 Sol",
+      "style": "mono-rail",
+      "topic_key": "asana-cuts-model-costs-76x-in-browser-tests-with-g",
+      "text_fb": "Asana vừa giảm chi phí vận hành agent AI tới 76 lần. Từ hơn 36 USD xuống còn vỏn vẹn 0,47 USD cho mỗi lượt chạy, đồng thời tăng tốc độ xử lý lên gấp 5 lần.\n\nNếu bạn đang xây dựng công cụ tự động hóa hoặc triển khai AI cho doanh nghiệp, đây là bài học sống còn. Nhiều người khi thấy hóa đơn AI tăng vọt thường vội vã chuyển sang mô hình rẻ hơn hoặc cắm đầu chỉnh sửa prompt. Bạn đang giải quyết sai bài toán.\n\nVấn đề thực sự nằm ở kiến trúc dòng chảy dữ liệu. Khi agent của Asana duyệt web, nó thu thập văn bản và ảnh màn hình. Nhưng ở mỗi bước tiếp theo, hệ thống lại gửi toàn bộ lịch sử đó về server với giá full. Bạn đang trả tiền nhiều lần cho cùng một dữ liệu mà không hề hay biết.\n\nCTO của Asana đã giao GPT-6 Astra trong Codex quét toàn bộ mã nguồn. AI tự phát hiện lỗi thiếu cache, tự viết lại code và chạy 144 kịch bản thử nghiệm. Bằng cách giữ lại lịch sử duyệt web và gom 20 ảnh màn hình mới xử lý một lần, 89% dữ liệu đầu vào đã được đọc từ cache với giá chỉ bằng 5% so với thông thường.\n\nTốc độ lập trình không còn là điểm nghẽn. Sự chú ý và tư duy hệ thống của bạn mới là thứ quyết định. Giờ đây, một kỹ sư có thể điều hành cả một đội ngũ agent làm việc liên tục cả ngày lẫn đêm.\n\nBạn đã bao giờ kiểm tra xem hệ thống AI của mình đang lãng phí bao nhiêu chi phí vì truyền dữ liệu thừa chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Asana cắt 76 lần chi phí AI không phải nhờ đổi mô hình rẻ, mà nhờ tối ưu cache dữ liệu. CTO Asana đặt mục tiêu trước khi ngủ, AI tự chạy 144 bài test để hạ chi phí từ 36 USD xuống 0,47 USD. Bạn đã kiểm tra lãng phí trong hệ thống AI của mình chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#OpenAI",
+        "#Asana",
+        "#GPT6",
+        "#AgenticAI",
+        "#ToiUuChiPhi",
+        "#CongNghe",
+        "#Codex",
+        "#HocAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-10/morning/01.jpg",
+        "assets/posts/2026-10-10/morning/02.jpg",
+        "assets/posts/2026-10-10/morning/03.jpg",
+        "assets/posts/2026-10-10/morning/04.jpg",
+        "assets/posts/2026-10-10/morning/05.jpg",
+        "assets/posts/2026-10-10/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-10/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-10/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-10/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-10/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-10/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-10/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/asana-browser-agent"
+        },
+        {
+          "name": "36Kr",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE56LUxwQnYwcVRmU01uaDdoX2hLSnJYR0JoUzh0M29wWEhBQ2VFNkp5NFFGZ3dZdll5dE01aEVpN3B6NHhicHJxR0kxUWxINENVQ1dv?oc=5"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9BR2ZzcDRMbGphY1pfMF9mVWVCZGUyV25mbHpZMnRjQUxWWWgtWGZqSk93eXEweHNlOU1MTW85d2hLc3NvT2E4Znd4ZG5DR1diQTZPcFExTi1wcC1t?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122119134969476035",
+      "ig_due": "2026-10-10T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122119134969476035",
+          "url": "https://facebook.com/1381130541740424_122119134969476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
