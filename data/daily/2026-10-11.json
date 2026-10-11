@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-11",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Satya Nadella says we should assume all AI models are ‘compromised’",
+      "style": "navy-bar",
+      "topic_key": "satya-nadella-says-we-should-assume-all-ai-models-",
+      "text_fb": "Satya Nadella vừa đưa ra một tuyên bố khiến cả giới công nghệ phải giật mình: Hãy coi mọi mô hình AI đều đã bị nhiễm độc.\n\nNếu bạn đang giao toàn bộ công việc hay dữ liệu quan trọng cho AI và tin tưởng kết quả của nó 100%, bạn đang đặt bản thân vào rủi ro cực kỳ nguy hiểm.\n\nSố đông ngoài kia vẫn coi AI như một phép thuật. Họ ném câu hỏi vào chiếc hộp đen và đón nhận câu trả lời mà không hề hoài nghi. Nhưng CEO của Microsoft không nghĩ vậy. Ông yêu cầu toàn ngành phải chuẩn hóa công nghệ \"phanh khẩn cấp\". Bất kỳ hệ thống AI nào cũng phải cho phép con người can thiệp, quan sát và lập tức tắt máy ngay giữa chừng nếu nó đi lệch hướng.\n\nSự khác biệt giữa người làm chủ công nghệ và kẻ bị công nghệ dẫn dắt nằm ở sự kiểm soát. Người thua cuộc phó mặc tất cả cho mô hình. Người thắng cuộc biết rằng không có mô hình nào an toàn tuyệt đối và luôn chuẩn bị sẵn lớp rào chắn an toàn.\n\nNếu bạn đang ứng dụng AI vào công việc hằng ngày, hãy ngưng tin tưởng mù quáng. Hãy tự xây dựng quy trình kiểm duyệt, lưu lại bằng chứng dữ liệu và luôn sẵn sàng rút phích cắm khi cần.\n\nBạn đã cài đặt \"nút phanh khẩn cấp\" nào cho các quy trình AI của mình chưa?\n\nNguồn: The Verge AI",
+      "text_ig": "Satya Nadella yêu cầu coi mọi AI đều đã bị nhiễm độc. Đừng tin tưởng mù quáng vào chiếc hộp đen AI. Hãy luôn chuẩn bị nút phanh khẩn cấp để kiểm soát công cụ trước khi nó gây ra rủi ro cho bạn. Bạn đã có cơ chế kiểm soát AI chưa?",
+      "hashtags": [
+        "#SatyaNadella",
+        "#Microsoft",
+        "#AnToanAI",
+        "#AIEthics",
+        "#AgenticAI",
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#TriTueNhanTao"
+      ],
+      "images": [
+        "assets/posts/2026-10-11/morning/01.jpg",
+        "assets/posts/2026-10-11/morning/02.jpg",
+        "assets/posts/2026-10-11/morning/03.jpg",
+        "assets/posts/2026-10-11/morning/04.jpg",
+        "assets/posts/2026-10-11/morning/05.jpg",
+        "assets/posts/2026-10-11/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-11/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-11/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-11/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-11/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-11/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-11/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1009337/satya-nadella-says-we-should-assume-all-ai-models-are-compromised"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNb0xoOE5UOXhHNHFtQmRaTUVrOFdCQl9iV2k5SmcxblNucGJadERtY19lQ21iS21Fa3hhd0hCOTFhaFhLc2tHRHJ4WTVzYUx5THdyZllxcEF6d0E5RkhVMVFyNi0zX2d2T09DNk9uYmU5dFV2QUxBYXhwY0dpNmF5VlZJSDBvX0t3LXFaTGN1cTFxeXZabWIzbGZmMUg5eFo5OVNkSE1QcWhyNUZZVUxlOU1lTU9HcThyTU9ZdURYQ2dVcjg?oc=5"
+        },
+        {
+          "name": "Business Insider",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSXhaeGUwR2NOdTU2bk9lUHRSWlliSjFOaWhEV0FIc0c5RnFhaE1iUUZueW0wa2ZPMS1ieHdRdlVfRm41MHAtWktyUDBDYlRVYUEzUFZRdnI3R0pQUHZCcVFfN0d1SmxSeUxIUDRjQmw0X0RITFVvRHBoRVU2cmJyOGFER1lDUHVtamNnTkVRbGotYW5kczlFLVY2ZTM5REFUQ2ZldHdCd1BaVUxGSHVoYnhCM08wdTA?oc=5"
+        },
+        {
+          "name": "CNBC",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOWllxOVA0bTc2VGhkSDNzOWpRT0pRZjU1d084VDJMZmZmZGdSOEFfUGNZdG1NNWdVWG9nZjJxZVNVYVVlOE5hUl9lZU5hYW9xZjRaWFgzQWlwWXkxY3VBcXVXUkQxaHlxTTdxMC1QalJyWWFzUVRaWF8wSUJzdnNqSGctZ24wZDBHdkswZmtJTdIBlAFBVV95cUxPNHRQX2VXbDZtb2Z0WS1RRHAzc1NxZjdsWHNDZ1oweTYxTi10NGNESm9KLWNnNmhVYUdQblRqODlmWUdjQlFxYzRJbjVJLUlkUkdib2lwb3VUZ3pYNnJCclhid25RYlRyWEhnbE5ibGY5bWNTb2tzOWNEQlBPcllvMms1YkZxcEJSZHJPbHVpaTZQejRx?oc=5"
+        },
+        {
+          "name": "Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNY2tYeVZwTkEwVmNuQnBYVnhKMHNnamZKeEtqeXlyT3AtRVlXbWtMS2wxRktaYWRyUUJfcDV5MktLeFZJRkFBYm9WN2xvT25VY2VsZFNnSzZhNXBoYzZSRzNCaGgwUFBiOFloZ3BwdzhnZzEyZzJKbFk2Q1ZDbW9udEZ5YklCSzNNd256aEN5elc4RlJfZVNrQ1FoVWlBOFBLWDNodUJBWVNVNVJEc2paY1pNQQ?oc=5"
+        },
+        {
+          "name": "Seeking Alpha",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNTks5WXczZnlZOGwxSlU4WElYVEw4MW8zVXBLOXVyYkZJU1VNQUZtdTJrVTBIUFFQT2ZnV2M0WFNvcHotSEV0eUxVekZxTUFwX0U5Z2pfVDV3UG1VeFpHSkdjY3dVU3FaRXhsaE94cVVEZHdKc01rZ09MSEh0NnFIQ3JHV0w3ZWdHVDJ3UlpwN283dWd3cnpid0x4Zm1lcFk0S1hMV3hUVF9jVFpqR3Jn?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122119634331476035",
+      "ig_due": "2026-10-11T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122119634331476035",
+          "url": "https://facebook.com/1381130541740424_122119634331476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
