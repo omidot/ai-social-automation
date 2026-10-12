@@ -2,7 +2,7 @@
   "date": "2026-10-12",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Silicon Valley is falling in line with Trump’s attempt to rename AI",
       "style": "warm-bar",
@@ -72,7 +72,10 @@
           "url": "https://facebook.com/1381130541740424_122120135229476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17911296627512782"
+        }
       }
     }
   }
