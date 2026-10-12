@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-12",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Silicon Valley is falling in line with Trump’s attempt to rename AI",
+      "style": "warm-bar",
+      "topic_key": "silicon-valley-is-falling-in-line-with-trumps-atte",
+      "text_fb": "Satya Nadella và Elon Musk vừa đồng loạt chuyển sang dùng thuật ngữ Super Intelligence thay cho Artificial Intelligence. Jensen Huang của Nvidia thậm chí cam kết 1 tỷ USD cho nghiên cứu dưới tên gọi mới này.\n\nSự thay đổi đột ngột này diễn ra ngay sau khi chính quyền Mỹ tuyên bố coi bất kỳ ai tiếp tục dùng từ AI là đi ngược lại định hướng mới. Marc Benioff nhanh chóng đổi tên AIForce thành SIForce, trong khi các lãnh đạo lớn như Sundar Pichai hay Mark Zuckerberg cũng xuất hiện tại cùng một hội nghị thượng đỉnh.\n\nNhiệm kỳ trước, Silicon Valley chọn cách đối đầu căng thẳng với chính quyền. Nhiệm kỳ này, những bộ óc quyền lực nhất thế giới lại chọn cách thỏa hiệp cực kỳ nhanh chóng. Họ hiểu rõ giá trị của các hợp đồng chính phủ hàng tỷ đô la và cái giá phải trả nếu bị gắn nhãn đối lập. Khi quyền lực chính trị lên tiếng, ngay cả thuật ngữ kỹ thuật cốt lõi cũng phải hạ mình thay đổi.\n\nNếu bạn đang làm việc trong ngành công nghệ, bài học ở đây rất rõ ràng. Từ khóa có thể bị chính trị hóa và thay đổi chỉ sau một đêm theo ý chí của người quản lý, nhưng năng lực giải quyết vấn đề thực sự của bạn thì không. Đừng quá bận tâm vào việc giới truyền thông hay các tập đoàn gọi đó là AI hay SI. Thứ duy nhất quyết định giá trị của bạn trên thị trường là sản phẩm thực tế và hiệu quả công việc bạn tạo ra.\n\nBạn nghĩ đây là bước tiến thực sự về công nghệ hay chỉ là một trò chơi thuật ngữ chính trị?\n\nNguồn: The Verge AI",
+      "text_ig": "Satya Nadella và Elon Musk vừa đồng loạt bỏ từ AI để chuyển sang gọi là Super Intelligence. Khi chính trị can thiệp, cả Silicon Valley phải thay đổi thuật ngữ. Đừng chạy theo từ khóa, hãy tập trung vào năng lực cốt lõi. Bạn thấy sao về cú đổi tên này?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#SuperIntelligence",
+        "#ElonMusk",
+        "#SatyaNadella",
+        "#Nvidia",
+        "#SiliconValley",
+        "#AITrends"
+      ],
+      "images": [
+        "assets/posts/2026-10-12/morning/01.jpg",
+        "assets/posts/2026-10-12/morning/02.jpg",
+        "assets/posts/2026-10-12/morning/03.jpg",
+        "assets/posts/2026-10-12/morning/04.jpg",
+        "assets/posts/2026-10-12/morning/05.jpg",
+        "assets/posts/2026-10-12/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/morning/06.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1009406/silicon-valley-is-falling-in-line-with-trumps-attempt-to-rename-ai"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPSFI5aTdXbnUyZ19zc2RLZ1ZZZi1pcVhYRlJSR0tXZU9RaUZSYVRxM0JnY0E1YU5hYXFYS1NLRTRpNmRITFE3N1IzZVZSeFRJbHpxWkU5Tng1TDR6ZjVudm5MMGpQa1ZVbzJobUFhUXRwaENJVmpyR21PYjc3Tl9tc2llWlA4OENESTdHOU52c1lQOEJSMG5GLWFnZGc3TFRFR21iWDRqbHV6YjcxcVBFbi1xWEFVRThxRExTSmY1RUdUX1c5?oc=5"
+        },
+        {
+          "name": "KQED",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSmdHcm5sUTBrZVFzb0ctV1JKb1diVGNxejBkOUVUNVpFNEFTdG9KQmFic2ZEVE1QNHdvTjd3ZzlGa29hYmdxODFCeWpGNmUtT0pqdjc5cjIwamFhOGtsU2RJMGQwQy1UWWRyUDhadU9keFZ2OGFtVnRvQ3F5emtWeURkdTE1bVlTUFF4WUVHdkhya2FYN0o5MmtSZU0wQWNwck0xX0k1TDRkZTdYSFE?oc=5"
+        },
+        {
+          "name": "CNN",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1HOFdTWHoxdldqUHkzUVdGWXdhRXRjU1NZemxqWlU5YkY1bmdmQjExc2hWU2Q4a2RCNkRsMEppT2FPQTNzQmdybUVwWVlDb2NFNW9qcXFIaWdHYzJCNEhFNVFxdThDLUczdUdxeXlSMjhCcTNQbFE?oc=5"
+        },
+        {
+          "name": "Một Thế Giới",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOTjAwZUtLU1E4SUFsc0hUWEh3alhqTG1sSW40b2dCSjN6VUdZYklQYnZmMHRSREhPTUtuVWxkbEIzNXBFaVp5UTlXMTQySndiQkJKOS1IT1NrdVRTQnlLMGs1bzhPd25ZREsyQkxNZFByRFg2YmtJT3pQc1VDYkxVZTNFWnFnTjNa?oc=5"
+        },
+        {
+          "name": "CafeF",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOSHlPOWFxb05HNUJHdzZSeWkyV3ZRcEJZYWpfZXJTS1VMQXdvVzZkcjltR1BKMnhHa0NUM3hsaEVXVnJBWE84UUhMUGhiUUhJV0V6NzFySW55QlhwbkFuZVA3WGEwWkJhVlRMTUxNMHJpYlRnSElVSDlqb3lTNkNNWk9Za1RGTU9Sd1JwcGhIUHR3al91VExJYVpKNkh5NC1vaWh3U3hodWUtTmNubVkycTN2dXpINnBYaDR1eXNwUFlQT3RGTWsydkVn?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122120135229476035",
+      "ig_due": "2026-10-12T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122120135229476035",
+          "url": "https://facebook.com/1381130541740424_122120135229476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
