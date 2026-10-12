@@ -77,6 +77,80 @@
           "media_id": "17911296627512782"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "OCP Global Summit: Amid Ecosystem Adoption, NVIDIA Opens Vera Rubin Architecture to Help Scale AI Factories Worldwide",
+      "style": "mono-bar",
+      "topic_key": "ocp-global-summit-amid-ecosystem-adoption-nvidia-o",
+      "text_fb": "Tủ rack AI Rubin 250kW của NVIDIA vừa được công khai toàn bộ thiết kế tại OCP Global Summit. Báo chí hô hào đây là bước tiến cống hiến cho cộng đồng mã nguồn mở. Nhưng nếu nhìn kỹ, bạn sẽ thấy một chiến lược chiếm giữ thị trường tàn nhẫn.\n\nKhi các nhà máy AI chạm ngưỡng hàng trăm megawatt, rào cản không còn nằm ở sức mạnh của con chip. Bài toán sống còn chuyển sang điện năng, tản nhiệt chất lỏng 5.000A và khả năng điều phối cho Agentic AI. Bằng cách công khai bản thiết kế MGX 1.2 và phần mềm DSX OS, NVIDIA giúp các bên rút ngắn thời gian dựng hạ tầng từ vài ngày xuống vài giờ. Họ biến kiến trúc của mình thành quy chuẩn chung cho cả ngành.\n\nGoogle, Meta hay Cisco đều đang hợp tác để sản xuất thiết bị tương thích với chuẩn này. Kẻ thống trị không giữ khép kín công nghệ. Họ mở ra để buộc đối thủ phải xây dựng sản phẩm xung quanh hệ sinh thái của họ.\n\nNếu bạn đang làm sản phẩm, bài học ở đây rất rõ ràng: Đừng chỉ cố tạo ra một tính năng tốt hơn. Hãy tạo ra tiêu chuẩn khiến đối thủ bắt buộc phải dùng hạ tầng của bạn.\n\nBạn nghĩ đây là sự cống hiến vì cộng đồng hay cú bắt bài hạ tầng của NVIDIA?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA mở thiết kế Vera Rubin 250kW tại OCP Summit. Đây không phải từ thiện, mà là chiêu bài đặt ra quy chuẩn cho cả ngành AI. Khi đối thủ phải dùng sân chơi của bạn, bạn đã thắng từ trước khi bắt đầu. Bạn nghĩ sao?",
+      "hashtags": [
+        "#NVIDIA",
+        "#VeraRubin",
+        "#AgenticAI",
+        "#AIInfrastructure",
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#OCPSummit",
+        "#QuanDiemAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-12/evening/01.jpg",
+        "assets/posts/2026-10-12/evening/02.jpg",
+        "assets/posts/2026-10-12/evening/03.jpg",
+        "assets/posts/2026-10-12/evening/04.jpg",
+        "assets/posts/2026-10-12/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-12/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/ocp-global-summit-vera-rubin-scale-ai-factories/"
+        },
+        {
+          "name": "Greater Good: The Science of a Meaningful Life",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQTDRyeXZvdHEtSXdXV1Y4T3UxZzk3UEY1ZjN5RzhoMld1RHQ5MWxqNWtkOXhiVklVam4xUE0ySDR5NkxnT1VYakd6MUpFNjkzQjdMOXJaWERiWUQ3T2hEcHh6LTVVSHI3bWVlYWdIMUdOYzU5QW94V0Q5Mm5WNllGMFlUdFFWRU9vaXdyRlEtRlZ4MUdsZXlKN2NkVXBoaFd1YVVvVlNvM3pBZw?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNamRIQWxVVXNKZmpYX195Y0JUWVpMd2w5aEI4U1RtZ2twcmZKcE0xME9URHppNWpZMzkyM2dIa21SRTJqWTRVQUU4SGNoeTQ0NUh0VXZYVG1kV0F0TFFpNXlHeGlfNWRzWDJfcWZ6WVZFOTFjaVBmdjVfa0pUNWR2R1RnT3ZlRDg?oc=5"
+        },
+        {
+          "name": "AI Insider",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQYUQ4ZEZfd3dVXzc2aUx6ckdfaGg5ZE9paE5BdHFBRE5FVHpIM2ZHcTZzNUVVdFdOTHB3TTUwRW5wUGJTdkRRd2JHdEpqcHhTVE5TSG1QbUxxTnpZOHpZTkNNOTJTRnRhQWl2Z3Y3VHZld2J5bVdPMktiMDhLZThERU8wNG9GS05oRENodHRaR2FfZFlreUJPUEl1Q3JPSDVYc2dnSlB0eUI2RmNfenZUR0RsMkIyZnZKSldtSGxJOHY1R2hXbm8zcmt0OGVLT1U?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/news/1009465/microsoft-maia-300-chip-improvements-rollout"
+        },
+        {
+          "name": "WGY",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQaG9fQTdEb0pySlVjaEIzZnhHWDN5U1pUQ09CWnVwRDNFamZ5NG9HTjUzeTQ3eWNCR0dXekRfaVpOU3M1by10eTlFOWVTU1VOVDdheU16WklMRkpVTVFwYTQ0UFZOZFg0MllwMS0tblp5YU1OM1cxYnZBZFhVNFB5Z21VV3hrOFNUa1lzdEk3WDZzX1hPVU1BOFlESQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122120494479476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122120494479476035",
+          "url": "https://facebook.com/1381130541740424_122120494479476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AULEUlJ5ZM5ply7oo7Aok7A"
+        }
+      }
     }
   }
 }
