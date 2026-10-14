@@ -2,7 +2,7 @@
   "date": "2026-10-14",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Google DeepMind and Singapore Government announce new AI tool to protect citizens against scams",
       "style": "white-split",
@@ -79,7 +79,10 @@
           "url": "https://facebook.com/1381130541740424_122121036069476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18105992527982986"
+        }
       },
       "ig_attempts": 1
     }
