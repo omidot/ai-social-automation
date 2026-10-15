@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-15",
+  "posts": {
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "NVIDIA Expands Advanced Technology Access for Europe’s Scientific Community Through Open Learning Resources, Collaborations and Compute",
+      "style": "navy-split",
+      "topic_key": "nvidia-expands-advanced-technology-access-for-euro",
+      "text_fb": "NVIDIA vừa mở rộng quyền truy cập hạ tầng tính toán tăng tốc cho cộng đồng khoa học tại Châu Âu.\n\nRất nhiều người làm công nghệ vẫn nghĩ rằng mô hình giỏi nhất hay prompt hay nhất sẽ quyết định chiến thắng. Nhưng thực tế phũ phàng hơn nhiều. Thứ thực sự bóp chết các startup AI và phòng lab nhỏ không phải là thiếu ý tưởng, mà là thiếu năng lực tính toán. Theo NVIDIA Blog, công đoạn gian nan nhất trong nghiên cứu khoa học và phát triển AI thường diễn ra trước khi phép tính đầu tiên được thực thi: đó là thiết lập và chi trả cho hệ thống phần cứng cực kỳ đắt đỏ.\n\nKhi NVIDIA mở cửa tài nguyên đào tạo và hạ tầng tính toán cho các nhà khoa học trẻ, họ không chỉ làm từ thiện. Họ đang đặt ra một tiêu chuẩn mới. Trong cuộc đua AI hiện tại, thuật toán đang ngày càng được bình dân hóa. Ai cũng có thể tải về các mô hình mã nguồn mở. Điểm phân tách giữa người thắng và kẻ thua chính là quy mô tính toán mà bạn có thể tiếp cận.\n\nNếu bạn đang xây dựng sản phẩm AI hay làm nghiên cứu, hãy dừng việc chỉ quanh quẩn ở tầng giao diện hay thay đổi vài dòng prompt. Bạn phải tính đến bài toán tối ưu hạ tầng và chi phí phần cứng ngay từ ngày đầu. Hãy chủ động tìm kiếm và tận dụng các gói tài trợ compute từ những gã khổng lồ công nghệ thay vì tự gánh chi phí vượt quá sức.\n\nCuộc chơi AI đã chuyển từ đua ý tưởng sang đua sức mạnh hạ tầng. Bạn đã chuẩn bị gì cho bài toán hạ tầng của mình chưa?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA vừa mở rộng hạ tầng tính toán cho Châu Âu. Cuộc đua AI không nằm ở ý tưởng hay giao diện, mà ở sức mạnh phần cứng bên dưới. Bạn đã sẵn sàng tối ưu bài toán compute của mình chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#AI",
+        "#ScientificComputing",
+        "#TechTrends",
+        "#ArtificialIntelligence",
+        "#DeepLearning",
+        "#Hardware"
+      ],
+      "images": [
+        "assets/posts/2026-10-15/evening/01.jpg",
+        "assets/posts/2026-10-15/evening/02.jpg",
+        "assets/posts/2026-10-15/evening/03.jpg",
+        "assets/posts/2026-10-15/evening/04.jpg",
+        "assets/posts/2026-10-15/evening/05.jpg",
+        "assets/posts/2026-10-15/evening/06.jpg",
+        "assets/posts/2026-10-15/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-15/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/ec-scientific-computing-pledge/"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/1011996/microsoft-windows-rtx-spark-platform-changes-notepad"
+        },
+        {
+          "name": "CNET",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNX1hRRGdMWUd2N2lvQ2NZSURaZGg4MUlXUFE4eTR6YlprOUlGSDFfdlRiMU05dGk2YzN5c3lyMC1OMG9TWkY4OUtaVG1nN2tpUHRocW8zVkNIcU1JM3hKRGRnY3l3YWJoaUdzcGpHd3hwdWV2aHY3Mng1ZURaZFRYQmNkNE41S0lDYlpMSDNRenF2dw?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQZEF5Rmdxb0otYThUSUFvT1VvcXV2MVZmbG4wU3lLOEctUnhUYUNUcXViM0k0TjBSb2hITThvTVE4QU03OExGN1hzd2FUSlhQZ0dDZnVOSmtnblVBLWpJajlVdGJWemhZWEJnZXQydC1mOWVvUnlzV3poZENDbzdsM2ctd012eWNmNUtWWlBlazJQM3N2ZVIzV0JzVTIxRVd3d2JiczJB?oc=5"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-enshrouded-update/"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2287239/nvidia-rtx-spark-good-for-windows-even-if-you-do-not-need-local-ai/"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122121591453476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122121591453476035",
+          "url": "https://facebook.com/1381130541740424_122121591453476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AjFOjM9_dhhxChAjkLlQ6uH"
+        }
+      }
+    }
+  }
+}
