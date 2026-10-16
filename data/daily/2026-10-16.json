@@ -1,0 +1,823 @@
+{
+  "date": "2026-10-16",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Be There for the Beginning: Celebrate the Launch of NVIDIA RTX Spark",
+      "style": "warm-split",
+      "topic_key": "be-there-for-the-beginning-celebrate-the-launch-of",
+      "text_fb": "NVIDIA RTX Spark vừa xuất hiện và đây không phải là một chiếc laptop gaming thông thường. NVIDIA cùng Microsoft đang làm một cuộc cách mạng: thay thế kiến trúc x64 quen thuộc bằng chip Arm kết hợp GPU Blackwell, biến chiếc máy tính trong ba lô của bạn thành một bộ nào AI tự chủ.\n\nNhiều người nghĩ AI PC chỉ là chiêu trò tiếp thị gắn thêm nút Copilot. Nhưng sự thật là việc tích hợp trực tiếp các agent AI như Perplexity, Hermes hay OpenClaw vào Windows Store chỉ với 2 cú nhấp chuột đang làm thay đổi toàn bộ cuộc chơi. Bạn không còn gửi từng prompt lên cloud rồi chờ phản hồi, mà đang sở hữu một hệ thống AI tự sửa code và vận hành ngay trên máy mình.\n\nNếu bạn đang làm lập trình viên, designer hay marketer, sự dịch chuyển này sẽ chạm thẳng vào túi tiền và năng suất của bạn. AI nội cục cho bạn sự riêng tư tuyệt đối và chi phí API bằng không. Tuy nhiên, phần cứng đắt tiền không giúp bạn giỏi hơn nếu bạn không biết cách phân rã công việc cho agent xử lý.\n\nMình tin rằng cuộc đua sắp tới không nằm ở việc ai mua được chiếc laptop mạnh hơn, mà ở việc ai biết biến AI agent thành nhân sự đắc lực trong quy trình của mình.\n\nBạn đã sẵn sàng giao bớt việc cho một agent AI chạy ngay trên laptop của mình chưa?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA RTX Spark đưa agent AI lên chip Arm và GPU Blackwell. Kỷ nguyên máy tính x86 đang nhường chỗ cho local AI. Bạn sẵn sàng chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#RTXSpark",
+        "#LocalAI",
+        "#AIPC",
+        "#MicrosoftWindows",
+        "#AgenticAI",
+        "#CongNgheAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-16/morning/01.jpg",
+        "assets/posts/2026-10-16/morning/02.jpg",
+        "assets/posts/2026-10-16/morning/03.jpg",
+        "assets/posts/2026-10-16/morning/04.jpg",
+        "assets/posts/2026-10-16/morning/05.jpg",
+        "assets/posts/2026-10-16/morning/06.jpg",
+        "assets/posts/2026-10-16/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-16/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-launch-event-invite/"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/1011996/microsoft-windows-rtx-spark-platform-changes-notepad"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2287239/nvidia-rtx-spark-good-for-windows-even-if-you-do-not-need-local-ai/"
+        },
+        {
+          "name": "StreetInsider",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMHhtSzBYem11WDRMV3NQeTR4dkNteWtFNWlJbFdvNjc3WnNmcjRjdUxnaHFBaHdBanpFZFN1NG9NVEhhbWFVRnQ4NEpscE0tWmhCbGczNkpiMmJfQWl2UXlLN2JvRXozT21mOWx1UFR3eFVaejNtbnNzdTFqdjM3b1pDNGdidHJ0MmlhTDExNjU2V25sTy1iMHpGaW45VkM3YTFkTEQ3ZEFEN3FfYWhxYjE5SkNvbmdNOGc?oc=5"
+        },
+        {
+          "name": "hn",
+          "url": "https://research.meta.ai/blog/muse-spark-open"
+        },
+        {
+          "name": "MacRumors",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE01SExMb1Z4Zm45LUVtYXhNSEZZSlRyaXdsMl9UTkgtNTlNa0E0U1g3WDgyNUdtUWFIZmw0b29qVjY5Y2tyVS16UFhvVFY2NVFvbl9ISTNJS0NpY000dURNQXU2Z1RlUGtkejM3VlJ1NjREdTNlcTBLYQ?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122121760323476035",
+      "ig_due": "2026-10-16T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122121760323476035",
+          "url": "https://facebook.com/1381130541740424_122121760323476035",
+          "scheduled": true
+        },
+        "ig": null
+      },
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-launch-event-invite/",
+        "extra_sources": [
+          {
+            "name": "The Verge AI",
+            "url": "https://www.theverge.com/tech/1011996/microsoft-windows-rtx-spark-platform-changes-notepad"
+          },
+          {
+            "name": "Engadget",
+            "url": "https://www.engadget.com/2287239/nvidia-rtx-spark-good-for-windows-even-if-you-do-not-need-local-ai/"
+          },
+          {
+            "name": "StreetInsider",
+            "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMHhtSzBYem11WDRMV3NQeTR4dkNteWtFNWlJbFdvNjc3WnNmcjRjdUxnaHFBaHdBanpFZFN1NG9NVEhhbWFVRnQ4NEpscE0tWmhCbGczNkpiMmJfQWl2UXlLN2JvRXozT21mOWx1UFR3eFVaejNtbnNzdTFqdjM3b1pDNGdidHJ0MmlhTDExNjU2V25sTy1iMHpGaW45VkM3YTFkTEQ3ZEFEN3FfYWhxYjE5SkNvbmdNOGc?oc=5"
+          },
+          {
+            "name": "hn",
+            "url": "https://research.meta.ai/blog/muse-spark-open"
+          },
+          {
+            "name": "MacRumors",
+            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE01SExMb1Z4Zm45LUVtYXhNSEZZSlRyaXdsMl9UTkgtNTlNa0E0U1g3WDgyNUdtUWFIZmw0b29qVjY5Y2tyVS16UFhvVFY2NVFvbl9ISTNJS0NpY000dURNQXU2Z1RlUGtkejM3VlJ1NjREdTNlcTBLYQ?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "NVIDIA RTX Spark Ra Mắt: Chip Arm & Blackwell Thay Đổi Cuộc Chơi AI PC",
+          "description": "NVIDIA cùng Microsoft vừa chính thức ra mắt RTX Spark, nền tảng PC kiến trúc Arm kết hợp GPU Blackwell giúp chạy AI Agent trực tiếp ngay trên máy tính mà không phụ thuộc Cloud. Khám phá cách cài đặt AI agent chỉ với 2 click qua Windows Store và bước chuyển mình lớn của ngành công nghệ. Đăng ký kênh A Hít Official để cập nhật những tư duy công nghệ sắc bén nhất!",
+          "hashtags": [
+            "#NVIDIA",
+            "#RTXSpark",
+            "#Microsoft",
+            "#LocalAI",
+            "#AIAgent",
+            "#JensenHuang",
+            "#Windows11",
+            "#AHitOfficial",
+            "#TechNews"
+          ],
+          "keywords": [
+            "NVIDIA RTX Spark",
+            "RTX Spark",
+            "Local AI PC",
+            "Microsoft AI Agent",
+            "Jensen Huang",
+            "Chip Arm Blackwell",
+            "Windows Local AI"
+          ],
+          "tiktok_caption": "NVIDIA tung RTX Spark biến laptop thành bộ não AI tự chủ! Bạn chọn phụ thuộc Cloud hay tự làm chủ AI local? #NVIDIA #RTXSpark #LocalAI #AHitOfficial"
+        },
+        "spoken_text": "NVIDIA vừa tung ra RTX Spark hoàn toàn mới.\nMột bộ nào AI chạy trực tiếp trong ba lô.\nKhông cần Cloud. Không tốn API. Tự sửa code tại chỗ.\nĐến cuối video này, mình sẽ cho bạn thấy\nCon số 2 click thay đổi toàn bộ hệ điều hành Windows.\nTom's Guide gọi đây là sự dịch chuyển lịch sử.\nNhiều người nghĩ AI PC chỉ là thêm nút Copilot.\nNhưng kiến trúc x64 đã bị loại bỏ.\nNVIDIA dùng chip Arm kết hợp GPU Blackwell.\nĐi kèm unified memory xử lý AI nội cục.\nTrustedReviews test thực tế: Hiệu năng local AI gây kinh ngạc tuyệt đối.\nBạn không cần gửi tin lên server xa xôi.\nMọi dữ liệu nằm trực tiếp trên máy bạn.\nMicrosoft hợp tác sâu cùng NVIDIA đợt này.\nPeter Dawoud từ Microsoft vừa chính thức lên tiếng.\nWindows ra mắt giao diện Get Started hoàn toàn mới.\nCài đặt một Agent AI chỉ mất đúng...\nĐÚNG 2 CLICK.\nCài qua Windows Store, tự quản lý phụ thuộc.\nKhông cài đặt rắc rối. Mở máy là AI chạy.\nNếu bạn đang làm code, design hay marketing...\nMua máy đắt tiền không giúp bạn giỏi hơn.\nKẻ chiến thắng là người biết phân rã công việc.\nBiến Agent AI thành nhân sự riêng cho mình.\nNVIDIA tổ chức ra mắt đồng loạt tại 6 thành phố.\nTừ San Francisco đến Seoul, người dùng xếp hàng dài.\nHọ muốn tận mắt trải nghiệm sức mạnh AI nội cục.\nMình khẳng định với bạn một nguyên tắc rõ ràng.\nCuộc đua sắp tới không nằm ở phần cứng.\nNó nằm ở khả năng vận hành Agent AI.\nMột bên tốn tiền API hàng tháng liên tục.\nMột bên sở hữu riêng bộ não AI trong ba lô.\nNVIDIA còn tặng laptop ASUS ProArt P14 Spark\nCó chữ ký Jensen Huang trong chiến dịch ShareYourSpark.\nQuay lại câu chuyện 2 cú click ban đầu.\nNó bình dân hóa AI, xóa bỏ rào cản kỹ thuật.\nBiến mọi máy tính thành trung tâm tự vận hành.\nBạn chọn trả tiền Cloud cho từng dòng prompt?\nHay tự làm chủ bộ não AI ngay trên laptop của mình?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "NVIDIA vừa tung ra",
+                "RTX Spark hoàn toàn mới."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA RTX Spark launch event"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một bộ nào AI",
+                "chạy trực tiếp",
+                "trong ba lô."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không cần Cloud.",
+                "Không tốn API.",
+                "Tự sửa code tại chỗ."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đến cuối video này,",
+                "mình sẽ cho bạn thấy"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Con số 2 click",
+                "thay đổi toàn bộ",
+                "hệ điều hành Windows."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": 2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tom's Guide gọi đây là",
+                "sự dịch chuyển lịch sử."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhiều người nghĩ AI PC",
+                "chỉ là thêm nút Copilot."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng kiến trúc x64",
+                "đã bị loại bỏ."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Intel x64 (Cũ)"
+                  },
+                  {
+                    "label": "AMD x64 (Cũ)"
+                  },
+                  {
+                    "label": "Arm + Blackwell (Mới)"
+                  }
+                ],
+                "unit": "",
+                "title": "Sự thay đổi kiến trúc phần cứng"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA dùng chip Arm",
+                "kết hợp GPU Blackwell."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đi kèm unified memory",
+                "xử lý AI nội cục."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "TrustedReviews test thực tế:",
+                "Hiệu năng local AI",
+                "gây kinh ngạc tuyệt đối."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "TrustedReviews NVIDIA RTX Spark"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn không cần gửi tin",
+                "lên server xa xôi."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mọi dữ liệu nằm",
+                "trực tiếp trên máy bạn."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Microsoft hợp tác sâu",
+                "cùng NVIDIA đợt này."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Peter Dawoud từ Microsoft",
+                "vừa chính thức lên tiếng."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Microsoft Peter Dawoud RTX Spark"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Windows ra mắt giao diện",
+                "Get Started hoàn toàn mới."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cài đặt một Agent AI",
+                "chỉ mất đúng..."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "ĐÚNG 2 CLICK."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": 2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cài qua Windows Store,",
+                "tự quản lý phụ thuộc."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Windows Store AI Agent"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không cài đặt rắc rối.",
+                "Mở máy là AI chạy."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm code,",
+                "design hay marketing..."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mua máy đắt tiền",
+                "không giúp bạn giỏi hơn."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kẻ chiến thắng là người",
+                "biết phân rã công việc."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Biến Agent AI thành",
+                "nhân sự riêng cho mình."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA tổ chức ra mắt",
+                "đồng loạt tại 6 thành phố."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "San Francisco"
+                  },
+                  {
+                    "label": "Berlin"
+                  },
+                  {
+                    "label": "Taipei"
+                  },
+                  {
+                    "label": "Beijing & Istanbul & Seoul"
+                  }
+                ],
+                "unit": "",
+                "title": "Sự kiện ra mắt toàn cầu"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Từ San Francisco đến Seoul,",
+                "người dùng xếp hàng dài."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ muốn tận mắt trải nghiệm",
+                "sức mạnh AI nội cục."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mình khẳng định với bạn",
+                "một nguyên tắc rõ ràng."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cuộc đua sắp tới",
+                "không nằm ở phần cứng."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó nằm ở khả năng",
+                "vận hành Agent AI."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một bên tốn tiền API",
+                "hàng tháng liên tục."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Thuê Cloud API",
+                    "value": 100
+                  },
+                  {
+                    "label": "RTX Spark Local",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Chi phí duy trì AI lâu dài"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một bên sở hữu riêng",
+                "bộ não AI trong ba lô."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA còn tặng laptop",
+                "ASUS ProArt P14 Spark"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "ASUS ProArt P14 RTX Spark Jensen Huang"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Có chữ ký Jensen Huang",
+                "trong chiến dịch ShareYourSpark."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Quay lại câu chuyện",
+                "2 cú click ban đầu."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó bình dân hóa AI,",
+                "xóa bỏ rào cản kỹ thuật."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Biến mọi máy tính",
+                "thành trung tâm tự vận hành."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn trả tiền Cloud",
+                "cho từng dòng prompt?"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hay tự làm chủ bộ não AI",
+                "ngay trên laptop của mình?"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "CÚ SỐC TỪ NVIDIA",
+              "card_start": 0
+            },
+            {
+              "label": "KHUẠY ĐẢO KIẾN TRÚC MÁY TÍNH",
+              "card_start": 6
+            },
+            {
+              "label": "TIÊN PHONG TỪ MICROSOFT",
+              "card_start": 13
+            },
+            {
+              "label": "THỰC TẾ DÀNH CHO BẠN",
+              "card_start": 20
+            },
+            {
+              "label": "BÀI HỌC VÀ BẢN LĨNH",
+              "card_start": 27
+            },
+            {
+              "label": "LỰA CHỌN TƯƠNG LAI",
+              "card_start": 34
+            }
+          ]
+        },
+        "script_path": "output/2026-10-16/2026-10-16-morning-be-there-for-the-beginning-celebrate-the/video/script.json",
+        "script_msg_id": 764,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
