@@ -2,7 +2,7 @@
   "date": "2026-10-16",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Be There for the Beginning: Celebrate the Launch of NVIDIA RTX Spark",
       "style": "warm-split",
@@ -74,7 +74,10 @@
           "url": "https://facebook.com/1381130541740424_122121760323476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17880565962548204"
+        }
       },
       "video": {
         "status": "awaiting_audio",
