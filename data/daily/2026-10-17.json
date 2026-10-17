@@ -65,6 +65,64 @@
           "media_id": "18108730076616453"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "How Itaú is building generative AI for its entire customer base",
+      "style": "white-magazine",
+      "topic_key": "how-itau-is-building-generative-ai-for-its-entire-",
+      "text_fb": "Itaú - ngân hàng lớn nhất Brazil - vừa chứng minh cách đưa AI đến 70 triệu khách hàng. Không phải bằng những mô hình siêu ảo tưởng, mà bằng sự đơn giản đến mức vô hình.\n\nNgười ta vẫn nghĩ làm AI là phải chọn mô hình đắt nhất, xịn nhất. Bạn mua tài khoản AI cao cấp rồi loay hoay không biết ứng dụng vào đâu. Đó là lý do nhiều dự án AI thất bại ngay từ vòng gửi xe.\n\nItaú làm ngược lại. Họ xây dựng nền tảng IARA để kiểm soát chi phí từng token, quản trị độ chính xác và bảo mật. Bộ phận pháp lý của họ quét 90 triệu tài liệu, xử lý 2 triệu tác vụ mỗi tháng và tăng hiệu suất lên tới 80%.\n\nHọ tạo ra lớp dữ liệu Customer DNA để AI hiểu chính xác ngữ cảnh của từng người dùng. Bài học ở đây rất rõ ràng: AI chỉ giỏi khi bạn cho nó ngữ cảnh đủ sâu. Ngưng viết những câu prompt hoa mỹ. Hãy tập trung xây dựng dữ liệu và quy trình chuẩn cho chính bạn.\n\nNếu bạn đang làm sản phẩm hoặc ứng dụng AI vào công việc, hãy nhớ: công nghệ phải nằm phía sau, lợi ích phải nằm phía trước. Đừng biến AI thành thứ phức tạp khiến người dùng sợ hãi.\n\nBạn đang dùng AI để đơn giản hóa công việc hay đang làm nó phức tạp thêm?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Itaú ứng dụng AI cho 70 triệu khách hàng không nhờ mô hình đắt tiền, mà nhờ quản trị token và dữ liệu chuẩn. Đừng thần thánh hóa AI, hãy làm nó đơn giản. Bạn đã tối ưu quy trình AI của mình chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#OpenAI",
+        "#GenerativeAI",
+        "#ItauBank",
+        "#UngDungAI",
+        "#QuanTriAI",
+        "#CongNghe",
+        "#Tudonghoa",
+        "#HieuSuat"
+      ],
+      "images": [
+        "assets/posts/2026-10-17/evening/01.jpg",
+        "assets/posts/2026-10-17/evening/02.jpg",
+        "assets/posts/2026-10-17/evening/03.jpg",
+        "assets/posts/2026-10-17/evening/04.jpg",
+        "assets/posts/2026-10-17/evening/05.jpg",
+        "assets/posts/2026-10-17/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/itau-generative-ai"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122122293807476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122122293807476035",
+          "url": "https://facebook.com/1381130541740424_122122293807476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AkTLAathIjwwdteIdP0xR90"
+        }
+      }
     }
   }
 }
