@@ -2,7 +2,7 @@
   "date": "2026-10-17",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Elorian’s first AI model wants to reason with images, not just about them",
       "style": "mono-split",
@@ -60,7 +60,10 @@
           "url": "https://facebook.com/1381130541740424_122122123659476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18108730076616453"
+        }
       }
     }
   }
