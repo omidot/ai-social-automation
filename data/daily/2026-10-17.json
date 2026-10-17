@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-17",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Elorian’s first AI model wants to reason with images, not just about them",
+      "style": "mono-split",
+      "topic_key": "elorians-first-ai-model-wants-to-reason-with-image",
+      "text_fb": "Elorian vừa huy động 55 triệu USD chỉ để giải quyết một thực tế phũ phàng: các AI hàng đầu hiện nay hoàn toàn mù chữ về mặt thị giác.\n\nKhi bạn tải một bức ảnh lên các mô hình AI lớn, nó chỉ nhìn đúng một lần. Nó chuyển bức ảnh thành các đoạn chữ mô tả rồi cất ảnh đi. Mọi suy luận sau đó đều dựa trên đoạn chữ ký ức ấy. Nó giống hệt việc bạn nhắm mắt lại và cố nhớ xem góc bức ảnh có gì. Kết quả là chỉ cần một sơ đồ đồ gỗ không chữ hay một bàn cờ giải trí, AI lập tức ngơ ngác.\n\nStartup Elorian vừa ra mắt Glimpse để đập tan cách làm thụ động này. Thay vì ép AI dịch ảnh thành chữ, Glimpse cho phép AI tự thu phóng, cắt nhỏ ảnh và rút từng khung hình video để soi trực tiếp trong lúc suy luận. Đội ngũ phát triển chỉ dùng vài trăm GPU nhưng tạo ra mô hình đánh bại cả GPT-6 Astra ở bài test biểu đồ khoa học, với chi phí vỏn vẹn 0,60 USD cho một triệu token đầu vào.\n\nBài học ở đây rất rõ ràng. Bạn không cần một mô hình khổng lồ cồng kềnh để xử lý hình ảnh. Thứ bạn cần là một kiến trúc biết quan sát liên tục như mắt người. Nếu bạn đang đầu tư cho AI xử lý video hay hình ảnh, hãy dừng việc coi bức ảnh là một đống văn bản.\n\nBạn nghĩ AI tương lai sẽ tiếp tục phình to hay sẽ tinh gọn nhờ cách tư duy mới này?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Elorian vừa chứng minh các AI lớn hiện tại đang mù thị giác. Mô hình Glimpse chỉ dùng vài trăm GPU, tự cắt phóng ảnh để suy luận và đánh bại GPT-6 Astra ở bài test biểu đồ. Đừng ngốn tiền cho mô hình cồng kềnh, hãy chọn AI biết nhìn!",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#Elorian",
+        "#Glimpse",
+        "#VisualAI",
+        "#CongNghe",
+        "#GPT6",
+        "#DeepMind",
+        "#AIResearch",
+        "#TechTrends"
+      ],
+      "images": [
+        "assets/posts/2026-10-17/morning/01.jpg",
+        "assets/posts/2026-10-17/morning/02.jpg",
+        "assets/posts/2026-10-17/morning/03.jpg",
+        "assets/posts/2026-10-17/morning/04.jpg",
+        "assets/posts/2026-10-17/morning/05.jpg",
+        "assets/posts/2026-10-17/morning/06.jpg",
+        "assets/posts/2026-10-17/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-17/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNblE4NlZlMF9VNXdkcm53ejFPUjRsRWJLZU11Tm9Hc0ZnWjdvWWFXcUpndjAzQk5leGVHVlZCRWhRZDJjUnFfM2hEeW1jVnZOQk5QZUtZRXVWWV94dDNJSE1iTlZwaHZ0U0lLRUNyb1ZhS1NBRGNERVpnZTRQWl81SWNKcURnekhZZDU2OHpOZDNoRHZSVl9aN2VuRllscUpSREQ3TWYwTjBRQQ?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122122123659476035",
+      "ig_due": "2026-10-17T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122122123659476035",
+          "url": "https://facebook.com/1381130541740424_122122123659476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
