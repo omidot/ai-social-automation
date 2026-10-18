@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-18",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "RTX Spark Ignites Global Celebration as New Windows PCs Arrive",
+      "style": "navy-magazine",
+      "topic_key": "rtx-spark-ignites-global-celebration-as-new-window",
+      "text_fb": "Nvidia vừa tung ra dòng laptop trang bị chip RTX Spark N1X với mức giá từ 2.399 đến gần 7.000 USD. Con số này khiến nhiều người giật mình, nhưng nó phản ánh một cú dịch chuyển quan trọng: kỷ nguyên Local AI đã chính thức gõ cửa.\n\nVới 128GB RAM hợp nhất và sức mạnh 1 petaflop tính toán AI, những chiếc máy từ Asus, Microsoft hay HP không còn là laptop thông thường. Chúng là trạm máy chủ AI thu nhỏ ngay trên bàn làm việc của bạn. Nếu bạn đang làm lập trình viên hay sáng tạo nội dung, bạn chắc chắn hiểu nỗi đau của việc phụ thuộc vào Cloud API: chi phí hàng tháng leo thang, tốc độ mạng trập trùng và rủi ro rò rỉ dữ liệu công ty.\n\nMình tin rằng tự chủ phần cứng local là con đường dài hạn duy nhất để làm chủ công nghệ. Mua một chiếc laptop vài ngàn đô nghe có vẻ đắt đỏ lúc đầu. Nhưng khi bạn chạy liên tục các mô hình LLM mã nguồn mở mà không mất một xu phí token nào, bài toán đầu tư này mới lộ rõ sự hiệu quả.\n\nSự thống trị của các dịch vụ cloud đang bị đe dọa bởi chính những cỗ máy nhỏ gọn này. Lựa chọn nằm ở bạn: tiếp tục phụ thuộc vào cloud hay tự sở hữu năng lực tính toán cho riêng mình? Bạn sẵn sàng chi bao nhiêu tiền cho một cỗ máy AI local?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Nvidia ra mắt laptop RTX Spark giá tới 7.000 USD với 128GB RAM hợp nhất. Kỷ nguyên Local AI mạnh mẽ đã đến, giúp bạn chạy model nặng không cần Internet. Bạn chọn sở hữu máy local hay tiếp tục thuê API cloud?",
+      "hashtags": [
+        "#NVIDIA",
+        "#RTXSpark",
+        "#LocalAI",
+        "#AIHardware",
+        "#TechTrends",
+        "#ArtificialIntelligence",
+        "#LaptopAI",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-10-18/morning/01.jpg",
+        "assets/posts/2026-10-18/morning/02.jpg",
+        "assets/posts/2026-10-18/morning/03.jpg",
+        "assets/posts/2026-10-18/morning/04.jpg",
+        "assets/posts/2026-10-18/morning/05.jpg",
+        "assets/posts/2026-10-18/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-windows-laptops-celebration/"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZDN6aWhwTG95STVtbVV6X3B3bjdxSFYwQ2F4VGNaMld4Z0Qyc1NCZHk4SXZtWVN0cEtuVkxsVDdCZi1RTU8tWmQxZEwwQWdZYzBnQmhhTE11eVUtdzJUbmdGUEs5QmZ3RmhUc3dYakQzUDBjMk9XYnZuZVFIeDdVR09BSzhQTGF2aE9yU0FMZU9oQnVmVnJMMEhYNTY0TVVOMG9jQlhFMlFwaUhCVHZyZ3UzQQ?oc=5"
+        },
+        {
+          "name": "Báo Đà Nẵng",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPUXJDaVV1VHhScXR1OVVRMGYwLWRiU0F6bGkzZFgxNk9xQXQtQmtDSHBQWnVBeWlaVnhFX3pBaFI4cGk1OU5CQTNLTXFobGxxcDIzUlFGYzZEZ0hnM2FqcnljNTI3MmR4UjlTUFdPTm15TFBfOWpycW1QbDh2MU82YU5qbXlBbTI2aFREZHoyQnR2c2ZRMGZDemhxV211a2htTTlVLWl6a1VSYzNmWlluS1hBSEttc0R3a0N0WU5n?oc=5"
+        },
+        {
+          "name": "NVIDIA Developer",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMnpOOTdkUDRPcEk5Z1NYR3UzbHhnT1ByMHN5M2ZaNFlicC1XTks3VmY3eEo2cE5IaFZIMTU1SU5veWtmaTlxRUJqamxJNTlJaW1fdk9ET2c0UjJKZXh6UUxJTEtyalhtTDdldGJha0xQYUQycE9xY3Y0QnduSmhzdURjMkFDaVozd3dDTFFlYldNTlZxdkVR?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/1012748/nvidia-rtx-spark-windows-arm-laptops-asus-hp-lenovo-impressions"
+        },
+        {
+          "name": "Bioengineer.org",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOZUo1S3VjMXFLWi13a0xSd2dveHVidjd1amRxakIxV0h1TGhkOFpTUnc3bkhhZTFlV2xIOXdVRDI4TUpEZmxWdVpYQmtSbVJjUi03U05qNWhHY3kwaFpQVGRQOXhsanRzeUNUX1AzVWowSm9URUhsSjFicWRrT0hjb2pLb0lpbnFzMVFJMFNlQ3hVUE1haFdWbTVmYnowQ2c?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122122480011476035",
+      "ig_due": "2026-10-18T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122122480011476035",
+          "url": "https://facebook.com/1381130541740424_122122480011476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
