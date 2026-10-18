@@ -75,6 +75,84 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Anthropic says its workforce has become less junior and is spending more time in meetings",
+      "style": "warm-magazine",
+      "topic_key": "anthropic-says-its-workforce-has-become-less-junio",
+      "text_fb": "Anthropic vừa công bố dữ liệu nội bộ gây sốc: tỷ lệ tuyển kỹ sư junior giảm từ 27% xuống còn 9%, trong khi thời gian họp của nhân viên lại tăng 20%.\n\nNhiều người vẫn tin rằng AI sẽ giúp chúng ta rảnh rỗi hơn và họp ít đi. Nhưng thực tế ở công ty tạo ra Claude lại đi ngược lại hoàn toàn. Khi AI tự sinh ra lượng lớn code và tài liệu mỗi ngày, năng lực thẩm định và chú ý của con người trở thành điểm nghẽn lớn nhất. 20% nhân sự Anthropic thừa nhận công việc của họ đã chuyển hẳn từ \"tự làm\" sang \"bảo mẫu cho AI\" — liên tục giám sát và xử lý các phản hồi từ mô hình.\n\nNếu bạn đang là lập trình viên cấp thấp hoặc chỉ dựa vào kỹ năng thao tác thuần túy, bài học từ Anthropic là một lời cảnh báo trực tiếp. Nhân sự phi kỹ thuật giờ đây đã tự viết được phần mềm nhờ Claude, đẩy tỷ lệ đội ngũ kỹ thuật giảm từ 61% xuống 56%. AI không lấy đi mọi công việc, nhưng nó đang loại bỏ những mắt xích chỉ biết thực thi cơ bản.\n\nThứ thực sự quyết định vị thế của bạn lúc này không phải là tốc độ viết code hay gõ văn bản, mà là tư duy hệ thống, năng lực ra quyết định và khả năng giao tiếp giữa người với người.\n\nBạn đã sẵn sàng nâng cấp bản thân thành người điều hành AI hay vẫn tiếp tục làm những công việc máy làm tốt hơn?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Anthropic giảm tỷ lệ tuyển dev junior từ 27% xuống 9%, nhưng thời gian họp lại tăng 20%. Khi AI làm hết việc tay chân, giá trị thật sự nằm ở tư duy và năng lực ra quyết định. Bạn đang tự làm hay quản lý AI?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#Anthropic",
+        "#Claude",
+        "#LapTrinh",
+        "#TuyenDungAI",
+        "#XuHuongCongNghe",
+        "#KyNguyenAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-18/evening/01.jpg",
+        "assets/posts/2026-10-18/evening/02.jpg",
+        "assets/posts/2026-10-18/evening/03.jpg",
+        "assets/posts/2026-10-18/evening/04.jpg",
+        "assets/posts/2026-10-18/evening/05.jpg",
+        "assets/posts/2026-10-18/evening/06.jpg",
+        "assets/posts/2026-10-18/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-18/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/17/anthropic-says-its-workforce-has-become-less-junior-and-is-spending-more-time-in-meetings/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNVRwb2hUSGYwb3BQaUZ3XzJCcEpERVhxU1RWNEUxcVFmZHg3Y2REQzBITC04N2VUU1JZajR2ZHNRLUU3bkRVeWtDcVBWQ3p0cnJLODdjOFBVQTJFT0JwdVl4Y2pvSG9CNms5VGtVbTNNODEzTGRBeEZWMUc2WF9Hc1pBRUZsa0l4ZTNmNDBpU3V6VTFFNVFHQUVVVHB5VFJnZWF3M1BxT3pqa1M5VkZCb0Q1aU5SUDVuNTJRZm5KalpmUQ?oc=5"
+        },
+        {
+          "name": "The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPVjB4YWJlM1piXzhhQzJFa1ZMWXh1dC1lZHJpaUJhVFhoZGdZbkwxUzRmeUdXdktLU2M5eFdRTG04am5UNDdtYlMwZWxLVW0zejBZWWtTTlExMTRTUlpnY3NUZGZ3V1JsMVlVY0RTWVdVQUhvWU0xZWdzNEgwdFJzQmdR?oc=5"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMiiwNBVV95cUxOZzBaVmx3ZGk3YlBaUW1pR0FwLVdwWFlwaVlUeVFVdHY4dVhqRExLeV91blg0ZmNyRERfMFpQNmY5NlZtaW8xUDVwbEVlVWFMLUNkUnFiRk9KMEtsNThBR2loVXRxWkZiekxNYllWaEZpTzZBNUMtNndZUnVvTzQzZFJWS2d4NTE2eldDUzR0R2RDNHhuZ3p0cW9ib2puME5nQ2xpR2RRQkRkMmxjTmw2NV9Jck1tZjVCUDZwYjlYb0NyMS1MbWV0cE00SzlBbzZWcFB6M1FnRkFveFQxV0o2QS11MWtzOEUtQkx2NG40S3RJM0lOMUNBZjkzelBLdk94QzA3LUl6cDlPMFF3ZUM2MDYzSDRtQVlWR0pEeTVoY0JDdEN0WUxiUDl1eFpGTDBObUtZRHVlb0pyYzdMOFdTVUIxTXRQNnV5eGFlMWJIbEJhQWpKUDZEX1psZWxNakkzdWp2ekE3V3VFNWNXT21oYnA4c0w5bHZCTHNVUGNkLXRJU3pwMlV6V1p2aw?oc=5"
+        },
+        {
+          "name": "Open Magazine",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPMDBWd2lGWVJ4WW00VXdtZ3lEVUJlbDA1am1GdUc3ZlBGM0tFbGFka3hLMTRNUjcxVTJSZi1Odm4xMDkxZ05QbHJZaVZxbDBwX21xLUtfazZsTUJtcnVfdHlWcUtKQXkwOWM0Z0NGZUlESVY4RzJmdkI1RDZ6YWtsUEs0VW5fb3lLZVI3aDB4MnV6dld0LVg3ekpPVkdxLVFSaEVrWXc5S3lPemFmcmF2aVpRZlU2UVZET2FBOHlxTEl2R1ZxaG4wdlQwODBfWFU?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbG9JSnFTbmJBdEtUWllaQ2xuSWJSUGdKeUpqRzh6eVo2TndtX2NxWGlDcTJ4T0pHRTRiRmU4eUVIWEM5WTVNSHJidnROa3ZpLWNJWENDWlVhU3Z2YXJ0QjhhWTV1SGNGVXdqWFFya254Y0R3NjR4QWZSMGRzQ1RGbW5jYUhrRjFwd1pkX2VIS1ZTa1FKQXdmaHJObG5UUQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122122661421476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122122661421476035",
+          "url": "https://facebook.com/1381130541740424_122122661421476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=Azc0iZniUQtxuj6G6bTcyNg"
+        }
+      }
     }
   }
 }
