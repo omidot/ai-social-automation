@@ -2,7 +2,7 @@
   "date": "2026-10-18",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "RTX Spark Ignites Global Celebration as New Windows PCs Arrive",
       "style": "navy-magazine",
@@ -72,7 +72,10 @@
           "url": "https://facebook.com/1381130541740424_122122480011476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17961976680230318"
+        }
       },
       "ig_attempts": 1
     },
