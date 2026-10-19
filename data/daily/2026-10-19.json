@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-19",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’",
+      "style": "mono-magazine",
+      "topic_key": "anthropic-says-its-committing-5-of-its-shares-to-a",
+      "text_fb": "Anthropic vừa công bố sẽ trích 5% cổ phần của công ty vào một quỹ mang tên \"public benefit fund\" — quỹ phúc lợi công, là một thực thể do chính Anthropic sở hữu hoàn toàn. Không chỉ vậy, nếu giá trị công ty tăng thêm 50%, Anthropic có quyền bơm thêm 2% cổ phần nữa vào quỹ này.\n\nNghe thì rất lớn. Nhưng mình đọc lại thông cáo và thấy phần quan trọng nhất lại thiếu: tiền này sẽ chi cho ai, theo tiêu chí gì, và ai là người ký quyết định. Anthropic chỉ nói mơ hồ rằng quỹ có thể \"tài trợ lớn cho các tổ chức phi lợi nhuận\" hoặc \"phân phối trực tiếp cho một số nhóm dân cư\". Không danh sách cụ thể. Không cơ chế giám sát được công bố. Công ty nói sẽ chia sẻ chi tiết về cấu trúc và quản trị \"trong những tháng tới\" — tức là chưa có.\n\nMình nghĩ cần tách hai chuyện: cam kết tài chính và cam kết trách nhiệm. Cam kết tài chính rất dễ công bố, chỉ cần một con số phần trăm. Cam kết trách nhiệm mới khó, vì nó đòi hỏi hội đồng thật, tiêu chí thật, báo cáo thật. Công bố này cũng đến đúng lúc CEO Dario Amodei gọi thẳng tình trạng ngành AI là \"khủng hoảng niềm tin\". Thời điểm đó không phải ngẫu nhiên.\n\nTrước đây Anthropic đã chi 200 triệu đô để nghiên cứu tác động của AI lên việc làm. Quỹ 5% cổ phần này được giới thiệu như bước tiếp theo, \"táo bạo hơn\". Táo bạo thật, nếu quản trị minh bạch. Chỉ là một dòng PR, nếu không ai biết tiền đi đâu.\n\nBạn nghĩ một công ty AI nên được đánh giá bằng cam kết họ công bố, hay bằng cách họ thực thi cam kết đó?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Anthropic hứa tặng 5% cổ phần cho quỹ phúc lợi công, có thể tăng thêm 2% mỗi lần giá trị tăng 50%. Nghe lớn, nhưng ai quyết định tiền đi đâu thì chưa ai biết. Bạn tin lời hứa, hay chờ xem quản trị thật sự ra sao?",
+      "hashtags": [
+        "#AnthropicAI",
+        "#ClaudeAI",
+        "#AITrust",
+        "#AIEthics",
+        "#PublicBenefitFund",
+        "#AIVietnam",
+        "#CongNgheAI",
+        "#TriTueNhanTao",
+        "#AIForGood",
+        "#DarioAmodei",
+        "#AINews",
+        "#CongNghe",
+        "#AHitOfficial",
+        "#AIJobs"
+      ],
+      "images": [
+        "assets/posts/2026-10-19/morning/01.jpg",
+        "assets/posts/2026-10-19/morning/02.jpg",
+        "assets/posts/2026-10-19/morning/03.jpg",
+        "assets/posts/2026-10-19/morning/04.jpg",
+        "assets/posts/2026-10-19/morning/05.jpg",
+        "assets/posts/2026-10-19/morning/06.jpg",
+        "assets/posts/2026-10-19/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-19/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/"
+        },
+        {
+          "name": "WSJ",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNNXpEalNTRTc3MS04dnVkR0VjRHBocDJVbVlKQlIyaUJ4aHRHSVUwLTMtelNvRXUxWmNULU9iUnhPMmdWS1V5dUVQaUZRaXZMYnRMeGpzbWZFb2FKd3ZqcElOa0FRVlM4TXJoc2w2eG51eFVQZ2hTNENFY1phSzg5RjFNbXFEMDNNel96T2hCVFJlaXN6dnpmeVozTHdpMzkz?oc=5"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNeFNrVTI0LUJlVDFHcjJHUXVUcko4bkF2QXJaeVlhWThyWFBrb1V2ZngyWFFyUkNyRDJGRTlkY0FPVzhFcEIxeTB3ZEMwM2p2VFlFM0FVRHowV29mZXplaXp5dkd1OUZ4WlE5TGZvdkNvbFdpQ2szd2MxaWpGQW1HN2pVSDFXZk5NamZuUlpCWVhLV1hObjdGVDFNR19wRmg3SUszbV91aXR4NWUzUjdjS1pDYw?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE96M01xQUZMUEY1RkRkdnRTajFGa2pPOEhUUnpRbG1BQm83d0dRMWFNdFJGT1V1LTBBZjJRVFFhcFBtT05MR3FEMlMwLS1QV2hxclMxd2ZMa0FuRjdqX3BEZkhuR3MtQXh6S0xYd1VsVkhUTTJYT2duSXdRdnV6Zw?oc=5"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOb0V5T2tFZXNqUkJzSmtrdWxOY3NaT2N2WUhhRjhhLVgtZkJPY0s2VUV1QXZ2NGhBZ3lKZ2NTVFhJOFdQTWNVMEJULVcwUWs5VlFjRC01Ti12ek8wZ1Fjenk5SDl3ZTBKSW9tNDZ1LUladTkwVVM5akRKRU5qXzRrQUNsRFUyMjlKank3cXlJd2o0N0lsMElTUjFBMjVlTVdVZkxaQ09US1hNdGprc0pudTRIeDlDUlE?oc=5"
+        },
+        {
+          "name": "Trung tâm Nội dung số và Truyền thông",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPWWk3enRNT0FOSmNhSkgwOURpUjQwcEZnQm9Qc042c0xSdGlyYWNsNGxHTjA4VVBqZGhvY0RodzNMbGtDclJxZEFNaXhNWlFCUXRDdzA4dGN2TEIyczlCVVBEaUdNMDVlZF9JRVFrN2t5SS1URVFrejkzMmpGb2FMR1VET2owRXhXRV9RYmRkQTBwTUktTjh1UUdQamdacTIwZ3htXzJKSlh0UEVtTGxTclVuYTc?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122122832127476035",
+      "ig_due": "2026-10-19T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122122832127476035",
+          "url": "https://facebook.com/1381130541740424_122122832127476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
