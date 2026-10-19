@@ -2,7 +2,7 @@
   "date": "2026-10-19",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’",
       "style": "mono-magazine",
@@ -80,7 +80,10 @@
           "url": "https://facebook.com/1381130541740424_122122832127476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17949863589339128"
+        }
       }
     }
   }
