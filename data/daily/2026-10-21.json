@@ -2,7 +2,7 @@
   "date": "2026-10-21",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
       "style": "white-ticket",
@@ -70,7 +70,10 @@
           "url": "https://facebook.com/1381130541740424_122123576787476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17893268811683324"
+        }
       }
     }
   }
