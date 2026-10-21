@@ -75,6 +75,80 @@
           "media_id": "17893268811683324"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Google Cloud and NVIDIA Announce General Availability of NVIDIA Vera Rubin Infrastructure",
+      "style": "navy-ticket",
+      "topic_key": "google-cloud-and-nvidia-announce-general-availabil",
+      "text_fb": "Google Cloud vừa mở cửa cho hạ tầng NVIDIA Vera Rubin NVL72 với dòng instance A5X vào tháng tới. Họ phải kết hợp card mạng ConnectX-9, mạng Virgo và cả hệ thống tản nhiệt chất lỏng thế hệ thứ 4 để gánh nổi quái vật này.\n\nNhiều người làm AI vẫn nghĩ cuộc đua nằm ở việc ai viết prompt hay hơn hoặc ai sở hữu mô hình nhiều tỷ tham số hơn. Sự thật phũ phàng là: phần cứng và hạ tầng tản nhiệt mới là thứ quyết định cuộc chơi. Nếu hệ thống ngắt vì quá nhiệt hoặc nghẽn băng thông truyền tải, mô hình giỏi đến mấy cũng thành phế thải.\n\nGoogle và NVIDIA không bán chip, họ đang bán khả năng xử lý quy mô lớn cho những ai biết tận dụng. Khi các gã khổng lồ dốc toàn lực tối ưu tản nhiệt nước và băng thông siêu tốc, điều đó có nghĩa là chi phí tính toán AI chuẩn bị giảm xuống, nhưng khoảng cách giữa người biết dùng hạ tầng và người dùng mò mẫm sẽ ngày càng xa.\n\nNếu bạn đang chi tiền hàng tháng cho các dịch vụ AI mà chỉ dùng ở mức gõ prompt dạo, bạn đang lãng phí nguồn lực khủng khiếp. Bài học ở đây rất rõ ràng: dừng việc chạy theo các công cụ bề nổi, hãy hiểu rõ hạ tầng tính toán phía sau đang thay đổi thế nào để tối ưu chi phí và hiệu suất cho chính công việc của bạn.\n\nBạn đánh giá thế nào về bước đi này của Google Cloud và NVIDIA?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Google Cloud mở cửa cho NVIDIA Vera Rubin NVL72 cùng hệ thống tản nhiệt nước thế hệ 4. Cuộc đua AI không còn nằm ở phần mềm, hạ tầng mới là thứ quyết định. Bạn đã chuẩn bị gì cho làn sóng này?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#GoogleCloud",
+        "#VeraRubin",
+        "#AIInfrastructure",
+        "#ArtificialIntelligence",
+        "#TechNews",
+        "#CloudComputing"
+      ],
+      "images": [
+        "assets/posts/2026-10-21/evening/01.jpg",
+        "assets/posts/2026-10-21/evening/02.jpg",
+        "assets/posts/2026-10-21/evening/03.jpg",
+        "assets/posts/2026-10-21/evening/04.jpg",
+        "assets/posts/2026-10-21/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/google-cloud-vera-rubin-infrastructure/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/european-leaders-vera-cpu-infrastructure/"
+        },
+        {
+          "name": "Quartz",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE90MGg0c1JVVkg3M1ZfZkVaVGxwVXZrMHpzSG9rR2FBdGZDbGVOODlDc3ZvUXQ5Y0hTLXRsUF9uN09nNFk5Yy1UOUllOTlRdnF6N28wdlk0cW9jM1A0WFI3Y3J1MEpoa1EzR1lDbURIZmFNWTRfM3VOQ0xR?oc=5"
+        },
+        {
+          "name": "Axios",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5fRGVTajlqaGI0cGJ0aXFYYXZHQmxmb01MLW50TW5mV3drRVFTZXIyRkxSZDV6b0p6Z1dsNnFXN29FZHYtUjJkam1saGdERkF6SXgyWVZ5dVlmbXRRbjhwc2NnVGlQTVlLVm9JVTMtOA?oc=5"
+        },
+        {
+          "name": "Yahoo Finance Singapore",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNeEVqMEUtTjhiaDAzYkxmLWpFQmkwY0FYU3kxTGsyZzl0U3FiUExBMEZQdkl3SlhrQk9mWWFLQnNQeWtPcFd1U0RGUzFTc2d3WjJXeFdOc0pSNnJBVG8yUW1POThkMERCUlgtNm4yNlNXMU4zY3huWEstY29mNWlIb2pNZVM?oc=5"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQRUtuNl9WRkxzZERuS0l1RkRIbHBKeEw0bGt1WlM4dWJwcklvQzQydklHZmFlNWdVQ3pub0RoSE0zMy1wbjJXYWVTQVgwbTFpOGliMkRSeGxTcGVXX0dxcEQ2U3FCVVhhVDVrUk5SMHYxMldHdzBXc213em1ESVNCME9SMGNLazhfUUM0?oc=5"
+        }
+      ],
+      "angle": "tin-nong",
+      "fb_post_id": "1381130541740424_122123775063476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122123775063476035",
+          "url": "https://facebook.com/1381130541740424_122123775063476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=A8zR-boK6jfHRpGU8XcsI_h"
+        }
+      }
     }
   }
 }
