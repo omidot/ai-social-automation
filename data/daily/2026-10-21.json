@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-21",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
+      "style": "white-ticket",
+      "topic_key": "nvidia-cosmos3-h-dreams-bringing-clinical-surgery-",
+      "text_fb": "NVIDIA vừa làm được điều mà giới phần mềm truyền thống từng nghĩ là bất khả thi: chạy mô phỏng phẫu thuật thời gian thực hoàn toàn bằng AI tạo sinh trên đúng 1 GPU RTX PRO 6000.\n\nMô hình Cosmos3-H-Dreams không dùng các công thức vật lý phức tạp để tính độ dãn của cơ hay mô người. Nó xem video mổ thật từ robot CMR Versius và tự học quy luật vận động. Khi người điều khiển di chuyển tay gắp, AI lập tức sinh ra video phản hồi tương ứng mà không bị méo hình hay lệch giải phẫu.\n\nSự khác biệt ở đây rất rõ ràng. Cách làm cũ bắt bạn code từng quy tắc vật lý — tốn hàng năm trời nhưng vẫn thiếu tự nhiên. Cách làm mới để World Model tự cảm nhận thế giới qua dữ liệu. Nhờ kỹ thuật chắt lọc mô hình xuống 2 bước khử nhiễu và tối ưu bộ nhớ FlashDreams, NVIDIA đã đưa AI từ phòng thí nghiệm ra môi trường điều khiển trực tiếp.\n\nBài học rút ra rất sòng phẳng: AI tạo sinh không chỉ dừng lại ở viết văn hay làm clip giải trí. Nó đang bước vào các ngành công nghiệp cốt lõi, nơi sự chính xác quyết định sự sống còn. Nếu bạn đang làm trong mảng tự động hóa hay lập trình, hãy ngừng nhìn AI như một công cụ phụ trợ. AI chính là môi trường vận hành thế hệ mới.\n\nBạn nghĩ World Model sẽ thay thế hoàn toàn các phần mềm mô phỏng truyền thống trong bao lâu nữa?\n\nNguồn: Hugging Face",
+      "text_ig": "NVIDIA vừa dùng AI mô phỏng phẫu thuật thời gian thực chỉ trên 1 GPU RTX PRO 6000. Không cần code vật lý, AI tự học từ video mổ thật để phản hồi lệnh điều khiển. World Model đang thay đổi ngành robot. Bạn nghĩ sao?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#Cosmos3",
+        "#AI",
+        "#WorldModel",
+        "#RobotPhauThuat",
+        "#CongNgheAI",
+        "#TechNews"
+      ],
+      "images": [
+        "assets/posts/2026-10-21/morning/01.jpg",
+        "assets/posts/2026-10-21/morning/02.jpg",
+        "assets/posts/2026-10-21/morning/03.jpg",
+        "assets/posts/2026-10-21/morning/04.jpg",
+        "assets/posts/2026-10-21/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-21/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams"
+        },
+        {
+          "name": "Bnews.vn",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOUVRLMWJLTk9nLV9JNFVYSnFSS0FNU2tKNU9QTnk5cmg4bkpRNE9fY0IyOVo1OEF2VjRDYXU5TThfczhPT0VhWUNQWEhXbWhaN3FSLW5oLTZQVG43NGozU3B5bTY4aWowTy1ScXl2WnZ6aVEtYjc1WXVNZ0g2TlJYWnVycFpoUjd6U1BZ?oc=5"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/20/google-has-joined-amazon-in-attacking-nvidias-stronghold-with-ai-app-developers/"
+        },
+        {
+          "name": "PR Newswire",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxONWxySWlrWHRrT2ZodHRIMktzTzV1SFV0Q0htSEVPUTZ1em5vVmZDQzNhcTlLZWgzUXVYUjVlc2NXbHplSEt5RGgtQjJiRUtHNDI4UVluejNfZ3NLN3VnNzVBWUxzTEx4UE1GZmcwN0VKUkdfbGFuY1BXQzVMNlNuT3k1RmRQN1FOYm10UlBEQTNWZ3VQX09VUWg4cXlrV2dfYkdGSjRjMXhoQlFHRHJFanR3MVBMNWhpTlhBTldaVWM1ZndSY0l3alZJVHp1cXZhNkdnRmRra0xLRXhfX3dxUFB6YVhVVWExUnA4V0czTFBkdDRVdVhLZURkQ1Ryd3hWRGxj?oc=5"
+        },
+        {
+          "name": "Google for Developers Blog",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQc1R3VDJfU0RXQVdwQ3hWX05DdGFRUk4wUmRjSWJwR0IzTE5idDl6WjV1ekZ6TjFnM1VNWmlRdWJDVkNNdlpyQWFRaXVja3g4bTkySUotYmVGTndXVGhITFY4aG05dDhTMVEyMW9SN2Y5RjVoZldGcTZEbU9TT0UwbmRYdjZVLWl4SjZGZ2FlMkNobzRCVG05UTI5bXVJcmRpQmd3LWVRLTI1LW1ZeUxiWQ?oc=5"
+        },
+        {
+          "name": "Industrial Equipment News",
+          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNX3l6SVN3Q19za1JtR2JSUW0teS14d1hLVmhMS3R5ZF9abkFYSExxLWpXY3dUV0I1TXNSNHV4bXF0aXpVOF9FaUpYajRuRU1XUjFHVUpaWXRRM1k2Y21uYWEtLVdyV3BEY3BNNHZzZWlVN0R2MjFSMFNBb25mVzZTWURRQXcxLTlpWENtWkdsVEVxeDJWMDVDRUE1TFpPenlxYmQ0SkhyYWdIaU9LdFpXYUJpX2JINlYxRnVZVzgxX0l2UmdUVW0wZmx1YlJWOXp6aEpWanZQQVhEdFJ0cEtVYzFpRUROLTRSZnhB?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122123576787476035",
+      "ig_due": "2026-10-21T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122123576787476035",
+          "url": "https://facebook.com/1381130541740424_122123576787476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
