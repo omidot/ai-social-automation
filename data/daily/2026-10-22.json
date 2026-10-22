@@ -77,6 +77,57 @@
           "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AE9c-UCYBJ8yy0ecxHn0tmG"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Đừng vội thay người bằng AI: việc AI vẫn làm tệ hơn bạn",
+      "style": "mono-ticket",
+      "topic_key": "ung-voi-thay-nguoi-bang-ai-viec-ai-van-lam-te-hon-",
+      "text_fb": "Klarna từng tự hào cắt giảm 700 nhân sự chăm sóc khách hàng để thay bằng AI. Bức tranh màu hồng đó nhanh chóng lộ ra lỗ hổng chết người. AI trả lời câu hỏi mẫu trong hai giây, nhưng hoàn toàn thất bại khi gặp một khách hàng phẫn nộ cần sự thấu cảm thực sự.\n\nNếu bạn đang tính sa thải nhân sự để tiết kiệm tiền bằng mọi giá, dừng lại ngay. AI xử lý dữ liệu thô cực nhanh, nhưng nó cực tệ ở khả năng ra quyết định chiến lược và xử lý tình huống bất ngờ. Nó không có trực giác, không biết chịu trách nhiệm và không thể tự xây dựng niềm tin dài hạn với khách hàng.\n\nNgười thất bại giao toàn bộ bài toán cho AI rồi ngồi chờ thảm họa. Người khôn ngoan biến AI thành trợ lý đắc lực để giải phóng sức lao động, đồng thời giữ lại những bộ óc có tư duy phản biện. Đừng đánh đổi uy tín thương hiệu lấy vài đồng chi phí ngắn hạn. Bạn đang dùng AI để nâng cấp nhân sự hay đang vội vàng đẩy khách hàng sang tay đối thủ?",
+      "text_ig": "Klarna thay 700 nhân sự bằng AI và nhận về bài học cay đắng. AI xử lý dữ liệu tốt, nhưng thất bại ở thấu cảm và chiến lược. Đừng đánh đổi uy tín thương hiệu lấy vài đồng tiết kiệm ngắn hạn. Bạn đang dùng AI làm trợ lý hay đẩy khách hàng đi?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#TriTueNhanTao",
+        "#AI",
+        "#CongNghe",
+        "#QuanTriDoanhNghiep",
+        "#TietKiemChiPhi",
+        "#DauTuAI",
+        "#TieuDungThongMinh"
+      ],
+      "images": [
+        "assets/posts/2026-10-22/evening/01.jpg",
+        "assets/posts/2026-10-22/evening/02.jpg",
+        "assets/posts/2026-10-22/evening/03.jpg",
+        "assets/posts/2026-10-22/evening/04.jpg",
+        "assets/posts/2026-10-22/evening/05.jpg",
+        "assets/posts/2026-10-22/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122124133233476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122124133233476035",
+          "url": "https://facebook.com/1381130541740424_122124133233476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=Ayo4cHBpXx9npt90aM4mImm"
+        }
+      }
     }
   }
 }
