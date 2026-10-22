@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-22",
+  "posts": {
+    "morning": {
+      "status": "posted",
+      "format": "share",
+      "title": "Leading European Financial Services Organizations Embrace Open Models to Build Proprietary Intelligence",
+      "style": "warm-ticket",
+      "topic_key": "leading-european-financial-services-organizations-",
+      "text_fb": "Stripe cắt 92% chi phí AI nhờ chuyển sang model mở.\n\nSố đông ngoài kia vẫn đang bỏ tiền túi thuê API đắt đỏ từ các gã khổng lồ công nghệ. Họ tin rằng đó là con đường duy nhất để sở hữu AI đỉnh cao. Nhưng những tay chơi tài chính sừng sỏ nhất châu Âu lại đang làm điều ngược lại.\n\nStripe vừa xử lý đường ống dữ liệu nhanh gấp 42 lần và cắt giảm 92% chi phí cho hệ thống Radar. Ngân hàng bunq hạ 60% chi phí mỗi câu trả lời AI mà chất lượng không hề giảm. Revolut tự nâng cấp mô hình PRAGMA để phục vụ 80 triệu khách hàng ngay trên hạ tầng NVIDIA.\n\nBài học ở đây rất rõ ràng. Phụ thuộc vào API đóng giống như bạn đang đi ở thuê nhà. Ban đầu thấy tiện nghi, nhưng càng làm lớn, tiền thuê càng bóp chết bạn. Quan trọng hơn, bạn đang giao toàn bộ dữ liệu sống còn của doanh nghiệp cho người khác nắm giữ.\n\nMô hình mở kết hợp hạ tầng tự chủ mới là đòn bẩy thật sự. Những người thông minh không tốn tiền mua sự tiện lợi chốc lát. Họ đầu tư vào năng lực tự chủ để làm chủ cuộc chơi lâu dài.\n\nNếu đang làm sản phẩm AI, bạn sẽ chọn tiếp tục trả tiền thuê API hay tự xây tài sản riêng cho mình?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Stripe cắt 92% chi phí AI nhờ chuyển sang mô hình mở. Trong khi số đông đốt tiền thuê API, các ông lớn tài chính chọn tự chủ công nghệ để tối ưu chi phí và bảo mật dữ liệu. Bạn sẽ tiếp tục trả tiền thuê hay tự xây tài sản riêng?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#NVIDIA",
+        "#Stripe",
+        "#OpenSourceAI",
+        "#AIStrategy",
+        "#TechNews",
+        "#FintechAI",
+        "#OpenWeightModels"
+      ],
+      "images": [
+        "assets/posts/2026-10-22/morning/01.jpg",
+        "assets/posts/2026-10-22/morning/02.jpg",
+        "assets/posts/2026-10-22/morning/03.jpg",
+        "assets/posts/2026-10-22/morning/04.jpg",
+        "assets/posts/2026-10-22/morning/05.jpg",
+        "assets/posts/2026-10-22/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-22/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/european-financial-services-organizations-open-models-proprietary-intelligence/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/european-public-sector-open-models/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/open-models-europe-industry/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/europe-earth-2-open-models-weather-climate-prediction/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/european-leaders-vera-cpu-infrastructure/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/cosmos-open-train-evaluate-deploy-world-models/"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122123977413476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122123977413476035",
+          "url": "https://facebook.com/1381130541740424_122123977413476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AE9c-UCYBJ8yy0ecxHn0tmG"
+        }
+      }
+    }
+  }
+}
