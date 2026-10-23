@@ -2,7 +2,7 @@
   "date": "2026-10-23",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Kazakhstan Expands Compute for Its AI Future",
       "style": "white-centered",
@@ -66,7 +66,10 @@
           "url": "https://facebook.com/1381130541740424_122124287397476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18164886712489222"
+        }
       }
     }
   }
