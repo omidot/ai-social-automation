@@ -71,6 +71,83 @@
           "media_id": "18164886712489222"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Does Your Model Run on AWS Trainium? Look It Up",
+      "style": "navy-centered",
+      "topic_key": "does-your-model-run-on-aws-trainium-look-it-up",
+      "text_fb": "AWS Trainium2 chạy mô hình LLM mà không cần bạn sửa một dòng code PyTorch nào.\n\nNếu bạn vẫn nghĩ muốn tiết kiệm chi phí hạ tầng AI thì phải đập đi xây lại toàn bộ mã nguồn, bạn đang nhầm. Hugging Face vừa hợp tác với AWS tung ra công cụ kiểm tra độ tương thích của các mô hình Transformers trên chip Trainium2.\n\nMọi thứ vận hành trực tiếp qua gói torch-neuronx. Bạn giữ nguyên hàm loading từ Hugging Face, hệ thống tự động phân tách mô hình trên tối đa 16 nhân Trainium. Mỗi bài test chạy sinh 32 token và đối chiếu trực tiếp độ chuẩn xác.\n\nBài học ở đây là gì? Đừng tự trói mình vào GPU đắt đỏ của một nhà cung cấp duy nhất khi giải pháp thay thế đã sẵn sàng. Thậm chí, bạn có thể copy thẳng bộ NEFF cache đã biên dịch sẵn từ Hugging Face để bỏ qua bước chờ đợi biên dịch đồ thị tốn hàng giờ.\n\nTuy nhiên, mình phải nói thẳng: chạy được khác hoàn toàn với chạy tối ưu. Các bài test hiện tại mới dừng ở quy mô 4 thiết bị và chưa đo hiệu năng khi sinh chuỗi văn bản dài. Người làm sản phẩm thực tế phải biết nhìn vào con số thực nghiệm chứ không nhìn vào lời quảng cáo.\n\nBạn đã bao giờ thử đưa mô hình của mình lên các dòng chip AI ngoài Nvidia chưa?\n\nNguồn: Hugging Face",
+      "text_ig": "AWS Trainium2 giúp bạn chạy LLM không cần đổi code PyTorch. Hugging Face vừa mở bảng test công khai cho 16 nhân chip AWS. Đừng tự trói mình vào một hạ tầng duy nhất. Bạn đã thử tối ưu chi phí hạ tầng AI chưa?",
+      "hashtags": [
+        "#AI",
+        "#AWS",
+        "#HuggingFace",
+        "#Trainium2",
+        "#PyTorch",
+        "#LLM",
+        "#MachineLearning",
+        "#DeepLearning",
+        "#CloudComputing"
+      ],
+      "images": [
+        "assets/posts/2026-10-23/evening/01.jpg",
+        "assets/posts/2026-10-23/evening/02.jpg",
+        "assets/posts/2026-10-23/evening/03.jpg",
+        "assets/posts/2026-10-23/evening/04.jpg",
+        "assets/posts/2026-10-23/evening/05.jpg",
+        "assets/posts/2026-10-23/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-23/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-23/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-23/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-23/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-23/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-23/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/torch-neuronx-model-support"
+        },
+        {
+          "name": "Technology Org",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOWUc0WUpaWURWSGdVZHhkdGtkUnUxMzdQbVlXZElzWWVvTDJCRG5wTTdBLXoxdEtFWllRZW9WT2ExSTNTbGdXTElKbnJob25kSHFldktSVVRFOU5iRnpiUHlqQVE1TzFNVVd4b1N6WGtyRHpiRHU3TnYtZEwyeGZVeWotdmh3eDd6TExhM25FeTc1VEhHdEl1UUVRUnRKUGo2MmtBUkJlWnVwTC03YTdhV2VNUHdHZFRw?oc=5"
+        },
+        {
+          "name": "https://tech-insider.org/",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9uTWFJWEF5OTg1Y0ZVak5YZExDU2Rqb21rQmppU0NleEZ3OGNkZjNBdl9zaExQWm5aX2s5enJGRVkzaUtuV0JSeGY0V2N2bDNjd3RRNzNSbThXU2RCbkZ6NGNOV1k1YXZxSWxYWTNvRXJJLXdaT1RtNk9NLVk?oc=5"
+        },
+        {
+          "name": "Voice of Alexandria",
+          "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxPMjBYLVpnN3NMcVBIcUJfSFcwTHpoZU83UHJXanhrNU9TOHI1UUZHQjVVWGJ0MTlsTVZydUhiTDN0QzFGUllLa0J3a3lTcXpHRm9nckp5engwQkFSc014SXlEZElhMzNrcnM2YjhSbkIwMkJfNFVlYXh3Zlc1WmYyZDVpbFdPRmwxZmFhajMxVlMzMm9hNGhhaEo0UWREaDQ0TXFTSEpzaUFEel8zRWh1MTRDT1h5UWJvOFVTLTRieGZJVnA3RWtURTlFbzZuUFdzalktZHd2cldvVzlKSEs1Z3VCWFhtMk1rOUJ6NF9WS0RsMEhWNTV5U0kwN1RBX19IN2cyUmtVclJ1N0FBU0RnWWpQTXJnN1dYX0dkYU53QktxRjdhSHEyeGdxVzBrUQ?oc=5"
+        },
+        {
+          "name": "CIO",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNY0JlR3o4WmxXYUtzX2RqQnJ4YzIxRk5TbUZCUHlOMFplVDV5a0NfbjdOa1Y0MUg4a2JtR3FOVHRsT3dBaWVrbDNnYlhsS1d5b205TVlvV19iVy1vYk4yODJJUTdTdW00SzE3MU9pZkhGNU5IU2lVQjN3LW96TnlvLWd3QXBPTnZPMElfc1AwV0pRNUhYbS1GOA?oc=5"
+        },
+        {
+          "name": "HackerNoon",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOM0tHUmVBRVlGamM4SFk4d2Q1MlczdG9HY1gtMllEc2xFaXpfeWMxZWlwNDI0SVJpMUZIcm1VYVlyNXJ5LXRuaUlQenJTLUpjM0JSdmxQLTdDTl9oQ3ZFaUt3aGpUSUN6VU9fS2I4VlN3dms2cTNDOFJPOTBkWGh5U0ZKakg3eXl6eWxDSWE0aENCbWc?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122124515571476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122124515571476035",
+          "url": "https://facebook.com/1381130541740424_122124515571476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AOYu9p-tSbzrvuF14DgyHgT"
+        }
+      }
     }
   }
 }
