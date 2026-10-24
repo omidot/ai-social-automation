@@ -2,7 +2,7 @@
   "date": "2026-10-24",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Securing our frontier model training environment",
       "style": "warm-centered",
@@ -56,7 +56,10 @@
           "url": "https://facebook.com/1381130541740424_122124661563476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18132671398705600"
+        }
       }
     }
   }
