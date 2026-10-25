@@ -78,6 +78,82 @@
           "media_id": "18337279174302389"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Block’s new voice model sounds eerily human",
+      "style": "navy-rail",
+      "topic_key": "blocks-new-voice-model-sounds-eerily-human",
+      "text_fb": "Jack Dorsey vừa cho chúng ta thấy tương lai của AI thoại không nằm ở những trung tâm dữ liệu đắt đỏ. Mô hình Dessa của Block có thể chạy trực tiếp trên chiếc MacBook M4 Max, biết cười, thở dài và biểu cảm như người thật.\n\nNếu bạn đang làm sản phẩm Voice AI theo quy trình cũ: chuyển giọng nói thành văn bản, gửi lên server rồi dịch ngược lại thành tiếng, bạn đang đi lùi. Cách làm đó vứt bỏ toàn bộ ngữ điệu và cảm xúc con người, biến mọi tương tác thành một cuộc đối thoại robot khô khốc.\n\nDessa giải bài toán này bằng cơ chế giao tiếp hai chiều trực tiếp, bỏ qua hoàn toàn bước trung gian văn bản. Quan trọng hơn, việc vận hành ngay trên phần cứng cá nhân giúp xóa bỏ chi phí API đắt đỏ mà các doanh nghiệp đang phải gánh mỗi tháng.\n\nCú dịch chuyển lớn đang diễn ra: không phải mô hình càng lớn càng tốt, mà là AI đủ gọn để chạy local nhưng hiểu trọn vẹn cảm xúc con người. Bạn sẽ tiếp tục trả tiền cho Cloud hay tự chạy AI riêng trên máy cá nhân?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Block ra mắt Dessa: AI thoại chạy trực tiếp trên MacBook M4 Max, biết khóc cười tự nhiên. Kỷ nguyên AI Local tối ưu chi phí đã tới. Bạn sẵn sàng tự chạy AI trên máy riêng chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#BlockDessa",
+        "#VoiceAI",
+        "#LocalAI",
+        "#MacBookM4Max",
+        "#CongNghe",
+        "#XuHuongAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-25/evening/01.jpg",
+        "assets/posts/2026-10-25/evening/02.jpg",
+        "assets/posts/2026-10-25/evening/03.jpg",
+        "assets/posts/2026-10-25/evening/04.jpg",
+        "assets/posts/2026-10-25/evening/05.jpg",
+        "assets/posts/2026-10-25/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOcExwWHV2YjhyOFhld2xFNVNoSmUxRVBBNi1rc29PRnZIQWZjaWFQLWg0VFNiYVFyY2FqX0QtS19qb3k4a0daWUhpZnpNdnhmMlVrQWpTeFZTR2kwcEQ1Y0Y4Z0FMSjJXZ3VTVVJranZmbFhaMXVoaXVrci1VbFlURDhYaw?oc=5"
+        },
+        {
+          "name": "The Decoder",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPdUlndTg1cW93RFItdEluLVQxSmU3Rllab05RaGRuZ19iUndqMHdFaE1SSmNEUGRWMzNwVlRmQU1FeU9oNGRQUmRtbFNDVkN4bS1CbnZ6OU9fSVpWNmpCZE9DVjZXZU5HVkQtRUhSSGVVNG9JRG9jcU5veGM0djVQdzY1ZzlCUWQtbmItQ3ZEbms0b3RqelZqSG5OdENDbGg2SkZadEVsdGpNbWlTWFpiZWhzQ3RlM0xoczd3UHJxXzFkYWtSS0Vj?oc=5"
+        },
+        {
+          "name": "Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNbXBMaW5TTE14TmQ3WDF0Und5eDRka09adl8zbHJEajdiZzZ0dnpKV2RMZWQ2cXBFTm80Q2J2S1hnS3ppNmJVRHM3TmxuNzhmZ2RBaGhYVkRlM1RjejA4SmFGRGpXTllRaEdJSWRLS1EtQ2hZNU5yQjdBSHItUmhkc0cyNl9WRWZVTk9XR051RjhCWXRIdjY5SmpJX1hHc29U?oc=5"
+        },
+        {
+          "name": "Kingy AI",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9CTjdIUEJkbjJsTDJvaWJXeXJnTEx3c0w3eG1VQmpfcHNWZWthd3pTOEF1NWVUQ1BZU0RERDZycmV4SGZEZDM1YmQtZVJJcDVYa1NHMEZ4UXdib1RtSkE?oc=5"
+        },
+        {
+          "name": "Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPdjRvdjQyMm1nTkVmZmRSZnBQUnhVai1qR242UHBIQlVtWlhJampRdG95T05qLXc4eEJuRXRfUF9lVU1qU19LZ2hwc2tfSXdXMW00VHQyTWEyV0JfMVJqWkhKQmdUNC04SXRyaHQxaFU4S0p3SE5QbWNoVzg5dmJSR2VpRUQtNEoxQjlvb3VvVnlKS3BjY3pj?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122125203477476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122125203477476035",
+          "url": "https://facebook.com/1381130541740424_122125203477476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AfSCksU35Ek5tGUFY5Rv2dW"
+        }
+      }
     }
   }
 }
