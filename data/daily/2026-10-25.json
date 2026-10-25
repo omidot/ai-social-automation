@@ -2,7 +2,7 @@
   "date": "2026-10-25",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.",
       "style": "white-rail",
@@ -73,7 +73,10 @@
           "url": "https://facebook.com/1381130541740424_122125023543476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18337279174302389"
+        }
       }
     }
   }
