@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-25",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.",
+      "style": "white-rail",
+      "topic_key": "forced-to-pick-groks-ai-model-chooses-republicans-",
+      "text_fb": "GPT-6.1 chọn phe Dân chủ ở 97% câu trả lời. Grok 4.7 chọn phe Cộng hòa ở 92%. Trong gần 500 cuộc đua bầu cử, hai mô hình AI này chỉ đồng ý với nhau chưa tới 10%. Nghiên cứu từ Đại học Cornell công bố trên TechCrunch vừa phơi bày một thực tế rõ ràng.\n\nSố đông tin rằng AI là công cụ toán học thuần túy và hoàn toàn khách quan. Đó là sự ngây thơ. GPT mang sẵn thiên vị trong trọng số huấn luyện, ngay cả khi tắt tìm kiếm web nó vẫn chọn phe Dân chủ ở 24 trên 30 trường hợp. Trong khi đó, Grok bị âm thầm chèn thêm 1.240 token lệnh ẩn vào mỗi câu lệnh API để định hướng AI chỉ tìm thông tin từ các nguồn bảo thủ.\n\nKhi bạn dùng AI để phân tích hay xin lời khuyên, bạn không nhận được câu trả lời từ một trí tuệ trung lập. Bạn đang nghe góc nhìn mà các tập đoàn công nghệ muốn bạn nghe. Họ kiểm soát từ nguồn dữ liệu đầu vào đến các câu lệnh ẩn bên dưới.\n\nĐừng bao giờ giao phó tư duy phản biện của bạn cho cỗ máy. Hãy dùng AI làm công cụ thu thập, nhưng chính bạn phải là người đưa ra kết luận cuối cùng.\n\nBạn có từng nhận ra AI mình đang dùng nghiêng về một góc nhìn cụ thể chưa?\n\nNguồn: TechCrunch AI",
+      "text_ig": "GPT chọn Dân chủ 97%, Grok chọn Cộng hòa 92%. AI chưa bao giờ trung lập. Từ trọng số huấn luyện đến 1.240 token lệnh ẩn, các tập đoàn đang định hình góc nhìn của bạn. Đừng giao tư duy cho cỗ máy. Bạn có tin AI hoàn toàn khách quan?",
+      "hashtags": [
+        "#AI",
+        "#ChatGPT",
+        "#Grok",
+        "#CongNghe",
+        "#TinTucAI",
+        "#PhanBien",
+        "#AHitOfficial",
+        "#xAI",
+        "#OpenAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-25/morning/01.jpg",
+        "assets/posts/2026-10-25/morning/02.jpg",
+        "assets/posts/2026-10-25/morning/03.jpg",
+        "assets/posts/2026-10-25/morning/04.jpg",
+        "assets/posts/2026-10-25/morning/05.jpg",
+        "assets/posts/2026-10-25/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-25/morning/06.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOaEZiX0YxaWdzSkFoZjVyMDFnZk9XVDlPZzNRSXpFZFM1LThYekZ3YW5EOHExSGdGZm1YbUdfdHNFRFJjbXJaVmo2MFJtclp0WVdQTkNfYTR3X3hrQzdZcEZkU3hBUUJXZXVrZkJkbEFjeFo2eTlsa2dPckR5cWNaLUdGUklMOTcyTk5UY2ZFSVBYY2k1N2hUODNkZlkwaHppOEF3UVprOHZ0aGtY?oc=5"
+        },
+        {
+          "name": "The Motley Fool",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVFRjb3dHLTBpMXpRajBGZnY1dEN5QzNhdjlwc3FDUnZnRTl1cU12dWpkWUFWaFZuMHpvcG1uSXIwZC00NlZGM1BUYjQ2aXVqcmFMVmJPRmN5VV9ObzJMcm1LYm43VzhwTjdDRWtMbndFbzN2TDVYVmV1bUo3QXN3SF9LVVdSVElBRjBOa283cGxpTVQ2dmpV?oc=5"
+        },
+        {
+          "name": "Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMUVtbjVJbzVlbURNcEQxdmRCSXFWRFFfS2JGeHdPSnRUM1UtODYtRC1fZlgyN0JGRnVDZ3czRklJQmFDWVR6NldGMjI2WkNnaG91UXRJcGoyS0NaTDhmRV85OEtEeXMwMUhyYTExdlkxYjJidWJ6aWRGTWpyQmJEdW82YnRncHRTelhrUmhPUTV0RHdib2QtVy1DUHBqZ1NhdXJNdnk2RQ?oc=5"
+        },
+        {
+          "name": "The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi3gJBVV95cUxQNGV3UnQzY3dlcWl6UnIzUHo2NGdRdUlVRUxtcFlzWDlUSFZ0U1FsLWp4cURQRG8xOHVzUXA3MWlZNS0tZDdXRzRXNDBueVRIWkZZdXJTcEdCY254MzZZSzJWTjUtcGRRelFoTWRaQXUwTUgyWUVjQ2RGV2t6QnYwLVNsdjVrZExZQUZFQXUyZm80bUoySVZuRU9hZ2dsbGd4Y1ozYW5yd3VtUjR4OXBJVzBWcHFsMzJuUHVpSUN6Z1Q0cDhMRFBkV282cU1Tem4xdnJKNEgwc0Y5Z3Buem0tUG80NEpleVVMOHNPOFk5YmhNdVJDa0tiVEh0cDJ5QTlmYk1rVTI4SExDQW9YYWg5RXVqNnRZdlJRZlVPTFBMUG1wcWx6VkZ2cS1XRG1reDUwX2xnYkgyQ2g1VlFjSndBYkFjcmxTYnpqZWhJeDJsc3dITVF2czIwRXRqcGMtZ9IB4wJBVV95cUxPTmdQZ2NnYzBRT0hWNUJkeHVES3RwMG1pcVJET0lIa0pOU056R2liaUlIRnBzUklGbXV0bkVJb2xnN3lnOU1VcWZXQ0R4Q3o0dlBrbGYxNjZkZ3ZHX1lVZV9DLVY2QW1yQVIyUDBfM0NUeXYxY3E2YW9Jak50a2tjdVlhbERlamt1S2ZicGdyZEl1RV9qZ2wyVEZmRmlQX2tVaXRIdTFWNFlGWU1pcFR1aHdfMGMzZ0c5cS1rMlJoeUljQjBEdWRCRS1IOU5jaGJITkFLMnowREM4RnY3SkZkVFVfY1JEUXliZWR1Z1ZQaDB4b1pFRndBZVpZaEZXS2d4UzEyb0YyRldJTDdMNFpiUzNRQVBSSE5aZkRMWU1GSXM4LTZ4dGswNWpSUGV3WkZENlg1RlRNM3I3OWYyZlpBTW9TODZibVZQNUpEUjhyMlJ3dmIzTnZhNVhxUmpFX0oycXk4?oc=5"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122125023543476035",
+      "ig_due": "2026-10-25T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122125023543476035",
+          "url": "https://facebook.com/1381130541740424_122125023543476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
