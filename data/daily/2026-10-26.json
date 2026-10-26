@@ -64,6 +64,83 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "How Fanatics and OpenAI streamline the fan experience",
+      "style": "mono-rail",
+      "topic_key": "how-fanatics-and-openai-streamline-the-fan-experie",
+      "text_fb": "30.000 sản phẩm MLB của Fanatics vừa đổi cách xuất hiện trước người dùng nhờ OpenAI. Không phải một dự án kéo dài nửa năm, họ ra mắt bản MVP chỉ sau đúng 7 ngày.\n\nNếu bạn đang làm thương mại điện tử hay phát triển sản phẩm, đây là lời cảnh báo về tốc độ. Fanatics không dùng AI để viết bài PR sáo rỗng. Họ dùng Codex cùng các mô hình của OpenAI để xử lý dữ liệu tồn kho, phối đồ tự động cho từng áo đấu NFL, NBA, MLB và cập nhật mỗi ngày.\n\nKết quả thu về cực kỳ rõ ràng: thử nghiệm 50 sản phẩm đầu tiên tốn chưa đầy 24 giờ. Khi mở rộng ra 30.000 sản phẩm, tỷ lệ tương tác tăng ngay 10% so với giao diện cũ.\n\nSự khác biệt nằm ở cách tiếp cận. Số đông vẫn dành hàng tháng trời họp hành để lên kế hoạch cho một tính năng gợi ý đơn giản. Trong khi đó, những bên hành động nhanh chọn đưa AI vào giải quyết thẳng bài toán kinh doanh và tung sản phẩm ngay trong tuần.\n\nBài học rất rõ ràng: AI không còn là công cụ chat giải trí. AI là hạ tầng vận hành. Nếu bạn không dùng nó để rút ngắn thời gian ra mắt sản phẩm từ vài tháng xuống vài ngày, đối thủ của bạn sẽ làm điều đó.\n\nBạn đã sẵn sàng tích hợp AI trực tiếp vào quy trình bán hàng của mình chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "30.000 sản phẩm MLB đổi cách bán nhờ OpenAI, tăng 10% tương tác chỉ sau 7 ngày thử nghiệm. Tốc độ triển khai MVP mới là thứ quyết định cuộc chơi e-commerce hiện tại. Bạn đã thử dùng AI tối ưu bán hàng chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#OpenAI",
+        "#Fanatics",
+        "#Codex",
+        "#ArtificialIntelligence",
+        "#EcommerceAI",
+        "#TechTrends",
+        "#BusinessStrategy",
+        "#Innovation"
+      ],
+      "images": [
+        "assets/posts/2026-10-26/evening/01.jpg",
+        "assets/posts/2026-10-26/evening/02.jpg",
+        "assets/posts/2026-10-26/evening/03.jpg",
+        "assets/posts/2026-10-26/evening/04.jpg",
+        "assets/posts/2026-10-26/evening/05.jpg",
+        "assets/posts/2026-10-26/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/fanatics-streamline-fan-experience"
+        },
+        {
+          "name": "Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPRmRXajIyMzNTdUJzeGZ1djVUWHpBTjhWZXRVX0Z0NWp6Z0V0UW1Dem8tb1BNcW9SbU5iZDdDUU0zOVpWWWgyN1dHNFVIN24wOHlQeXpIc3VFdzk5WHhGV0cyaC1jb1hlYTIwSzQ0X3RCMHZ2SWNHSFFfR1oxRDEtMU85MUxSMVkydG5Z?oc=5"
+        },
+        {
+          "name": "CSO Online",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPVkFIbUY3OUgzR2ZqMkNlSGZfR0FZV0FYWmJRbU45QkRXZ09RU3NjamMyaVltRnMwb2dOemVvbUxPWU9RUkxZZHBhcUhWQ2hadUhqWFJ2eVNGMXdzRlhmWGxELXpsSUdRNmhxaEw5NzliZmFFb1lBVzVmbV9Fd1RlcTZTTml3cEExMVBuWHZhOW56Wm5CV05RU21OZWpZZi15LUI4bTd3OTVrWFNLVHZhYnU4Z1VzX2Rfbmc?oc=5"
+        },
+        {
+          "name": "디지털투데이",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOWDF4cVBnVEtNNW9pTC1qQ0wyQmw1eGdudFV5ZF81UnFpNWZzZ09RMWlreTRreEx6SmpVQ2t0cjVtdWRUWWpGUzY3RGxoXzBUNk5WeHRBc0VzenZSdnhYa1E4MDhxWU5SSGhlNVpvM1RZdmRTeVE2SUE1M0tFZ2NoVFR2aW50eXZYTzg0VE5rU2g0aEcyODVQSF9XX3NoYVNraENtREhmUmg5aEZNbXJzTDl1WkxhcTdub2IxdFRGaUdKV0I4?oc=5"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMizwJBVV95cUxQUzdBSXJpd083eUx4UlRyNnVSRC1kZjBhWUVuNjVmbkVvU3hGNlZjM3A2a0g1ZzRNVkJrdU82QmFabXVUMFhJMW1xeFJzUVJ3ZEEzRTFLZ0p6Q1E4SDRsRDhGaGUtSEhsNWxPRkdUNzJfQUxWS3FRSW45aHU0b0J2dzYwSE82QWRmS2h3Q3FUU2xQWEdaVDVURTFGdHVMRC0xclpPTE9aVnNLU0dycTN6SVltOVhEZU12YjRkQmhNN0FSd2ZaMGFXT2ozSExFXzJyaGZ6LVE1ZE5IZ0h4dHpJWmNPZGFhXy1LYl9JSVc5V1lLMFJ5RFJrTko0WXZFTldHR01jaHVfSWRsSk8xcUJ4Qmt5ZkhWUUJJTERSRmdCb0FEMEl4RDFhR3FjWlQ1Vi1kTGllQzhNYUFIcDFiM18zNkkyeHcwT0w5Qmh2dkNkQQ?oc=5"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOaEZiX0YxaWdzSkFoZjVyMDFnZk9XVDlPZzNRSXpFZFM1LThYekZ3YW5EOHExSGdGZm1YbUdfdHNFRFJjbXJaVmo2MFJtclp0WVdQTkNfYTR3X3hrQzdZcEZkU3hBUUJXZXVrZkJkbEFjeFo2eTlsa2dPckR5cWNaLUdGUklMOTcyTk5UY2ZFSVBYY2k1N2hUODNkZlkwaHppOEF3UVprOHZ0aGtY?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122125628439476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122125628439476035",
+          "url": "https://facebook.com/1381130541740424_122125628439476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=Ay-rzZ-RoOJ0fjNSHacE_70"
+        }
+      }
     }
   }
 }
