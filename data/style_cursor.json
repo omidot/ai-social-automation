@@ -1,6 +1,7 @@
 {
-  "last": "navy-rail",
+  "last": "warm-rail",
   "recent": [
+    "warm-rail",
     "navy-rail",
     "white-rail",
     "mono-centered",
@@ -14,7 +15,6 @@
     "mono-magazine",
     "warm-magazine",
     "navy-magazine",
-    "white-magazine",
-    "mono-split"
+    "white-magazine"
   ]
 }

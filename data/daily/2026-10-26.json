@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-26",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
+      "style": "warm-rail",
+      "topic_key": "ai-delivers-zero-financial-payoff-to-most-companie",
+      "text_fb": "S&P 493 thu về 0 đồng lợi nhuận từ AI.\n\nĐó là kết luận từ Torsten Slok, chuyên gia kinh tế trưởng tại Apollo Global Management. Trừ 7 gã khổng lồ Big Tech gồm Alphabet, Amazon, Apple, Meta, Microsoft, Nvidia và Tesla, toàn bộ 493 tập đoàn còn lại trong S&P 500 gần như chẳng thu được hiệu quả tài chính nào từ AI. Biên lợi nhuận đứng yên. Doanh thu trên mỗi nhân sự không hề nhích lên.\n\nNhiều lãnh đạo đang nhầm lẫn nghiêm trọng. Họ nghĩ mua tài khoản AI đắt đỏ cho nhân viên là tự động tăng năng suất. Sự thật phũ phàng hơn nhiều.\n\nAI là một máy tính xuất sắc, nhưng kinh doanh là câu chuyện của phán đoán. Máy móc không hiểu về trách nhiệm giải trình. Nó không biết đến niềm tin, văn hóa doanh nghiệp, các quy tắc ngầm hay sự công bằng. Chính những yếu tố con người này mới là thứ bảo vệ rủi ro thương hiệu và tạo ra doanh thu thực sự.\n\nNếu bạn đang ứng dụng AI vào công việc hoặc doanh nghiệp của mình, hãy ngừng việc giao toàn bộ quyền quyết định cho máy móc. AI sinh ra để xử lý dữ liệu và tăng tốc các tác vụ lặp đi lặp lại. Nó không thể suy nghĩ thay cho năng lực chiến lược của bạn.\n\nĐừng biến doanh nghiệp của bạn thành nạn nhân tiếp theo của làn sóng đốt tiền công nghệ. Hãy dùng AI như một công cụ hỗ trợ phán đoán, chứ không phải một vị sếp ảo.\n\nDoanh nghiệp của bạn đã kiếm được tiền từ AI chưa, hay vẫn đang bù lỗ tiền subscription hàng tháng?\n\nNguồn: TechCrunch AI",
+      "text_ig": "S&P 493 thu về 0 đồng lợi nhuận từ AI ngoài Big Tech. AI giỏi tính toán nhưng kinh doanh cần phán đoán, niềm tin và văn hóa. Đừng đốt tiền mua công cụ nếu bạn chưa biết cách đưa ra quyết định đúng. Bạn đã thực sự kiếm được tiền từ AI chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#AIStrategy",
+        "#BusinessMetrics",
+        "#TechNews",
+        "#AIInBusiness",
+        "#ApolloGlobal",
+        "#SP500",
+        "#BusinessAdvice"
+      ],
+      "images": [
+        "assets/posts/2026-10-26/morning/01.jpg",
+        "assets/posts/2026-10-26/morning/02.jpg",
+        "assets/posts/2026-10-26/morning/03.jpg",
+        "assets/posts/2026-10-26/morning/04.jpg",
+        "assets/posts/2026-10-26/morning/05.jpg",
+        "assets/posts/2026-10-26/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-26/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNOW1GQU8wblRMSUZlXzdCY0pDbjNsS1pPQ0EtTk4wTlZnRk1yb0FMWGstcHhKM3J6WmpXZ1d4MXB1QlVlOFR3NlplTlNqcm1SRHBNU2VXZTA4WHd3QnZzWnZJaHpVeV81WkxtYU1oM0N1TldTS0IySXdaQ1hHZzI0c1pBS2tvWnh2Vm9TS29yM1MxYWN2ak0taUMxS0NibGlFS3NPV1NmOUx1MDh4WmFNOE1vbjQxTE0?oc=5"
+        },
+        {
+          "name": "Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOR1FnYXFIOUpyU1VUdzNDazE4cFE2VDFyNU5DS3h0R0VSR2xHa0k0V2dHZ0hKbTZ6dFo3X1hUSW96S2dRRE5GODJUSUlCQ0dHUTVpSUJ0ZExNM1FBMVFld0JmSTBDMkpfSG5IOXVlS0hPX1h6OHpRT0xhbzNweEVxVDBLZGRreHVCc0VPZjVEQjN5dEIxQ2x4TGhfN2o3UHA3dVZrTXhRNVhsV216MGxNSnZWUGdNU1JiQjMxbQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122125356753476035",
+      "ig_due": "2026-10-26T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122125356753476035",
+          "url": "https://facebook.com/1381130541740424_122125356753476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
