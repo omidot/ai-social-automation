@@ -2,7 +2,7 @@
   "date": "2026-10-26",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
       "style": "warm-rail",
@@ -61,7 +61,10 @@
           "url": "https://facebook.com/1381130541740424_122125356753476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "18343910530256451"
+        }
       },
       "ig_attempts": 1
     },
