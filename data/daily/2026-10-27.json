@@ -2,7 +2,7 @@
   "date": "2026-10-27",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Cohere says Alibaba’s Qwen model tried to send a file to Beijing",
       "style": "white-bar",
@@ -60,7 +60,10 @@
           "url": "https://facebook.com/1381130541740424_122125756689476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17879053749632962"
+        }
       },
       "video": {
         "status": "awaiting_audio",
