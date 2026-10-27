@@ -843,6 +843,59 @@
         }
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Giá token rớt hàng trăm lần — điều đó mở ra cái gì",
+      "style": "navy-bar",
+      "topic_key": "gia-token-rot-hang-tram-lan-ieu-o-mo-ra-cai-gi",
+      "text_fb": "Ba năm trước, gọi API AI tốn tiền triệu mỗi tháng, chỉ công ty lớn mới chơi được cuộc này. Giờ nhiều mô hình tính phí rẻ hơn một cốc trà đá, và khoảng cách đó không phải tình cờ. Các hãng AI đang đua nhau giành thị phần, phần cứng rẻ đi theo từng năm, mô hình được nén gọn lại mà vẫn mạnh hơn bản cũ. Kết quả là năng lực AI từng là đặc quyền của tập đoàn giờ nằm trong tầm tay một người làm việc một mình ở nhà.\n\nMình tin đây là lúc cuộc chơi đổi luật, không phải lúc để ăn mừng vì rẻ. Khi ai cũng mua được cùng một năng lực với giá gần như bằng nhau, việc \"có tài khoản AI\" không còn là thứ phân biệt bạn với người khác nữa. Hai năm trước biết dùng ChatGPT là một kỹ năng hiếm. Giờ học sinh cấp ba cũng làm được. Cái hiếm bây giờ không phải công cụ, mà là cách bạn dùng nó để tạo ra một kết quả cụ thể mà người khác không làm được.\n\nNgười thua trong giai đoạn này vẫn đang bán quyền truy cập: \"mình biết dùng AI\", \"mình có công cụ xịn\". Đó là cuộc chơi chết dần, vì giá cứ rớt và ai cũng bán được thứ y hệt. Người thắng không nói về AI nữa. Họ nói về con số: tiết kiệm bao nhiêu giờ, tăng bao nhiêu đơn hàng, giảm bao nhiêu chi phí cho đúng một nhóm khách hàng cụ thể. AI chỉ là cách họ tạo ra con số đó, không phải thứ họ rao bán.\n\nGiá token rớt hàng trăm lần không giải phóng ai cả. Nó chỉ mở cửa. Bạn đang đứng trước cửa đó để xây một thứ mới, hay vẫn đang bán cái cửa?",
+      "text_ig": "Giá token rớt hàng trăm lần, nhưng không giải phóng ai. Nó chỉ mở cửa. Ai còn bán 'mình biết dùng AI' sẽ chết dần vì giá rẻ ai cũng mua được. Người thắng bán kết quả: tiết kiệm giờ, tăng đơn, giảm chi phí. Bạn đang xây hay đang bán cái cửa?",
+      "hashtags": [
+        "#AI",
+        "#TriTueNhanTao",
+        "#AHitOfficial",
+        "#XuHuongAI",
+        "#CongNgheAI",
+        "#KinhDoanhAI",
+        "#ChuyenDoiSo",
+        "#AIChoNguoiDiLam",
+        "#StartupAI",
+        "#TuDuyKinhDoanh"
+      ],
+      "images": [
+        "assets/posts/2026-10-27/evening/01.jpg",
+        "assets/posts/2026-10-27/evening/02.jpg",
+        "assets/posts/2026-10-27/evening/03.jpg",
+        "assets/posts/2026-10-27/evening/04.jpg",
+        "assets/posts/2026-10-27/evening/05.jpg",
+        "assets/posts/2026-10-27/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-27/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-27/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-27/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-27/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-27/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-27/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122126124735476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122126124735476035",
+          "url": "https://facebook.com/1381130541740424_122126124735476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=A81ggnbAq8V8Vrvdhv9dQtc"
+        }
+      }
     }
   }
 }
