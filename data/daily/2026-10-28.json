@@ -2,7 +2,7 @@
   "date": "2026-10-28",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Retell uses OpenAI models to help power 100M monthly calls",
       "style": "warm-bar",
@@ -70,7 +70,10 @@
           "url": "https://facebook.com/1381130541740424_122126260071476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17919042711453356"
+        }
       },
       "ig_attempts": 1
     }
