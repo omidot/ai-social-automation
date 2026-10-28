@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-28",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Retell uses OpenAI models to help power 100M monthly calls",
+      "style": "warm-bar",
+      "topic_key": "retell-uses-openai-models-to-help-power-100m-month",
+      "text_fb": "Retell đạt mốc 1,6 triệu USD doanh thu hàng năm trên mỗi nhân sự và xử lý hơn 100 triệu cuộc gọi mỗi tháng cho 4.000 doanh nghiệp. Nhiều người nhìn vào con số này và nghĩ rằng họ thành công nhờ sở hữu một mô hình AI thần thánh.\n\nNhưng cách hiểu đó hoàn toàn lệch hướng.\n\nKhác biệt lớn nhất nằm ở tư duy chọn công nghệ. Retell không bao giờ chọn mô hình AI dựa trên các bản demo hào nhoáng hay quảng cáo của nhà cung cấp. Họ thả AI vào các cuộc gọi thực tế có tình huống phức tạp để đo lường. Nếu AI ngập ngừng quá 1 giây hoặc nói nhảm, họ loại bỏ ngay lập tức. Kết quả là hãng điện tử Anker đạt tỷ lệ tự giải quyết sự cố tới 80,4% khi dùng tổng đài AI của họ.\n\nBên cạnh đó, thay vì phình to bộ máy, kỹ sư của Retell dùng Codex để đọc mã nguồn, tìm lỗi và tự động hóa kiểm thử giao diện. AI gánh toàn bộ phần việc thủ công tốn thời gian, giúp một đội ngũ cực kỳ gọn nhẹ vẫn vận hành được hệ thống tiêu thụ hơn 1.000 tỷ token.\n\nNếu bạn đang làm sản phẩm AI, bài học ở đây rất rõ ràng: dừng việc chạy theo các chỉ số benchmark sáo rỗng. Hãy đo lường hiệu quả bằng dữ liệu vận hành thật và trải nghiệm người dùng thực tế.\n\nBạn đang ứng dụng AI vào quy trình kinh doanh thật hay mới chỉ dừng ở mức dùng thử cho vui?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Retell đạt 1,6 triệu USD doanh thu/nhân sự nhờ kiểm thử AI trên cuộc gọi thật thay vì xem demo. Đừng chạy theo benchmark, hãy đo lường hiệu quả bằng dữ liệu thực tế của người dùng. Bạn đã áp dụng AI vào công việc chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#RetellAI",
+        "#OpenAI",
+        "#VoiceAI",
+        "#BusinessStrategy",
+        "#TechTrends",
+        "#Productivity"
+      ],
+      "images": [
+        "assets/posts/2026-10-28/morning/01.jpg",
+        "assets/posts/2026-10-28/morning/02.jpg",
+        "assets/posts/2026-10-28/morning/03.jpg",
+        "assets/posts/2026-10-28/morning/04.jpg",
+        "assets/posts/2026-10-28/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-28/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-28/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-28/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-28/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-28/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/retell-ai"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/27/parents-sue-openai-alleging-gpt-4o-coached-their-daughter-off-seizure-medication/"
+        },
+        {
+          "name": "VnExpress",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNeWlfbDZNcFJxanBJV21GWVlUWmhiZ0FhN1NZQk1qRl80THQ2TE90aFVZYmNBTWh2azg1OXBlWVd6eC1pUEoyMGdWVVl2LUVVOTR4YmZRdnhXREFaa25aRExSTUhXRzk4Z0Z4a1U3bThqWlZ6QU9FTEZpby1ZdzFmV0o4aEIxbzQ?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1019921/openai-breakthrough-math-computer-science-physics"
+        },
+        {
+          "name": "Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNS08xZHhITFJheHBpcEJxSlk3U1dIVWhHU0pybUhVYWdxakxnZ2t0cUtXekxPaTN6elhXYmVOQ1RfR0JPalRIWlZlUFJEdkRDMk1DUDFwYkY3VkdyNnlwUEtBekdnSWIyd0FNOTQtdURZUlZVUWFhUzRVeDdmTXZ3RU5raGQ5VWZnRTdrOUcxaw?oc=5"
+        },
+        {
+          "name": "AI Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOcDJJbkc0RDc4TTV1anNjV3NFWFg2MzE1Z1VuVWppZTJCWllza3RZVUJkWWNvaEM1czdHZGlnMG9WRURDVmMwMVIxRGVhYkZzTDBkRFZ4a3VRTlRXMExZWTVMSldSRk5zRGlGRFdnT013TG5VWWZKOHNFTDdmMEVVamlYVHh5TUx6Nzdr?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122126260071476035",
+      "ig_due": "2026-10-28T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122126260071476035",
+          "url": "https://facebook.com/1381130541740424_122126260071476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
