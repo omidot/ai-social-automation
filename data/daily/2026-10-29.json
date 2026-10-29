@@ -74,6 +74,82 @@
         "ig": null
       },
       "ig_attempts": 1
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Google launches Gemini 4 Carbon with a ‘significant leap’ in cybersecurity",
+      "style": "white-split",
+      "topic_key": "google-launches-gemini-4-carbon-with-a-significant",
+      "text_fb": "Gemini 4 Carbon vừa đạt 59 điểm trên bảng xếp hạng AA Index v5.0, chính thức vượt qua Claude Opus 5.5 và GPT-6 Astra. Google không còn tham gia cuộc đua chatbot gõ phím đơn thuần. Họ vừa đặt một cột mốc mới cho kỷ nguyên AI tự trị.\n\nKhác biệt lớn nhất không nằm ở câu chữ. Mô hình này có khả năng tự chạy liên tục trong nhiều ngày để giải quyết các bài toán kỹ thuật đa bước. Nó tự vượt qua các bế tắc trong code, chống lại đòn chèn lệnh và tạo ra mã nguồn an toàn gấp đôi so với bản Argon vừa ra mắt hai tuần trước.\n\nNếu bạn vẫn đang dùng AI chỉ để viết đoạn văn hay nhờ sửa vài dòng syntax nhỏ, bạn đang đứng ngoài cuộc chơi. Sự dịch chuyển đã xảy ra: từ trợ lý gõ câu lệnh sang hệ thống tự vận hành. Người chiến thắng không phải kẻ gõ prompt giỏi, mà là người biết giao bài toán lớn cho AI tự xử lý.\n\nVới mức giá chỉ 2 đô la cho một triệu token đầu vào, công cụ mạnh nhất đã nằm trong tay bạn. Thứ duy nhất hạn chế bạn lúc này là tư duy ủy quyền cho máy móc.\n\nBạn đã sẵn sàng để AI tự chạy và sửa lỗi hệ thống của mình trong nhiều ngày chưa?\n\nNguồn: The Verge AI",
+      "text_ig": "Gemini 4 Carbon đạt 59 điểm AA Index v5.0, vượt Claude Opus 5.5. Mô hình mới của Google có thể tự chạy nhiều ngày để vá lỗi hệ thống. Bạn đã sẵn sàng giao bài toán lớn cho AI tự vận hành chưa?",
+      "hashtags": [
+        "#Gemini4Carbon",
+        "#GoogleAI",
+        "#Cybersecurity",
+        "#AIAgent",
+        "#AHitOfficial",
+        "#ClaudeOpus",
+        "#GPT6",
+        "#CongNgheAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-29/evening/01.jpg",
+        "assets/posts/2026-10-29/evening/02.jpg",
+        "assets/posts/2026-10-29/evening/03.jpg",
+        "assets/posts/2026-10-29/evening/04.jpg",
+        "assets/posts/2026-10-29/evening/05.jpg",
+        "assets/posts/2026-10-29/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2300677/google-gemini-carbon-promises-significant-leap-in-ai-coding-and-cybersecurity/"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNanJ1aUpDN1VQTzZ0bFdjaHhzODlYczl2aVdRZ3FoVHJPRnlsRy15ZW9RNHFPVWY4QlExQXFSckxDazRscm03RlZyT1QtSGdjWUxiYUY4c0lvd1ljWmRYc0pLQmRBSE1CRk9XcUlYc3lwOThfTGtOMzlRYlFFcmJCUk0wWTN2QzFiLWI1NUEwWlBlenVOcmU4Sno4ZjZqNk5rdVJxQWZWQzhxdGsxR2xVbw?oc=5"
+        },
+        {
+          "name": "The Indian Express",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOZ1Ezd1B5OTJQb1AyR2JxcEJfcktPbTlMX29UeUdfTzJENzVGaC02MFI5YWYwNWY5cGxHVzRtN3A5REdzbUpzV3dUMHhfdXZndzRLN1RwdGhpenRYWEdaeWhQWE1iYV9aLWttNGpNT0hfb25Od0RreXJhR2U0bC1zeW9SenhlcDVpcTFZVm9QMlNkX0FPYVVObklsYUwwa2xVSnJyd1doVUY3aU1taGdITjVnMEY5WXBXM3Bnc29LMEthT0Z1eTBB0gHOAUFVX3lxTE0zV3EzUzhRY0syTFBPd0dpR1lNeTZyME5hYkpsUW1aenZpWjI2eFpzd0VWRDVCazBnZE95Ym1hR084OUlmbFAyTkNvR0YzV3FMNVdCU2ttQWdvQkRVc0NaNWc1cFYtR3BtTU01THc1dDgtSUxIcG1yVkFCRjlXVnlmbXpHSWJHRzlTblp3WDZqLXJtSXpPd2I2NGtURDJRdkxBWXBNRHh1R0MwNDl3NjV5NmtrZUR1aGZkbFhxbzVHSXpmMEJKMkJHT2N0QU5B?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORkxnRHJCS0J4QkhrOFNrdFhkWGM5SWhkY0xEd3JKTHhiVlpzd2hBYkI0eDFoeFJKZUZQOWprMXBjblVvdVdSeTFZTjQ2dHpvTUxrZ0tjLVJhNlVrSHNubHlmS052NXdZcFg0anRuS2NHV1A5SGV2dk5VdDV6aXpRRnlDRlBBMjFvNGtucUtILVJNSVpGVUtzNHA5UjFybFQ0bGJLUFlsT3NZeDQ?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNQjcyRjBfZHhZbzN2NFNnc0x5NXRCbEJ3SXdYQ2ktYlNvVUxEelVGd3ZjQkUtUjRjNTFZamxTaU9lQVRNempVSGJ1ZXNZX3BhVmRkZGlYV01oLU5mNEVsckF0OUxLVHB2UWFnMi1qaW5kZGJ0czBYQ1B4a1dqNk9MbjltYklFTU1Nc0pxc2s4QTlCc0t3WGRodTNJb3RqNERKVHJWWHZaMA?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122126843031476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122126843031476035",
+          "url": "https://facebook.com/1381130541740424_122126843031476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AkEO667BVBnDu65yf5QfeMt"
+        }
+      }
     }
   }
 }
