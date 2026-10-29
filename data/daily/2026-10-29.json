@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-29",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Voice AI in vogue: Nvidia releases new open transcription model",
+      "style": "mono-bar",
+      "topic_key": "voice-ai-in-vogue-nvidia-releases-new-open-transcr",
+      "text_fb": "Cuộc đua AI không còn nằm ở việc mô hình của bạn to đến mức nào, mà là nó giải quyết công việc gọn gàng ra sao.\n\nNhiều người vẫn tin rằng để xử lý tốt giọng nói đa ngôn ngữ, hệ thống phải gánh những mô hình khổng lồ ngốn hàng chục gigabyte VRAM. Nhưng Nvidia vừa chứng minh tư duy đó đã cũ kỹ với Nemotron 3.5 Transcribe. Với chỉ 4.3 tỷ tham số kích hoạt, mô hình này nhỏ hơn 80% so with đối thủ top 1 cũ nhưng vẫn giành vị trí số 1 trên bảng xếp hạng Hugging Face Open ASR.\n\nĐiều này thực sự có ý nghĩa gì với bạn?\n\nNếu bạn đang phát triển ứng dụng hoặc xử lý dữ liệu cuộc họp hàng ngày, bạn không cần tiếp tục cúng tiền cho các Cloud API đắt đỏ. Một mô hình duy nhất hiện tại có thể gộp cả ba việc: bóc băng 40 ngôn ngữ, phân biệt 8 người nói và dịch thuật trực tiếp ngay trên chiếc laptop cá nhân. Không rò rỉ dữ liệu doanh nghiệp, không độ trễ mạng và chi phí vận hành bằng 0.\n\nKỷ nguyên AI thực chiến không dành cho những kẻ mê mút mô hình cồng kềnh, mà thuộc về người biết tối ưu chi phí và làm chủ dữ liệu cục bộ.\n\nBạn đã sẵn sàng đưa các mô hình AI voice chạy offline vào công việc chưa?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Nvidia Nemotron 3.5 Transcribe chứng minh 4.3B tham số vẫn hạ gục các mô hình lớn. Nhỏ hơn 80%, đứng #1 Hugging Face Open ASR, chạy mượt trên laptop cá nhân. Đừng lãng phí tiền cho API đắt đỏ nữa. Bạn đã thử chạy AI offline chưa?",
+      "hashtags": [
+        "#Nvidia",
+        "#Nemotron",
+        "#VoiceAI",
+        "#OpenSourceAI",
+        "#AHitOfficial",
+        "#HuggingFace",
+        "#CôngNghệAI",
+        "#MachineLearning",
+        "#TechTrends"
+      ],
+      "images": [
+        "assets/posts/2026-10-29/morning/01.jpg",
+        "assets/posts/2026-10-29/morning/02.jpg",
+        "assets/posts/2026-10-29/morning/03.jpg",
+        "assets/posts/2026-10-29/morning/04.jpg",
+        "assets/posts/2026-10-29/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-29/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/28/voice-ai-in-vogue-nvidia-releases-new-open-transcription-model/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOYU5veWRiUWgzSl94VTg4NDlCZkJpX0NadTNIN1J3c3kxX3BOYk1TY2NUN3VNeUpFbUh4WWVXUmJyQ3dzTFhlcXlja0xIQWs4SlEteDFZTlVHMlAwS1F0Q1QxamJlbDBQTjh4R0ExX3ZQRFpXRlF3dzRHcXk0bkt4MVNMTS14N1RqcElCV3VsQUlXeVdlSlZkbG5qVkVNZw?oc=5"
+        },
+        {
+          "name": "AI Insider",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPVklUajRUbnF5R0FfZEZsOE9pYnRXZFR3T1ZIYmdxMjFkUkRqaTFQYjZ0Wl9WWWF3UlBZdEFDRTdIR1lSNDFsTmdmVk00RHdMSE1KRThuSC1TaXNOM0xCTnVrQk9Ta1pJU1VmRVRyMmVrdDBkbk41TUpCWFRJLVF2OTlFaXJySmpUYkRZUlgyaWJmQV9UMERvRXNOUGdyNDJGVkF4cWJZTW1PdnBKQURJekV6dXdOUmJ6TmE4ZGtXX21xUQ?oc=5"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-laptops-updates-models-agents-games/"
+        },
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary"
+        },
+        {
+          "name": "Laodong.vn",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQaGoxb2Q1SVBBSm9HaVlyVUZVaTB1NUk4SHV3MUJyZWg4VWVfMjgwa3JzRjFjRzh1S2ZCb08wQS11UWs1LUx0a01ZUXM5eTFxM05wNVNpWWhVUU9zNEJraFVNMkwwbWtFdVBmWjNKVGpvQlBocWVLZ0RsakRvMDBNTlctajVib1VQM2NUMTVEaExMbm1aSWtGWjdWQW5fSzdXam50NnZBak95akh5VjBobGI5dw?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122126602683476035",
+      "ig_due": "2026-10-29T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122126602683476035",
+          "url": "https://facebook.com/1381130541740424_122126602683476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
