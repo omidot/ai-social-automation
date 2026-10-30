@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-30",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "An updated Model Spec for more capable and beneficial AI",
+      "style": "navy-split",
+      "topic_key": "an-updated-model-spec-for-more-capable-and-benefic",
+      "text_fb": "OpenAI vừa đưa ra bản cập nhật quan trọng cho Model Spec — bộ quy tắc ứng xử cốt lõi của các mô hình AI. Nhưng rất ít người nhận ra bản chất thực sự của cú chuyển dịch này.\n\nSố đông vẫn đang miệt mài học thuộc những câu prompt dài ngoẵng, tin rằng càng viết chi tiết thì AI càng nghe lời. Đó là cách tư duy đã lỗi thời. OpenAI hiểu rằng nếu chỉ tuân thủ câu chữ một cách máy móc, AI sẽ mãi vô hồn và dễ gây ra sai lầm nghiêm trọng khi gặp tình huống mới.\n\nBản cập nhật mới ép AI phải chuyển từ làm theo lệnh sang thấu hiểu ý đồ con người. Hệ thống giờ đây hoạt động dựa trên năm giá trị nền tảng: trung thành với mục tiêu của bạn, giảm thiểu hại, trung thực, tôn trọng quyền tự quyết và sự thấu cảm. Khi bạn đưa ra một yêu cầu mơ hồ, AI không còn đoán mò. Nó sẽ dùng bối cảnh, lịch sử tương tác để chọn phương án tối ưu nhất cho bạn.\n\nSự khác biệt giữa người làm chủ AI và người lẹt đẹt nằm ở đây. Người thua cuộc tiếp tục đi sưu tầm những thần chú prompt rủm rả. Người thắng cuộc biết cách cung cấp bối cảnh, làm rõ tư duy và định hướng cho máy làm việc.\n\nNếu bạn vẫn coi AI là chiếc máy đánh máy bảo gì làm nấy, bạn sẽ sớm bị bỏ lại. Bạn đã sẵn sàng thay đổi cách đối thoại với AI chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "OpenAI vừa cập nhật Model Spec, bắt AI phải hiểu ý đồ thay vì chỉ tuân thủ câu chữ. Người dùng thông minh không cần học thuộc prompt dài, họ tập trung vào bối cảnh và mục tiêu thật. Bạn đã thay đổi cách làm việc với AI chưa?",
+      "hashtags": [
+        "#OpenAI",
+        "#ModelSpec",
+        "#ChatGPT",
+        "#ArtificialIntelligence",
+        "#AIStrategy",
+        "#PromptEngineering",
+        "#TechTrends",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-10-30/morning/01.jpg",
+        "assets/posts/2026-10-30/morning/02.jpg",
+        "assets/posts/2026-10-30/morning/03.jpg",
+        "assets/posts/2026-10-30/morning/04.jpg",
+        "assets/posts/2026-10-30/morning/05.jpg",
+        "assets/posts/2026-10-30/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/updated-model-spec"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5xNEEzYVdFemd2ZlNTclVaYVZ4M0JlcTBSODQ2ODlQRWpkc05hWk5sMDIxVG00OEJCbm8wX284VFBTTm1kUEktV0VlemVUQzI2WWFBNTlOWQ?oc=5"
+        },
+        {
+          "name": "Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPdEQxRE9RWHc0VFpqa0tzdlJtVHpVMjVWMU50ZkFlZk4yUHVqdzhjS0VIS1dFSWRhWnF0WG1BeHAxUFRhWEhkN3BnMkZqcWl0RDMyUlB1RlpEVlB1djBzcHRXZFBoSGJiRVVZbjJhSnBTbUw4UnU3RjAtellUSU42V0hCUkpQaXFzQ3R5LQ?oc=5"
+        },
+        {
+          "name": "KuCoin",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNMGlQQUFQbmp2NVJLLTd4VjdmX0ZFbzNVNE9COWhzQVI5U0pXdThHQ09Ha2pQUlR5RkwwQmZnempUWkNUenAzS0NHQUxzQXpFbTBadWQ0WUdhaktOM3FrS3ozeUlMNG5ZNC1Fak9KS2VXM3pxVDlqVEVMV1ZHSktJTHNJRUloLXdtdk40elJtVEJ4VFJ5TzdDUA?oc=5"
+        },
+        {
+          "name": "Bioengineer.org",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaVBIZDBvSUhwNWNZMlJGZXJiRkZIaXVTVTBCWXBiME55NDkzc1dIT0N4dWdjaHJqdHZLUWtwcEEtR01aWE42a3NFdGRvYnpJeUU1akMtQ24wQjNLeTB3bFkxRmo0VVFBdnhmcGR5TGczNjlrR2czdzctajdlOERvdjM0STFmNngzZWZNTWJGc2hXUUZNU01YQVdaMC1uMHN0SV82OEtWeFhMOWFXMjduRUhCWk5IMFRiTGZzMw?oc=5"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOc01rX2tIcGRlYjBQODFkM2VDM1pvMjh3S25Xa2s3ODVnOGt0aG1ZUFlSRFhMTnVkZDZ6cXlHbnZYNU5rUTg1WURCVmRTQzdIOExyUkREbWNXQi1OUnh2YWExbGVFNFlza29LRFBJOWZhQUN1eHltZ3M3dExJUXBmM3EyRzhuSmNjcDRHdU81SE1EU2d5YkZiQm5MR19SZW1pU2FKelJfTGw?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122126982387476035",
+      "ig_due": "2026-10-30T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122126982387476035",
+          "url": "https://facebook.com/1381130541740424_122126982387476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
