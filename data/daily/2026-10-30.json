@@ -77,6 +77,69 @@
           "media_id": "17988741261080888"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Ex-Palantir execs launch Dream with $17M from a16z to build AI world models for construction",
+      "style": "warm-split",
+      "topic_key": "ex-palantir-execs-launch-dream-with-17m-from-a16z-",
+      "text_fb": "17 triệu USD vừa được quỹ a16z rót vào Dream, một startup do hai cựu lãnh đạo Palantir sáng lập. Mục tiêu của họ không phải tạo thêm một chatbot viết văn hay tạo ảnh, mà là thay thế hoàn toàn các phần mềm vẽ kỹ thuật lỗi thời như AutoCAD hay Revit.\n\nNhiều người vẫn nghĩ AI chỉ biết làm thơ hay vẽ tranh minh họa. Nhưng AI thế giới thực (World Model) đã bắt đầu hiểu được quy luật vật lý. Chatbot thông thường có thể vẽ ra bức ảnh một tòa nhà rất đẹp, nhưng kết cấu bên trong sẽ sập ngay nếu đem ra thi công. Dream thì khác. Nó được huấn luyện trên hơn 100 triệu square feet dữ liệu cấp phép xây dựng tại Mỹ, hiểu rõ khả năng chịu lực của dầm thép, vị trí đường ống nước và hệ thống thông gió.\n\nCú dịch chuyển này mang lại một bài học đắt giá cho bạn. Nếu công việc hàng ngày của bạn chỉ xoay quanh việc thao tác công cụ thủ công hay vẽ nét kỹ thuật, giá trị của bạn đang bốc hơi từng ngày. AI không xóa bỏ ngành xây dựng, nhưng nó thay thế những người chỉ biết bấm máy. Hiện Dream đã được áp dụng thực tế trên 10 dự án lớn tại California và Texas.\n\nTương lai thuộc về người biết điều khiển AI để giải quyết bài toán lớn, chứ không thuộc về người vẽ tay nhanh nhất.\n\nBạn nghĩ sao về việc AI tự thiết kế toàn bộ công trình xây dựng trong tương lai gần?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Quỹ a16z vừa rót 17 triệu USD cho AI tự thiết kế tòa nhà, đe dọa thay thế AutoCAD. Kỷ nguyên AI hiểu vật lý thế giới thực đã bắt đầu. Bạn đã sẵn sàng thích nghi chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#WorldModel",
+        "#a16z",
+        "#DreamAI",
+        "#AutoCAD",
+        "#CongNgheMoi",
+        "#XuHuongAI",
+        "#ThuongMaiAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-30/evening/01.jpg",
+        "assets/posts/2026-10-30/evening/02.jpg",
+        "assets/posts/2026-10-30/evening/03.jpg",
+        "assets/posts/2026-10-30/evening/04.jpg",
+        "assets/posts/2026-10-30/evening/05.jpg",
+        "assets/posts/2026-10-30/evening/06.jpg",
+        "assets/posts/2026-10-30/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-30/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/10/29/ex-palantir-execs-launch-dream-with-17m-from-a16z-to-build-ai-world-models-for-construction/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPVWVUY0hVNUJSME55aGtFTlNPbTVyTmpId3pmd09TOWtaNk1YeTV4TENmNWY5dzhLeTQ2THNBVEFzRjNhQnhhZTR2V3pSN0ZsQ2d4MU9LeUJYVEI3Y1hScXBzcVZrVHVNTTZpTjRDbTN2OXB1MXJ4Xzh5YkR0MTJtY09kazlVV1UySzAzbHVLdXNWUmZEMnI4S3d0LVdvNU9ZVk00Ymcxa1ZSV3RGT3EyZVE3NU1NTE11SmcxdE12alJFQmNl?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122127198003476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122127198003476035",
+          "url": "https://facebook.com/1381130541740424_122127198003476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=A_Shl2MeEaTpov7LBnib7Sp"
+        }
+      }
     }
   }
 }
