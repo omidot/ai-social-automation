@@ -2,7 +2,7 @@
   "date": "2026-10-30",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "An updated Model Spec for more capable and beneficial AI",
       "style": "navy-split",
@@ -72,7 +72,10 @@
           "url": "https://facebook.com/1381130541740424_122126982387476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17988741261080888"
+        }
       }
     }
   }
