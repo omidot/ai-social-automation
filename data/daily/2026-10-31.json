@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-31",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "US tech stocks see sharp falls over AI cost fears",
+      "style": "mono-split",
+      "topic_key": "us-tech-stocks-see-sharp-falls-over-ai-cost-fears",
+      "text_fb": "Alphabet mất hơn 500 tỷ đô la vốn hóa chỉ trong đúng một ngày. Cổ phiếu Intel sụt 28%. Amazon tăng chi tiêu cho hạ tầng AI gấp 6 lần trong ba tháng nhưng nhà đầu tư vẫn tháo chạy.\n\nSố đông đang lo sợ một bong bóng AI sắp vỡ. Nhưng mình thấy đây là điểm đảo chiều bắt buộc phải xảy ra.\n\nCác gã khổng lồ công nghệ đã cam kết chi tới 800 tỷ USD cho AI từ nay đến năm 2026. Họ xây data center, mua GPU chip rầm rộ. Thế nhưng dòng tiền thu về lại không đuổi kịp tốc độ đốt tiền. Ngay cả câu trả lời AI Search của Google cũng đang vô tình ăn bớt doanh thu quảng cáo cốt lõi của chính họ.\n\nKỷ nguyên mua cổ phiếu chỉ vì doanh nghiệp nhắc đến chữ AI đã chính thức kết thúc. Thị trường bây giờ vô cùng tàn nhẫn. Họ không trả tiền cho lời hứa. Họ đòi hỏi kết quả kinh doanh thật.\n\nNếu bạn đang làm sản phẩm AI hoặc ứng dụng AI vào công việc hàng ngày, hãy tỉnh giấc. Đừng cố chạy theo những mô hình đắt đỏ nếu nó không giúp bạn tăng doanh thu hoặc cắt giảm chi phí thực tế. Người thắng cuộc trong giai đoạn tới không phải người dùng mô hình AI lớn nhất, mà là người biết tối ưu hóa ROI tốt nhất.\n\nBạn đang chi bao nhiêu tiền cho các công cụ AI mỗi tháng và nó đã đem lại cho bạn bao nhiêu lợi nhuận thực tế?\n\nNguồn: hn",
+      "text_ig": "Alphabet mất 500 tỷ USD vì AI chưa đẻ ra tiền. Thời kỳ đốt tiền vô căn cứ đã kết thúc. Nếu bạn đang dùng AI, hãy tập trung vào ROI thực tế thay vì chạy theo công nghệ làm màu. Bạn đã kiếm được tiền từ AI chưa?",
+      "hashtags": [
+        "#AIGadzhi",
+        "#Alphabet",
+        "#Intel",
+        "#AIBubble",
+        "#ThiTruongAI",
+        "#AIStrategy",
+        "#DauTuAI",
+        "#ROI",
+        "#TechNews",
+        "#KinhDoanhAI"
+      ],
+      "images": [
+        "assets/posts/2026-10-31/morning/01.jpg",
+        "assets/posts/2026-10-31/morning/02.jpg",
+        "assets/posts/2026-10-31/morning/03.jpg",
+        "assets/posts/2026-10-31/morning/04.jpg",
+        "assets/posts/2026-10-31/morning/05.jpg",
+        "assets/posts/2026-10-31/morning/06.jpg",
+        "assets/posts/2026-10-31/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-10-31/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "hn",
+          "url": "https://www.bbc.co.uk/news/articles/cvwy72e0n72yo"
+        },
+        {
+          "name": "BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE03MGFhZ3ltOEs3NFpDUTRDQ2ZPbmxPcXFvbWtkSm9kS0pnOW82MjlDbTY4dnlGNkYwSkUxMVJPZU1ZeGVqUFk3YkdZeTUxQzhLemlBbldWVld5NU0?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122127340041476035",
+      "ig_due": "2026-10-31T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122127340041476035",
+          "url": "https://facebook.com/1381130541740424_122127340041476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
