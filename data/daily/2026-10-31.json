@@ -2,7 +2,7 @@
   "date": "2026-10-31",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "US tech stocks see sharp falls over AI cost fears",
       "style": "mono-split",
@@ -60,7 +60,10 @@
           "url": "https://facebook.com/1381130541740424_122127340041476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17910939489590779"
+        }
       },
       "ig_attempts": 1
     },
