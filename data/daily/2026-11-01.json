@@ -50,6 +50,57 @@
           "media_id": "17914308105509644"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "'Người biết AI sẽ thay người không biết' — câu này đang bỏ sót điều gì",
+      "style": "warm-magazine",
+      "topic_key": "nguoi-biet-ai-se-thay-nguoi-khong-biet-cau-nay-ang",
+      "text_fb": "Dùng ChatGPT mỗi ngày vẫn bị sa thải. Đó là thực tế đang diễn ra ngay lúc này mà ít ai dám nói thẳng với bạn.\n\nThời gian qua, bạn đi đâu cũng nghe câu khẩu hiệu quen thuộc: người biết AI sẽ thay thế người không biết AI. Nghe rất hợp lý và đầy tính cảnh báo. Nhưng chính câu nói này đang tạo ra một cạm bẫy tư duy cực kỳ nguy hiểm.\n\nNếu bạn dành cả ngày sưu tầm hàng trăm mẫu prompt, tự hào vì vẽ được tấm ảnh bằng Midjourney hay tạo được bài viết trong ba giây, hãy cẩn thận. Bạn chỉ đang làm nhanh hơn một công việc vô giá trị. Dùng công cụ cực nhanh để giải quyết sai bài toán thì kết quả duy nhất bạn nhận được là làm sai nhanh hơn người khác.\n\nAI không phải là giải pháp, AI chỉ là một chiếc đòn bẩy. Nếu năng lực cốt lõi của bạn là số 10, AI nhân nó lên thành 100. Nhưng nếu tư duy chuyên môn của bạn bằng 0, nhân với đòn bẩy mạnh nhất thế giới kết quả vẫn tròn trĩnh là 0.\n\nNgười chiến thắng không phải kẻ thuộc lòng nhiều câu lệnh nhất trên mạng. Người chiến thắng là người hiểu sâu bản chất ngành của mình, biết chính xác quy trình đang tắc ở đâu và dùng AI như một mũi khoan để đập tan điểm nghẽn đó.\n\nNếu bạn chỉ dừng ở mức bấm nút và gõ lệnh theo mẫu, bạn đang tự biến mình thành một cỗ máy gõ lệnh giá rẻ. Lớp người này sẽ bị thay thế đầu tiên khi các mô hình AI tự động hóa hoàn toàn.\n\nĐừng tự hào vì biết dùng công cụ. Hãy tự hỏi: bạn đang dùng AI để tạo giá trị thật hay chỉ đang sản xuất thêm rác thông tin mỗi ngày? Bạn nghĩ sao về điều này?",
+      "text_ig": "Dùng ChatGPT mỗi ngày không giúp bạn an toàn. AI chỉ là đòn bẩy, không phải bộ não thay thế tư duy. Nếu chỉ biết bấm prompt mà không hiểu bản chất công việc, bạn chỉ đang làm sai nhanh hơn. Bạn đang dùng AI để giải quyết việc gì?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ChatGPT",
+        "#AI2024",
+        "#TuDuyCongNghe",
+        "#KyNangAI",
+        "#PhanBienAI",
+        "#PhatTrienBanThan",
+        "#ChuyenDoiSo",
+        "#CongViecTuongLai",
+        "#CongNghe"
+      ],
+      "images": [
+        "assets/posts/2026-11-01/evening/01.jpg",
+        "assets/posts/2026-11-01/evening/02.jpg",
+        "assets/posts/2026-11-01/evening/03.jpg",
+        "assets/posts/2026-11-01/evening/04.jpg",
+        "assets/posts/2026-11-01/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122127903981476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122127903981476035",
+          "url": "https://facebook.com/1381130541740424_122127903981476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AgkUt9nu3Y2crr_riOSDq8n"
+        }
+      }
     }
   }
 }
