@@ -2,7 +2,7 @@
   "date": "2026-11-01",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Khi ai cũng có cùng công cụ AI, thứ gì trở nên đắt giá",
       "style": "navy-magazine",
@@ -45,7 +45,10 @@
           "url": "https://facebook.com/1381130541740424_122127701019476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17914308105509644"
+        }
       }
     }
   }
