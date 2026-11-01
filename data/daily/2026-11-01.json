@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-01",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Khi ai cũng có cùng công cụ AI, thứ gì trở nên đắt giá",
+      "style": "navy-magazine",
+      "topic_key": "khi-ai-cung-co-cung-cong-cu-ai-thu-gi-tro-nen-at-g",
+      "text_fb": "ChatGPT đạt 100 triệu người dùng chỉ trong 2 tháng đầu ra mắt. Con số đó đánh dấu mốc lịch sử: rào cản công nghệ chính thức sụp đổ. Giờ đây, một sinh viên mới ra trường và một chuyên gia 10 năm kinh nghiệm đều có thể gõ chung một câu lệnh để nhận về kết quả tương tự nhau.\n\nNhưng chính sự bình đẳng đó lại tạo ra một cuộc khủng hoảng ngầm. Khi ai cũng có thể viết một bài luận dài, tạo một bức ảnh bắt mắt hay viết một đoạn mã lập trình chỉ trong vài giây, giá trị của việc tạo ra sản phẩm thô bằng không. Thị trường tràn ngập những nội dung trung bình, rập khuôn và thiếu cá tính. Những người chỉ sống dựa vào tốc độ làm việc đang thấy vị thế của mình lao dốc.\n\nLợi thế cạnh tranh thực sự đã dịch chuyển sang một vùng đất mới. Thứ đắt giá nhất hiện nay không phải là công cụ bạn đang sở hữu, mà là gu thẩm mỹ, tư duy phản biện và năng lực đưa ra quyết định của chính bạn. AI có thể đưa ra cho bạn 100 phương án khác nhau trong chớp mắt, nhưng chỉ có chuyên môn thực chiến mới giúp bạn nhận ra đâu là giải pháp 1% thực sự giải quyết được bài toán của khách hàng.\n\nNếu bạn đang dành hàng giờ mỗi ngày chỉ để săn lùng những ứng dụng AI mới nhất, bạn đang đi sai hướng. Đã đến lúc ngừng phụ thuộc vào thuật toán và bắt đầu mài sắc tư duy gốc của bản thân.\n\nBạn nghĩ gu thẩm mỹ hay công cụ mới là thứ giữ giá trị của bạn trong 3 năm tới?",
+      "text_ig": "ChatGPT đã bình đẳng hóa công cụ cho 100 triệu người. Nhưng khi ai cũng tạo ra sản phẩm giống nhau, gu thẩm mỹ và tư duy phản biện mới là thứ định giá bạn trên thị trường. Ngừng săn công cụ, hãy mài sắc bản thân. Bạn đã sẵn sàng thay đổi?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#TuDuyAI",
+        "#XuHuongCongNghe",
+        "#PhatTrienBanThan",
+        "#CongNghe2024",
+        "#KienThucAI",
+        "#ChuyenDoiSo"
+      ],
+      "images": [
+        "assets/posts/2026-11-01/morning/01.jpg",
+        "assets/posts/2026-11-01/morning/02.jpg",
+        "assets/posts/2026-11-01/morning/03.jpg",
+        "assets/posts/2026-11-01/morning/04.jpg",
+        "assets/posts/2026-11-01/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-01/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122127701019476035",
+      "ig_due": "2026-11-01T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122127701019476035",
+          "url": "https://facebook.com/1381130541740424_122127701019476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
