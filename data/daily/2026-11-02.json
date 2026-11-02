@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-02",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Vì sao 'AI viết giúp' đang làm nhiều người viết dở đi",
+      "style": "mono-magazine",
+      "topic_key": "vi-sao-ai-viet-giup-ang-lam-nhieu-nguoi-viet-do-i",
+      "text_fb": "ChatGPT không giúp bạn viết giỏi hơn, nó đang âm thầm giết chết khả năng tư duy độc lập của bạn. Nhìn xung quanh xem, bảng tin hiện tại tràn ngập những bài viết mượt mà, chuẩn SEO nhưng đọc xong không ai nhớ gì cả. Rất nhiều người hào hứng vì gõ một dòng lệnh là có ngay bài viết nghìn từ trong vài giây. Nhưng họ quên mất một nguyên tắc cốt lõi: viết chính là quá trình tư duy.\n\nKhi bạn tự tay chắt lọc ý tưởng, chọn từng từ ngữ và mài giũa lập luận, đó là lúc bộ não của bạn đang hoạt động ở mức cao nhất. Nhường toàn bộ công đoạn đó cho AI đồng nghĩa với việc bạn đang từ bỏ quyền được suy nghĩ. AI được huấn luyện để tạo ra kết quả an toàn, trung tính và là trung bình cộng của toàn bộ internet. Dựa dẫm vào nó càng lâu, cá tính của bạn càng mờ nhạt, văn phong của bạn càng trở nên vô hồn.\n\nKẻ thất bại dùng AI để thay thế bộ não và tạo ra vô số rác thông tin. Người chiến thắng dùng AI làm đối thủ tranh luận để đào sâu góc nhìn của chính mình. Một bài viết vụng về nhưng mang đậm dấu ấn cá nhân luôn có giá trị gấp ngàn lần một văn bản bóng bẩy do máy tính tạo ra. Đừng để công cụ biến bạn thành kẻ thụ động. Bạn đang dùng AI để viết hộ hay đang tự biến mình thành nô lệ của công cụ?",
+      "text_ig": "ChatGPT giúp bạn tạo chữ nhanh hơn nhưng đang làm tư duy cùn đi. Viết chính là suy nghĩ. Khi nhường việc viết cho AI, bạn đang từ bỏ cá tính độc bản của chính mình. Bạn đang để AI viết hộ hay tự mình mài giũa tư duy?",
+      "hashtags": [
+        "#AI",
+        "#ChatGPT",
+        "#KyNangViet",
+        "#TuDuyDocLap",
+        "#SangTaoNoiDung",
+        "#AHitOfficial",
+        "#CongNgheAI",
+        "#ContentCreator"
+      ],
+      "images": [
+        "assets/posts/2026-11-02/morning/01.jpg",
+        "assets/posts/2026-11-02/morning/02.jpg",
+        "assets/posts/2026-11-02/morning/03.jpg",
+        "assets/posts/2026-11-02/morning/04.jpg",
+        "assets/posts/2026-11-02/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122128044597476035",
+      "ig_due": "2026-11-02T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122128044597476035",
+          "url": "https://facebook.com/1381130541740424_122128044597476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
