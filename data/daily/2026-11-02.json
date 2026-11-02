@@ -50,6 +50,55 @@
           "media_id": "18219103777356794"
         }
       }
+    },
+    "evening": {
+      "status": "posted",
+      "format": "share",
+      "title": "Lớp công việc mới xuất hiện quanh việc 'kiểm định đầu ra của AI'",
+      "style": "white-ticket",
+      "topic_key": "lop-cong-viec-moi-xuat-hien-quanh-viec-kiem-inh-au",
+      "text_fb": "ChatGPT có thể viết một hợp đồng pháp lý trong 5 giây, nhưng OpenAI sẽ không ra tòa thay bạn nếu hợp đồng đó sai một điều khoản chết người. Đó chính là lý do một lớp công việc hoàn toàn mới đang xuất hiện: Người kiểm định đầu ra AI.\n\nNgười ta từng hoảng loạn lo sợ AI thay thế con người. Nhưng thực tế đang chứng minh điều ngược lại. AI tạo ra nội dung với tốc độ kinh hoàng, kéo theo một ngọn núi rủi ro về sai lệch thông tin, vi phạm bản quyền và rò rỉ dữ liệu. Càng nhiều sản phẩm do AI tạo ra tràn ngập thị trường, nhu cầu về những người đủ năng lực gác cổng, thẩm định và gánh trách nhiệm càng trở nên đắt giá.\n\nNếu bạn đang làm sáng tạo, lập trình hay phân tích dữ liệu, hãy dừng việc cạnh tranh tốc độ với máy móc. Năng lực tạo ra bản nháp đã trở thành hàng hóa rẻ mạt. Giá trị thực sự của bạn hiện tại nằm ở 10% cuối cùng: khả năng phát hiện ảo giác của mô hình, tinh chỉnh chi tiết và quan trọng nhất là dám đặt chữ ký xác nhận cho kết quả đó. Người thắng trong cuộc chơi này không phải là người bấm câu lệnh nhanh nhất, mà là người có tư duy phản biện sắc bén nhất để bảo đảm AI không làm hỏng doanh nghiệp.\n\nBạn đang đóng vai trò là người gõ lệnh cho AI hay là người kiểm duyệt chất lượng cuối cùng?",
+      "text_ig": "ChatGPT làm ra sản phẩm trong vài giây, nhưng bạn mới là người chịu trách nhiệm cho kết quả đó. Nghề kiểm định AI đang xuất hiện để trả tiền cho tư duy phản biện của con người. Bạn đã sẵn sàng làm người gác cổng chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#AIJobs",
+        "#AIContent",
+        "#FutureOfWork",
+        "#KiemDinhAI",
+        "#CongNghe",
+        "#XuHuongAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-02/evening/01.jpg",
+        "assets/posts/2026-11-02/evening/02.jpg",
+        "assets/posts/2026-11-02/evening/03.jpg",
+        "assets/posts/2026-11-02/evening/04.jpg",
+        "assets/posts/2026-11-02/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-02/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122128366077476035",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122128366077476035",
+          "url": "https://facebook.com/1381130541740424_122128366077476035",
+          "scheduled": false
+        },
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (9004/2207052) Only photo or video can be accepted as media type. | type=OAuthException fbtrace_id=AIg5tabyOa5C1_sr7vLmnvu"
+        }
+      }
     }
   }
 }
