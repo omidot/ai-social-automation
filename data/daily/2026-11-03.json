@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-03",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Trajectory raises $45M to make AI model training accessible to nontechnical experts",
+      "style": "navy-ticket",
+      "topic_key": "trajectory-raises-45m-to-make-ai-model-training-ac",
+      "text_fb": "Sequoia và Nvidia vừa rót 45 triệu đô vào Trajectory - một startup công nghệ chỉ với 18 nhân sự. Tại sao một đội ngũ nhỏ như vậy lại được định giá tới 300 triệu đô một cách nhanh chóng?\n\nLý do rất đơn giản: Các mô hình AI lớn hiện nay giống như những tiến sĩ giỏi nhưng ngày nào cũng là ngày đầu tiên đi làm. Chúng rất thông minh, nhưng sẽ liên tục lặp lại lỗi sai cũ nếu không được tiếp tục huấn luyện từ thực tế.\n\nSố đông ngoài kia vẫn đang vung tiền mua tài khoản AI đắt đỏ và nghĩ như thế là đủ. Nhưng sự thật là các doanh nghiệp hàng đầu không còn phụ thuộc vào mô hình dùng chung. Họ đang chuyển sang tự dạy lại AI bằng chính dữ liệu công việc hằng ngày.\n\nTrajectory thay đổi cuộc chơi khi cho phép luật sư hay bác sĩ tự chỉnh mô hình mà không cần thuê đội ngũ kỹ sư tốn kém. Mô hình AI nhờ đó sẽ liên tục giỏi lên sau mỗi tác vụ, dần trở thành một chuyên gia thực thụ trong ngành.\n\nThời đại phụ thuộc vào mô hình sẵn có đã kết thúc. Giờ đây, ai tích lũy được dữ liệu thực chiến và biết cách phản hồi chuẩn xác, người đó sẽ làm chủ cuộc chơi.\n\nBạn đã bắt đầu tích lũy dữ liệu quy trình làm việc của mình để chuẩn bị dạy lại AI chưa?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Sequoia vừa rót 45 triệu đô vào Trajectory. AI thông minh đến đâu cũng sẽ thua mô hình được học liên tục từ dữ liệu thực tế. Bạn đã chuẩn bị dữ liệu riêng để dạy AI chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#Trajectory",
+        "#TriTueNhanTao",
+        "#AI",
+        "#PostTraining",
+        "#ContinualLearning",
+        "#Nvidia",
+        "#Sequoia",
+        "#CongNghe",
+        "#StartupAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-03/morning/01.jpg",
+        "assets/posts/2026-11-03/morning/02.jpg",
+        "assets/posts/2026-11-03/morning/03.jpg",
+        "assets/posts/2026-11-03/morning/04.jpg",
+        "assets/posts/2026-11-03/morning/05.jpg",
+        "assets/posts/2026-11-03/morning/06.jpg",
+        "assets/posts/2026-11-03/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-03/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/02/trajectory-raises-45m-to-make-ai-model-training-accessible-to-nontechnical-experts/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNQXBXcWVNSnF4bHF6YndHbU1BVnlvVDZzVTNLZFZyTHZGSVZkRGNKVWxHaUc2UjUzODlmNVV6cHpwSUl6bGJKOFowd0dDZmZMUjdRWFBWb2hGcnZIR0tycGFkSTZrT0M0ZnNJN2RyVmc5ckNfc2c5eldTd3hFbGs2ZmFjOUpxSnBYaDVHSnlueHkzc2NNRW1ZdkFLMlloQ2ZTaGgxSWY4NU9NV1RPenl3UWhZem9QREZG?oc=5"
+        },
+        {
+          "name": "Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBKb2N2UXNsdWRLZWVTdjBxWHZWVnNzMGxCajk4clZhb29OSjhpSWxGdk90WG9oRFRNZm93S1JkVW91dnNaRWtRdmE5V2E4b1BralRpQVplUEgtelNyWHZCamI5NU1sX1JmREE?oc=5"
+        },
+        {
+          "name": "The Tech Buzz",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPc3pST1VCRjROb0pMLV9nRjVhWXdVa0hIT3FZZG55bzk1SHZBZldFaDJPTl9qVkhGVEdsOGR1WjV6QXlzdzNuWWJOTW1BVGxFZkJCMXQtYXBpUEtnSmNTQmJ6TzI3a0dmbVFhMDNfTWZacDgzRnZWUjFCdzFyWDFpZzdjWDYycDJJUEFzVEJ2cw?oc=5"
+        },
+        {
+          "name": "FourWeekMBA",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQTnFCQUdITVFNeXRNaVcxcjhFMUo0cmQ0bG9RYTdOM0p0bU91d0NxTHUxVDNkbE1Uc09mY2psdDF5ODhTOWpCRzBVajNMdUwxVHAtSkEzVmxjb3JzdG96OVJLSDNjZEFUMU5KeExhU204UmtDcUFzaGhaN2twa0FGei1IZDJBYjFsaXRtWnRESQ?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "fb_post_id": "1381130541740424_122128456215476035",
+      "ig_due": "2026-11-03T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122128456215476035",
+          "url": "https://facebook.com/1381130541740424_122128456215476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
