@@ -2,7 +2,7 @@
   "date": "2026-11-03",
   "posts": {
     "morning": {
-      "status": "scheduled",
+      "status": "posted",
       "format": "share",
       "title": "Trajectory raises $45M to make AI model training accessible to nontechnical experts",
       "style": "navy-ticket",
@@ -72,7 +72,10 @@
           "url": "https://facebook.com/1381130541740424_122128456215476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": true,
+          "media_id": "17970056040189877"
+        }
       },
       "ig_attempts": 1
     }
