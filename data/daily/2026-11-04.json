@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-04",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Google will turn off search for schools that reject AI",
+      "style": "warm-ticket",
+      "topic_key": "google-will-turn-off-search-for-schools-that-rejec",
+      "text_fb": "Google vừa ra tối hậu thư cho hàng ngàn trường học: chấp nhận AI hoặc mất luôn Google Search. Chris Phillips, Phó chủ tịch mảng Giáo dục của Google khẳng định tính năng AI và Search đã tích hợp làm một từ đầu năm sau, không thể tách rời.\n\nSố đông tin rằng cấm AI là cách bảo vệ tư duy học sinh. Họ nghĩ mình có quyền lựa chọn dùng hay không dùng. Sự thật phũ phàng hơn nhiều. Khi một công ty nắm giữ toàn bộ hệ sinh thái từ Chromebook, Gmail đến Search, họ là người quyết định luật chơi. Bạn muốn tìm kiếm thông tin? Bắt buộc phải sống chung với AI.\n\nĐây không phải câu chuyện của riêng ngành giáo dục. Nó là lời cảnh báo trực tiếp cho công việc của bạn. AI không còn là một tiện ích cắm thêm để bạn cân nhắc thích hay ghét. Nó đang trở thành hạ tầng cốt lõi của mọi công cụ bạn dùng hàng ngày.\n\nNé tránh AI không giúp bạn an toàn. Nó chỉ khiến bạn bị tước đi những công cụ lao động cơ bản nhất. Người thông minh không tốn năng lượng chống lại làn sóng, họ học cách làm chủ nó trước khi quá muộn.\n\nBạn sẽ chọn học cách kiểm soát AI, hay chờ đến lúc bị buộc phải dùng?\n\nNguồn: hn",
+      "text_ig": "Google cắt Search nếu các trường học cấm AI. AI không còn là lựa chọn tùy thích, nó đã trở thành hạ tầng bắt buộc. Né tránh AI chỉ khiến bạn mất đi công cụ làm việc. Bạn sẽ thích nghi hay bị bỏ lại?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#Google",
+        "#GoogleAI",
+        "#GoogleSearch",
+        "#TriThucAI",
+        "#CongNghe",
+        "#AIInEducation",
+        "#HocAI",
+        "#CongNgheMoi",
+        "#TuongLaiAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-04/morning/01.jpg",
+        "assets/posts/2026-11-04/morning/02.jpg",
+        "assets/posts/2026-11-04/morning/03.jpg",
+        "assets/posts/2026-11-04/morning/04.jpg",
+        "assets/posts/2026-11-04/morning/05.jpg",
+        "assets/posts/2026-11-04/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-04/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-04/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-04/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-04/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-04/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-04/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "hn",
+          "url": "https://www.nytimes.com/2026/11/03/us/google-search-schools-restrict-ai.html"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPa2ZWRmYyZW9YZng5SmhjYnpjQ213dnRKVjVjNW1rcS1RRFoxVUFKYnl2VlVjMk1abE1kQTE2Qk1Ea09WcHlvMjFNbTREWnhmYXZiTjE5RTY0bUdMZGsyRFRCNDNWQjg0SG90WXlaSVV1d19iV0x4UEVnVlFzS3dyVWZB?oc=5"
+        },
+        {
+          "name": "WRAL",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQT3JaTFNENDNRVDRWb2RQRDhMeGNaVzdKbWJ4alZfUHN5Z1drdklzYUEzZDdqYTY2NjdXT09Jb1QwSnF3WWdWcUVPZzJFeTRGZlc2bUFWdHVBQ2lpUDMyVDZTbHhGQVJjV0lNVFF5clRQRjFLSEFmdmdaTHdIZkRLN0U0cEt3b0FGa3NZMFVzVHUyU3A2SE5nYXItbmV1TDhQWllZQWxBWXNZQ2FhR0hYVnZTdnRyd0RUSzlDM2lZZlp1Qy1zN19oY2h6Xzk?oc=5"
+        },
+        {
+          "name": "Báo Hànộimới",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOWFBWb1NtR3VpdllXTFRORFRHN01md1NfVmphZjg5MENWSmtvbmNEYzBVSXBBZjdXMVFvNXJLV3dUU1k3NUZjWDk2Y2JFTjVFSDZoSDNRaFJEdDRCdjBsak1TT1ZiS3BFVGdoc1NNTDQxaW1YcmJvemZFMEVNVEJQYVN6YnA2a241?oc=5"
+        },
+        {
+          "name": "Báo Quảng Ninh",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPeFlaYkk5dWF6RlVKUERTaG9YNHV5V2dfOWlCTUpzRUEtb3YyMy1TTk9ZeFRkUlhWU3ZXMFp3dm1oRnFHY1g1c29TeW8zaHZ1U0tENXJ0NEg1LWFEelRzMmFTTm1lLTF1Mm56NE9LdVhJeFcxRS1CWjlGdERHSk5JTXc1LXZfdXpQb0I1Sk1TaW9RMHR5UlprVDRwa08wbEltcWtyb29meXpnd1FDS3lJLVFZMlZlNEdv?oc=5"
+        },
+        {
+          "name": "The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQejExRlAwVmpXSkJOMFppQ3NXOFRGT2lkOGQ3LURUVS16UjRQa3llY01OY3FxdW1TYWVHZUR4c3NXbTRIT0pUQ2hIZGxlYzRFS2Q1ZG5qRTNNbDV0cnZJMHJaOFRfU1RzTzkzWFF1OVhUaUVhWFh1anhEV0JTb2lSLWJ0UEo5X3pyeWhNTkFSMWMtUQ?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122128892049476035",
+      "ig_due": "2026-11-04T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122128892049476035",
+          "url": "https://facebook.com/1381130541740424_122128892049476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
