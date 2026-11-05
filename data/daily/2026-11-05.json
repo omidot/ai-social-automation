@@ -61,7 +61,7 @@
       "ig_attempts": 2
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "OpenAI says its new cybersecurity model is better at not hacking other companies",
       "style": "white-centered",
