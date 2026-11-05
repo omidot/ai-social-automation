@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-05",
+  "posts": {
+    "morning": {
+      "status": "scheduled",
+      "format": "share",
+      "title": "Agile Deliberation: How AI helps humans define the gray areas",
+      "style": "mono-ticket",
+      "topic_key": "agile-deliberation-how-ai-helps-humans-define-the-",
+      "text_fb": "18 phiên thử nghiệm kéo dài 90 phút của Google Research vừa chứng minh một thực tế: cách đa số người dùng đang ra lệnh cho AI là hoàn toàn sai lầm.\n\nBạn cố viết một prompt thật dài, đưa ra các quy tắc cứng nhắc và kỳ vọng AI hiểu đúng những khái niệm chủ quan như \"hình ảnh truyền cảm hứng\" hay \"thực phẩm lành mạnh\". Kết quả là mô hình sụp đổ ngay khi gặp thực tế. Một ly sinh tố trái cây là đồ ăn tốt hay là món chế biến nhiều đường? Chính tư duy của bạn còn chưa chốt xong ranh giới, làm sao bắt cỗ máy đoán đúng ý?\n\nGoogle Research đã mở mã nguồn framework Agile Deliberation trên GitHub để giải quyết bài toán này. Thay vì coi con người là bên dán nhãn tĩnh, họ cho vision-language model chủ động đào xới các bức ảnh ở vùng xám và hỏi ngược lại người dùng. Mỗi lần bạn xử lý một ca ranh giới, hệ thống tự động tối ưu lại vòng lặp prompt.\n\nBài học rút ra rất rõ ràng: đừng tốn thời gian tìm kiếm một prompt hoàn chỉnh ngay từ đầu. Hãy chia nhỏ khái niệm, dùng các trường hợp ngoại lệ để thách thức chính giả định của bạn, và để AI cùng tham gia làm sắc nét tư duy. Mô hình giỏi chỉ xuất hiện khi người điều khiển biết rõ ranh giới mình muốn nằm ở đâu.\n\nBạn đang tự đưa quy tắc cứng hay cho AI cùng tham gia làm rõ vùng xám?\n\nNguồn: Google Research",
+      "text_ig": "18 phiên thử nghiệm của Google Research chứng minh: muốn AI hiểu khái niệm phức tạp, bạn phải ngưng ra lệnh cứng và bắt đầu đối thoại vùng xám. Bài học thực chiến cho người làm AI.",
+      "hashtags": [
+        "#GoogleResearch",
+        "#AgileDeliberation",
+        "#ArtificialIntelligence",
+        "#MachineLearning",
+        "#PromptEngineering",
+        "#VLM",
+        "#AIResearch",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-05/morning/01.jpg",
+        "assets/posts/2026-11-05/morning/02.jpg",
+        "assets/posts/2026-11-05/morning/03.jpg",
+        "assets/posts/2026-11-05/morning/04.jpg",
+        "assets/posts/2026-11-05/morning/05.jpg",
+        "assets/posts/2026-11-05/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-05/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-05/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-05/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-05/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-05/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-05/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Google Research",
+          "url": "https://research.google/blog/agile-deliberation-how-ai-helps-humans-define-the-gray-areas/"
+        },
+        {
+          "name": "Google Research",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNVUMyQktCM0NEc1czYzRMODg4dkdIZW9DZkRURm9ZdmFJUnROY2tPQVlTbDhhdF9LR3otLU1kWV9zbTA2bzNxRVVpUUhfNmdLZzJpNENSZ0NqY0c1em96eTZkT0xobkVXaFljRWphYWtGZDNWNjk0U3ZUaUh4SGgtMXQ2RE51WDNOQzlrcGVJTi1CNklT?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "fb_post_id": "1381130541740424_122129414595476035",
+      "ig_due": "2026-11-05T04:30:00+00:00",
+      "result": {
+        "fb": {
+          "id": "1381130541740424_122129414595476035",
+          "url": "https://facebook.com/1381130541740424_122129414595476035",
+          "scheduled": true
+        },
+        "ig": null
+      }
+    }
+  }
+}
