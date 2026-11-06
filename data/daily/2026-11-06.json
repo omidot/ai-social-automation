@@ -2,7 +2,7 @@
   "date": "2026-11-06",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Challenge",
       "style": "navy-centered",
