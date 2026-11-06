@@ -56,9 +56,13 @@
           "url": "https://facebook.com/1381130541740424_122129414595476035",
           "scheduled": true
         },
-        "ig": null
+        "ig": {
+          "ok": false,
+          "error": "Graph POST /v21.0/17841428078688871/media -> 400: (190/463) Error validating access token: Session has expired on Thursday, 05-Nov-26 03:56:31 PST. The current time is Friday, 06-Nov-26 03:58:11 PST. | type=OAuthException fbtrace_id=AvfTt-DyLGJYmysiyH9M4Zx",
+          "attempts": 3
+        }
       },
-      "ig_attempts": 2
+      "ig_attempts": 3
     },
     "evening": {
       "status": "expired",
