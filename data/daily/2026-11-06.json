@@ -64,6 +64,52 @@
         }
       ],
       "angle": "quan-diem"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "AI is the new dating dealbreaker",
+      "style": "warm-centered",
+      "topic_key": "ai-is-the-new-dating-dealbreaker",
+      "text_fb": "Mức lương 300.000 USD mỗi năm không còn là tấm vé đảm bảo cho bạn trong cuộc chơi hẹn hò. Tại San Francisco, hàng loạt hồ sơ trên ứng dụng Hinge đang công khai dòng chữ từ chối thẳng thừng những người làm việc hoặc sử dụng AI.\n\nCú dịch chuyển này thể hiện một thực tế rõ ràng: thái độ với công nghệ đã trở thành bộ lọc nhân sinh quan mới. Báo cáo từ CBRE cho thấy khu vực Bay Area vừa thêm 20.000 việc làm AI. Nhiều người tìm kiếm bạn đời là kỹ sư AI vì tài chính dồi dào. Nhưng ở chiều ngược lại, không ít chuyên gia an toàn AI lại từ chối lập gia đình vì lo ngại 10% rủi ro AI tiêu diệt loài người. Một bên nhìn thấy cơ hội làm giàu, một bên thấy tương lai tăm tối.\n\nNguy hiểm hơn, con người đang tự cô lập mình. Theo Đại học Elon, 27% người Mỹ tìm đến chatbot AI để chia sẻ nỗi lòng. Tới 38% thừa nhận đã nói với AI những điều họ chưa bao giờ dám nói với bạn đời. Chúng ta dùng AI để thay thế sự thấu hiểu giữa người với người.\n\nNếu bạn đang cắm đầu vào công cụ và nghĩ tiền bạc hay trí tuệ nhân tạo sẽ giải quyết được sự cô đơn, bạn đang nhầm lớn. AI có thể tối ưu hoá công việc, nhưng nó không thể xây dựng một mối quan hệ chân thành. Càng phụ thuộc vào thuật toán, bạn càng mất đi năng lực kết nối thực sự.\n\nLiệu bạn có sẵn sàng hẹn hò với một người coi AI là tất cả cuộc sống của họ?\n\nNguồn: The Verge AI",
+      "text_ig": "Lương 300.000 USD vẫn bị quẹt trái trên Hinge. Tại San Francisco, thái độ với AI trở thành bộ lọc hẹn hò mới. 27% người Mỹ tâm sự với chatbot thay vì bạn đời. Đừng để công nghệ thay thế kết nối thật. Bạn nghĩ sao về xu hướng này?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#ArtificialIntelligence",
+        "#AIDating",
+        "#TechTrends",
+        "#ChatGPT",
+        "#Hinge",
+        "#FutureOfRelationships",
+        "#TechLifestyle"
+      ],
+      "images": [
+        "assets/posts/2026-11-06/evening/01.jpg",
+        "assets/posts/2026-11-06/evening/02.jpg",
+        "assets/posts/2026-11-06/evening/03.jpg",
+        "assets/posts/2026-11-06/evening/04.jpg",
+        "assets/posts/2026-11-06/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1028609/ai-dating-feelings-doomers-singularity"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUFZ3LVQwc2kxYWpneG9GUW85TFp5TG12a2lMUWFEdjFEOXZJZWo3enp6cVN1aWlYbTdGbGFQRFA2WE9faW01SEg4QlBiQjRMMTR6TGFWMW9WVkR0eG00S1hUbEJWbzkzYzNBcHNDclU5OTF1UG84WXhWWUZOVVJKQTFGM0hDTGpGUDJZbXJ3eHB5dDNKcXo4ZmNTTkNqWVU?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
     }
   }
 }
