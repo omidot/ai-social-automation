@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-06",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "More Performance From Every Byte: How Full-Stack Codesign Solves AI’s Memory Challenge",
+      "style": "navy-centered",
+      "topic_key": "more-performance-from-every-byte-how-full-stack-co",
+      "text_fb": "3 triệu token context. Đó là con số đang âm thầm đập tan ngân sách AI của bạn mỗi ngày.\n\nNhiều người làm AI vẫn giữ tư duy cũ kỹ: model lớn hơn thì cứ vung tiền mua GPU có HBM lớn hơn. Họ tưởng bộ nhớ càng nhiều thì hệ thống càng mạnh. Nhưng thực tế phũ phàng hơn nhiều. Băng thông bộ nhớ mới là bức tường gạch ngáng đường. Khi băng thông chạm trần, GPU đắt đỏ của bạn chỉ đứng chơi xào bài, ngốn điện và đốt chi phí.\n\nNVIDIA vừa chứng minh một tư duy hoàn toàn khác. Trong hệ thống Blackwell Ultra đến Vera Rubin, họ chỉ tăng dung lượng HBM thêm khoảng 3%, nhưng hiệu suất agentic trên mỗi đô la lại vọt lên tới 30 lần.\n\nHọ làm điều đó thế nào? Không phải bằng cách nhét thêm RAM đắt đỏ vào GPU, mà bằng tư duy thiết kế đồng bộ full-stack. NVIDIA nén dữ liệu xuống chuẩn NVFP4, phân rã model trên 72 GPU nhờ NVL72, và chủ động đẩy phần context chưa dùng tới sang bộ nhớ CPU hoặc hệ thống lưu trữ CMX rẻ tiền hơn. Khi nào cần, dữ liệu mới được kéo ngược lại HBM.\n\nBàn làm việc của bạn cũng vậy. Bạn không bày toàn bộ kho tài liệu lên bàn khi chỉ cần đọc một trang. HBM là không gian siêu đắt và siêu hiếm, hãy dành nó cho những tính toán tức thời.\n\nNếu bạn đang xây dựng hạ tầng hoặc ứng dụng AI, hãy ngừng tư duy ném tiền qua cửa sổ bằng cách mua thêm phần cứng thô. Người chiến thắng trong kỷ nguyên AI không phải người sở hữu nhiều HBM nhất, mà là người biết vắt kiệt giá trị từ từng byte bộ nhớ.\n\nBạn đã sẵn sàng tối ưu lại hạ tầng AI của mình chưa, hay vẫn tiếp tục ném tiền cho GPU đắt đỏ?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA tăng 30 lần hiệu suất agentic chỉ với 3% HBM tăng thêm nhờ tối ưu full-stack. Đừng mải vung tiền mua GPU đắt đỏ khi bức tường băng thông đang cản đường bạn. Hãy học cách vắt kiệt từng byte bộ nhớ. Bạn đã tối ưu KV cache của mình chưa?",
+      "hashtags": [
+        "#NVIDIA",
+        "#AI",
+        "#AgenticAI",
+        "#HBM",
+        "#Hardware",
+        "#NVFP4",
+        "#TechNews",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-06/morning/01.jpg",
+        "assets/posts/2026-11-06/morning/02.jpg",
+        "assets/posts/2026-11-06/morning/03.jpg",
+        "assets/posts/2026-11-06/morning/04.jpg",
+        "assets/posts/2026-11-06/morning/05.jpg",
+        "assets/posts/2026-11-06/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-06/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/memory-full-stack-codesign/"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOcEdYY1M2QU5OdnpSQU1ZcmUtNGozMDZYZGE1b202TVM1QjhpNy1INHRLZlZ2RmRORC1iY3dBRUR5OWhoYm1wR1NIbklRcTVLcTR4bEFmUzhQRXRnYTkxaTlnS0p4UHRBVmstRllPZlh3RXczTnhpM0p6WUxEbEZLbWtXUnVuUQ?oc=5"
+        },
+        {
+          "name": "The Financial Brand",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPZDBqNnhkb0Vidnk2Y0dfSG1uZHQwSmh2Wk1LQ3Y1c1hidTdGSFFMQ3labGNOVUZFWVgyejAtekJPSzU1U0plaGtUenRzMGU5dEFCSHNQUVk0cEhDTElDQmVEZXVVLVZZVWZhUHI0enFia19oYnJYVGl1SjA3eEp6TEcwcnBrbUFJQTEwYWVYQ2FiNjhRMXJVV3hTenliUEoxME4zcEJ4YWVuQld4dmFydkNhek95LVJvVXpxMWhsVndsam5pTVczNi1MN3d6dw?oc=5"
+        },
+        {
+          "name": "Billboard",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQdkhDaWFOMUVNd0UyV1dpSXMtRmlHRmdfb29pYnJJenp6d2dZcWFCSzQ4Z3NWRXpULTc0NkFTdjl1V19ZYTJSWEVhRTRoQXNnZzBwWF9KU2Q1THJmUnUwZmlENmxiU1hwR2dJdFVhWmhyNmtCZjdRSG9BcG9DTnZnVGV2aEVCOV9aSkVBSw?oc=5"
+        },
+        {
+          "name": "Penn Medicine",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBxRFMtSVpCTTBSZjZzSDJxb05rZlI1WHd4UkNXc0hld1p1bVhqLXFkSlpUX2NIQmFZbDRxcmlCMWxSbmNjWWF0VXhwa1FTQTZMTDdGa3lVaGtCc05qeUlyNk0wNGkwZUFVWnp5ZWpR?oc=5"
+        },
+        {
+          "name": "Rensselaer Polytechnic Institute (RPI)",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOVUVjVmxVdFgzRkxzSDhNcFhreU5mRG5VUGhHaTZOcktiWEFHaUxhejhqdXJwdTBDZkRRTmZVQl90VWpoQ2NWbGIwZmUyRGpQRGJxU0tscno1bnBVUE9MWFNPcjAyUzFKdlBkeXZYaldZT0ctRjJfQVNOWmNxN2V4M3MxTXRtNkpkVFExLWoxNmZoMnljY2JHd3NmUW12Ync?oc=5"
+        }
+      ],
+      "angle": "quan-diem"
+    }
+  }
+}
