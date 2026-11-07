@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-07",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Underdog shows off a 32MB speech model in new demo",
+      "style": "mono-centered",
+      "topic_key": "underdog-shows-off-a-32mb-speech-model-in-new-demo",
+      "text_fb": "32MB là toàn bộ dung lượng của Woof - mô hình AI phát tiếng vừa được Underdog tung ra.\n\nTrong khi cả thế giới đốt hàng tỷ đô vào các cụm máy chủ khổng lồ để chạy AI đám mây, một nhóm kỹ sư trẻ đang đi ngược lại. Họ nén toàn bộ một mô hình trí tuệ nhân tạo xuống kích thước bằng một bản nhạc MP3, chạy trực tiếp trên trình duyệt của bạn mà không cần kết nối internet.\n\nSố đông vẫn nghĩ AI càng to càng tốt, mô hình càng đắt tiền mới càng giỏi. Sự thật là bạn không cần một siêu máy tính chỉ để tóm tắt cuộc họp hay phát một đoạn âm thanh.\n\nFounder Sigil Wen của Underdog khẳng định mục tiêu của họ rất rõ ràng: trả lại quyền sở hữu dữ liệu cho người dùng. Trước Woof, họ đã ra mắt Bark - mô hình chuyển giọng nói thành văn bản chỉ 167MB. Tất cả đều mã nguồn mở và chạy offline 100%.\n\nNếu bạn đang phụ thuộc vào các dịch vụ đám mây trả phí hàng tháng, hãy chuẩn bị cho một cú dịch chuyển lớn. Chỉ trong vài tháng tới, những chiếc điện thoại hay laptop bạn đang sở hữu sẽ tự chạy được các mô hình AI đủ dùng cho 90% công việc hàng ngày. Không rò rỉ dữ liệu, không phí phí thuê bao vô lý.\n\nTương lai của AI không nằm hoàn toàn trên mây, nó nằm ngay trong túi quần của bạn.\n\nBạn sẽ chọn trả tiền cho AI đám mây hay tự chạy AI riêng tư trên thiết bị của mình?\n\nNguồn: TechCrunch AI",
+      "text_ig": "32MB là dung lượng của mô hình AI Woof từ Underdog, chạy mượt không cần internet. Tương lai AI không chỉ nằm trên mây, nó nằm ngay trên thiết bị của bạn. Bạn đã sẵn sàng dùng AI offline chưa?",
+      "hashtags": [
+        "#AI",
+        "#EdgeAI",
+        "#Underdog",
+        "#TechNews",
+        "#OpenSource",
+        "#PrivateAI",
+        "#WoofAI",
+        "#CongNghe"
+      ],
+      "images": [
+        "assets/posts/2026-11-07/morning/01.jpg",
+        "assets/posts/2026-11-07/morning/02.jpg",
+        "assets/posts/2026-11-07/morning/03.jpg",
+        "assets/posts/2026-11-07/morning/04.jpg",
+        "assets/posts/2026-11-07/morning/05.jpg",
+        "assets/posts/2026-11-07/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/06/underdog-shows-off-a-32mb-speech-model-in-new-demo/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQcl9ISDlGb05VYzRRalNZQ2pHaFBDZm5ZMkhmRUViVnlmMUpXTVNrTVVPM21CbUFJQ2otc0JJQ3JiWTVTdTZrTlllczhiYVlUbFA0ZGhSZVpnLXU2VmRjbGlQZ3pjWUVwRFhwVHRXeEtIUWlLRnhSbThodmRkSS1lT2szRmhtWVlQY3BTV1V3?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
+    }
+  }
+}
