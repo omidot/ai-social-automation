@@ -2,7 +2,7 @@
   "date": "2026-11-07",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Underdog shows off a 32MB speech model in new demo",
       "style": "mono-centered",
