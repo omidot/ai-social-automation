@@ -48,6 +48,43 @@
         }
       ],
       "angle": "xu-huong"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Tự động hoá sai việc còn tệ hơn làm tay",
+      "style": "white-rail",
+      "topic_key": "tu-ong-hoa-sai-viec-con-te-hon-lam-tay",
+      "text_fb": "Bạn tạo 100 bài viết bằng AI trong 5 phút, rồi tốn nguyên 5 tiếng để đi dọn rác. Đó là cái bẫy lớn nhất mà mình thấy những người làm việc tự do hay chủ doanh nghiệp nhỏ đang mắc phải. Họ ngộ nhận rằng cứ gắn AI vào quy trình là năng suất tự tăng. Sự thật phũ phàng: tự động hoá một quy trình tồi chỉ giúp bạn tạo ra rác nhanh hơn mà thôi.\n\nKhi bạn tự động hoá một công việc chưa được tối ưu, bạn không tiết kiệm thời gian, bạn đang nhân bản lỗi sai. Mỗi lần AI chạy sai một bước nhỏ, hệ luỵ phía sau sẽ kéo theo cả chuỗi rắc rối mà bạn phải trực tiếp đi chữa cháy. Làm tay mất 10 phút, nhưng đi tìm nguyên nhân AI làm sai và sửa lại mất cả buổi chiều.\n\nMuốn dùng AI thông minh, nguyên tắc đầu tiên là phải giỏi quy trình đó trước khi giao nó cho máy. Nếu chính bạn còn chưa biết làm sao cho chuẩn, đừng mơ AI làm thay bạn một cách hoàn hảo. Hãy cắt giảm và tối ưu bài toán thủ công trước. Khi mọi thứ đã gọn gàng, một nút bấm AI mới thực sự phát huy sức mạnh đòn bẩy.\n\nBạn đã từng tốn hàng giờ sửa lỗi chỉ vì lỡ tự động hoá một việc không đáng chưa?",
+      "text_ig": "Bạn tạo 100 bài bằng AI trong 5 phút rồi tốn 5 tiếng dọn rác? Tự động hoá quy trình tồi chỉ giúp bạn tạo ra rác nhanh hơn. Hãy giỏi thủ công trước khi giao cho máy. Bạn đã dính bẫy này chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#TuDongHoa",
+        "#NangSuat",
+        "#QuanDiemAI",
+        "#QuyTrinhLamViec",
+        "#CongNghe",
+        "#MeoAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-07/evening/01.jpg",
+        "assets/posts/2026-11-07/evening/02.jpg",
+        "assets/posts/2026-11-07/evening/03.jpg",
+        "assets/posts/2026-11-07/evening/04.jpg",
+        "assets/posts/2026-11-07/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-07/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "quan-diem"
     }
   }
 }
