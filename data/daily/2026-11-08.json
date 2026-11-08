@@ -975,6 +975,43 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Cú dịch chuyển từ 'chatbot trả lời' sang 'agent tự làm' — nghĩa là gì với bạn",
+      "style": "warm-rail",
+      "topic_key": "cu-dich-chuyen-tu-chatbot-tra-loi-sang-agent-tu-la",
+      "text_fb": "Devin tự làm việc suốt 8 giờ liên tục mà không cần con người can thiệp từng dòng lệnh. Kỷ nguyên bạn gõ prompt rồi ngồi chờ một câu trả lời văn bản đã chính thức khép lại. Bây giờ, AI không còn là kẻ nói phét thao thao bất tuyệt, nó là một nhân viên thực thi tự chịu trách nhiệm.\n\nNếu bạn vẫn đang dùng AI chỉ để tóm tắt văn bản hay sửa lỗi chính tả, bạn đang tụt hậu cực kỳ nhanh. Sự khác biệt giữa kẻ thắng và người thua trong năm nay nằm ở tư duy quản lý. Người thua coi AI như một công cụ tìm kiếm nhanh hơn. Người thắng biến AI thành hệ thống Agent tự chạy quy trình công việc từ đầu đến cuối.\n\nKhi AI chuyển từ trả lời sang tự làm, thử thách lớn nhất của bạn không phải là kỹ thuật gõ prompt, mà là năng lực ủy quyền và thiết lập ranh giới kiểm soát. Bạn có dám giao hệ thống, quy trình bán hàng, hay dữ liệu cho một cỗ máy tự quyết định?\n\nKẻ thất bại sẽ sợ hãi rút lui vì thiếu niềm tin. Kẻ bứt phá sẽ biết cách xây dựng khung quản trị để AI làm việc thay mình 24/7. Bạn đã chuẩn bị gì để chuyển từ người gõ câu hỏi sang một người quản lý hệ thống AI tự vận hành?",
+      "text_ig": "Kỷ nguyên chatbot trả lời đã hết. AI Agent hiện tại tự thực thi công việc từ A đến Z. Nếu bạn chỉ dùng AI để gõ prompt hỏi đáp, bạn đang tụt lại phía sau. Đã đến lúc học cách quản lý hệ thống tự vận hành. Bạn đã sẵn sàng ủy quyền chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AIAgent",
+        "#CongNghe",
+        "#CongNgheAI",
+        "#TuDongHoa",
+        "#KinhDoanh",
+        "#ThuThuatAI",
+        "#XuHuongAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-08/evening/01.jpg",
+        "assets/posts/2026-11-08/evening/02.jpg",
+        "assets/posts/2026-11-08/evening/03.jpg",
+        "assets/posts/2026-11-08/evening/04.jpg",
+        "assets/posts/2026-11-08/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-08/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-08/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-08/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-08/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-08/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong"
     }
   }
 }
