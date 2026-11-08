@@ -977,7 +977,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Cú dịch chuyển từ 'chatbot trả lời' sang 'agent tự làm' — nghĩa là gì với bạn",
       "style": "warm-rail",
