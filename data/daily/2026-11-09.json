@@ -1,0 +1,844 @@
+{
+  "date": "2026-11-09",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Nvidia is investigating Jensen Huang’s relationship with a Chinese spy",
+      "style": "mono-rail",
+      "topic_key": "nvidia-is-investigating-jensen-huangs-relationship",
+      "text_fb": "Jensen Huang vừa thừa nhận sai lầm cá nhân sau khi hội đồng quản trị Nvidia công bố mở cuộc điều tra độc lập liên quan đến nghi vấn tình báo. Sự việc này không đơn thuần là một tin tức giật gân. Nó phơi bày thực tế tàn khốc của cuộc đua AI hiện tại.\n\nNgười ta thường đầu tư hàng triệu đô vào hạ tầng máy chủ, cài đặt đủ loại giải pháp mã hóa dữ liệu. Nhưng họ quên một thực tế: mắt xích yếu nhất trong hệ thống bảo mật luôn là con người. Khi các dòng chip xử lý của Nvidia trở thành tài sản chiến lược an ninh, bất kỳ ai nắm giữ thông tin quan trọng đều có thể trở thành mục tiêu khai thác.\n\nNếu bạn đang xây dựng sản phẩm AI hoặc quản lý dữ liệu doanh nghiệp, đây là lời cảnh tỉnh trực diện. Bạn có thể sở hữu công nghệ tiên tiến nhất, nhưng chỉ cần một sơ hở trong kiểm soát truy cập và mối quan hệ đối tác, toàn bộ lợi thế cạnh tranh sẽ biến mất. Đừng chỉ tập trung bảo vệ mã nguồn, hãy bảo vệ chính quy trình làm việc của bạn.\n\nNvidia tuyên bố chưa thấy bằng chứng dữ liệu bị rò rỉ, nhưng thái độ quyết liệt của hội đồng quản trị cho thấy mức độ nghiêm trọng của vấn đề. Cuộc chiến AI toàn cầu đã vượt qua giới hạn của thuật toán.\n\nBạn đánh giá thế nào về bài học bảo mật từ sự cố này của Nvidia?\n\nNguồn: The Verge AI",
+      "text_ig": "Jensen Huang bị Nvidia điều tra độc lập sau nghi vấn tình báo. Bài học lớn: con người luôn là mắt xích bảo mật yếu nhất trong cuộc đua AI. Bạn đã bảo vệ dữ liệu dự án của mình an toàn chưa?",
+      "hashtags": [
+        "#Nvidia",
+        "#JensenHuang",
+        "#AI",
+        "#BaoMatAI",
+        "#TinTucAI",
+        "#CongNghe",
+        "#TriTueNhanTao",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-09/morning/01.jpg",
+        "assets/posts/2026-11-09/morning/02.jpg",
+        "assets/posts/2026-11-09/morning/03.jpg",
+        "assets/posts/2026-11-09/morning/04.jpg",
+        "assets/posts/2026-11-09/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/morning/05.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQaHdZZkpucG9aOVF5R2JPeHljWV85XzlhbUxnbUREYWlKQzBiR1UzeWxwaF9EMnpDajI1aXlmMlo0aENzeGdyRzJDSEtJR0xVanhFSkN3bXE0R1FYV2VWZHdIV1A1MmFlczN4VnRZcVZ5QV9xdUlxZXVlZVl3eHRqVWxsVmE1dktHZzdnelB0ZjUwejJj?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2310336/nvidia-is-investigating-reports-that-ceo-jensen-huang-was-the-target-of-chinese-spy-efforts/"
+        },
+        {
+          "name": "NBC News",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSEhrUnZGa3lEQ2lQMHhzWVJrdkVIcF9ZVnEtcjdiUFhNMEFLWk9SRTNwbVNNNmhSc3lGdTRkY09OVVhpOTNPajFZM1BrcmxJYS0xMHZ4eTN1bG0wS0ZVOW9CVEtDU3dfaU9URUZoUXl2QWw4VzRsekZKVl9WcmVHNWFPZDhXY3ZHRWE2bXZBaUY?oc=5"
+        },
+        {
+          "name": "Al Jazeera",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQM2c5MDNuN29vR3VHTlVkZ1QyNXd4RWRmLWx1V2VXalh3MzhaWDBIQTF1VnlBTm4yQXpIbDNXUWtnQ2RDYXJ5eUZEdVhkdmR2YkRBYUFaQmlMaDdFTC1FVjdlU290aFZheDJwUmZoNFVIUC1uRUF1WF9XclVGZVFwVm5MWm5SRnZtOVZMLVNBSGUwZ1RHMlB5QjNYYW5zMFVqeDFiR9IBqgFBVV95cUxOMDJtdWpZYVVFTlNxWEdQWlYyR1l6eVlqNGpmSlBnQUZkWDFERVQycEo1WlV5UFZIcWJVODRfZDN4Vlh4NzNjUG1QX1lQSnFRUEdMRWVZWkhCeUdicDhpbGF4VTNCRk5RZFlvUmF0TEszaXo3U1Y4bVV5M21Cbl9OQ19FeEpwa0d0QVF2cktNVWFzRW9tbUVWM1g5cUljOG9JN3pYZjRuajh4Zw?oc=5"
+        }
+      ],
+      "angle": "tin-nong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy",
+        "extra_sources": [
+          {
+            "name": "TechCrunch AI",
+            "url": "https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/"
+          },
+          {
+            "name": "The New York Times",
+            "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQaHdZZkpucG9aOVF5R2JPeHljWV85XzlhbUxnbUREYWlKQzBiR1UzeWxwaF9EMnpDajI1aXlmMlo0aENzeGdyRzJDSEtJR0xVanhFSkN3bXE0R1FYV2VWZHdIV1A1MmFlczN4VnRZcVZ5QV9xdUlxZXVlZVl3eHRqVWxsVmE1dktHZzdnelB0ZjUwejJj?oc=5"
+          },
+          {
+            "name": "Engadget",
+            "url": "https://www.engadget.com/2310336/nvidia-is-investigating-reports-that-ceo-jensen-huang-was-the-target-of-chinese-spy-efforts/"
+          },
+          {
+            "name": "NBC News",
+            "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQSEhrUnZGa3lEQ2lQMHhzWVJrdkVIcF9ZVnEtcjdiUFhNMEFLWk9SRTNwbVNNNmhSc3lGdTRkY09OVVhpOTNPajFZM1BrcmxJYS0xMHZ4eTN1bG0wS0ZVOW9CVEtDU3dfaU9URUZoUXl2QWw4VzRsekZKVl9WcmVHNWFPZDhXY3ZHRWE2bXZBaUY?oc=5"
+          },
+          {
+            "name": "Al Jazeera",
+            "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQM2c5MDNuN29vR3VHTlVkZ1QyNXd4RWRmLWx1V2VXalh3MzhaWDBIQTF1VnlBTm4yQXpIbDNXUWtnQ2RDYXJ5eUZEdVhkdmR2YkRBYUFaQmlMaDdFTC1FVjdlU290aFZheDJwUmZoNFVIUC1uRUF1WF9XclVGZVFwVm5MWm5SRnZtOVZMLVNBSGUwZ1RHMlB5QjNYYW5zMFVqeDFiR9IBqgFBVV95cUxOMDJtdWpZYVVFTlNxWEdQWlYyR1l6eVlqNGpmSlBnQUZkWDFERVQycEo1WlV5UFZIcWJVODRfZDN4Vlh4NzNjUG1QX1lQSnFRUEdMRWVZWkhCeUdicDhpbGF4VTNCRk5RZFlvUmF0TEszaXo3U1Y4bVV5M21Cbl9OQ19FeEpwa0d0QVF2cktNVWFzRW9tbUVWM1g5cUljOG9JN3pYZjRuajh4Zw?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "CEO Nvidia Jensen Huang Bị Điều Tra Vì Nghi Vấn Tình Báo",
+          "description": "Nvidia vừa chính thức lập ủy ban điều tra độc lập sau khi CEO Jensen Huang thừa nhận mối quan hệ cá nhân với một cựu lãnh đạo bị nghi là tình báo. Bài học đắt giá cho bất kỳ ai đang làm công nghệ: mắt xích yếu nhất luôn là con người. Theo dõi A Hít Official để cập nhật những phân tích sắc bén nhất về AI.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#JensenHuang",
+            "#Nvidia",
+            "#BaoMatAI",
+            "#CongNgheAI",
+            "#TinTucAI",
+            "#SuCoNvidia",
+            "#KinhDoanh"
+          ],
+          "keywords": [
+            "Jensen Huang",
+            "Nvidia",
+            "Alice Huang",
+            "Megaspeed",
+            "dieu tra Nvidia",
+            "tinh bao AI",
+            "bao mat cong nghe",
+            "cuoc dua AI"
+          ],
+          "tiktok_caption": "CEO Nvidia bị điều tra độc lập vì nghi vấn tình báo. Mắt xích yếu nhất luôn là con người! #AHitOfficial #JensenHuang #Nvidia #BaoMatAI #CongNghe"
+        },
+        "spoken_text": "Jensen Huang bị điều tra vì quan hệ với tình báo.\nHội đồng quản trị Nvidia vừa lập ủy ban độc lập.\nNhưng nguyên nhân đằng sau sẽ làm bạn giật mình.\nMình hứa tiết lộ bí mật nằm trong tờ bản ghi ở gần cuối video này.\nNgười ta nghĩ công nghệ đắt tiền sẽ bảo mật tuyệt đối.\nSai lầm hoàn toàn.\nĐối thủ không tấn công vào thuật toán mã hóa.\nHọ đánh thẳng vào mắt xích yếu nhất: con người.\nAlice Huang, lãnh đạo công ty chip Megaspeed.\nBộ An ninh Quốc gia Trung Quốc đã tiếp cận nhân vật này.\nMục tiêu: khai thác CEO Nvidia.\nMegaspeed còn bị Mỹ điều tra vì nghi vấn buôn lậu chip.\nBạn chi hàng triệu đô xây dựng hệ thống.\nNhưng chỉ cần một mối quan hệ, mọi lợi thế tan thành mây khói.\nJensen Huang đã gửi bản ghi thừa nhận sai lầm cá nhân.\nÔng viết: Tôi đã không trung thành với vợ.\nKhông có phản bội nào lại không để lại vết hở.\nDù Nvidia nói chưa thấy dữ liệu bị lọt.\nNhưng việc mở điều tra độc lập cho thấy nguy cơ cực kỳ lớn.\nTrận chiến AI Mỹ - Trung không còn trên lý thuyết.\nNó diễn ra trong từng cuộc hẹn, từng tin nhắn riêng tư.\nCác công ty AI khác đã bắt đầu cảnh báo nhân viên.\nCoi chừng những cái bẫy tình cảm nhắm vào nhân sự chủ chốt.\nNếu bạn đang làm sản phẩm AI, hãy lắng nghe kỹ điều này.\nBạn có thể có code mạnh nhất.\nBạn có thể có hạ tầng máy chủ tốt nhất thị trường.\nNhưng nếu quy trình nhân sự thủng, bạn mất tất cả.\nBảo mật không phải là công cụ.\nBảo mật là kỷ luật cá nhân.\nBây giờ, hãy quay lại lời hứa đầu video.\nChi tiết kỳ lạ nhất trong bản ghi của Jensen Huang:\nÔng phải công khai gửi lời xin lỗi tới toàn bộ cổ đông và đối tác.\nMột sơ hở cá nhân buộc cả đế chế hàng ngàn tỷ đô phải trần mình giải trình.\nĐó là cái giá của việc để cảm xúc vượt qua kiểm soát.\nVà điều này ảnh hưởng trực tiếp tới niềm tin của thị trường.\nNhớ kỹ: Trong cuộc đua công nghệ,\nkẻ thông minh nhất chưa chắc là kẻ thắng.\nKẻ tỉnh táo nhất mới sống sót.\nQuay lại câu hỏi ban đầu:\nJensen Huang bị điều tra vì lỗ hổng an ninh hay cảm xúc?\nBạn tin vào quy trình bảo mật hay bản năng con người?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Jensen Huang bị điều tra",
+                "vì quan hệ với tình báo."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Jensen Huang Nvidia investigation The Verge"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hội đồng quản trị Nvidia",
+                "vừa lập ủy ban độc lập."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng nguyên nhân đằng sau",
+                "sẽ làm bạn giật mình."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mình hứa tiết lộ",
+                "bí mật nằm trong tờ bản ghi",
+                "ở gần cuối video này."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người ta nghĩ công nghệ đắt tiền",
+                "sẽ bảo mật tuyệt đối."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sai lầm hoàn toàn."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đối thủ không tấn công",
+                "vào thuật toán mã hóa."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Jensen Huang"
+                  },
+                  {
+                    "label": "Alice Huang"
+                  },
+                  {
+                    "label": "Megaspeed"
+                  }
+                ],
+                "unit": "",
+                "title": "Đối tượng bị theo dõi"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ đánh thẳng vào",
+                "mắt xích yếu nhất:",
+                "con người."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Alice Huang,",
+                "lãnh đạo công ty chip Megaspeed."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Alice Huang Megaspeed chip company"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bộ An ninh Quốc gia Trung Quốc",
+                "đã tiếp cận nhân vật này."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mục tiêu:",
+                "khai thác CEO Nvidia."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Megaspeed còn bị Mỹ điều tra",
+                "vì nghi vấn buôn lậu chip."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "HĐQT Nvidia"
+                  },
+                  {
+                    "label": "Bộ Thương mại Mỹ"
+                  },
+                  {
+                    "label": "Luật sư độc lập"
+                  }
+                ],
+                "unit": "",
+                "title": "Cơ quan tham gia điều tra"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chi hàng triệu đô",
+                "xây dựng hệ thống."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng chỉ cần một mối quan hệ,",
+                "mọi lợi thế tan thành mây khói."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Jensen Huang đã gửi bản ghi",
+                "thừa nhận sai lầm cá nhân."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ông viết:",
+                "Tôi đã không trung thành với vợ."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không có phản bội nào",
+                "lại không để lại vết hở."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "New York Times Jensen Huang Alice Huang"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dù Nvidia nói",
+                "chưa thấy dữ liệu bị lọt."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng việc mở điều tra độc lập",
+                "cho thấy nguy cơ cực kỳ lớn."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trận chiến AI Mỹ - Trung",
+                "không còn trên lý thuyết."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó diễn ra trong từng cuộc hẹn,",
+                "từng tin nhắn riêng tư."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các công ty AI khác",
+                "đã bắt đầu cảnh báo nhân viên."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Quan hệ tình cảm"
+                  },
+                  {
+                    "label": "Tiếp cận đối tác"
+                  },
+                  {
+                    "label": "Môi giới chip"
+                  }
+                ],
+                "unit": "",
+                "title": "Hình thức tiếp cận tình báo"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Coi chừng những cái bẫy tình cảm",
+                "nhắm vào nhân sự chủ chốt."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm sản phẩm AI,",
+                "hãy lắng nghe kỹ điều này."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn có thể có code mạnh nhất."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn có thể có hạ tầng máy chủ",
+                "tốt nhất thị trường."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng nếu quy trình nhân sự thủng,",
+                "bạn mất tất cả."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bảo mật không phải là công cụ."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bảo mật là kỷ luật cá nhân."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Mã nguồn"
+                  },
+                  {
+                    "label": "Quy trình nhân sự"
+                  },
+                  {
+                    "label": "Kỷ luật cá nhân"
+                  }
+                ],
+                "unit": "",
+                "title": "Ba trụ cột bảo mật thực tế"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bây giờ,",
+                "hãy quay lại lời hứa đầu video."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chi tiết kỳ lạ nhất",
+                "trong bản ghi của Jensen Huang:"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ông phải công khai gửi lời xin lỗi",
+                "tới toàn bộ cổ đông và đối tác."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một sơ hở cá nhân",
+                "buộc cả đế chế hàng ngàn tỷ đô",
+                "phải trần mình giải trình."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Jensen Huang apology memo Nvidia"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là cái giá của việc",
+                "để cảm xúc vượt qua kiểm soát."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và điều này ảnh hưởng trực tiếp",
+                "tới niềm tin của thị trường."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhớ kỹ:",
+                "Trong cuộc đua công nghệ,"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "kẻ thông minh nhất",
+                "chưa chắc là kẻ thắng."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kẻ tỉnh táo nhất mới sống sót."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Quay lại câu hỏi ban đầu:"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Jensen Huang bị điều tra",
+                "vì lỗ hổng an ninh hay cảm xúc?"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn tin vào quy trình bảo mật",
+                "hay bản năng con người?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cái Bẫy Mắt Xích Yếu",
+              "card_start": 0
+            },
+            {
+              "label": "Bức Thư Nhận Lỗi",
+              "card_start": 7
+            },
+            {
+              "label": "Cuộc Chiến Tình Báo AI",
+              "card_start": 14
+            },
+            {
+              "label": "Bài Học Cho Bạn",
+              "card_start": 23
+            },
+            {
+              "label": "Giải Mã Lời Hứa",
+              "card_start": 29
+            },
+            {
+              "label": "Lựa Chọn Chiến Lược",
+              "card_start": 35
+            }
+          ]
+        },
+        "script_path": "output/2026-11-09/2026-11-09-morning-nvidia-is-investigating-jensen-huangs-re/video/script.json",
+        "script_msg_id": 1126,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
