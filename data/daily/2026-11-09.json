@@ -841,7 +841,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Meta releases Muse Ember, a new lightweight model for agent execution",
       "style": "white-bar",
