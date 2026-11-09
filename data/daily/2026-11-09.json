@@ -839,6 +839,72 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Meta releases Muse Ember, a new lightweight model for agent execution",
+      "style": "white-bar",
+      "topic_key": "meta-releases-muse-ember-a-new-lightweight-model-f",
+      "text_fb": "Meta vừa đặt giá 10 cent cho một triệu token với mô hình Muse Ember. Đây không đơn thuần là một cuộc chiến dìm giá, mà là lời cảnh tỉnh cho tất cả những ai đang xây dựng hệ thống AI Agent.\n\nNếu bạn vẫn đang dùng một mô hình AI đắt đỏ để gánh toàn bộ quy trình, từ lập kế hoạch cho đến đọc từng dòng file PDF, bạn đang đốt tiền. Mô hình lớn rất thông minh, nhưng dùng nó cho những tác vụ lặp đi lặp lại hàng nghìn lần mỗi ngày là tư duy vận hành sai lầm.\n\nMeta chứng minh hướng đi mới qua cặp đôi Wonder và Ember. Muse Wonder đóng vai trò bộ não lập chiến lược, còn Muse Ember đảm nhận khâu thực thi khối lượng lớn. Với giá 10 cent mỗi triệu token, Ember rẻ hơn hẳn Haiku hay Luna, đồng thời xử lý mượt mà cả văn bản, hình ảnh lẫn âm thanh.\n\nBài học ở đây rất rõ ràng. Đừng đi tìm một AI vạn năng giải quyết mọi việc. Hãy chia nhỏ quy trình, giao việc khó cho mô hình thông minh và đẩy việc tay chân cho mô hình siêu rẻ. Những người tối ưu được chi phí vận hành mới là những người trụ lại cuối cùng trong cuộc chơi này.\n\nHệ thống AI của bạn đã được tối ưu kiến trúc chia vai chưa, hay bạn vẫn đang trả tiền đắt đỏ cho những tác vụ đơn giản?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Meta tung Muse Ember với giá 10 cent 1 triệu token. Bài học rõ ràng: dừng dùng mô hình đắt đỏ làm việc tay chân. Hãy chia vai hệ thống AI ngay nếu không muốn đốt tiền. Bạn đã tối ưu chi phí agent chưa?",
+      "hashtags": [
+        "#Meta",
+        "#MuseEmber",
+        "#AIAgent",
+        "#ArtificialIntelligence",
+        "#TechTrends",
+        "#CostOptimization",
+        "#OpenAI",
+        "#Anthropic",
+        "#DeepSeek",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-09/evening/01.jpg",
+        "assets/posts/2026-11-09/evening/02.jpg",
+        "assets/posts/2026-11-09/evening/03.jpg",
+        "assets/posts/2026-11-09/evening/04.jpg",
+        "assets/posts/2026-11-09/evening/05.jpg",
+        "assets/posts/2026-11-09/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-09/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNaXRwOW9rQ1ljTFVFZ1I0eEVvYmJ4ei1waUR1X2ZBcWNwS0VSSWN3eHpXTi1NOHpLelVwdTM0OGlyUUdnUjA1M2w0T19aaGRKN1J1a21VX0tFYnlYRC13bWZwQWxWcHNqTXBIMFdHR21icFdzYVQ1MENmSXMwREFQVmpLcGVmeS1NcXJTclVYT0ZYZVREeUZmQ0U4eXVqbkF3WUtDN1JR?oc=5"
+        },
+        {
+          "name": "The Decoder",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOUWp4eXdBcTNCbmdnSzF3S2xuYnVnMkxkWmltMVpoNldWR01kVFgxc2gyRzdzNS1mM1ZleHN1em5LZm1DRHJnYVJxRlB6NDdyWFU3bkkyV0Rwc2pMUkV5eTZ0SVFGX0Y0Ukp6QmM3M0llNmpjaTZqZl9jU2hkUC1GWUxlNVk1bTVKTjlOcl9QWnJlUmNkZi1ud2tmVE1WUFlSaVNCaFUwMkN0ZEdZSVAyNVVlNHB6dw?oc=5"
+        },
+        {
+          "name": "marketscreener.com",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNQ1hPbVRFWTJ3Wjc2UU56RWNONURfQ0l5MXMxblI2dlE0WHhWWERVbHMtYmJrUW5qd2RsbWZ1WWtFR3VJcFROSVFtV0RHVVZJQWxVU3FzMWZ1cElFVkp0MVdGa0Jtc2tvWjIyalNVVGQ3Z1RjX1FIMHJHZVFQcnJXRlVDX25NU3BoWlRBVk1Ja0huVzM2dDVsU0tmaDVvLVA0UEhzV1picTFqRHk2emlTTTJmdjIyN3pu?oc=5"
+        },
+        {
+          "name": "Pasquale Pillitteri",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxON0I3b3lFaHBmd0xoR3ZwcWstODV0RG1hM0d1YUNjWHgtWWs5ODJMdUE3QmY4ZVp3RGFRb3h5N2FJaHhyYnBHWUlERHhnS2g4WHg5WjF1bG54cUpVVHA5bWdVbHlqNkxibS0yRWJGZkJDdS1LLVNocnB3NnVMbERlZXpIU2RGRVlTZVdZ?oc=5"
+        },
+        {
+          "name": "TradingView",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOWXhhTGlJYm82TXlDWTV0SWRKYm5UX1o1ZU5nbW5acy10WFkxdmFvYS02eEF3TDN5VVp0VmNPZ3dBYXJHR1VkQ0l0MjNtLWxPLTczakliNm0tdldyeXJKdmVnV2FhWk1HR0VrbUROa2djVU5jNHNiaUkyUmROZVZrSWhvLWNPOXdPbTlhY0c2UHZiX1RMTVJxYWNMeWtWUFNYMm5N?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
     }
   }
 }
