@@ -831,6 +831,49 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Cú dịch chuyển từ chatbot trả lời sang agent tự làm — nghĩa là gì với bạn",
+      "style": "warm-bar",
+      "topic_key": "cu-dich-chuyen-tu-chatbot-tra-loi-sang-agent-tu-la",
+      "text_fb": "Trước đây bạn hỏi AI một câu, AI trả lời, bạn tự làm phần còn lại. Giờ thứ tự đó đảo ngược. AI nhận một mục tiêu, tự chia việc, tự chạy từng bước, tự sửa khi sai — và chỉ quay lại hỏi bạn khi thực sự bí. Đó là cú dịch chuyển từ chatbot sang agent, và nó không phải chuyện công nghệ suông, nó đổi luôn cách bạn kiếm tiền từ AI.\n\nKỹ năng từng được coi là lợi thế — hỏi đúng câu, viết prompt khéo — đang mất giá nhanh. Khi agent tự lập kế hoạch, tự chọn công cụ, tự kiểm tra lại kết quả, việc bạn hỏi hay đến đâu không còn quyết định nhiều nữa. Cái quyết định là bạn giao việc có rõ không, bạn đặt giới hạn ở đâu, và bạn biết dừng nó lại lúc nào trước khi nó đi sai hướng cả chục bước.\n\nMình tin kỹ năng kiếm tiền online sắp tới không nằm ở việc trò chuyện với AI giỏi hơn người khác. Nó nằm ở khả năng thiết kế một quy trình: chia nhỏ mục tiêu thành việc agent làm được, gắn checkpoint để kiểm tra giữa đường, và đọc được kết quả đủ nhanh để biết lúc nào cần can thiệp. Người ngồi chat qua lại cả chục lượt với AI đang làm công việc của mười năm trước. Người thắng bây giờ giao một việc, đi làm việc khác, rồi quay lại nghiệm thu.\n\nNếu bạn vẫn đang luyện cách hỏi AI cho hay, có thể bạn đang luyện nhầm kỹ năng. Câu hỏi không còn là vũ khí chính. Khả năng giao việc và giám sát mới là thứ phân biệt người kiếm được tiền với người vẫn ngồi chat cho vui.\n\nBạn đang dùng AI để trả lời câu hỏi, hay đã bắt đầu giao việc cho nó tự làm?",
+      "text_ig": "Chatbot trả lời câu hỏi. Agent tự làm cả việc. Hỏi hay không còn là lợi thế — biết giao việc, đặt giới hạn, biết lúc nào can thiệp mới là kỹ năng kiếm tiền mới. Bạn đang hỏi AI, hay đã giao việc cho nó?",
+      "hashtags": [
+        "#AI",
+        "#AgentAI",
+        "#AIAgent",
+        "#TuDongHoa",
+        "#XuHuongAI",
+        "#KiemTienOnline",
+        "#KyNangAI",
+        "#AHitOfficial",
+        "#TuongLaiCongViec",
+        "#ChuyenDoiSo",
+        "#NangSuatLamViec",
+        "#CongNgheAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-10/evening/01.jpg",
+        "assets/posts/2026-11-10/evening/02.jpg",
+        "assets/posts/2026-11-10/evening/03.jpg",
+        "assets/posts/2026-11-10/evening/04.jpg",
+        "assets/posts/2026-11-10/evening/05.jpg",
+        "assets/posts/2026-11-10/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong"
     }
   }
 }
