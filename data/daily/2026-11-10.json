@@ -1,0 +1,836 @@
+{
+  "date": "2026-11-10",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Anthropic launches new Claude Fable and Mythos 5.2 models",
+      "style": "navy-bar",
+      "topic_key": "anthropic-launches-new-claude-fable-and-mythos-5-2",
+      "text_fb": "Claude Fable 5.2 vừa formalize xong chứng minh định lý Fermat chỉ trong 30 giờ.\n\nThông tin này theo The Verge không phải để bạn trầm trồ rồi bỏ qua. Nó là đòn cảnh tỉnh cho bất kỳ ai vẫn đang nghĩ AI chỉ quanh quẩn ở việc gọt dũa văn bản hay viết vài đoạn mã cơ bản.\n\nSố đông vẫn loay hoay dùng AI như một cuốn từ điển sống. Trong khi đó, các mô hình thế hệ mới như Claude Fable 5.2 và Mythos 5.2 đã bắt đầu tự thiết kế 3 thiết bị điện tử từ con số 0, giải bài toán vật lý lỗ đen và tự điều phối cả một đội ngũ agent làm việc liên tục.\n\nKhoảng cách giữa người biết khai thác AI và người xài nông sẽ ngày càng dãn rộng. Nếu bạn đang làm trong ngành phần mềm hay kỹ thuật, bài học rất rõ ràng: ngừng cạnh tranh với AI ở những tác vụ thủ công. Thứ quyết định giá trị của bạn trong những năm tới không phải là khả năng gõ code nhanh, mà là năng lực đóng gói bài toán phức tạp để AI tự thực thi.\n\nNgười làm chủ sẽ coi AI là một trung đội kỹ sư làm việc không ngủ. Kẻ đứng ngoài sẽ tiếp tục coi nó là mối đe dọa.\n\nBạn sẽ chọn nâng cấp tư duy làm việc ngay hôm nay, hay đợi đến khi công việc của mình bị máy móc thay thế hoàn toàn?\n\nNguồn: The Verge AI",
+      "text_ig": "Claude Fable 5.2 giải xong định lý Fermat trong 30 giờ. Đã đến lúc ngừng dùng AI như máy gõ phím và chuyển sang tư duy điều phối agent. Bạn đã sẵn sàng nâng cấp quy trình làm việc chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#Claude",
+        "#Anthropic",
+        "#ClaudeFable",
+        "#AgenticAI",
+        "#CongNghe",
+        "#LapTrinhAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-10/morning/01.jpg",
+        "assets/posts/2026-11-10/morning/02.jpg",
+        "assets/posts/2026-11-10/morning/03.jpg",
+        "assets/posts/2026-11-10/morning/04.jpg",
+        "assets/posts/2026-11-10/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-10/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2"
+        },
+        {
+          "name": "CNET",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPclhvZzYxckdzRVZ2dzNHMUZoSHd3RllabVFSSUxJUWRZRE5yaDNRQUFITi1hdG9lQ2RvamFJWERCQ3JIMllOcmxNZVJGSFNuQkROSlRPQm9TNDVMQldGZktKLXlmdXMxSHloOFllWXo5Unh1LWgzLUx3Q2g5ZnkydlRvRmpqRmliQ3VVdUlubw?oc=5"
+        },
+        {
+          "name": "Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQOFg1SmFWcklYcDZpenRJaXU0N0hoY2R1dTQzR0FaV204NUc2WExuLVFJUnBEVzZ5UzlCR1ZYUzQ0c19sRjAzeUZ0cUwwQ3lVY1ZPbF9JZjdRS1Fna05sZHNVUXZ1NG1iaVQ1ejMzSDZpYWhrYXQySVBDdUFDMklwRjhpWjRoNHdpLXFhTzc2ZTloVmtRR0FlU29NM2FFNWwtaXhWS1BmZm1XMzEta19aT0c2UnhBLVdyS19hYkFR?oc=5"
+        },
+        {
+          "name": "Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxORUxtR3VZQVJjcnhWLW1rb3RBdG1vMlFJRlpGeG9iTmdtZ0RrVTBDRkJITUQtM3FjZkhrZHQtb3J4cGNsLUs0SllMR05JcENTWFVOZjJLUUM0c0k2aXlhZGJKNFdnUFd2ZUVtcmp3WWdudFhpWG41by11a3lDZWI1b3Z1VHppTzBteEt4amNJeXc0Y0diSkxnMUdGeVVwNXQ2Y3RUeC1qS3V6cU04eUJtUUg2WHBPVk5pWXB5Vlp1YktpOWxY?oc=5"
+        },
+        {
+          "name": "Fortune",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNZXh5WWJvWmxMbkZBakNhNWhkR3R2YnFvS2Uwc3JuOFlPOGh0aU1mbWZXZEJJU0xuRDZ2TW1nLXdyMWxnWllFcnRnRGlHWDJBdWUxdHJaR1NIZDc5Y0djdEliTUhGTDlxazlFbER1cmZyTk9udlJ1eHJxRHo1cmlKV2QtMW0yVTFaVk55dFJJVE9DRVYyM21nMXl0eEVzVEVxR1lVVGJWb2lzNDl1MmJONWVsc2ZET2VST3dEUUxGQWdIeFFkQjB6TnlKY0M5WmFqck80Q1VaSHQ?oc=5"
+        },
+        {
+          "name": "Firstpost",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNXzZ2UXhiQzZrVUpqV0NvSmNyWl9sSldQTXBndGVfV08wWG93R0JPYl9GdGQ1U3Z3YWdPSWdaelRMRW9rWlJPTGYzM1N6ZEVFQTVQNGltUzhob3J2Rm9WQ0cwV3FkQlhGREJNcGhRaWRoNXo4SUNxYmdMVE14RmJvdEFxcEhkcG52VVhUa0o5NnFBdko5Q2h2QldZSGc1cVNfV3l4eVlvU2J2Snl5ekxjWkViS29OUGJFbm9QTHVJMl93NGxBZTZRVVprYkQ1d9IB0wFBVV95cUxQdUdiLURtWmRlT1VDR2piN1V1NkxicDRiUHpMRkIwUEdqTXhFTjkwWUtQWlVxQ3NHaGtua1hWY2I5MkRiNFEzZDVkVUpOSlF0SnBQTFpKUG1wYmRYQ3lLNU9nNTYzVnZtSGZtSG5ldWxFWnJaLW1vanpTOFdpSW10YWJsenBaZEFUZ0pQWTVIa0VZdWQ0WFNMYk9Sai1NM1BBRVl0aE53aGhuMmQtN2lMMUtMTnRxbmRfOGZnQjkwSnlGQWl6V0NoS1E4aC1BX20xaEsw?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2",
+        "extra_sources": [
+          {
+            "name": "CNET",
+            "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPclhvZzYxckdzRVZ2dzNHMUZoSHd3RllabVFSSUxJUWRZRE5yaDNRQUFITi1hdG9lQ2RvamFJWERCQ3JIMllOcmxNZVJGSFNuQkROSlRPQm9TNDVMQldGZktKLXlmdXMxSHloOFllWXo5Unh1LWgzLUx3Q2g5ZnkydlRvRmpqRmliQ3VVdUlubw?oc=5"
+          },
+          {
+            "name": "Investing.com",
+            "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQOFg1SmFWcklYcDZpenRJaXU0N0hoY2R1dTQzR0FaV204NUc2WExuLVFJUnBEVzZ5UzlCR1ZYUzQ0c19sRjAzeUZ0cUwwQ3lVY1ZPbF9JZjdRS1Fna05sZHNVUXZ1NG1iaVQ1ejMzSDZpYWhrYXQySVBDdUFDMklwRjhpWjRoNHdpLXFhTzc2ZTloVmtRR0FlU29NM2FFNWwtaXhWS1BmZm1XMzEta19aT0c2UnhBLVdyS19hYkFR?oc=5"
+          },
+          {
+            "name": "Yahoo Finance",
+            "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxORUxtR3VZQVJjcnhWLW1rb3RBdG1vMlFJRlpGeG9iTmdtZ0RrVTBDRkJITUQtM3FjZkhrZHQtb3J4cGNsLUs0SllMR05JcENTWFVOZjJLUUM0c0k2aXlhZGJKNFdnUFd2ZUVtcmp3WWdudFhpWG41by11a3lDZWI1b3Z1VHppTzBteEt4amNJeXc0Y0diSkxnMUdGeVVwNXQ2Y3RUeC1qS3V6cU04eUJtUUg2WHBPVk5pWXB5Vlp1YktpOWxY?oc=5"
+          },
+          {
+            "name": "Fortune",
+            "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNZXh5WWJvWmxMbkZBakNhNWhkR3R2YnFvS2Uwc3JuOFlPOGh0aU1mbWZXZEJJU0xuRDZ2TW1nLXdyMWxnWllFcnRnRGlHWDJBdWUxdHJaR1NIZDc5Y0djdEliTUhGTDlxazlFbER1cmZyTk9udlJ1eHJxRHo1cmlKV2QtMW0yVTFaVk55dFJJVE9DRVYyM21nMXl0eEVzVEVxR1lVVGJWb2lzNDl1MmJONWVsc2ZET2VST3dEUUxGQWdIeFFkQjB6TnlKY0M5WmFqck80Q1VaSHQ?oc=5"
+          },
+          {
+            "name": "Firstpost",
+            "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNXzZ2UXhiQzZrVUpqV0NvSmNyWl9sSldQTXBndGVfV08wWG93R0JPYl9GdGQ1U3Z3YWdPSWdaelRMRW9rWlJPTGYzM1N6ZEVFQTVQNGltUzhob3J2Rm9WQ0cwV3FkQlhGREJNcGhRaWRoNXo4SUNxYmdMVE14RmJvdEFxcEhkcG52VVhUa0o5NnFBdko5Q2h2QldZSGc1cVNfV3l4eVlvU2J2Snl5ekxjWkViS29OUGJFbm9QTHVJMl93NGxBZTZRVVprYkQ1d9IB0wFBVV95cUxQdUdiLURtWmRlT1VDR2piN1V1NkxicDRiUHpMRkIwUEdqTXhFTjkwWUtQWlVxQ3NHaGtua1hWY2I5MkRiNFEzZDVkVUpOSlF0SnBQTFpKUG1wYmRYQ3lLNU9nNTYzVnZtSGZtSG5ldWxFWnJaLW1vanpTOFdpSW10YWJsenBaZEFUZ0pQWTVIa0VZdWQ0WFNMYk9Sai1NM1BBRVl0aE53aGhuMmQtN2lMMUtMTnRxbmRfOGZnQjkwSnlGQWl6V0NoS1E4aC1BX20xaEsw?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "Claude Fable 5.2 Giải Định Lý Fermat Trong 30 Giờ: Kỷ Nguyên Mới?",
+          "description": "Anthropic vừa tung ra hai mô hình Claude Fable 5.2 và Mythos 5.2 với khả năng lập trình, tư duy vượt trội. AI không chỉ viết mã mà đã tự giải toán lý thuyết, thiết kế thiết bị điện tử từ con số 0. Hãy nâng cấp tư duy làm chủ AI ngay hôm nay.\n\nTheo dõi kênh A Hít Official để cập nhật những tư duy và công nghệ AI mới nhất!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#ClaudeFable52",
+            "#Anthropic",
+            "#ClaudeMythos",
+            "#CongNgheAI",
+            "#LapTrinhAI",
+            "#KinhNghiemAI",
+            "#TriTueNhanTao",
+            "#ThuThuatAI"
+          ],
+          "keywords": [
+            "Claude Fable 5.2",
+            "Claude Mythos 5.2",
+            "Anthropic",
+            "AI lập trình",
+            "Agentic AI",
+            "định lý Fermat AI",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "Claude Fable 5.2 giải xong định lý Fermat chỉ trong 30 giờ! Bạn chọn điều phối AI hay để nó thay thế? #AHitOfficial #Claude52 #Anthropic #AI"
+        },
+        "spoken_text": "Claude Fable 5.2 vừa giải xong chứng minh định lý Fermat chỉ trong 30 giờ.\nMột bài toán làm đau đầu các nhà toán học suốt nhiều thế kỷ.\nCuối video này mình sẽ tiết lộ lý do Mythos 5.2 bị giấu kín.\nBạn vẫn nghĩ AI chỉ để viết văn bản hay gọt dũa email?\nHoặc hỗ trợ gõ vài dòng code cơ bản?\nTư duy đó đã hoàn toàn lỗi thời.\nTheo báo cáo từ The Verge Anthropic vừa công bố hai siêu mô hình mới.\nClaude Fable 5.2 và Claude Mythos 5.2.\nNâng cấp trực tiếp từ phiên bản 5.1 hồi tháng 9 năm nay.\nNhững con số thử nghiệm sẽ khiến bạn phải giật mình.\nTự thiết kế từ con số 0 3 thiết bị điện tử hoạt động hoàn hảo.\nGiải quyết trơn tru 2 bài toán vật lý lý thuyết về lỗ đen vũ trụ.\nSo sánh thời gian hoàn thành chứng minh toán học.\n90 giờ thử nghiệm cũ được rút ngắn xuống chỉ còn 30 giờ.\nKhông phải trò đùa. Đây là thực tế đang diễn ra.\nKhả năng mới vượt trội trên mọi mặt trận.\nKhông chỉ dừng lại ở việc viết mã.\nFable 5.2 có thể tự điều phối cả một đội ngũ agent.\nTự gánh vác các dự án phần mềm kéo dài và phức tạp.\nThực hiện những đợt chuyển đổi hệ thống tưởng như bất khả thi.\nNếu bạn đang làm kỹ sư hay phát triển phần mềm...\nBạn có thấy vị trí của mình đang bị đe dọa?\nNếu bạn vẫn cạnh tranh bằng tốc độ gõ code bạn sẽ thua chắc.\nAI không ngủ. AI không mệt mỏi. AI làm 30 giờ bằng bạn làm cả năm.\nGiá trị thực sự của bạn bây giờ nằm ở đâu?\nNó nằm ở khả năng đóng gói bài toán phức tạp cho AI xử lý.\nBiến AI thành một trung đội kỹ sư dưới quyền bạn.\nGiờ là lúc trả lời câu hỏi ở đầu video.\nVì sao Anthropic phát hành Fable 5.2 rộng rãi ngay hôm nay...\nNhưng Claude Mythos 5.2 lại bị khóa chặt?\nBởi vì Mythos 5.2 chỉ dành cho các tổ chức đã qua kiểm duyệt.\nKhi một mô hình AI có khả năng giải toán vũ trụ và tự thiết kế phần cứng...\nRủi ro an toàn là quá lớn.\nAnthropic buộc phải kiểm soát trước khi mọi thứ vượt tầm tay.\nThế giới đã thay đổi ngay trong hôm nay.\nKẻ đứng ngoài sẽ run sợ nhìn AI cướp mất việc.\nNgười làm chủ sẽ điều phối trung đội AI để bứt phá.\nHãy nhớ lại con số 30 giờ giải định lý Fermat.\nBạn sẽ chọn nâng cấp tư duy hay đợi bị máy móc thay thế?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Claude Fable 5.2 vừa giải xong",
+                "chứng minh định lý Fermat",
+                "chỉ trong 30 giờ."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 30,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một bài toán làm đau đầu",
+                "các nhà toán học",
+                "suốt nhiều thế kỷ."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cuối video này",
+                "mình sẽ tiết lộ lý do",
+                "Mythos 5.2 bị giấu kín."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": 52,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn vẫn nghĩ AI",
+                "chỉ để viết văn bản",
+                "hay gọt dũa email?"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hoặc hỗ trợ gõ",
+                "vài dòng code cơ bản?"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tư duy đó",
+                "đã hoàn toàn lỗi thời."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Theo báo cáo từ The Verge",
+                "Anthropic vừa công bố",
+                "hai siêu mô hình mới."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "The Verge Anthropic Claude Fable Mythos 5.2"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Claude Fable 5.2",
+                "và Claude Mythos 5.2."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 52,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nâng cấp trực tiếp",
+                "từ phiên bản 5.1",
+                "hồi tháng 9 năm nay."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": 51,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Những con số thử nghiệm",
+                "sẽ khiến bạn phải giật mình."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Thiết bị điện tử thiết kế",
+                    "value": 3
+                  },
+                  {
+                    "label": "Bài toán vật lý lỗ đen",
+                    "value": 2
+                  }
+                ],
+                "unit": "",
+                "title": "Thành tựu thử nghiệm Fable 5.2"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tự thiết kế từ con số 0",
+                "3 thiết bị điện tử",
+                "hoạt động hoàn hảo."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": 0,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giải quyết trơn tru",
+                "2 bài toán vật lý lý thuyết",
+                "về lỗ đen vũ trụ."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": 2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "So sánh thời gian",
+                "hoàn thành chứng minh toán học."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Thử nghiệm cũ",
+                    "value": 90
+                  },
+                  {
+                    "label": "Fable 5.2",
+                    "value": 30
+                  }
+                ],
+                "unit": "",
+                "title": "Thời gian hoàn thành (Giờ)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "90 giờ thử nghiệm cũ",
+                "được rút ngắn xuống",
+                "chỉ còn 30 giờ."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": 90,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không phải trò đùa.",
+                "Đây là thực tế",
+                "đang diễn ra."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khả năng mới vượt trội",
+                "trên mọi mặt trận."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Coding"
+                  },
+                  {
+                    "label": "Reasoning"
+                  },
+                  {
+                    "label": "Vision"
+                  }
+                ],
+                "unit": "",
+                "title": "Trọng tâm nâng cấp mô hình 5.2"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không chỉ dừng lại",
+                "ở việc viết mã."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Fable 5.2 có thể",
+                "tự điều phối",
+                "cả một đội ngũ agent."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": 52,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tự gánh vác",
+                "các dự án phần mềm",
+                "kéo dài và phức tạp."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Anthropic Claude agent teams software engineering"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thực hiện những đợt",
+                "chuyển đổi hệ thống",
+                "tưởng như bất khả thi."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm kỹ sư",
+                "hay phát triển phần mềm..."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn có thấy",
+                "vị trí của mình",
+                "đang bị đe dọa?"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn cạnh tranh",
+                "bằng tốc độ gõ code",
+                "bạn sẽ thua chắc."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI không ngủ.",
+                "AI không mệt mỏi.",
+                "AI làm 30 giờ",
+                "bằng bạn làm cả năm."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": 30,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giá trị thực sự của bạn",
+                "bây giờ nằm ở đâu?"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "AI: Thực thi thủ công (%)",
+                    "value": 80
+                  },
+                  {
+                    "label": "Bạn: Đóng gói bài toán (%)",
+                    "value": 20
+                  }
+                ],
+                "unit": "",
+                "title": "Phân bổ vai trò công việc"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó nằm ở khả năng",
+                "đóng gói bài toán phức tạp",
+                "cho AI xử lý."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Biến AI thành",
+                "một trung đội kỹ sư",
+                "dưới quyền bạn."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giờ là lúc trả lời",
+                "câu hỏi ở đầu video."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vì sao Anthropic phát hành",
+                "Fable 5.2 rộng rãi ngay hôm nay..."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": 52,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng Claude Mythos 5.2",
+                "lại bị khóa chặt?"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Claude Mythos 5.2 restricted access vetted organizations"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bởi vì Mythos 5.2",
+                "chỉ dành cho các tổ chức",
+                "đã qua kiểm duyệt."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": 52,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi một mô hình AI",
+                "có khả năng giải toán vũ trụ",
+                "và tự thiết kế phần cứng..."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Rủi ro an toàn",
+                "là quá lớn."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Anthropic buộc phải kiểm soát",
+                "trước khi mọi thứ",
+                "vượt tầm tay."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thế giới đã thay đổi",
+                "ngay trong hôm nay."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kẻ đứng ngoài",
+                "sẽ run sợ nhìn AI",
+                "cướp mất việc."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người làm chủ",
+                "sẽ điều phối trung đội AI",
+                "để bứt phá."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhớ lại con số 30 giờ",
+                "giải định lý Fermat."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": 30,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn sẽ chọn nâng cấp tư duy",
+                "hay đợi bị máy móc thay thế?"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Hook: Cú sốc 30 giờ",
+              "card_start": 0
+            },
+            {
+              "label": "Công bố từ Anthropic",
+              "card_start": 6
+            },
+            {
+              "label": "Sức mạnh thực chiến",
+              "card_start": 12
+            },
+            {
+              "label": "Đòn cảnh tỉnh cho kỹ sư",
+              "card_start": 20
+            },
+            {
+              "label": "Giải mã bí mật Mythos 5.2",
+              "card_start": 27
+            },
+            {
+              "label": "Lựa chọn của bạn",
+              "card_start": 34
+            }
+          ]
+        },
+        "script_path": "output/2026-11-10/2026-11-10-morning-anthropic-launches-new-claude-fable-and/video/script.json",
+        "script_msg_id": null,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
