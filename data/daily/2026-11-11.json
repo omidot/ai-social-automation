@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-11",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "PSI is trying to make a business out of AI-driven scientific discovery",
+      "style": "mono-bar",
+      "topic_key": "psi-is-trying-to-make-a-business-out-of-ai-driven-",
+      "text_fb": "David Turturean, một cử nhân MIT, vừa giải thành công bài toán giả thuyết Aaronson-Ambainis tồn tại 18 năm nhờ mô hình Fable 5.2 của Anthropic. Cậu ấy thẳng thắn thừa nhận đây có thể là bài báo khoa học cuối cùng mình viết. Trong vài tháng nữa, việc con người tự viết bài báo nghiên cứu sẽ trở nên hoàn toàn vô nghĩa.\n\nNếu bạn vẫn đang nghĩ AI chỉ là công cụ để viết email, tạo ảnh hay viết code linh tinh thì bạn đang tụt lại phía sau rất xa. Cuộc đua thực sự đang diễn ra ở cấp độ nghiên cứu khoa học đỉnh cao và khám phá tri thức mới.\n\nĐiều đáng nói là bài toán này OpenAI từng bỏ qua. Sự khác biệt của startup PSI không nằm ở việc sở hữu mô hình mạnh nhất, mà ở cách họ xây dựng hệ thống công cụ, hạ tầng mô phỏng và bộ nhớ xung quanh AI. Họ không thụ động đợi một siêu mô hình. Họ tự tạo ra môi trường để AI giải quyết các bài toán hóc chuẩn xác nhất.\n\nTừ lý thuyết đến thực tế luôn là một khoảng cách lớn. PSI đang thương mại hóa công nghệ bằng cách dùng AI tối ưu hóa hạ tầng trung tâm dữ liệu, rồi từ đó biến các phát minh vật lý lý thuyết thành thiết bị thực tế.\n\nBài học cho bạn rất rõ ràng. Đừng chỉ là người tiêu dùng AI thụ động. Người chiến thắng là người biết tự xây dựng hệ thống quy trình để bắt AI làm việc cho mình.\n\nBạn nghĩ sao về việc AI chuẩn bị thay thế hoàn toàn các nhà khoa học trong phòng lab?\n\nNguồn: TechCrunch AI",
+      "text_ig": "David Turturean dùng AI giải bài toán 18 năm và tuyên bố dừng viết báo khoa học. AI không chỉ dừng ở viết code, nó đang thay đổi cách tri thức loài người được tạo ra. Bạn đã sẵn sàng thích nghi chưa?",
+      "hashtags": [
+        "#AI",
+        "#ArtificialIntelligence",
+        "#Anthropic",
+        "#ScientificDiscovery",
+        "#TechTrends",
+        "#QuantumComputing",
+        "#AHiTOfficial",
+        "#FutureOfWork",
+        "#MachineLearning"
+      ],
+      "images": [
+        "assets/posts/2026-11-11/morning/01.jpg",
+        "assets/posts/2026-11-11/morning/02.jpg",
+        "assets/posts/2026-11-11/morning/03.jpg",
+        "assets/posts/2026-11-11/morning/04.jpg",
+        "assets/posts/2026-11-11/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/10/psi-is-trying-to-make-a-business-out-of-ai-driven-scientific-discovery/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOVW03NVdTZDBDd2tGMFpkV2ZlS3NzcTRWUl9uaDJIUkdGUmZEVUhjVVZWQXNFQTBPanBnb2hlOWFJLVBZSXNqV1hLQk53M2h4bGEzeEZWa2pCd0gzLUdaZlJYZ3JKT3pkOWVkZHNHUlA3T1dwQkVvMTlIMkpOanRyYU02ZDBkdWNXNEhNZjZZckhFaDR4cUlJM0lSdzFwYkhQc0syRkJoOXQ?oc=5"
+        },
+        {
+          "name": "Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOTnF2dW12YklrTEZrSU42S1l1V1ZYWnVLSXdrWTZjWklDSnBTV2hSaWtjNzk0LWZzWUNnTVI0TUoyUzJBOUl4cTV5dzlkRDlyaHUyZ0FtX1ZUVWhfTjZ2LWpXYThReV96NEpISGNfWDUycUdYODNBLXEzaTJlcS02cVBNNVJzbllVTHc?oc=5"
+        }
+      ],
+      "angle": "quan-diem"
+    }
+  }
+}
