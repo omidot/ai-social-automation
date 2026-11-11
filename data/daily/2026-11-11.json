@@ -51,6 +51,994 @@
         }
       ],
       "angle": "quan-diem"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Việt Nam xếp thứ 37 thế giới về năng lực cạnh tranh số và trí tuệ nhân tạo",
+      "style": "white-split",
+      "topic_key": "viet-nam-xep-thu-37-the-gioi-ve-nang-luc-canh-tran",
+      "text_fb": "Việt Nam vừa vươn lên vị trí thứ 37 thế giới về năng lực cạnh tranh số và trí tuệ nhân tạo theo báo Chính phủ. Đây là một bước tiến lớn trên bản đồ công nghệ toàn cầu.\n\nTuy nhiên, nhiều người đang nhầm lẫn giữa năng lực số của quốc gia và năng suất thực tế của chính mình. Xếp hạng tăng không có nghĩa là công việc của bạn tự nhiên an toàn hơn. Ngược lại, khi hạ tầng và chính sách số phát triển, tiêu chuẩn thị trường sẽ bị đẩy lên một tầm cao mới.\n\nTrước đây, biết dùng AI là một lợi thế cạnh tranh nhỏ. Bây giờ, đó là điều kiện tối thiểu để tồn tại. Một cá nhân làm chủ công cụ AI có thể hoàn thành công việc của cả một phòng ban truyền thống với thời gian chỉ bằng một nửa. Nếu bạn vẫn giữ thói quen làm việc thủ công, khoảng cách năng suất giữa bạn và phần còn lại sẽ bị nới rộng cực kỳ nhanh.\n\nĐừng chờ đợi công ty hay thị trường đào tạo cho bạn. Hãy tự mình tái cấu trúc lại quy trình làm việc ngay hôm nay. Hãy biến AI thành trợ lý đắc lực để giải phóng bản thân khỏi những tác vụ lặp lại, tập trung vào tư duy chiến lược và sáng tạo giá trị cốt lõi.\n\nBạn đã chuẩn bị gì để không bị bỏ lại phía sau trong đợt sóng chuyển đổi số này?\n\nNguồn: baochinhphu.vn",
+      "text_ig": "Việt Nam đứng thứ 37 thế giới về năng lực cạnh tranh số và AI. Hạ tầng quốc gia tăng tốc, tiêu chuẩn công việc sẽ tăng theo. Đừng làm việc thủ công nữa. Hãy biến AI thành lợi thế cạnh tranh ngay hôm nay. Bạn đã áp dụng AI vào công việc chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#TriTueNhanTao",
+        "#AI",
+        "#ChuyenDoiSo",
+        "#NangSuatCongViec",
+        "#CongNgheMoi",
+        "#KinhTeSo",
+        "#XuHuongAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-11/evening/01.jpg",
+        "assets/posts/2026-11-11/evening/02.jpg",
+        "assets/posts/2026-11-11/evening/03.jpg",
+        "assets/posts/2026-11-11/evening/04.jpg",
+        "assets/posts/2026-11-11/evening/05.jpg",
+        "assets/posts/2026-11-11/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-11/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "baochinhphu.vn",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOLWM1UzJWaFJvWWZPOWJzUkZHUjJpNXZxemlRWUVBVW4xcktKd0NkUTJwMGJSNFhNUkQ1ZHNMUHRGQzUwVWdlWTN0azZ5WW1QRXlheHNzYXRHRTBtaFJZNUg5V2F0QmVESHZwSF91Z094NVQwRk9iYW03YjJlTDhtX2pTMW5TakpjQXZwNFNOSTF0V2dQZkc3Sm83MGhrdHZhWnB0VklwNFFNT1hDRENKRVB0c3l4LURvaGZHeQ?oc=5"
+        },
+        {
+          "name": "VTV.vn",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOWE1PMml6elJidmJoWXkxUTNMZVkxY3B2SlRXR2dROTZYa05QY0gwU0x3WGdKYUYxaXVaTzYtYUFGQlhLYU1Dd3F5OExtMVhkWVlLTEVlMEpaZnd0MFJqZGVPQ09IQ3Q2WU96emFDS1F1cFc0UktDRjBnXzdRaW9DWndpazV0aERDTzZqMWxqTi05YVY1WWo2aDFvUWs1TzZxQTU3M3dLem1nTzBlenJXVHVB?oc=5"
+        },
+        {
+          "name": "Báo Nhân Dân điện tử",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQcURKMVowd005bUYyTWl4U2J2MXNBOWtsLVNtSjRzYUZkS2dOQUEtUEJ0M0t2N3lQYmVReDgyeEZqcnNlQjBHamZLWkpkZjBicnRQQ2hhanQ4bGtDWEhwMTZHU1ZzZERQWmVWanRFdEdIenpUVXpIR3hYVVZycXd4Mk1GbHI5Z1FUWF9HaEk2UzJQNnE1WGNnWUVGTC01WmVrRDl5NklacmxnV2QwcVFR?oc=5"
+        },
+        {
+          "name": "Báo Công Lý",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPNVBpSThOQldEMWhfRm85andZb1BZYnQ1bnlISG16VjZfOWdFSTBHNFMzeFpsdjFGVndqbTRaaVVXbVNWWmktd0hJLUJ2amtvZkdaTHFLdFRiSjRYNXFQYVpUSk52NmVWODBKR2NNWGxiTUxWaVBZcTRJTTVCRjNYNzVaWXJBR2kwcTBkV21QMEVIRE1CaVpOT1dQejFQWVcxSFlqVFpZQ2JtNEU?oc=5"
+        },
+        {
+          "name": "media.chinhphu.vn",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNOFdSamhQTEpvajVTSF9tVHlBRHVjcDBicXgxVUMzNDZ0THh5TjlTNWcxLTh2MVo5ZzBvZ2xBTEo0Tk5nZmJlUkJ0VVNhd3hFZmpLamJLSjJaY1VsMUFRcVFSRlppenE5NlAtVHVJMzhrb25xN3Bpb2ZmdkFaTE5MOVBiWF9ja2sxZXJmdm1ZZldGaHFCUmhMRHlPaVJQTlVMeGNheVVQdi1ubmZfeXducVJWc0ZjMTZoYzlSTHBNTUlMN25objRWRkR6dl9uUQ?oc=5"
+        },
+        {
+          "name": "Laodong.vn",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQU29wa0NDRU8wdG9tbm1pSTl6LXJNN1hVWjlscUFZaTIzbE03d3NwandPMHNoRFFPYkRmNmotb1JHSTBCalQ3R1JVem8yWXFmWnNHR3g3dTczUWdrOEZsek5BN2JfaUZWRUZKTFBZODNhX3k3dGxtekFGUGdFZUkxdDV2NFBYS203d2M5Y1JNQ21Xa2ExMWF2UFhlYVNjbVRGWThiUFhxVDZZZWxRWXR4OXZKU3JGQQ?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOLWM1UzJWaFJvWWZPOWJzUkZHUjJpNXZxemlRWUVBVW4xcktKd0NkUTJwMGJSNFhNUkQ1ZHNMUHRGQzUwVWdlWTN0azZ5WW1QRXlheHNzYXRHRTBtaFJZNUg5V2F0QmVESHZwSF91Z094NVQwRk9iYW03YjJlTDhtX2pTMW5TakpjQXZwNFNOSTF0V2dQZkc3Sm83MGhrdHZhWnB0VklwNFFNT1hDRENKRVB0c3l4LURvaGZHeQ?oc=5",
+        "extra_sources": [
+          {
+            "name": "VTV.vn",
+            "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOWE1PMml6elJidmJoWXkxUTNMZVkxY3B2SlRXR2dROTZYa05QY0gwU0x3WGdKYUYxaXVaTzYtYUFGQlhLYU1Dd3F5OExtMVhkWVlLTEVlMEpaZnd0MFJqZGVPQ09IQ3Q2WU96emFDS1F1cFc0UktDRjBnXzdRaW9DWndpazV0aERDTzZqMWxqTi05YVY1WWo2aDFvUWs1TzZxQTU3M3dLem1nTzBlenJXVHVB?oc=5"
+          },
+          {
+            "name": "Báo Nhân Dân điện tử",
+            "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQcURKMVowd005bUYyTWl4U2J2MXNBOWtsLVNtSjRzYUZkS2dOQUEtUEJ0M0t2N3lQYmVReDgyeEZqcnNlQjBHamZLWkpkZjBicnRQQ2hhanQ4bGtDWEhwMTZHU1ZzZERQWmVWanRFdEdIenpUVXpIR3hYVVZycXd4Mk1GbHI5Z1FUWF9HaEk2UzJQNnE1WGNnWUVGTC01WmVrRDl5NklacmxnV2QwcVFR?oc=5"
+          },
+          {
+            "name": "Báo Công Lý",
+            "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPNVBpSThOQldEMWhfRm85andZb1BZYnQ1bnlISG16VjZfOWdFSTBHNFMzeFpsdjFGVndqbTRaaVVXbVNWWmktd0hJLUJ2amtvZkdaTHFLdFRiSjRYNXFQYVpUSk52NmVWODBKR2NNWGxiTUxWaVBZcTRJTTVCRjNYNzVaWXJBR2kwcTBkV21QMEVIRE1CaVpOT1dQejFQWVcxSFlqVFpZQ2JtNEU?oc=5"
+          },
+          {
+            "name": "media.chinhphu.vn",
+            "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNOFdSamhQTEpvajVTSF9tVHlBRHVjcDBicXgxVUMzNDZ0THh5TjlTNWcxLTh2MVo5ZzBvZ2xBTEo0Tk5nZmJlUkJ0VVNhd3hFZmpLamJLSjJaY1VsMUFRcVFSRlppenE5NlAtVHVJMzhrb25xN3Bpb2ZmdkFaTE5MOVBiWF9ja2sxZXJmdm1ZZldGaHFCUmhMRHlPaVJQTlVMeGNheVVQdi1ubmZfeXducVJWc0ZjMTZoYzlSTHBNTUlMN25objRWRkR6dl9uUQ?oc=5"
+          },
+          {
+            "name": "Laodong.vn",
+            "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQU29wa0NDRU8wdG9tbm1pSTl6LXJNN1hVWjlscUFZaTIzbE03d3NwandPMHNoRFFPYkRmNmotb1JHSTBCalQ3R1JVem8yWXFmWnNHR3g3dTczUWdrOEZsek5BN2JfaUZWRUZKTFBZODNhX3k3dGxtekFGUGdFZUkxdDV2NFBYS203d2M5Y1JNQ21Xa2ExMWF2UFhlYVNjbVRGWThiUFhxVDZZZWxRWXR4OXZKU3JGQQ?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "Việt Nam vươn lên vị trí 37 về AI: Cơ hội hay bản án sa thải?",
+          "description": "Việt Nam chính thức đạt thứ hạng 37 thế giới về năng lực cạnh tranh số và AI theo baochinhphu.vn. Thứ hạng tăng đồng nghĩa với tiêu chuẩn công việc bị đẩy lên cao. Nếu bạn không tự nâng cấp năng suất bằng AI, khoảng cách tụt hậu sẽ đào thải bạn. Nhấn theo dõi kênh A Hít Official để nhận tư duy công nghệ sắc bén mỗi ngày!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#TriTueNhanTao",
+            "#AI",
+            "#ChuyenDoiSo",
+            "#NangSuatCongViec",
+            "#BaoChinhPhu",
+            "#CanhTranhSo",
+            "#TuDuySieuCap"
+          ],
+          "keywords": [
+            "Việt Nam xếp thứ 37 thế giới về AI",
+            "A Hít Official",
+            "năng lực cạnh tranh số",
+            "ứng dụng AI trong công việc",
+            "tái cấu trúc quy trình"
+          ],
+          "tiktok_caption": "Việt Nam đứng thứ 37 thế giới về AI: Công việc của bạn có an toàn? #AHitOfficial #TriTueNhanTao #AI #ChuyenDoiSo"
+        },
+        "spoken_text": "Việt Nam vừa chính thức vươn lên thứ 37\nvề năng lực cạnh tranh số và trí tuệ nhân tạo.\nBáo cáo chính thức từ baochinhphu.vn vừa xác nhận.\nMột bước tiến rất lớn trên bản đồ công nghệ.\nNhưng có một con số ngầm cực kỳ nguy hiểm\nquyết định trực tiếp việc bạn sẽ bị sa thải âm thầm\nhay giữ vững vị thế trong cuộc đua này.\nMình sẽ giải mã con số đó ở cuối video.\nĐừng vội mừng rỡ với thứ hạng mới này.\nRất nhiều người đang nhầm lẫn giữa hai khái niệm.\nNăng lực số quốc gia tăng không bảo vệ công việc bạn.\nNgược lại, nó là tín hiệu cảnh báo cực kỳ gắt.\nKhi hạ tầng số phát triển, tiêu chuẩn làm việc bị đẩy cao.\nDoanh nghiệp áp dụng công nghệ với tốc độ nhanh chưa từng thấy.\nTrước đây, biết dùng AI là một lợi thế vượt trội.\nBây giờ, không biết AI là tự gạt mình ra ngoài.\nTiêu chuẩn tối thiểu đã bị nâng lên một mốc mới.\nHãy nhìn vào thực tế phũ phàng của thị trường.\nMột nhân sự làm chủ các công cụ AI hiện tại\ncó thể cân toàn bộ công việc của cả một phòng ban.\nThời gian xử lý dự án được cắt giảm một nửa.\nTốc độ hoàn thành nhanh hơn, chất lượng đồng đều hơn hẳn.\nNăng suất giữa hai bên chênh lệch đến mức báo động.\nNếu bạn vẫn giữ thói quen làm việc truyền thống,\nkhoảng cách năng suất giữa bạn và phần còn lại sẽ quá lớn.\nBạn sẽ bị đào thải nhanh hơn bạn tưởng.\nĐừng ngồi chờ công ty tổ chức các khóa đào tạo.\nCũng đừng chờ thị trường cho bạn thêm cơ hội.\nHãy tự mình tái cấu trúc toàn bộ quy trình.\nChủ động tìm kiếm giải pháp tự động hóa công việc.\nĐẩy hết tác vụ lặp lại cho máy móc xử lý.\nDành trọn thời gian cho tư duy chiến lược cao cấp.\nTạo ra giá trị cốt lõi mà AI chưa thể thay thế.\nĐó là cách duy nhất để bạn gia tăng giá trị.\nQuay lại con số bí mật mình đã hứa ở đầu.\nĐó chính là tỉ lệ đòn bẩy năng suất 10x.\nThứ hạng 37 của Việt Nam đang tăng tốc cuộc thanh lọc.\nNgười làm chủ đòn bẩy AI sẽ tạo ra giá trị gấp 10.\nDoanh nghiệp sẽ đào thải những mắt xích không có đòn bẩy.\nĐây không còn là lý thuyết, đây là bài toán sinh tồn.\nBạn tạo ra giá trị đột phá hay trở thành gánh nặng?\nDù bạn làm marketing, kế toán hay kỹ sư phần mềm,\nlàn sóng này ảnh hưởng trực tiếp đến công việc của bạn.\nThứ hạng 37 toàn cầu là bệ phóng cho người nhanh nhạy,\nnhưng là bản án cho những kẻ chậm chân phản ứng.\nBạn không thể đứng ngoài đợt sóng chuyển đổi số này.\nBạn chọn chủ động làm chủ công nghệ để nhân bản bản thân,\nhay chờ bị sóng thần công nghệ cuốn trôi khỏi thị trường?\nCâu trả lời nằm ở hành động của bạn hôm nay.\nBạn chọn tốc độ đột phá hay sự an toàn giả tạo?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Việt Nam vừa chính thức",
+                "vươn lên thứ 37"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": 37,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "về năng lực cạnh tranh số",
+                "và trí tuệ nhân tạo."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Việt Nam xếp thứ 37 thế giới năng lực cạnh tranh số baochinhphu"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Báo cáo chính thức từ",
+                "baochinhphu.vn vừa xác nhận."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một bước tiến rất lớn",
+                "trên bản đồ công nghệ."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng có một con số",
+                "ngầm cực kỳ nguy hiểm"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "quyết định trực tiếp việc bạn",
+                "sẽ bị sa thải âm thầm"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "hay giữ vững vị thế",
+                "trong cuộc đua này."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mình sẽ giải mã con",
+                "số đó ở cuối video."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Thứ hạng quốc gia"
+                  },
+                  {
+                    "label": "Số đòn bẩy cá nhân"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng vội mừng rỡ",
+                "với thứ hạng mới này."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Rất nhiều người đang nhầm",
+                "lẫn giữa hai khái niệm."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Năng lực số quốc gia tăng",
+                "không bảo vệ công việc bạn."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ngược lại, nó là tín",
+                "hiệu cảnh báo cực kỳ gắt."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi hạ tầng số phát triển,",
+                "tiêu chuẩn làm việc bị đẩy cao."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Doanh nghiệp áp dụng công nghệ",
+                "với tốc độ nhanh chưa từng thấy."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trước đây, biết dùng AI",
+                "là một lợi thế vượt trội."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Lợi thế phụ"
+                  },
+                  {
+                    "label": "Yêu cầu bắt buộc"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bây giờ, không biết AI",
+                "là tự gạt mình ra ngoài."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tiêu chuẩn tối thiểu đã",
+                "bị nâng lên một mốc mới."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn vào thực tế",
+                "phũ phàng của thị trường."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một nhân sự làm chủ",
+                "các công cụ AI hiện tại"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "có thể cân toàn bộ công",
+                "việc của cả một phòng ban."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thời gian xử lý dự án",
+                "được cắt giảm một nửa."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": 50,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tốc độ hoàn thành nhanh hơn,",
+                "chất lượng đồng đều hơn hẳn."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Năng suất giữa hai bên",
+                "chênh lệch đến mức báo động."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Thủ công",
+                    "value": 1
+                  },
+                  {
+                    "label": "Tối ưu AI",
+                    "value": 2
+                  }
+                ],
+                "unit": "",
+                "title": "So sánh năng suất làm việc"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn giữ thói",
+                "quen làm việc truyền thống,"
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "khoảng cách năng suất giữa bạn",
+                "và phần còn lại sẽ quá lớn."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn sẽ bị đào thải",
+                "nhanh hơn bạn tưởng."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng ngồi chờ công ty",
+                "tổ chức các khóa đào tạo."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cũng đừng chờ thị trường",
+                "cho bạn thêm cơ hội."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy tự mình tái cấu",
+                "trúc toàn bộ quy trình."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chủ động tìm kiếm giải pháp",
+                "tự động hóa công việc."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI workflow automation tools 2024"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đẩy hết tác vụ lặp lại",
+                "cho máy móc xử lý."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dành trọn thời gian cho",
+                "tư duy chiến lược cao cấp."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Tác vụ lặp lại"
+                  },
+                  {
+                    "label": "Tư duy chiến lược"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tạo ra giá trị cốt lõi",
+                "mà AI chưa thể thay thế."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là cách duy nhất",
+                "để bạn gia tăng giá trị."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Quay lại con số bí mật",
+                "mình đã hứa ở đầu."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó chính là tỉ lệ",
+                "đòn bẩy năng suất 10x."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thứ hạng 37 của Việt Nam",
+                "đang tăng tốc cuộc thanh lọc."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": 37,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người làm chủ đòn bẩy AI",
+                "sẽ tạo ra giá trị gấp 10."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Năng suất thủ công",
+                    "value": 1
+                  },
+                  {
+                    "label": "Năng suất đòn bẩy AI",
+                    "value": 10
+                  }
+                ],
+                "unit": "",
+                "title": "Tỉ lệ đòn bẩy công việc"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Doanh nghiệp sẽ đào thải những",
+                "mắt xích không có đòn bẩy."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây không còn là lý thuyết,",
+                "đây là bài toán sinh tồn."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn tạo ra giá trị đột phá",
+                "hay trở thành gánh nặng?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dù bạn làm marketing, kế toán",
+                "hay kỹ sư phần mềm,"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "làn sóng này ảnh hưởng trực",
+                "tiếp đến công việc của bạn."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thứ hạng 37 toàn cầu",
+                "là bệ phóng cho người nhanh nhạy,"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 37,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "nhưng là bản án cho",
+                "những kẻ chậm chân phản ứng."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Cơ hội bệ phóng"
+                  },
+                  {
+                    "label": "Nguy cơ sa thải"
+                  }
+                ],
+                "unit": "",
+                "title": ""
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn không thể đứng ngoài",
+                "đợt sóng chuyển đổi số này."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn chủ động làm chủ",
+                "công nghệ để nhân bản bản thân,"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "hay chờ bị sóng thần công",
+                "nghệ cuốn trôi khỏi thị trường?"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Câu trả lời nằm ở",
+                "hành động của bạn hôm nay."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn tốc độ đột phá",
+                "hay sự an toàn giả tạo?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Báo cáo thứ 37",
+              "card_start": 0
+            },
+            {
+              "label": "Ảo tưởng an toàn",
+              "card_start": 9
+            },
+            {
+              "label": "Thực tế năng suất",
+              "card_start": 17
+            },
+            {
+              "label": "Tái cấu trúc",
+              "card_start": 26
+            },
+            {
+              "label": "Giải mã 10x",
+              "card_start": 34
+            },
+            {
+              "label": "Lựa chọn sinh tồn",
+              "card_start": 41
+            }
+          ]
+        },
+        "script_path": "output/2026-11-11/2026-11-11-evening-viet-nam-xep-thu-37-the-gioi-ve-nang-luc/video/script.json",
+        "script_msg_id": null,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
