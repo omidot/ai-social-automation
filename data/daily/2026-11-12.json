@@ -62,6 +62,599 @@
         }
       ],
       "angle": "quan-diem"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Cú dịch chuyển từ 'chatbot trả lời' sang 'agent tự làm' — nghĩa là gì với bạn",
+      "style": "warm-split",
+      "topic_key": "cu-dich-chuyen-tu-chatbot-tra-loi-sang-agent-tu-la",
+      "text_fb": "Năm 2025, nếu bạn vẫn ngồi gõ từng prompt để xin ChatGPT cho câu trả lời, bạn đang tự biến mình thành điểm nghẽn của công việc. Sự thật khốc liệt là thời đại chatbot hỏi-đáp thủ công đã khép lại. AI không còn là một công cụ chờ bạn sai bảo từng dòng lệnh, nó đã tiến hóa thành AI Agent với khả năng tự lên kế hoạch, tự vận hành quy trình và tự sửa lỗi. Sự khác biệt giữa người thắng và người thua trong 2 năm tới nằm ở tư duy sử dụng. Người thua dùng AI như một công cụ tra cứu Google nâng cấp, tốn hàng giờ copy-paste dữ liệu. Người thắng đứng ở vai trò quản lý, giao cho AI Agent một mục tiêu cuối cùng và để nó tự điều phối mọi công cụ từ viết code, truy xuất dữ liệu đến gửi báo cáo. Bạn không cần làm việc chăm chỉ hơn, bạn cần giao việc thông minh hơn. Nếu quy trình hàng ngày của bạn chỉ là làm theo các bước cố định, AI Agent sẽ thay thế bạn trước khi bạn kịp nhận ra. Hãy dừng việc học gõ prompt phức tạp. Thứ bạn cần tập trung ngay hôm nay là tư duy đóng gói quy trình để điều khiển một hệ thống tự chạy. Bạn đang chủ động xây dựng AI Agent làm việc cho mình hay vẫn ngồi copy từng câu trả lời từ chatbot mỗi ngày?",
+      "text_ig": "Năm 2025, gõ prompt xin ChatGPT trả lời đã lỗi thời. AI Agent đang thay thế hoàn toàn các thao tác thủ công bằng tự động hóa quy trình. Đừng làm cu li cho công cụ, hãy học cách quản lý hệ thống AI tự vận hành ngay hôm nay.",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AIAgent",
+        "#ChatGPT",
+        "#TuDongHoa",
+        "#CongNgheAI",
+        "#TuDuyAI",
+        "#TuongLaiViecLam",
+        "#XuHuongAI",
+        "#TriTueNhanTao"
+      ],
+      "images": [
+        "assets/posts/2026-11-12/evening/01.jpg",
+        "assets/posts/2026-11-12/evening/02.jpg",
+        "assets/posts/2026-11-12/evening/03.jpg",
+        "assets/posts/2026-11-12/evening/04.jpg",
+        "assets/posts/2026-11-12/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-12/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-12/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-12/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-12/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-12/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": null,
+        "extra_sources": null,
+        "meta": {
+          "title": "Năm 2025: Dừng gõ prompt ChatGPT nếu không muốn bị AI Agent thay thế",
+          "description": "Thời đại gõ prompt hỏi đáp thủ công với ChatGPT đã chính thức kết thúc. Sự xuất hiện của AI Agent đang định hình lại toàn bộ cách chúng ta làm việc. Nếu không chuyển dịch sang tư duy quản lý và đóng gói quy trình, bạn sẽ sớm bị thay thế. Hãy nhấn theo dõi kênh A Hít Official để nâng cấp tư duy AI chuẩn nhất!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AIAgent",
+            "#ChatGPT",
+            "#CongNghe2025",
+            "#TuDuyLamViec",
+            "#KinhDoanhOnline",
+            "#TuDongHoa",
+            "#AIWorkflow"
+          ],
+          "keywords": [
+            "AI Agent",
+            "ChatGPT",
+            "Prompt engineering",
+            "A Hít Official",
+            "Tự động hóa công việc",
+            "Xu hướng AI 2025"
+          ],
+          "tiktok_caption": "Năm 2025: Đừng làm thợ gõ prompt ChatGPT nữa! Chuyển sang AI Agent ngay nếu không muốn bị đào thải. #AHitOfficial #AIAgent #ChatGPT #CongNghe"
+        },
+        "spoken_text": "Năm 2025, gõ prompt ChatGPT đang biến bạn thành điểm nghẽn.\nBạn tưởng gõ prompt là giỏi? Sự thật hoàn toàn ngược lại.\nKỷ nguyên chatbot hỏi đáp thủ công đã chính thức khép lại.\nCuối video này, mình sẽ tiết lộ tư duy duy nhất giúp bạn sống sót.\nAI hiện tại không còn là công cụ chờ bạn sai bảo từng dòng lệnh.\nNó đã tiến hóa thành AI Agent với khả năng tự làm việc.\nNó tự lên kế hoạch chi tiết, tự vận hành quy trình công việc.\nVà thậm chí là tự sửa lỗi mà không cần bạn can thiệp.\nNếu bạn vẫn dùng AI như một Google tra cứu nâng cấp...\nBạn đang tốn hàng giờ liền chỉ để copy và paste dữ liệu.\nTrong 2 năm tới, sự khác biệt sẽ cực kỳ tàn khốc.\nNgười thua cuộc sẽ chìm đắm trong việc học thuộc các prompt.\nCòn người thắng đứng ở vị trí của một nhà quản lý thực thụ.\nHọ chỉ cần giao một mục tiêu và để Agent tự điều phối.\nTừ việc tự động viết code, truy xuất dữ liệu liên tục...\nCho đến hoàn thành và gửi báo cáo tự động hoàn toàn.\nBài học xương máu ở đây: Bạn không cần làm việc chăm hơn.\nBạn bắt buộc phải học cách giao việc thông minh hơn.\nNhìn lại công việc của bạn xem: Nó có theo các bước cố định?\nNếu câu trả lời là có, AI Agent sẽ thay thế bạn nhanh chóng.\nHãy dừng ngay việc vắt óc để viết những câu prompt dài.\nThứ bạn cần tập trung hôm nay là tư duy đóng gói quy trình.\nXây dựng một hệ thống tự chạy để làm việc thay cho bạn.\nĐúng như lời hứa đầu video: Tư duy quản lý hệ thống quyết định tất cả.\nTương lai không thuộc về thợ gõ, tương lai thuộc về người điều khiển.\nHệ quả trực tiếp tới bạn: Một là làm chủ, hai là bị đào thải.\nĐừng biến mình thành điểm nghẽn trong chính công việc của bạn.\nBạn đang chủ động xây AI Agent để làm việc cho mình?\nHay vẫn ngồi copy paste từng câu trả lời từ chatbot mỗi ngày?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Năm 2025, gõ prompt ChatGPT",
+                "đang biến bạn thành điểm nghẽn."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": 2025,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn tưởng gõ prompt là giỏi?",
+                "Sự thật hoàn toàn ngược lại."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kỷ nguyên chatbot hỏi đáp thủ công",
+                "đã chính thức khép lại."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cuối video này, mình sẽ tiết lộ",
+                "tư duy duy nhất giúp bạn sống sót."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI hiện tại không còn là công cụ",
+                "chờ bạn sai bảo từng dòng lệnh."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó đã tiến hóa thành AI Agent",
+                "với khả năng tự làm việc."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "ChatGPT AI Agent"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó tự lên kế hoạch chi tiết,",
+                "tự vận hành quy trình công việc."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và thậm chí là tự sửa lỗi",
+                "mà không cần bạn can thiệp."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Lên kế hoạch"
+                  },
+                  {
+                    "label": "Vận hành quy trình"
+                  },
+                  {
+                    "label": "Tự sửa lỗi"
+                  }
+                ],
+                "unit": "",
+                "title": "Khả năng tự vận hành của Agent"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn dùng AI",
+                "như một Google tra cứu nâng cấp..."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn đang tốn hàng giờ liền",
+                "chỉ để copy và paste dữ liệu."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong 2 năm tới,",
+                "sự khác biệt sẽ cực kỳ tàn khốc."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": 2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người thua cuộc sẽ chìm đắm",
+                "trong việc học thuộc các prompt."
+              ],
+              "variant": "stack",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Còn người thắng đứng ở vị trí",
+                "của một nhà quản lý thực thụ."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ chỉ cần giao một mục tiêu",
+                "và để Agent tự điều phối."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Từ việc tự động viết code,",
+                "truy xuất dữ liệu liên tục..."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cho đến hoàn thành và gửi báo cáo",
+                "tự động hoàn toàn."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Viết code"
+                  },
+                  {
+                    "label": "Truy xuất dữ liệu"
+                  },
+                  {
+                    "label": "Gửi báo cáo"
+                  }
+                ],
+                "unit": "",
+                "title": "Nhiệm vụ Agent tự điều phối"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bài học xương máu ở đây:",
+                "Bạn không cần làm việc chăm hơn."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn bắt buộc phải học cách",
+                "giao việc thông minh hơn."
+              ],
+              "variant": "hero",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn lại công việc của bạn xem:",
+                "Nó có theo các bước cố định?"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu câu trả lời là có,",
+                "AI Agent sẽ thay thế bạn nhanh chóng."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy dừng ngay việc vắt óc",
+                "để viết những câu prompt dài."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI Agent automation workflow"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thứ bạn cần tập trung hôm nay",
+                "là tư duy đóng gói quy trình."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Xây dựng một hệ thống tự chạy",
+                "để làm việc thay cho bạn."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đúng như lời hứa đầu video:",
+                "Tư duy quản lý hệ thống quyết định tất cả."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tương lai không thuộc về thợ gõ,",
+                "tương lai thuộc về người điều khiển."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Thợ gõ prompt (Thua)"
+                  },
+                  {
+                    "label": "Quản lý AI Agent (Thắng)"
+                  }
+                ],
+                "unit": "",
+                "title": "Sự chuyển dịch tư duy"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hệ quả trực tiếp tới bạn:",
+                "Một là làm chủ, hai là bị đào thải."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng biến mình thành điểm nghẽn",
+                "trong chính công việc của bạn."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn đang chủ động xây AI Agent",
+                "để làm việc cho mình?"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hay vẫn ngồi copy paste",
+                "từng câu trả lời từ chatbot mỗi ngày?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "CẢNH BÁO NĂM 2025",
+              "card_start": 0
+            },
+            {
+              "label": "SỰ TIẾN HÓA CỦA AGENT",
+              "card_start": 4
+            },
+            {
+              "label": "KẺ THẮNG NGƯỜI THUA",
+              "card_start": 10
+            },
+            {
+              "label": "NGUYÊN TẮC BẮT BUỘC",
+              "card_start": 16
+            },
+            {
+              "label": "TRẢ LỜI LỜI HỨA",
+              "card_start": 23
+            },
+            {
+              "label": "TRANH LUẬN",
+              "card_start": 27
+            }
+          ]
+        },
+        "script_path": "output/2026-11-12/2026-11-12-evening-cu-dich-chuyen-tu-chatbot-tra-loi-sang-a/video/script.json",
+        "script_msg_id": 1186,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
