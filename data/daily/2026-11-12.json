@@ -2,7 +2,7 @@
   "date": "2026-11-12",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "United Airlines bans AI agents from booking flights on behalf of travelers",
       "style": "navy-split",
