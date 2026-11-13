@@ -40,7 +40,7 @@
       "angle": "xu-huong"
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
       "style": "white-magazine",
