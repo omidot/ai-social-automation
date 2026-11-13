@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-13",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Vì sao các đội nhỏ giờ làm được việc trước đây cần cả công ty",
+      "style": "mono-split",
+      "topic_key": "vi-sao-cac-oi-nho-gio-lam-uoc-viec-truoc-ay-can-ca",
+      "text_fb": "Nhóm 3 người làm xong việc của 50 nhân viên. Đây không phải chuyện hư cấu, mà là thực tế đang diễn ra mỗi ngày.\n\nTrước đây, bạn muốn xây dựng một thương hiệu lớn? Bạn bắt buộc phải tuyển dụng hàng loạt phòng ban, từ thiết kế, nội dung cho đến phân tích dữ liệu. Càng đông người, chi phí vận hành càng phình to và bộ máy càng trở nên nặng nề. Người thua cuộc hiện tại vẫn giữ tư duy cũ: hễ muốn tăng trưởng là phải tuyển thêm nhân sự.\n\nSự thật là đòn bẩy AI đã xóa sạch lợi thế quy mô của các tập đoàn lớn. Một nhóm nhỏ biết tận dụng công nghệ có thể hoàn thành khối lượng công việc gấp hàng chục lần một tập đoàn cồng kềnh. Trong khi doanh nghiệp lớn mất cả tháng để duyệt một chiến dịch qua hàng chục cấp quản lý, bạn chỉ mất vài giờ để triển khai và đo lường kết quả.\n\nChi phí thử nghiệm đã giảm về gần bằng không. Bạn không cần ngân sách hàng tỷ đồng để sở hữu những công cụ phân tích dữ liệu đỉnh cao hay tạo ra những sản phẩm truyền thông chất lượng. Thứ duy nhất ngăn cản bạn lúc này không phải là vốn, mà là tư duy sử dụng đòn bẩy.\n\nNếu bạn vẫn đang gánh một bộ máy cồng kềnh và làm việc theo cách thủ công, bạn đang tự sát trong cuộc chơi này. Hãy dừng việc đo đếm sức mạnh bằng số lượng nhân sự. Hãy bắt đầu đo đếm bằng hiệu suất trên mỗi đầu người. Bạn đang dùng AI để nhân bản sức mạnh hay vẫn đang làm việc như năm 2010?",
+      "text_ig": "Nhóm 3 người hiện có thể vận hành khối lượng công việc của cả tập đoàn. Đòn bẩy AI đã xóa bỏ lợi thế quy mô. Kẻ nhanh sẽ nuốt chửng kẻ chậm. Bạn đang tối ưu bộ máy hay vẫn làm việc thủ công?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#DonBayAI",
+        "#HieuSuat",
+        "#XuHuongCongNghe",
+        "#KhoiNghiep",
+        "#DoanhNghiepNho",
+        "#TuduyNhanBan",
+        "#AIStrategy"
+      ],
+      "images": [
+        "assets/posts/2026-11-13/morning/01.jpg",
+        "assets/posts/2026-11-13/morning/02.jpg",
+        "assets/posts/2026-11-13/morning/03.jpg",
+        "assets/posts/2026-11-13/morning/04.jpg",
+        "assets/posts/2026-11-13/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "xu-huong"
+    }
+  }
+}
