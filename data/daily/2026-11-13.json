@@ -38,6 +38,772 @@
       "slot_ict": "11:30",
       "sources": [],
       "angle": "xu-huong"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
+      "style": "white-magazine",
+      "topic_key": "llama-cpp-v1-0-0-a-stronger-foundation-for-the-loc",
+      "text_fb": "llama.cpp vừa chính thức phát hành phiên bản v1.0.0 sau 3,5 năm phát triển. Nếu bạn nghĩ chạy mô hình AI cục bộ chỉ là trò chơi vọc vạch của dân kỹ thuật, bạn đã nhầm.\n\nSự kiện v1.0.0 không chỉ là một con số phiên bản. Nó đánh dấu bước ngoặt lớn: API và ABI được chốt chuẩn hóa, hỗ trợ hơn 150 kiến trúc mô hình AI trên mọi nền tảng phần cứng từ Apple ARM đến chip Nvidia hay AMD.\n\nNhiều người làm sản phẩm vẫn phụ thuộc hoàn toàn vào các API đám mây đắt đỏ. Nhưng thực tế là chi phí gọi API sẽ ngốn sạch lợi nhuận của bạn khi ứng dụng mở rộng. Khi llama.cpp cam kết sự ổn định dài hạn với chuẩn Semantic Versioning, rào cản lớn nhất để doanh nghiệp tự host AI riêng đã bị gạt bỏ.\n\nBạn nhận được gì? Quyền kiểm soát tuyệt đối về dữ liệu, chi phí vận hành giảm đáng kể và không phụ thuộc vào chính sách thay đổi đột ngột của các gã khổng lồ đám mây.\n\nNếu bạn đang phát triển phần mềm, dừng việc phụ thuộc hoàn toàn vào API bên thứ ba. Đã đến lúc học cách tối ưu và tích hợp các mô hình AI trực tiếp vào hạ tầng của riêng mình.\n\nBạn đã từng thử tự chạy mô hình AI cục bộ cho công việc chưa?\n\nNguồn: Hugging Face",
+      "text_ig": "llama.cpp ra mắt v1.0.0 sau 3,5 năm phát triển, chính thức chuẩn hóa API cho AI cục bộ. Đã đến lúc bạn làm chủ hạ tầng và giảm phụ thuộc vào API đám mây đắt đỏ. Bạn đã tự chạy AI trên máy chưa?",
+      "hashtags": [
+        "#llamacpp",
+        "#ggml",
+        "#localai",
+        "#huggingface",
+        "#opensource",
+        "#ai",
+        "#tech",
+        "#developer",
+        "#ahitofficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-13/evening/01.jpg",
+        "assets/posts/2026-11-13/evening/02.jpg",
+        "assets/posts/2026-11-13/evening/03.jpg",
+        "assets/posts/2026-11-13/evening/04.jpg",
+        "assets/posts/2026-11-13/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-13/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1"
+        }
+      ],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+        "extra_sources": null,
+        "meta": {
+          "title": "llama.cpp v1.0.0 Ra Mắt: Kết Thúc Kỷ Nguyên Phụ Thuộc API Đám Mây?",
+          "description": "llama.cpp chính thức phát hành phiên bản v1.0.0 sau 3.5 năm phát triển. Sự kiện này chuẩn hóa API dài hạn, hỗ trợ hơn 150 mô hình AI và được bảo trợ bởi các gã khổng lồ phần cứng. Đã đến lúc doanh nghiệp và lập trình viên tự chủ hạ tầng AI cục bộ thay vì đốt tiền vào API đám mây.\n\nTheo dõi kênh A Hít Official để cập nhật tư duy và công nghệ AI mới nhất!",
+          "hashtags": [
+            "#llamacpp",
+            "#ggml",
+            "#AIcucbo",
+            "#LocalAI",
+            "#HuggingFace",
+            "#CôngNghệAI",
+            "#LậpTrình",
+            "#Ahitofficial"
+          ],
+          "keywords": [
+            "llama cpp v1 0 0",
+            "ggml org",
+            "chạy AI cục bộ",
+            "local AI inference",
+            "hugging face llama cpp",
+            "Semantic Versioning AI"
+          ],
+          "tiktok_caption": "llama.cpp v1.0.0 chính thức ra mắt sau 3.5 năm! Bạn chọn trả tiền API đám mây hay làm chủ AI cục bộ? #llamacpp #ggml #localAI #ahit"
+        },
+        "spoken_text": "llama.cpp vừa ra mắt v1.0.0 sau đúng 3.5 năm phát triển.\n3.5 năm để biến dự án cá nhân thành trụ cột cho AI cục bộ.\nCuối video này, mình sẽ chỉ cho bạn điều duy nhất quyết định bạn thắng hay thua trong cuộc chiến chi phí AI.\nNhiều người làm sản phẩm vẫn nghĩ tự chạy AI cục bộ chỉ là trò vọc vạch kỹ thuật.\nĐó là tư duy khiến bạn mất tiền mỗi ngày.\nllama.cpp hiện hỗ trợ hơn 150 kiến trúc mô hình.\nTừ laptop cá nhân đến server doanh nghiệp khủng.\nMỗi lần bạn gọi API đám mây, bạn đang trả tiền cho sự lười biếng.\nKhi ứng dụng mở rộng, hóa đơn API sẽ nuốt sạch lợi nhuận.\nDữ liệu bị phụ thuộc hoàn toàn. Chính sách thay đổi sau một đêm.\nBạn không làm chủ hạ tầng của mình.\nllama.cpp phủ sóng mọi nền tảng.\nPhần mềm của bạn dễ dàng tích hợp trên Linux, macOS lẫn Windows.\nVậy phiên bản v1.0.0 có ý nghĩa gì?\nĐây không phải sự kiện tăng số vô nghĩa.\nĐây là lời cam kết ổn định dài hạn theo chuẩn Semantic Versioning.\nMinh minh bạch hóa quy tắc API.\nMAJOR đổi khi C API mất tương thích.\nMINOR thêm tính năng và giữ tương thích.\nPATCH chỉ dùng để sửa lỗi hệ thống.\nDoanh nghiệp tự tin xây dựng sản phẩm mà không lo vỡ code.\nAi đang chống lưng cho bước ngoặt này?\nCả dàn ông lớn phần cứng tham gia.\nNVIDIA, AMD, Qualcomm, Arm, IBM, Intel.\nHạ tầng CI được bảo trợ bởi Hugging Face.\nMọi dòng code đều được kiểm định.\nMục tiêu là tối ưu inference AI chạy mượt trên mọi thiết bị.\nNếu bạn là người làm phần mềm AI:\nHãy tự trả lời một câu hỏi thẳng thắn.\nChi phí API có đang ăn bớt lợi nhuận thực tế của bạn không?\nTự host mô hình bằng llama.cpp giúp bạn làm chủ dữ liệu, cắt giảm chi phí vận hành tận gốc.\nKhông rò rỉ dữ liệu riêng tư. Không phụ thuộc bên thứ ba.\nTự do triển khai trên đa nền tảng.\nBây giờ là lúc trả lời lời hứa ở đầu video.\nThứ quyết định bạn thắng trong cuộc chơi AI không phải là thuê mô hình đắt nhất.\nMà là khả năng làm chủ hạ tầng với chi phí tối ưu nhất.\nllama.cpp v1.0.0 chính là chiếc chìa khóa để bạn thoát bẫy độc quyền đám mây.\nĐừng đợi đối thủ làm chủ AI cục bộ rồi bạn mới bắt đầu vội vã.\nBạn chọn trả tiền đám mây hàng tháng hay tự chủ hạ tầng AI mãi mãi?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "llama.cpp vừa ra mắt v1.0.0",
+                "sau đúng 3.5 năm phát triển."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": 3.5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "3.5 năm để biến dự án cá nhân",
+                "thành trụ cột cho AI cục bộ."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": 35,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cuối video này,",
+                "mình sẽ chỉ cho bạn điều duy nhất",
+                "quyết định bạn thắng hay thua",
+                "trong cuộc chiến chi phí AI."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhiều người làm sản phẩm vẫn nghĩ",
+                "tự chạy AI cục bộ",
+                "chỉ là trò vọc vạch kỹ thuật."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là tư duy",
+                "khiến bạn mất tiền mỗi ngày."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "llama.cpp hiện hỗ trợ",
+                "hơn 150 kiến trúc mô hình."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 150,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Từ laptop cá nhân",
+                "đến server doanh nghiệp khủng."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "GitHub ggml-org llama.cpp v1.0.0"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mỗi lần bạn gọi API đám mây,",
+                "bạn đang trả tiền cho sự lười biếng."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi ứng dụng mở rộng,",
+                "hóa đơn API sẽ nuốt sạch lợi nhuận."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dữ liệu bị phụ thuộc hoàn toàn.",
+                "Chính sách thay đổi sau một đêm."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn không làm chủ hạ tầng của mình."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "llama.cpp phủ sóng mọi nền tảng."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Docker"
+                  },
+                  {
+                    "label": "Homebrew"
+                  },
+                  {
+                    "label": "Winget"
+                  },
+                  {
+                    "label": "Debian"
+                  }
+                ],
+                "unit": "",
+                "title": "Kênh phân phối chính thức"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Phần mềm của bạn dễ dàng tích hợp",
+                "trên Linux, macOS lẫn Windows."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vậy phiên bản v1.0.0 có ý nghĩa gì?"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": 100,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây không phải sự kiện tăng số vô nghĩa."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là lời cam kết ổn định dài hạn",
+                "theo chuẩn Semantic Versioning."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Minh minh bạch hóa quy tắc API."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "MAJOR",
+                    "value": 1
+                  },
+                  {
+                    "label": "MINOR",
+                    "value": 2
+                  },
+                  {
+                    "label": "PATCH",
+                    "value": 3
+                  }
+                ],
+                "unit": "",
+                "title": "Quy tắc Semantic Versioning"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "MAJOR đổi khi C API mất tương thích."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "MINOR thêm tính năng và giữ tương thích."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "PATCH chỉ dùng để sửa lỗi hệ thống."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Doanh nghiệp tự tin xây dựng",
+                "sản phẩm mà không lo vỡ code."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ai đang chống lưng cho bước ngoặt này?"
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cả dàn ông lớn phần cứng tham gia."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "NVIDIA"
+                  },
+                  {
+                    "label": "AMD"
+                  },
+                  {
+                    "label": "Qualcomm"
+                  },
+                  {
+                    "label": "Intel"
+                  }
+                ],
+                "unit": "",
+                "title": "Hạ tầng chip hỗ trợ"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA, AMD, Qualcomm, Arm, IBM, Intel."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hạ tầng CI được bảo trợ bởi Hugging Face."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mọi dòng code đều được kiểm định."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Hugging Face ggml-org llama.cpp"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mục tiêu là tối ưu inference AI",
+                "chạy mượt trên mọi thiết bị."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn là người làm phần mềm AI:"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy tự trả lời một câu hỏi thẳng thắn."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chi phí API có đang ăn bớt",
+                "lợi nhuận thực tế của bạn không?"
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tự host mô hình bằng llama.cpp",
+                "giúp bạn làm chủ dữ liệu,",
+                "cắt giảm chi phí vận hành tận gốc."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không rò rỉ dữ liệu riêng tư.",
+                "Không phụ thuộc bên thứ ba."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tự do triển khai trên đa nền tảng."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Linux"
+                  },
+                  {
+                    "label": "macOS"
+                  },
+                  {
+                    "label": "Windows"
+                  },
+                  {
+                    "label": "iOS / Android"
+                  }
+                ],
+                "unit": "",
+                "title": "Hệ điều hành hỗ trợ"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bây giờ là lúc trả lời",
+                "lời hứa ở đầu video."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thứ quyết định bạn thắng trong cuộc chơi AI",
+                "không phải là thuê mô hình đắt nhất."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mà là khả năng làm chủ hạ tầng",
+                "với chi phí tối ưu nhất."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "llama.cpp v1.0.0 chính là chiếc chìa khóa",
+                "để bạn thoát bẫy độc quyền đám mây."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": 100,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng đợi đối thủ làm chủ AI cục bộ",
+                "rồi bạn mới bắt đầu vội vã."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn trả tiền đám mây hàng tháng",
+                "hay tự chủ hạ tầng AI mãi mãi?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "CÚ SỐC TỪ 3,5 NĂM",
+              "card_start": 0
+            },
+            {
+              "label": "CÁI BẪY ĐÁM MÂY",
+              "card_start": 7
+            },
+            {
+              "label": "LỜI CAM KẾT V1.0.0",
+              "card_start": 13
+            },
+            {
+              "label": "SỨC MẠNH HẠ TẦNG",
+              "card_start": 21
+            },
+            {
+              "label": "TÁC ĐỘNG THỰC TẾ",
+              "card_start": 27
+            },
+            {
+              "label": "BÀI HỌC VÀ LỰA CHỌN",
+              "card_start": 33
+            }
+          ]
+        },
+        "script_path": "output/2026-11-13/2026-11-13-evening-llama-cpp-v1-0-0-a-stronger-foundation-f/video/script.json",
+        "script_msg_id": 1202,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
