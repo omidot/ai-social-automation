@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-14",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Export-banned Nvidia chips are behind China’s most powerful AI models — uh-oh, Jensen!",
+      "style": "navy-magazine",
+      "topic_key": "export-banned-nvidia-chips-are-behind-chinas-most-",
+      "text_fb": "DeepSeek V4 và Kimi K3 vừa lộ dấu vết được huấn luyện trên chip Nvidia Blackwell. Đây là dòng chip AI cao cấp bị chính phủ Mỹ cấm xuất khẩu sang Trung Quốc.\n\nNhiều người tin rằng các sắc lệnh cấm vận sẽ siết chết năng lực AI của đối thủ. Sự thật hoàn toàn ngược lại. Theo dữ liệu từ Epoch AI, khoảng 2 triệu chip tiên tiến vẫn tìm được đường vào Trung Quốc. Riêng Malaysia đã nhập 275.000 chip Nvidia để xây dựng các trung tâm dữ liệu ngoài bờ biển. Các công ty AI Trung Quốc chỉ đơn giản là thuê quyền tính toán từ xa.\n\nDòng tiền và nhu cầu hạ tầng luôn tìm được lối đi. Khi lợi nhuận đủ lớn, rào cản pháp lý chỉ là bài toán chi phí lách luật. Vụ việc liên quan đến Megaspeed và Nvidia chứng minh một nguyên tắc: bạn không thể dùng các quyết định hành chính để duy trì vị thế dẫn đầu công nghệ.\n\nNếu bạn đang làm sản phẩm và chủ quan rằng đối thủ bị hạn chế công cụ, bạn đang tự sát. Đối thủ sẽ luôn truy cập được hạ tầng mạnh nhất bằng cách này hay cách khác. Thứ quyết định thắng thua không phải là rào cản bên ngoài, mà là tốc độ tối ưu và năng lực thực thi của chính bạn.\n\nBạn chọn tự nâng cấp năng lực hay trông chờ vào rào cản đối thủ?\n\nNguồn: TechCrunch AI",
+      "text_ig": "DeepSeek V4 lộ dấu vết dùng chip Blackwell bị cấm. 275.000 chip Nvidia đã chảy qua Malaysia để lách luật. Bạn không thể chặn nhu cầu AI bằng rào cản hành chính. Tốc độ thực thi mới là vũ khí duy nhất. Bạn đã sẵn sàng tăng tốc?",
+      "hashtags": [
+        "#AI",
+        "#Nvidia",
+        "#DeepSeek",
+        "#ChipAI",
+        "#BanTinAI",
+        "#CongNghe",
+        "#ImanGadzhi",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-14/morning/01.jpg",
+        "assets/posts/2026-11-14/morning/02.jpg",
+        "assets/posts/2026-11-14/morning/03.jpg",
+        "assets/posts/2026-11-14/morning/04.jpg",
+        "assets/posts/2026-11-14/morning/05.jpg",
+        "assets/posts/2026-11-14/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/morning/06.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/13/export-banned-nvidia-chips-are-behind-chinas-most-powerful-ai-models-uh-oh-jensen/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQM2RjMXJ5cnYyUmVXT3FXVVVIeENJN0hQT3E0ZTg1YlpRSEItczBNaW1SZzlIM2hBNEZldVVzUjEwQzRDczhvVkQwMjZlLXh4U1pqd1NFcTFJOHh6MUMtQktSVmFmZUtzTUowb2hCdU1tVzY5NFFwWURpT3c5RW9zMUJOVHNvcG5aVG9lTUIzVUNqMW8yWkNzcXpidmtNRnlia3hySVpfbGRfQ3phbjJmbGZuYlhwS0E?oc=5"
+        },
+        {
+          "name": "Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMi7AJBVV95cUxPa05TQWhhVXlHQVIxZHdoazBqQUJSNmlfRkRVc29ROGNyLVAzbmxDb0Q1UnpEZUtBd0RueEVRZ0ZRaXJMemxIeWxtRU9iNld1cHVfOEVhZVg4bEFfamFmZEc2T3liSF9pT2huRDBOVkhMdVRHSmkyY2lsY2h0dkcwNlVmekZhZW5xSVNfd1FfdXc0NG5sNm45TDJxT09mQ1dQdUJveWRCbzB0OE5yYW5aTkYtakJyTFhnelhIcWVWY3lxVDJFc3V5Wl9rMWxST3RORzVMckFhY2dNSkUtS1JCc2ptMzd2Q0ZsVGVwRWxxR3Qwd214Z1JHaDJJMkUwWFpmMVdfYmRGbWt1VXpCTWhjVWdnbXpqYjhjUGJOUU5KQ2hfTDdhRXpIV3BSa1FMVFp5elNQNTNqLThHYzJsQVQ3NV9pZjdBRm5UcFRtVVBXN1JJb0ZvcGRqWVpsN1FSSDFHOVd0S2lUZGVzSVFL?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOXzVPempNWmNMaE4yX05FTjFPWk1TN0thaW5heDVNa0dhOWdTeTFEYldiQ2lJVFJmMzlTbTRVdE1IU2c4REV6WTlFX0dQcTFqeHl0X0pzTXdDMFhmLXhjX3czOVR1N0QzbTliLWlvUklnN1R2Z2tYRWdKU0dyRUZQXzlNUWdabGlvOEtnS3lRYXdfQQ?oc=5"
+        },
+        {
+          "name": "VIETTIMES",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNYVNuaVRsR0hwXzdoTXFmUFFaY1NIbTFqNkJnRDd0YmotaWRUeExtc1VnTTFjYjM4RDNFME1rSERRSEx4VDJlV3M4SlFRV3BSS3psTEVCdkdIZDFLX0NZcmw2WU5sMS12dG5udjNITmI3QmJzX3hyRkYzVnNpampEbVJTVFUwQU40M1NkZUk2UTFranIwSmZyVmNHNGRIVllzUUFRSmhraUU4eEFtcU5TMG14enlldWQxOVhMeUdHdW4?oc=5"
+        },
+        {
+          "name": "Tin tức 24h",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMHV6X0RKTHc1QUxNaU0tQ2VsUXBULWdtR2dQRnJCN2RwNzN5QzNGSEY4eXpZb3FJYmZYT21PUndpU0Jmc1NYQV81amZiNG5ubXhmVldNN01sczZvSThxUkFaMFZsQmdNRTVyTkdhRHpzeFFnZTR5U09pUm92TnZDU3djMU9TMUYtTkw0TUFlWDZpU3VncVN3alNIOEg3RTBRZk5uOHJFb18?oc=5"
+        }
+      ],
+      "angle": "quan-diem"
+    }
+  }
+}
