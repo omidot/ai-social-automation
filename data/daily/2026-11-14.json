@@ -64,6 +64,55 @@
         }
       ],
       "angle": "quan-diem"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
+      "style": "warm-magazine",
+      "topic_key": "how-ai-is-helping-care-teams-get-patients-the-righ",
+      "text_fb": "Cleveland Clinic vừa xử lý 7.800 hồ sơ bệnh nhân từ năm 2005 đến 2021 bằng AI. Việc mà dàn bác sĩ phải mất nhiều năm mới đọc hết, hệ thống làm xong trong thời gian ngắn. Nhưng bài học quan trọng nhất không nằm ở tốc độ.\n\nNhiều doanh nghiệp nghĩ dùng AI là phải đẩy toàn bộ dữ liệu lên các API đám mây. Cleveland Clinic và Dyania Health làm ngược lại. Họ đưa mô hình AI về chạy trực tiếp trên cụm máy chủ GPU NVIDIA nằm đằng sau tường lửa của bệnh viện. Dữ liệu y khoa nhạy cảm không rời khỏi tòa nhà dù chỉ một byte.\n\nHọ dùng NVIDIA NeMo để huấn luyện mô hình lý luận lâm sàng, sau đó tối ưu bằng TensorRT-LLM để đạt tốc độ xử lý tối đa trên phần cứng riêng. AI đọc từng dòng ghi chú thủ công qua 16 năm để dự báo nguy cơ cho từng ca bệnh. Bác sĩ không còn mất thời gian làm việc văn phòng, mà dành trọn thời gian chăm sóc bệnh nhân.\n\nNếu bạn đang xây dựng giải pháp AI cho tổ chức của mình, hãy dừng việc phụ thuộc hoàn toàn vào các API mây công cộng. Bảo mật và tự chủ hạ tầng tại chỗ mới là xu hướng thực sự của các bên lớn. Người thắng không phải người dùng model to nhất trên mây, mà là người biết đưa AI vào đúng hạ tầng để bảo vệ tài sản dữ liệu.\n\nBạn đã chuẩn bị hạ tầng AI riêng cho doanh nghiệp mình chưa?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Cleveland Clinic phân tích 7.800 bệnh án bằng AI chạy local trên GPU NVIDIA. Không gửi dữ liệu lên mây, bảo mật 100% sau tường lửa. Bạn đã sẵn sàng tự chủ hạ tầng AI chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#NVIDIA",
+        "#HealthcareAI",
+        "#TechTrends",
+        "#GenerativeAI",
+        "#MachineLearning",
+        "#DataPrivacy",
+        "#DeepLearning"
+      ],
+      "images": [
+        "assets/posts/2026-11-14/evening/01.jpg",
+        "assets/posts/2026-11-14/evening/02.jpg",
+        "assets/posts/2026-11-14/evening/03.jpg",
+        "assets/posts/2026-11-14/evening/04.jpg",
+        "assets/posts/2026-11-14/evening/05.jpg",
+        "assets/posts/2026-11-14/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-14/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/how-ai-is-helping-care-teams/"
+        },
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/allenai/xybench"
+        }
+      ],
+      "angle": "xu-huong"
     }
   }
 }
