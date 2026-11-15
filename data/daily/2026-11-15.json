@@ -2,7 +2,7 @@
   "date": "2026-11-15",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Introducing Gemini 4 Hydrogen",
       "style": "mono-magazine",
