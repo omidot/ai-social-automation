@@ -1,0 +1,786 @@
+{
+  "date": "2026-11-15",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Introducing Gemini 4 Hydrogen",
+      "style": "mono-magazine",
+      "topic_key": "introducing-gemini-4-hydrogen",
+      "text_fb": "Gemini 4 Hydrogen giá 1.50 đô cho một triệu token vừa xuất hiện. Con số này đập tan suy nghĩ cũ kỹ của nhiều người: muốn AI giỏi thì phải chấp nhận đắt.\n\nThực tế theo Google DeepMind, phiên bản Hydrogen đạt 57% điểm trên Terminal-Bench 4.1, nhanh gấp 2.5 lần so với 3.8 Flash. Nhưng giá trị thật sự không nằm ở một mô hình đơn lẻ. Nó nằm ở tư duy phối hợp multi-model.\n\nNếu bạn đang dùng một mô hình đắt đỏ gánh từ A đến Z, bạn đang ném tiền qua cửa sổ. Google giới thiệu Orchestrator trong Antigravity: mô hình Carbon đóng vai kiến trúc sư phân việc, còn Hydrogen làm công nhân viết code và kiểm thử song song. Cách này giúp giảm 24% quota token và xong sớm hơn 19%.\n\nKỷ nguyên dùng một siêu AI cho mọi việc đã kết thúc. Người chiến thắng là người biết tối ưu quy trình và dùng AI đúng vị trí.\n\nBạn đang dùng một AI duy nhất hay đã chia quy trình cho nhiều AI xử lý?\n\nNguồn: Google DeepMind",
+      "text_ig": "Gemini 4 Hydrogen giá 1.50 đô/1M token chứng minh AI giá rẻ thừa sức gánh việc thực thi. Đừng lãng phí ngân sách cho một siêu AI đắt đỏ. Hãy phối hợp nhiều mô hình để giảm 24% chi phí ngay. Bạn đã áp dụng chưa?",
+      "hashtags": [
+        "#Gemini4",
+        "#GoogleDeepMind",
+        "#ArtificialIntelligence",
+        "#TechNews",
+        "#DeveloperTools",
+        "#MultiModel",
+        "#SoftwareEngineering",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-15/morning/01.jpg",
+        "assets/posts/2026-11-15/morning/02.jpg",
+        "assets/posts/2026-11-15/morning/03.jpg",
+        "assets/posts/2026-11-15/morning/04.jpg",
+        "assets/posts/2026-11-15/morning/05.jpg",
+        "assets/posts/2026-11-15/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Google DeepMind",
+          "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/"
+        },
+        {
+          "name": "blog.google",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbnlqelBIT1ZXblFBa25zdHlXalhPR2Z2b2xLZ2lmeEtFbUFXS3Mya3FtU0tyeGJrOXpHVEJOdFpDVUZSUTVOUHA0WjRiakw2a2hIRzc3ZHBfM3pDT3dKTDdfMExNQ2FnU1NWSHI3UGpXX2lVSEUxeVYwb2FfNE5vRGJnMjhWSzU5WkFrdmtOdW5Fb0lja1dFN3JUMkQ5R01JRXhNUA?oc=5"
+        },
+        {
+          "name": "Mashable",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5rSnBnR3JraDZDTEZpRUVKcG5uRmk0NFk4b2l6UTJid0VBY0E4NDk5M3h0U2hkbXNtcTVvdVdIeTNBQ29GV2pnSTVYRzRIUXNYTnNjaGRfNG9ETlVTN1NnU1NLdVBkNGZTaEQ4SDBqUjZJcGRr?oc=5"
+        },
+        {
+          "name": "Search Engine Journal",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaUZhYVRaYmRkWlY1UkJWV1pZV3phamYtSHpTY0pkT1JmNDRUc3RhanpPbEt6ZTJlZ29Zc3YzQXJRckhJWVNBX0xOYl9BeW9IYW1PTzR6Z0ozaHFiRUNYWTVnVVdXRzRXQmR1RU13Q0NwWC1YeDZGdXM1SjlJZkk3dEViZlhZeUVKenBmWA?oc=5"
+        },
+        {
+          "name": "Digital Trends",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQNHBDNDktd1ZGcjJFcEFZaHVpaXhxenZNSTdBZ05RS2M5SnFOcWFvU3FLRVJId2dUMl9RdTd0bjJtUlBIZEhlbTZMVHdTZU5QVVN3MnoxemQ0UFpzX0dRVGNiNllRTDlDcmE4aWdKeXVEUEh4ZDN6Q2ZidG95YXpsOWhtRXVGdlkzNmtfZjhfTW9WUDRCaDh3YWhqRFA4V2R6QnlPOHV0eGhaZTBfTGtLdXZTUlBKT2JHUnNKUlVBeTY4T0hrYU1J?oc=5"
+        },
+        {
+          "name": "Business Insider",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNX3pBVmNFNV81WUtYNDZTXzExR0NfX3lEU3hHMklmNWExc2Z0VWo5dU5xSnB2Vk0zMGlobDNnc1owTXdIeERRNkh2NGJsdGk4VzhZYkp2a0E4eEJuamxuZkhBNTA3SlFMSF90bFNNZlZGQ1dmcmVHTWlBYjFodmhiUHNRdDlKQ0pnMkgwNHJqZGpsZw?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+        "extra_sources": [
+          {
+            "name": "blog.google",
+            "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbnlqelBIT1ZXblFBa25zdHlXalhPR2Z2b2xLZ2lmeEtFbUFXS3Mya3FtU0tyeGJrOXpHVEJOdFpDVUZSUTVOUHA0WjRiakw2a2hIRzc3ZHBfM3pDT3dKTDdfMExNQ2FnU1NWSHI3UGpXX2lVSEUxeVYwb2FfNE5vRGJnMjhWSzU5WkFrdmtOdW5Fb0lja1dFN3JUMkQ5R01JRXhNUA?oc=5"
+          },
+          {
+            "name": "Mashable",
+            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5rSnBnR3JraDZDTEZpRUVKcG5uRmk0NFk4b2l6UTJid0VBY0E4NDk5M3h0U2hkbXNtcTVvdVdIeTNBQ29GV2pnSTVYRzRIUXNYTnNjaGRfNG9ETlVTN1NnU1NLdVBkNGZTaEQ4SDBqUjZJcGRr?oc=5"
+          },
+          {
+            "name": "Search Engine Journal",
+            "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaUZhYVRaYmRkWlY1UkJWV1pZV3phamYtSHpTY0pkT1JmNDRUc3RhanpPbEt6ZTJlZ29Zc3YzQXJRckhJWVNBX0xOYl9BeW9IYW1PTzR6Z0ozaHFiRUNYWTVnVVdXRzRXQmR1RU13Q0NwWC1YeDZGdXM1SjlJZkk3dEViZlhZeUVKenBmWA?oc=5"
+          },
+          {
+            "name": "Digital Trends",
+            "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQNHBDNDktd1ZGcjJFcEFZaHVpaXhxenZNSTdBZ05RS2M5SnFOcWFvU3FLRVJId2dUMl9RdTd0bjJtUlBIZEhlbTZMVHdTZU5QVVN3MnoxemQ0UFpzX0dRVGNiNllRTDlDcmE4aWdKeXVEUEh4ZDN6Q2ZidG95YXpsOWhtRXVGdlkzNmtfZjhfTW9WUDRCaDh3YWhqRFA4V2R6QnlPOHV0eGhaZTBfTGtLdXZTUlBKT2JHUnNKUlVBeTY4T0hrYU1J?oc=5"
+          },
+          {
+            "name": "Business Insider",
+            "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNX3pBVmNFNV81WUtYNDZTXzExR0NfX3lEU3hHMklmNWExc2Z0VWo5dU5xSnB2Vk0zMGlobDNnc1owTXdIeERRNkh2NGJsdGk4VzhZYkp2a0E4eEJuamxuZkhBNTA3SlFMSF90bFNNZlZGQ1dmcmVHTWlBYjFodmhiUHNRdDlKQ0pnMkgwNHJqZGpsZw?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "Gemini 4 Hydrogen $1.50: Chấm dứt kỷ nguyên đốt tiền cho AI",
+          "description": "Google DeepMind vừa tung ra Gemini 4 Hydrogen với mức giá cực rẻ 1.50 USD cho 1 triệu token. Nhưng vũ khí thực sự nằm ở mô hình phối hợp Orchestrator giúp tiết kiệm 24% chi phí và chạy nhanh hơn 19%. Nhấn theo dõi A Hít Official để cập nhật tư duy tối ưu AI mới nhất.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#Gemini4Hydrogen",
+            "#GoogleDeepMind",
+            "#AIStudio",
+            "#Antigravity",
+            "#AgenticAI",
+            "#CongNgheAI",
+            "#Orchestrator",
+            "#MultiModel",
+            "#LapTrinhAI"
+          ],
+          "keywords": [
+            "Gemini 4 Hydrogen",
+            "Google DeepMind",
+            "Google Antigravity",
+            "Orchestrator AI",
+            "Multi-model AI",
+            "AI lập trình",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "Gemini 4 Hydrogen giá 1.50$ đập tan tư duy AI đắt mới giỏi. Bạn dùng 1 AI hay phối hợp nhiều AI? #AHitOfficial #Gemini4 #GoogleAI #CongNghe"
+        },
+        "spoken_text": "Gemini 4 Hydrogen vừa chốt giá 1.50 đô cho một triệu token.\nCon số này đập tan tư duy cũ kỹ: AI giỏi là phải đắt.\nNhưng điều đáng sợ nhất không nằm ở giá rẻ.\nMột cơ chế ẩn trong Google Antigravity sẽ biến cách bạn dùng AI thay đổi vĩnh viễn.\nGiá cước cực thấp mỗi 1M token\nNếu bạn vẫn bắt một AI duy nhất gánh mọi việc...\n...bạn đang ném tiền qua cửa sổ.\nTrong lập trình thực tế, viết code và kiểm thử không cần AI đắt nhất.\nGoogle DeepMind vừa chứng minh: tối ưu quy trình mới là chìa khóa.\nThông cáo chính thức từ Google DeepMind\nGemini 4 Hydrogen hoàn thành công việc nhanh hơn rất nhiều.\nTốc độ xử lý tác vụ so với Gemini 3.8 Flash\nĐiểm số Terminal-Bench 4.1 tăng từ 18.2% nhảy vọt lên 57%.\nBước nhảy vọt năng lực trên Terminal-Bench 4.1\nĐặc biệt hơn nữa: tỷ lệ tin bịa đặt đã bị cắt giảm sâu.\nMức độ cắt giảm các phản hồi bịa đặt\nKhi công cụ tìm kiếm trả về kết quả rỗng, nó tự điều chỉnh ngay.\nDẫn đầu hàng loạt bảng xếp hạng Agentic\nVà đây là câu trả lời cho bí mật ban đầu:\nGoogle tung ra Orchestrator trong Google Antigravity.\nGiao diện điều phối Orchestrator mới\nThay vì dùng một AI từ đầu đến cuối, Orchestrator tự động chia việc.\nGemini 4 Carbon làm kiến trúc sư phân việc. Hydrogen làm công nhân viết code và kiểm thử.\nKết quả đo lường thực tế khi phối hợp mô hình\nGiảm 24% tài nguyên. Xong sớm hơn 19%.\nNếu bạn đang phát triển các sản phẩm AI,\nKỷ nguyên một siêu AI gánh tất cả công việc chính thức kết thúc.\nNgười chiến thắng không phải người có AI đắt nhất.\nMà là người biết đặt đúng AI vào đúng vị trí.\nKhả năng xử lý tác vụ tri thức đa phương thức\nNhìn lại mức giá 1.50 đô của Gemini 4 Hydrogen.\nBài học rất rõ ràng: đừng trả tiền cho sự lãng phí.\nHãy chuyển sang tư duy phối hợp đa mô hình.\nBạn sẽ tiếp tục ném tiền cho một AI duy nhất,\nhay chia quy trình để tiết kiệm 24% chi phí?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Gemini 4 Hydrogen",
+                "vừa chốt giá 1.50 đô",
+                "cho một triệu token."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": 4,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Con số này đập tan",
+                "tư duy cũ kỹ:",
+                "AI giỏi là phải đắt."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng điều đáng sợ nhất",
+                "không nằm ở giá rẻ."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một cơ chế ẩn",
+                "trong Google Antigravity",
+                "sẽ biến cách bạn dùng AI",
+                "thay đổi vĩnh viễn."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giá cước cực thấp",
+                "mỗi 1M token"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Input Token",
+                    "value": 1.5
+                  },
+                  {
+                    "label": "Output Token",
+                    "value": 7.5
+                  }
+                ],
+                "unit": "",
+                "title": "Chi phí mỗi 1M token (USD)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn bắt",
+                "một AI duy nhất",
+                "gánh mọi việc..."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "...bạn đang ném tiền",
+                "qua cửa sổ."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong lập trình thực tế,",
+                "viết code và kiểm thử",
+                "không cần AI đắt nhất."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Google DeepMind vừa chứng minh:",
+                "tối ưu quy trình",
+                "mới là chìa khóa."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thông cáo chính thức",
+                "từ Google DeepMind"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Google DeepMind Gemini 4 Hydrogen announcement"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Gemini 4 Hydrogen",
+                "hoàn thành công việc",
+                "nhanh hơn rất nhiều."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": 4,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tốc độ xử lý tác vụ",
+                "so với Gemini 3.8 Flash"
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": 2.5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Điểm số Terminal-Bench 4.1",
+                "tăng từ 18.2%",
+                "nhảy vọt lên 57%."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": 41,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bước nhảy vọt năng lực",
+                "trên Terminal-Bench 4.1"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "3.8 Flash",
+                    "value": 18.2
+                  },
+                  {
+                    "label": "4 Hydrogen",
+                    "value": 57
+                  }
+                ],
+                "unit": "",
+                "title": "Điểm Terminal-Bench 4.1 (%)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đặc biệt hơn nữa:",
+                "tỷ lệ tin bịa đặt",
+                "đã bị cắt giảm sâu."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mức độ cắt giảm",
+                "các phản hồi bịa đặt"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": 5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi công cụ tìm kiếm",
+                "trả về kết quả rỗng,",
+                "nó tự điều chỉnh ngay."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dẫn đầu hàng loạt",
+                "bảng xếp hạng Agentic"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "HLE-Diamond"
+                  },
+                  {
+                    "label": "Vals Tax Bench"
+                  },
+                  {
+                    "label": "Vals Legal Bench"
+                  },
+                  {
+                    "label": "AutomationBench"
+                  }
+                ],
+                "unit": "",
+                "title": "Các bài test agentic dẫn đầu"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và đây là câu trả lời",
+                "cho bí mật ban đầu:"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Google tung ra Orchestrator",
+                "trong Google Antigravity."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giao diện điều phối",
+                "Orchestrator mới"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Google Antigravity Orchestrator multi model"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thay vì dùng một AI",
+                "từ đầu đến cuối,",
+                "Orchestrator tự động chia việc."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Gemini 4 Carbon",
+                "làm kiến trúc sư phân việc.",
+                "Hydrogen làm công nhân",
+                "viết code và kiểm thử."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": 4,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kết quả đo lường thực tế",
+                "khi phối hợp mô hình"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Tiết kiệm Quota",
+                    "value": 24
+                  },
+                  {
+                    "label": "Tốc độ nhanh hơn",
+                    "value": 19
+                  }
+                ],
+                "unit": "",
+                "title": "Hiệu quả mô hình Orchestrator (%)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giảm 24% tài nguyên.",
+                "Xong sớm hơn 19%."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": 24,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang phát triển",
+                "các sản phẩm AI,"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kỷ nguyên một siêu AI",
+                "gánh tất cả công việc",
+                "chính thức kết thúc."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người chiến thắng",
+                "không phải người có AI đắt nhất."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mà là người biết đặt",
+                "đúng AI vào đúng vị trí."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khả năng xử lý tác vụ",
+                "tri thức đa phương thức"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Agents Last Exam",
+                    "value": 71.6
+                  },
+                  {
+                    "label": "MKA Benchmark",
+                    "value": 53.4
+                  }
+                ],
+                "unit": "",
+                "title": "Kết quả đánh giá tác vụ AI (%)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn lại mức giá 1.50 đô",
+                "của Gemini 4 Hydrogen."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": 150,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bài học rất rõ ràng:",
+                "đừng trả tiền",
+                "cho sự lãng phí."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy chuyển sang tư duy",
+                "phối hợp đa mô hình."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn sẽ tiếp tục ném tiền",
+                "cho một AI duy nhất,"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "hay chia quy trình",
+                "để tiết kiệm 24% chi phí?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": 24,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cú Sốc Về Chi Phí AI",
+              "card_start": 0
+            },
+            {
+              "label": "Sai Lầm Đốt Tiền Của Số Đông",
+              "card_start": 6
+            },
+            {
+              "label": "Sức Mạnh Thực Chiến Trên Benchmark",
+              "card_start": 12
+            },
+            {
+              "label": "Vũ Khí Bí Mật: Orchestrator",
+              "card_start": 18
+            },
+            {
+              "label": "Tác Động Trực Tiếp Đến Bạn",
+              "card_start": 24
+            },
+            {
+              "label": "Bài Học Và Lựa Chọn",
+              "card_start": 30
+            }
+          ]
+        },
+        "script_path": "output/2026-11-15/2026-11-15-morning-introducing-gemini-4-hydrogen/video/script.json",
+        "script_msg_id": 1230,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
