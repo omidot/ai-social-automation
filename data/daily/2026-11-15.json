@@ -781,6 +781,718 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Vì sao các đội nhỏ giờ làm được việc trước đây cần cả công ty",
+      "style": "white-ticket",
+      "topic_key": "vi-sao-cac-oi-nho-gio-lam-uoc-viec-truoc-ay-can-ca",
+      "text_fb": "Năm 2024, một nhóm ba người với bộ công cụ AI đúng đắn đang tạo ra sản phẩm và doanh thu tương đương một doanh nghiệp năm mươi nhân sự của thập kỷ trước. Nhiều lãnh đạo doanh nghiệp vẫn lầm tưởng rằng quy mô nhân sự đông đúc đại diện cho sức mạnh và sự uy tín. Đó là tư duy lỗi thời khiến họ trả giá đắt. Hiện tại, lợi thế cạnh tranh tuyệt đối không còn nằm ở số lượng người ngồi trong văn phòng, mà thuộc về tốc độ thử nghiệm và khả năng làm chủ công nghệ. Một tập đoàn lớn mất tới ba tuần chỉ để duyệt ngân sách và lên kế hoạch cho một chiến dịch tiếp thị. Trong cùng thời gian đó, một nhóm hai người tận dụng AI đã viết xong kịch bản, tạo hình ảnh và chạy chiến dịch thử nghiệm xong từ lâu. AI không chỉ giúp xử lý tác vụ nhỏ lẻ; nó triệt hạ tận gốc chi phí giao tiếp rườm rà và hàng rào thủ tục. Đội ngũ nhỏ tinh gọn có thể đưa sản phẩm ra thị trường, thu thập phản hồi và cải tiến liên tục trước khi các tập đoàn kịp hoàn tất cuộc họp đầu tiên. Nếu bạn đang điều hành một công ty và giải quyết mọi khúc mắc bằng cách tuyển thêm nhân sự thay vì chuẩn hóa quy trình với AI, bạn đang tự tụt lại phía sau. Tương lai thuộc về những nhóm nhỏ siêu năng suất. Bạn đã sẵn sàng thu nhỏ quy mô để bứt phá tốc độ chưa?",
+      "text_ig": "Năm 2024, nhóm 3 người dùng AI có thể đè bẹp công ty 50 nhân sự. Lợi thế không còn ở quy mô bộ máy, mà ở tốc độ thực thi. Bạn đã sẵn sàng tối ưu quy trình chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#CongNghe",
+        "#KhoiNghiep",
+        "#XuHuongAI",
+        "#HieuSuat",
+        "#TuDongHoa",
+        "#Cursor",
+        "#ChatGPT",
+        "#TriTueNhanTao"
+      ],
+      "images": [
+        "assets/posts/2026-11-15/evening/01.jpg",
+        "assets/posts/2026-11-15/evening/02.jpg",
+        "assets/posts/2026-11-15/evening/03.jpg",
+        "assets/posts/2026-11-15/evening/04.jpg",
+        "assets/posts/2026-11-15/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-15/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": null,
+        "extra_sources": null,
+        "meta": {
+          "title": "Vì sao nhóm 3 người AI đè bẹp tập đoàn 50 nhân sự năm 2024?",
+          "description": "Nhiều lãnh đạo vẫn lầm tưởng quy mô nhân sự đông đúc đại diện cho sức mạnh. Trong khi đó, các nhóm nhỏ tinh gọn ứng dụng AI đang tạo ra doanh thu tương đương doanh nghiệp 50 người với tốc độ vượt trội. Đừng để bộ máy cồng kềnh dìm chết doanh nghiệp của bạn. Bấm theo dõi kênh A Hít Official để cập nhật tư duy công nghệ mới nhất!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#CongNgheAI",
+            "#TuDuyDoanhNghiep",
+            "#KhoiNghiepAI",
+            "#NangSuatCongViec",
+            "#XuHuongAI2024",
+            "#AIInBusiness",
+            "#ToiUuBoMay"
+          ],
+          "keywords": [
+            "AI",
+            "A Hít Official",
+            "tinh gọn bộ máy",
+            "năng suất AI",
+            "doanh nghiệp AI",
+            "xu hướng công nghệ 2024",
+            "quản trị doanh nghiệp"
+          ],
+          "tiktok_caption": "Nhóm 3 người dùng AI đấu tập đoàn 50 nhân sự: Ai sẽ thắng? Xem ngay tư duy bứt phá! #AHitOfficial #AI2024 #NangSuat #CongNghe"
+        },
+        "spoken_text": "Năm 2024 một nhóm 3 người làm bằng doanh nghiệp 50 người.\nĐó không phải viễn tưởng. Đó là thực tế đang diễn ra.\nNhiều sếp vẫn lầm tưởng rằng quy mô đông đúc là uy tín.\nHọ cho rằng tuyển thêm người là công ty sẽ mạnh hơn.\nĐó là tư duy lỗi thời khiến họ trả giá đắt.\nNgay trong video này mình sẽ chỉ cho bạn lý do.\nHãy nhìn vào tập đoàn lớn. Họ mất tới đúng 3 tuần...\n...chỉ để duyệt ngân sách và lên kế hoạch tiếp thị.\nBa tuần cho các cuộc họp kéo dài vô tận.\nHọp phòng ban rồi họp sếp, chỉnh sửa từng slide báo cáo.\nChi phí giao tiếp rườm rà đó đốt sạch lợi nhuận doanh nghiệp.\nTrong cùng thời gian 3 tuần, hãy xem nhóm 2 người làm gì.\nHọ tận dụng các công cụ AI được tối ưu đúng cách.\nChỉ trong vài ngày ngắn ngủi, họ đã viết xong kịch bản.\nTạo toàn bộ hình ảnh và khởi chạy chiến dịch.\nAI không chỉ làm việc nhỏ. Nó triệt hạ tận gốc rào cản.\nMột đội ngũ tinh gọn đưa sản phẩm ra thị trường ngay.\nHọ thu thập phản hồi và cải tiến liên tục từng giờ.\nHọ hoàn thành xong mọi việc trước khi tập đoàn kịp họp xong!\nĐây là câu trả lời cho lời hứa ở đầu video.\nTốc độ thử nghiệm mới là yếu tố quyết định sống còn.\nLợi thế cạnh tranh tuyệt đối không nằm ở số chỗ ngồi.\nNó thuộc về khả năng làm chủ công nghệ mới.\nNếu bạn đang làm sếp và điều hành một đội ngũ...\nVà bạn giải quyết khúc mắc bằng cách tuyển thêm người...\nThay vì chuẩn hóa quy trình bằng các công cụ AI...\nThì bạn đang tự tay dìm chết doanh nghiệp của mình.\nTuyển người chỉ làm tăng chi phí, AI mới tạo ra bứt phá.\nTương lai thuộc về những nhóm nhỏ siêu năng suất.\nSự thật là cỗ máy lớn đang di chuyển quá chậm.\nTrong khi cuộc chơi AI chỉ dành cho kẻ nhanh chân.\nNhớ lại con số đầu video: 3 người chấp cả 50 người.\nBạn sẽ chủ động thu nhỏ để bứt phá tốc độ...\nHay tiếp tục gánh bộ máy và chấp nhận bị đào thải?\nĐể lại ý kiến của bạn ngay dưới phần bình luận!",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Năm 2024 một nhóm 3 người",
+                "làm bằng doanh nghiệp 50 người."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": 2024,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó không phải viễn tưởng.",
+                "Đó là thực tế đang diễn ra."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhiều sếp vẫn lầm tưởng rằng",
+                "quy mô đông đúc là uy tín."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Đội AI 2024",
+                    "value": 3
+                  },
+                  {
+                    "label": "Doanh nghiệp cũ",
+                    "value": 50
+                  }
+                ],
+                "unit": "người",
+                "title": "So sánh quy mô nhân sự"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ cho rằng tuyển thêm người",
+                "là công ty sẽ mạnh hơn."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là tư duy lỗi thời",
+                "khiến họ trả giá đắt."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ngay trong video này",
+                "mình sẽ chỉ cho bạn lý do."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn vào tập đoàn lớn.",
+                "Họ mất tới đúng 3 tuần..."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": 3,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "...chỉ để duyệt ngân sách",
+                "và lên kế hoạch tiếp thị."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ba tuần cho các cuộc họp",
+                "kéo dài vô tận."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Tập đoàn lớn",
+                    "value": 3
+                  },
+                  {
+                    "label": "Nhóm 2 người",
+                    "value": 0.2
+                  }
+                ],
+                "unit": "tuần",
+                "title": "Thời gian duyệt chiến dịch"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họp phòng ban rồi họp sếp,",
+                "chỉnh sửa từng slide báo cáo."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chi phí giao tiếp rườm rà đó",
+                "đốt sạch lợi nhuận doanh nghiệp."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong cùng thời gian 3 tuần,",
+                "hãy xem nhóm 2 người làm gì."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": 3,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ tận dụng các công cụ AI",
+                "được tối ưu đúng cách."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chỉ trong vài ngày ngắn ngủi,",
+                "họ đã viết xong kịch bản."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tạo toàn bộ hình ảnh",
+                "và khởi chạy chiến dịch."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Viết kịch bản"
+                  },
+                  {
+                    "label": "Tạo hình ảnh"
+                  },
+                  {
+                    "label": "Chạy thử nghiệm"
+                  }
+                ],
+                "unit": "",
+                "title": "Tác vụ AI xử lý tự động"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI không chỉ làm việc nhỏ.",
+                "Nó triệt hạ tận gốc rào cản."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một đội ngũ tinh gọn",
+                "đưa sản phẩm ra thị trường ngay."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ thu thập phản hồi",
+                "và cải tiến liên tục từng giờ."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ hoàn thành xong mọi việc",
+                "trước khi tập đoàn kịp họp xong!"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là câu trả lời",
+                "cho lời hứa ở đầu video."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Nhóm AI 2 người",
+                    "value": 2
+                  },
+                  {
+                    "label": "Tập đoàn lớn",
+                    "value": 21
+                  }
+                ],
+                "unit": "ngày",
+                "title": "Tốc độ đưa sản phẩm ra thị trường"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tốc độ thử nghiệm mới là",
+                "yếu tố quyết định sống còn."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Lợi thế cạnh tranh tuyệt đối",
+                "không nằm ở số chỗ ngồi."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó thuộc về khả năng",
+                "làm chủ công nghệ mới."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm sếp",
+                "và điều hành một đội ngũ..."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và bạn giải quyết khúc mắc",
+                "bằng cách tuyển thêm người..."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thay vì chuẩn hóa quy trình",
+                "bằng các công cụ AI..."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI process automation business efficiency 2024"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thì bạn đang tự tay",
+                "dìm chết doanh nghiệp của mình."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tuyển người chỉ làm tăng chi phí,",
+                "AI mới tạo ra bứt phá."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tương lai thuộc về",
+                "những nhóm nhỏ siêu năng suất."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "gauge",
+                "items": [
+                  {
+                    "label": "Nhóm tinh gọn AI",
+                    "value": 95
+                  },
+                  {
+                    "label": "Doanh nghiệp cồng kềnh",
+                    "value": 25
+                  }
+                ],
+                "unit": "",
+                "title": "Chỉ số hiệu suất vận hành"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sự thật là cỗ máy lớn",
+                "đang di chuyển quá chậm."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong khi cuộc chơi AI",
+                "chỉ dành cho kẻ nhanh chân."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhớ lại con số đầu video:",
+                "3 người chấp cả 50 người."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": 3,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn sẽ chủ động thu nhỏ",
+                "để bứt phá tốc độ..."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hay tiếp tục gánh bộ máy",
+                "và chấp nhận bị đào thải?"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Để lại ý kiến của bạn",
+                "ngay dưới phần bình luận!"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Ảo tưởng quy mô",
+              "card_start": 0
+            },
+            {
+              "label": "Cản trở tập đoàn",
+              "card_start": 6
+            },
+            {
+              "label": "Tốc độ đội nhỏ",
+              "card_start": 12
+            },
+            {
+              "label": "Vũ khí bí mật",
+              "card_start": 18
+            },
+            {
+              "label": "Cạm bẫy quản lý",
+              "card_start": 24
+            },
+            {
+              "label": "Tương lai siêu năng suất",
+              "card_start": 30
+            }
+          ]
+        },
+        "script_path": "output/2026-11-15/2026-11-15-evening-vi-sao-cac-oi-nho-gio-lam-uoc-viec-truoc/video/script.json",
+        "script_msg_id": 1238,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
