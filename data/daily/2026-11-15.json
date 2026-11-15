@@ -783,7 +783,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Vì sao các đội nhỏ giờ làm được việc trước đây cần cả công ty",
       "style": "white-ticket",
