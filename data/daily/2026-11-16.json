@@ -930,6 +930,71 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Lambda Boosts AI Factory Resiliency and Efficiency With NVIDIA Photonics",
+      "style": "warm-ticket",
+      "topic_key": "lambda-boosts-ai-factory-resiliency-and-efficiency",
+      "text_fb": "Hơn 180.000 người đã ký đơn đòi Jensen Huang trở lại ghế CEO Nvidia. Nhiều người hoảng loạn tin rằng mất ông, toàn bộ cỗ máy AI thế giới sẽ đứng khựng lại. Nhưng nếu bạn đang làm AI và nghĩ vận mệnh cả ngành công nghệ phụ thuộc vào một cá nhân, bạn đang hiểu sai cách cuộc chơi vận hành.\n\nNhìn vào con số bảo chứng 105 tỷ đô mà Nvidia cam kết cho trung tâm dữ liệu OpenAI tại Ohio. Hay việc Lambda triển khai hệ thống NVIDIA Photonics kết nối hơn 10.000 GPU, giảm độ trễ 10% và hạ nhiệt độ chip từ 51°C xuống 36°C. Hạ tầng AI đã phát triển đến quy mô tự vận hành vượt khỏi tầm ảnh hưởng của bất kỳ cá nhân nào. Jensen Huang là một anh hùng, nhưng như Sam Altman nói, anh hùng nào cũng có khuyết điểm.\n\nSự thật là cuộc đua AI hiện tại được quyết định bởi hiệu suất phần cứng, băng thông mạng và những hợp đồng tài chính khổng lồ. Việc thay thế nguồn sáng laser hay tối ưu công nghệ CPO giúp tăng độ tin cậy gấp 15 lần mới là thứ giữ cho hệ thống chạy liên tục, chứ không phải một bài phát biểu trên sân khấu.\n\nNếu bạn đang xây dựng sản phẩm AI, đừng lãng phí thời gian lo sợ trước bão tố nhân sự thượng tầng. Hãy tập trung vào thứ cốt lõi: tối ưu sản phẩm và năng lực khai thác hạ tầng. Người giỏi đến rồi đi, nhưng guồng quay công nghệ thì chưa bao giờ dừng lại.\n\nBạn nghĩ sự ra đi của Jensen Huang có thực sự làm chậm tiến độ phát triển AI thế giới không?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "Hơn 180.000 người đòi Jensen Huang trở lại Nvidia. Nhưng thỏa thuận 105 tỷ đô và hạ tầng AI quá lớn để sụp đổ vì một cá nhân. Đừng hoảng loạn trước tin tức nhân sự, hãy nhìn vào hiệu suất hạ tầng thực tế. Bạn nghĩ sao về tương lai Nvidia?",
+      "hashtags": [
+        "#AI",
+        "#Nvidia",
+        "#JensenHuang",
+        "#SamAltman",
+        "#OpenAI",
+        "#CongNgheAI",
+        "#AHitOfficial",
+        "#InfrastructureAI",
+        "#TechNews"
+      ],
+      "images": [
+        "assets/posts/2026-11-16/evening/01.jpg",
+        "assets/posts/2026-11-16/evening/02.jpg",
+        "assets/posts/2026-11-16/evening/03.jpg",
+        "assets/posts/2026-11-16/evening/04.jpg",
+        "assets/posts/2026-11-16/evening/05.jpg",
+        "assets/posts/2026-11-16/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/evening/06.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/lambda-photonics/"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/1034501/nvidia-board-jensen-huang-not-bringing-back"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/16/sam-altman-on-nvidia-without-jensen-huang-the-industry-will-be-fine/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/slurm-quantum-computing-supercomputing/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/cuda-x-libraries-agents-accelerate-scientific-discovery/"
+        }
+      ],
+      "angle": "quan-diem"
     }
   }
 }
