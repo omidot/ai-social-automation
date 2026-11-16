@@ -1,0 +1,935 @@
+{
+  "date": "2026-11-16",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "AI Day Seoul Brings Together Korea’s Industry Leaders, Startups and Developer Communities",
+      "style": "navy-ticket",
+      "topic_key": "ai-day-seoul-brings-together-koreas-industry-leade",
+      "text_fb": "2.000 nhà phát triển vừa tụ hội tại AI Day Seoul để khẳng định một thực tế: cuộc đua chatbot thuần túy đã qua đỉnh. NVIDIA đang dồn nguồn lực cùng các đại gia như Hyundai, LG và SK Group vào Physical AI — đưa trí tuệ nhân tạo vào thế giới thực.\n\nNếu bạn đang nghĩ AI chỉ là gõ vài câu prompt để viết bài hay tạo ảnh, bạn đang bỏ lỡ bức tranh lớn. Người ta đang dùng nền tảng NVIDIA Isaac để điều khiển cả dây chuyền robot tự động. Họ xây dựng các AI Agent tự quản lý hệ thống đám mây cho Coupang và NAVER Cloud mà không cần con người can thiệp từng bước.\n\nSự thật là thị trường không thiếu người biết dùng AI ở mức bề nổi. Thị trường đang khát những người biết tối ưu suy luận AI trên phần cứng và kết hợp trí tuệ nhân tạo với thiết bị vật lý. 500 lập trình viên tại Seoul đã trực tiếp tham gia đào tạo và thi chứng chỉ của NVIDIA để đón đầu làn sóng này.\n\nĐã đến lúc bạn phải thay đổi góc nhìn. Dừng việc chạy theo các tin đồn mô hình mới mỗi ngày. Hãy tập trung giải quyết các bài toán thực tế, xây dựng quy trình tự động hóa có chiều sâu và làm chủ công cụ của chính mình.\n\nBạn sẽ tiếp tục làm người dùng AI phong trào, hay trở thành người tạo ra giá trị thực?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "2.000 nhà phát triển tại AI Day Seoul vừa chứng minh: Physical AI và Agentic AI mới là tương lai. Cuộc đua không nằm ở chatbot mà nằm ở robot và hệ thống tự vận hành thực tế. Bạn đã sẵn sàng nâng cấp kỹ năng chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#PhysicalAI",
+        "#AgenticAI",
+        "#Robotics",
+        "#NVIDIAIsaac",
+        "#CongNgheAI",
+        "#HocAI",
+        "#XuHuongAI",
+        "#AITech"
+      ],
+      "images": [
+        "assets/posts/2026-11-16/morning/01.jpg",
+        "assets/posts/2026-11-16/morning/02.jpg",
+        "assets/posts/2026-11-16/morning/03.jpg",
+        "assets/posts/2026-11-16/morning/04.jpg",
+        "assets/posts/2026-11-16/morning/05.jpg",
+        "assets/posts/2026-11-16/morning/06.jpg",
+        "assets/posts/2026-11-16/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-16/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/ai-day-seoul-wrapup/"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQRmlOWVhwODBWNFprZXNFVnVCa1lSSmgyeldnTUFsTXU1WHpzRnlsVk9YbVl3Z3o0ZnloWnk5S3c3am5EcEZJa1BFamZjQVdtWTRQczRTSVc2LXBKZXZyWWJQbUdUQzdnWHRlNnRIeEpvTU5PVEpqekJyUnNfRnhzYnpaNm5fcTRsYThmemNRa25FZw?oc=5"
+        },
+        {
+          "name": "Đại học Đà Nẵng",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPVVVWNjVCREhuSTFjSm11bWN1NEZrZ3MtSFFKUHRLZElKUENlSG5aYXRVVmItQnJXeWlCSEFla0JZcVRoQ1JBZXEyNDlsMmlnRFBZNUYxa1Atb1Z1czFudTVJUVpBWUFJQ2kyTzhBd09mVWNnLVBESVdVRFh3bXhDYU5KSU83TWd1eHBRQVRCSzZNdHJvQTJYZ1ROa2xZOG56SnlyMmRDWlFiUmUyQXduM2RHQzQ0SUZNMUo1MQ?oc=5"
+        },
+        {
+          "name": "The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNOTJZbzJTbkZObVJJNzkyOExaejBHV2s4X2VON2x1Y0tvb3F2UFJJYU1URnRHdENVSEstSi1ScEw0OVEwTlRfTUFONEdTYl9YYlpNa2RUQXU2VTl2R1RWM0F4MXJ4aUFlNWk0TTJtOTh0ZWNyNGZfNVNuRF9fcnpiYmlkNDhLcUJSNF9wcUF3Y2RQdWZ4YUdnc1RMMHo?oc=5"
+        },
+        {
+          "name": "Taipei Times",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB2cUs2R3Fqd3piQi1FYmZ2elJpUERIR0h4YXg1TkRmS0xiR0JVOFdHRjZ0VGhtODdDaHZycWdITTFibmF0LWIzYldkLS0xb3hpVTNFb0J0ZGJTN1lkaEljVWVJVDNIZDczSWMxbmNZQzRPVXgxNXo3UQ?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOc2VrM2hrSG1IWld4a05XUnpvS0RPbWFOOVlucGVja2FMcmgtQzhPUjVob2pMRDJXNktDbWNCanBhZFdvMjhjaVJEdG5hOWRIWjVOamk3aERlSHlEWVUzRnoyVkpQWmNLZTNObTdNQ0M4TUs5ZXgxTGJqN1BUeDlIWjFkYzhTUQ?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://blogs.nvidia.com/blog/ai-day-seoul-wrapup/",
+        "extra_sources": [
+          {
+            "name": "Vietnam.vn",
+            "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQRmlOWVhwODBWNFprZXNFVnVCa1lSSmgyeldnTUFsTXU1WHpzRnlsVk9YbVl3Z3o0ZnloWnk5S3c3am5EcEZJa1BFamZjQVdtWTRQczRTSVc2LXBKZXZyWWJQbUdUQzdnWHRlNnRIeEpvTU5PVEpqekJyUnNfRnhzYnpaNm5fcTRsYThmemNRa25FZw?oc=5"
+          },
+          {
+            "name": "Đại học Đà Nẵng",
+            "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPVVVWNjVCREhuSTFjSm11bWN1NEZrZ3MtSFFKUHRLZElKUENlSG5aYXRVVmItQnJXeWlCSEFla0JZcVRoQ1JBZXEyNDlsMmlnRFBZNUYxa1Atb1Z1czFudTVJUVpBWUFJQ2kyTzhBd09mVWNnLVBESVdVRFh3bXhDYU5KSU83TWd1eHBRQVRCSzZNdHJvQTJYZ1ROa2xZOG56SnlyMmRDWlFiUmUyQXduM2RHQzQ0SUZNMUo1MQ?oc=5"
+          },
+          {
+            "name": "The Guardian",
+            "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNOTJZbzJTbkZObVJJNzkyOExaejBHV2s4X2VON2x1Y0tvb3F2UFJJYU1URnRHdENVSEstSi1ScEw0OVEwTlRfTUFONEdTYl9YYlpNa2RUQXU2VTl2R1RWM0F4MXJ4aUFlNWk0TTJtOTh0ZWNyNGZfNVNuRF9fcnpiYmlkNDhLcUJSNF9wcUF3Y2RQdWZ4YUdnc1RMMHo?oc=5"
+          },
+          {
+            "name": "Taipei Times",
+            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB2cUs2R3Fqd3piQi1FYmZ2elJpUERIR0h4YXg1TkRmS0xiR0JVOFdHRjZ0VGhtODdDaHZycWdITTFibmF0LWIzYldkLS0xb3hpVTNFb0J0ZGJTN1lkaEljVWVJVDNIZDczSWMxbmNZQzRPVXgxNXo3UQ?oc=5"
+          },
+          {
+            "name": "Vietnam.vn",
+            "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOc2VrM2hrSG1IWld4a05XUnpvS0RPbWFOOVlucGVja2FMcmgtQzhPUjVob2pMRDJXNktDbWNCanBhZFdvMjhjaVJEdG5hOWRIWjVOamk3aERlSHlEWVUzRnoyVkpQWmNLZTNObTdNQ0M4TUs5ZXgxTGJqN1BUeDlIWjFkYzhTUQ?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "2.000 Chuyên Gia Tụ Hội Seoul: Cuộc Đua Chatbot Đã Lên Tới Đỉnh?",
+          "description": "Sự kiện AI Day Seoul của NVIDIA vừa khép lại với hơn 2.000 nhà phát triển tham gia, đánh dấu bước chuyển mình mạnh mẽ từ các chatbot thông thường sang Physical AI và AI Agent thực chiến. Các tập đoàn lớn như Hyundai, LG, SK Group cùng hàng loạt startup đang ứng dụng nền tảng NVIDIA Isaac để đưa AI vào quản lý dây chuyền robot và đám mây tự động. Hãy theo dõi kênh A Hít Official để cập nhật những tư duy công nghệ thực chiến nhất!",
+          "hashtags": [
+            "#NVIDIA",
+            "#AIDaySeoul",
+            "#PhysicalAI",
+            "#AIAgent",
+            "#AHitOfficial",
+            "#CongNghe",
+            "#Robot",
+            "#DeepLearning"
+          ],
+          "keywords": [
+            "NVIDIA AI Day Seoul",
+            "Physical AI",
+            "AI Agent",
+            "NVIDIA Isaac",
+            "Hyundai AI",
+            "LG AI Research",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "2.000 chuyên gia tại Seoul chứng minh cuộc đua Chatbot đã qua đỉnh. Giờ là lúc của Physical AI! #NVIDIA #AIDaySeoul #PhysicalAI #AHitOfficial"
+        },
+        "spoken_text": "2.000 nhà phát triển AI vừa quy tụ tại Seoul trong hai ngày vừa qua.\nHọ không đến COEX chỉ để nghe chém gió về vài dòng prompt.\n2.000 chuyên gia công nghệ đang cùng NVIDIA thay đổi cả cuộc chơi.\nHọ mang trí tuệ nhân tạo rời khỏi màn hình máy tính để bước vào thế giới thực.\nNVIDIA cùng các đại gia như Hyundai và LG Electronics đang tạo nên khác biệt.\nKỷ nguyên Physical AI chính thức bắt đầu. Và bạn phải chú ý.\nPhần thưởng khủng nhất sự kiện mình sẽ bật mí ở ngay gần cuối bài.\nNếu bạn vẫn tưởng AI chỉ là gõ câu lệnh để viết văn hay tạo ảnh...\n...bạn đang bị bỏ lại phía sau rất xa mà không hề hay biết.\nDeepu Talla từ NVIDIA đã đưa ra khẳng định rất đanh thép.\nHàn Quốc đang bứt phá vượt xa quy mô vốn có trong ngành AI.\nDoosan Robotics và Hyundai đang dùng NVIDIA Isaac để điều khiển robot.\nHọ đưa robot tổng hợp vào vận hành thực tế trong các dây chuyền.\nCác startup như Real World và Luda Robotics cũng đang đua tốc độ.\nSố đông vẫn mải mê với những mô hình trò chuyện. Đó là một sai lầm.\nJonathan Cohen từ NVIDIA đã chỉ ra hướng đi hoàn toàn khác.\nDoanh nghiệp muốn chiến thắng bắt buộc phải tự xây và kiểm soát AI Agent.\nCoupang Intelligent Cloud và NAVER Cloud không đi mượn AI bề nổi.\nHọ tự tối ưu AI Agent để quản lý hạ tầng đám mây hoàn toàn tự động.\nHyunho Yang từ SK Telecom chia sẻ rằng sự nhiệt huyết của lập trình viên rất lớn.\n10 startup công nghệ đã trình bày giải pháp tại Physical AI Connect.\nTwelveLabs, Avikus, Neubility và ROAI đều chọn giải bài toán thực tế.\nNhìn vào Seoul lúc này, bạn sẽ thấy một sự thật rất rõ ràng.\nThị trường không thiếu những người dùng AI ở mức phong trào.\nThị trường cực kỳ khát những kỹ sư biết tối ưu suy luận trên phần cứng.\n500 lập trình viên đã tham gia trực tiếp đào tạo chuyên sâu.\nHọ học cách triển khai hệ thống AI quy mô lớn và thi chứng chỉ NVIDIA.\nHọ học làm chủ nền tảng NVIDIA Isaac để làm robot từ đầu đến cuối.\nCác cộng đồng lớn như PyTorchKR HAERAE và Hugging Face KREW đều đồng loạt nhập cuộc.\nCòn nhớ món quà khủng mình đã hứa ở đầu video chứ?\nTại cuộc thi Hangul Hackathon đội FlyGate đã xuất sắc dành chiến thắng.\nHọ xây dựng AI Agent huấn luyện riêng cho tiếng Hàn trên OpenShell runtime.\nVà phần thưởng họ nhận được chính là một hệ thống NVIDIA DGX Spark.\nHọ chiến thắng không phải bởi vì họ biết viết prompt hoa mỹ hơn người khác.\nHọ thắng vì họ làm chủ công nghệ cốt lõi và giải quyết bài toán thật.\nTất cả những gì diễn ra tại AI Day Seoul chỉ ra một xu hướng.\nNếu bạn đang làm sản phẩm AI hay ứng dụng công nghệ vào công việc...\n...đã đến lúc bạn phải thay đổi hoàn toàn tư duy của mình.\nDừng ngay việc chạy theo các tin đồn mô hình thay đổi mỗi ngày.\nHãy tập trung vào giải pháp tự động hóa có chiều sâu và tối ưu phần cứng.\nNhìn lại 2.000 chuyên gia vừa quy tụ tại COEX trong hai ngày qua.\nHọ đang xây dựng tương lai chứ không ngồi dự đoán tương lai.\nBạn sẽ tiếp tục làm người dùng phong trào, hay trở thành người tạo giá trị?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "2.000 nhà phát triển AI",
+                "vừa quy tụ tại Seoul",
+                "trong hai ngày vừa qua."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": 2000,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ không đến COEX",
+                "chỉ để nghe chém gió",
+                "về vài dòng prompt."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "2.000 chuyên gia công nghệ",
+                "đang cùng NVIDIA",
+                "thay đổi cả cuộc chơi."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 2000,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ mang trí tuệ nhân tạo",
+                "rời khỏi màn hình máy tính",
+                "để bước vào thế giới thực."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA cùng các đại gia",
+                "như Hyundai và LG Electronics",
+                "đang tạo nên khác biệt."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Hyundai Motor"
+                  },
+                  {
+                    "label": "Doosan Robotics"
+                  },
+                  {
+                    "label": "LG Electronics"
+                  },
+                  {
+                    "label": "SK Group"
+                  }
+                ],
+                "unit": "",
+                "title": "Tập đoàn triển khai Physical AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kỷ nguyên Physical AI",
+                "chính thức bắt đầu.",
+                "Và bạn phải chú ý."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Phần thưởng khủng nhất sự kiện",
+                "mình sẽ bật mí",
+                "ở ngay gần cuối bài."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn tưởng AI",
+                "chỉ là gõ câu lệnh",
+                "để viết văn hay tạo ảnh..."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "...bạn đang bị bỏ lại",
+                "phía sau rất xa",
+                "mà không hề hay biết."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Deepu Talla từ NVIDIA",
+                "đã đưa ra khẳng định",
+                "rất đanh thép."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hàn Quốc đang bứt phá",
+                "vượt xa quy mô vốn có",
+                "trong ngành AI."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Doosan Robotics và Hyundai",
+                "đang dùng NVIDIA Isaac",
+                "để điều khiển robot."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA Isaac robotics platform"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ đưa robot tổng hợp",
+                "vào vận hành thực tế",
+                "trong các dây chuyền."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các startup như Real World",
+                "và Luda Robotics",
+                "cũng đang đua tốc độ."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Doosan Robotics"
+                  },
+                  {
+                    "label": "Hyundai Motor"
+                  },
+                  {
+                    "label": "Real World"
+                  },
+                  {
+                    "label": "Luda Robotics"
+                  }
+                ],
+                "unit": "",
+                "title": "Doanh nghiệp robot tiêu biểu"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Số đông vẫn mải mê",
+                "với những mô hình trò chuyện.",
+                "Đó là một sai lầm."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Jonathan Cohen từ NVIDIA",
+                "đã chỉ ra hướng đi",
+                "hoàn toàn khác."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Doanh nghiệp muốn chiến thắng",
+                "bắt buộc phải tự xây",
+                "và kiểm soát AI Agent."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Coupang Intelligent Cloud",
+                "và NAVER Cloud",
+                "không đi mượn AI bề nổi."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ tự tối ưu AI Agent",
+                "để quản lý hạ tầng đám mây",
+                "hoàn toàn tự động."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Coupang Cloud"
+                  },
+                  {
+                    "label": "NAVER Cloud"
+                  },
+                  {
+                    "label": "LG AI Research"
+                  },
+                  {
+                    "label": "SK Telecom"
+                  }
+                ],
+                "unit": "",
+                "title": "Đơn vị tự làm AI Agent"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hyunho Yang từ SK Telecom",
+                "chia sẻ rằng sự nhiệt huyết",
+                "của lập trình viên rất lớn."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "10 startup công nghệ",
+                "đã trình bày giải pháp",
+                "tại Physical AI Connect."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "TwelveLabs, Avikus, Neubility",
+                "và ROAI đều chọn giải",
+                "bài toán thực tế."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "TwelveLabs AI platform"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn vào Seoul lúc này,",
+                "bạn sẽ thấy một sự thật",
+                "rất rõ ràng."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thị trường không thiếu",
+                "những người dùng AI",
+                "ở mức phong trào."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thị trường cực kỳ khát",
+                "những kỹ sư biết tối ưu",
+                "suy luận trên phần cứng."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "500 lập trình viên",
+                "đã tham gia trực tiếp",
+                "đào tạo chuyên sâu."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": 500,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ học cách triển khai",
+                "hệ thống AI quy mô lớn",
+                "và thi chứng chỉ NVIDIA."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA Deep Learning Institute Korean certification"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ học làm chủ nền tảng",
+                "NVIDIA Isaac để làm robot",
+                "từ đầu đến cuối."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các cộng đồng lớn như PyTorchKR",
+                "HAERAE và Hugging Face KREW",
+                "đều đồng loạt nhập cuộc."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "PyTorchKR"
+                  },
+                  {
+                    "label": "Hugging Face KREW"
+                  },
+                  {
+                    "label": "Pseudo Lab"
+                  },
+                  {
+                    "label": "Python Korea"
+                  }
+                ],
+                "unit": "",
+                "title": "Cộng đồng AI dự Bootcamp Seoul"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Còn nhớ món quà khủng",
+                "mình đã hứa ở đầu video",
+                "chứ?"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tại cuộc thi Hangul Hackathon",
+                "đội FlyGate đã xuất sắc",
+                "dành chiến thắng."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ xây dựng AI Agent",
+                "huấn luyện riêng cho tiếng Hàn",
+                "trên OpenShell runtime."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và phần thưởng họ nhận được",
+                "chính là một hệ thống",
+                "NVIDIA DGX Spark."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA DGX Spark system"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ chiến thắng không phải",
+                "bởi vì họ biết viết prompt",
+                "hoa mỹ hơn người khác."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ thắng vì họ làm chủ",
+                "công nghệ cốt lõi",
+                "và giải quyết bài toán thật."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tất cả những gì diễn ra",
+                "tại AI Day Seoul",
+                "chỉ ra một xu hướng."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm sản phẩm AI",
+                "hay ứng dụng công nghệ",
+                "vào công việc..."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "...đã đến lúc bạn",
+                "phải thay đổi hoàn toàn",
+                "tư duy của mình."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dừng ngay việc chạy theo",
+                "các tin đồn mô hình",
+                "thay đổi mỗi ngày."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy tập trung vào giải pháp",
+                "tự động hóa có chiều sâu",
+                "và tối ưu phần cứng."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn lại 2.000 chuyên gia",
+                "vừa quy tụ tại COEX",
+                "trong hai ngày qua."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA On Demand AI Day Seoul"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ đang xây dựng tương lai",
+                "chứ không ngồi dự đoán",
+                "tương lai."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn sẽ tiếp tục",
+                "làm người dùng phong trào,",
+                "hay trở thành người tạo giá trị?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cuộc Cách Mạng Physical AI",
+              "card_start": 0
+            },
+            {
+              "label": "Lối Mòn Chatbot vs Thực Tế Robot",
+              "card_start": 7
+            },
+            {
+              "label": "Tự Làm Chủ AI Agent Enterprise",
+              "card_start": 14
+            },
+            {
+              "label": "Kỹ Năng Thực Chiến Thị Trường Khát",
+              "card_start": 22
+            },
+            {
+              "label": "Giải Mã Lời Hứa & Bài Học Chốt",
+              "card_start": 29
+            }
+          ]
+        },
+        "script_path": "output/2026-11-16/2026-11-16-morning-ai-day-seoul-brings-together-koreas-indu/video/script.json",
+        "script_msg_id": null,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
