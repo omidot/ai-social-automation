@@ -1,0 +1,931 @@
+{
+  "date": "2026-11-17",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "NVIDIA Sweeps MLPerf Training and Endpoints as Vera Rubin Debuts With Leading Performance",
+      "style": "mono-ticket",
+      "topic_key": "nvidia-sweeps-mlperf-training-and-endpoints-as-ver",
+      "text_fb": "NVIDIA vừa thắng sạch mọi benchmark trong vòng MLPerf Training v6.1. Không phải một hãng góp mặt ở vài mục, mà là hãng duy nhất có kết quả trên toàn bộ các benchmark - từ mô hình ngôn ngữ lớn, tạo ảnh, hệ gợi ý, tới huấn luyện reinforcement learning. Vera Rubin NVL72, nền tảng vừa ra mắt, đạt gấp đôi hiệu suất mỗi GPU so với GB300 NVL72 - chính là thế hệ chip \"mới nhất\" chỉ vài tháng trước.\n\nNhưng con số mình để ý nhất không nằm ở phần training. Nó nằm ở MLPerf Endpoints - benchmark mới đo agentic AI theo throughput trên mỗi watt điện. Với mô hình Kimi K3, Vera Rubin cho hơn 10 lần throughput/watt so với thế hệ trước, ở cùng tốc độ phản hồi. Đây mới là thước đo quyết định ai sống sót, không phải tốc độ train.\n\nMình tin thế này: cuộc đua AI đang đổi trục. Vài năm trước, ai cũng hỏi \"mô hình này train nhanh bao nhiêu\". Giờ câu hỏi đúng là \"mỗi watt điện tạo ra bao nhiêu token hữu dụng\". Lý do đơn giản - trung tâm dữ liệu bị giới hạn bởi điện, không phải bởi số GPU bạn mua được. Agent nào cũng phải suy luận, gọi công cụ, tự kiểm tra lại nhiều lần trước khi hoàn thành một việc. Mỗi bước đó tốn token, mỗi token tốn điện.\n\nNếu bạn đang xây sản phẩm có AI agent, đừng chỉ nhìn vào mô hình \"mạnh nhất\" hay \"train nhanh nhất\". Nhìn vào chi phí vận hành mỗi token khi agent chạy thật, hàng nghìn request một giờ. Đó là thứ quyết định bạn có lãi hay lỗ khi scale lên, không phải con số đẹp trên slide PR.\n\nBạn nghĩ token mỗi watt có nên là chỉ số đầu tiên bạn hỏi khi chọn hạ tầng AI, hay vẫn ưu tiên tốc độ train như trước?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA thắng sạch MLPerf Training v6.1. Con số đáng chú ý nhất: token mỗi watt cho agentic AI tăng hơn 10 lần. Cuộc đua AI đang đổi trục - từ tốc độ train sang điện năng. Bạn tối ưu AI theo tiêu chí nào?",
+      "hashtags": [
+        "#AI",
+        "#NVIDIA",
+        "#MLPerf",
+        "#AgenticAI",
+        "#VeraRubin",
+        "#AIInfrastructure",
+        "#GPU",
+        "#CongNgheAI",
+        "#TriTueNhanTao",
+        "#DeepLearning",
+        "#Benchmark",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-17/morning/01.jpg",
+        "assets/posts/2026-11-17/morning/02.jpg",
+        "assets/posts/2026-11-17/morning/03.jpg",
+        "assets/posts/2026-11-17/morning/04.jpg",
+        "assets/posts/2026-11-17/morning/05.jpg",
+        "assets/posts/2026-11-17/morning/06.jpg",
+        "assets/posts/2026-11-17/morning/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-17/morning/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/rubin-hpc/"
+        },
+        {
+          "name": "Báo Dân trí",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQeWgtV2lQS3NaV19IX3dQUW9OREZoTTVzakhMbXZTS0h0NWZqQTNZVkw1bjBsREFYWWo1QzRhN194cm1PVmtMOE5PSG16cFhFSk1jZThiMnNtNHJaWUFsTmdDTzNuX1hjS3ZKNDVtMFg4LWlOU0xfczNEclNrQ2JtVEY3bnBMeENpYXlnNXZRNkJiTXhKb1pWRGdaTXliMnB3ZW4yYTFQelJTb1phVjlWbUw0WF9GNzF2YmFPeWprVQ?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2318262/nvidia-gou-dont-get-deep-discounts-black-friend-ceo-scandal/"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/16/all-the-questions-nvidia-should-answer-on-tuesday-but-probably-wont/"
+        }
+      ],
+      "angle": "xu-huong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://blogs.nvidia.com/blog/mlperf-training-endpoints-vera-rubin/",
+        "extra_sources": [
+          {
+            "name": "NVIDIA Blog",
+            "url": "https://blogs.nvidia.com/blog/rubin-hpc/"
+          },
+          {
+            "name": "Báo Dân trí",
+            "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQeWgtV2lQS3NaV19IX3dQUW9OREZoTTVzakhMbXZTS0h0NWZqQTNZVkw1bjBsREFYWWo1QzRhN194cm1PVmtMOE5PSG16cFhFSk1jZThiMnNtNHJaWUFsTmdDTzNuX1hjS3ZKNDVtMFg4LWlOU0xfczNEclNrQ2JtVEY3bnBMeENpYXlnNXZRNkJiTXhKb1pWRGdaTXliMnB3ZW4yYTFQelJTb1phVjlWbUw0WF9GNzF2YmFPeWprVQ?oc=5"
+          },
+          {
+            "name": "Engadget",
+            "url": "https://www.engadget.com/2318262/nvidia-gou-dont-get-deep-discounts-black-friend-ceo-scandal/"
+          },
+          {
+            "name": "NVIDIA Blog",
+            "url": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/"
+          },
+          {
+            "name": "TechCrunch AI",
+            "url": "https://techcrunch.com/2026/11/16/all-the-questions-nvidia-should-answer-on-tuesday-but-probably-wont/"
+          }
+        ],
+        "meta": {
+          "title": "NVIDIA Vera Rubin Gấp 10 Lần Hiệu Suất: Cuộc Đua AI Đổi Trục",
+          "description": "NVIDIA vừa càn quét toàn bộ benchmark MLPerf Training v6.1 và MLPerf Endpoints với nền tảng Vera Rubin. Tuy nhiên, sự đột phá thực sự không nằm ở tốc độ huấn luyện mà là hiệu suất gấp 10 lần trên mỗi watt điện cho Agentic AI. Hãy cùng phân tích bài học sinh tồn cho dân làm AI trong kỷ nguyên mới. Đừng quên theo dõi kênh A Hít Official để cập nhật những góc nhìn công nghệ sắc bén nhất!",
+          "hashtags": [
+            "#NVIDIA",
+            "#VeraRubin",
+            "#MLPerf",
+            "#AgenticAI",
+            "#CongNghe",
+            "#TriTueNhanTao",
+            "#DeepSeek",
+            "#AHitOfficial",
+            "#CUDA",
+            "#TechTrend"
+          ],
+          "keywords": [
+            "NVIDIA Vera Rubin",
+            "MLPerf Training v6.1",
+            "MLPerf Endpoints",
+            "Agentic AI",
+            "Kimi K3",
+            "DeepSeek-V3",
+            "GB300 NVL72",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "NVIDIA Vera Rubin gấp 10x hiệu suất năng lượng trên MLPerf Endpoints. Cuộc đua AI chính thức đổi trục! #NVIDIA #AgenticAI #VeraRubin #AHitOfficial"
+        },
+        "spoken_text": "NVIDIA Vera Rubin vừa lập kỷ lục mới quét sạch mọi benchmark MLPerf.\nNhưng con số thay đổi cuộc chơi lại nằm ở chỉ số cuối cùng.\nTrận chiến AI không còn là ai huấn luyện mô hình nhanh hơn.\nTheo báo cáo từ NVIDIA Blog, họ vừa tham gia MLPerf Training v6.1.\nVera Rubin NVL72 đạt hiệu suất gấp 2 lần so với thế hệ GB300.\nHiệu suất mỗi GPU tăng gấp đôi chỉ sau một thế hệ chip.\nKhi chạy mô hình DeepSeek-V3, hệ thống mở rộng từ 256 lên 1024 GPU.\nHiệu suất đạt tới 97 phần trăm, rút ngắn thời gian từ 16 phút xuống 4 phút.\nBạn có thể nghĩ train nhanh là yếu tố quyết định thắng thua.\nNhưng mình tin rằng, góc nhìn đó đã quá cũ.\nCác trung tâm dữ liệu AI hiện nay đang chạm trần về điện năng.\nBạn không thể đơn giản mua thêm GPU nếu không có đủ điện để chạy.\nCác hệ thống lớn như Microsoft Azure đã phải dùng đến 10240 GPU.\nQuy mô này cần hạ tầng kết nối NVLink và InfiniBand cực kỳ đắt đỏ.\nCác đối tác hàng đầu như Dell, HPE, Google Cloud và Oracle đều phải tham gia.\nNhưng tốn hàng tỷ đô cho training có giúp bạn có lãi khi vận hành?\nCâu trả lời là không, nếu bạn không tối ưu được chi phí chạy.\nĐây là lúc chỉ số quan trọng nhất xuất hiện: MLPerf Endpoints.\nMLPerf Endpoints là gì? Đây là thước đo hiệu suất AI khi chạy thực tế.\nNó đo lượng công việc agent làm được trên từng watt điện tiêu thụ.\nAgentic AI không giống chatbot thông thường. Nó tự suy luận và sửa lỗi.\nMột tác vụ lập trình hay đặt vé có thể phát sinh hàng nghìn token.\nMỗi bước suy luận đều tốn điện, mỗi token đều ngốn tiền.\nVà đây là câu trả lời cho lời hứa ở đầu video.\nVới mô hình agentic Kimi K3, Vera Rubin đạt hiệu suất kinh ngạc.\nNó tạo ra gấp 10 lần lượng token trên mỗi watt điện so với GB300.\nGấp 10 lần hiệu suất năng lượng, mà tốc độ phản hồi không đổi.\nSố đông vẫn nghĩ mô hình càng to thì sản phẩm càng ngon.\nNhưng người thắng cuộc là người phục vụ nhiều người dùng nhất với chi phí thấp nhất.\nBên cạnh đó, chip Rubin HPC cũng vừa ra mắt tại sự kiện SC26.\nNó giúp tăng tốc giả lập khoa học và tính toán cho các mô hình vật liệu.\nNVIDIA còn vượt qua các bài test độc lập như SemiAnalysis AgentX và AgentPerf.\nHạ tầng của họ cân được cả training, post-training lẫn agentic inference.\nĐiều này chứng minh hệ sinh thái CUDA vẫn đang thống trị tuyệt đối.\nPhần cứng đắt tiền sẽ tự nâng giá trị nhờ sự tối ưu phần mềm liên tục.\nNếu bạn đang làm sản phẩm AI, bài học ở đây rất rõ ràng.\nĐừng chỉ đắm đuối vào việc chọn mô hình train nhanh nhất.\nHãy tính toán kỹ chi phí điện và token trên mỗi lượt chạy agent.\nKhi có hàng triệu request mỗi giờ, con số 10 lần hiệu suất đó sẽ cứu sống bạn.\nĐó là ranh giới giữa việc có lãi hay phá sản vì tiền điện.\nNVIDIA đã thay đổi cuộc đua từ tốc độ sang hiệu quả năng lượng.\nNhớ lại con số gấp 10 lần ở đầu video: đó mới là tương lai của AI.\nBạn chọn ưu tiên tốc độ training, hay tối ưu token trên mỗi watt điện?\nĐể lại ý kiến phía dưới và thảo luận cùng mình nhé.",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "NVIDIA Vera Rubin vừa lập kỷ lục mới",
+                "quét sạch mọi benchmark MLPerf."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng con số thay đổi cuộc chơi",
+                "lại nằm ở chỉ số cuối cùng."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trận chiến AI không còn là",
+                "ai huấn luyện mô hình nhanh hơn."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Theo báo cáo từ NVIDIA Blog,",
+                "họ vừa tham gia MLPerf Training v6.1."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA Vera Rubin MLPerf Training v6.1"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vera Rubin NVL72 đạt hiệu suất",
+                "gấp 2 lần so với thế hệ GB300."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hiệu suất mỗi GPU tăng gấp đôi",
+                "chỉ sau một thế hệ chip."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "GB300 NVL72",
+                    "value": 1
+                  },
+                  {
+                    "label": "Vera Rubin NVL72",
+                    "value": 2
+                  }
+                ],
+                "unit": "",
+                "title": "Hiệu suất training mỗi GPU"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi chạy mô hình DeepSeek-V3,",
+                "hệ thống mở rộng từ 256 lên 1024 GPU."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": 3,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hiệu suất đạt tới 97 phần trăm,",
+                "rút ngắn thời gian từ 16 phút xuống 4 phút."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "line",
+                "items": [
+                  {
+                    "value": 16
+                  },
+                  {
+                    "value": 8
+                  },
+                  {
+                    "value": 4
+                  }
+                ],
+                "unit": "",
+                "title": "Thời gian train DeepSeek-V3 (phút)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn có thể nghĩ train nhanh",
+                "là yếu tố quyết định thắng thua."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng mình tin rằng,",
+                "góc nhìn đó đã quá cũ."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các trung tâm dữ liệu AI hiện nay",
+                "đang chạm trần về điện năng."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn không thể đơn giản mua thêm GPU",
+                "nếu không có đủ điện để chạy."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các hệ thống lớn như Microsoft Azure",
+                "đã phải dùng đến 10240 GPU."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": 10240,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Quy mô này cần hạ tầng kết nối",
+                "NVLink và InfiniBand cực kỳ đắt đỏ."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA NVLink InfiniBand Quantum-X800"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các đối tác hàng đầu như Dell, HPE,",
+                "Google Cloud và Oracle đều phải tham gia."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Dell"
+                  },
+                  {
+                    "label": "HPE"
+                  },
+                  {
+                    "label": "Google Cloud"
+                  },
+                  {
+                    "label": "Oracle"
+                  }
+                ],
+                "unit": "",
+                "title": "Đối tác hệ sinh thái NVIDIA"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng tốn hàng tỷ đô cho training",
+                "có giúp bạn có lãi khi vận hành?"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Câu trả lời là không,",
+                "nếu bạn không tối ưu được chi phí chạy."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là lúc chỉ số quan trọng nhất",
+                "xuất hiện: MLPerf Endpoints."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "MLPerf Endpoints là gì?",
+                "Đây là thước đo hiệu suất AI khi chạy thực tế."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "MLPerf Endpoints agentic benchmark"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó đo lượng công việc agent làm được",
+                "trên từng watt điện tiêu thụ."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Agentic AI không giống chatbot thông thường.",
+                "Nó tự suy luận và sửa lỗi."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một tác vụ lập trình hay đặt vé",
+                "có thể phát sinh hàng nghìn token."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mỗi bước suy luận đều tốn điện,",
+                "mỗi token đều ngốn tiền."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và đây là câu trả lời",
+                "cho lời hứa ở đầu video."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Với mô hình agentic Kimi K3,",
+                "Vera Rubin đạt hiệu suất kinh ngạc."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA Vera Rubin Kimi K3 benchmark"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó tạo ra gấp 10 lần lượng token",
+                "trên mỗi watt điện so với GB300."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Gấp 10 lần hiệu suất năng lượng,",
+                "mà tốc độ phản hồi không đổi."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "GB300 NVL72",
+                    "value": 1
+                  },
+                  {
+                    "label": "Vera Rubin NVL72",
+                    "value": 10
+                  }
+                ],
+                "unit": "",
+                "title": "Throughput trên mỗi Watt (Kimi K3)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Số đông vẫn nghĩ mô hình càng to",
+                "thì sản phẩm càng ngon."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng người thắng cuộc là người",
+                "phục vụ nhiều người dùng nhất với chi phí thấp nhất."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bên cạnh đó, chip Rubin HPC",
+                "cũng vừa ra mắt tại sự kiện SC26."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 26,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó giúp tăng tốc giả lập khoa học",
+                "và tính toán cho các mô hình vật liệu."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA còn vượt qua các bài test độc lập",
+                "như SemiAnalysis AgentX và AgentPerf."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "MLPerf Endpoints"
+                  },
+                  {
+                    "label": "SemiAnalysis AgentX"
+                  },
+                  {
+                    "label": "AgentPerf"
+                  }
+                ],
+                "unit": "",
+                "title": "Benchmark độc lập cho Agent"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hạ tầng của họ cân được cả training,",
+                "post-training lẫn agentic inference."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Điều này chứng minh hệ sinh thái CUDA",
+                "vẫn đang thống trị tuyệt đối."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Phần cứng đắt tiền sẽ tự nâng giá trị",
+                "nhờ sự tối ưu phần mềm liên tục."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang làm sản phẩm AI,",
+                "bài học ở đây rất rõ ràng."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Chi phí điện"
+                  },
+                  {
+                    "label": "Token/Watt"
+                  },
+                  {
+                    "label": "Tốc độ train"
+                  }
+                ],
+                "unit": "",
+                "title": "Trọng tâm tối ưu AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng chỉ đắm đuối vào việc",
+                "chọn mô hình train nhanh nhất."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy tính toán kỹ chi phí điện",
+                "và token trên mỗi lượt chạy agent."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi có hàng triệu request mỗi giờ,",
+                "con số 10 lần hiệu suất đó sẽ cứu sống bạn."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là ranh giới giữa việc có lãi",
+                "hay phá sản vì tiền điện."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "NVIDIA đã thay đổi cuộc đua",
+                "từ tốc độ sang hiệu quả năng lượng."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "NVIDIA Vera Rubin architecture"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhớ lại con số gấp 10 lần ở đầu video:",
+                "đó mới là tương lai của AI."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn ưu tiên tốc độ training,",
+                "hay tối ưu token trên mỗi watt điện?"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Để lại ý kiến phía dưới",
+                "và thảo luận cùng mình nhé."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Màn bứt phá của Vera Rubin",
+              "card_start": 0
+            },
+            {
+              "label": "Tốc độ huấn luyện không còn là tất cả",
+              "card_start": 8
+            },
+            {
+              "label": "Trận chiến mới: Watt và Token",
+              "card_start": 17
+            },
+            {
+              "label": "Bí mật nằm ở agentic AI",
+              "card_start": 26
+            },
+            {
+              "label": "Bài học cho người làm sản phẩm",
+              "card_start": 35
+            }
+          ]
+        },
+        "script_path": "output/2026-11-17/2026-11-17-morning-nvidia-sweeps-mlperf-training-and-endpoi/video/script.json",
+        "script_msg_id": 1270,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
