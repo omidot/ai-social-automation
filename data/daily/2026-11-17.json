@@ -928,7 +928,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "AI models can be tricked into identifying civilians as military targets by telling them it’s a game",
       "style": "white-centered",
