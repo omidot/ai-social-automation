@@ -2,7 +2,7 @@
   "date": "2026-11-17",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "NVIDIA Sweeps MLPerf Training and Endpoints as Vera Rubin Debuts With Leading Performance",
       "style": "mono-ticket",
