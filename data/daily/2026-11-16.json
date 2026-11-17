@@ -932,7 +932,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Lambda Boosts AI Factory Resiliency and Efficiency With NVIDIA Photonics",
       "style": "warm-ticket",
