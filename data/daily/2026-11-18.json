@@ -37,6 +37,51 @@
       "slot_ict": "11:30",
       "sources": [],
       "angle": "quan-diem"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Cú dịch chuyển từ 'chatbot trả lời' sang 'agent tự làm' — nghĩa là gì với bạn",
+      "style": "warm-centered",
+      "topic_key": "cu-dich-chuyen-tu-chatbot-tra-loi-sang-agent-tu-la",
+      "text_fb": "ChatGPT từng chỉ biết trả lời. Giờ Operator của OpenAI, Claude với computer use của Anthropic, hay Project Mariner của Google tự mở trình duyệt, tự điền form, tự bấm nút xác nhận. Đó không phải một bản cập nhật nhỏ. Đó là một cú dịch chuyển về vai trò của bạn trong toàn bộ quy trình làm việc. Trước đây bạn hỏi, AI trả lời, bạn tự tay thực thi. Giờ bạn giao việc, AI tự thực thi, bạn chỉ còn việc duyệt và chịu trách nhiệm kết quả. Nghe có vẻ nhẹ nhàng hơn. Thực ra nặng hơn. Khi bạn tự làm sai, bạn sửa ngay được. Khi agent làm sai mà bạn không kiểm tra kỹ, cái sai đó đã đi xa trước khi bạn nhận ra. Gửi nhầm email cho khách, đặt nhầm ngày trên hợp đồng, chi nhầm số tiền trong một giao dịch, agent làm những việc đó nhanh gấp chục lần bạn, kể cả khi nó làm sai. Mình không nghĩ bạn nên sợ agent. Mình nghĩ bạn nên sợ việc giao agent một việc mà không đặt ranh giới rõ: nó được làm gì, nó phải dừng ở đâu, khi nào phải hỏi lại bạn trước khi bấm nút cuối cùng. Người thua trong giai đoạn này là người né agent, vẫn ôm hết việc tay chân vì sợ mất kiểm soát. Người thắng là người học cách kiểm soát agent bằng giới hạn rõ ràng, rồi để nó làm phần việc tốn thời gian nhất. Agent không lấy đi trách nhiệm của bạn. Nó chỉ lấy đi phần việc tay chân, còn phần quyết định, phần chịu trách nhiệm, vẫn là của bạn, nguyên vẹn. Bạn đang giao việc cho AI theo kiểu hỏi-đáp cũ, hay đã bắt đầu đặt ranh giới cho nó tự làm?",
+      "text_ig": "ChatGPT từng chỉ trả lời. Giờ agent như Operator, Claude computer use tự làm luôn: tự điền form, tự bấm nút. Trách nhiệm không mất đi, nó chuyển từ làm sang duyệt. Bạn đã đặt ranh giới cho agent chưa, hay vẫn giao việc kiểu hỏi-đáp cũ?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#AgenticAI",
+        "#AIAgent",
+        "#TuDongHoa",
+        "#CongNghe",
+        "#OpenAI",
+        "#Anthropic",
+        "#ChatGPT",
+        "#XuHuongAI",
+        "#TuongLaiCongViec",
+        "#AIVietNam",
+        "#NangSuat",
+        "#CongCuAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-18/evening/01.jpg",
+        "assets/posts/2026-11-18/evening/02.jpg",
+        "assets/posts/2026-11-18/evening/03.jpg",
+        "assets/posts/2026-11-18/evening/04.jpg",
+        "assets/posts/2026-11-18/evening/05.jpg",
+        "assets/posts/2026-11-18/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-18/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-18/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-18/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-18/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-18/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-18/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong"
     }
   }
 }
