@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-19",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "NVIDIA RTX Spark Compact Desktops Out Now",
+      "style": "mono-centered",
+      "topic_key": "nvidia-rtx-spark-compact-desktops-out-now",
+      "text_fb": "128GB RAM hợp nhất trên cỗ máy NVIDIA RTX Spark giúp bạn chạy mô hình 120 tỷ tham số ngay tại bàn làm việc mà không tốn một đồng phí API đám mây.\n\nASUS, Dell và MSI đồng loạt bán ra dòng máy trạm nhỏ gọn này với sức mạnh tính toán đạt 1 petaflop nhờ kết hợp giữa Grace CPU 20 nhân và GPU Blackwell. Đây là bước ngoặt cho những ai đang mệt mỏi vì hóa đơn API ngốn tiền hàng tháng.\n\nChạy AI local giải quyết triệt để hai bài toán lớn nhất hiện nay: chi phí duy trì và bảo mật dữ liệu. Các AI Agent giờ đây có thể cắm mốc chạy ngầm 24/7 để tự động hóa công việc, xử lý ComfyUI hay render các cảnh 3D trên 90GB. Chiếc laptop cá nhân của bạn nhờ đó được giải phóng hoàn toàn khỏi các tác vụ nặng.\n\nKhông dừng lại ở phần cứng, hệ sinh thái phần mềm cũng tăng tốc rõ rệt. Tích hợp TensorRT-RTX giúp Adobe Premiere xuất file H.264 nhanh hơn 50%, còn Illustrator tăng 30% hiệu năng xử lý.\n\nSố đông vẫn quen trả tiền cho từng token đám mây vì nghĩ làm local quá đắt đỏ. Người làm chủ quy trình thực sự hiểu rằng tự vận hành hạ tầng riêng mới là cách tối ưu chi phí dài hạn.\n\nBạn chọn đầu tư một máy trạm AI local để làm chủ công nghệ hay tiếp tục duy trì phí thuê bao API mỗi tháng?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA RTX Spark với 128GB RAM cho phép chạy mô hình 120B tham số tại nhà. Tự động hóa 24/7, tăng 50% tốc độ xuất video và bảo mật tuyệt đối. Bạn chọn sở hữu máy trạm AI hay trả phí API hàng tháng?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#RTXSpark",
+        "#LocalAI",
+        "#AIHardware",
+        "#ComfyUI",
+        "#AdobePremiere",
+        "#MachineLearning",
+        "#TechTrends"
+      ],
+      "images": [
+        "assets/posts/2026-11-19/morning/01.jpg",
+        "assets/posts/2026-11-19/morning/02.jpg",
+        "assets/posts/2026-11-19/morning/03.jpg",
+        "assets/posts/2026-11-19/morning/04.jpg",
+        "assets/posts/2026-11-19/morning/05.jpg",
+        "assets/posts/2026-11-19/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-19/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-19/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-19/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-19/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-19/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-19/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/rtx-spark-desktop-local-ai-available-now/"
+        },
+        {
+          "name": "The Motley Fool",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNX202cDRCd0lQMXNnZG5PTGhYdndmV2NwdHoxaG9mM1NfRjVBNXJYX3E5NXI1RzZieDZLeTl6dlJyS19JZlo1dW14dDRPX3dUdzBySUZKTkEtV3ZKNk1vNFY2My1mUjROVUVuZFhaZjVjbmNiSVhiazF0QzRzWlUyZ0ROWlo3ajFFSGN2NlpuNlFiSWhFMzlJNGRFSjFkdzJrbjY5YU9icWhsSW00dFBYRGdFSV9Udko1R1FPZzRicy1UT0lyX25zZVBiMXQ?oc=5"
+        },
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/"
+        },
+        {
+          "name": "The Washington Post",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPSmdqUFBoSVBSLWN0bkV5azZKaHkyd2JEblNSaDJ6eFgzUFFYalNIYVdSRkVZZ2hLN2JUQ3pYNVRxeThNcFpKZG9uS1RHR2xfNEVRMWFUd0thaEt0MHdRSWFUaVBkNi00UzlYSGRNNnlESE5PWndjby1iU245WE11d0dsbnh4X1FfbnZldm92OWVTei1kWW5rSXExRUdVeFpBazVHRTNCNy1zOEZfbXRJMnBQZ0JCdw?oc=5"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNNlVnb2FaQlk2WUUtQ3dtaUlBRF9oSnFadkhYVUNwSzRKdnFQNENDUmgyMXBFV1NKaDhUcXJYTGF3Z21LM1F0OEZMVTJZU0lhWHlhOHBCb0t5WVRmMVRMU1ZCRTlJRUpYRlFCZ3RBYVV4WlF0Nms2Q1NvbkVjU0p5NVVQbmFrdzdfZmdLdVgxZnZBUkRGbkpZMTNR?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
+    }
+  }
+}
