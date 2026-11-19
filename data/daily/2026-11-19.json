@@ -2,7 +2,7 @@
   "date": "2026-11-19",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "NVIDIA RTX Spark Compact Desktops Out Now",
       "style": "mono-centered",
