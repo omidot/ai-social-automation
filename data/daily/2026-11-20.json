@@ -2,7 +2,7 @@
   "date": "2026-11-20",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Google gives Gemini the ability to use your Mac for you",
       "style": "white-rail",
