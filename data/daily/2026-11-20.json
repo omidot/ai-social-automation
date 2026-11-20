@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-20",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Google gives Gemini the ability to use your Mac for you",
+      "style": "white-rail",
+      "topic_key": "google-gives-gemini-the-ability-to-use-your-mac-fo",
+      "text_fb": "Google Gemini vừa chính thức cho phép AI tự thao tác trực tiếp trên máy Mac. Không còn dừng lại ở một chatbot trả lời dòng chữ trên màn hình, Gemini giờ đây tự mở ứng dụng, gom file, điền form và duyệt web ngầm bên dưới mà không hề đụng đến con trỏ chuột của bạn.\n\nDù OpenAI hay Anthropic đã ra mắt tính năng tương tự trước đó, nhưng bước đi này của Google cho thấy một cuộc dịch chuyển không thể đảo ngược. Bạn sẽ không còn dùng máy tính theo cách truyền thống. Thay vì tự tay bấm từng cú click chuột, bạn giao mục tiêu và AI tự thao tác hoàn chỉnh.\n\nTuy nhiên, sự tiện lợi luôn đi kèm đánh đổi. Việc một AI nắm quyền can thiệp vào dữ liệu cá nhân khiến Apple phải lập tức tung bản cập nhật macOS mới để siết chặt quyền kiểm soát hệ thống. Ranh giới giữa một trợ lý đắc lực và lỗ hổng bảo mật chưa bao giờ mong mỏng đến thế.\n\nNếu bạn vẫn đang dành hàng giờ ngồi phân loại từng thư mục hay gõ từng dòng form thủ công, bạn đang tụt lại phía sau. Thời kỳ học gõ prompt thủ công sắp hết, nhường chỗ cho tư duy quản trị AI Agent như một nhân sự thực thụ.\n\nBạn đã sẵn sàng cấp quyền cho Gemini tự bấm chuột trên máy tính của mình chưa?\n\nNguồn: TechCrunch AI",
+      "text_ig": "Google Gemini vừa có thể tự điều khiển máy Mac để xử lý tác vụ ngầm. Kỷ nguyên AI tự bấm chuột thay con người đã bắt đầu. Bạn đã sẵn sàng giao máy tính cho AI làm việc chưa?",
+      "hashtags": [
+        "#AI",
+        "#GoogleGemini",
+        "#AgenticAI",
+        "#macOS",
+        "#CongNghe",
+        "#Productivity",
+        "#Trituenhantao",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-20/morning/01.jpg",
+        "assets/posts/2026-11-20/morning/02.jpg",
+        "assets/posts/2026-11-20/morning/03.jpg",
+        "assets/posts/2026-11-20/morning/04.jpg",
+        "assets/posts/2026-11-20/morning/05.jpg",
+        "assets/posts/2026-11-20/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOblRncnY3TTZKYzF3bnA5b1BHZm40YzJHcmdTdFJBcDZLb01oWjJRYjYwWW5qMEozRFZoNjQwU2lyeXItVGcyRmtSVjY4aHBzS1FSNTNLbGlteTZIdzlycUVBTXN3OEhTVWJ4RHdBcFQySEFINW40djd5WjJ4Z3ZPOS1PejVtcGlrV2JzQUc4UEZ1VVBq?oc=5"
+        },
+        {
+          "name": "Quantrimang.com",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBLWlRPZGFzd0dTcTdvMlBTNTA5QXpBNzFaSUZocTI3a3lEb3MtRlBhX1MtanRac3F2UW1JYzI3Q0hkUk82bWNtWk1jOFh6Z3JIUnRDUHUzRnU1TGxNQjVSMUNGZVZ2Zkpkd0NsR0lEYUlSeHZoRVA5OFZB?oc=5"
+        },
+        {
+          "name": "DNE Africa",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5FOFlITVdWbWdGSWVZSzg4cWktTGxscWR6SGZOTnRPYmJzV2JvUHJObnZoXzZCSXdLWmREb3Z2Yml4Ni1YZTRyOU9aN1ZZOEZoRjdXbjJ2VEdDUXhSSUIzU21Wb0wtdw?oc=5"
+        },
+        {
+          "name": "GSMArena.com",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNUzF5cXZJSGZVMFBNRWpUQU8wa3NaTnVQdnRqWkpQbzJxaGwyUktDS2kzZ3kyWmJWSjZMc2ZzNmc1QjV0QWNLYVRSNGg3Z2JCQzdUb19abnl1cE90WHFFWGMtUGMxMVB3WVJmQ05vNVpoa0F6T3VISW1KTENmMzRUMUtZLUpZVnIzRDZpQlItXzNUNWZRMUVZRzZ30gGWAUFVX3lxTFBlejZYcm5welhUY3daZkprWXRndXZRNHVnSmJjWHF0UG9yNDhQRlhLMTdYR3VNekFGdUZVc25aWkdrYnJMQkRiRjhneVRVRW5mdk9YQkJDSmhRMUJBV0JlWHBSTDRtaE1YV0h5LTEzdXpqOEFxRG5fclJDTU9hdTg0Wk1laE9EVENTelBoaDlaR0tWN3lVdw?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/tech/1037902/google-gemini-macos-ai-computer-use"
+        }
+      ],
+      "angle": "xu-huong"
+    }
+  }
+}
