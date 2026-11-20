@@ -64,6 +64,72 @@
         }
       ],
       "angle": "xu-huong"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+      "style": "navy-rail",
+      "topic_key": "introducing-harness-adapters-adapt-your-favorite-m",
+      "text_fb": "Hugging Face vừa chứng minh Qwen3.8-27B nhảy từ 39% lên 55% độ chính xác trên Terminal-Bench 2.1, nhưng lượng token sử dụng lại giảm gần một nửa từ 2.9K xuống 1.5K.\n\nSố đông vẫn tin rằng muốn AI thông minh hơn thì phải đốt thêm token cho nó suy nghĩ. Hoặc phải nâng cấp lên mô hình to hơn, đắt tiền hơn. Đây là lý do chi phí vận hành AI của bạn luôn vượt ngân sách.\n\nSự thật là các mô hình lớn hiện tại được huấn luyện để làm tốt mọi thứ chung chung. Khi bạn bỏ nó vào một framework cụ thể như Pi hay OpenCode, nó bắt đầu lóng ngóng. Nó gọi công cụ thừa, suy luận vòng vèo và tốn tiền của bạn mà hiệu quả lại thấp.\n\nHugging Face đã giải bài toán này bằng cách dùng RL huấn luyện LoRA adapter trực tiếp trong agent harness. Họ không đụng vào mô hình gốc, chỉ thêm một lớp thích ứng nhỏ. Kết quả là AI học được cách phối hợp hoàn hảo với môi trường xung quanh. Nó nghĩ ít hơn nhưng làm đúng ngay từ lần đầu.\n\nNếu bạn đang xây dựng AI Agent, bài học rất rõ ràng. Đừng lãng phí tiền đốt cho các mô hình đắt đỏ khi chưa tối ưu môi trường chạy. Một mô hình nhỏ được gắn Harness Adapter chuẩn sẽ đè bẹp một mô hình lớn nhưng lóng ngóng.\n\nBạn đã từng thử tối ưu quy trình chạy agent thay vì đổi mô hình chưa?\n\nNguồn: Hugging Face",
+      "text_ig": "Hugging Face giúp Qwen3.8-27B tăng từ 39% lên 55% độ chính xác nhưng giảm token từ 2.9K xuống 1.5K nhờ Harness Adapters. Đừng vội đổi mô hình đắt tiền khi chưa tối ưu môi trường chạy. Bạn nghĩ sao về cách làm này?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#HuggingFace",
+        "#AIAgent",
+        "#Qwen",
+        "#ReinforcementLearning",
+        "#TechPerspective",
+        "#SoftwareEngineering",
+        "#LLM",
+        "#Optimization"
+      ],
+      "images": [
+        "assets/posts/2026-11-20/evening/01.jpg",
+        "assets/posts/2026-11-20/evening/02.jpg",
+        "assets/posts/2026-11-20/evening/03.jpg",
+        "assets/posts/2026-11-20/evening/04.jpg",
+        "assets/posts/2026-11-20/evening/05.jpg",
+        "assets/posts/2026-11-20/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-20/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/harness-adapters-at-scale"
+        },
+        {
+          "name": "Bioengineer.org",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOeFdEUFZlV2pvRXFoVVRmUmdKZXQxdEU2SFJFVUVTNnFGTnhCWU1vY2lQcDdNdUs3b1NGVkU3NkFzXzgzemF6c3pwYVVPYi0tUHo4eU5FWTd3T2tjcS1GR3V1Sk0wQjQwd2IzSW1zc2J5VFVnVUFKT29fWHJwWWlmUXR2WUZ1bjhQWmJZUmtFUmZFRWJxbkk3LWEyMVNpTWtfU29YV0RDc1p1eklvbmpsOENXaGxsQVlSNUktQVFlMXY2QzNiVGlxV2ZpWQ?oc=5"
+        },
+        {
+          "name": "Amazon Web Services (AWS)",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQNC1rU0R3dlRuUkVzSUM4U19Cd1VKM3BVSWZvaFZGaE1hV29RQldlTFZKcTZpaXZaQ3FYQldmclg1b3ZNODk3aC1BaVNQWUJadEJvQnNVQ2FzSlJYXzdhR3Vkb0RmQ2lLNmcxTTJfSThwVXlSQjU1WXJUblVNQm1DQzM2QnpacjV2aElLdHFXejJ5OUJzRXVBUkEwa3ZHUVlON2Jzclhia2xOZjUxc0FRZnl4Q1dvLW5ZeTU0dFR0bE1GYXdITm92Vkt4U080TDZ6VEZnYlZrOVY4QQ?oc=5"
+        },
+        {
+          "name": "Prime Intellect",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE81TGloMEpvOVlJZUp3Q2l0RHBDRUtIaUVmLTg5TDNVZFZubEhlQjlScXNTUVBET2g4ZF9qdmpRdWZGcjZsVk5sZDI2VnRkdS0wclBrakVBWGQtQTZ3WXNveFBiWEdXSFhIRUxRTw?oc=5"
+        },
+        {
+          "name": "blog.google",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNemJ2dmlaaUw0Vm9IWnV2N3JiaXg4a3BNcVVqZjEtNnlVTnExYzk0d2tzcEZ4SGhqY1MyQ0c5LVpYN2ZKdGJ6d1FTMmhWZ0J0VVJkcGhqOHk1eHB1SFA3M3NLNEdRZEhhbnNzekhRb2E1RnRVSjJFQmNRWC05ckI1NjlybWpvVzJUeWdwaURROFhOcmoySS03UllmRWJJMUk?oc=5"
+        },
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+        }
+      ],
+      "angle": "quan-diem"
     }
   }
 }
