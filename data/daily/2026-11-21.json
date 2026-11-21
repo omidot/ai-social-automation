@@ -1,0 +1,803 @@
+{
+  "date": "2026-11-21",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Combatting adversarial distillation",
+      "style": "warm-rail",
+      "topic_key": "combatting-adversarial-distillation",
+      "text_fb": "Tỷ lệ bị đánh cắp trí tuệ trên mô hình AI đã giảm từ 54.0% xuống còn 0.2% nhờ cơ chế bảo vệ mới của OpenAI. Đây không chỉ là câu chuyện kỹ thuật của các tập đoàn lớn, mà là lời cảnh tỉnh trực tiếp cho bất kỳ ai đang xây dựng sản phẩm dựa trên AI.\n\nNhiều người nghĩ xây sản phẩm AI chỉ đơn giản là gọi API và trả kết quả cho người dùng. Nhưng thực tế nguy hiểm hơn nhiều. Đối thủ của bạn có thể sử dụng chính dữ liệu đầu ra đó để huấn luyện một mô hình nhỏ hơn, nhái lại toàn bộ năng lực của bạn mà không tốn chi phí nghiên cứu. Thủ thuật này gọi là adversarial distillation.\n\nOpenAI phát hiện ra rằng thứ bị thèm khát nhất không phải là câu trả lời cuối cùng, mà là chuỗi tư duy trung gian (chain-of-thought). Khi mô hình giải thích từng bước logic, đó là lúc nó lộ ra toàn bộ tri thức cốt lõi. Trong bài thử nghiệm trên GPT-6.2 Astra, OpenAI đã chặn đứng các cuộc tấn công trích xuất này bằng cách kết hợp kiểm soát API và huấn luyện đối kháng.\n\nBài học cho bạn rất rõ ràng: nếu bạn không bảo vệ quy trình suy luận của hệ thống, bạn đang làm từ thiện dữ liệu cho đối thủ. Người chiến thắng trong kỷ nguyên này không chỉ sở hữu AI mạnh, mà phải biết niêm phong năng lực cốt lõi của mình.\n\nBạn đã có giải pháp nào để ngăn người khác nhái lại sản phẩm AI của mình chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "Tỷ lệ bị cướp AI giảm từ 54% xuống 0.2% trên GPT-6.2 Astra. Nếu không bảo vệ chuỗi tư duy AI, bạn đang làm từ thiện dữ liệu cho đối thủ. Bạn đã bảo vệ sản phẩm của mình chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#OpenAI",
+        "#AISafety",
+        "#GPT6",
+        "#MachineLearning",
+        "#ArtificialIntelligence",
+        "#TechNews",
+        "#CyberSecurity",
+        "#AIDistillation"
+      ],
+      "images": [
+        "assets/posts/2026-11-21/morning/01.jpg",
+        "assets/posts/2026-11-21/morning/02.jpg",
+        "assets/posts/2026-11-21/morning/03.jpg",
+        "assets/posts/2026-11-21/morning/04.jpg",
+        "assets/posts/2026-11-21/morning/05.jpg",
+        "assets/posts/2026-11-21/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/combatting-adversarial-distillation"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1aNG5qZG9TaTJHTlRrTmJBUzNINzVJT1B2cXZZelBweXRiTXJ1ZGphVkM0MWxySk4ydDZEa2dfdnZReHlJYjlpcVBfaGlyeWJ1WmVJSUI1TzFzeDM3SERWZkd2d2VsNGVRRmhFYXBB?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://openai.com/index/combatting-adversarial-distillation",
+        "extra_sources": [
+          {
+            "name": "OpenAI",
+            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1aNG5qZG9TaTJHTlRrTmJBUzNINzVJT1B2cXZZelBweXRiTXJ1ZGphVkM0MWxySk4ydDZEa2dfdnZReHlJYjlpcVBfaGlyeWJ1WmVJSUI1TzFzeDM3SERWZkd2d2VsNGVRRmhFYXBB?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "OpenAI Giảm 99% Tỷ Lệ Bị Đánh Cắp Trí Tuệ AI Nhờ Bí Thuật Mới",
+          "description": "Nhiều người nghĩ xây ứng dụng AI chỉ đơn giản là gọi API và hiển thị kết quả. Nhưng nguy cơ bị đối thủ trích xuất chuỗi tư duy (Chain-of-Thought) để nhái lại toàn bộ mô hình là rất lớn. OpenAI đã hạ tỷ lệ bị đánh cắp tư duy từ 54% xuống 0.2% nhờ cơ chế bảo vệ mới trên GPT-6.2 Astra. Hãy bấm đăng ký theo dõi kênh A Hít Official để cập nhật những chiến lược AI mới nhất!",
+          "hashtags": [
+            "#OpenAI",
+            "#GPT6Astra",
+            "#AdversarialDistillation",
+            "#AHiTOfficial",
+            "#ArtificialIntelligence",
+            "#AIBuilder",
+            "#AISecurity",
+            "#ChainOfThought"
+          ],
+          "keywords": [
+            "OpenAI",
+            "GPT-6 Astra",
+            "Adversarial Distillation",
+            "A Hít Official",
+            "Bảo mật AI",
+            "Chain of thought",
+            "Trích xuất AI",
+            "AI Builder"
+          ],
+          "tiktok_caption": "OpenAI vừa kéo tỷ lệ mất trộm trí tuệ AI từ 54% xuống 0.2%. Bạn đã khóa bộ não AI của mình chưa? #OpenAI #AHiTOfficial #AISecurity #GPT6"
+        },
+        "spoken_text": "OpenAI vừa giảm tỷ lệ bị đánh cắp AI từ 54% xuống 0.2%.\nMột sự thật tàn nhẫn trong ngành trí tuệ nhân tạo mà ít người thừa nhận.\nNếu bạn đang dùng API để xây ứng dụng AI cho người dùng cuối,\nđối thủ của bạn đang âm thầm hút sạch tri thức từ hệ thống đó.\nHọ không cần xâm nhập vào cơ sở dữ liệu hay máy chủ của bạn.\nVòng lặp mở: Ngay ở cuối video này, mình sẽ chỉ ra chìa khóa giúp OpenAI đóng cửa nách này.\nChiêu thức tấn công này có tên kỹ thuật là Adversarial Distillation.\nTức là trích xuất dữ liệu để huấn luyện mô hình nhái.\nMô hình gốc đóng vai Thầy, mô hình học lén đóng vai Trò.\nKẻ tấn công thu thập mọi phản hồi từ GPT-6 Astra.\nSau đó dùng dữ liệu đó để huấn luyện mô hình nhỏ hơn chạy trên máy cá nhân.\nMô hình Trò học sạch toàn bộ kỹ năng lập trình và an ninh mạng.\nNhưng nó cố tình bỏ qua mọi hàng rào kiểm soát an toàn của mô hình gốc.\nBạn có biết thứ gì trong AI bị thèm khát nhất?\nKhông phải câu trả lời cuối cùng hiển thị màn hình.\nĐó là Chain-of-Thought. Tức chuỗi tư duy trung gian.\nLà từng bước phân tích mà mô hình tự thực hiện trước khi đưa ra đáp án.\nKhi AI giải thích từng bước suy luận logic,\nnó vô tình dâng nộp toàn bộ bí kíp cốt lõi cho kẻ theo dõi.\nGiống như bán chiếc bánh, nhưng lại tặng kèm công thức chế tạo bí truyền.\n54% là tỷ lệ bị trích xuất tư duy thành công trên GPT-6 Astra.\nHơn một nửa giá trị bị đối thủ rút ruột một cách dễ dàng.\n0.2% là con số mới sau khi nâng cấp safeguards trên GPT-6.2 Astra.\nOpenAI đã làm cách nào để dập tắt cuộc xâm nhập này?\nHọ bảo vệ nghiêm ngặt mọi dấu vết suy luận ngầm.\nKết hợp bộ phân loại API và kỹ thuật huấn luyện đối kháng.\nSự chênh lệch kinh hoàng giữa hai thế hệ bảo vệ.\nBây giờ, hãy nhìn lại chính sản phẩm AI của bạn.\nBạn nghĩ câu trả lời hay là đủ tạo lợi thế cạnh tranh?\nĐó là góc nhìn cực kỳ ngây thơ và nguy hiểm.\nNếu thả nổi dữ liệu đầu ra qua cổng API mở,\nbạn đang làm từ thiện dữ liệu cho đối thủ cạnh tranh.\nHọ chỉ tốn vài trăm đô để cướp sạch thành quả hàng triệu đô của bạn.\nTrong kỷ nguyên AI, người chiến thắng không chỉ biết xây mô hình giỏi,\nmà phải biết niêm phong bộ não của hệ thống.\nTrả lời cho lời hứa ở đầu video này:\nChìa khóa sinh tồn chính là khóa chặt chuỗi tư duy ngầm và giám sát trích xuất API.\nOpenAI đã chứng minh tỷ lệ bị trộm có thể giảm từ 54% xuống 0.2%.\nNếu đang làm sản phẩm AI, bạn chọn niêm phong quy trình hay chấp nhận bị luộc sạch?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "OpenAI vừa giảm tỷ lệ",
+                "bị đánh cắp AI",
+                "từ 54% xuống 0.2%."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "GPT-6 Astra",
+                    "value": 54
+                  },
+                  {
+                    "label": "GPT-6.2 Astra",
+                    "value": 0.2
+                  }
+                ],
+                "unit": "",
+                "title": "Tỷ lệ đánh cắp tư duy AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một sự thật tàn nhẫn",
+                "trong ngành trí tuệ nhân tạo",
+                "mà ít người thừa nhận."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang dùng API",
+                "để xây ứng dụng AI",
+                "cho người dùng cuối,"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "đối thủ của bạn",
+                "đang âm thầm hút sạch",
+                "tri thức từ hệ thống đó."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ không cần xâm nhập",
+                "vào cơ sở dữ liệu",
+                "hay máy chủ của bạn."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "OpenAI Adversarial Distillation paper"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vòng lặp mở:",
+                "Ngay ở cuối video này,",
+                "mình sẽ chỉ ra chìa khóa",
+                "giúp OpenAI đóng cửa nách này."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chiêu thức tấn công này",
+                "có tên kỹ thuật là",
+                "Adversarial Distillation."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tức là trích xuất dữ liệu",
+                "để huấn luyện mô hình nhái."
+              ],
+              "variant": "stack",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mô hình gốc đóng vai Thầy,",
+                "mô hình học lén đóng vai Trò."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Teacher Model"
+                  },
+                  {
+                    "label": "Student Model"
+                  }
+                ],
+                "unit": "",
+                "title": "Hai vai trò trong Distillation"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kẻ tấn công thu thập",
+                "mọi phản hồi từ GPT-6 Astra."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": 6,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sau đó dùng dữ liệu đó",
+                "để huấn luyện mô hình nhỏ hơn",
+                "chạy trên máy cá nhân."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mô hình Trò học sạch",
+                "toàn bộ kỹ năng lập trình",
+                "và an ninh mạng."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng nó cố tình bỏ qua",
+                "mọi hàng rào kiểm soát an toàn",
+                "của mô hình gốc."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn có biết thứ gì",
+                "trong AI bị thèm khát nhất?"
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không phải câu trả lời",
+                "cuối cùng hiển thị màn hình."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Chain of thought OpenAI reasoning traces"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là Chain-of-Thought.",
+                "Tức chuỗi tư duy trung gian."
+              ],
+              "variant": "hero",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Là từng bước phân tích",
+                "mà mô hình tự thực hiện",
+                "trước khi đưa ra đáp án."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi AI giải thích",
+                "từng bước suy luận logic,"
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "nó vô tình dâng nộp",
+                "toàn bộ bí kíp cốt lõi",
+                "cho kẻ theo dõi."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giống như bán chiếc bánh,",
+                "nhưng lại tặng kèm công thức",
+                "chế tạo bí truyền."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "54% là tỷ lệ",
+                "bị trích xuất tư duy thành công",
+                "trên GPT-6 Astra."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 54,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hơn một nửa giá trị",
+                "bị đối thủ rút ruột",
+                "một cách dễ dàng."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "0.2% là con số mới",
+                "sau khi nâng cấp safeguards",
+                "trên GPT-6.2 Astra."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 0.2,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "OpenAI đã làm cách nào",
+                "để dập tắt cuộc xâm nhập này?"
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ bảo vệ nghiêm ngặt",
+                "mọi dấu vết suy luận ngầm."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kết hợp bộ phân loại API",
+                "và kỹ thuật huấn luyện đối kháng."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Sự chênh lệch kinh hoàng",
+                "giữa hai thế hệ bảo vệ."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "GPT-6 Astra",
+                    "value": 54
+                  },
+                  {
+                    "label": "GPT-6.2 Astra",
+                    "value": 0.2
+                  }
+                ],
+                "unit": "",
+                "title": "Tỷ lệ đánh cắp tư duy thành công"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bây giờ, hãy nhìn lại",
+                "chính sản phẩm AI của bạn."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn nghĩ câu trả lời hay",
+                "là đủ tạo lợi thế cạnh tranh?"
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó là góc nhìn cực kỳ",
+                "ngây thơ và nguy hiểm."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu thả nổi dữ liệu đầu ra",
+                "qua cổng API mở,"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "bạn đang làm từ thiện",
+                "dữ liệu cho đối thủ cạnh tranh."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ chỉ tốn vài trăm đô",
+                "để cướp sạch thành quả",
+                "hàng triệu đô của bạn."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Mất bản quyền"
+                  },
+                  {
+                    "label": "Bị nhái mô hình"
+                  },
+                  {
+                    "label": "Trôi dạt an toàn"
+                  }
+                ],
+                "unit": "",
+                "title": "Rủi ro khi lộ quy trình suy luận"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong kỷ nguyên AI,",
+                "người chiến thắng không chỉ",
+                "biết xây mô hình giỏi,"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "mà phải biết niêm phong",
+                "bộ não của hệ thống."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trả lời cho lời hứa",
+                "ở đầu video này:"
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chìa khóa sinh tồn chính là",
+                "khóa chặt chuỗi tư duy ngầm",
+                "và giám sát trích xuất API."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "OpenAI đã chứng minh",
+                "tỷ lệ bị trộm",
+                "có thể giảm từ 54% xuống 0.2%."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "OpenAI Astra model safety evaluation"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu đang làm sản phẩm AI,",
+                "bạn chọn niêm phong quy trình",
+                "hay chấp nhận bị luộc sạch?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Bảo mật API hổng",
+              "card_start": 0
+            },
+            {
+              "label": "Bẫy Distillation",
+              "card_start": 6
+            },
+            {
+              "label": "Lỗ hổng Chuỗi tư duy",
+              "card_start": 13
+            },
+            {
+              "label": "Đòn phản công 0.2%",
+              "card_start": 20
+            },
+            {
+              "label": "Bài học cho AI Builder",
+              "card_start": 27
+            },
+            {
+              "label": "Giải đáp & Chốt hạ",
+              "card_start": 35
+            }
+          ]
+        },
+        "script_path": "output/2026-11-21/2026-11-21-morning-combatting-adversarial-distillation/video/script.json",
+        "script_msg_id": 1333,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
