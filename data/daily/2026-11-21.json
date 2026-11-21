@@ -798,6 +798,73 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "How Google Duplex evolved to also call businesses for you in Gemini",
+      "style": "mono-rail",
+      "topic_key": "how-google-duplex-evolved-to-also-call-businesses-",
+      "text_fb": "1.000 tỷ lần. Đó là số lần dữ liệu từ các cuộc gọi tự động của Google Duplex được hiển thị trên Google Maps và Search.\n\nCon số khổng lồ này khẳng định một điều: AI không còn nằm yên trong khung chat màn hình. Google vừa chính thức đưa công nghệ gọi điện đàm thoại này vào ứng dụng Gemini, cho phép AI tự nhấc máy gọi đến các doanh nghiệp ngoài đời để đặt lịch, hỏi giá hay xác nhận dịch vụ cho bạn.\n\nTrước đây, nếu một tiệm sửa xe hay quán ăn không có hệ thống đặt chỗ trực tuyến, mọi công cụ tự động hóa đều bó tay. Gemini giải quyết triệt để mắt xích gãy này bằng giao tiếp giọng nói. AI tự gọi điện, tự xử lý ngập ngừng, tự ứng biến khi người nghe đổi ý giữa chừng, và tự đối chiếu với lịch rảnh cá nhân của bạn. Không kịch bản sẵn. Không cần con người can thiệp.\n\nNếu bạn vẫn đang nghĩ AI chỉ để gõ vài câu văn hay tạo vài bức ảnh, bạn đang bỏ lỡ cú dịch chuyển lớn nhất của thế giới công nghệ. Chúng ta đang tiến thẳng vào kỷ nguyên của Agentic AI - nơi các trợ lý AI thực sự hành động trong thế giới thực.\n\nĐã đến lúc bạn ngừng tự tay làm những việc vụn vặt. Hãy thay đổi tư duy thành người quản lý: điều gì trong công việc và cuộc sống hàng ngày bạn có thể ủy quyền hoàn toàn cho AI nhấc máy xử lý ngay hôm nay?\n\nBạn đã sẵn sàng để AI tự gọi điện giải quyết công việc cho mình chưa?\n\nNguồn: Google Research",
+      "text_ig": "Google vừa tích hợp khả năng tự gọi điện thoại vào Gemini. Không cần API, AI tự nhấc máy đàm thoại với người thật để đặt lịch cho bạn. Kỷ nguyên Agentic AI tương tác thế giới thực đã bắt đầu. Bạn đã sẵn sàng giao việc chưa?",
+      "hashtags": [
+        "#AI",
+        "#GoogleGemini",
+        "#AgenticAI",
+        "#GoogleDuplex",
+        "#CongNghe",
+        "#AHitOfficial",
+        "#TriTueNhanTao",
+        "#TechTrends",
+        "#GoogleResearch"
+      ],
+      "images": [
+        "assets/posts/2026-11-21/evening/01.jpg",
+        "assets/posts/2026-11-21/evening/02.jpg",
+        "assets/posts/2026-11-21/evening/03.jpg",
+        "assets/posts/2026-11-21/evening/04.jpg",
+        "assets/posts/2026-11-21/evening/05.jpg",
+        "assets/posts/2026-11-21/evening/06.jpg",
+        "assets/posts/2026-11-21/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-21/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Google Research",
+          "url": "https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/"
+        },
+        {
+          "name": "OrcaRouter",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBYRjNBRS1XeVVzRlVhUnR2WFFEMVZOZkFyNy1jd08zMEpfWmtjTFFPZ09FMjhWcFpuaWotQVVPWEFjem5VQnJSeDNhekxOYndvNUwyNXRuLVItWGc3RjNzeFJhQzE4TDVMZUZINGhtZko?oc=5"
+        },
+        {
+          "name": "Digital Trends",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNMURRdzNRajdzWlZkc3VwNmtLbGlXUzFMVFFDWkZudUtBVzh0ZnlVVWVFZjctWVlhQlFBYWZfdEFrd3VWaXJQa3g2NU9xb2ItcHdaenFKXy1TMzVwbjdqbHpmTFFiN211NmV5WVc1Vk90aEVlZkVjVzFia29SNzlyTElwc1JHZ2Y3UjhFSDZvMjFEVGFLUl9VOXBQTzViQmVFSG9HV2FuV1h1YVVnaTlyQy0yZHhxSEVjYjhaRHlB?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2321236/how-to-use-gemini-notebook-to-turn-your-research-into-an-interactive-site/"
+        },
+        {
+          "name": "WSJ",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQWUFvdy1NOXphTWxlN25CWVV2TlppczdLSERycm44cVJmNmF5Q1g5Y184Tmoyak96ekgyZDd4N1h2d3diVUktU1E5aGNtSm1hV2JyNUltOENIU3NLdW1OcEdKVUk0THhOWF94aVlhMUFrNTBULW5hckZ4eWppTG1uMmU1TW1zdmZzSC14QmZySElQbm53dWE1bnhoMVhYNEtCV3ViMGp1bTl3MzB3QnhnVjdGbVJmUQ?oc=5"
+        },
+        {
+          "name": "hn",
+          "url": "https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/"
+        }
+      ],
+      "angle": "xu-huong"
     }
   }
 }
