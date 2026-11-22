@@ -56,6 +56,43 @@
         }
       ],
       "angle": "quan-diem"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Từ 'biết code' sang 'biết mô tả điều mình muốn' — nghề lập trình đang đổi",
+      "style": "navy-bar",
+      "topic_key": "tu-biet-code-sang-biet-mo-ta-ieu-minh-muon-nghe-la",
+      "text_fb": "Năm 2026, nếu bạn vẫn dành hàng giờ để học thuộc từng dòng cú pháp lập trình, bạn đang tự biến mình thành cỗ máy thế hệ cũ. AI hiện tại đã có thể viết hàng nghìn dòng mã chỉ trong vài giây. Thứ từng giúp nhiều người kiếm lương nghìn đô năm ngoái giờ đây đã trở thành hàng hóa đại trà. Nhưng đừng nhầm lẫn, lập trình không hề chết mà nó chỉ vừa trải qua một cuộc lột xác tàn nhẫn.\n\nLợi thế thực sự bây giờ không nằm ở việc bạn gõ bàn phím nhanh ra sao. Nó nằm ở khả năng bạn diễn đạt bài toán rõ ràng đến mức nào. Nếu tư duy của bạn mơ hồ, AI sẽ tạo ra một đống rác công nghệ nhanh gấp mười lần bình thường. Nhưng nếu bạn biết chính xác hệ thống cần vận hành thế nào, bạn có thể biến một ý tưởng trên giấy thành sản phẩm hoàn chỉnh chỉ trong một buổi sáng.\n\nBài học ở đây rất đơn giản. Người thắng cuộc trong kỷ nguyên mới không phải là người học thuộc lòng tài liệu kỹ thuật, mà là người biết biến logic phức tạp thành lời mô tả gãy gọn. Bạn ngừng đóng vai người thợ gõ gạch để trở thành kiến trúc sư ra lệnh. Nếu bạn đang làm công việc tạo ra sản phẩm công nghệ, bạn đã bao giờ luyện tập khả năng truyền đạt tư duy của mình sắc bén như cách bạn viết một hàm mã nguồn chưa?",
+      "text_ig": "Kỷ nguyên gõ cú pháp đã kết thúc. AI viết code nhanh hơn bạn, nhưng nó cần tư duy sắc bén của bạn để hướng dẫn. Khả năng mô tả bài toán chính xác giờ đây quan trọng hơn việc nhớ từng dòng lệnh. Bạn đã sẵn sàng làm kiến trúc sư chưa?",
+      "hashtags": [
+        "#AI",
+        "#LapTrinhAI",
+        "#CongNgheMoi",
+        "#XuHuongAI",
+        "#AHitOfficial",
+        "#TuDuyLapTrinh",
+        "#FutureOfWork",
+        "#KynangSo"
+      ],
+      "images": [
+        "assets/posts/2026-11-22/evening/01.jpg",
+        "assets/posts/2026-11-22/evening/02.jpg",
+        "assets/posts/2026-11-22/evening/03.jpg",
+        "assets/posts/2026-11-22/evening/04.jpg",
+        "assets/posts/2026-11-22/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "xu-huong"
     }
   }
 }
