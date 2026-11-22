@@ -2,7 +2,7 @@
   "date": "2026-11-22",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Can AI help scientists identify promising drug candidates?",
       "style": "white-bar",
