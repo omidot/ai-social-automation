@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-22",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Can AI help scientists identify promising drug candidates?",
+      "style": "white-bar",
+      "topic_key": "can-ai-help-scientists-identify-promising-drug-can",
+      "text_fb": "GPT-6 Astra vừa đạt 84.5% điểm số trong bộ test MedChemBench của OpenAI. Một con số khiến giới nghiên cứu khoa học phải chú ý.\n\nSố đông vẫn nghĩ AI chỉ là công cụ viết lách, tóm tắt email hay tạo hình ảnh giải trí. Nhưng cuộc đua thực sự đã chuyển sang một mặt trận hoàn toàn khác: giải quyết các bài toán khoa học cốt lõi.\n\nTrong hóa dược, một thay đổi nhỏ ở cấu trúc phân tử cũng đủ biến một chất chữa bệnh thành độc tố. GPT-5.6 Sol từng thất bại khi biến vòng 18 nguyên tử thành 15 nguyên tử, làm sai lệch hoàn toàn bản chất hóa học. Ngược lại, mô hình thế hệ mới GPT-6 Astra tái tạo chính xác 95.4% cấu trúc và đưa ra lập luận logic sắc bén.\n\nBài học ở đây rất rõ ràng. Nếu bạn đang làm việc trong các ngành đòi hỏi độ chính xác cao mà vẫn nghĩ AI chỉ là trò chơi bề nổi, bạn sắp bị bỏ lại phía sau. Giá trị lớn nhất của AI không nằm ở việc chat hay, mà nằm ở khả năng phân tích những dữ liệu chuyên sâu mà con người tốn hàng năm trời mới xử lý xong.\n\nKỷ nguyên của AI chung chung đã kết thúc. Đây là lúc AI chuyên môn sâu lên ngôi.\n\nBạn đã chuẩn bị gì để đưa AI vào giải quyết bài toán cốt lõi trong công việc chuyên môn của mình chưa?\n\nNguồn: OpenAI Blog",
+      "text_ig": "GPT-6 Astra đạt 84.5% điểm trong benchmark MedChemBench của OpenAI. AI không còn là công cụ chat bề nổi, mà đang trực tiếp giải các bài toán hóa dược phức tạp. Nếu bạn không áp dụng AI vào chuyên môn sâu, bạn sẽ bị bỏ lại. Bạn nghĩ sao về bước tiến này?",
+      "hashtags": [
+        "#OpenAI",
+        "#MedChemBench",
+        "#GPT6",
+        "#Trituenhantao",
+        "#CongngheAI",
+        "#AIsuckhoe",
+        "#HoaduocAI",
+        "#AHitOfficial"
+      ],
+      "images": [
+        "assets/posts/2026-11-22/morning/01.jpg",
+        "assets/posts/2026-11-22/morning/02.jpg",
+        "assets/posts/2026-11-22/morning/03.jpg",
+        "assets/posts/2026-11-22/morning/04.jpg",
+        "assets/posts/2026-11-22/morning/05.jpg",
+        "assets/posts/2026-11-22/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-22/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/introducing-medchembench"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBzVkJrREJfWEZLdktLTUZSRjJqcXYtNnhURkNWWHhzZmZ2bF9nRW1OSWFkOXNOamRpSVRhRS1YYWlYYVlHS3poRE9NU3VKU0lnYWF5VGJ1R3FoVDg2WEI4?oc=5"
+        },
+        {
+          "name": "BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1ERnFJVUpjLW1mVmxZa0V1ZDNZaDcxTUZ3Vlhsd0hVS1UzTWNaalV1NFdob0ZnRlNnWlY0YV9VajBFaTdPWExSYlRISlNKTmRRQlhlWFF3R2dNNms?oc=5"
+        },
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/podcast/1038701/anthropic-ipo-ai-safety-openai-nvidia-structure"
+        }
+      ],
+      "angle": "quan-diem"
+    }
+  }
+}
