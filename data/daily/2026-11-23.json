@@ -714,7 +714,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Merry Making: Play, Build and Create With NVIDIA Technologies This Holiday Season",
       "style": "mono-bar",
