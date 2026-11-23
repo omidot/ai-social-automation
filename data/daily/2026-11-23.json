@@ -712,6 +712,72 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Merry Making: Play, Build and Create With NVIDIA Technologies This Holiday Season",
+      "style": "mono-bar",
+      "topic_key": "merry-making-play-build-and-create-with-nvidia-tec",
+      "text_fb": "NVIDIA Jetson Orin Nano 8GB vừa chứng minh một thực tế mới: Agentic AI không còn là đặc quyền của các siêu máy tính triệu đô.\n\nNhiều người vẫn nghĩ muốn chạy robot tự suy luận hay AI đại lý thì phải phụ thuộc vào hạ tầng đám mây đắt đỏ. Nhưng khi NVIDIA tích hợp mô hình Cosmos và Nemotron 3.5 Bolt lên một bo mạch nhỏ gọn, cuộc chơi đã hoàn toàn thay đổi. Thiết bị giờ đây vừa tự nhìn, tự lên kế hoạch, vừa trực tiếp điều khiển tay robot thao tác ngoài đời thực.\n\nKhác biệt nằm ở chỗ: AI không còn dừng lại ở việc chat hay gõ prompt tạo văn bản. Cuộc đua tiếp theo là Edge AI — xử lý trí tuệ nhân tạo trực tiếp tại biên với độ trễ tính bằng miligiây và bảo mật dữ liệu tuyệt đối. Nếu bạn vẫn chỉ loanh quanh học cách gõ câu lệnh trên ChatGPT, bạn đang tự giới hạn năng lực của chính mình.\n\nKỹ năng giá trị nhất hiện nay là biết đưa AI từ màn hình máy tính ra thế giới vật lý. Đã đến lúc bạn nên thử nghiệm chạy các mô hình nguồn mở trực tiếp trên phần cứng cá nhân thay vì ném tiền qua các API trả phí.\n\nBạn đã chuẩn bị gì cho bước dịch chuyển từ AI nói suông sang AI hành động chưa?\n\nNguồn: NVIDIA Blog",
+      "text_ig": "NVIDIA Jetson Orin 8GB chứng minh Agentic AI đã có thể chạy trực tiếp trên thiết bị cá nhân. AI không chỉ chat mà đã biết điều khiển robot ngoài đời thực. Bạn đã sẵn sàng làm chủ Edge AI chưa?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#NVIDIA",
+        "#JetsonOrin",
+        "#AgenticAI",
+        "#EdgeAI",
+        "#Robotics",
+        "#AIHardware",
+        "#TechTrends"
+      ],
+      "images": [
+        "assets/posts/2026-11-23/evening/01.jpg",
+        "assets/posts/2026-11-23/evening/02.jpg",
+        "assets/posts/2026-11-23/evening/03.jpg",
+        "assets/posts/2026-11-23/evening/04.jpg",
+        "assets/posts/2026-11-23/evening/05.jpg",
+        "assets/posts/2026-11-23/evening/06.jpg",
+        "assets/posts/2026-11-23/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "NVIDIA Blog",
+          "url": "https://blogs.nvidia.com/blog/nvidia-technologies-holidays-2026/"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/23/elon-musk-and-others-rejoice-as-jensen-huang-is-reinstated-at-nvidia-amid-scandal/"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/23/nvidia-employees-greet-jensen-huang-like-a-hero-as-he-returns-to-companys-hq/"
+        },
+        {
+          "name": "CIO",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQQzBwZDcyamI5Y0VPamp6dGxqVjhoQTFOS2VKblVwQnhRUzZjMkZ4Znp5QUVnRFY4WVRIRFFzSVFlUnktcm43c3JvYk5JTDBmMTJOZEVZeXdkajhYU0VBN0hYQ2lUbDM0ZHpTMFd4THhqakQ2VmZ3SWotdjdfS3pGQmp1ZVBaS01VWXNFZi0wa1AwYjI1NDFaMU5QbE5RT2k5ZExHNHJRanRrdw?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2325655/nvidia-jensen-huang-will-testify-publlicly-before-senators-on-december-3/"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPam9EWkNKUkVWckNXeXJpWmh0OEhTcy1reWhiOWRkUHllZWZtc1V0N0l1UWJLMEtjSUR5V3F6YXlJdXRYaTZyQ0Z6ZGp2UjJnc1FfSExfaUNtblB5eUg4WG9QQm9XdUxPTmdMb3diZGl5LU53c2l4aXdXaTkyaUJnNVprM1Y3UWdjMjd6M0dLc2RmbXY5ZUFPaWwwRXR2SXZreTdZMmM2M2MtVFJqelI2MmxB?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
     }
   }
 }
