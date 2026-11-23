@@ -1,0 +1,717 @@
+{
+  "date": "2026-11-23",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "AI làm được 80% việc — và vì sao 20% còn lại mới là nghề của bạn",
+      "style": "warm-bar",
+      "topic_key": "ai-lam-uoc-80-viec-va-vi-sao-20-con-lai-moi-la-ngh",
+      "text_fb": "80% kết quả công việc hiện tại của bạn chỉ tốn AI đúng 5 giây để tạo ra. Nếu bạn đang tự hào vì mình tổng hợp thông tin nhanh, viết email mượt hay thiết kế hình ảnh đẹp, mình có tin buồn cho bạn: thị trường không còn trả tiền cao cho những thứ đó nữa.\n\nCách đây một năm, ai làm xong 80% phần việc thô được coi là nhân sự giỏi. Nhưng AI xuất hiện và kéo chi phí sản xuất phần thô đó về gần như bằng không. Khi cái thô trở nên rẻ múa, giá trị thực sự dồn toàn bộ vào 20% còn lại. Đó là khả năng ra quyết định, chịu trách nhiệm cho rủi ro và biết đặt câu hỏi đúng.\n\nNếu bạn giao cho AI làm báo cáo, nó cho bạn 10 kịch bản trong chớp mắt. Nhưng chọn kịch bản nào để công ty không phá sản, đó là 20% thuộc về bạn. AI tạo ra hàng ngàn dòng code, nhưng chịu trách nhiệm khi hệ thống sập lúc nửa đêm lại là bạn. Người thất thế sẽ ngồi hoảng sợ vì AI làm hết phần việc của họ. Người chiến thắng lấy 80% miễn phí đó làm đòn bẩy, tập trung toàn bộ năng lượng vào 20% quyết định cuộc chơi.\n\nThị trường chưa bao giờ đào thải người có tư duy lãnh đạo công việc, nó chỉ đào thải những thợ gõ chuyên làm phần việc lặp đi lặp lại. Đừng cố cạnh tranh với AI về tốc độ làm phần thô. Hãy làm chủ 20% định đoạt kết quả.\n\nBạn đang dành hầu hết thời gian mỗi ngày cho 80% công việc thô hay 20% giá trị cốt lõi?",
+      "text_ig": "80% công việc thô hiện tại chỉ tốn AI đúng 5 giây. Giá trị thật của bạn không nằm ở phần thô đó, mà nằm ở 20% còn lại: ra quyết định và chịu trách nhiệm. Đừng làm thợ gõ cho AI. Bạn đang tập trung vào 80% hay 20%?",
+      "hashtags": [
+        "#AI",
+        "#TríTuệNhânTạo",
+        "#AHítOfficial",
+        "#KỹNăngTươngLai",
+        "#TưDuyLãnhĐạo",
+        "#PhátTriểnBảnThân",
+        "#CôngNghệ",
+        "#SựNghiệp"
+      ],
+      "images": [
+        "assets/posts/2026-11-23/morning/01.jpg",
+        "assets/posts/2026-11-23/morning/02.jpg",
+        "assets/posts/2026-11-23/morning/03.jpg",
+        "assets/posts/2026-11-23/morning/04.jpg",
+        "assets/posts/2026-11-23/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-23/morning/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": null,
+        "extra_sources": null,
+        "meta": {
+          "title": "AI làm xong 80% công việc trong 5 giây: Bạn sắp mất việc hay bứt phá?",
+          "description": "AI đã kéo chi phí sản xuất phần thô về bằng không. Giá trị lao động thực sự hiện nằm ở 20% khả năng ra quyết định và chịu trách nhiệm. Bạn chọn cạnh tranh tốc độ với AI hay làm chủ cuộc chơi? Nhấn theo dõi kênh A Hít Official để cập nhật tư duy công nghệ mới nhất.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#TriTueNhanTao",
+            "#AI",
+            "#KynangTuongLai",
+            "#TuDuyLanhDao",
+            "#CongNghe",
+            "#KinhNghiemsuNghiep",
+            "#PhanTriThuc"
+          ],
+          "keywords": [
+            "AI làm thay con người",
+            "trí tuệ nhân tạo",
+            "tư duy làm việc với AI",
+            "nguy cơ mất việc vì AI",
+            "kỹ năng cốt lõi thời đại AI",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "AI tốn đúng 5 giây làm xong 80% công việc thô. 20% còn lại mới quyết định bạn thắng hay thua! #AHitOfficial #AI #TuDuy #CongNghe"
+        },
+        "spoken_text": "Hook Con AI chỉ tốn 5 giây để làm xong 80% tổng lượng công việc của bạn.\nNếu bạn vẫn đang tự hào vì mình viết email rất mượt hay tổng hợp tin tức cực nhanh,\nmình phải nói thẳng một tin buồn cho bạn ngay lúc này:\nThị trường lao động không còn trả tiền cho việc đó nữa.\nVà có một quy luật 20% định đoạt kẻ thắng người thua, mình sẽ giải mã ở gần cuối.\nXem chi phí sản xuất thô đã sụt giảm thảm hại thế nào.\nCách đây đúng một năm, người làm xong phần việc thô được coi là nhân sự giỏi.\nNhưng AI xuất hiện và đảo lộn toàn bộ cuộc chơi.\nNó kéo chi phí sản xuất phần thô về thẳng mức bằng không.\nKhi cái thô trở nên rẻ múa, giá trị thực sự lập tức dồn hết vào 20% còn lại.\nĐó chính là 20% năng lực mà AI không bao giờ có thể gánh thay cho bạn.\nXem 3 trụ cột giá trị mới mà thị trường đang thèm khát.\nNếu bạn giao cho AI nghiên cứu và lập một báo cáo,\nnó có thể tung ra 10 kịch bản chỉ trong một chớp mắt.\nNhưng chọn kịch bản nào để công ty không phá sản?\nĐó mới chính là 20% thuộc về trách nhiệm của bạn.\nAI có khả năng tạo ra hàng ngàn dòng code lập trình thô.\nXem sự phân chia trách nhiệm khi hệ thống gặp sự cố.\nNhưng khi hệ thống sập lúc nửa đêm, ai sẽ là người chịu báng?\nChắc chắn chính là bạn, chẳng có con AI nào chịu thay cả.\nNgười thất thế sẽ hoảng sợ vì thấy AI làm mất việc.\nHọ hoảng loạn vì không nhận ra phần việc đó đã hết giá trị.\nVậy còn những người chiến thắng thì họ xử lý ra sao?\nXem sự khác biệt tư duy giữa hai nhóm người hiện tại.\nNgười thắng lấy 80% miễn phí làm đòn bẩy để bứt phá.\nHọ tập trung toàn bộ năng lượng vào 20% định đoạt cuộc chơi.\nVà đây chính là câu trả lời cho lời hứa ở đầu video.\nThị trường không đào thải người có tư duy lãnh đạo công việc.\nNó chỉ thẳng tay đào thải những thợ gõ chuyên làm việc lặp lại.\nXem ngay biểu đồ phân bổ thời gian để tự đánh giá bản thân.\nĐừng dại dột cạnh tranh với AI về tốc độ.\nBạn chắc chắn sẽ thua cuộc.\nHãy làm chủ hoàn toàn 20% định đoạt kết quả cuối cùng.\nNhìn lại con số 5 giây ban đầu và tự trả lời thật lòng:\nBạn dành thời gian mỗi ngày cho 80% công việc thô hay 20% giá trị cốt lõi?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "~Hook",
+                "Con AI chỉ tốn 5 giây",
+                "để làm xong 80%",
+                "tổng lượng công việc của bạn."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn vẫn đang tự hào",
+                "vì mình viết email rất mượt",
+                "hay tổng hợp tin tức cực nhanh,"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "mình phải nói thẳng một tin buồn",
+                "cho bạn ngay lúc này:"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thị trường lao động không còn",
+                "trả tiền cho việc đó nữa."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và có một quy luật 20%",
+                "định đoạt kẻ thắng người thua,",
+                "mình sẽ giải mã ở gần cuối."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Xem chi phí sản xuất thô",
+                "đã sụt giảm thảm hại thế nào."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Một năm trước",
+                    "value": 100
+                  },
+                  {
+                    "label": "Hiện tại với AI",
+                    "value": 0
+                  }
+                ],
+                "unit": "",
+                "title": "Chi phí sản xuất phần việc thô"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cách đây đúng một năm,",
+                "người làm xong phần việc thô",
+                "được coi là nhân sự giỏi."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng AI xuất hiện",
+                "và đảo lộn toàn bộ cuộc chơi."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó kéo chi phí sản xuất phần thô",
+                "về thẳng mức bằng không."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": 0,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi cái thô trở nên rẻ múa,",
+                "giá trị thực sự lập tức dồn hết",
+                "vào 20% còn lại."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó chính là 20% năng lực",
+                "mà AI không bao giờ",
+                "có thể gánh thay cho bạn."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Xem 3 trụ cột giá trị mới",
+                "mà thị trường đang thèm khát."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Ra quyết định"
+                  },
+                  {
+                    "label": "Chịu rủi ro"
+                  },
+                  {
+                    "label": "Đặt câu hỏi đúng"
+                  }
+                ],
+                "unit": "",
+                "title": "20% Giá trị cốt lõi"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn giao cho AI",
+                "nghiên cứu và lập một báo cáo,"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "nó có thể tung ra 10 kịch bản",
+                "chỉ trong một chớp mắt."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": 10,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng chọn kịch bản nào",
+                "để công ty không phá sản?"
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó mới chính là 20%",
+                "thuộc về trách nhiệm của bạn."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI có khả năng tạo ra",
+                "hàng ngàn dòng code lập trình thô."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Xem sự phân chia trách nhiệm",
+                "khi hệ thống gặp sự cố."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "AI: Tạo hàng ngàn dòng code"
+                  },
+                  {
+                    "label": "Bạn: Chịu trách nhiệm hệ thống"
+                  }
+                ],
+                "unit": "",
+                "title": "Phân chia trách nhiệm thực tế"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng khi hệ thống sập lúc nửa đêm,",
+                "ai sẽ là người chịu báng?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Chắc chắn chính là bạn,",
+                "chẳng có con AI nào chịu thay cả."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người thất thế sẽ hoảng sợ",
+                "vì thấy AI làm mất việc."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ hoảng loạn vì không nhận ra",
+                "phần việc đó đã hết giá trị."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vậy còn những người chiến thắng",
+                "thì họ xử lý ra sao?"
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Xem sự khác biệt tư duy",
+                "giữa hai nhóm người hiện tại."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Người thất thế: Hoảng sợ",
+                    "value": 80
+                  },
+                  {
+                    "label": "Người thắng: Làm đòn bẩy",
+                    "value": 20
+                  }
+                ],
+                "unit": "",
+                "title": "Thái độ với 80% công việc thô"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người thắng lấy 80% miễn phí",
+                "làm đòn bẩy để bứt phá."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": 80,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ tập trung toàn bộ năng lượng",
+                "vào 20% định đoạt cuộc chơi."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và đây chính là câu trả lời",
+                "cho lời hứa ở đầu video."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thị trường không đào thải người",
+                "có tư duy lãnh đạo công việc."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó chỉ thẳng tay đào thải",
+                "những thợ gõ chuyên làm việc lặp lại."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Xem ngay biểu đồ phân bổ thời gian",
+                "để tự đánh giá bản thân."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Công việc thô lặp lại",
+                    "value": 80
+                  },
+                  {
+                    "label": "Định đoạt & Giá trị cốt lõi",
+                    "value": 20
+                  }
+                ],
+                "unit": "",
+                "title": "Phân bổ thời gian thực tế"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đừng dại dột cạnh tranh",
+                "với AI về tốc độ."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chắc chắn sẽ thua cuộc."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy làm chủ hoàn toàn 20%",
+                "định đoạt kết quả cuối cùng."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": 20,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn lại con số 5 giây ban đầu",
+                "và tự trả lời thật lòng:"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": 5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn dành thời gian mỗi ngày",
+                "cho 80% công việc thô",
+                "hay 20% giá trị cốt lõi?"
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": 80,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cú Sốc 80%",
+              "card_start": 0
+            },
+            {
+              "label": "Đáy Giá Trị",
+              "card_start": 6
+            },
+            {
+              "label": "Vũ Khí 20%",
+              "card_start": 12
+            },
+            {
+              "label": "Sự Thật Đêm Nửa Đêm",
+              "card_start": 18
+            },
+            {
+              "label": "Kẻ Thắng Người Thua",
+              "card_start": 24
+            },
+            {
+              "label": "Quyết Định Cuộc Chơi",
+              "card_start": 30
+            }
+          ]
+        },
+        "script_path": "output/2026-11-23/2026-11-23-morning-ai-lam-uoc-80-viec-va-vi-sao-20-con-lai/video/script.json",
+        "script_msg_id": 1368,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}

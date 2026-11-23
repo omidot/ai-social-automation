@@ -1,6 +1,7 @@
 {
-  "last": "navy-bar",
+  "last": "warm-bar",
   "recent": [
+    "warm-bar",
     "navy-bar",
     "white-bar",
     "mono-rail",
@@ -14,7 +15,6 @@
     "mono-ticket",
     "warm-ticket",
     "navy-ticket",
-    "white-ticket",
-    "mono-magazine"
+    "white-ticket"
   ]
 }
