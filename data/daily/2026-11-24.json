@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-24",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "OpenAI and Cisco introduce Shirudo",
+      "style": "white-split",
+      "topic_key": "openai-and-cisco-introduce-shirudo",
+      "text_fb": "OpenAI và Cisco vừa bắt tay tung ra Shirudo, một công cụ mã nguồn mở giúp vá lỗ hổng Linux ở tốc độ máy mà không cần khởi động lại hệ thống.\n\nMỗi khi xuất hiện lỗ hổng bảo mật nghiêm trọng, bạn tốn bao nhiêu ngày để thử nghiệm và tung bản vá? Thường là hàng tuần. Trong khoảng thời gian chết đó, hệ thống của bạn trần trụi trước hacker. Nếu bạn chọn giải pháp an toàn là tắt dịch vụ để sửa, bạn mất khách hàng. Bạn luôn rơi vào thế tiến thoái lưỡng nan.\n\nShirudo giải quyết triệt để sự đánh đổi này. Sử dụng công nghệ eBPF trên Linux kết hợp cùng Codex của OpenAI, hệ thống có thể tự động tạo ra một lá chắn nhỏ can thiệp trực tiếp vào bộ nhớ đang chạy. Trong thử nghiệm thực tế với lỗ hổng Java4Shell nguy hiểm, Codex đã tự sinh lá chắn chặn sạch mã độc nhắm vào Elasticsearch mà dịch vụ vẫn hoạt động liên tục.\n\nĐây là dấu hiệu cho thấy AI đang chuyển từ công cụ gõ code sang tự động hóa phòng thủ hạ tầng ở quy mô lớn. Người thắng trong cuộc chơi sắp tới không phải là người ngồi vá lỗi thủ công, mà là người biết giao việc phòng thủ cho AI dưới sự kiểm soát minh bạch.\n\nBạn nghĩ AI sẽ thay thế phần lớn công việc bảo mật hạ tầng trong 3 năm tới không?\n\nNguồn: OpenAI Blog",
+      "text_ig": "OpenAI và Cisco ra mắt Shirudo, dùng AI tự vá lỗi Linux tức thì mà không cần reboot. Kỷ nguyên phòng thủ hạ tầng tự động ở tốc độ máy đã bắt đầu. Bạn đã sẵn sàng áp dụng AI vào hệ thống chưa?",
+      "hashtags": [
+        "#AI",
+        "#OpenAI",
+        "#Cisco",
+        "#Shirudo",
+        "#CyberSecurity",
+        "#Linux",
+        "#eBPF",
+        "#TechNews"
+      ],
+      "images": [
+        "assets/posts/2026-11-24/morning/01.jpg",
+        "assets/posts/2026-11-24/morning/02.jpg",
+        "assets/posts/2026-11-24/morning/03.jpg",
+        "assets/posts/2026-11-24/morning/04.jpg",
+        "assets/posts/2026-11-24/morning/05.jpg",
+        "assets/posts/2026-11-24/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/introducing-shirudo"
+        },
+        {
+          "name": "The Hacker News",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1tY2NQbVFCa0xnV2gyeGZwMUxyZVFBR0tma1ZnbGlFTGxTaW1TdDVHVVItYi15dXh4dmZneWQ2MFBnZ3JpWUh2TTNKekd5NDNtd3k5dVp3WnVtSGwtZnZtaVRTdEZhUmZSQW8xeWFfdkRja3VqRExVNTk5bXpaM2M?oc=5"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2326288/openai-employee-recorded-meetings-allegedly-affiliated-saudi-government/"
+        },
+        {
+          "name": "PYMNTS.com",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbEJQZ2F6dXdNZkMxejJnbWFIV3RtTmt1NG44RngwTkdtbllWdXNfUG5GVS0zZm02dmJhbjlZSlpPY0xDQTFYbUFBZlhkanp2YWR0SlJBdzd4TXE2UnBCbXdXS283NjZLTFZoN2dfWkZOamRMcGJlTGFNNUJISG1nSjVXa0NEcV9TQTRVVF9KcGJvWnBEX2NfSjBicTJfZw?oc=5"
+        },
+        {
+          "name": "The Decoder",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNaWpsRHQwN1U1VFRVZWNmaG9RRzJ0YjA5NnV3VUItblJTQ0FKRkJtck9QZHZZSXpieGd0blhOakJ3R3VHSlI2NElVZi0wQXEzTUJQc2g5OWlqNXZkMUQ1QkRzV0tiVFh3WXIwY1BSMFd2cFZrT3E3TUN0SnhmaGRQZlowR0NqeTNEc2dEQTRhX3ZOd3pPeXNOT0FJcThmSzRaYzRFN25ZQ05rWXJyUVE?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPOFV5c1lRWkp5NkRKZlBUZ0l2T0I5emdpa2tmcGdpaWJQUGdDYjBwY2VzeUpXd2lEaXphRHdCZ0VsZ0lLTmFiUW5LSjhpVjBNZ01DSzhYUmhQY3NpT3FHXzh2dlMzcVRFZjlreUwxQktHdlYzcWdvR3VCRnlEWUxUMWF6QmtVenI5VDRwa1pGdHNiR1hq?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
+    }
+  }
+}
