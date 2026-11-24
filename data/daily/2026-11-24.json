@@ -64,6 +64,823 @@
         }
       ],
       "angle": "xu-huong"
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Tidal will start banning AI-generated music next month",
+      "style": "navy-split",
+      "topic_key": "tidal-will-start-banning-ai-generated-music-next-m",
+      "text_fb": "29 triệu bài hát sẽ bị xoá sổ khỏi Tidal từ ngày 9 tháng 12. Mỗi ngày, nền tảng này chuẩn bị từ chối thêm 85.000 bài hát mới. Lý do cực kỳ cay đắng: 43% số nhạc tải lên trong 3 tháng qua là sản phẩm AI hoàn toàn, và 96% trong số đó không có lấy một lượt nghe.\n\nNếu bạn đang dùng AI bấm nút tạo hàng loạt video, bài viết hay nhạc với ảo tưởng kiếm tiền thụ động, bài học này dành cho bạn.\n\nSố đông đang nghĩ AI là chiếc máy in tiền miễn phí. Họ nghĩ chỉ cần tạo thật nhiều nội dung rồi quăng lên mạng là tự động có doanh thu. Nhưng thực tế phũ phàng: bạn chỉ đang tạo ra rác hệ thống.\n\nTidal, Bandcamp và sắp tới là hàng loạt nền tảng khác đang ra tay thanh lọc. Họ dùng công cụ quét như Ircam Amplify để chặn đứng dòng chảy nội dung rác. Điều đáng chú ý ở đây: Tidal không cấm AI làm công cụ hỗ trợ. Họ chỉ khai tử những sản phẩm 100% do AI tự tạo mà không có dấu ấn sáng tạo của con người.\n\nBản chất của cuộc chơi đã thay đổi. Kỷ nguyên của những kẻ lười biếng dùng AI tạo rác đại trà đã kết thúc. Nền tảng sẽ bảo vệ người dùng và nghệ sĩ thật. Người chiến thắng tiếp theo không phải kẻ bấm nút tạo nhiều nhất, mà là người biết kết hợp AI để nâng tầm tư duy sáng tạo cá nhân.\n\nBạn ủng hộ việc các nền tảng quét sạch nội dung 100% AI, hay nghĩ rằng họ đang cản trở công nghệ?\n\nNguồn: The Verge AI",
+      "text_ig": "Tidal sẽ xóa 29 triệu bài hát AI từ ngày 9/12 vì 96% số đó có 0 lượt nghe. Bài học rõ ràng: Dùng AI tạo rác hàng loạt để kiếm tiền thụ động đã hết thời. Hãy tập trung vào chất lượng thay vì số lượng. Bạn nghĩ sao về động thái này?",
+      "hashtags": [
+        "#Tidal",
+        "#AIMusic",
+        "#ArtificialIntelligence",
+        "#CongNgheAI",
+        "#AHitOfficial",
+        "#BanAI",
+        "#SangTaoAI",
+        "#AIStory",
+        "#TechNews"
+      ],
+      "images": [
+        "assets/posts/2026-11-24/evening/01.jpg",
+        "assets/posts/2026-11-24/evening/02.jpg",
+        "assets/posts/2026-11-24/evening/03.jpg",
+        "assets/posts/2026-11-24/evening/04.jpg",
+        "assets/posts/2026-11-24/evening/05.jpg",
+        "assets/posts/2026-11-24/evening/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-24/evening/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "The Verge AI",
+          "url": "https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban"
+        },
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2326812/tidal-is-banning-ai-generated-music-entirely/"
+        },
+        {
+          "name": "Deadline",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBxVTJ0X19nanE2cUJWdmFEVU1mU3JJdWpWY01ueHZLU1NxSGYyd2p3TzVxNTFZaXdVelBmR0J5ZUFxbkJHZnFaZXd6YlR5MjlnLWZHdG5VRHl0Uml4OTBsMTJyYzNkLWQ1eDRvbi1sX201RVpvdHZaZTFR?oc=5"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/"
+        },
+        {
+          "name": "hn",
+          "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/24/pinterest-will-now-let-parents-limit-the-ai-generated-content-their-teens-see/"
+        }
+      ],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban",
+        "extra_sources": [
+          {
+            "name": "Engadget",
+            "url": "https://www.engadget.com/2326812/tidal-is-banning-ai-generated-music-entirely/"
+          },
+          {
+            "name": "Deadline",
+            "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBxVTJ0X19nanE2cUJWdmFEVU1mU3JJdWpWY01ueHZLU1NxSGYyd2p3TzVxNTFZaXdVelBmR0J5ZUFxbkJHZnFaZXd6YlR5MjlnLWZHdG5VRHl0Uml4OTBsMTJyYzNkLWQ1eDRvbi1sX201RVpvdHZaZTFR?oc=5"
+          },
+          {
+            "name": "TechCrunch AI",
+            "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/"
+          },
+          {
+            "name": "hn",
+            "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/"
+          },
+          {
+            "name": "TechCrunch AI",
+            "url": "https://techcrunch.com/2026/11/24/pinterest-will-now-let-parents-limit-the-ai-generated-content-their-teens-see/"
+          }
+        ],
+        "meta": {
+          "title": "Tidal Xóa 29 Triệu Bài Hát AI: Hồi Kết Cho Chiêu Trò Tạo Rác Đại Trà",
+          "description": "Tidal chính thức ra tuyên bố xóa sổ 29 triệu bài hát 100% do AI tạo ra từ ngày 9/12 tới. Phân tích thực tế cho thấy 96% số nhạc AI này không có nổi một lượt nghe, buộc các nền tảng phải mạnh tay quét sạch. Bạn dùng AI làm trợ lý sáng tạo hay để AI thay thế hoàn toàn? Hãy bấm đăng ký kênh A Hít Official để cập nhật những tư duy công nghệ sắc bén nhất.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#Tidal",
+            "#AIMusic",
+            "#TriTueNhanTao",
+            "#CongNghe",
+            "#AI",
+            "#JackDorsey",
+            "#Spotify",
+            "#Bandcamp",
+            "#XuHuongAI"
+          ],
+          "keywords": [
+            "Tidal cấm nhạc AI",
+            "Tidal xóa 29 triệu bài hát",
+            "Jack Dorsey AI",
+            "Spotify gỡ nhạc AI",
+            "Ircam Amplify",
+            "nhạc AI rác",
+            "kiếm tiền AI",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "Tidal xóa 29 triệu bài hát AI từ ngày 9/12! 96% nhạc AI không có nổi 1 lượt nghe. Kỷ nguyên làm rác AI kết thúc #AHitOfficial #Tidal #AIMusic #AI"
+        },
+        "spoken_text": "Tidal sẽ xóa sổ 29 triệu bài hát khỏi hệ thống từ ngày 9 tháng 12.\nĐại diện Robert Andersen vừa xác nhận quyết định cực kỳ tàn nhẫn này.\nMỗi ngày tiếp theo, nền tảng này chuẩn bị từ chối thêm 85.000 bài hát mới.\nNhưng chi tiết bất ngờ nhất không nằm ở con số xóa sổ, mà ở sự thật đằng sau.\nNếu bạn đang nghĩ dùng AI bấm nút tạo đại trà để kiếm tiền thụ động...\nThì bạn đang tự tay hủy hoại sự nghiệp sáng tạo của chính bản thân.\nBạn không tạo ra giá trị, bạn chỉ đang tạo ra rác hệ thống.\nHãy nhìn vào số liệu thực tế trên Tidal trong 90 ngày vừa qua.\n43% tổng số bài hát tải lên đều bị phát hiện là do AI tự tạo hoàn toàn.\nVà con số cay đắng nhất bắt đầu xuất hiện ngay sau đó.\n96% toàn bộ số bài hát AI này không nhận được dù chỉ MỘT lượt nghe nào.\n96% zero plays!\nHàng triệu file âm thanh vô giá trị nằm chất đống trên máy chủ và làm bẩn nguồn dữ liệu.\nDSP - thuật ngữ chỉ các dịch vụ phát nhạc trực tuyến như Tidal - đã không thể chịu đựng thêm.\nHọ bắt đầu gắn nhãn, cắt toàn bộ doanh thu, và giờ là quét sạch vĩnh viễn.\nNhưng câu chuyện này còn có một góc nhìn đầy mâu thuẫn và thú vị.\nTidal thuộc sở hữu của Block, tập đoàn được dẫn dắt bởi Jack Dorsey.\nJack Dorsey chính là người vừa sa thải 4.000 nhân viên vào đầu năm nay.\nÔng từng tuyên bố thẳng thắn: công cụ AI giúp đội ngũ nhỏ làm việc hiệu quả gấp nhiều lần.\nTại sao một người ủng hộ AI như Jack Dorsey lại ra lệnh cấm toàn bộ nhạc AI trên Tidal?\nBởi vì ông hiểu rõ ranh giới giữa công cụ hỗ trợ và rác thải công nghệ.\nTidal không phải nền tảng duy nhất đang tiến hành cuộc dọn dẹp này.\nBandcamp đã ra lệnh cấm hoàn toàn nhạc AI từ đầu năm nay.\nSpotify đã âm thầm gỡ bỏ 50 triệu bài hát rác spam khỏi hệ thống gợi ý.\nDeezer thì cấp cho người dùng bộ lọc ẩn đi toàn bộ nhạc AI chỉ bằng một cú nhấp.\nHọ dùng công nghệ gì để làm điều đó?\nTidal sử dụng công cụ Ircam Amplify - hệ thống phân tích âm thanh và kiểm tra dữ liệu gốc.\nBất kỳ nhà phân phối nào cố tình gửi bài hát 100% do AI làm đều bị chặn ngay lập tức.\nTuy nhiên, nếu bạn đọc kỹ thông báo, bạn sẽ thấy một chi tiết cực kỳ quan trọng.\nTidal khẳng định không cấm các sản phẩm âm nhạc có sự hỗ trợ của AI.\nHọ chỉ cấm những bài hát mà AI làm từ đầu đến cuối mà không có chất xám con người.\nĐiều này có ý nghĩa gì với công việc của bạn hôm nay?\nNếu bạn dùng AI làm trợ lý để mở rộng tư duy sáng tạo, bạn sẽ là người chiến thắng.\nNhưng nếu bạn lười biếng bấm nút để AI sản xuất nội dung đại trà, bạn sẽ bị loại bỏ.\nKỷ nguyên kiếm tiền dễ dàng từ nội dung rác AI đã chính thức đi đến hồi kết.\nQuay lại với 29 triệu bài hát sắp bị tiêu hủy vào tháng 12.\nĐây là lời cảnh tỉnh rõ ràng nhất cho tất cả những ai đang làm nội dung.\nBạn chọn đứng ở phe tạo giá trị, hay chấp nhận bị quét sạch như rác?",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Tidal sẽ xóa sổ 29 triệu",
+                "bài hát khỏi hệ thống",
+                "từ ngày 9 tháng 12."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": 29,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đại diện Robert Andersen vừa xác nhận",
+                "quyết định cực kỳ tàn nhẫn này."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Tidal Robert Andersen X post"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mỗi ngày tiếp theo,",
+                "nền tảng này chuẩn bị từ chối",
+                "thêm 85.000 bài hát mới."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": 85000,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng chi tiết bất ngờ nhất",
+                "không nằm ở con số xóa sổ,",
+                "mà ở sự thật đằng sau."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang nghĩ",
+                "dùng AI bấm nút tạo đại trà",
+                "để kiếm tiền thụ động..."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thì bạn đang tự tay",
+                "hủy hoại sự nghiệp sáng tạo",
+                "của chính bản thân."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn không tạo ra giá trị,",
+                "bạn chỉ đang tạo ra rác hệ thống."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn vào số liệu thực tế",
+                "trên Tidal trong 90 ngày vừa qua."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": 90,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "43% tổng số bài hát tải lên",
+                "đều bị phát hiện",
+                "là do AI tự tạo hoàn toàn."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "gauge",
+                "items": [
+                  {
+                    "label": "Nhạc AI",
+                    "value": 43
+                  },
+                  {
+                    "label": "Tổng cộng",
+                    "value": 100
+                  }
+                ],
+                "unit": "",
+                "title": "Tỷ lệ nhạc AI trên Tidal 90 ngày qua"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và con số cay đắng nhất",
+                "bắt đầu xuất hiện ngay sau đó."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "96% toàn bộ số bài hát AI này",
+                "không nhận được dù chỉ",
+                "MỘT lượt nghe nào."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": 96,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "96% zero plays!"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": 96,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hàng triệu file âm thanh vô giá trị",
+                "nằm chất đống trên máy chủ",
+                "và làm bẩn nguồn dữ liệu."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "DSP - thuật ngữ chỉ các dịch vụ",
+                "phát nhạc trực tuyến như Tidal -",
+                "đã không thể chịu đựng thêm."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ bắt đầu gắn nhãn,",
+                "cắt toàn bộ doanh thu,",
+                "và giờ là quét sạch vĩnh viễn."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Gắn nhãn AI"
+                  },
+                  {
+                    "label": "Cắt doanh thu"
+                  },
+                  {
+                    "label": "Xóa 29 triệu bài"
+                  }
+                ],
+                "unit": "",
+                "title": "Xử lý nhạc AI của Tidal"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng câu chuyện này",
+                "còn có một góc nhìn",
+                "đầy mâu thuẫn và thú vị."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tidal thuộc sở hữu của Block,",
+                "tập đoàn được dẫn dắt bởi",
+                "Jack Dorsey."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Jack Dorsey Block Tidal AI"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Jack Dorsey chính là người",
+                "vừa sa thải 4.000 nhân viên",
+                "vào đầu năm nay."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": 4000,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Ông từng tuyên bố thẳng thắn:",
+                "công cụ AI giúp đội ngũ nhỏ",
+                "làm việc hiệu quả gấp nhiều lần."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Ban đầu",
+                    "value": 10000
+                  },
+                  {
+                    "label": "Sau cắt giảm",
+                    "value": 6000
+                  }
+                ],
+                "unit": "",
+                "title": "Nhân sự Block trước và sau cắt giảm"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tại sao một người ủng hộ AI",
+                "như Jack Dorsey lại ra lệnh cấm",
+                "toàn bộ nhạc AI trên Tidal?"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bởi vì ông hiểu rõ",
+                "ranh giới giữa công cụ hỗ trợ",
+                "và rác thải công nghệ."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tidal không phải nền tảng duy nhất",
+                "đang tiến hành cuộc dọn dẹp này."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bandcamp đã ra lệnh cấm hoàn toàn",
+                "nhạc AI từ đầu năm nay."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Bandcamp AI music ban policy"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Spotify đã âm thầm gỡ bỏ",
+                "50 triệu bài hát rác spam",
+                "khỏi hệ thống gợi ý."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": 50,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Deezer thì cấp cho người dùng",
+                "bộ lọc ẩn đi toàn bộ nhạc AI",
+                "chỉ bằng một cú nhấp."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ dùng công nghệ gì",
+                "để làm điều đó?"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tidal sử dụng công cụ Ircam Amplify -",
+                "hệ thống phân tích âm thanh",
+                "và kiểm tra dữ liệu gốc."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Ircam Amplify AI detection audio tool"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bất kỳ nhà phân phối nào cố tình",
+                "gửi bài hát 100% do AI làm",
+                "đều bị chặn ngay lập tức."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": 100,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tuy nhiên, nếu bạn đọc kỹ thông báo,",
+                "bạn sẽ thấy một chi tiết cực kỳ quan trọng."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tidal khẳng định không cấm",
+                "các sản phẩm âm nhạc",
+                "có sự hỗ trợ của AI."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ chỉ cấm những bài hát",
+                "mà AI làm từ đầu đến cuối",
+                "mà không có chất xám con người."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "100% AI: Cấm vĩnh viễn"
+                  },
+                  {
+                    "label": "AI hỗ trợ: Chấp nhận"
+                  }
+                ],
+                "unit": "",
+                "title": "Quy định phân loại nhạc AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Điều này có ý nghĩa gì",
+                "với công việc của bạn hôm nay?"
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn dùng AI làm trợ lý",
+                "để mở rộng tư duy sáng tạo,",
+                "bạn sẽ là người chiến thắng."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng nếu bạn lười biếng bấm nút",
+                "để AI sản xuất nội dung đại trà,",
+                "bạn sẽ bị loại bỏ."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kỷ nguyên kiếm tiền dễ dàng",
+                "từ nội dung rác AI đã chính thức",
+                "đi đến hồi kết."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Quay lại với 29 triệu bài hát",
+                "sắp bị tiêu hủy vào tháng 12."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": 29,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đây là lời cảnh tỉnh rõ ràng nhất",
+                "cho tất cả những ai đang làm nội dung."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn đứng ở phe tạo giá trị,",
+                "hay chấp nhận bị quét sạch như rác?"
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Thảm họa 29 triệu bài hát",
+              "card_start": 0
+            },
+            {
+              "label": "Sự thật đằng sau 96% rác AI",
+              "card_start": 7
+            },
+            {
+              "label": "Cú quay xe của Jack Dorsey",
+              "card_start": 15
+            },
+            {
+              "label": "Công nghệ quét và làn sóng cấm",
+              "card_start": 21
+            },
+            {
+              "label": "Bài học sinh tồn cho creator",
+              "card_start": 28
+            }
+          ]
+        },
+        "script_path": "output/2026-11-24/2026-11-24-evening-tidal-will-start-banning-ai-generated-mu/video/script.json",
+        "script_msg_id": 1406,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
     }
   }
 }
