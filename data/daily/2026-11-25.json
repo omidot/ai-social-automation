@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-25",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
+      "style": "warm-split",
+      "topic_key": "gpt-6-models-demonstrate-intrinsic-protein-design-",
+      "text_fb": "OpenAI vừa chứng minh mô hình GPT-6.2 có thể tự thiết kế protein hoàn chỉnh chỉ bằng suy luận toán học và tự viết code, hoàn toàn không cần gọi đến các mô hình sinh học chuyên biệt.\n\nThử nghiệm thực tế tại phòng thí nghiệm Onava khẳng định các thiết kế protein do GPT-6.2 tạo ra đã thành công gắn kết trên cả 5 mục tiêu phân tử được giao. Trước đây, giới nghiên cứu tin rằng những mô hình chuyên biệt như RFdiffusion là điểm tựa duy nhất cho các tác vụ sinh học phức tạp. Thế nhưng, GPT-6.2 vừa đập tan giới hạn đó bằng khả năng tự tổng hợp tri thức vật lý, hóa học và tự thực thi mã nguồn để tạo ra kết quả chính xác.\n\nNếu bạn vẫn đang tin rằng AI tổng quát chỉ dùng để viết văn hay tóm tắt văn bản, bạn đang bỏ qua một cú dịch chuyển mang tính sinh tử. AI hiện tại không còn là một công cụ trò chuyện đơn thuần. Nó đang trở thành engine giải quyết vấn đề cốt lõi cho mọi ngành nghề. Người thắng trong cuộc chơi sắp tới không phải người sở hữu hàng tá phần mềm chuyên biệt rườm rà, mà là người biết tận dụng năng lực suy luận gốc của AI tổng quát để tối ưu hóa công việc.\n\nBạn có tin AI tổng quát sẽ nuốt chửng toàn bộ các phần mềm chuyên biệt trong vài năm tới?\n\nNguồn: OpenAI Blog",
+      "text_ig": "OpenAI chứng minh GPT-6.2 tự thiết kế protein bằng suy luận toán học và code, không cần mô hình sinh học chuyên biệt. Tương lai thuộc về AI tổng quát. Bạn đã sẵn sàng thay đổi chưa?",
+      "hashtags": [
+        "#OpenAI",
+        "#GPT6",
+        "#AI",
+        "#BioTech",
+        "#GenerativeAI",
+        "#TechNews",
+        "#AHitOfficial",
+        "#ArtificialIntelligence"
+      ],
+      "images": [
+        "assets/posts/2026-11-25/morning/01.jpg",
+        "assets/posts/2026-11-25/morning/02.jpg",
+        "assets/posts/2026-11-25/morning/03.jpg",
+        "assets/posts/2026-11-25/morning/04.jpg",
+        "assets/posts/2026-11-25/morning/05.jpg",
+        "assets/posts/2026-11-25/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-25/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-25/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-25/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-25/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-25/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-25/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+        },
+        {
+          "name": "OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOaUdETW1TNzZiLWl5Z2lOUkhpRmtFMGNxY2dRVV9URkpQX3RVRGpVZGk5Q055WEY4elV1X2VHWlVCYzZTQUMydEk4YThidXZUOUh4dlBZVmpfZ21jaTZIeVRQaEFmdFN5MDNkNDhhYU5qdTJEN3ZQeGRXNG5NS215c3hxa2hFbEFjWW1DVE93UXFkdw?oc=5"
+        }
+      ],
+      "angle": "xu-huong"
+    }
+  }
+}
