@@ -2,7 +2,7 @@
   "date": "2026-11-25",
   "posts": {
     "morning": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
       "style": "warm-split",
