@@ -50,7 +50,7 @@
       "angle": "xu-huong"
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Verifiable Social Reasoning for LLM Assistants",
       "style": "mono-split",
