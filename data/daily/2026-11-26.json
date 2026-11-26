@@ -916,6 +916,52 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+      "style": "navy-magazine",
+      "topic_key": "introducing-the-llama-cpp-benchmark-dashboard-for-",
+      "text_fb": "Radeon AI Pro R9700S và Radeon 8060S vừa có bảng đo hiệu năng llama.cpp chính thức trên Hugging Face.\n\nSố đông người dùng AI local vẫn giữ thói quen cuồng Nvidia và coi chip AMD là lựa chọn yếu kém. Mình thấy góc nhìn đó đã quá cũ kỹ. Khi Hugging Face bắt tay với AMD để công khai toàn bộ benchmark của llama.cpp, cuộc chơi đã đổi khác.\n\nHệ thống này đo trực tiếp hai chỉ số cốt lõi: PP512 cho tốc độ xử lý prompt và TG128 cho tốc độ sinh câu trả lời. Mọi bài test đều chạy tự động hàng tuần trên các model phổ biến như Qwen, Gemma hay gpt-oss. Dữ liệu jsonl mở hoàn toàn để bất kỳ ai cũng có thể đối soát.\n\nĐiều này có ý nghĩa gì với bạn? Nếu bạn đang tự chạy model tại gia hoặc tối ưu chi phí hạ tầng cho dự án, bạn không còn phải mua phần cứng dựa trên lời đồn hay video review cảm tính. Bạn có số liệu đo đạc thực tế theo từng bản build và từng định dạng nén GGUF.\n\nNvidia vẫn mạnh, nhưng AMD đang âm thầm xây dựng hệ sinh thái AI local giá tốt và minh bạch hơn. Người làm AI thông minh là người nhìn vào con số hiệu năng trên chi phí, chứ không nhìn vào logo thương hiệu.\n\nBạn đã từng chạy thử llama.cpp trên phần cứng AMD chưa, hay vẫn trung thành tuyệt đối với Nvidia?\n\nNguồn: Hugging Face",
+      "text_ig": "Radeon 8060S và R9700S vừa có dashboard đo llama.cpp trên Hugging Face. Đừng mua phần cứng AI theo cảm tính nữa. Hãy nhìn vào con số tốc độ nạp prompt và sinh token thực tế trước khi chi tiền. Bạn chọn Nvidia hay AMD?",
+      "hashtags": [
+        "#AI",
+        "#llamaCpp",
+        "#AMD",
+        "#HuggingFace",
+        "#LocalAI",
+        "#Radeon",
+        "#Hardware",
+        "#Benchmark"
+      ],
+      "images": [
+        "assets/posts/2026-11-26/evening/01.jpg",
+        "assets/posts/2026-11-26/evening/02.jpg",
+        "assets/posts/2026-11-26/evening/03.jpg",
+        "assets/posts/2026-11-26/evening/04.jpg",
+        "assets/posts/2026-11-26/evening/05.jpg",
+        "assets/posts/2026-11-26/evening/06.jpg",
+        "assets/posts/2026-11-26/evening/07.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/06.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/evening/07.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench"
+        }
+      ],
+      "angle": "xu-huong"
     }
   }
 }
