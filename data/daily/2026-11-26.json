@@ -918,7 +918,7 @@
       }
     },
     "evening": {
-      "status": "draft",
+      "status": "expired",
       "format": "share",
       "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
       "style": "navy-magazine",
