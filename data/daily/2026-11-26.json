@@ -1,0 +1,921 @@
+{
+  "date": "2026-11-26",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "Where scientists draw the line on AI agents",
+      "style": "white-magazine",
+      "topic_key": "where-scientists-draw-the-line-on-ai-agents",
+      "text_fb": "17 nhà khoa học tại viện nghiên cứu Ai2 vừa hoàn thành phỏng vấn chuyên sâu về việc đưa AI agent vào công việc thực tế. Kết quả chỉ ra một thực tế phũ phàng: AI càng tự động, trách nhiệm của bạn càng cao.\n\nNếu bạn đang giao toàn bộ công đoạn tìm kiếm tài liệu hay xử lý dữ liệu cho AI, bạn đang tự đặt mình vào thế rủi ro. AI agent có thể xử lý hàng triệu dòng code hoặc đọc hàng ngàn bài báo trong vài phút. Nhưng nó cũng dễ dàng bỏ qua các dữ liệu đối lập, trích dẫn sai nguồn hoặc truy cập vượt quá quyền hạn cho phép.\n\nBài nghiên cứu của Ai2 đưa ra 5 chiều đo độ tin cậy mà bất kỳ ai làm việc với AI cũng phải nhớ: tính kiểm định, bảo mật, khách quan, trách nhiệm và minh bạch. AI cho ra kết quả đúng là chưa đủ. Bạn phải biết nó đã đi qua những bước nào để tới được kết quả đó.\n\nNhiều người sợ AI thay thế con người. Nhưng thực tế, người bị thay thế là những ai nhắm mắt tin hoàn toàn vào output của AI mà không hề có năng lực thẩm định. AI agent là trợ lý, không phải sếp của bạn. Bạn là người cuối cùng đứng tên trên công việc đó và phải chịu trách nhiệm về nó.\n\nBạn đã từng phát hiện AI agent tự bịa thông tin hoặc làm sai quy trình trong công việc chưa?\n\nNguồn: Hugging Face",
+      "text_ig": "17 nhà khoa học tại Ai2 cảnh báo: giao việc cho AI agent không đồng nghĩa với trút bỏ trách nhiệm. Bạn phải thẩm định quy trình, không chỉ nhận kết quả. Bạn có đang tin tưởng AI quá mức?",
+      "hashtags": [
+        "#AIAgents",
+        "#Ai2",
+        "#ArtificialIntelligence",
+        "#TechTrends",
+        "#AIResearch",
+        "#EthicalAI",
+        "#AHitOfficial",
+        "#CongNgheAI"
+      ],
+      "images": [
+        "assets/posts/2026-11-26/morning/01.jpg",
+        "assets/posts/2026-11-26/morning/02.jpg",
+        "assets/posts/2026-11-26/morning/03.jpg",
+        "assets/posts/2026-11-26/morning/04.jpg",
+        "assets/posts/2026-11-26/morning/05.jpg",
+        "assets/posts/2026-11-26/morning/06.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/morning/05.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-26/morning/06.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Hugging Face",
+          "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents"
+        },
+        {
+          "name": "CNBC",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTHg1UVdrWGFYNVhhZ01fMmN6aWhqWWdHYUVKYXJKUUtnUU5TN0FYamxFbHJyTllzM0FRN0NGMGVoQVR3UGhMdDAxYV9zMU9QSUF5cXlFNURuZURXTldBZWFMOF8xeUhrNkFfVy0zY0ZJeXFkYXVWZTNXZXNWeFFQWjNOX095X1HSAYwBQVVfeXFMTW9UbkFlUXFkZjc1eE5LREVGQlhHeDZuQWVJYlh4V2QxRi1qMDVwMEY4YUdXOEpvVDFibGlMaUFRenExZ2xrVGF1dEY1Qjl6UzItM29VNHBCQlI4VS1HMV9SVjhBaTNnT01CLVdxVVhUWUdnX3ZjeGdFa2hyTGV4SHdEV1A5QWxSbUFVMGE?oc=5"
+        }
+      ],
+      "angle": "quan-diem",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+        "extra_sources": [
+          {
+            "name": "CNBC",
+            "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOTHg1UVdrWGFYNVhhZ01fMmN6aWhqWWdHYUVKYXJKUUtnUU5TN0FYamxFbHJyTllzM0FRN0NGMGVoQVR3UGhMdDAxYV9zMU9QSUF5cXlFNURuZURXTldBZWFMOF8xeUhrNkFfVy0zY0ZJeXFkYXVWZTNXZXNWeFFQWjNOX095X1HSAYwBQVVfeXFMTW9UbkFlUXFkZjc1eE5LREVGQlhHeDZuQWVJYlh4V2QxRi1qMDVwMEY4YUdXOEpvVDFibGlMaUFRenExZ2xrVGF1dEY1Qjl6UzItM29VNHBCQlI4VS1HMV9SVjhBaTNnT01CLVdxVVhUWUdnX3ZjeGdFa2hyTGV4SHdEV1A5QWxSbUFVMGE?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "Viện Ai2 Phỏng Vấn 17 Nhà Khoa Học: Bẫy Nguy Hiểm Khi Dùng AI Agent",
+          "description": "Nhiều người đang giao toàn bộ công việc xử lý dữ liệu và đọc tài liệu cho AI Agent mà không biết rủi ro đằng sau. Bài nghiên cứu từ viện Ai2 chỉ ra 5 chiều đo tin cậy bắt buộc phải có để không bị thay thế. Hãy học cách làm chủ AI thay vì tin tưởng mù quáng vào kết quả đầu ra.\n\nTheo dõi kênh A Hít Official để cập nhật tư duy AI sắc bén mỗi ngày!",
+          "hashtags": [
+            "#AHitOfficial",
+            "#AIAgent",
+            "#ViệnAi2",
+            "#TriThucAI",
+            "#CongNgheAI",
+            "#KiemDinhAI",
+            "#TuDuyCongNghe",
+            "#DaoDucAI"
+          ],
+          "keywords": [
+            "AI Agent",
+            "Viện Ai2",
+            "Ai2 AI for science",
+            "trợ lý AI tự động",
+            "rủi ro AI Agent",
+            "5 tiêu chuẩn tin cậy AI",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "17 nhà khoa học viện Ai2 cảnh báo bẫy tự động hóa của AI Agent. Bạn chọn tốc độ hay chính xác? #AHitOfficial #AIAgent #CongNgheAI #ViệnAi2"
+        },
+        "spoken_text": "Viện nghiên cứu Ai2 vừa phỏng vấn 17 nhà khoa học hàng đầu về trợ lý AI Agent.\nVà kết quả đã phơi bày một sự thật vô cùng tàn nhẫn.\nCàng giao toàn bộ việc cho AI, bạn càng tự đặt bản thân vào thế rủi ro.\n17 chuyên gia ngành tự nhiên và xã hội cùng đồng thanh lên tiếng.\nĐiều đáng sợ nhất không phải là AI đưa ra kết quả sai.\nNó nằm ở bẫy thứ 5 về tinh thần trách nhiệm mà mình sẽ tiết lộ ở phần sau.\nNếu bạn đang vô tư giao mọi công đoạn cho AI Agent...\nTừ đọc tài liệu, viết mã code đến xử lý hàng triệu dòng dữ liệu.\nAI làm tất cả chỉ trong vài giây.\nNhưng bạn có thực sự biết AI đang che giấu điều gì không?\nNó sẵn sàng bỏ qua các bằng chứng đối lập.\nNó tự bịa ra trích dẫn chưa từng tồn tại trong thực tế.\nNó hợp thức hóa giả thuyết bằng những dữ liệu bị bóp méo.\nKhi tự động hóa phòng thí nghiệm, nó có thể vượt ngưỡng an toàn.\nQuên giới hạn nhiệt độ hoặc độ độc hại của vật liệu.\nNó thậm chí đọc cả file kín vượt quá quyền hạn bạn cấp.\nMột kết quả đưa ra có vẻ đúng là chưa đủ để sử dụng.\nTrong khoa học hay làm sản phẩm, quy trình tạo ra kết quả mới quyết định sự sống còn.\nBài nghiên cứu từ viện Ai2 chỉ rõ 5 chiều đo tin cậy.\nNếu công việc của bạn thiếu 1 trong 5 điều này...\nToàn bộ uy tín chuyên môn sẽ sụp đổ hoàn toàn.\n5 tiêu chuẩn bắt buộc: Kiểm định, Bảo mật, Khách quan...\nTrách nhiệm và Minh bạch.\nAI cho ra đáp án đúng mới chỉ đi được một nửa chặng đường.\nBạn phải giải thích được nó đã đi qua những bước nào.\nBẫy thứ 5 chính là đây: Tinh thần trách nhiệm.\nAI Agent không đứng tên trên bản báo cáo hay sản phẩm.\nNgười ký tên và chịu trách nhiệm chính là BẠN.\nNếu không thể kiểm tra các phương pháp AI đã dùng...\nHoặc không rõ những file dữ liệu nó đã truy cập...\nThì bạn đang tự biến mình thành kẻ vô trách nhiệm.\n17 nhà khoa học bị chia rẽ:\nMột bên hào hứng tiến lên, một bên lo sợ con người bị thay thế.\nNhưng lập trường của mình rất rõ ràng:\nAI không thể thay thế con người.\nNhững ai biết thẩm định AI sẽ thay thế kẻ tin AI mù quáng.\nNếu bạn làm sản phẩm AI, đừng chỉ đua nhau tăng tốc độ.\nHãy xây dựng công cụ cho phép người dùng soi lại quy trình.\nNếu bạn là người dùng AI, hãy biến nó thành trợ lý.\nTuyệt đối không bao giờ để AI làm sếp của bạn.\nĐối chiếu từng số liệu, kiểm tra từng dòng mã nguồn.\nĐó mới là tư duy làm chủ công nghệ.\nNhìn lại số 17 nhà khoa học ở đầu video.\nHọ chọn sự khắt khe kỷ luật thay vì sự tiện lợi dễ dãi.\nCòn bạn thì sao?\nBạn chọn tốc độ mù quáng hay chọn sự chính xác tuyệt đối?\nĐể lại ý kiến bên dưới, mình cùng tranh luận.",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Viện nghiên cứu Ai2 vừa phỏng vấn",
+                "17 nhà khoa học hàng đầu",
+                "về trợ lý AI Agent."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Ai2 AI for science research"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và kết quả đã phơi bày",
+                "một sự thật vô cùng tàn nhẫn."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Càng giao toàn bộ việc cho AI,",
+                "bạn càng tự đặt bản thân",
+                "vào thế rủi ro."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "17 chuyên gia ngành tự nhiên",
+                "và xã hội cùng đồng thanh lên tiếng."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": 17,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Điều đáng sợ nhất",
+                "không phải là AI đưa ra kết quả sai."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó nằm ở bẫy thứ 5",
+                "về tinh thần trách nhiệm",
+                "mà mình sẽ tiết lộ ở phần sau."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Ai2 agentic system research"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang vô tư giao",
+                "mọi công đoạn cho AI Agent..."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Từ đọc tài liệu, viết mã code",
+                "đến xử lý hàng triệu dòng dữ liệu."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI làm tất cả chỉ trong vài giây."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Đọc tài liệu"
+                  },
+                  {
+                    "label": "Viết mã code"
+                  },
+                  {
+                    "label": "Xử lý dữ liệu"
+                  },
+                  {
+                    "label": "Ghi chép thí nghiệm"
+                  }
+                ],
+                "unit": "",
+                "title": "Tác vụ tự động hóa giao cho AI"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng bạn có thực sự biết",
+                "AI đang che giấu điều gì không?"
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó sẵn sàng bỏ qua",
+                "các bằng chứng đối lập."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó tự bịa ra trích dẫn",
+                "chưa từng tồn tại trong thực tế."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó hợp thức hóa giả thuyết",
+                "bằng những dữ liệu bị bóp méo."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "AI hallucination literature review paper"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi tự động hóa phòng thí nghiệm,",
+                "nó có thể vượt ngưỡng an toàn."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Quên giới hạn nhiệt độ",
+                "hoặc độ độc hại của vật liệu."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Bỏ qua bằng chứng"
+                  },
+                  {
+                    "label": "Bịa trích dẫn"
+                  },
+                  {
+                    "label": "Vi phạm an toàn"
+                  },
+                  {
+                    "label": "Lộ thông tin riêng"
+                  }
+                ],
+                "unit": "",
+                "title": "Sai sót quy trình của AI Agent"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó thậm chí đọc cả file kín",
+                "vượt quá quyền hạn bạn cấp."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một kết quả đưa ra có vẻ đúng",
+                "là chưa đủ để sử dụng."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trong khoa học hay làm sản phẩm,",
+                "quy trình tạo ra kết quả",
+                "mới quyết định sự sống còn."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bài nghiên cứu từ viện Ai2",
+                "chỉ rõ 5 chiều đo tin cậy."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Hugging Face Ai2 Where scientists draw the line on AI agents"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu công việc của bạn",
+                "thiếu 1 trong 5 điều này..."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": 1,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Toàn bộ uy tín chuyên môn",
+                "sẽ sụp đổ hoàn toàn."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": 5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "5 tiêu chuẩn bắt buộc:",
+                "Kiểm định, Bảo mật, Khách quan..."
+              ],
+              "variant": "numeral",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": 5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Trách nhiệm và Minh bạch."
+              ],
+              "variant": "strike",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": {
+                "kind": "hbar",
+                "items": [
+                  {
+                    "label": "Kiểm định",
+                    "value": 100
+                  },
+                  {
+                    "label": "Bảo mật",
+                    "value": 95
+                  },
+                  {
+                    "label": "Khách quan",
+                    "value": 90
+                  },
+                  {
+                    "label": "Trách nhiệm",
+                    "value": 85
+                  }
+                ],
+                "unit": "",
+                "title": "5 chiều đo độ tin cậy từ Ai2"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI cho ra đáp án đúng",
+                "mới chỉ đi được một nửa chặng đường."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn phải giải thích được",
+                "nó đã đi qua những bước nào."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bẫy thứ 5 chính là đây:",
+                "Tinh thần trách nhiệm."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": 5,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI Agent không đứng tên",
+                "trên bản báo cáo hay sản phẩm."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Người ký tên và chịu trách nhiệm",
+                "chính là BẠN."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Ai2 scientific conduct evaluation AI agents"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu không thể kiểm tra",
+                "các phương pháp AI đã dùng..."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hoặc không rõ những file dữ liệu",
+                "nó đã truy cập..."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thì bạn đang tự biến mình",
+                "thành kẻ vô trách nhiệm."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "17 nhà khoa học bị chia rẽ:"
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": 17,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một bên hào hứng tiến lên,",
+                "một bên lo sợ con người bị thay thế."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Human scientists vs AI autonomous agents"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng lập trường của mình rất rõ ràng:"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "AI không thể thay thế con người."
+              ],
+              "variant": "invert",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Những ai biết thẩm định AI",
+                "sẽ thay thế kẻ tin AI mù quáng."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Tin AI mù quáng",
+                    "value": 20
+                  },
+                  {
+                    "label": "Thẩm định quy trình",
+                    "value": 100
+                  }
+                ],
+                "unit": "",
+                "title": "Mức độ an toàn sự nghiệp"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn làm sản phẩm AI,",
+                "đừng chỉ đua nhau tăng tốc độ."
+              ],
+              "variant": "mark",
+              "anchor": "low",
+              "motion_in": "slideL",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy xây dựng công cụ",
+                "cho phép người dùng soi lại quy trình."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn là người dùng AI,",
+                "hãy biến nó thành trợ lý."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tuyệt đối không bao giờ",
+                "để AI làm sếp của bạn."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Allen Institute for AI blog"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đối chiếu từng số liệu,",
+                "kiểm tra từng dòng mã nguồn."
+              ],
+              "variant": "strike",
+              "anchor": "low",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Đó mới là tư duy làm chủ công nghệ."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhìn lại số 17 nhà khoa học",
+                "ở đầu video."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": 17,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ chọn sự khắt khe kỷ luật",
+                "thay vì sự tiện lợi dễ dãi."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Còn bạn thì sao?"
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn tốc độ mù quáng",
+                "hay chọn sự chính xác tuyệt đối?"
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Để lại ý kiến bên dưới,",
+                "mình cùng tranh luận."
+              ],
+              "variant": "invert",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cú lừa mang tên tự động hóa",
+              "card_start": 0
+            },
+            {
+              "label": "AI ranh ma hơn bạn nghĩ",
+              "card_start": 6
+            },
+            {
+              "label": "5 lá chắn sinh tồn",
+              "card_start": 16
+            },
+            {
+              "label": "Thẩm định hay là chết",
+              "card_start": 25
+            },
+            {
+              "label": "AI là trợ lý, không phải sếp",
+              "card_start": 34
+            },
+            {
+              "label": "Quyết định của bạn",
+              "card_start": 40
+            }
+          ]
+        },
+        "script_path": "output/2026-11-26/2026-11-26-morning-where-scientists-draw-the-line-on-ai-age/video/script.json",
+        "script_msg_id": 1433,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
