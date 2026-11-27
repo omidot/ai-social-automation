@@ -913,6 +913,43 @@
           "tiktok": null
         }
       }
+    },
+    "evening": {
+      "status": "draft",
+      "format": "share",
+      "title": "AI làm được 80% việc — vì sao 20% còn lại mới là nghề của bạn",
+      "style": "mono-magazine",
+      "topic_key": "ai-lam-uoc-80-viec-vi-sao-20-con-lai-moi-la-nghe-c",
+      "text_fb": "ChatGPT gánh 80% công việc đầu tiên trong vài giây. Viết code, làm báo cáo, tóm tắt cuộc họp. Bạn ăn mừng vì làm xong việc sớm hơn. Nhưng đến cuối tháng, danh sách cắt giảm nhân sự vẫn có tên bạn. Tại sao? Vì 80% việc AI vừa làm là phần công việc rẻ tiền nhất trên thị trường. Bất kỳ ai biết bấm phím cũng tạo ra được kết quả tương tự. Thứ thực sự quyết định thu nhập và giá trị của bạn nằm ở 20% còn lại. Đó là khả năng chịu trách nhiệm khi hệ thống sập, là tư duy phản biện khi AI đưa ra số liệu sai, và là sự nhạy bén để đưa ra quyết định kinh doanh trong điều kiện mờ ảo. Khi hàng triệu người ngoài kia đang dùng AI để tạo ra một đống rác nội dung và code lỗi với tốc độ ánh sáng, người chiến thắng không phải kẻ tạo ra rác nhanh nhất. Người thắng là kẻ biết lọc rác, chịu trách nhiệm cho sản phẩm cuối cùng và giải quyết những bài toán AI bó tay. Nếu bạn chỉ đóng vai trò làm trung gian bấm nút gõ prompt, bạn chính là người đầu tiên bị thay thế. Nhưng nếu bạn làm chủ 20% cốt lõi, AI chỉ là công cụ làm giàu cho bạn. Hãy ngưng tự hào vì gõ prompt nhanh. Hãy bắt đầu xây dựng năng lực quyết định. Bạn đang dành thời gian luyện gõ prompt hay luyện tư duy chiến lược cho 20% quyết định đó?",
+      "text_ig": "ChatGPT làm xong 80% công việc đầu tiên trong vài giây. Nhưng 20% còn lại — khả năng ra quyết định và chịu trách nhiệm — mới định giá con người bạn. Ngừng tự hào vì gõ prompt nhanh, hãy luyện tư duy chiến lược. Bạn chọn làm chủ 20% hay bị thay thế?",
+      "hashtags": [
+        "#AHitOfficial",
+        "#AI",
+        "#TuDuyKinhDoanh",
+        "#PhongCachDanDau",
+        "#KynangTuongLai",
+        "#TriTueNhanTao",
+        "#PhatTrienBanThan",
+        "#TuduyChienLuoc"
+      ],
+      "images": [
+        "assets/posts/2026-11-27/evening/01.jpg",
+        "assets/posts/2026-11-27/evening/02.jpg",
+        "assets/posts/2026-11-27/evening/03.jpg",
+        "assets/posts/2026-11-27/evening/04.jpg",
+        "assets/posts/2026-11-27/evening/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/evening/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/evening/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/evening/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/evening/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/evening/05.jpg"
+      ],
+      "risk": false,
+      "slot_ict": "19:45",
+      "sources": [],
+      "angle": "quan-diem"
     }
   }
 }
