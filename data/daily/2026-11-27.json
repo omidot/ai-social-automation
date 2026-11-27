@@ -1,0 +1,918 @@
+{
+  "date": "2026-11-27",
+  "posts": {
+    "morning": {
+      "status": "draft",
+      "format": "share",
+      "title": "NVIDIA reportedly halts AI chip shipments to Southeast Asia",
+      "style": "warm-magazine",
+      "topic_key": "nvidia-reportedly-halts-ai-chip-shipments-to-south",
+      "text_fb": "24% sức mạnh tính toán AI của Trung Quốc vừa bị đe dọa trực tiếp. Nvidia đã yêu cầu các đối tác như Dell và Supermicro dừng ngay việc giao máy chủ AI tới Singapore, Malaysia, Thái Lan và Indonesia.\n\nLý do rất đơn giản: các lab AI Trung Quốc bấy lâu nay lách rào cản xuất khẩu bằng cách thuê compute từ xa ở 4 quốc gia Đông Nam Á này. Cơn bão xây data center bùng nổ, giúp doanh thu Nvidia qua Singapore cán mốc 104 tỷ USD trong năm 2025. Nhưng lỗ hổng đó vừa bị phía Mỹ khép lại, yêu cầu các bên phải có giấy phép trong 90 ngày nếu muốn tiếp tục cung cấp compute.\n\nNếu bạn đang phát triển ứng dụng AI và nghĩ rằng hạ tầng cloud là thứ vĩnh cửu, bạn đã lầm. Cuộc chiến AI thực chất không nằm ở prompt hay mô hình, mà nằm ở quyền kiểm soát phần cứng. Khi nguồn cung GPU bị siết, giá thuê cloud sẽ biến động và những sản phẩm phụ thuộc hoàn toàn vào bên thứ ba có thể gãy rụng bất cứ lúc nào.\n\nMình nhận ra đa số chỉ tập trung vào ứng dụng trên bề nổi mà quên mất bài toán hạ tầng gốc. Kẻ nắm phần cứng là kẻ quyết định luật chơi. Bạn phải hiểu rõ hệ thống của mình đang sống dựa vào tài nguyên của ai và nguy cơ bị ngắt kết nối lớn thế nào.\n\nBạn đã có phương án dự phòng nếu dịch vụ AI bạn đang dùng đột ngột bị gián đoạn chưa?\n\nNguồn: Engadget",
+      "text_ig": "24% compute AI Trung Quốc vừa bị siết. Nvidia dừng giao máy chủ sang 4 nước Đông Nam Á. Đừng phụ thuộc hoàn toàn vào hạ tầng đi thuê, bài toán phần cứng mới quyết định cuộc chơi. Bạn đã có phương án dự phòng chưa?",
+      "hashtags": [
+        "#AI",
+        "#Nvidia",
+        "#TechNews",
+        "#CloudComputing",
+        "#Hardware",
+        "#DataCenter",
+        "#ArtificialIntelligence",
+        "#TechTrends"
+      ],
+      "images": [
+        "assets/posts/2026-11-27/morning/01.jpg",
+        "assets/posts/2026-11-27/morning/02.jpg",
+        "assets/posts/2026-11-27/morning/03.jpg",
+        "assets/posts/2026-11-27/morning/04.jpg",
+        "assets/posts/2026-11-27/morning/05.jpg"
+      ],
+      "image_urls": [
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/morning/01.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/morning/02.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/morning/03.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/morning/04.jpg",
+        "https://raw.githubusercontent.com/omidot/ai-social-automation/master/assets/posts/2026-11-27/morning/05.jpg"
+      ],
+      "risk": true,
+      "slot_ict": "11:30",
+      "sources": [
+        {
+          "name": "Engadget",
+          "url": "https://www.engadget.com/2329200/nvidia-reportedly-halts-chip-shipments-to-southeast-asia/"
+        },
+        {
+          "name": "TechCrunch AI",
+          "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNOXdfN2Q0T29iYVJBelBQVV9Cd05kdEZJRnBESFJ1WGlKbHFhUjNMRk1KelRjYndhenZkWW5EVDJGLTB2M3JzYUxXaUNqMzBBV25RNWpxeWRzcGI2TmNyLUMyOGNfMXNJa3VoMGJNZ1pLUjhZcTNqcmFHOGcwMnVwNGNGLWVZbk9L?oc=5"
+        },
+        {
+          "name": "Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQOUpuckxaS1R5UzNUaVo0RV9UWkhhTFZaUkxmbTFaa3hPNU9ZOXdjdTB0SGVIYjJGMGJ0ZmFiSUVXdDZ6WDRIZW5sd2Y3TkZyTktzZnV5d0kyampmR0RTQ1V3ZVB0TzFMLUh1LVZjbnU1UTNqZzYxemY1MWFWd19LYlUyclVOcm14X3VpeEtCd0VCQjVVQVRFYzkyY2NIUQ?oc=5"
+        },
+        {
+          "name": "BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE51TDBpUzhfN1drWDJYSTJWWE02Z0REZmJ0emFrUE1ldXU5X0JQVTlqOVNHUTdZV2g2RS10SmliRnJWNnNZeTcyYnlFQ0cwbnNkVVNvR0Jqdk9jQTQ?oc=5"
+        },
+        {
+          "name": "Báo VietNamNet",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQbEs3Q2ExQ0N1S3dyMUVHZHhnU1RRcVhrQy1rU0JnMnFGZkd6dEpsSmtjWmQxaTRRb05jNklVZlRTZ0tuaG92S0l0WmFpdEVOTWd2VUdKRzJWbU9WUDFVVldEWFM1SzNHYTBiT0FhUnprbWxMQjhLVW96Qi1qUTU3LU9MY1JzdDN4V2hkekwyem12U2Zt?oc=5"
+        }
+      ],
+      "angle": "xu-huong",
+      "video": {
+        "status": "awaiting_audio",
+        "source_url": "https://www.engadget.com/2329200/nvidia-reportedly-halts-chip-shipments-to-southeast-asia/",
+        "extra_sources": [
+          {
+            "name": "TechCrunch AI",
+            "url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/"
+          },
+          {
+            "name": "Vietnam.vn",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNOXdfN2Q0T29iYVJBelBQVV9Cd05kdEZJRnBESFJ1WGlKbHFhUjNMRk1KelRjYndhenZkWW5EVDJGLTB2M3JzYUxXaUNqMzBBV25RNWpxeWRzcGI2TmNyLUMyOGNfMXNJa3VoMGJNZ1pLUjhZcTNqcmFHOGcwMnVwNGNGLWVZbk9L?oc=5"
+          },
+          {
+            "name": "Vietnam.vn",
+            "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQOUpuckxaS1R5UzNUaVo0RV9UWkhhTFZaUkxmbTFaa3hPNU9ZOXdjdTB0SGVIYjJGMGJ0ZmFiSUVXdDZ6WDRIZW5sd2Y3TkZyTktzZnV5d0kyampmR0RTQ1V3ZVB0TzFMLUh1LVZjbnU1UTNqZzYxemY1MWFWd19LYlUyclVOcm14X3VpeEtCd0VCQjVVQVRFYzkyY2NIUQ?oc=5"
+          },
+          {
+            "name": "BBC",
+            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE51TDBpUzhfN1drWDJYSTJWWE02Z0REZmJ0emFrUE1ldXU5X0JQVTlqOVNHUTdZV2g2RS10SmliRnJWNnNZeTcyYnlFQ0cwbnNkVVNvR0Jqdk9jQTQ?oc=5"
+          },
+          {
+            "name": "Báo VietNamNet",
+            "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQbEs3Q2ExQ0N1S3dyMUVHZHhnU1RRcVhrQy1rU0JnMnFGZkd6dEpsSmtjWmQxaTRRb05jNklVZlRTZ0tuaG92S0l0WmFpdEVOTWd2VUdKRzJWbU9WUDFVVldEWFM1SzNHYTBiT0FhUnprbWxMQjhLVW96Qi1qUTU3LU9MY1JzdDN4V2hkekwyem12U2Zt?oc=5"
+          }
+        ],
+        "meta": {
+          "title": "Nvidia Ngắt Điện Toán AI Đông Nam Á: Bài Học Hạ Tầng Đắng Giắt",
+          "description": "Nvidia, Dell và Supermicro vừa chính thức dừng giao máy chủ AI tới Singapore, Malaysia, Thái Lan và Indonesia. Cú siết rào cản xuất khẩu từ Mỹ đang đe doạ 24% năng lực điện toán AI của Trung Quốc và làm chao đảo thị trường cloud. Hãy theo dõi kênh A Hít Official để cập nhật những phân tích sắc bén nhất về cuộc chiến hạ tầng AI toàn cầu.",
+          "hashtags": [
+            "#AHitOfficial",
+            "#Nvidia",
+            "#AI",
+            "#CongNghe",
+            "#GPU",
+            "#Singapore",
+            "#DataCenter",
+            "#CloudCompute",
+            "#TechNews"
+          ],
+          "keywords": [
+            "Nvidia halt shipments",
+            "Nvidia Singapore",
+            "Megaspeed",
+            "AI servers Dell Supermicro",
+            "US export controls AI",
+            "hạ tầng AI",
+            "A Hít Official"
+          ],
+          "tiktok_caption": "Nvidia vừa ngắt máy chủ AI sang 4 nước Đông Nam Á. 24% sức mạnh AI bị đe doạ! #AHitOfficial #Nvidia #AI #CongNghe #GPU"
+        },
+        "spoken_text": "Nvidia vừa lệnh cho Dell và Supermicro dừng giao máy chủ.\nSingapore, Malaysia, Thái Lan và Indonesia đều bị đóng băng.\nNếu bạn làm sản phẩm AI mà nghĩ cloud là an toàn, bạn đã lầm rất to.\nThứ nguy hiểm nhất hiện tại không nằm ở lệnh cấm này.\nNó nằm ở con số 24% mà mình sẽ hé lộ ở sau.\nMột lỗ hổng lách luật khủng vừa bị chính phủ Mỹ trám.\nCả khu vực Đông Nam Á đang rơi vào cơn hoảng loạn.\nVì sao cú siết này lại giáng xuống ngay lúc này?\nBấy lâu nay các lab AI tại Trung Quốc đã lách rào.\nHọ không mua trực tiếp GPU từ Nvidia vì rào cản xuất khẩu.\nHọ lách bằng cách thuê điện toán từ xa tại Đông Nam Á.\nCác trung tâm dữ liệu mọc lên như nấm sau mưa.\nNvidia thu tới 104 tỷ USD chỉ qua chi nhánh Singapore.\nTăng trưởng vọt 72% so với cùng kỳ năm trước.\nNhưng giấc mộng vàng đó vừa chính thức bị đập tan.\nBộ Thương mại Mỹ chốt hạ bằng một quyết định khẩn cấp.\nHọ đưa Megaspeed vào Danh sách Thực thể cấm.\nMegaspeed chính là bên trung gian cho doanh nghiệp Trung Quốc thuê chip.\nGiờ đây mọi chuyến hàng sang đó đều phải có giấy phép từ Mỹ.\nCác trung tâm dữ liệu chỉ có đúng 90 ngày.\nMốc 90 ngày đếm ngược bắt đầu từ ngày 19 tháng 11.\nMột giám đốc cloud vùng nói thẳng: Không ai biết cách nộp đơn xin.\nKhông hướng dẫn thi hành cụ thể. Sự hỗn loạn bao trùm khu vực.\nDell và Supermicro lập tức dừng vận chuyển máy chủ AI.\nNguồn cung phần cứng bị khóa chặt không báo trước.\nVà đây là câu trả lời cho lời hứa ở đầu bài.\nTheo báo cáo từ Viện Tiến bộ Institute for Progress.\n24% năng lực tính toán AI của Trung Quốc phụ thuộc từ xa.\nGần một phần tư sức mạnh AI của họ đang đứng trước nguy cơ gãy.\nBạn thấy sự thật ở đâu chưa? Chiến tranh AI không ở prompt.\nCàng không ở những thuật toán được quảng cáo trên mạng.\nYếu tố quyết định sống còn chính là hạ tầng phần cứng.\nKẻ nắm silicon và điện toán mới là kẻ cầm chuôi cuộc chơi.\nNếu bạn đang xây dựng các sản phẩm AI hiện tại,\nMà bạn phụ thuộc hoàn toàn vào tài nguyên cloud bên ngoài,\nBạn đang tự đưa cổ mình vào dây thòng lọng của người khác.\nKhi nguồn cung GPU bị bóp nghẹt, giá thuê compute sẽ tăng vọt.\nCác dịch vụ AI bạn đang dùng có thể ngắt kết nối bất cứ lúc nào.\nNhững ứng dụng không có dự phòng sẽ biến mất trong một đêm.\nBạn không thể thắng trận nếu vũ khí đi mượn bị đòi.\nHãy nhìn vào bức tranh rộng: Đông Nam Á vừa nếm trái đắng.\nLệnh dừng giao hàng của Nvidia chỉ là sự bắt đầu của bão tố.\nHạ tầng mới là chiến trường. Phần cứng mới là quyền lực.\nNếu hệ thống của bạn bị ngắt, bạn đã có phương án dự phòng chưa?\nBạn chọn chủ động tự chủ hay phó mặc cho số phận?\nBình luận góc nhìn của bạn ngay phía dưới video này.",
+        "script": {
+          "cards": [
+            {
+              "lines": [
+                "Nvidia vừa lệnh cho Dell",
+                "và Supermicro dừng giao máy chủ."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Singapore, Malaysia, Thái Lan",
+                "và Indonesia đều bị đóng băng."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn làm sản phẩm AI",
+                "mà nghĩ cloud là an toàn,",
+                "bạn đã lầm rất to."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Thứ nguy hiểm nhất hiện tại",
+                "không nằm ở lệnh cấm này."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Dell Supermicro Nvidia AI server shipment halt"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nó nằm ở con số 24%",
+                "mà mình sẽ hé lộ ở sau."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": 24,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một lỗ hổng lách luật khủng",
+                "vừa bị chính phủ Mỹ trám."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Cả khu vực Đông Nam Á",
+                "đang rơi vào cơn hoảng loạn."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Vì sao cú siết này",
+                "lại giáng xuống ngay lúc này?"
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bấy lâu nay các lab AI",
+                "tại Trung Quốc đã lách rào."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ không mua trực tiếp GPU",
+                "từ Nvidia vì rào cản xuất khẩu."
+              ],
+              "variant": "hero",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ lách bằng cách thuê điện toán",
+                "từ xa tại Đông Nam Á."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các trung tâm dữ liệu",
+                "mọc lên như nấm sau mưa."
+              ],
+              "variant": "right",
+              "anchor": "low",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nvidia thu tới 104 tỷ USD",
+                "chỉ qua chi nhánh Singapore."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": {
+                "kind": "stat",
+                "items": [
+                  {
+                    "label": "Năm trước",
+                    "value": 60.4
+                  },
+                  {
+                    "label": "Năm 2025 (Tỷ USD)",
+                    "value": 104
+                  }
+                ],
+                "unit": "",
+                "title": "Doanh thu Nvidia Singapore 2025"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Tăng trưởng vọt 72%",
+                "so với cùng kỳ năm trước."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": 72,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nhưng giấc mộng vàng đó",
+                "vừa chính thức bị đập tan."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bộ Thương mại Mỹ chốt hạ",
+                "bằng một quyết định khẩn cấp."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Họ đưa Megaspeed",
+                "vào Danh sách Thực thể cấm."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "US Department of Commerce Entity List Megaspeed"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Megaspeed chính là bên trung gian",
+                "cho doanh nghiệp Trung Quốc thuê chip."
+              ],
+              "variant": "stair",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Giờ đây mọi chuyến hàng sang đó",
+                "đều phải có giấy phép từ Mỹ."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các trung tâm dữ liệu",
+                "chỉ có đúng 90 ngày."
+              ],
+              "variant": "numeral",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": 90,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mốc 90 ngày đếm ngược",
+                "bắt đầu từ ngày 19 tháng 11."
+              ],
+              "variant": "numeral",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": 90,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Một giám đốc cloud vùng nói thẳng:",
+                "Không ai biết cách nộp đơn xin."
+              ],
+              "variant": "mark",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Không hướng dẫn thi hành cụ thể.",
+                "Sự hỗn loạn bao trùm khu vực."
+              ],
+              "variant": "right",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Dell và Supermicro lập tức",
+                "dừng vận chuyển máy chủ AI."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "chips",
+                "items": [
+                  {
+                    "label": "Dell"
+                  },
+                  {
+                    "label": "Supermicro"
+                  },
+                  {
+                    "label": "Nvidia"
+                  }
+                ],
+                "unit": "",
+                "title": "Đối tác máy chủ dừng giao hàng"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nguồn cung phần cứng",
+                "bị khóa chặt không báo trước."
+              ],
+              "variant": "strike",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Và đây là câu trả lời",
+                "cho lời hứa ở đầu bài."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Theo báo cáo từ Viện Tiến bộ",
+                "Institute for Progress."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "24% năng lực tính toán AI",
+                "của Trung Quốc phụ thuộc từ xa."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": {
+                "kind": "gauge",
+                "items": [
+                  {
+                    "label": "Thuê từ xa",
+                    "value": 24
+                  },
+                  {
+                    "label": "Tổng công suất",
+                    "value": 100
+                  }
+                ],
+                "unit": "",
+                "title": "Tỷ lệ sức mạnh AI Trung Quốc từ xa"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Gần một phần tư sức mạnh AI",
+                "của họ đang đứng trước nguy cơ gãy."
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn thấy sự thật ở đâu chưa?",
+                "Chiến tranh AI không ở prompt."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Càng không ở những thuật toán",
+                "được quảng cáo trên mạng."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Yếu tố quyết định sống còn",
+                "chính là hạ tầng phần cứng."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "rise",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Kẻ nắm silicon và điện toán",
+                "mới là kẻ cầm chuôi cuộc chơi."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "fall",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu bạn đang xây dựng",
+                "các sản phẩm AI hiện tại,"
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "slideR",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Mà bạn phụ thuộc hoàn toàn",
+                "vào tài nguyên cloud bên ngoài,"
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "pop",
+              "motion_out": "down",
+              "num": null,
+              "chart": {
+                "kind": "bar",
+                "items": [
+                  {
+                    "label": "Năm 2024",
+                    "value": 60.4
+                  },
+                  {
+                    "label": "Năm 2025",
+                    "value": 104
+                  }
+                ],
+                "unit": "",
+                "title": "Doanh thu qua Singapore (Tỷ USD)"
+              },
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn đang tự đưa cổ mình",
+                "vào dây thòng lọng của người khác."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "wipe",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Khi nguồn cung GPU bị bóp nghẹt,",
+                "giá thuê compute sẽ tăng vọt."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "slam",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Các dịch vụ AI bạn đang dùng",
+                "có thể ngắt kết nối bất cứ lúc nào."
+              ],
+              "variant": "stair",
+              "anchor": "low",
+              "motion_in": "rise",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Những ứng dụng không có dự phòng",
+                "sẽ biến mất trong một đêm."
+              ],
+              "variant": "stack",
+              "anchor": "mid",
+              "motion_in": "fall",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn không thể thắng trận",
+                "nếu vũ khí đi mượn bị đòi."
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "slideL",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hãy nhìn vào bức tranh rộng:",
+                "Đông Nam Á vừa nếm trái đắng."
+              ],
+              "variant": "mark",
+              "anchor": "top",
+              "motion_in": "pop",
+              "motion_out": "up",
+              "num": null,
+              "chart": null,
+              "screenshot": {
+                "query": "Nvidia GPU server data center capacity"
+              },
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Lệnh dừng giao hàng của Nvidia",
+                "chỉ là sự bắt đầu của bão tố."
+              ],
+              "variant": "stack",
+              "anchor": "top",
+              "motion_in": "wipe",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Hạ tầng mới là chiến trường.",
+                "Phần cứng mới là quyền lực."
+              ],
+              "variant": "hero",
+              "anchor": "mid",
+              "motion_in": "slam",
+              "motion_out": "shrink",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Nếu hệ thống của bạn bị ngắt,",
+                "bạn đã có phương án dự phòng chưa?"
+              ],
+              "variant": "right",
+              "anchor": "mid",
+              "motion_in": "rise",
+              "motion_out": "wipeOut",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bạn chọn chủ động tự chủ",
+                "hay phó mặc cho số phận?"
+              ],
+              "variant": "stair",
+              "anchor": "top",
+              "motion_in": "fall",
+              "motion_out": "down",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            },
+            {
+              "lines": [
+                "Bình luận góc nhìn của bạn",
+                "ngay phía dưới video này."
+              ],
+              "variant": "invert",
+              "anchor": "low",
+              "motion_in": "slideR",
+              "motion_out": "dissolve",
+              "num": null,
+              "chart": null,
+              "screenshot": null,
+              "screenshot_file": null,
+              "screenshot_url": null
+            }
+          ],
+          "sections": [
+            {
+              "label": "Cú siết điện toán đột ngột",
+              "card_start": 0
+            },
+            {
+              "label": "Lách luật 104 tỷ đô",
+              "card_start": 8
+            },
+            {
+              "label": "Megaspeed và đòn giáng 90 ngày",
+              "card_start": 16
+            },
+            {
+              "label": "Con số 24% và bản chất cuộc chơi",
+              "card_start": 25
+            },
+            {
+              "label": "Bài học hạ tầng cho người làm AI",
+              "card_start": 33
+            },
+            {
+              "label": "Lời chốt và lựa chọn",
+              "card_start": 41
+            }
+          ]
+        },
+        "script_path": "output/2026-11-27/2026-11-27-morning-nvidia-reportedly-halts-ai-chip-shipment/video/script.json",
+        "script_msg_id": 1451,
+        "audio_file_id": null,
+        "audio_msg_id": null,
+        "mp4_path": null,
+        "seconds": null,
+        "render_err": null,
+        "started_at": null,
+        "publish_due": null,
+        "result": {
+          "yt": null,
+          "fb": null,
+          "ig": null,
+          "tiktok": null
+        }
+      }
+    }
+  }
+}
